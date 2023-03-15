@@ -317,6 +317,6 @@ if __name__ == '__main__':
     #                 w.write(para + "\n")
     #             w.write("\n")
     # w.close()
-    def_sim = load_sim_file("./api_similarity/torch_definition_sim.txt")
-    para_sim = load_sim_file("./api_similarity/torch_para_sim.txt")
+    def_sim = load_sim_file("../api_similarity/torch_definition_sim.txt")
+    para_sim = load_sim_file("../api_similarity/torch_para_sim.txt")
 
