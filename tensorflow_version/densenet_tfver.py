@@ -1,7 +1,6 @@
 from tensorflow import concat
 from tensorflow._api.v2.nn import relu
-from keras.layers import BatchNormalization, GlobalAveragePooling2D
-from tensorflow.python.keras.layers import Conv2D, MaxPooling2D, Dense, Dropout
+from tensorflow.python.keras.layers import Conv2D, MaxPooling2D, Dense, Dropout, BatchNormalization, GlobalAveragePooling2D
 from tensorflow.python.keras import Model, Input
 
 

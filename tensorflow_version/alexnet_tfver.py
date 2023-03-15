@@ -7,7 +7,7 @@ def AlexNet(class_num, input_shape):
     input_tensor = Input(shape=input_shape)
 
     # 1st block
-    x = Conv2D(64, (11, 11), activation='relu', strides=[1, 4, 4, 1], padding='same', name='conv1')(input_tensor)
+    x = Conv2D(64, (11, 11), activation='relu', strides=(4, 4), padding='same', name='conv1')(input_tensor)
     x = MaxPooling2D((3, 3), strides=(2, 2), name='pool1')(x)
 
     # 2nd block
