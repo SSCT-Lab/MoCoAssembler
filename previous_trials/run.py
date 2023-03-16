@@ -19,7 +19,6 @@ img_height, img_width, channel = x_train.shape[1],x_train.shape[2],x_train.shape
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
-def
 
 if __name__ == '__main__':
 
