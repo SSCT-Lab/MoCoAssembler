@@ -1,11 +1,12 @@
 import torch.nn as nn
-import torch.nn.functional as F
 from torchsummary import summary
 
 
 class VGG19(nn.Module):
     def __init__(self, class_num=1000):
         super().__init__()
+        
+        self.relu = nn.ReLU()
 
         self.conv1a = nn.Conv2d(in_channels=3, out_channels=64, kernel_size=3, stride=1, padding=1)
         self.conv1b = nn.Conv2d(in_channels=64, out_channels=64, kernel_size=3, stride=1, padding=1)
@@ -42,58 +43,58 @@ class VGG19(nn.Module):
     def forward(self, x):
         # 1st block
         x = self.conv1a(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.conv1b(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.pool1(x)
 
         # 2nd block
         x = self.conv2a(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.conv2b(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.pool2(x)
 
         # 3rd block
         x = self.conv3a(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.conv3b(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.conv3c(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.conv3d(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.pool3(x)
 
         # 4th block
         x = self.conv4a(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.conv4b(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.conv4c(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.conv4d(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.pool4(x)
 
         # 5th block
         x = self.conv5a(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.conv5b(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.conv5c(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.conv5d(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.pool5(x)
 
         x = x.view(-1, 512 * 7 * 7)
 
         # full connection
         x = self.fc6(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.fc7(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.fc8(x)
         x = self.softmax(x)
         return x

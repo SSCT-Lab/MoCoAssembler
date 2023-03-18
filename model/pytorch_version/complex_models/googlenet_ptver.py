@@ -1,15 +1,7 @@
-# -*- coding: utf-8 -*-
-
-"""
-@Title   :  Pytorch implementation of GoogLeNet
-@Time    :  Mar. 11th, 2023
-@Author  :  Biophilia Wu
-@Email   :  BiophiliaSWDA@163.com
-"""
-
 import torch.nn as nn
 import torch
 import torch.nn.functional as F
+from torchsummary import summary
 
 
 class GoogLeNet(nn.Module):
@@ -90,56 +82,50 @@ class Inception(nn.Module):
     def __init__(self, in_channels, ch1x1, ch3x3red, ch3x3, ch5x5red, ch5x5, pool_proj):
         super(Inception, self).__init__()
 
-        self.branch1 = nn.Sequential(
-            nn.Conv2d(in_channels=in_channels, out_channels=ch1x1, kernel_size=1),
-            nn.ReLU()
-        )
+        self.relu = nn.ReLU()
+        self.pool = nn.MaxPool2d(kernel_size=3, stride=1, padding=1)
 
-        self.branch2 = nn.Sequential(
-            nn.Conv2d(in_channels=in_channels, out_channels=ch3x3red, kernel_size=1, stride=1),
-            nn.ReLU(),
-            nn.Conv2d(in_channels=ch3x3red, out_channels=ch3x3, kernel_size=3, stride=1, padding=1),
-            nn.ReLU()
-        )
+        self.conv1 = nn.Conv2d(in_channels=in_channels, out_channels=ch1x1, kernel_size=1)
 
-        self.branch3 = nn.Sequential(
-            nn.Conv2d(in_channels=in_channels, out_channels=ch5x5red, kernel_size=1, stride=1),
-            nn.ReLU(),
-            nn.Conv2d(in_channels=ch5x5red, out_channels=ch5x5, kernel_size=5, stride=1, padding=2),
-            nn.ReLU()
-        )
+        self.conv2a = nn.Conv2d(in_channels=in_channels, out_channels=ch3x3red, kernel_size=1, stride=1)
+        self.conv2b = nn.Conv2d(in_channels=ch3x3red, out_channels=ch3x3, kernel_size=3, stride=1, padding=1)
 
-        self.branch4 = nn.Sequential(
-            nn.MaxPool2d(kernel_size=3, stride=1, padding=1),
-            nn.Conv2d(in_channels=in_channels, out_channels=pool_proj, kernel_size=1, stride=1),
-            nn.ReLU()
-        )
+        self.conv3a = nn.Conv2d(in_channels=in_channels, out_channels=ch5x5red, kernel_size=1, stride=1)
+        self.conv3b = nn.Conv2d(in_channels=ch5x5red, out_channels=ch5x5, kernel_size=5, stride=1, padding=2)
+
+        self.conv4 = nn.Conv2d(in_channels=in_channels, out_channels=pool_proj, kernel_size=1, stride=1)
 
     def forward(self, x):
-        branch1 = self.branch1(x)
-        branch2 = self.branch2(x)
-        branch3 = self.branch3(x)
-        branch4 = self.branch4(x)
+        branch1 = self.relu(self.conv1(x))
+
+        branch2 = self.relu(self.conv2a(x))
+        branch2 = self.relu(self.conv2b(branch2))
+
+        branch3 = self.relu(self.conv3a(x))
+        branch3 = self.relu(self.conv3b(branch3))
+
+        branch4 = self.pool(x)
+        branch4 = self.relu(self.conv4(branch4))
 
         outputs = [branch1, branch2, branch3, branch4]
-        return torch.cat(outputs, 1)
+        x = torch.cat(outputs, 1)
+
+        return x
 
 
 class InceptionAux(nn.Module):
     def __init__(self, in_channels, class_num):
         super(InceptionAux, self).__init__()
+        self.relu = nn.ReLU()
         self.averagePool = nn.AvgPool2d(kernel_size=5, stride=3)
-        self.conv = nn.Sequential(
-            nn.Conv2d(in_channels=in_channels, out_channels=128, kernel_size=1, stride=1),
-            nn.ReLU()
-        )
+        self.conv = nn.Conv2d(in_channels=in_channels, out_channels=128, kernel_size=1, stride=1)
 
         self.fc1 = nn.Linear(2048, 1024)
         self.fc2 = nn.Linear(1024, class_num)
 
     def forward(self, x):
         x = self.averagePool(x)
-        x = self.conv(x)
+        x = self.relu(self.conv(x))
         x = torch.flatten(x, 1)
 
         x = F.dropout(x, 0.5, training=self.training)
@@ -153,6 +139,4 @@ class InceptionAux(nn.Module):
 
 if __name__ == '__main__':
     net = GoogLeNet()
-
-    from torchsummary import summary
     summary(net, (3, 224, 224))

@@ -26,21 +26,26 @@ class AlexNet(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # 1st block
-        x = self.relu(self.conv1(x))
+        x = self.conv1(x)
+        x = self.relu(x)
         x = self.pool(x)
 
         # 2nd block
-        x = self.relu(self.conv2(x))
+        x = self.conv2(x)
+        x = self.relu(x)
         x = self.pool(x)
 
         # 3rd block
-        x = self.relu(self.conv3(x))
+        x = self.conv3(x)
+        x = self.relu()
 
         # 4th block
-        x = self.relu(self.conv4(x))
+        x = self.conv4(x)
+        x = self.relu()
 
         # 5th block
-        x = self.relu(self.conv5(x))
+        x = self.conv5(x)
+        x = self.relu(x)
         x = self.pool(x)
 
         # 6th block
@@ -49,11 +54,13 @@ class AlexNet(nn.Module):
 
         # 7th block
         x = self.dropout(x)
-        x = self.relu(self.linear1(x))
+        x = self.linear1(x)
+        x = self.relu()
 
         # 8th block
         x = self.dropout(x)
-        x = self.relu(self.linear2(x))
+        x = self.linear2(x)
+        x = self.relu()
 
         # output
         x = self.linear3(x)

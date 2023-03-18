@@ -1,5 +1,5 @@
+import torch
 import torch.nn as nn
-from torch import Tensor, concat
 from torchsummary import summary
 
 
@@ -40,7 +40,7 @@ class SqueezeNet(nn.Module):
         self.conv10 = nn.Conv2d(256, 5, kernel_size=1, stride=1)
 
 
-    def forward(self, x: Tensor) -> Tensor:
+    def forward(self, x):
         # 1st block
         x = self.conv1(x)
         x = self.pool(x)
@@ -52,7 +52,7 @@ class SqueezeNet(nn.Module):
         y1 = self.relu(y1)
         y2 = self.conv2c(x)
         y2 = self.relu(y2)
-        x = concat([y1, y2], dim=-1)
+        x = torch.concat([y1, y2], dim=-1)
 
         # 3rd block
         x = self.conv3(x)
@@ -61,7 +61,7 @@ class SqueezeNet(nn.Module):
         y1 = self.relu(y1)
         y2 = self.conv2c(x)
         y2 = self.relu(y2)
-        x = concat([y1, y2], dim=-1)
+        x = torch.concat([y1, y2], dim=-1)
 
         # 4th block
         x = self.conv4a(x)
@@ -70,7 +70,7 @@ class SqueezeNet(nn.Module):
         y1 = self.relu(y1)
         y2 = self.conv4c(x)
         y2 = self.relu(y2)
-        x = concat([y1, y2], dim=-1)
+        x = torch.concat([y1, y2], dim=-1)
         x = self.pool(x)
 
         # 5th block
@@ -80,7 +80,7 @@ class SqueezeNet(nn.Module):
         y1 = self.relu(y1)
         y2 = self.conv4c(x)
         y2 = self.relu(y2)
-        x = concat([y1, y2], dim=-1)
+        x = torch.concat([y1, y2], dim=-1)
 
         # 6th block
         x = self.conv6a(x)
@@ -89,7 +89,7 @@ class SqueezeNet(nn.Module):
         y1 = self.relu(y1)
         y2 = self.conv6c(x)
         y2 = self.relu(y2)
-        x = concat([y1, y2], dim=-1)
+        x = torch.concat([y1, y2], dim=-1)
 
         # 7th block
         x = self.conv7(x)
@@ -98,7 +98,7 @@ class SqueezeNet(nn.Module):
         y1 = self.relu(y1)
         y2 = self.conv6c(x)
         y2 = self.relu(y2)
-        x = concat([y1, y2], dim=-1)
+        x = torch.concat([y1, y2], dim=-1)
 
         # 8th block
         x = self.conv8a(x)
@@ -107,7 +107,7 @@ class SqueezeNet(nn.Module):
         y1 = self.relu(y1)
         y2 = self.conv8c(x)
         y2 = self.relu(y2)
-        x = concat([y1, y2], dim=-1)
+        x = torch.concat([y1, y2], dim=-1)
         x = self.pool(x)
 
         # 9th block
@@ -117,7 +117,7 @@ class SqueezeNet(nn.Module):
         y1 = self.relu(y1)
         y2 = self.conv8c(x)
         y2 = self.relu(y2)
-        x = concat([y1, y2], dim=-1)
+        x = torch.concat([y1, y2], dim=-1)
         x = self.pool(x)
 
         # 10th block

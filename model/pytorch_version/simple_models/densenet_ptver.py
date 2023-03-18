@@ -1,4 +1,4 @@
-from torch import Tensor, concat
+import torch
 import torch.nn as nn
 from torchsummary import summary
 
@@ -35,7 +35,7 @@ class DenseNet(nn.Module):
         self.avgpool = nn.AdaptiveAvgPool2d(1)
         self.softmax = nn.Softmax(dim=1)
 
-    def forward(self, x: Tensor) -> Tensor:
+    def forward(self, x):
         features_list = []
 
         # 1st block
@@ -53,7 +53,7 @@ class DenseNet(nn.Module):
         x = self.conv128to32(x)
         x = self.dropout(x)
         features_list.append(x)
-        x = concat(features_list, dim=-1)
+        x = torch.concat(features_list, dim=-1)
         for i in range(1, self.density[0]):
             x = self.bn32(x)
             x = self.relu(x)
@@ -63,7 +63,7 @@ class DenseNet(nn.Module):
             x = self.conv128to32(x)
             x = self.dropout(x)
             features_list.append(x)
-            x = concat(features_list, dim=-1)
+            x = torch.concat(features_list, dim=-1)
         features_list.clear()
         x = self.bn32(x)
         x = self.relu(x)
@@ -76,7 +76,7 @@ class DenseNet(nn.Module):
         x = self.conv128to32(x)
         x = self.dropout(x)
         features_list.append(x)
-        x = concat(features_list, dim=-1)
+        x = torch.concat(features_list, dim=-1)
         for i in range(1, self.density[1]):
             x = self.bn32(x)
             x = self.relu(x)
@@ -86,7 +86,7 @@ class DenseNet(nn.Module):
             x = self.conv128to32(x)
             x = self.dropout(x)
             features_list.append(x)
-            x = concat(features_list, dim=-1)
+            x = torch.concat(features_list, dim=-1)
         features_list.clear()
         x = self.bn32(x)
         x = self.relu(x)
@@ -102,7 +102,7 @@ class DenseNet(nn.Module):
         x = self.conv128to32(x)
         x = self.dropout(x)
         features_list.append(x)
-        x = concat(features_list, dim=-1)
+        x = torch.concat(features_list, dim=-1)
         for i in range(1, self.density[2]):
             x = self.bn32(x)
             x = self.relu(x)
@@ -112,7 +112,7 @@ class DenseNet(nn.Module):
             x = self.conv128to32(x)
             x = self.dropout(x)
             features_list.append(x)
-            x = concat(features_list, dim=-1)
+            x = torch.concat(features_list, dim=-1)
         features_list.clear()
         x = self.bn32(x)
         x = self.relu(x)
@@ -128,7 +128,7 @@ class DenseNet(nn.Module):
         x = self.conv128to32(x)
         x = self.dropout(x)
         features_list.append(x)
-        x = concat(features_list, dim=-1)
+        x = torch.concat(features_list, dim=-1)
         for i in range(1, self.density[3]):
             x = self.bn32(x)
             x = self.relu(x)
@@ -138,7 +138,7 @@ class DenseNet(nn.Module):
             x = self.conv128to32(x)
             x = self.dropout(x)
             features_list.append(x)
-            x = concat(features_list, dim=-1)
+            x = torch.concat(features_list, dim=-1)
         features_list.clear()
 
         x = self.avgpool(x)
