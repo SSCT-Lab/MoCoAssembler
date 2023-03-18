@@ -56,9 +56,9 @@ class AlexNet(nn.Module):
         x = self.relu(self.linear2(x))
 
         # output
-        output = self.linear3(x)
+        x = self.linear3(x)
 
-        return output
+        return x
 
 
 if __name__ == '__main__':

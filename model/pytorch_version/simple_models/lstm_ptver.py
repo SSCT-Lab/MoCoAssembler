@@ -40,7 +40,7 @@ class LSTM(Module):
         for weight in self.parameters():
             init.uniform_(weight, -stdv, stdv)
 
-    def forward(self, inputs, state):
+    def forward(self, x, state):
         global h_next_t, c_next_t
         if state is None:
             h_t = torch.zeros(1, self.hidden_size).t()
@@ -52,15 +52,15 @@ class LSTM(Module):
         hidden_seq = []
         seq_size = 1
         for t in range(seq_size):
-            x = inputs[:, t, :].t()
+            p = x[:, t, :].t()
             # input gate
-            i = torch.sigmoid(self.w_ii @ x + self.b_ii + self.w_hi @ h_t + self.b_hi)
+            i = torch.sigmoid(self.w_ii @ p + self.b_ii + self.w_hi @ h_t + self.b_hi)
             # forget gate
-            f = torch.sigmoid(self.w_if @ x + self.b_if + self.w_hf @ h_t + self.b_hf)
+            f = torch.sigmoid(self.w_if @ p + self.b_if + self.w_hf @ h_t + self.b_hf)
             # cell
-            g = torch.tanh(self.w_ig @ x + self.b_ig + self.w_hg @ h_t + self.b_hg)
+            g = torch.tanh(self.w_ig @ p + self.b_ig + self.w_hg @ h_t + self.b_hg)
             # output gate
-            o = torch.sigmoid(self.w_io @ x + self.b_io + self.w_ho @ h_t + self.b_ho)
+            o = torch.sigmoid(self.w_io @ p + self.b_io + self.w_ho @ h_t + self.b_ho)
 
             c_next = f * c_t + i * g
             h_next = o * torch.tanh(c_next)
@@ -68,17 +68,12 @@ class LSTM(Module):
             h_next_t = h_next.t().unsqueeze(0)
             hidden_seq.append(h_next_t)
 
-        hidden_seq = torch.cat(hidden_seq, dim=0)
-        return hidden_seq, (h_next_t, c_next_t)
+        x = torch.cat(hidden_seq, dim=0)
+        return x
 
 
 if __name__ == '__main__':
     inputs, h0, c0 = torch.ones(1, 1, 10), torch.ones(1, 1, 20), torch.ones(1, 1, 20)
-
     lstm = LSTM(10, 20)
-    output1, (hn1, cn1) = lstm(inputs, (h0, c0))
-
-    print(hn1.shape, cn1.shape, output1.shape)
-    print(hn1)
-    print(cn1)
-    print(output1)
+    output1 = lstm(inputs, (h0, c0))
+    print(output1.shape)

@@ -142,9 +142,9 @@ class DenseNet(nn.Module):
         features_list.clear()
 
         x = self.avgpool(x)
-        output = self.softmax(x)
+        x = self.softmax(x)
 
-        return output
+        return x
 
 
 if __name__ == '__main__':

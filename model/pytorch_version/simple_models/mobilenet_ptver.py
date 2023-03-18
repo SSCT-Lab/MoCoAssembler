@@ -113,8 +113,8 @@ class MobileNet(nn.Module):
         x = x.view(x.shape[0], -1)
 
         # output
-        output = self.fc(x)
-        return output
+        x = self.fc(x)
+        return x
 
 
 if __name__ == '__main__':

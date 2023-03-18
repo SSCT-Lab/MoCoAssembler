@@ -1,16 +1,6 @@
-# -*- coding: utf-8 -*-
-
-"""
-@Title   :  Pytorch implementation of VGG16
-@Time    :  Mar. 11th, 2023
-@Author  :  Biophilia Wu
-@Email   :  BiophiliaSWDA@163.com
-"""
-
-
-import torch
-from torch import nn
 import torch.nn.functional as F
+from torch import nn
+from torchsummary import summary
 
 
 class VGG16(nn.Module):
@@ -96,12 +86,10 @@ class VGG16(nn.Module):
         x = self.fc7(x)
         x = F.relu(x)
         x = self.fc8(x)
-        output = self.softmax(x)
-        return output
+        x = self.softmax(x)
+        return x
 
 
 if __name__ == '__main__':
     net = VGG16()
-
-    from torchsummary import summary
     summary(net, (3, 224, 224))
