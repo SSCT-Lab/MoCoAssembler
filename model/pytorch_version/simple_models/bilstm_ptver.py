@@ -56,8 +56,6 @@ class BiLSTM(nn.Module):
         # From idx to embedding
         out = self.embedding(x.long())
 
-        print(out.size())
-
         # Prepare the shape for LSTM Cells
         out = out.view(self.sequence_len, x.size(0), -1)
 

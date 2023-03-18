@@ -2,23 +2,34 @@
 
 ## init 部分
 ```python
+# pool
 self.pool = nn.MaxPool2d(kernel_size=3, stride=2)
 self.avgpool = nn.AdaptiveAvgPool2d((6, 6))
 self.avgpool = nn.AdaptiveAvgPool2d(1)
 
+# activation
 self.relu = nn.ReLU(inplace=True)
 self.relu = nn.ReLU()
 self.softmax = nn.Softmax(dim=1)
+
+# dropout
 self.dropout = nn.Dropout(p=dropout)
 
+# conv
 self.conv1 = nn.Conv2d(3, 64, kernel_size=11, stride=4, padding=2)
 self.conv2 = nn.Conv2d(64, 192, kernel_size=5, padding=2)
 
+# linear
 self.linear1 = nn.Linear(256 * 6 * 6, 4096)
 self.rx_linear = nn.Linear(in_features=input_dim, out_features=hidden_dim)
 
+# sparse
 self.embedding = nn.Embedding(self.input_size, self.hidden_dim, padding_idx=0)
+
+# rnn
 self.lstm_cell_forward = nn.LSTMCell(self.hidden_dim, self.hidden_dim)
+
+# batchnorm
 self.bn32 = nn.BatchNorm2d(32)
 ```
 

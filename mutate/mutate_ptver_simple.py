@@ -1,16 +1,13 @@
 import os
 
-
 def mutate_on_api(file_path: str):
     with open(file_path, "r", encoding="utf8") as f:
-
         f.close()
     return
 
 
 def mutate_on_params(file_path: str):
     with open(file_path, "r", encoding="utf8") as f:
-
         f.close()
     return
 
