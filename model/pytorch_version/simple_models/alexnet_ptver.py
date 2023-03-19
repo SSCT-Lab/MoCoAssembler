@@ -37,11 +37,11 @@ class AlexNet(nn.Module):
 
         # 3rd block
         x = self.conv3(x)
-        x = self.relu()
+        x = self.relu(x)
 
         # 4th block
         x = self.conv4(x)
-        x = self.relu()
+        x = self.relu(x)
 
         # 5th block
         x = self.conv5(x)
@@ -55,12 +55,12 @@ class AlexNet(nn.Module):
         # 7th block
         x = self.dropout(x)
         x = self.linear1(x)
-        x = self.relu()
+        x = self.relu(x)
 
         # 8th block
         x = self.dropout(x)
         x = self.linear2(x)
-        x = self.relu()
+        x = self.relu(x)
 
         # output
         x = self.linear3(x)

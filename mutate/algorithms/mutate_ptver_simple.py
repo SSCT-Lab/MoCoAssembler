@@ -2,15 +2,17 @@ import os
 import random
 from typing import List
 
+import pytorch_api as api
+
 
 # 变异init函数中的API名称，找同类API进行替换
 def mutate_on_api(line: str) -> str:
-    return "# api\n"
+    return api.change_api(line)
 
 
 # 变异init函数中API的参数，例如kernel_size等
 def mutate_on_params(line: str) -> str:
-    return "# params\n"
+    return api.change_params(line)
 
 
 # 变异forward函数，例如增删指令，变换次序等
