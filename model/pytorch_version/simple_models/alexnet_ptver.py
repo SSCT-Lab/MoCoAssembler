@@ -10,7 +10,7 @@ class AlexNet(nn.Module):
         self.relu = nn.ReLU(inplace=True)
 
         self.pool = nn.MaxPool2d(kernel_size=3, stride=2)
-        self.avgpool = nn.AdaptiveAvgPool2d((6, 6))
+        self.avgpool = nn.AdaptiveAvgPool2d(6)
 
         self.conv1 = nn.Conv2d(3, 64, kernel_size=11, stride=4, padding=2)
         self.conv2 = nn.Conv2d(64, 192, kernel_size=5, padding=2)
@@ -24,7 +24,7 @@ class AlexNet(nn.Module):
         self.linear2 = nn.Linear(4096, 4096)
         self.linear3 = nn.Linear(4096, num_classes)
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x):
         # 1st block
         x = self.conv1(x)
         x = self.relu(x)

@@ -45,9 +45,10 @@ rnn_list = ['RNNBase', 'RNN', 'LSTM', 'GRU', 'RNNCellBase', 'RNNCell', 'LSTMCell
 sparse_list = ['Embedding', 'EmbeddingBag']
 
 
+# TODO:更改api
 def change_api(line: str) -> str:
     return "# api\n"
 
-
+# TODO:更改参数值
 def change_params(line: str) -> str:
     return "# params\n"
