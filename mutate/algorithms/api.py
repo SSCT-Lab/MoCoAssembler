@@ -21,3 +21,7 @@ rnn_list = ['RNNBase', 'RNN', 'LSTM', 'GRU', 'RNNCellBase', 'RNNCell', 'LSTMCell
 
 batchnorm_list = ['BatchNorm1d', 'LazyBatchNorm1d', 'BatchNorm2d', 'LazyBatchNorm2d', 'BatchNorm3d', 'LazyBatchNorm3d',
                   'SyncBatchNorm']
+
+
+def changeAPI(line: str) -> str:
+    return line
