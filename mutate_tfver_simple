@@ -1,0 +1,43 @@
+import os
+
+
+def mutate(model_name):
+    # 获取绝对路径
+    dir_cur = os.getcwd()
+    dir_tmp = dir_cur + "/template/tensorflow_version/"
+    dir_mut = dir_cur + "/mutate/tensorflow_version/"
+
+    input_tensor = "input_tensor"
+    output_tensor = "output_tensor"
+
+    if not os.path.exists(dir_mut):
+        os.makedirs(dir_mut)
+
+    file_path_tmp = dir_tmp + model_name + "_tmp.py"
+    file_path_res = dir_tmp + model_name + "_res.py"
+    file_path_mut = dir_mut + model_name + "_mut.py"
+
+    file_tmp = open(file_path_tmp, "r", encoding="utf8")
+    file_res = open(file_path_res, "r", encoding="utf8")
+
+    with open(file_path_mut, "w+", encoding="utf8") as file_mut:
+
+        # 写入输入层
+        for line in file_tmp:
+            file_mut.write(line)
+            if line.find(input_tensor) >= 0:
+                break
+
+        # 变异
+
+        # 写入输出层
+        for line in file_tmp:
+            file_mut.write(line)
+
+        file_mut.close()
+        file_res.close()
+        file_tmp.close()
+
+
+if __name__ == "__main__":
+    mutate("a_test")
