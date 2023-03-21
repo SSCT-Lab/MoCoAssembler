@@ -14,6 +14,7 @@ def mutate_on_api(line: str) -> str:
 def mutate_on_params(line: str) -> str:
     return api.change_params(line)
 
+
 # TODO:forward部分变异函数
 # 变异forward函数，例如增删指令，变换次序，更换api等
 def mutate_on_forward(lines: List[str]) -> str:
@@ -26,7 +27,7 @@ def to_mutate() -> bool:
 
 
 def mutate(file_path: str, file_name: str):
-    mutated_path = os.getcwd() + "/pytorch_models/"
+    mutated_path = os.getcwd() + "/../pytorch_models/"
     if not os.path.exists(mutated_path):
         os.makedirs(mutated_path)
 
@@ -80,7 +81,7 @@ def mutate(file_path: str, file_name: str):
 
 if __name__ == '__main__':
     path = os.getcwd()
-    model_dir = path + "/../model/pytorch_version/simple_models/"
+    model_dir = path + "/../../model/pytorch_version/simple_models/"
     file_list = os.listdir(model_dir)
 
     for net in file_list:
