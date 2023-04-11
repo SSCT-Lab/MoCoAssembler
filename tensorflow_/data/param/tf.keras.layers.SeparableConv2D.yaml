@@ -1,0 +1,95 @@
+constraints:
+  activation:
+    default: None
+    dtype: tf.string
+    enum:
+    - softmax
+    - elu
+    - selu
+    - softplus
+    - softsign
+    - swish
+    - relu
+    - gelu
+    - tanh
+    - sigmoid
+    - exponential
+    - hard_sigmoid
+    - linear
+    - serialize
+    - deserialize
+  activity_regularizer:
+    default: None
+  bias_constraint:
+    default: None
+  bias_initializer:
+    default: zeros
+    dtype: tf.string
+  bias_regularizer:
+    default: None
+  data_format:
+    default: None
+    dtype: tf.string
+    enum:
+    - channels_first
+    - channels_last
+  depth_multiplier:
+    default: 1
+    dtype: int
+    range: '[0,inf)'
+  depthwise_constraint:
+    default: None
+  depthwise_initializer:
+    default: glorot_uniform
+    dtype: tf.string
+  depthwise_regularizer:
+    default: None
+  dilation_rate:
+    default: (1, 1)
+    dtype: int
+    structure:
+    - integer
+    - list
+    - tuple
+    shape: 2
+  filters:
+    dtype: int
+    range: '[0,inf)'
+  kernel_size:
+    dtype: int
+    structure:
+    - integer
+    - list
+    - tuple
+    shape: 2
+  padding:
+    default: valid
+    dtype: tf.string
+    enum:
+    - same
+    - valid
+  pointwise_constraint:
+    default: None
+  pointwise_initializer:
+    default: glorot_uniform
+    dtype: tf.string
+  pointwise_regularizer:
+    default: None
+  strides:
+    default: (1, 1)
+    dtype: int
+    structure:
+    - integer
+    - list
+    - tuple
+    shape: 2
+  use_bias:
+    default: True
+    dtype: tf.bool
+    structure:
+    - list
+descp:
+  'Depthwise separable 2D convolution.
+   Separable convolutions consist of first performing a depthwise spatial convolution (which acts on each input channel separately) followed by a pointwise convolution which mixes the resulting output channels. The depth_multiplier argument controls how many output channels are generated per input channel in the depthwise step.
+
+   Intuitively, separable convolutions can be understood as a way to factorize a convolution kernel into two smaller kernels, or as an extreme version of an Inception block.'

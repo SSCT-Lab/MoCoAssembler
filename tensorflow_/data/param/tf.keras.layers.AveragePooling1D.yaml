@@ -1,0 +1,24 @@
+constraints:
+  data_format:
+    default: channels_last
+    dtype: tf.string
+    enum:
+    - channels_first
+    - channels_last
+  padding:
+    default: valid
+    dtype: tf.string
+    enum:
+    - same
+    - valid
+  pool_size:
+    default: 2
+    dtype: int
+  strides:
+    default: None
+    dtype: int
+descp:
+  'Average pooling for temporal data.
+   Downsamples the input representation by taking the average value over the window defined by pool_size. The window is shifted by strides. The resulting output when using "valid" padding option has a shape of: output_shape = (input_shape - pool_size + 1) / strides)
+
+   The resulting output shape when using the "same" padding option is: output_shape = input_shape / strides'

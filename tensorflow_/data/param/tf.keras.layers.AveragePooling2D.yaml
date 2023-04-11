@@ -1,0 +1,37 @@
+constraints:
+  data_format:
+    default: None
+    dtype: tf.string
+    enum:
+    - channels_first
+    - channels_last
+  padding:
+    default: valid
+    dtype: tf.string
+    enum:
+    - same
+    - valid
+  pool_size:
+    default: (2, 2)
+    dtype:
+    - int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+  strides:
+    default: None
+    dtype:
+    - int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+descp:
+  'Average pooling operation for spatial data.
+   Downsamples the input along its spatial dimensions (height and width) by taking the average value over an input window (of size defined by pool_size) for each channel of the input. The window is shifted by strides along each dimension.
+
+   The resulting output when using "valid" padding option has a shape (number of rows or columns) of: output_shape = math.floor((input_shape - pool_size) / strides) + 1 (when input_shape >= pool_size)
+
+   The resulting output shape when using the "same" padding option is: output_shape = math.floor((input_shape - 1) / strides) + 1
+   '

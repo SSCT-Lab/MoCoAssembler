@@ -1,0 +1,9 @@
+constraints:
+  data_format:
+    default: channels_last
+    dtype: tf.string
+    enum:
+    - channels_first
+    - channels_last
+descp:
+  'Global average pooling operation for temporal data.'

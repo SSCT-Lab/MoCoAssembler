@@ -1,0 +1,10 @@
+constraints:
+  cropping:
+    default: (1, 1)
+    dtype: int
+    structure: tuple
+    shape: 2
+descp:
+  'Cropping layer for 1D input (e.g. temporal sequence).
+   '
+

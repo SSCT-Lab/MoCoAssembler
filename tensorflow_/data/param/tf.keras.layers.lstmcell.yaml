@@ -1,0 +1,49 @@
+constraints:
+  activation:
+    default: tanh
+    dtype: tf.string
+  bias_constraint:
+    default: None
+  bias_initializer:
+    default: zeros
+    dtype: tf.string
+  bias_regularizer:
+    default: None
+  dropout:
+    default: 0.0
+    dtype: float
+  implementation:
+    default: 2
+    dtype: int
+    range: '[0,inf)'
+  kernel_constraint:
+    default: None
+  kernel_initializer:
+    default: glorot_uniform
+    dtype: tf.string
+  kernel_regularizer:
+    default: None
+  recurrent_activation:
+    default: sigmoid
+    dtype: tf.string
+  recurrent_constraint:
+    default: None
+  recurrent_dropout:
+    default: 0.0
+    dtype: float
+  recurrent_initializer:
+    default: orthogonal
+    dtype: tf.string
+  recurrent_regularizer:
+    default: None
+  unit_forget_bias:
+    default: True
+    dtype: tf.bool
+  units:
+    dtype: int
+    range: '[0, inf)'
+  use_bias:
+    default: True
+    dtype: tf.bool
+descp:
+  'Cell class for the LSTM layer.'

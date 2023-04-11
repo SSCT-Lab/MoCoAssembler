@@ -1,0 +1,12 @@
+constraints:
+  data_format:
+    default: None
+    dtype: tf.string
+    enum:
+    - channels_first
+    - channels_last
+  keepdims:
+    default: False
+    dtype: tf.bool
+descp:
+  'Global max pooling operation for spatial data.'

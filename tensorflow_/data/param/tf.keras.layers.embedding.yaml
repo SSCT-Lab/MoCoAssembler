@@ -1,0 +1,21 @@
+constraints:
+  activity_regularizer:
+    default: None
+  embeddings_constraint:
+    default: None
+  embeddings_initializer:
+    default: uniform
+    dtype: tf.string
+  embeddings_regularizer:
+    default: None
+  input_dim:
+    dtype: int
+  input_length:
+    default: None
+  mask_zero:
+    default: False
+    dtype: tf.bool
+  output_dim:
+    dtype: int
+descp:
+  'Turns positive integers (indexes) into dense vectors of fixed size.'

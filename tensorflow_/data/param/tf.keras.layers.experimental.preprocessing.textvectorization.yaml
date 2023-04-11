@@ -1,0 +1,58 @@
+constraints:
+  data:
+    default: None
+    structure:
+    - list
+  max_tokens:
+    default: None
+  ngrams:
+    default: None
+  output_mode:
+    default: INT
+    dtype:
+    - int
+    - tf.string
+    enum:
+    - binary
+    - count
+    - int
+    - integer
+    - string
+    - tf-idf
+    ndim:
+    - '0'
+    range:
+    - '[0,inf)'
+    structure:
+    - list
+  output_sequence_length:
+    default: None
+    ndim:
+    - '0'
+  pad_to_max_tokens:
+    default: 'True'
+    dtype:
+    - tf.bool
+    ndim:
+    - '0'
+  reset_state:
+    default: None
+    ndim:
+    - '0'
+  split:
+    default: SPLIT_ON_WHITESPACE
+    dtype:
+    - tf.string
+    enum:
+    - whitespace
+    ndim:
+    - '0'
+  standardize:
+    default: LOWER_AND_STRIP_PUNCTUATION
+    dtype:
+    - tf.string
+    enum:
+    - lower_and_strip_punctuation
+    ndim:
+    - '0'
+descp: null
