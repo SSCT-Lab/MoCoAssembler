@@ -87,7 +87,7 @@ def mutate_on_parma(line: str) -> str:
     :param line: 一行api
     :return: 新生成的api
     """
-    param_file = Path.joinpath(tf_param_file, "new")
+    param_file = tf_param_file
 
     function, dict = depart_function(line)
 
