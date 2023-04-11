@@ -1,0 +1,80 @@
+constraints:
+  activation:
+    default: None
+    dtype: tf.string
+    enum:
+    - softmax
+    - elu
+    - selu
+    - softplus
+    - softsign
+    - swish
+    - relu
+    - gelu
+    - tanh
+    - sigmoid
+    - exponential
+    - hard_sigmoid
+    - linear
+    - serialize
+    - deserialize
+  activity_regularizer:
+    default: None
+    dtype: tf.string
+  bias_constraint:
+    default: None
+    dtype: tf.string
+  bias_initializer:
+    default: zeros
+    dtype: tf.string
+  bias_regularizer:
+    default: None
+    dtype: tf.string
+  data_format:
+    default: None
+    dtype: tf.string
+    enum:
+    - channels_first
+    - channels_last
+  dilation_rate:
+    default: 1
+    dtype: int
+  filters:
+    dtype: int
+    range: '[0,inf)'
+  kernel_constraint:
+    default: None
+    dtype: tf.string
+  kernel_initializer:
+    default: glorot_uniform
+    dtype: tf.string
+  kernel_regularizer:
+    default: None
+    dtype: tf.string
+  kernel_size:
+    dtype: int
+    structure:
+    - integer
+    - list
+    - tuple
+    shape: 1
+  output_padding:
+    default: None
+    dtype: int
+  padding:
+    default: valid
+    dtype: tf.string
+    enum:
+    - same
+    - valid
+  strides:
+    default: 1
+    dtype: int
+  use_bias:
+    default: True
+    dtype: tf.bool
+descp:
+  'Transposed convolution layer (sometimes called Deconvolution).
+   The need for transposed convolutions generally arises from the desire to use a transformation going in the opposite direction of a normal convolution, i.e., from something that has the shape of the output of some convolution to something that has the shape of its input while maintaining a connectivity pattern that is compatible with said convolution.
+
+    When using this layer as the first layer in a model, provide the keyword argument input_shape (tuple of integers or None, does not include the sample axis), e.g. input_shape=(128, 128, 3) for 128x128 RGB pictures in data_format="channels_last".'

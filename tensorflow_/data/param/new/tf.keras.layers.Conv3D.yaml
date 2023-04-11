@@ -1,0 +1,84 @@
+constraints:
+  activation:
+    default: None
+    dtype: tf.string
+    enum:
+    - softmax
+    - elu
+    - selu
+    - softplus
+    - softsign
+    - swish
+    - relu
+    - gelu
+    - tanh
+    - sigmoid
+    - exponential
+    - hard_sigmoid
+    - linear
+    - serialize
+    - deserialize
+  activity_regularizer:
+    default: None
+  bias_constraint:
+    default: None
+    structure: list
+  bias_initializer:
+    default: zeros
+    dtype: tf.string
+  bias_regularizer:
+    default: None
+    structure: list
+  data_format:
+    default: None
+    dtype: tf.string
+    enum:
+    - channels_first
+    - channels_last
+  dilation_rate:
+    default: (1, 1, 1)
+    dtype: int
+    structure:
+    - integer
+    - list
+    - tuple
+    shape: 3
+  filters:
+    dtype: int
+    range: '[0,inf)'
+  kernel_constraint:
+    default: None
+  kernel_initializer:
+    default: glorot_uniform
+    dtype: tf.string
+  kernel_regularizer:
+    default: None
+  kernel_size:
+    dtype: int
+    structure:
+    - integer
+    - list
+    - tuple
+    shape: 3
+  padding:
+    default: valid
+    dtype: tf.string
+    enum:
+    - same
+    - valid
+  strides:
+    default: (1, 1, 1)
+    dtype: int
+    structure:
+    - integer
+    - list
+    - tuple
+    shape: 3
+  use_bias:
+    default: True
+    dtype: tf.bool
+descp:
+  '3D convolution layer (e.g. spatial convolution over volumes).
+   This layer creates a convolution kernel that is convolved with the layer input to produce a tensor of outputs. If use_bias is True, a bias vector is created and added to the outputs. Finally, if activation is not None, it is applied to the outputs as well.
+
+   When using this layer as the first layer in a model, provide the keyword argument input_shape (tuple of integers or None, does not include the sample axis), e.g. input_shape=(128, 128, 128, 1) for 128x128x128 volumes with a single channel, in data_format="channels_last".'

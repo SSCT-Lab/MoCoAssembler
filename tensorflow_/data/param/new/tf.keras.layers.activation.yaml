@@ -1,0 +1,7 @@
+constraints:
+  activation:
+    dtype:
+    - tf.string
+    ndim:
+    - '0'
+descp: null

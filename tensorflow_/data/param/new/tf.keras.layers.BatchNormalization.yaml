@@ -1,0 +1,45 @@
+constraints:
+  axis:
+    default: -1
+    dtype: int
+  beta_constraint:
+    default: None
+  beta_initializer:
+    default: zeros
+    dtype: tf.string
+  beta_regularizer:
+    default: None
+  center:
+    default: True
+    dtype: tf.bool
+    tensor_t: tf.tensor
+  epsilon:
+    default: 0.001
+    dtype: float
+  gamma_constraint:
+    default: None
+  gamma_initializer:
+    default: ones
+    dtype: tf.string
+  gamma_regularizer:
+    default: None
+  momentum:
+    default: 0.99
+    dtype: float
+  moving_mean_initializer:
+    default: zeros
+    dtype: tf.string
+  moving_variance_initializer:
+    default: ones
+    dtype: tf.string
+  scale:
+    default: True
+    dtype: tf.bool
+  synchronized:
+    default: False
+    dtype: tf.bool
+descp:
+  'Layer that normalizes its inputs.
+   Batch normalization applies a transformation that maintains the mean output close to 0 and the output standard deviation close to 1.
+
+   Importantly, batch normalization works differently during training and during inference.'

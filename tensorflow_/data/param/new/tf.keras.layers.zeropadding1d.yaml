@@ -1,0 +1,10 @@
+constraints:
+  padding:
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+descp:
+  'Zero-padding layer for 1D input (e.g. temporal sequence).'

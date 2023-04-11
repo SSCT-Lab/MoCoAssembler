@@ -1,0 +1,88 @@
+constraints:
+  activation:
+    default: None
+    dtype: tf.string
+    enum:
+    - softmax
+    - elu
+    - selu
+    - softplus
+    - softsign
+    - swish
+    - relu
+    - gelu
+    - tanh
+    - sigmoid
+    - exponential
+    - hard_sigmoid
+    - linear
+    - serialize
+    - deserialize
+  activity_regularizer:
+    default: None
+    dtype: tf.string
+  bias_constraint:
+    default: None
+    dtype: tf.string
+  bias_initializer:
+    default: zeros
+    dtype: tf.string
+  bias_regularizer:
+    default: None
+    dtype: tf.string
+  data_format:
+    default: channels_last
+    dtype: tf.string
+    enum:
+    - channels_first
+    - channels_last
+  dilation_rate:
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    - list
+    - tuple
+    shape: 1
+  filters:
+    dtype: int
+    range: '[0,inf)'
+  kernel_constraint:
+    default: None
+    dtype: tf.string
+  kernel_initializer:
+    default: glorot_uniform
+    dtype: tf.string
+  kernel_regularizer:
+    default: None
+    dtype: tf.string
+  kernel_size:
+    dtype: int
+    structure:
+    - integer
+    - list
+    - tuple
+    shape: 1
+  padding:
+    default: valid
+    dtype: tf.string
+    enum:
+    - causal
+    - same
+    - valid
+  strides:
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    - list
+    - tuple
+    shape: 1
+  use_bias:
+    default: True
+    dtype: tf.bool
+descp:
+  '1D convolution layer (e.g. temporal convolution).
+   This layer creates a convolution kernel that is convolved with the layer input over a single spatial (or temporal) dimension to produce a tensor of outputs. If use_bias is True, a bias vector is created and added to the outputs. Finally, if activation is not None, it is applied to the outputs as well.
+
+   When using this layer as the first layer in a model, provide an input_shape argument (tuple of integers or None, e.g. (10, 128) for sequences of 10 vectors of 128-dimensional vectors, or (None, 128) for variable-length sequences of 128-dimensional vectors.'

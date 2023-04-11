@@ -1,0 +1,11 @@
+constraints:
+  config:
+    default: null
+    dtype: tf.string
+  custom_objects:
+    default: None
+  use_legacy_format:
+    default: False
+    dtype: tf.bool
+descp:
+  'Instantiates a layer from a config dictionary.'

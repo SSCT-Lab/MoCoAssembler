@@ -1,0 +1,12 @@
+constraints:
+  axes:
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+  normalize:
+    default: False
+    dtype: tf.bool
+descp:
+  'Layer that computes a dot product between samples in two tensors.'

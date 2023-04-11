@@ -1,0 +1,75 @@
+constraints:
+  activation:
+    default: tanh
+    dtype: tf.string
+    enum:
+    - None
+    - tanh
+  activity_regularizer:
+    default: None
+    dtype: tf.string
+  bias_constraint:
+    default: None
+    dtype: tf.string
+  bias_initializer:
+    default: zeros
+    dtype: tf.string
+  bias_regularizer:
+    default: None
+    dtype: tf.string
+  dropout:
+    default: 0.0
+    dtype: float
+  go_backwards:
+    default: False
+    dtype: tf.bool
+  kernel_constraint:
+    default: None
+    dtype: tf.string
+  kernel_initializer:
+    default: glorot_uniform
+    dtype: tf.string
+  kernel_regularizer:
+    default: None
+    dtype: tf.string
+  recurrent_activation:
+    default: sigmoid
+    dtype: tf.string
+  recurrent_constraint:
+    default: None
+    dtype: tf.string
+  recurrent_dropout:
+    default: 0.0
+    dtype: float
+  recurrent_initializer:
+    default: orthogonal
+    dtype: tf.string
+  recurrent_regularizer:
+    default: None
+    dtype: tf.string
+  reset_after:
+    default: True
+    dtype: tf.bool
+  return_sequences:
+    default: False
+    dtype: tf.bool
+  return_state:
+    default: False
+    dtype: tf.bool
+  stateful:
+    default: False
+    dtype: tf.bool
+  time_major:
+    default: False
+    dtype: tf.bool
+  units:
+    dtype: int
+    range: '[0, inf)'
+  unroll:
+    default: False
+    dtype: tf.bool
+  use_bias:
+    default: True
+    dtype: tf.bool
+descp:
+  'Gated Recurrent Unit - Cho et al. 2014.'

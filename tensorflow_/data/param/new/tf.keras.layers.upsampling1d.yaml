@@ -1,0 +1,6 @@
+constraints:
+  size:
+    default: 2
+    dtype: int
+descp:
+  'Upsampling layer for 1D inputs.'
