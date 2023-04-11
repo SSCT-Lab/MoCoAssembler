@@ -1,7 +1,0 @@
-constraints:
-  inputs:
-    structure:
-    - list
-    tensor_t:
-    - tf.tensor
-descp: 'Layer that adds a list of inputs.'

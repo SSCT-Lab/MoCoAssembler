@@ -1,9 +1,0 @@
-constraints:
-  data_format:
-    default: channels_last
-    dtype: tf.string
-    enum:
-    - channels_first
-    - channels_last
-descp:
-  'Global max pooling operation for temporal data.'
