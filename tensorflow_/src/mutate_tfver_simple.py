@@ -1,14 +1,17 @@
 import yaml
 
-from config.paths import tf_mut_file, tf_tmp_file, tf_func_file, tf_param_file
+from config.paths import tf_mut_file, tf_tmp_file, tf_param_file, tf_func_sim_file
 from config.keywords import INPUT_TENSOR, INF
 from pathlib import Path
 import random
 import re
-import json
 
 
 def mutate(model_name):
+    """
+    变异函数主体
+    :param model_name: 模型名
+    """
 
     # 获取模版文件
     dir_tmp = tf_tmp_file
@@ -47,39 +50,28 @@ def mutate(model_name):
 
 
 def mutate_on_model(file_res, file_mut):
+    """
+    对模型进行变异
+    :param file_res: 函数所在的文件
+    :param file_mut: 变异后的模型文件
+    :return:
+    """
+    # 两种变异方法
     mutate_list = [mutate_on_parma,
-                   mutate_on_function,]
+                   mutate_on_function]
 
     for line in file_res:
-        """
-        空格或者备注就写入变异文件中
-        网络结构就进行变异
-        """
         if line == "\n" or line.find("#") >= 0:
             file_mut.write(line)
 
         else:
-            """
-            变异选择算法
-            """
-
-            if is_mutate_on_parma():
-                file_mut.write(mutate_on_parma(line))
-            elif is_mutate_on_function():
-                file_mut.write(mutate_on_function(line))
-
-
-def mutate_select() -> list:
-
-    pass
-
-
-def is_mutate_on_parma() -> bool:
-    return True
-
-
-def is_mutate_on_function() -> bool:
-    return False
+            # 随机选择一种变异方法进行变异
+            method = random.choice(mutate_list)
+            if method == mutate_list[0]:
+                file_mut.write("# 参数列表变异\n")
+            else:
+                file_mut.write("# 函数变异\n")
+            file_mut.write(method(line))
 
 
 def mutate_on_parma(line: str) -> str:
@@ -88,8 +80,7 @@ def mutate_on_parma(line: str) -> str:
     :return: 新生成的api
     """
     param_file = tf_param_file
-
-    function, dict = depart_function(line)
+    function, dict = depart_line(line)
 
     func_file = "tf." + function + ".yaml"
     func_file = param_file / func_file
@@ -98,14 +89,14 @@ def mutate_on_parma(line: str) -> str:
             data = yaml.load(file, yaml.Loader)
             data = data["constraints"]
             params_dict = dict.copy()
-            """
-            随机选择一个参数进行变异"""
+            # 随机选择一个参数进行变异
             param = random.choice(list(data.keys()))
             value = ""
             if "dtype" in data[param]:
                 dtype = data[param]["dtype"]
                 type = random.choice(dtype) if isinstance(dtype, list) else dtype
 
+                # 参数类型匹配
                 match type:
                     case "tf.string":
                         if "enum" in data[param]:
@@ -113,23 +104,21 @@ def mutate_on_parma(line: str) -> str:
                             value = '"' + value + '"'
                         else:
                             value = data[param]["default"]
+                            if isinstance(value, str):
+                                value = '"' + value + '"'
                     case "tf.bool":
                         value = random.choice([True, False])
                     case "float":
                         value = random.random().__str__()
                     case "int":
                         if "range" in data[param]:
-                            """
-                            所有的range范围均为[0,inf)
-                            """
+                            # 可能需要改范围
                             value = random.randint(0, INF).__str__()
                         elif "structure" in data[param]:
                             structure = random.choice(data[param]["structure"])
-                            """
-                            此处的value值随便取的，应该做一定的更改
-                            """
+                            # 此处的value值随便取的，应该做一定的更改
                             match structure:
-                                case "int":
+                                case "integer":
                                     value = random.randint(1, 4)
                                 case "tuple":
                                     value = tuple(random.randint(1, 4) for _ in range(data[param]["shape"]))
@@ -149,7 +138,7 @@ def mutate_on_parma(line: str) -> str:
     return new_line
 
 
-def depart_function(line: str) -> (str, dict):
+def depart_line(line: str) -> (str, dict):
     """
     :param line: 一行api
     :return: (函数名， 参数列表)
@@ -159,7 +148,6 @@ def depart_function(line: str) -> (str, dict):
     infos_1 = re.findall(r".*?\((?P<param>.*?)\)\((?P<input>.*?)\)", line)
 
     params = infos_1[0][0] + ','
-    input = infos_1[0][1]
 
     infos_2 = re.findall(r".*?\((.*?)\).*?", params, re.S)
     for _ in infos_2:
@@ -176,18 +164,19 @@ def depart_function(line: str) -> (str, dict):
 
 def generate_param_line(line, params_dict) -> str:
     """
+    根据参数列表生成新的api
     :param line: 一行api
     :param params_dict: 新生成的参数列表
     :return: 新生成的api
     """
-    new_params = ""
+    new_params: str = ""
     for _ in params_dict:
         new_params = new_params + _ + "=" + params_dict[_].__str__() + ", "
 
     new_params = new_params[:-2]
     new_params = "(" + new_params + ")"
 
-    org_params = re.findall(r".*?(\(.*?\)).*?", line, re.S)[0]
+    org_params: str = re.findall(r".*?(\(.*?\)).*?", line, re.S)[0]
 
     new_line = line.replace(org_params, new_params, 1)
     return new_line
@@ -198,21 +187,34 @@ def mutate_on_function(line: str) -> str:
     :param line: 一行api
     :return: 新生成的api
     """
-    function = re.findall(".*?x = (.*?)\(.*?", line)[0]
-    func_dir = tf_func_file
-    # 返回一个迭代器
-    func_list = Path.rglob(func_dir, "*.json")
+    function, dict = depart_line(line)
+    func_file = "tf." + function + ".yaml"
+    func_file = tf_func_sim_file / func_file
 
-    for _ in func_list:
-        if _.__str__().find(function) >= 0:
-            with Path.open(Path.joinpath(func_dir, Path("/"), _), "r") as func_mut:
-                mut_list = json.load(func_mut)
-                mut_func = random.choice(mut_list)[0]
-                """可能需要更改mut_func的参数以及输入类型"""
-                line = line.replace(function, mut_func)
-            break
+    # 相似度阈值
+    th = 0.6
+    if func_file.exists():
+        with Path.open(func_file, "r") as file:
+            data = yaml.load(file, yaml.Loader)
+            # 有的函数大于阈值的相似度可能只有它本身，但是变异的时候又不想要他本身，所以简单的处理一下数据
+            lst = [_[0] for _ in data.items() if _[1] > th]
+            func_mut = random.choice(lst[1:])
+            param_file = tf_param_file / (func_mut + ".yaml")
+            tmp_dict = {}
+            if param_file.exists():
+                with Path.open(tf_param_file / (func_mut + ".yaml"), "r") as param_file:
+                    params_dict = yaml.load(param_file, yaml.Loader)["constraints"]
+                    for _ in dict.items():
+                        if _[0] in params_dict.keys():
+                            tmp_dict[_[0]] = _[1]
+            else:
+                # 有的函数的参数列表取值可能没有储存，所以直接copy不改变其参数列表（可能会出错）
+                tmp_dict = dict.copy()
 
-    return line
+            line = line.replace(function, func_mut)
+            new_line = generate_param_line(line, tmp_dict)
+
+    return new_line
 
 
 if __name__ == "__main__":
