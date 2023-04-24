@@ -1,0 +1,9 @@
+torch.nn.Upsample:
+  torch.nn.UpsamplingBilinear2d: 0.8541
+  torch.nn.UpsamplingNearest2d: 0.8008
+torch.nn.UpsamplingBilinear2d:
+  torch.nn.Upsample: 0.5541
+  torch.nn.UpsamplingNearest2d: 0.926
+torch.nn.UpsamplingNearest2d:
+  torch.nn.Upsample: 0.5008
+  torch.nn.UpsamplingBilinear2d: 0.926

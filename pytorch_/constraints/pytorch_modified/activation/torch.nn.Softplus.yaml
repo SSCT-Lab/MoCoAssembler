@@ -1,0 +1,52 @@
+api: torch.nn.Softplus(beta=1, threshold=20)
+constraints:
+  beta:
+    default: '1'
+    dtype:
+    - int
+    range: '[1, inf)'
+  threshold:
+    default: '20'
+    dtype:
+    - int
+descp: 'r"""Applies the Softplus function :math:`\text{Softplus}(x) = \frac{1}{\beta}
+  *
+
+  \log(1 + \exp(\beta * x))` element-wise.
+
+  SoftPlus is a smooth approximation to the ReLU function and can be used
+
+  to constrain the output of a machine to always be positive.
+
+  For numerical stability the implementation reverts to the linear function
+
+  when :math:`input \times \beta > threshold`.
+
+  Args:
+
+  beta: the :math:`\beta` value for the Softplus formulation. Default: 1
+
+  threshold: values above this revert to a linear function. Default: 20
+
+  Shape:
+
+  - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
+
+  - Output: :math:`(*)`, same shape as the input.
+
+  .. image:: ../scripts/activation_images/Softplus.png
+
+  Examples::
+
+  >>> m = nn.Softplus()
+
+  >>> input = torch.randn(2)
+
+  >>> output = m(input)
+
+  '
+inputs:
+  optional:
+  - beta
+  - threshold
+  required: []

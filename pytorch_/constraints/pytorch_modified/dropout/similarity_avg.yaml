@@ -1,0 +1,16 @@
+torch.nn.AlphaDropout:
+  torch.nn.Dropout: 0.8434
+  torch.nn.Dropout2d: 0.7762
+  torch.nn.Dropout3d: 0.7471
+torch.nn.Dropout:
+  torch.nn.AlphaDropout: 0.8434
+  torch.nn.Dropout2d: 0.8319
+  torch.nn.Dropout3d: 0.8284
+torch.nn.Dropout2d:
+  torch.nn.AlphaDropout: 0.7762
+  torch.nn.Dropout: 0.8319
+  torch.nn.Dropout3d: 0.9851
+torch.nn.Dropout3d:
+  torch.nn.AlphaDropout: 0.7471
+  torch.nn.Dropout: 0.8284
+  torch.nn.Dropout2d: 0.9851

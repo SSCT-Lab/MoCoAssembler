@@ -1,0 +1,16 @@
+torch.nn.BatchNorm1d:
+  torch.nn.BatchNorm2d: 1.0
+  torch.nn.BatchNorm3d: 1.0
+  torch.nn.SyncBatchNorm: 0.875
+torch.nn.BatchNorm2d:
+  torch.nn.BatchNorm1d: 1.0
+  torch.nn.BatchNorm3d: 1.0
+  torch.nn.SyncBatchNorm: 0.875
+torch.nn.BatchNorm3d:
+  torch.nn.BatchNorm1d: 1.0
+  torch.nn.BatchNorm2d: 1.0
+  torch.nn.SyncBatchNorm: 0.875
+torch.nn.SyncBatchNorm:
+  torch.nn.BatchNorm1d: 1.0
+  torch.nn.BatchNorm2d: 1.0
+  torch.nn.BatchNorm3d: 1.0

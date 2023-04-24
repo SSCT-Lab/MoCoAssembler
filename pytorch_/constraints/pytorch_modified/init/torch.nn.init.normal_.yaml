@@ -1,0 +1,39 @@
+api: torch.nn.init.normal_(tensor, mean=0.0, std=1.0)
+constraints:
+  mean:
+    default: '0.0'
+    dtype:
+    - torch.float32
+  std:
+    default: '1.0'
+    dtype:
+    - torch.float32
+  tensor:
+    dtype:
+    - torch.Tensor
+    range: LIMITED
+descp: 'r"""Fills the input Tensor with values drawn from the normal
+
+  distribution :math:`\mathcal{N}(\text{mean}, \text{std}^2)`.
+
+  Args:
+
+  tensor: an n-dimensional `torch.Tensor`
+
+  mean: the mean of the normal distribution
+
+  std: the standard deviation of the normal distribution
+
+  Examples:
+
+  >>> w = torch.empty(3, 5)
+
+  >>> nn.init.normal_(w)
+
+  '
+inputs:
+  optional:
+  - mean
+  - std
+  required:
+  - tensor

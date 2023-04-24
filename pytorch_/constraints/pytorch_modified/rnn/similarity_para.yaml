@@ -1,0 +1,9 @@
+torch.nn.GRUCell:
+  torch.nn.LSTMCell: 1.0
+  torch.nn.RNNCell: 0.8333
+torch.nn.LSTMCell:
+  torch.nn.GRUCell: 1.0
+  torch.nn.RNNCell: 0.8333
+torch.nn.RNNCell:
+  torch.nn.GRUCell: 1.0
+  torch.nn.LSTMCell: 1.0

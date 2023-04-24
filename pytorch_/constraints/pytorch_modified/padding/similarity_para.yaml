@@ -1,0 +1,81 @@
+torch.nn.ConstantPad1d:
+  torch.nn.ConstantPad2d: 1.0
+  torch.nn.ConstantPad3d: 1.0
+  torch.nn.ReflectionPad1d: 1.0
+  torch.nn.ReflectionPad2d: 1.0
+  torch.nn.ReplicationPad1d: 1.0
+  torch.nn.ReplicationPad2d: 1.0
+  torch.nn.ReplicationPad3d: 1.0
+  torch.nn.ZeroPad2d: 1.0
+torch.nn.ConstantPad2d:
+  torch.nn.ConstantPad1d: 1.0
+  torch.nn.ConstantPad3d: 1.0
+  torch.nn.ReflectionPad1d: 1.0
+  torch.nn.ReflectionPad2d: 1.0
+  torch.nn.ReplicationPad1d: 1.0
+  torch.nn.ReplicationPad2d: 1.0
+  torch.nn.ReplicationPad3d: 1.0
+  torch.nn.ZeroPad2d: 1.0
+torch.nn.ConstantPad3d:
+  torch.nn.ConstantPad1d: 1.0
+  torch.nn.ConstantPad2d: 1.0
+  torch.nn.ReflectionPad1d: 1.0
+  torch.nn.ReflectionPad2d: 1.0
+  torch.nn.ReplicationPad1d: 1.0
+  torch.nn.ReplicationPad2d: 1.0
+  torch.nn.ReplicationPad3d: 1.0
+  torch.nn.ZeroPad2d: 1.0
+torch.nn.ReflectionPad1d:
+  torch.nn.ConstantPad1d: 0.5
+  torch.nn.ConstantPad2d: 0.5
+  torch.nn.ConstantPad3d: 0.5
+  torch.nn.ReflectionPad2d: 1.0
+  torch.nn.ReplicationPad1d: 1.0
+  torch.nn.ReplicationPad2d: 1.0
+  torch.nn.ReplicationPad3d: 1.0
+  torch.nn.ZeroPad2d: 1.0
+torch.nn.ReflectionPad2d:
+  torch.nn.ConstantPad1d: 0.5
+  torch.nn.ConstantPad2d: 0.5
+  torch.nn.ConstantPad3d: 0.5
+  torch.nn.ReflectionPad1d: 1.0
+  torch.nn.ReplicationPad1d: 1.0
+  torch.nn.ReplicationPad2d: 1.0
+  torch.nn.ReplicationPad3d: 1.0
+  torch.nn.ZeroPad2d: 1.0
+torch.nn.ReplicationPad1d:
+  torch.nn.ConstantPad1d: 0.5
+  torch.nn.ConstantPad2d: 0.5
+  torch.nn.ConstantPad3d: 0.5
+  torch.nn.ReflectionPad1d: 1.0
+  torch.nn.ReflectionPad2d: 1.0
+  torch.nn.ReplicationPad2d: 1.0
+  torch.nn.ReplicationPad3d: 1.0
+  torch.nn.ZeroPad2d: 1.0
+torch.nn.ReplicationPad2d:
+  torch.nn.ConstantPad1d: 0.5
+  torch.nn.ConstantPad2d: 0.5
+  torch.nn.ConstantPad3d: 0.5
+  torch.nn.ReflectionPad1d: 1.0
+  torch.nn.ReflectionPad2d: 1.0
+  torch.nn.ReplicationPad1d: 1.0
+  torch.nn.ReplicationPad3d: 1.0
+  torch.nn.ZeroPad2d: 1.0
+torch.nn.ReplicationPad3d:
+  torch.nn.ConstantPad1d: 0.5
+  torch.nn.ConstantPad2d: 0.5
+  torch.nn.ConstantPad3d: 0.5
+  torch.nn.ReflectionPad1d: 1.0
+  torch.nn.ReflectionPad2d: 1.0
+  torch.nn.ReplicationPad1d: 1.0
+  torch.nn.ReplicationPad2d: 1.0
+  torch.nn.ZeroPad2d: 1.0
+torch.nn.ZeroPad2d:
+  torch.nn.ConstantPad1d: 0.5
+  torch.nn.ConstantPad2d: 0.5
+  torch.nn.ConstantPad3d: 0.5
+  torch.nn.ReflectionPad1d: 1.0
+  torch.nn.ReflectionPad2d: 1.0
+  torch.nn.ReplicationPad1d: 1.0
+  torch.nn.ReplicationPad2d: 1.0
+  torch.nn.ReplicationPad3d: 1.0

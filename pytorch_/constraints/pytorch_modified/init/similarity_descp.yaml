@@ -1,0 +1,81 @@
+torch.nn.init.constant_:
+  torch.nn.init.dirac_: 0.5351
+  torch.nn.init.eye_: 0.7176
+  torch.nn.init.normal_: 0.6505
+  torch.nn.init.orthogonal_: 0.6259
+  torch.nn.init.sparse_: 0.5429
+  torch.nn.init.uniform_: 0.7188
+  torch.nn.init.xavier_normal_: 0.7028
+  torch.nn.init.xavier_uniform_: 0.706
+torch.nn.init.dirac_:
+  torch.nn.init.constant_: 0.5351
+  torch.nn.init.eye_: 0.6773
+  torch.nn.init.normal_: 0.3741
+  torch.nn.init.orthogonal_: 0.383
+  torch.nn.init.sparse_: 0.3466
+  torch.nn.init.uniform_: 0.4876
+  torch.nn.init.xavier_normal_: 0.4047
+  torch.nn.init.xavier_uniform_: 0.4177
+torch.nn.init.eye_:
+  torch.nn.init.constant_: 0.7176
+  torch.nn.init.dirac_: 0.6773
+  torch.nn.init.normal_: 0.4537
+  torch.nn.init.orthogonal_: 0.5918
+  torch.nn.init.sparse_: 0.4258
+  torch.nn.init.uniform_: 0.5764
+  torch.nn.init.xavier_normal_: 0.4425
+  torch.nn.init.xavier_uniform_: 0.4621
+torch.nn.init.normal_:
+  torch.nn.init.constant_: 0.6505
+  torch.nn.init.dirac_: 0.3741
+  torch.nn.init.eye_: 0.4537
+  torch.nn.init.orthogonal_: 0.4609
+  torch.nn.init.sparse_: 0.757
+  torch.nn.init.uniform_: 0.7553
+  torch.nn.init.xavier_normal_: 0.6682
+  torch.nn.init.xavier_uniform_: 0.604
+torch.nn.init.orthogonal_:
+  torch.nn.init.constant_: 0.6259
+  torch.nn.init.dirac_: 0.383
+  torch.nn.init.eye_: 0.5918
+  torch.nn.init.normal_: 0.4609
+  torch.nn.init.sparse_: 0.5411
+  torch.nn.init.uniform_: 0.5101
+  torch.nn.init.xavier_normal_: 0.6874
+  torch.nn.init.xavier_uniform_: 0.7019
+torch.nn.init.sparse_:
+  torch.nn.init.constant_: 0.5429
+  torch.nn.init.dirac_: 0.3466
+  torch.nn.init.eye_: 0.4258
+  torch.nn.init.normal_: 0.757
+  torch.nn.init.orthogonal_: 0.5411
+  torch.nn.init.uniform_: 0.632
+  torch.nn.init.xavier_normal_: 0.5954
+  torch.nn.init.xavier_uniform_: 0.5424
+torch.nn.init.uniform_:
+  torch.nn.init.constant_: 0.7188
+  torch.nn.init.dirac_: 0.4876
+  torch.nn.init.eye_: 0.5764
+  torch.nn.init.normal_: 0.7553
+  torch.nn.init.orthogonal_: 0.5101
+  torch.nn.init.sparse_: 0.632
+  torch.nn.init.xavier_normal_: 0.6362
+  torch.nn.init.xavier_uniform_: 0.6488
+torch.nn.init.xavier_normal_:
+  torch.nn.init.constant_: 0.7028
+  torch.nn.init.dirac_: 0.4047
+  torch.nn.init.eye_: 0.4425
+  torch.nn.init.normal_: 0.6682
+  torch.nn.init.orthogonal_: 0.6874
+  torch.nn.init.sparse_: 0.5954
+  torch.nn.init.uniform_: 0.6362
+  torch.nn.init.xavier_uniform_: 0.9799
+torch.nn.init.xavier_uniform_:
+  torch.nn.init.constant_: 0.706
+  torch.nn.init.dirac_: 0.4177
+  torch.nn.init.eye_: 0.4621
+  torch.nn.init.normal_: 0.604
+  torch.nn.init.orthogonal_: 0.7019
+  torch.nn.init.sparse_: 0.5424
+  torch.nn.init.uniform_: 0.6488
+  torch.nn.init.xavier_normal_: 0.9799

@@ -1,0 +1,36 @@
+torch.nn.Conv1d:
+  torch.nn.Conv2d: 0.9522
+  torch.nn.Conv3d: 0.9386
+  torch.nn.ConvTranspose1d: 0.6831
+  torch.nn.ConvTranspose2d: 0.7038
+  torch.nn.ConvTranspose3d: 0.6927
+torch.nn.Conv2d:
+  torch.nn.Conv1d: 0.9522
+  torch.nn.Conv3d: 0.9371
+  torch.nn.ConvTranspose1d: 0.6916
+  torch.nn.ConvTranspose2d: 0.717
+  torch.nn.ConvTranspose3d: 0.713
+torch.nn.Conv3d:
+  torch.nn.Conv1d: 0.9386
+  torch.nn.Conv2d: 0.9371
+  torch.nn.ConvTranspose1d: 0.6389
+  torch.nn.ConvTranspose2d: 0.6612
+  torch.nn.ConvTranspose3d: 0.6539
+torch.nn.ConvTranspose1d:
+  torch.nn.Conv1d: 0.7209
+  torch.nn.Conv2d: 0.7295
+  torch.nn.Conv3d: 0.6768
+  torch.nn.ConvTranspose2d: 0.9839
+  torch.nn.ConvTranspose3d: 0.975
+torch.nn.ConvTranspose2d:
+  torch.nn.Conv1d: 0.7417
+  torch.nn.Conv2d: 0.755
+  torch.nn.Conv3d: 0.699
+  torch.nn.ConvTranspose1d: 0.9839
+  torch.nn.ConvTranspose3d: 0.9884
+torch.nn.ConvTranspose3d:
+  torch.nn.Conv1d: 0.7306
+  torch.nn.Conv2d: 0.7509
+  torch.nn.Conv3d: 0.6917
+  torch.nn.ConvTranspose1d: 0.975
+  torch.nn.ConvTranspose2d: 0.9884

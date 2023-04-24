@@ -1,0 +1,4 @@
+torch.nn.CosineSimilarity:
+  torch.nn.PairwiseDistance: 0.0
+torch.nn.PairwiseDistance:
+  torch.nn.CosineSimilarity: 0.0

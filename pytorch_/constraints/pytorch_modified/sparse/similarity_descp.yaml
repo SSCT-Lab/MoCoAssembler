@@ -1,0 +1,4 @@
+torch.nn.Embedding:
+  torch.nn.EmbeddingBag: 0.8236
+torch.nn.EmbeddingBag:
+  torch.nn.Embedding: 0.8236

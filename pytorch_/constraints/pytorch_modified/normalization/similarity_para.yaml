@@ -1,0 +1,9 @@
+torch.nn.GroupNorm:
+  torch.nn.LayerNorm: 0.6
+  torch.nn.LocalResponseNorm: 0.0
+torch.nn.LayerNorm:
+  torch.nn.GroupNorm: 0.5
+  torch.nn.LocalResponseNorm: 0.0
+torch.nn.LocalResponseNorm:
+  torch.nn.GroupNorm: 0.0
+  torch.nn.LayerNorm: 0.0

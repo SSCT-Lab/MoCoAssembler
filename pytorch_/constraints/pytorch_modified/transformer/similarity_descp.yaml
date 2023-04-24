@@ -1,0 +1,25 @@
+torch.nn.Transformer:
+  torch.nn.TransformerDecoder: 0.5982
+  torch.nn.TransformerDecoderLayer: 0.7781
+  torch.nn.TransformerEncoder: 0.7099
+  torch.nn.TransformerEncoderLayer: 0.7694
+torch.nn.TransformerDecoder:
+  torch.nn.Transformer: 0.5982
+  torch.nn.TransformerDecoderLayer: 0.5571
+  torch.nn.TransformerEncoder: 0.7396
+  torch.nn.TransformerEncoderLayer: 0.4497
+torch.nn.TransformerDecoderLayer:
+  torch.nn.Transformer: 0.7781
+  torch.nn.TransformerDecoder: 0.5571
+  torch.nn.TransformerEncoder: 0.5871
+  torch.nn.TransformerEncoderLayer: 0.8737
+torch.nn.TransformerEncoder:
+  torch.nn.Transformer: 0.7099
+  torch.nn.TransformerDecoder: 0.7396
+  torch.nn.TransformerDecoderLayer: 0.5871
+  torch.nn.TransformerEncoderLayer: 0.6084
+torch.nn.TransformerEncoderLayer:
+  torch.nn.Transformer: 0.7694
+  torch.nn.TransformerDecoder: 0.4497
+  torch.nn.TransformerDecoderLayer: 0.8737
+  torch.nn.TransformerEncoder: 0.6084

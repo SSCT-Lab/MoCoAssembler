@@ -1,0 +1,16 @@
+torch.nn.AlphaDropout:
+  torch.nn.Dropout: 1.0
+  torch.nn.Dropout2d: 1.0
+  torch.nn.Dropout3d: 1.0
+torch.nn.Dropout:
+  torch.nn.AlphaDropout: 1.0
+  torch.nn.Dropout2d: 1.0
+  torch.nn.Dropout3d: 1.0
+torch.nn.Dropout2d:
+  torch.nn.AlphaDropout: 1.0
+  torch.nn.Dropout: 1.0
+  torch.nn.Dropout3d: 1.0
+torch.nn.Dropout3d:
+  torch.nn.AlphaDropout: 1.0
+  torch.nn.Dropout: 1.0
+  torch.nn.Dropout2d: 1.0
