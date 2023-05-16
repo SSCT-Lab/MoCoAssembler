@@ -8,7 +8,6 @@
 """
 
 import json
-import time
 from queue import Queue
 from shutil import copyfile
 
@@ -196,6 +195,47 @@ def generate_param_line(line, params_dict) -> str:
     return new_line
 
 
+def random_param(data) -> str:
+    rare_params = ["activity_regularizer",
+                   "bias_constraint",
+                   "bias_initializer",
+                   "bias_regularizer",
+                   "kernel_constraint",
+                   "kernel_initializer",
+                   "kernel_regularizer",
+                   "depthwise_constraint",
+                   "depthwise_initializer",
+                   "depthwise_regularizer",
+                   "pointwise_constraint",
+                   "pointwise_initializer",
+                   "pointwise_regularizer"]
+    rare_probability = 0.005
+    rare_count = 0
+    params_list = list(data.keys())
+    params_probability = [0 for i in range(len(params_list))]
+
+    for i in range(len(params_list)):
+        if params_list[i] in rare_params:
+            params_probability[i] = rare_probability
+            rare_count += 1
+
+    probability = (1 - rare_count * rare_probability) / (len(params_list) - rare_count)
+
+    for i in range(len(params_list)):
+        if params_list[i] not in rare_params:
+            params_probability[i] = probability
+
+    x = random.random()
+    cumulative_probability = 0.0
+    param = None
+    for param, param_probability in zip(params_list, params_probability):
+        cumulative_probability += param_probability
+        if x < cumulative_probability:
+            break
+
+    return param
+
+
 def mutate_on_parma(line: str, func_file) -> str:
     """
     :param line: 一行api
@@ -210,7 +250,7 @@ def mutate_on_parma(line: str, func_file) -> str:
             data = data["constraints"]
             params_dict = dict.copy()
             # 随机选择一个参数进行变异
-            param = random.choice(list(data.keys()))
+            param = random_param(data)
             value = ""
             if "dtype" in data[param]:
                 dtype = data[param]["dtype"]
@@ -338,4 +378,4 @@ def mutate_on_module(file_tmp, file_mut):
 
 
 if __name__ == "__main__":
-    mutate("a_test")
+    mutate("lenet")
