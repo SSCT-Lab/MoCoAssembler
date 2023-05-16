@@ -172,7 +172,7 @@ def mutate_logic(constr: dict):
 def random_normal(default: str, dtype: str, ran: str):
     val = "None"
     if ran == "None":
-        low, high = 0, INF_VAL
+        low, high = 1, INF_VAL
     else:
         match1 = re.match(r'\[(.*),\s*(.*)]', str(ran))
         match2 = re.match(r'\[(.*),\s*(.*)\)', str(ran))

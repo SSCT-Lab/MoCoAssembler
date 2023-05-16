@@ -1,6 +1,7 @@
 import copy
 import datetime
 import os
+import time
 
 import marker
 import mutate as mut
@@ -20,7 +21,11 @@ def assemble():
 
     os.makedirs(TARGET_PATH)
 
+    lst = []
+
     for model in file_list:
+        cur_start = time.time()
+
         model_name = model[:-3]
         split_model(model_name)
 
@@ -29,6 +34,13 @@ def assemble():
         split_dict["part2"], split_dict["part3"] = init_lines, forward_lines
 
         reassemble_model(model_name)
+
+        cur_duration = round(time.time() - cur_start, 4)
+        print("Duration of " + model + ":", cur_duration, "seconds")
+
+        lst.append(cur_duration)
+
+    print(lst)
 
 
 # 分拆模型，拆成四个列表，方便灵活调整，分离读写过程
@@ -86,4 +98,7 @@ def reassemble_model(model_name: str) -> None:
 
 
 if __name__ == "__main__":
+    start = time.time()
     assemble()
+    duration = round(time.time() - start, 4)
+    print("Duration:", duration, "seconds")
