@@ -132,11 +132,17 @@ class MoCoTF(MoCo):
                     inception_file.write(line)
                     break
                 template_file.write(line)
-            template_file.close()
 
             for line in file_org:
+                if line.find("__name__") >= 0:
+                    template_file.write(line)
+                    break
                 inception_file.write(line)
             inception_file.close()
+
+            for line in file_org:
+                template_file.write(line)
+            template_file.close()
 
     def generate_model(self):
         Inception = {}
@@ -167,11 +173,6 @@ class MoCoTF(MoCo):
                     for i in range(pow(self.mutate_times, self.iteration)):
                         method = random.choice(self.mutate_list)
                         new_line.append(method(line, func_file))
-
-                    print("原API：" + line)
-                    print("新API: ")
-                    for ind in new_line:
-                        print(ind)
 
             while not self.queue.empty():
                 org_file_name = self.queue.get()
@@ -393,5 +394,5 @@ class MoCoTF(MoCo):
 
 
 if __name__ == "__main__":
-    test = MoCoTF("lenet")
-    test.generate_model()
+    test = MoCoTF("googlenet")
+    test.depart()
