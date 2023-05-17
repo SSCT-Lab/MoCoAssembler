@@ -164,9 +164,14 @@ class MoCoTF(MoCo):
                     new_line.append(line.replace(function, new_function))
                 else:
                     func_file = "tf." + function + ".yaml"
-                    for i in range(self.mutate_times):
+                    for i in range(pow(self.mutate_times, self.iteration)):
                         method = random.choice(self.mutate_list)
                         new_line.append(method(line, func_file))
+
+                    print("原API：" + line)
+                    print("新API: ")
+                    for ind in new_line:
+                        print(ind)
 
             while not self.queue.empty():
                 org_file_name = self.queue.get()
@@ -188,7 +193,7 @@ class MoCoTF(MoCo):
                         tmp_queue.put(new_file_name)
 
                         if pos != -1:
-                            new_content = content[:pos] + new_line[i - 1] + content[pos:]
+                            new_content = content[:pos] + new_line[num - 1] + content[pos:]
                             new_file = Path.open(Path(new_file_name), "w", encoding="utf8")
                             new_file.write(new_content)
                             new_file.close()
