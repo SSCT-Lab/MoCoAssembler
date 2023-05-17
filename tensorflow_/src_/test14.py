@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-
-"""
-@Title   : 重写文件树
-           边生成边检测
-@Time    : 2023/5/11 16:27
-@Author  : Biophilia Wu
-@Email   : BiophiliaSWDA@163.com
-"""
 import json
 import re
 import time
@@ -44,7 +35,7 @@ class MoCo:
 
     def mutate_on_function(self, line: str, func_file: str) -> str: pass
 
-    def mutate_on_module(self): pass
+    def mutate_on_module(self, function: str, Inception: dict) -> str: pass
 
 
 class MoCoTF(MoCo):
@@ -178,23 +169,25 @@ class MoCoTF(MoCo):
                 org_file_name = self.queue.get()
                 with Path.open(Path(org_file_name), "r", encoding="utf8") as org_file:
                     content = org_file.read()
-                pos = content.find("# " + self.model_name + " output layer")
+                pos1 = content.find("# " + self.model_name + " output layer")
 
-                if function not in self.api_list:
-                    if pos != -1:
-                        new_content = content[:pos] + new_line[0] + content[pos:]
-                        new_file = Path.open(Path(org_file_name), "w", encoding="utf8")
-                        new_file.write(new_content)
-                        new_file.close()
+                for i in range(1, self.mutate_times + 1):
+                    num += 1
+                    new_file_name = self.mutate_dir.resolve().__str__() + "/" + self.iteration.__str__() + "_" + num.__str__() + ".py"
+                    tmp_queue.put(new_file_name)
 
-                else:
-                    for i in range(1, self.mutate_times + 1):
-                        num += 1
-                        new_file_name = self.mutate_dir.resolve().__str__() + "/" + self.iteration.__str__() + "_" + num.__str__() + ".py"
-                        tmp_queue.put(new_file_name)
+                    if function not in self.api_list:
+                        pos2 = content.find("if __name__")
+                        if pos1 != -1 and pos2 != -1:
+                            new_module = self.mutate_on_module(function, Inception)
+                            new_content = content[:pos1] + new_line[0] + content[pos1: pos2] + new_module + content[pos2:]
+                            new_file = Path.open(Path(new_file_name), "w", encoding="utf8")
+                            new_file.write(new_content)
+                            new_file.close()
 
-                        if pos != -1:
-                            new_content = content[:pos] + new_line[num - 1] + content[pos:]
+                    else:
+                        if pos1 != -1:
+                            new_content = content[:pos1] + new_line[num - 1] + content[pos1:]
                             new_file = Path.open(Path(new_file_name), "w", encoding="utf8")
                             new_file.write(new_content)
                             new_file.close()
@@ -203,6 +196,8 @@ class MoCoTF(MoCo):
                 model = tmp_queue.get()
                 try:
                     with Path.open(Path(model), "r") as file:
+                        code = file.read()
+                        print(code)
                         exec(compile(file.read(), model, 'exec'))
                     self.queue.put(model)
                     print(Path(model).name + "\033[95m运行成功\033[0m")
@@ -214,6 +209,8 @@ class MoCoTF(MoCo):
 
             num = 0
             new_line = []
+            if self.queue.empty():
+                break
 
     def get_function(self, line: str) -> str:
         """
@@ -392,7 +389,42 @@ class MoCoTF(MoCo):
 
         return new_line
 
+    def mutate_on_module(self, function: str, Inception: dict) -> str:
+        def_list = []
+        inception_file = Path.open(Path(self.inception_file_name), "r", encoding="utf8")
+        number = Inception[function]
+
+        # 这里为了测试没有进行自定义块变异，底下那个是
+        for line in inception_file:
+            if line.startswith("def " + function):
+                new_function = function + "_" + number.__str__()
+                def_list.append(line.replace(function, new_function))
+            elif line.find("return") >= 0:
+                def_list.append(line)
+                break
+            else:
+                def_list.append(line)
+
+        # for line in inception_file:
+        #     if line.startswith("def " + function):
+        #         new_function = function + "_" + number.__str__()
+        #         def_list.append(line.replace(function, new_function))
+        #     elif line.find("#") >= 0 or line == "\n" or line.find("outputs") >= 0:
+        #         def_list.append(line)
+        #
+        #     else:
+        #         func = self.get_function(line)
+        #         if func in self.api_list:
+        #             func_file = "tf." + func + ".yaml"
+        #             method = random.choice(self.mutate_list)
+        #             def_list.append(method(line, func_file))
+
+        print(def_list)
+        new_module = "".join(def_list)
+        return new_module
+
 
 if __name__ == "__main__":
-    test = MoCoTF("googlenet")
-    test.depart()
+    test = MoCoTF("complex")
+    # test.depart()
+    test.generate_model()
