@@ -1,18 +1,13 @@
 import math
-
 import torch.nn as nn
-import torch.nn.functional as F
-
-model_urls = {
-    'xception': 'http://data.lip6.fr/cadene/pretrainedmodels/xception-43020ad28.pth'
-}
 
 
 class SeparableConv2d(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size=1, stride=1, padding=0, dilation=1, bias=False):
         super(SeparableConv2d, self).__init__()
 
-        self.conv1 = nn.Conv2d(in_channels, in_channels, kernel_size, stride, padding, dilation, groups=in_channels, bias=bias)
+        self.conv1 = nn.Conv2d(in_channels, in_channels, kernel_size, stride, padding, dilation, groups=in_channels,
+                               bias=bias)
         self.pointwise = nn.Conv2d(in_channels, out_channels, 1, 1, 0, 1, 1, bias=bias)
 
     def forward(self, x):
@@ -87,6 +82,8 @@ class Xception(nn.Module):
         super(Xception, self).__init__()
 
         self.num_classes = num_classes
+
+        self.avgpool = nn.AdaptiveAvgPool2d(1)
 
         self.conv1 = nn.Conv2d(3, 32, 3, 2, 0, bias=False)
         self.bn1 = nn.BatchNorm2d(32)
@@ -189,7 +186,7 @@ class Xception(nn.Module):
         x = self.bn4(x)
         x = self.relu(x)
 
-        x = F.adaptive_avg_pool2d(x, (1, 1))
+        x = self.avgpool(x)
         x = x.view(x.size(0), -1)
         x = self.fc(x)
 

@@ -12,7 +12,7 @@ class LeNet(nn.Module):
         self.conv_5 = nn.Sigmoid()
         self.conv_6 = nn.MaxPool2d(2, 2)
 
-        self.fc_1 = nn.Linear(16*4*4, 120)
+        self.fc_1 = nn.Linear(16 * 4 * 4, 120)
         self.fc_2 = nn.Sigmoid()
 
         self.fc_3 = nn.Linear(120, 84)
@@ -31,11 +31,12 @@ class LeNet(nn.Module):
         x = self.conv_5(x)
         x = self.conv_6(x)
 
-        #3rd block
-        x = self.fc_1(x.view(img.shape[0], -1))
+        # 3rd block
+        x = x.view(img.shape[0], -1)
+        x = self.fc_1(x)
         x = self.fc_2(x)
 
-        #4th block
+        # 4th block
         x = self.fc_3(x)
         x = self.fc_4(x)
         x = self.fc_5(x)
@@ -46,7 +47,3 @@ class LeNet(nn.Module):
 if __name__ == '__main__':
     net = LeNet()
     print(net)
-
-
-
-

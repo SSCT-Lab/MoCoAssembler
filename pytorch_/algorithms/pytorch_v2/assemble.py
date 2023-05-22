@@ -2,7 +2,7 @@ import copy
 import datetime
 import os
 
-import marker
+import config.marker as marker
 import mutate as mut
 
 # 将整个模型分为四个部分，分别以"super.init()", "def forward()"和"return x"为界

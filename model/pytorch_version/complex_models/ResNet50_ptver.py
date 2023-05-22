@@ -1,11 +1,12 @@
-import torch
 from torch import nn
-import torch.nn.functional as F
 
 
 class Bottleneck(nn.Module):
     def __init__(self, in_channels, out_channels, stride=[1, 1, 1], padding=[0, 1, 0], first=False) -> None:
         super(Bottleneck, self).__init__()
+
+        self.relu = nn.ReLU()
+
         self.bottleneck = nn.Sequential(
             nn.Conv2d(in_channels, out_channels, kernel_size=1, stride=stride[0], padding=padding[0], bias=False),
             nn.BatchNorm2d(out_channels),
@@ -31,7 +32,7 @@ class Bottleneck(nn.Module):
     def forward(self, x):
         out = self.bottleneck(x)
         out += self.shortcut(x)
-        out = F.relu(out)
+        out = self.relu(out)
         return out
 
 

@@ -1,7 +1,7 @@
 import os
 import yaml
 
-import marker
+import config.marker as marker
 import category_mapper as mapper
 
 

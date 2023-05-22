@@ -1,16 +1,15 @@
 import os
 import yaml
-import marker
+import config.marker as marker
 
 
 def map_category() -> None:
-    constraint_path = os.path.join(marker.ROOT_PATH, "constraints", "pytorch_modified")
-    category_list = os.listdir(constraint_path)
+    category_list = os.listdir(marker.CONSTRAINTS_PATH)
 
     content = {}
 
     for category in category_list:
-        cur_path = os.path.join(constraint_path, category)
+        cur_path = os.path.join(marker.CONSTRAINTS_PATH, category)
         file_list = os.listdir(cur_path)
         for file in file_list:
             if "torch.nn." in file:

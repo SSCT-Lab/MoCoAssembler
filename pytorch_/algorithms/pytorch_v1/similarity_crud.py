@@ -75,7 +75,7 @@ def update_similarity_mysql(api_0: str, api_1: str, similarity: float) -> None:
 
 # 查询api所在similarity的文件路径
 def get_similarity_yaml(api: str) -> str:
-    file = os.path.join(marker.ROOT_PATH, "constraints", "category_mapping.yaml")
+    file = os.path.join(marker.PT_ROOT_PATH, "constraints", "category_mapping.yaml")
     with open(file, "r", encoding="utf-8") as f:
         content = f.read()
         content = yaml.full_load(content)
@@ -86,7 +86,7 @@ def get_similarity_yaml(api: str) -> str:
     else:
         category = "zoo"  # 称为zoo目的是放在pytorch_modified的最后一个
 
-    file = os.path.join(marker.ROOT_PATH, "constraints", "pytorch_modified", category, "similarity.yaml")
+    file = os.path.join(marker.PT_ROOT_PATH, "constraints", "pytorch_modified", category, "similarity.yaml")
     return file
 
 

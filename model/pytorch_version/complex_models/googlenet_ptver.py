@@ -9,6 +9,10 @@ class GoogLeNet(nn.Module):
         super(GoogLeNet, self).__init__()
         self.aux_logits = aux_logits
 
+        self.relu = nn.ReLU()
+
+        self.dropout = nn.Dropout(p=0.5)
+
         self.conv1 = nn.Conv2d(in_channels=3, out_channels=64, kernel_size=7, stride=2, padding=3)
         self.maxpool1 = nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True)
 
@@ -42,13 +46,13 @@ class GoogLeNet(nn.Module):
 
     def forward(self, x):
         x = self.conv1(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.maxpool1(x)
 
         x = self.conv2(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.conv3(x)
-        x = F.relu(x)
+        x = self.relu(x)
         x = self.maxpool2(x)
 
         x = self.inception3a(x)
@@ -128,11 +132,11 @@ class InceptionAux(nn.Module):
         x = self.relu(self.conv(x))
         x = torch.flatten(x, 1)
 
-        x = F.dropout(x, 0.5, training=self.training)
+        x = self.dropout(x)
         x = self.fc1(x)
         x = F.relu(x)
 
-        x = F.dropout(x, 0.5, training=self.training)
+        x = self.dropout(x)
         x = self.fc2(x)
         return x
 

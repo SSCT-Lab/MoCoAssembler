@@ -5,7 +5,7 @@ import yaml
 import marker
 
 if __name__ == '__main__':
-    constraint_path = os.path.join(marker.ROOT_PATH, "constraints", "pytorch_modified")
+    constraint_path = os.path.join(marker.PT_ROOT_PATH, "constraints", "pytorch_modified")
     category_list = os.listdir(constraint_path)
 
     for category in category_list:

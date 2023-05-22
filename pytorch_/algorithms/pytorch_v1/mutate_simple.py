@@ -29,7 +29,7 @@ def mutate_on_params(line: str) -> str:
     # 获取需要变异的api
     complete_api = "torch." + line.split('=', 1)[1].strip()
     api_name = complete_api.split('(')[0].strip()
-    file = os.path.join(marker.ROOT_PATH, "constraints", "category_mapping.yaml")
+    file = os.path.join(marker.PT_ROOT_PATH, "constraints", "category_mapping.yaml")
     with open(file, "r", encoding="utf-8") as f:
         content = f.read()
         content = yaml.full_load(content)
@@ -41,7 +41,7 @@ def mutate_on_params(line: str) -> str:
         print("API not included.")
     else:
         category = content[api_name]
-        file = os.path.join(marker.ROOT_PATH, "constraints", "pytorch_modified", category, api_name + ".yaml")
+        file = os.path.join(marker.PT_ROOT_PATH, "constraints", "pytorch_modified", category, api_name + ".yaml")
         with open(file, "r", encoding="utf-8") as f:
             content = f.read()
             content = yaml.full_load(content)
@@ -82,7 +82,7 @@ def to_mutate_on_api() -> bool:
 
 def mutate(file_path: str, file_name: str):
     # 创建变异后模型保存路径
-    mutated_path = os.path.join(marker.ROOT_PATH, "mutated_models")
+    mutated_path = os.path.join(marker.PT_ROOT_PATH, "mutated_models")
     if not os.path.exists(mutated_path):
         os.makedirs(mutated_path)
 
@@ -142,7 +142,7 @@ def mutate(file_path: str, file_name: str):
 
 
 if __name__ == '__main__':
-    model_dir = os.path.join(marker.ROOT_PATH, "original_models", "simple_models")
+    model_dir = os.path.join(marker.PT_ROOT_PATH, "original_models", "simple_models")
     file_list = os.listdir(model_dir)
 
     for net in file_list:
