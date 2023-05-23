@@ -1,0 +1,28 @@
+api: jittor.nn.unfold(X, kernel_size, dilation=1, padding=0, stride=1)
+constraints:
+  dilation:
+    default: '1'
+    dtype:
+    - int
+  kernel_size:
+    default: no default
+    dtype:
+    - int
+  padding:
+    default: '0'
+    dtype:
+    - int
+  stride:
+    default: '1'
+    dtype:
+    - int
+descp: no description
+extra_para: 1
+inputs:
+  optional:
+  - dilation
+  - padding
+  - stride
+  required:
+  - kernel_size
+kind: api

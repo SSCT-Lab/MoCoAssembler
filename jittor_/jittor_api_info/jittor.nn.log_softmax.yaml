@@ -1,0 +1,13 @@
+api: jittor.nn.log_softmax(x,dim=None)
+constraints:
+  dim:
+    default: None
+    dtype:
+    - int
+descp: no description
+extra_para: 0
+inputs:
+  optional:
+  - dim
+  required: []
+kind: api

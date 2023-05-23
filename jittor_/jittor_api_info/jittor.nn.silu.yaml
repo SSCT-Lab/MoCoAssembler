@@ -1,0 +1,10 @@
+api: jittor.nn.silu(x)
+constraints: {}
+descp: "    r''' Applies the element-wise function:\n\n    .. math::\n        \\text{SILU}(x)\
+  \ = x * Sigmoid(x)\n    \n    :param x: the input var\n    :type x: jt.Var\n\n \
+  \   \n'''"
+extra_para: 0
+inputs:
+  optional: []
+  required: []
+kind: api
