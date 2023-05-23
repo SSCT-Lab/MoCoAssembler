@@ -1,0 +1,9 @@
+api: jittor.nn.ReLU()
+constraints: {}
+descp: "    r''' Applies the element-wise function:\n\n    .. math::\n        \\text{ReLU6}(x)\
+  \ = \\max(0,x)\n\n    :param x: the input var\n    :type x: jt.Var\n\n    \n'''"
+extra_para: 0
+inputs:
+  optional: []
+  required: []
+kind: layer
