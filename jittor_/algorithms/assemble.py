@@ -5,9 +5,10 @@ import queue
 import file_paths
 import simple_model_split as sms
 import mutate
+import run
 
 
-class Assembler:
+class Assembler():
     def __init__(self, model_name: str):
         self.model_name = model_name
         self.splited_model_dict = sms.split_model(os.path.join(file_paths.SIMPLE_MODEL_PATH, (model_name + '.py')))
@@ -17,12 +18,12 @@ class Assembler:
 
         return
 
-    def assemble_code_tree(self):
+    def assemble_code_tree(self):  # 5.25修改：边生成边运行，同时执行出错的文件将不会产生下一代
         model_name = self.model_name
         n = self.n
         original_dict = {'super': self.splited_model_dict['super'], 'part1': self.splited_model_dict['part1'],
                     'execute': self.splited_model_dict['execute'], 'return': self.splited_model_dict['return'],
-                    'part4': self.splited_model_dict['part4'], 'part2': [], 'part3': []}
+                    'part4': self.splited_model_dict['part4'], 'part2': [], 'part3': [], 'generation': 0, 'index': 1}
         part3_list = self.splited_model_dict['part3']
 
         generation = 1
@@ -31,9 +32,9 @@ class Assembler:
         dic_queue = queue.Queue()
         dic_queue.put(original_dict)
 
-
-
+        last_layer_count = self.n ** (generation - 1)
         for sentence in part3_list:
+            # 这句不用变的话，相当于给队列中所有的模型字典加上这一句
             if 'self.' not in sentence:
                 new_queue = queue.Queue()
                 while not dic_queue.empty():
@@ -44,40 +45,62 @@ class Assembler:
                 continue
 
 
-            last_layer_count = self.n ** (generation - 1)
+
             # 上一代模型出队，并写入文件
             dic_list = []
+            next_layer_count = 0
             for i in range(last_layer_count):
                 temp_dict = dic_queue.get()
-                file_name = model_name + '-' + str(generation-1) + '-' + str(i+1)
+                file_name = model_name + '-' + str(temp_dict['generation']) + '-' + str(temp_dict['index'])
                 self.assemble_dictionary_in_file(temp_dict, file_name)
-                dic_list.append(temp_dict)
 
-            for i in range(last_layer_count):
+                runflag = run.run_single_model(file_name + '.py')
+                if runflag:
+                    dic_list.append(temp_dict)
+                else:
+                    pass
+
+
+            # 能进入list的，都是执行通过的模型，下一代模型数量为它们的数量乘n
+
+            count = len(dic_list)
+            next_layer_count = count * self.n
+
+
+            for i in range(count):
                 now_origin = dic_list[i]
                 for j in range(self.n):
-                    index = 3 * i + j + 1
+                    index = (now_origin['index'] - 1) * self.n + j + 1
                     temp = copy.deepcopy(now_origin)
                     now_line = sentence.replace(' ', '').replace('\n', '')
                     name = now_line.split('.')[1].split('(')[0]
                     layer_declaration = self.name_to_api_dict[name]
-                    layer = self.m.api_mutate(layer_declaration)
+                    layer, mutype = self.m.api_mutate(layer_declaration)
                     part_2_line = '        self.' + name + ' = ' + layer + '\n'
+
+                    temp['part2'].append('\n')
+                    temp['part2'].append('        # ' + mutype + '\n')
                     temp['part2'].append(part_2_line)
+
                     temp['part3'].append(sentence)
+                    temp['generation'] = generation
+                    temp['index'] = index
                     dic_queue.put(copy.deepcopy(temp))
 
 
 
 
             generation = generation+1
+            last_layer_count = next_layer_count
 
-        last_layer_count = self.n ** (generation - 1)
+        # last_layer_count = self.n ** (generation - 1)
         # 最后一代模型出队，并写入文件
         for i in range(last_layer_count):
             temp_dict = dic_queue.get()
-            file_name = model_name + '-' + str(generation - 1) + '-' + str(i)
+            file_name = model_name + '-' + str(temp_dict['generation']) + '-' + str(temp_dict['index'])
             self.assemble_dictionary_in_file(temp_dict, file_name)
+
+            runflag = run.run_single_model(file_name + '.py')
 
 
     def assemble_dictionary_in_file(self, model_dict: dict, file_name: str) -> str:
@@ -119,7 +142,6 @@ class Assembler:
 
     def set_n(self, val: int):
         self.n = val
-
 
 if __name__ == '__main__':
     a = Assembler('lenet')

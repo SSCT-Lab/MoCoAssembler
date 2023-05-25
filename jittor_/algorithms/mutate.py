@@ -29,15 +29,25 @@ class Mutator:
         self.api_list = self.api_similarity_info_dict.keys()
         self.layer_list = self.layer_similarity_info_dict.keys()
 
-    def api_mutate(self, api_str: str) -> str:
-        original_api_name = api_str.split('(')[0]
+    def api_mutate(self, api_str: str) -> (str, str):
+        # 5.25修改：返回变异结果的同时，返回一个变异类型
+        r = random.randint(0, 1)
 
-        if 'conv' in original_api_name.lower():
-            return api_str
+        if 'conv' in api_str.lower():
+            return api_str, 'conv not mutated'
+        # TODO：conv变参数的时候，约束需要满足一下，先不变
 
-        result = self.api_name_mutate(api_str)
-        result = self.api_para_adapt(result)
-        return result
+        result = ''
+        mutype = ''
+        if r == 0:
+            result = self.api_name_mutate(api_str)
+            result = self.api_para_adapt(result)
+            mutype = 'api name mutate'
+        else:
+            result = self.api_para_mutate(api_str)
+            mutype = 'api para mutate'
+
+        return result, mutype
 
     def api_name_mutate(self, api_str: str) -> str:
         api_name: str = api_str.split('(')[0]
