@@ -22,12 +22,12 @@ class Assembler():
         model_name = self.model_name
         n = self.n
         original_dict = {'super': self.splited_model_dict['super'], 'part1': self.splited_model_dict['part1'],
-                    'execute': self.splited_model_dict['execute'], 'return': self.splited_model_dict['return'],
-                    'part4': self.splited_model_dict['part4'], 'part2': [], 'part3': [], 'generation': 0, 'index': 1}
+                         'execute': self.splited_model_dict['execute'], 'return': self.splited_model_dict['return'],
+                         'part4': self.splited_model_dict['part4'], 'part2': [], 'part3': [], 'generation': 0,
+                         'index': 1}
         part3_list = self.splited_model_dict['part3']
 
         generation = 1
-
 
         dic_queue = queue.Queue()
         dic_queue.put(original_dict)
@@ -44,8 +44,6 @@ class Assembler():
                 dic_queue = new_queue
                 continue
 
-
-
             # 上一代模型出队，并写入文件
             dic_list = []
             next_layer_count = 0
@@ -60,12 +58,10 @@ class Assembler():
                 else:
                     pass
 
-
             # 能进入list的，都是执行通过的模型，下一代模型数量为它们的数量乘n
 
             count = len(dic_list)
             next_layer_count = count * self.n
-
 
             for i in range(count):
                 now_origin = dic_list[i]
@@ -79,7 +75,7 @@ class Assembler():
                     part_2_line = '        self.' + name + ' = ' + layer + '\n'
 
                     temp['part2'].append('\n')
-                    temp['part2'].append('# ' + mutype)
+                    temp['part2'].append('        # ' + mutype + '\n')
                     temp['part2'].append(part_2_line)
 
                     temp['part3'].append(sentence)
@@ -87,10 +83,7 @@ class Assembler():
                     temp['index'] = index
                     dic_queue.put(copy.deepcopy(temp))
 
-
-
-
-            generation = generation+1
+            generation = generation + 1
             last_layer_count = next_layer_count
 
         # last_layer_count = self.n ** (generation - 1)
@@ -101,7 +94,6 @@ class Assembler():
             self.assemble_dictionary_in_file(temp_dict, file_name)
 
             runflag = run.run_single_model(file_name + '.py')
-
 
     def assemble_dictionary_in_file(self, model_dict: dict, file_name: str) -> str:
         seed_model_name = file_name.split('_')[0]
@@ -133,9 +125,8 @@ class Assembler():
         # return {name -> api}
         result = {}
         for sentence in part_2_list:
-            now_line: str = sentence.replace(' ','').replace('\n','')
+            now_line: str = sentence.replace(' ', '').replace('\n', '')
             if 'self.' in now_line and 'jittor.nn.' in sentence:
-                # 5.26修改，修正了一下此处的规则
                 name = now_line.split('=', 1)[0].split('.')[1]
                 api = now_line.split('=', 1)[1]
                 result[name] = api
@@ -143,6 +134,7 @@ class Assembler():
 
     def set_n(self, val: int):
         self.n = val
+
 
 if __name__ == '__main__':
     a = Assembler('lenet')
