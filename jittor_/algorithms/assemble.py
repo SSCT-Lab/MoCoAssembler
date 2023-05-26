@@ -79,7 +79,7 @@ class Assembler():
                     part_2_line = '        self.' + name + ' = ' + layer + '\n'
 
                     temp['part2'].append('\n')
-                    temp['part2'].append('        # ' + mutype + '\n')
+                    temp['part2'].append('# ' + mutype)
                     temp['part2'].append(part_2_line)
 
                     temp['part3'].append(sentence)
@@ -135,8 +135,9 @@ class Assembler():
         for sentence in part_2_list:
             now_line: str = sentence.replace(' ','').replace('\n','')
             if 'self.' in now_line and 'jittor.nn.' in sentence:
-                name = now_line.split('=')[0].split('.')[1]
-                api = now_line.split('=')[1]
+                # 5.26修改，修正了一下此处的规则
+                name = now_line.split('=', 1)[0].split('.')[1]
+                api = now_line.split('=', 1)[1]
                 result[name] = api
         return result
 
@@ -145,4 +146,4 @@ class Assembler():
 
 if __name__ == '__main__':
     a = Assembler('lenet')
-    a.assemble_code_tree()
+    # a.assemble_code_tree()
