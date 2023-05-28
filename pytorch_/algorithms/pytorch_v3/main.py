@@ -55,8 +55,8 @@ def run(model_name, path):
     idx = 0
     while split_dict["part2"][idx].strip() == '':
         idx += 1
-
     init_space = utils.count_space(split_dict["part2"][idx])
+
     for line in split_dict["part3"]:
         forward_spaces.append(utils.count_space(line))
         if line.strip(' ') == '\n':
@@ -66,10 +66,7 @@ def run(model_name, path):
 
     # 具体变异逻辑
     for i in range(len(forward_apis)):
-        original_param_kvs.clear()
-
         match = re.search(r'self\.\w+(?=\()', forward_apis[i])
-
         if forward_apis[i].startswith('#') or forward_apis[i] == '\n' or not match:
             forward_sentence = " " * forward_spaces[i] + forward_apis[i]
             if forward_apis[i] != '\n':
@@ -187,8 +184,6 @@ def run(model_name, path):
         for line in split_dict["part4"]:
             file_mut.write(line)
         file_mut.close()
-
-    split_dict.clear()
 
 
 if __name__ == "__main__":
