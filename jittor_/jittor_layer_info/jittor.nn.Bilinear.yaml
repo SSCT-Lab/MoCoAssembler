@@ -9,6 +9,8 @@ constraints:
     default: '"float32"'
     dtype:
     - str
+    range:
+    - '"float32"'
   in1_features:
     default: no default
     dtype:

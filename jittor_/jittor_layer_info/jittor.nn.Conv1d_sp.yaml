@@ -12,6 +12,8 @@ constraints:
     default: '1'
     dtype:
     - int
+    range:
+    - '1'
   outchannels:
     default: no default
     dtype:

@@ -8,10 +8,14 @@ constraints:
     default: '"nearest"'
     dtype:
     - str
+    range:
+    - '"bicubic"'
+    - '"nearest"'
+    - '"area"'
   size:
     default: no default
     dtype:
-    - int
+    - tuple
 descp: no description
 extra_para: 0
 inputs:
