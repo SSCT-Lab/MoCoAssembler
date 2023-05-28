@@ -34,8 +34,10 @@ class Mutator:
         r = random.randint(0, 1)
 
         if 'conv' in api_str.lower():
-            return api_str, 'conv not mutated'
-        # TODO：conv变参数的时候，约束需要满足一下，先不变
+            result = self.api_name_mutate(api_str)
+            result = self.api_para_adapt(result)
+            return result, 'api name mutate'
+        # TODO：conv变参数的时候，约束需要满足一下，先不变    5.28 : conv只进行name_mutate
 
         result = ''
         mutype = ''
@@ -112,8 +114,11 @@ class Mutator:
         result = ''
         result = result + new_api_name
         result = result + '('
-        for para_num in new_para_num_list:
-            result = result + para_num + ','
+
+        # 5.28 修改：将参数名也加上
+
+        for i in range(len(new_para_num_list)):
+            result = result + new_para_name_list[i][0] + ' = ' + new_para_num_list[i] + ','
         result = result[:-1]
         result = result + ')'
 

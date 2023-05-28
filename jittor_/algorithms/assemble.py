@@ -6,7 +6,7 @@ import file_paths
 import simple_model_split as sms
 import mutate
 import run
-
+import shape_fix as s_f
 
 class Assembler():
     def __init__(self, model_name: str):
@@ -15,6 +15,7 @@ class Assembler():
         self.name_to_api_dict = self.analyse_dict(self.splited_model_dict['part2'])
         self.m = mutate.Mutator()
         self.n = 2
+        self.sf = s_f.ShapeFixer()
 
         return
 
@@ -74,10 +75,17 @@ class Assembler():
                     layer, mutype = self.m.api_mutate(layer_declaration)
                     part_2_line = '        self.' + name + ' = ' + layer + '\n'
 
+                    # 5.28: 基于此处part_2_line, 增加一句shape_fix
+                    shape_fix_sentence = self.sf.get_shape_fix_sentence(part_2_line)
+
                     temp['part2'].append('\n')
                     temp['part2'].append('        # ' + mutype + '\n')
                     temp['part2'].append(part_2_line)
 
+                    # 5.28: 在此处添加shape_fix============
+                    temp['part3'].append('        # shape fix' + '\n')
+                    temp['part3'].append(shape_fix_sentence)
+                    # ====================================
                     temp['part3'].append(sentence)
                     temp['generation'] = generation
                     temp['index'] = index
