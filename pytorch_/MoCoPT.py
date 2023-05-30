@@ -22,10 +22,11 @@ class MoCoPT:
         self.init_input = {}
         self.forward_input = []
 
-        # 不可变模板，第一部分、第四部分以及二三之间
+        # 不可变模板，开头（原第一部分）、结尾（第二部分）以及中间两句话
         self.begin = ""
         self.end = ""
         self.forward_line = ""
+        self.return_line = ""
 
         # 可变构件的变异后输出
         self.init_output = ""
@@ -57,6 +58,11 @@ class MoCoPT:
         # 队列
         self.que = queue.Queue()
 
+        # 复杂模型相关
+        self.net_name = ""
+        self.block_dict = {}
+        self.block_visited = {}
+
     def generate_model(self):
         self.depart()
 
@@ -82,9 +88,8 @@ class MoCoPT:
                 continue
 
             # 匹配到了，提取"self.xxx"部分,并到init函数的dict中寻找对应的"nn.xxx"
-            self_name = match.group()
-            new_self_name = self_name + "_" + str(self.init_api_visited[self_name])
-            self.self_name, self.new_self_name, self.line_idx = self_name, new_self_name, i
+            self.self_name = match.group()
+            self.line_idx = i
 
             # 对于queue中的每一个值，加上变异后的新语句
             que_len = self.que.qsize()
@@ -103,13 +108,14 @@ class MoCoPT:
                         file_mut.write(init_output + self.init_sentence + "\n")
                         file_mut.write(self.forward_line)
                         file_mut.write(self.forward_output + self.forward_sentence)
+                        file_mut.write(self.return_line)
                         file_mut.write(self.end)
                         file_mut.close()
 
                     self.que.put(init_output + self.init_sentence)
 
-                    # instr = "python " + file_path_mut
-                    # process = subprocess.Popen(instr, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+                    # process = subprocess.Popen(file_path_mut, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                    #                            shell=True)
                     # output, error = process.communicate()
                     #
                     # if error:
@@ -138,30 +144,54 @@ class MoCoPT:
             file_path_org = os.path.join(marker.COMPLEX_MODEL_PATH, self.model_name + ".py")
 
         # Step1: 解析模型文件
+        temp_list = []
         with open(file_path_org, "r", encoding="utf8") as file_org:
-            temp_list = []
+            visited = False
+            cur_class_name = ""
 
             for line in file_org:
-                if line.find("super(") >= 0:
-                    temp_list.append(line)
+                if line.find("class") >= 0 and not visited:
                     self.begin = ''.join(temp_list)
+                    visited = True
+                    cur_class_name = line.split(" ")[1].split("(")[0]
+                    self.net_name = cur_class_name
+                    temp_list.clear()
+                elif line.find("class") >= 0:
+                    self.block_dict[cur_class_name] = copy.deepcopy(temp_list)
+                    cur_class_name = line.split(" ")[1].split("(")[0]
+                    self.block_visited[cur_class_name] = 0
+                    temp_list.clear()
+                elif line.find("if __name__") >= 0:
+                    self.block_dict[cur_class_name] = copy.deepcopy(temp_list)
+                    cur_class_name = ""
                     temp_list.clear()
 
-                elif line.find("def forward(") >= 0:
-                    self.forward_line = line
-                    init_lines = copy.deepcopy(temp_list)
-                    temp_list.clear()
+                temp_list.append(line)
 
-                elif line.find("return x") >= 0:
-                    forward_lines = copy.deepcopy(temp_list)
-                    temp_list.clear()
-                    temp_list.append(line)
-
-                else:
-                    temp_list.append(line)
-
-            self.end = ''.join(temp_list)
+            self.end = "\n\n" + ''.join(temp_list)
             file_org.close()
+
+        init_lines, forward_lines = "", ""
+        temp_list.clear()
+
+        for line in self.block_dict[self.net_name]:
+            if line.find("super(") >= 0:
+                temp_list.append(line)
+                self.begin += ''.join(temp_list)
+                temp_list.clear()
+
+            elif line.find("def forward(") >= 0:
+                self.forward_line = line
+                init_lines = copy.deepcopy(temp_list)
+                temp_list.clear()
+
+            elif line.find("return x") >= 0:
+                self.return_line = line
+                forward_lines = copy.deepcopy(temp_list)
+                temp_list.clear()
+
+            else:
+                temp_list.append(line)
 
         # Step2: 预处理第二部分(init函数)保存至字典中, 并计算缩进量
         for line in init_lines:
@@ -175,6 +205,10 @@ class MoCoPT:
                 para_lst = lst[1].strip()
                 self.init_input[api_name] = para_lst
                 self.init_api_visited[api_name] = 0
+            elif lst[1].split("(")[0].strip() in self.block_dict.keys():
+                api_name = lst[0].strip()
+                para_lst = lst[1].strip()
+                self.init_input[api_name] = para_lst
             else:
                 self.init_output += line
 
@@ -189,15 +223,25 @@ class MoCoPT:
     def mutate(self):
         para_line = self.init_input[self.self_name]
         api_nn = self.get_function(para_line)
-        api_torch = "torch." + api_nn
         para_lst = self.get_params(para_line)
 
         # 准备好输出的init行前半句，以及forward行全部
-        init_sentence = " " * self.init_space + self.new_self_name + " = "
-        new_forward_line = self.forward_input[self.line_idx].replace(self.self_name, self.new_self_name)
+        new_self_name = self.self_name + "_" + str(self.init_api_visited[self.self_name])
+        self.init_api_visited[self.self_name] += 1
+
+        new_forward_line = self.forward_input[self.line_idx].replace(self.self_name, new_self_name)
+        init_sentence = " " * self.init_space + new_self_name + " = "
         forward_sentence = " " * self.forward_spaces[self.line_idx] + new_forward_line + "\n"
 
+        if "nn." not in api_nn:
+            new_func_name = self.mutate_on_module(api_nn, {})
+            self.init_sentence = init_sentence + para_line.replace(api_nn, new_func_name) + "\n"
+            self.forward_sentence = forward_sentence
+            self.changed = True
+            return
+
         # 得到当前"nn.xxx"所在的类别
+        api_torch = "torch." + api_nn
         try:
             category = utils.get_category(api_torch)
         except Exception as err:
@@ -359,9 +403,12 @@ class MoCoPT:
         return line.split('(', 1)[1].split(')', -1)[0].split(',')
 
     def mutate_on_module(self, function: str, Inception: dict) -> str:
-        pass
+        new_func_name = function + "_" + str(self.block_visited[function])
+        self.block_visited[function] += 1
+
+        return new_func_name
 
 
 if __name__ == "__main__":
-    m = MoCoPT("demo")
-    m.generate_model()
+    m = MoCoPT("alexnet_ptver")
+    m.depart()
