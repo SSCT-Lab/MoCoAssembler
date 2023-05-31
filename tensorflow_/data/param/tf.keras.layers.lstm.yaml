@@ -7,13 +7,16 @@ constraints:
     - None
   activity_regularizer:
     default: None
+    dtype: tf.string
   bias_constraint:
     default: None
+    dtype: tf.string
   bias_initializer:
     default: zeros
     dtype: tf.string
   bias_regularizer:
     default: None
+    dtype: tf.string
   dropout:
     default: 0.0
     dtype: float
@@ -23,27 +26,33 @@ constraints:
   implementation:
     default: 2
     dtype: int
-    range: '[0,inf)'
+    structure: integer
+    shape: 1
+    range: [0, 8192]
   kernel_constraint:
     default: None
+    dtype: tf.string
   kernel_initializer:
     default: glorot_uniform
     dtype: tf.string
   kernel_regularizer:
     default: None
+    dtype: tf.string
   recurrent_activation:
     default: sigmoid
     dtype: tf.string
   recurrent_constraint:
     default: None
+    dtype: tf.string
   recurrent_dropout:
-    default:'0.0
+    default: 0.0
     dtype: float
   recurrent_initializer:
     default: orthogonal
     dtype: tf.string
   recurrent_regularizer:
     default: None
+    dtype: tf.string
   return_sequences:
     default: False
     dtype: tf.bool
@@ -61,12 +70,16 @@ constraints:
     dtype: tf.bool
   units:
     dtype: int
-    range: '[0, inf)'
+    structure: integer
+    shape: 1
+    range: [0, 8192]
   unroll:
     default: False
     dtype: tf.bool
   use_bias:
     default: True
     dtype: tf.bool
+required:
+  - units
 descp:
   'Long Short-Term Memory layer - Hochreiter 1997.'

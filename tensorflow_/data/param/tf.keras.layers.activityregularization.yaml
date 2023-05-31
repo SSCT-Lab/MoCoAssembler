@@ -1,11 +1,10 @@
 constraints:
   l1:
-    default: '0.0'
-    dtype:
-    - float
+    default: 0.0
+    dtype: float
   l2:
-    default: '0.0'
-    dtype:
-    - float
+    default: 0.0
+    dtype: float
+required: []
 descp:
   'Layer that applies an update to the cost function based input activity.'

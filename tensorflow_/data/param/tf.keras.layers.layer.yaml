@@ -1,18 +1,16 @@
 constraints:
   dtype:
     default: None
-    dtype:
-    - tf.dtype
+    dtype: tf.dtype
   dynamic:
     default: False
-    dtype:
-    - tf.bool
-    ndim:
+    dtype: tf.bool
   name:
     default: None
     dtype: tf.string
   trainable:
     default: True
     dtype: tf.bool
+required: []
 descp:
   'This is the class from which all layers inherit.'

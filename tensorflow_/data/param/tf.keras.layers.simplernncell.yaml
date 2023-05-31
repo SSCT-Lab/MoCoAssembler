@@ -8,24 +8,28 @@ constraints:
     - None
   bias_constraint:
     default: None
+    dtype: tf.string
   bias_initializer:
     default: zeros
     dtype: tf.string
   bias_regularizer:
     default: None
+    dtype: tf.string
   dropout:
     default: 0.0
     dtype: float
   kernel_constraint:
     default: None
+    dtype: tf.string
   kernel_initializer:
     default: glorot_uniform
-    dtype:
-    - tf.string
+    dtype: tf.string
   kernel_regularizer:
     default: None
+    dtype: tf.string
   recurrent_constraint:
     default: None
+    dtype: tf.string
   recurrent_dropout:
     default: 0.0
     dtype: float
@@ -34,11 +38,16 @@ constraints:
     dtype: tf.string
   recurrent_regularizer:
     default: None
+    dtype: tf.string
   units:
     dtype: int
-    range: '[0, inf)'
+    structure: integer
+    shape: 1
+    range: [0, 8192]
   use_bias:
     default: True
     dtype: tf.bool
+required:
+  - units
 descp:
   'Cell class for SimpleRNN.'

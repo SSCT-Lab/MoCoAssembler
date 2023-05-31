@@ -1,6 +1,6 @@
 import json
 import re
-import time
+import subprocess
 import traceback
 from pathlib import Path
 from queue import Queue
@@ -9,12 +9,12 @@ from subprocess import call
 
 import yaml
 from config.keywords import INPUT_TENSOR, OUTPUT_TENSOR, INF
-from config.paths import tf_res_file, tf_func_file, tf_param_file, tf_func_sim_file, tf_log_file, tf_model_file
+from config.paths import TF_RES_PATH, TF_FUNC_PATH, TF_PARAM_PATH, TF_FUNC_SIM_PATH, TF_LOG_PATH, TF_MODEL_PATH
 
 import tensorflow as tf
 from tensorflow import keras
 
-from utils.MoCo import MoCo
+from tensorflow_.utils.MoCo import MoCo
 
 
 class MoCoTF(MoCo):
@@ -49,9 +49,9 @@ class MoCoTF(MoCo):
     def __init__(self, model_name):
         super().__init__(model_name)
         self.model_name = model_name
-        self.res_model_dir = tf_res_file / model_name
+        self.res_model_dir = TF_RES_PATH / model_name
         self.mutate_dir = self.res_model_dir / "mutate"
-        self.log_file = tf_log_file
+        self.log_file = TF_LOG_PATH
 
         self.iteration = 0
         self.mutate_times = 2
@@ -63,8 +63,8 @@ class MoCoTF(MoCo):
         self.function_file_name = self.res_model_dir.resolve().__str__() + "/" + self.model_name + "_function.py"
         self.inception_file_name = self.res_model_dir.resolve().__str__() + "/" + self.model_name + "_inception.py"
 
-        if not Path.exists(tf_res_file):
-            Path.mkdir(tf_res_file)
+        if not Path.exists(TF_RES_PATH):
+            Path.mkdir(TF_RES_PATH)
 
         if not Path.exists(self.res_model_dir):
             Path.mkdir(self.res_model_dir)
@@ -75,7 +75,7 @@ class MoCoTF(MoCo):
         if not Path.exists(self.log_file):
             Path.mkdir(self.log_file)
 
-        with Path.open(tf_func_file / "def.json", "r") as file:
+        with Path.open(TF_FUNC_PATH / "def.json", "r") as file:
             data = json.load(file)
         self.api_list = [_[3:] for _ in data.keys()]
 
@@ -83,13 +83,14 @@ class MoCoTF(MoCo):
         self.queue.put(self.template_file_name)
 
         self.mutate_list = [self.mutate_on_parma, self.mutate_on_function]
+        self.error_list = []
 
     def depart(self):
         template_file = Path.open(Path(self.template_file_name), "a+", encoding="utf8")
         function_file = Path.open(Path(self.function_file_name), "w", encoding="utf8")
         inception_file = Path.open(Path(self.inception_file_name), "w", encoding="utf8")
 
-        with Path.open(tf_model_file / (self.model_name + ".py"), "r", encoding="utf8") as file_org:
+        with Path.open(TF_MODEL_PATH / (self.model_name + ".py"), "r", encoding="utf8") as file_org:
             for line in file_org:
                 if line.find(self.input_tensor) >= 0:
                     template_file.write("# " + self.model_name + " input layer" + "\n")
@@ -169,7 +170,7 @@ class MoCoTF(MoCo):
                     if function not in self.api_list:
                         pos2 = content.find("if __name__")
                         if pos1 != -1 and pos2 != -1:
-                            new_module = self.mutate_on_module(function, Inception)
+                            new_module = self.mutate_on_module(function, Inception[function])
                             new_content = content[:pos1] + new_line[0] + content[pos1: pos2] + new_module + content[pos2:]
                             new_file = Path.open(Path(new_file_name), "w", encoding="utf8")
                             new_file.write(new_content)
@@ -184,19 +185,15 @@ class MoCoTF(MoCo):
 
             while not tmp_queue.empty():
                 model = tmp_queue.get()
-                try:
-                    # with Path.open(Path(model), "r") as file:
-                    #     code = file.read()
-                    #     # print(code)
-                    #     exec(compile(file.read(), model, 'exec'))
-                    call(["python", model])
+
+                state = subprocess.call(["python", model])
+
+                if state == 0:
                     self.queue.put(model)
                     print(Path(model).name + "\033[95m运行成功\033[0m")
-                except:
+                else:
                     print(Path(model).name + "\033[94m运行失败\033[0m")
-                    with Path.open(self.log_file / (self.model_name + int(time.time()).__str__() + ".txt"), "a+",
-                                   encoding="utf8") as log_file:
-                        traceback.print_exc(file=log_file)
+                    self.error_list.append(model)
 
             num = 0
             new_line = []
@@ -291,7 +288,7 @@ class MoCoTF(MoCo):
         """
         dict = self.get_params(line)
 
-        func_file = tf_param_file / func_file
+        func_file = TF_PARAM_PATH / func_file
         if func_file.exists():
             with Path.open(func_file, "r") as file:
                 all_data = yaml.load(file, yaml.Loader)
@@ -304,39 +301,40 @@ class MoCoTF(MoCo):
                 if "dtype" in data[param]:
                     dtype = data[param]["dtype"]
                     type = random.choice(dtype) if isinstance(dtype, list) else dtype
-
-                    # 参数类型匹配
-                    match type:
-                        case "tf.string":
-                            if "enum" in data[param]:
-                                value = random.choice((data[param]["enum"]))
+                    if type == "tf.string":
+                        if "enum" in data[param]:
+                            value = random.choice((data[param]["enum"]))
+                            value = '"' + value + '"'
+                        else:
+                            value = data[param]["default"]
+                            if value == "None":
+                                pass
+                            else:
                                 value = '"' + value + '"'
-                            else:
-                                value = data[param]["default"]
-                                if isinstance(value, str):
-                                    value = '"' + value + '"'
-                        case "tf.bool":
-                            value = random.choice([True, False])
-                        case "float":
-                            value = random.random().__str__()
-                        case "int":
-                            if "structure" in data[param]:
-                                structure = data[param]["structure"]
-                                structure = random.choice(data[param]["structure"]) if isinstance(structure,
-                                                                                                  list) else structure
-                                # 此处的value值随便取的，应该做一定的更改
-                                match structure:
-                                    case "integer":
-                                        value = random.randint(1, 4)
-                                    case "tuple":
-                                        value = tuple(random.randint(1, 4) for _ in range(data[param]["shape"]))
-                                    case "list":
-                                        value = list(random.randint(1, 4) for _ in range(data[param]["shape"]))
-                                    case "tuple_of_tuples":
-                                        value = tuple(tuple(random.randint(1, 4) for _ in range(2)) for _ in
-                                                      range(data[param]["shape"]))
-                            else:
-                                value = data[param]["default"]
+                    elif type == "tf.bool":
+                        value = random.choice([True, False])
+                    elif type == "float":
+                        value = random.random().__str__()
+                    elif type == "int":
+                        if "structure" in data[param] and "range" in data[param]:
+                            structure = data[param]["structure"]
+                            structure = random.choice(data[param]["structure"]) if isinstance(structure,
+                                                                                              list) else structure
+                            drange = data[param]["range"]
+                            min_v = int(drange[0])
+                            max_v = int(drange[1])
+
+                            if structure == "integer":
+                                value = random.randint(min_v, max_v)
+                            elif structure == "tuple":
+                                value = tuple(random.randint(min_v, max_v) for _ in range(data[param]["shape"]))
+                            elif structure == "list":
+                                value = list(random.randint(min_v, max_v) for _ in range(data[param]["shape"]))
+                            elif structure == "tuple_of_tuples":
+                                value = tuple(tuple(random.randint(min_v, max_v) for _ in range(2)) for _ in
+                                                  range(data[param]["shape"]))
+                        else:
+                            value = data[param]["default"]
                 else:
                     value = data[param]["default"]
                 params_dict[param] = value
@@ -347,7 +345,7 @@ class MoCoTF(MoCo):
 
     def mutate_on_function(self, line: str, func_file: str) -> str:
         function = self.get_function(line)
-        func_file = tf_func_sim_file / func_file
+        func_file = TF_FUNC_SIM_PATH / func_file
 
         # 相似度阈值
         th = 0.6
@@ -358,10 +356,10 @@ class MoCoTF(MoCo):
                 # 有的函数大于阈值的相似度可能只有它本身，但是变异的时候又不想要他本身，所以简单的处理一下数据
                 lst = [_[0] for _ in data.items() if _[1] > th]
                 func_mut = random.choice(lst[1:]) if len(lst) > 1 else lst[0]
-                param_file = tf_param_file / (func_mut + ".yaml")
+                param_file = TF_PARAM_PATH / (func_mut + ".yaml")
                 tmp_dict = {}
                 if param_file.exists():
-                    with Path.open(tf_param_file / (func_mut + ".yaml"), "r") as param_file:
+                    with Path.open(TF_PARAM_PATH / (func_mut + ".yaml"), "r") as param_file:
                         data = yaml.load(param_file, yaml.Loader)
                         params_dict = data["constraints"]
                         required_list = data["required"]
@@ -374,7 +372,7 @@ class MoCoTF(MoCo):
                                 if "default" in params_dict[_]:
                                     tmp_dict[_] = params_dict[_]["default"]
                                 else:
-                                    return line
+                                    tmp_dict[_] = random.randint(params_dict[_]["range"][0], params_dict[_]["range"][1])
                 else:
                     # 有的函数的参数列表取值可能没有储存，所以直接copy，不改变其参数列表（可能会出错）
                     tmp_dict = dict.copy()
@@ -384,16 +382,18 @@ class MoCoTF(MoCo):
 
         return new_line
 
-    def mutate_on_module(self, function: str, Inception: dict) -> str:
+    def mutate_on_module(self, function: str, number: int) -> str:
         def_list = []
         inception_file = Path.open(Path(self.inception_file_name), "r", encoding="utf8")
-        number = Inception[function]
 
         for line in inception_file:
             if line.startswith("def " + function):
                 new_function = function + "_" + number.__str__()
                 def_list.append(line.replace(function, new_function))
-            elif line.find("return") >= 0:
+                break
+
+        for line in inception_file:
+            if line.find("return") >= 0:
                 def_list.append(line)
                 break
             else:
@@ -412,6 +412,7 @@ class MoCoTF(MoCo):
         #             func_file = "tf." + func + ".yaml"
         #             method = random.choice(self.mutate_list)
         #             def_list.append(method(line, func_file))
+        #         else: def_list.append(line)
 
         new_module = "".join(def_list)
         return new_module

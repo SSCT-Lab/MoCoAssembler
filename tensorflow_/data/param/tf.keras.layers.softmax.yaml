@@ -5,5 +5,8 @@ constraints:
     structure:
     - integer
     - list
+    shape: 1
+    range: [-2, 12]
+required: []
 descp:
   'Softmax activation function.'

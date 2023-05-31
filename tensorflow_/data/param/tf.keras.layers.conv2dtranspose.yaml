@@ -20,13 +20,16 @@ constraints:
     - deserialize
   activity_regularizer:
     default: None
+    dtype: tf.string
   bias_constraint:
     default: None
+    dtype: tf.string
   bias_initializer:
     default: zeros
     dtype: tf.string
   bias_regularizer:
     default: None
+    dtype: tf.string
   data_format:
     default: None
     dtype: tf.string
@@ -41,16 +44,21 @@ constraints:
     - list
     - tuple
     shape: 2
+    range: [0, 6]
   filters:
     dtype: int
-    range: '[0,inf)'
+    structure: integer
+    shape: 1
+    range: [0, 8192]
   kernel_constraint:
     default: None
+    dtype: tf.string
   kernel_initializer:
     default: glorot_uniform
     dtype: tf.string
   kernel_regularizer:
     default: None
+    dtype: tf.string
   kernel_size:
     dtype: int
     structure:
@@ -58,6 +66,7 @@ constraints:
     - list
     - tuple
     shape: 2
+    range: [0, 128]
   output_padding:
     default: None
     dtype: int
@@ -66,6 +75,7 @@ constraints:
     - list
     - tuple
     shape: 2
+    range: [1, 2]
   padding:
     default: valid
     dtype: tf.string
@@ -81,9 +91,13 @@ constraints:
     - list
     - tuple
     shape: 2
+    range: [0, 6]
   use_bias:
     default: True
     dtype: tf.bool
+required:
+    - filters
+    - kernel_size
 descp:
   'Transposed convolution layer (sometimes called Deconvolution).
    The need for transposed convolutions generally arises from the desire to use a transformation going in the opposite direction of a normal convolution, i.e., from something that has the shape of the output of some convolution to something that has the shape of its input while maintaining a connectivity pattern that is compatible with said convolution.

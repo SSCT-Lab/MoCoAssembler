@@ -8,5 +8,6 @@ constraints:
   threshold:
     default: 0.0
     dtype: float
+required: []
 descp:
   'Rectified Linear Unit activation function.'

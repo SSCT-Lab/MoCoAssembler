@@ -1,6 +1,6 @@
 constraints:
   activation:
-    default: null
+    default: None
     dtype: tf.string
     enum:
     - softmax
@@ -19,81 +19,76 @@ constraints:
     - serialize
     - deserialize
   activity_regularizer:
-    default: null
-    dtype:
-    - tf.string
+    default: None
+    dtype: tf.string
   bias_constraint:
-    default: null
-    dtype:
-    - tf.string
+    default: None
+    dtype: tf.string
     structure: list
   bias_initializer:
     default: zeros
-    dtype:
-    - tf.string
+    dtype: tf.string
   bias_regularizer:
-    default: null
-    dtype:
-    - tf.string
+    default: None
+    dtype: tf.string
   data_format:
-    default: null
-    dtype:
-    - tf.string
+    default: None
+    dtype: tf.string
     enum:
     - channels_first
     - channels_last
   dilation_rate:
     default: (1, 1)
-    dtype:
-    - int
+    dtype: int
     structure:
     - integer
     - list
     - tuple
     shape: 2
+    range: [0, 6]
   filters:
     dtype: int
-    range:
-    - '[0,inf)'
+    structure: integer
+    shape: 1
+    range: [0, 8192]
   kernel_constraint:
-    default: null
-    dtype:
-    - tf.string
+    default: None
+    dtype: tf.string
   kernel_initializer:
     default: glorot_uniform
-    dtype:
-    - tf.string
+    dtype: tf.string
   kernel_regularizer:
-    default: null
-    dtype:
-    - tf.string
+    default: None
+    dtype: tf.string
   kernel_size:
-    dtype:
-    - int
+    dtype: int
     structure:
     - integer
     - list
     - tuple
     shape: 2
+    range: [0, 128]
   padding:
     default: valid
-    dtype:
-    - tf.string
+    dtype: tf.string
     enum:
     - same
     - valid
   strides:
     default: (1, 1)
-    dtype:
-    - int
+    dtype: int
     structure:
     - integer
     - list
     - tuple
     shape: 2
+    range: [0, 6]
   use_bias:
     default: True
     dtype: tf.bool
+required:
+  - filters
+  - kernel_size
 descp: '2D convolution layer (e.g. spatial convolution over images).
    This layer creates a convolution kernel that is convolved with the layer input to produce a tensor of outputs. If use_bias is True, a bias vector is created and added to the outputs. Finally, if activation is not None, it is applied to the outputs as well.
 

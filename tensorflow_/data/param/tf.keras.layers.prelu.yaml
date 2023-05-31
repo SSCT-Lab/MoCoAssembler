@@ -1,12 +1,15 @@
 constraints:
   alpha_constraint:
     default: None
+    dtype: tf.string
   alpha_initializer:
     default: zeros
     dtype: tf.string
   alpha_regularizer:
     default: None
+    dtype: tf.string
   shared_axes:
     default: None
+required: []
 descp:
   'Parametric Rectified Linear Unit'

@@ -12,5 +12,7 @@ constraints:
     structure: list
   weights:
     default: None
+required:
+  - layer
 descp:
   'Bidirectional wrapper for RNNs.'

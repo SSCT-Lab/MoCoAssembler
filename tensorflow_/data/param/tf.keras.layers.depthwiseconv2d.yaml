@@ -1,17 +1,19 @@
 constraints:
   activation:
     default: None
+    dtype: tf.string
   activity_regularizer:
     default: None
+    dtype: tf.string
   bias_constraint:
     default: None
-    structure: list
+    dtype: tf.string
   bias_initializer:
     default: zeros
     dtype: tf.string
   bias_regularizer:
     default: None
-    structure: list
+    dtype: tf.string
   data_format:
     default: None
     dtype: tf.string
@@ -21,14 +23,17 @@ constraints:
   depth_multiplier:
     default: 1
     dtype: int
-    range: '[0,inf)'
+    structure: integer
+    range: [0, 8192]
   depthwise_constraint:
     default: None
+    dtype: tf.string
   depthwise_initializer:
     default: glorot_uniform
     dtype: tf.string
   depthwise_regularizer:
     default: None
+    dtype: tf.string
   kernel_size:
     dtype: int
     structure:
@@ -36,6 +41,7 @@ constraints:
     - list
     - tuple
     shape: 2
+    range: [0, 128]
   padding:
     default: valid
     dtype: tf.string
@@ -45,16 +51,17 @@ constraints:
   strides:
     default: (1, 1)
     dtype: int
-    ndim:
     structure:
     - integer
     - list
     - tuple
     shape: 2
+    range: [0, 6]
   use_bias:
     default: True
     dtype: tf.bool
-    structure: list
+required:
+  - kernel_size
 descp:
   'Depthwise 2D convolution.
   Depthwise convolution is a type of convolution in which each input channel is convolved with a different kernel (called a depthwise kernel). You can understand depthwise convolution as the first step in a depthwise separable convolution.

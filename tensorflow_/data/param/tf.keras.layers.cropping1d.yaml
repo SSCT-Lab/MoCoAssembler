@@ -2,8 +2,12 @@ constraints:
   cropping:
     default: (1, 1)
     dtype: int
-    structure: tuple
+    structure:
+      - integer
+      - tuple
     shape: 2
+    range: [0, 8]
+required: []
 descp:
   'Cropping layer for 1D input (e.g. temporal sequence).
    '

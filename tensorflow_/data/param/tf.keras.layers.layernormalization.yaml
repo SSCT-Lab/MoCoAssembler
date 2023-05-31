@@ -1,19 +1,22 @@
 constraints:
   axis:
     default: -1
-    dtype:
-    - int
+    dtype: int
     structure:
     - integer
     - list
     - tuple
+    shape: 1
+    range: [-3, 3]
   beta_constraint:
     default: None
+    dtype: tf.string
   beta_initializer:
     default: zeros
     dtype: tf.string
   beta_regularizer:
     default: None
+    dtype: tf.string
   center:
     default: True
     dtype: tf.bool
@@ -22,19 +25,23 @@ constraints:
     dtype: float
   gamma_constraint:
     default: None
+    dtype: tf.string
   gamma_initializer:
     default: ones
     dtype: tf.string
   gamma_regularizer:
     default: None
+    dtype: tf.string
   name:
     default: None
+    dtype: tf.string
   scale:
     default: True
     dtype: tf.bool
   trainable:
     default: True
     dtype: tf.bool
+required: []
 descp:
   'Layer normalization layer (Ba et al., 2016).
   Normalize the activations of the previous layer for each given example in a batch independently, rather than across a batch like Batch Normalization. i.e. applies a transformation that maintains the mean activation within each example close to 0 and the activation standard deviation close to 1.

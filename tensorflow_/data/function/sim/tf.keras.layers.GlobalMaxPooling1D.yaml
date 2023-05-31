@@ -1,0 +1,7 @@
+tf.keras.layers.GlobalMaxPool1D: 1.0
+tf.keras.layers.GlobalMaxPooling1D: 1.0
+tf.keras.layers.GlobalAveragePooling1D: 0.9299546182155609
+tf.keras.layers.GlobalAvgPool1D: 0.9299546182155609
+tf.keras.layers.Flatten: 0.6046733409166336
+tf.keras.layers.MaxPool1D: 0.4768106937408447
+tf.keras.layers.MaxPooling1D: 0.4768106937408447

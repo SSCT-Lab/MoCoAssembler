@@ -1,0 +1,12 @@
+tf.keras.layers.AveragePooling3D: 1.0000000596046448
+tf.keras.layers.AvgPool3D: 1.0000000596046448
+tf.keras.layers.MaxPool3D: 0.8777613043785095
+tf.keras.layers.MaxPooling3D: 0.8695501983165741
+tf.keras.layers.ZeroPadding3D: 0.712508350610733
+tf.keras.layers.AbstractRNNCell: 0.5894770249724388
+tf.keras.layers.Flatten: 0.561802688986063
+tf.keras.layers.Cropping3D: 0.49563656747341156
+tf.keras.layers.GlobalAveragePooling3D: 0.44237494468688965
+tf.keras.layers.GlobalAvgPool3D: 0.44237494468688965
+tf.keras.layers.UpSampling3D: 0.4298132658004761
+tf.keras.layers.SpatialDropout3D: 0.40605975687503815

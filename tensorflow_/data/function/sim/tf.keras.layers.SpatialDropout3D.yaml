@@ -1,0 +1,6 @@
+tf.keras.layers.SpatialDropout3D: 1.0
+tf.keras.layers.Flatten: 0.5500061511993408
+tf.keras.layers.UpSampling3D: 0.4550699293613434
+tf.keras.layers.Cropping3D: 0.4529415965080261
+tf.keras.layers.AlphaDropout: 0.4495460093021393
+tf.keras.layers.ZeroPadding3D: 0.40178626775741577

@@ -20,15 +20,16 @@ constraints:
     - deserialize
   activity_regularizer:
     default: None
+    dtype: tf.string
   bias_constraint:
     default: None
-    structure: list
+    dtype: tf.string
   bias_initializer:
     default: zeros
     dtype: tf.string
   bias_regularizer:
     default: None
-    structure: list
+    dtype: tf.string
   data_format:
     default: None
     dtype: tf.string
@@ -37,18 +38,24 @@ constraints:
     - channels_last
   filters:
     dtype: int
-    range: '[0,inf)'
+    structure: integer
+    shape: 1
+    range: [0, 8192]
   implementation:
     default: 1
     dtype: int
-    range: '[1, 3]'
+    structure: integer
+    shape: 1
+    range: [1, 3]
   kernel_constraint:
     default: None
+    dtype: tf.string
   kernel_initializer:
     default: glorot_uniform
     dtype: tf.string
   kernel_regularizer:
     default: None
+    dtype: tf.string
   kernel_size:
     dtype: int
     structure:
@@ -56,6 +63,7 @@ constraints:
     - list
     - tuple
     shape: 2
+    range: [0, 128]
   padding:
     default: valid
     dtype: tf.string
@@ -67,9 +75,13 @@ constraints:
     - list
     - tuple
     shape: 2
+    range: [0, 6]
   use_bias:
     default: True
     dtype: tf.bool
+required:
+  - filters
+  - kernel_size
 descp:
   'Locally-connected layer for 2D inputs.
    The LocallyConnected2D layer works similarly to the Conv2D layer, except that weights are unshared, that is, a different set of filters is applied at each different patch of the input.

@@ -55,4 +55,5 @@ constraints:
     - lower_and_strip_punctuation
     ndim:
     - '0'
-descp: null
+descp:
+  ' '

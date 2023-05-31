@@ -64,12 +64,16 @@ constraints:
     dtype: tf.bool
   units:
     dtype: int
-    range: '[0, inf)'
+    structure: integer
+    shape: 1
+    range: [0, 8192]
   unroll:
     default: False
     dtype: tf.bool
   use_bias:
     default: True
     dtype: tf.bool
+required:
+  - units
 descp:
   'Gated Recurrent Unit - Cho et al. 2014.'

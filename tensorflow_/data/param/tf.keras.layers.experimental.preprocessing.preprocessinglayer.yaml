@@ -23,4 +23,5 @@ constraints:
     - tf.bool
     ndim:
     - '0'
-descp: null
+descp:
+  ' '

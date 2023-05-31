@@ -8,5 +8,6 @@ constraints:
   keepdims:
     default: False
     dtype: tf.bool
+required: []
 descp:
   'Global max pooling operation for spatial data.'

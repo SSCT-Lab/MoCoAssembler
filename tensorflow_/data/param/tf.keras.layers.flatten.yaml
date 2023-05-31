@@ -5,5 +5,6 @@ constraints:
     enum:
     - channels_first
     - channels_last
+required: []
 descp:
   'Flattens the input. Does not affect the batch size.'

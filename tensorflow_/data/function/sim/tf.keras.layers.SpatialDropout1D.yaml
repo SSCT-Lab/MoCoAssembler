@@ -1,0 +1,4 @@
+tf.keras.layers.SpatialDropout1D: 1.0
+tf.keras.layers.AlphaDropout: 0.4638396203517914
+tf.keras.layers.Dropout: 0.37131116787592566
+tf.keras.layers.GaussianDropout: 0.3070221319794655

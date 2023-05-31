@@ -1,5 +1,6 @@
 constraints:
   axes:
+    default: (0, 0)
     dtype: int
     structure:
     - integer
@@ -8,5 +9,7 @@ constraints:
   normalize:
     default: False
     dtype: tf.bool
+required:
+  - axes
 descp:
   'Layer that computes a dot product between samples in two tensors.'

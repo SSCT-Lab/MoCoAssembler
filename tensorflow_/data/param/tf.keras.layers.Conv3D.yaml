@@ -20,15 +20,16 @@ constraints:
     - deserialize
   activity_regularizer:
     default: None
+    dtype: tf.string
   bias_constraint:
     default: None
-    structure: list
+    dtype: tf.string
   bias_initializer:
     default: zeros
     dtype: tf.string
   bias_regularizer:
     default: None
-    structure: list
+    dtype: tf.string
   data_format:
     default: None
     dtype: tf.string
@@ -43,16 +44,21 @@ constraints:
     - list
     - tuple
     shape: 3
+    range: [0, 6]
   filters:
     dtype: int
-    range: '[0,inf)'
+    structure: integer
+    shape: 1
+    range: [0, 8192]
   kernel_constraint:
     default: None
+    dtype: tf.string
   kernel_initializer:
     default: glorot_uniform
     dtype: tf.string
   kernel_regularizer:
     default: None
+    dtype: tf.string
   kernel_size:
     dtype: int
     structure:
@@ -60,6 +66,7 @@ constraints:
     - list
     - tuple
     shape: 3
+    range: [0, 128]
   padding:
     default: valid
     dtype: tf.string
@@ -74,9 +81,13 @@ constraints:
     - list
     - tuple
     shape: 3
+    range: [0, 6]
   use_bias:
     default: True
     dtype: tf.bool
+required:
+  - filters
+  - kernel_size
 descp:
   '3D convolution layer (e.g. spatial convolution over volumes).
    This layer creates a convolution kernel that is convolved with the layer input to produce a tensor of outputs. If use_bias is True, a bias vector is created and added to the outputs. Finally, if activation is not None, it is applied to the outputs as well.

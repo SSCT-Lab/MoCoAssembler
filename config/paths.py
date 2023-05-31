@@ -1,31 +1,31 @@
 from pathlib import Path
 
 # 根目录
-root = Path.cwd()
+CUR_ROOT = Path.cwd()
 
 # tensorflow
-tf_file = Path(root).parent
+TF_PATH = CUR_ROOT.parent
 
 # tf模型文件路径
-tf_model_file = Path.joinpath(tf_file, "model")
+TF_MODEL_PATH = TF_PATH.parent / "model/tensorflow_version"
 
-# tf模型模版文件路径
-tf_tmp_file = Path.joinpath(tf_file, "template")
+# tf模型拆分后结果存储的文件路径
+TF_RES_PATH = TF_PATH / "result"
 
-# tf模型变异文件路径
-tf_mut_file = Path.joinpath(tf_file, "mutate")
+# tf异常日志存储
+TF_LOG_PATH = TF_PATH / "log"
 
 # tf变异函数列表(json格式)
-tf_func_file = Path.joinpath(tf_file, "data/function")
-
-# tf函数定义相似度
-tf_func_def_file = Path.joinpath(tf_func_file, "def_sim")
-
-# tf函数参数列表相似度
-tf_func_param_file = Path.joinpath(tf_func_file, "param_sim")
-
-# tf函数相似度
-tf_func_sim_file = Path.joinpath(tf_func_file, "sim")
+TF_FUNC_PATH = TF_PATH / "data/function"
 
 # tf参数变异参数储存位置
-tf_param_file = Path.joinpath(tf_file, "data/param")
+TF_PARAM_PATH = TF_PATH / "data/param"
+
+# tf函数定义相似度
+TF_FUNC_DEF_PATH = TF_FUNC_PATH / "def_sim"
+
+# tf函数参数列表相似度
+TF_FUNC_PARAM_PATH = TF_FUNC_PATH / "param_sim"
+
+# tf函数相似度
+TF_FUNC_SIM_PATH = TF_FUNC_PATH / "sim"

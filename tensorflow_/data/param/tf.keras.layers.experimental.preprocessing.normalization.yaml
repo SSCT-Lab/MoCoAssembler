@@ -17,4 +17,5 @@ constraints:
     default: None
     ndim:
     - '0'
-descp: null
+descp:
+  ' '

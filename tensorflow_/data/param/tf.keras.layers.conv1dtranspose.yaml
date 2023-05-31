@@ -39,9 +39,14 @@ constraints:
   dilation_rate:
     default: 1
     dtype: int
+    structure: integer
+    shape: 1
+    range: [0, 6]
   filters:
     dtype: int
-    range: '[0,inf)'
+    structure: integer
+    shape: 1
+    range: [0, 8192]
   kernel_constraint:
     default: None
     dtype: tf.string
@@ -58,9 +63,16 @@ constraints:
     - list
     - tuple
     shape: 1
+    range: [0, 128]
   output_padding:
     default: None
     dtype: int
+    structure:
+    - integer
+    - list
+    - tuple
+    shape: 1
+    range: [1, 2]
   padding:
     default: valid
     dtype: tf.string
@@ -70,9 +82,15 @@ constraints:
   strides:
     default: 1
     dtype: int
+    structure: integer
+    shape: 1
+    range: [0, 6]
   use_bias:
     default: True
     dtype: tf.bool
+required:
+  - filters
+  - kernel_size
 descp:
   'Transposed convolution layer (sometimes called Deconvolution).
    The need for transposed convolutions generally arises from the desire to use a transformation going in the opposite direction of a normal convolution, i.e., from something that has the shape of the output of some convolution to something that has the shape of its input while maintaining a connectivity pattern that is compatible with said convolution.

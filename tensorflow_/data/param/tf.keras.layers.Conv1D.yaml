@@ -44,9 +44,12 @@ constraints:
     - list
     - tuple
     shape: 1
+    range: [0, 6]
   filters:
     dtype: int
-    range: '[0,inf)'
+    structure: integer
+    shape: 1
+    range: [0, 8192]
   kernel_constraint:
     default: None
     dtype: tf.string
@@ -63,6 +66,7 @@ constraints:
     - list
     - tuple
     shape: 1
+    range: [0, 128]
   padding:
     default: valid
     dtype: tf.string
@@ -78,9 +82,13 @@ constraints:
     - list
     - tuple
     shape: 1
+    range: [0, 6]
   use_bias:
     default: True
     dtype: tf.bool
+required:
+  - filters
+  - kernel_size
 descp:
   '1D convolution layer (e.g. temporal convolution).
    This layer creates a convolution kernel that is convolved with the layer input over a single spatial (or temporal) dimension to produce a tensor of outputs. If use_bias is True, a bias vector is created and added to the outputs. Finally, if activation is not None, it is applied to the outputs as well.

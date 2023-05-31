@@ -1,0 +1,21 @@
+tf.keras.layers.SeparableConv1D: 1.0
+tf.keras.layers.SeparableConvolution1D: 1.0
+tf.keras.layers.DepthwiseConv1D: 0.9270198921362559
+tf.keras.layers.Conv1D: 0.714764267206192
+tf.keras.layers.Convolution1D: 0.714764267206192
+tf.keras.layers.ZeroPadding1D: 0.700807735323906
+tf.keras.layers.Activation: 0.6532201617956161
+tf.keras.layers.Conv1DTranspose: 0.6526271998882294
+tf.keras.layers.Convolution1DTranspose: 0.6526271998882294
+tf.keras.layers.Discretization: 0.6006069461504618
+tf.keras.layers.Flatten: 0.592841126024723
+tf.keras.layers.AbstractRNNCell: 0.586311087012291
+tf.keras.layers.LocallyConnected1D: 0.5654975096384685
+tf.keras.layers.ConvLSTM1D: 0.5028237975560702
+tf.keras.layers.MaxPool1D: 0.5027152597904205
+tf.keras.layers.MaxPooling1D: 0.5027152597904205
+tf.keras.layers.Dense: 0.4867767870426178
+tf.keras.layers.AveragePooling1D: 0.45872698724269867
+tf.keras.layers.AvgPool1D: 0.45872698724269867
+tf.keras.layers.Masking: 0.443935356537501
+

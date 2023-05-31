@@ -20,7 +20,9 @@ constraints:
   implementation:
     default: 2
     dtype: int
-    range: '[0,inf)'
+    structure: integer
+    shape: 1
+    range: [0, 8192]
   kernel_constraint:
     default: None
     dtype: tf.string
@@ -50,9 +52,13 @@ constraints:
     dtype: tf.bool
   units:
     dtype: int
-    range: '[0, inf)'
+    structure: integer
+    shape: 1
+    range: [0, 8192]
   use_bias:
     default: True
     dtype: tf.bool
+required:
+  - units
 descp:
   'Cell class for the GRU layer.'

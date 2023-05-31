@@ -24,5 +24,6 @@ constraints:
     - integer
     - tuple
     shape: 2
+required: []
 descp:
   'Upsampling layer for 2D inputs.'

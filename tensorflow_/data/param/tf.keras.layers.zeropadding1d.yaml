@@ -5,6 +5,9 @@ constraints:
     structure:
     - integer
     - tuple
+    - dict
     shape: 2
+    range: [0, 6]
+required: []
 descp:
   'Zero-padding layer for 1D input (e.g. temporal sequence).'

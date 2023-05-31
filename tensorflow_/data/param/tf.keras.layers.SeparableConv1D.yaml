@@ -20,13 +20,16 @@ constraints:
     - deserialize
   activity_regularizer:
     default: None
+    dtype: tf.string
   bias_constraint:
     default: None
+    dtype: tf.string
   bias_initializer:
     default: zeros
     dtype: tf.string
   bias_regularizer:
     default: None
+    dtype: tf.string
   data_format:
     default: None
     dtype: tf.string
@@ -36,22 +39,34 @@ constraints:
   depth_multiplier:
     default: 1
     dtype: int
-    range: '[0,inf)'
+    structure: integer
+    shape: 1
+    range: [0, 8192]
   depthwise_constraint:
     default: None
+    dtype: tf.string
   depthwise_initializer:
     default: glorot_uniform
     dtype: tf.string
   depthwise_regularizer:
     default: None
+    dtype: tf.string
   dilation_rate:
     default: 1
     dtype: int
+    structure: integer
+    shape: 1
+    range: [0, 6]
   filters:
     dtype: int
-    range: '[0,inf)'
+    structure: integer
+    shape: 1
+    range: [0, 8192]
   kernel_size:
     dtype: int
+    structure: integer
+    shape: 1
+    range: [0, 128]
   name:
     default: None
     dtype: tf.string
@@ -64,20 +79,28 @@ constraints:
     - valid
   pointwise_constraint:
     default: None
+    dtype: tf.string
   pointwise_initializer:
     default: glorot_uniform
     dtype: tf.string
   pointwise_regularizer:
     default: None
+    dtype: tf.string
   strides:
     default: 1
     dtype: int
+    structure: integer
+    shape: 1
+    range: [0, 6]
   trainable:
     default: None
     dtype: tf.bool
   use_bias:
     default: True
     dtype: tf.bool
+required:
+  - filters
+  - kernel_size
 descp:
   'Depthwise separable 1D convolution.
    This layer performs a depthwise convolution that acts separately on channels, followed by a pointwise convolution that mixes channels. If use_bias is True and a bias initializer is provided, it adds a bias vector to the output. It then optionally applies an activation function to produce the final output.'

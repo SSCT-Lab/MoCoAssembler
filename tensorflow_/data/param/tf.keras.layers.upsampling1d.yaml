@@ -2,5 +2,8 @@ constraints:
   size:
     default: 2
     dtype: int
+    structure: integer
+    shape: 1
+required: []
 descp:
   'Upsampling layer for 1D inputs.'

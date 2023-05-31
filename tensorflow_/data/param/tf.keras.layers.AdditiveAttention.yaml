@@ -1,10 +1,8 @@
 constraints:
-  causal:
-    default: None
   use_scale:
-    default: 'True'
-    dtype:
-    - tf.bool
+    default: True
+    dtype: tf.bool
+required: []
 descp:
    'Additive attention layer, a.k.a. Bahdanau-style attention.
    Inputs are query tensor of shape [batch_size, Tq, dim], value tensor of shape [batch_size, Tv, dim] and key tensor of shape [batch_size, Tv, dim]. The calculation follows the steps:
