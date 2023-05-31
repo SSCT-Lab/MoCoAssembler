@@ -1,0 +1,48 @@
+api: torch.nn.Softshrink(lambd=0.5)
+constraints:
+  lambd:
+    default: '0.5'
+    dtype:
+    - torch.float32
+descp: 'r"""Applies the soft shrinkage function elementwise:
+
+  .. math::
+
+  \text{SoftShrinkage}(x) =
+
+  \begin{cases}
+
+  x - \lambda, & \text{ if } x > \lambda \\
+
+  x + \lambda, & \text{ if } x < -\lambda \\
+
+  0, & \text{ otherwise }
+
+  \end{cases}
+
+  Args:
+
+  lambd: the :math:`\lambda` (must be no less than zero) value for the Softshrink
+  formulation. Default: 0.5
+
+  Shape:
+
+  - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
+
+  - Output: :math:`(*)`, same shape as the input.
+
+  .. image:: ../scripts/activation_images/Softshrink.png
+
+  Examples::
+
+  >>> m = nn.Softshrink()
+
+  >>> input = torch.randn(2)
+
+  >>> output = m(input)
+
+  '
+inputs:
+  optional:
+  - lambd
+  required: []

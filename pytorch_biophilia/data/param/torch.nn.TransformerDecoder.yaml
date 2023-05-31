@@ -1,0 +1,40 @@
+api: torch.nn.TransformerDecoder(decoder_layer, num_layers, norm=None)
+constraints:
+  decoder_layer:
+    dtype:
+    - torch.nn.TransformerDecoderLayer
+  norm:
+    default: None
+  num_layers:
+    dtype:
+    - int
+    range: '[0,inf)'
+descp: 'r"""TransformerDecoder is a stack of N decoder layers
+
+  Args:
+
+  decoder_layer: an instance of the TransformerDecoderLayer() class (required).
+
+  num_layers: the number of sub-decoder-layers in the decoder (required).
+
+  norm: the layer normalization component (optional).
+
+  Examples::
+
+  >>> decoder_layer = nn.TransformerDecoderLayer(d_model=512, nhead=8)
+
+  >>> transformer_decoder = nn.TransformerDecoder(decoder_layer, num_layers=6)
+
+  >>> memory = torch.rand(10, 32, 512)
+
+  >>> tgt = torch.rand(20, 32, 512)
+
+  >>> out = transformer_decoder(tgt, memory)
+
+  '
+inputs:
+  optional:
+  - norm
+  required:
+  - decoder_layer
+  - num_layers

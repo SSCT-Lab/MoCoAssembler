@@ -1,0 +1,42 @@
+api: torch.nn.init.dirac_(tensor, groups=1)
+constraints:
+  groups:
+    default: '1'
+    dtype:
+    - int
+    range:
+    - '[0,inf)'
+  tensor:
+    dtype:
+    - torch.Tensor
+    range: LIMITED
+descp: 'r"""Fills the {3, 4, 5}-dimensional input `Tensor` with the Dirac
+
+  delta function. Preserves the identity of the inputs in `Convolutional`
+
+  layers, where as many input channels are preserved as possible. In case
+
+  of groups>1, each group of channels preserves identity
+
+  Args:
+
+  tensor: a {3, 4, 5}-dimensional `torch.Tensor`
+
+  groups (int, optional): number of groups in the conv layer (default: 1)
+
+  Examples:
+
+  >>> w = torch.empty(3, 16, 5, 5)
+
+  >>> nn.init.dirac_(w)
+
+  >>> w = torch.empty(3, 24, 5, 5)
+
+  >>> nn.init.dirac_(w, 3)
+
+  '
+inputs:
+  optional:
+  - groups
+  required:
+  - tensor

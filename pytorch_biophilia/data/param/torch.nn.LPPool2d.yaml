@@ -1,0 +1,97 @@
+api: torch.nn.LPPool2d(norm_type, kernel_size, stride=None, ceil_mode=False)
+check_nan: true
+constraints:
+  ceil_mode:
+    default: 'False'
+    dtype:
+    - torch.bool
+  kernel_size:
+    dtype:
+    - int
+    - Tuple[int](2)
+    range: '[1,inf)'
+  norm_type:
+    dtype:
+    - int
+    range: '[0,inf)'
+  stride:
+    dtype:
+    - int
+    - Tuple[int](2)
+    range: '[1,inf)'
+descp: 'r"""Applies a 2D power-average pooling over an input signal composed of several
+  input
+
+  planes.
+
+  On each window, the function computed is:
+
+  .. math::
+
+  f(X) = \sqrt[p]{\sum_{x \in X} x^{p}}
+
+  - At p = :math:`\infty`, one gets Max Pooling
+
+  - At p = 1, one gets Sum Pooling (which is proportional to average pooling)
+
+  The parameters :attr:`kernel_size`, :attr:`stride` can either be:
+
+  - a single ``int`` -- in which case the same value is used for the height and width
+  dimension
+
+  - a ``tuple`` of two ints -- in which case, the first `int` is used for the height
+  dimension,
+
+  and the second `int` for the width dimension
+
+  .. note:: If the sum to the power of `p` is zero, the gradient of this function
+  is
+
+  not defined. This implementation will set the gradient to zero in this case.
+
+  Args:
+
+  kernel_size: the size of the window
+
+  stride: the stride of the window. Default value is :attr:`kernel_size`
+
+  ceil_mode: when True, will use `ceil` instead of `floor` to compute the output shape
+
+  Shape:
+
+  - Input: :math:`(N, C, H_{in}, W_{in})`
+
+  - Output: :math:`(N, C, H_{out}, W_{out})`, where
+
+  .. math::
+
+  H_{out} = \left\lfloor\frac{H_{in} - \text{kernel\_size}[0]}{\text{stride}[0]} +
+  1\right\rfloor
+
+  .. math::
+
+  W_{out} = \left\lfloor\frac{W_{in} - \text{kernel\_size}[1]}{\text{stride}[1]} +
+  1\right\rfloor
+
+  Examples::
+
+  >>> # power-2 pool of square window of size=3, stride=2
+
+  >>> m = nn.LPPool2d(2, 3, stride=2)
+
+  >>> # pool of non-square window of power 1.2
+
+  >>> m = nn.LPPool2d(1.2, (3, 2), stride=(2, 1))
+
+  >>> input = torch.randn(20, 16, 50, 32)
+
+  >>> output = m(input)
+
+  '
+inputs:
+  optional:
+  - stride
+  - ceil_mode
+  required:
+  - norm_type
+  - kernel_size
