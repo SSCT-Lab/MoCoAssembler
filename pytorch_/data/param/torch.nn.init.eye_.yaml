@@ -1,0 +1,27 @@
+api: torch.nn.init.eye_(tensor)
+constraints:
+  tensor:
+    dtype:
+    - torch.Tensor
+    range: LIMITED
+descp: 'r"""Fills the 2-dimensional input `Tensor` with the identity
+
+  matrix. Preserves the identity of the inputs in `Linear` layers, where as
+
+  many inputs are preserved as possible.
+
+  Args:
+
+  tensor: a 2-dimensional `torch.Tensor`
+
+  Examples:
+
+  >>> w = torch.empty(3, 5)
+
+  >>> nn.init.eye_(w)
+
+  '
+inputs:
+  optional: []
+  required:
+  - tensor

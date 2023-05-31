@@ -1,0 +1,43 @@
+api: torch.nn.init.xavier_uniform_(tensor, gain=1.0)
+constraints:
+  gain:
+    default: '1.0'
+    dtype:
+    - torch.float32
+  tensor:
+    dtype:
+    - torch.Tensor
+descp: 'r"""Fills the input `Tensor` with values according to the method
+
+  described in `Understanding the difficulty of training deep feedforward
+
+  neural networks` - Glorot, X. & Bengio, Y. (2010), using a uniform
+
+  distribution. The resulting tensor will have values sampled from
+
+  :math:`\mathcal{U}(-a, a)` where
+
+  .. math::
+
+  a = \text{gain} \times \sqrt{\frac{6}{\text{fan\_in} + \text{fan\_out}}}
+
+  Also known as Glorot initialization.
+
+  Args:
+
+  tensor: an n-dimensional `torch.Tensor`
+
+  gain: an optional scaling factor
+
+  Examples:
+
+  >>> w = torch.empty(3, 5)
+
+  >>> nn.init.xavier_uniform_(w, gain=nn.init.calculate_gain(''relu''))
+
+  '
+inputs:
+  optional:
+  - gain
+  required:
+  - tensor

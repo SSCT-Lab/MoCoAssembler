@@ -1,0 +1,29 @@
+api: torch.nn.init.constant_(tensor, val)
+constraints:
+  tensor:
+    dtype:
+    - torch.Tensor
+    range: LIMITED
+  val:
+    dtype:
+    - torch.float32
+descp: 'r"""Fills the input Tensor with the value :math:`\text{val}`.
+
+  Args:
+
+  tensor: an n-dimensional `torch.Tensor`
+
+  val: the value to fill the tensor with
+
+  Examples:
+
+  >>> w = torch.empty(3, 5)
+
+  >>> nn.init.constant_(w, 0.3)
+
+  '
+inputs:
+  optional: []
+  required:
+  - tensor
+  - val

@@ -15,3 +15,11 @@ SIMPLE_MODEL_PATH = os.path.join(ROOT_PATH, "model", "pytorch_version", "simple_
 COMPLEX_MODEL_PATH = os.path.join(ROOT_PATH, "model", "pytorch_version", "complex_models")
 
 MUTATED_MODEL_PATH = os.path.join(ROOT_PATH, "result", "pytorch_version")
+
+SIMILARITY_PATH = os.path.join(ROOT_PATH, "pytorch_", "data", "param")
+
+DEF_SIMI_TARGET_PATH = os.path.join(ROOT_PATH, "pytorch_", "data", "function", "def_sim")
+
+PARAM_SIMI_TARGET_PATH = os.path.join(ROOT_PATH, "pytorch_", "data", "function", "param_sim")
+
+SIMI_TARGET_PATH = os.path.join(ROOT_PATH, "pytorch_", "data", "function", "sim")

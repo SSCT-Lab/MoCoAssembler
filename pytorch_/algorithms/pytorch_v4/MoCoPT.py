@@ -4,13 +4,12 @@ import os
 import queue
 import random
 import re
-import subprocess
 from typing import List
 
 import yaml
 
 from config import marker
-import utils
+import MoCoPT_utils as utils
 
 
 class MoCoPT:
@@ -396,8 +395,7 @@ class MoCoPT:
         return line.split('(', 1)[0]
 
     def get_params(self, line: str) -> List[str]:
-        # TODO:解析list的bug
-        return line.split('(', 1)[1].split(')', -1)[0].split(',')
+        return re.findall(r'\((.*?)\)', line)
 
     def mutate_on_module(self, function: str, Inception: dict) -> str:
         # 新class更名
@@ -448,12 +446,11 @@ class MoCoPT:
             else:
                 inner_init_output += line
 
-
         # 遍历forward列表
         # for line in inner_forward_input:
         #     if "self." in line:
         # self.mutate_on_function(api_torch, simi_path)
-        # line = self.mutate_on_parma(init_sentence + api_nn + "(", constraint_file)
+        # inner_init_output = self.mutate_on_parma(init_sentence + api_nn + "(", constraint_file)
 
         return new_func_name
 
