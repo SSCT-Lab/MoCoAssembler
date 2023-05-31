@@ -1,20 +1,15 @@
 import json
 import re
 import subprocess
-import traceback
 from pathlib import Path
 from queue import Queue
 import random
-from subprocess import call
 
 import yaml
 from config.keywords import INPUT_TENSOR, OUTPUT_TENSOR, INF
 from config.paths import TF_RES_PATH, TF_FUNC_PATH, TF_PARAM_PATH, TF_FUNC_SIM_PATH, TF_LOG_PATH, TF_MODEL_PATH
 
-import tensorflow as tf
-from tensorflow import keras
-
-from tensorflow_.utils.MoCo import MoCo
+from utils.MoCo import MoCo
 
 
 class MoCoTF(MoCo):

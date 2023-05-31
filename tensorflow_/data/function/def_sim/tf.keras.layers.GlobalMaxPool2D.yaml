@@ -1,0 +1,264 @@
+tf.keras.layers.AbstractRNNCell:
+- 0.16801944375038147
+tf.keras.layers.Activation:
+- 0.031820133328437805
+tf.keras.layers.ActivityRegularization:
+- 0.15415692329406738
+tf.keras.layers.Add:
+- 0.0009279996156692505
+tf.keras.layers.AdditiveAttention:
+- 0.1257171332836151
+tf.keras.layers.AlphaDropout:
+- 0.0089741051197052
+tf.keras.layers.Attention:
+- 0.10406875610351562
+tf.keras.layers.Average:
+- 0.06220908463001251
+tf.keras.layers.AveragePooling1D:
+- 0.6357859969139099
+tf.keras.layers.AveragePooling2D:
+- 0.8349623084068298
+tf.keras.layers.AveragePooling3D:
+- 0.7384579181671143
+tf.keras.layers.AvgPool1D:
+- 0.6357859969139099
+tf.keras.layers.AvgPool2D:
+- 0.8349623084068298
+tf.keras.layers.AvgPool3D:
+- 0.7384579181671143
+tf.keras.layers.BatchNormalization:
+- 0.15523774921894073
+tf.keras.layers.Bidirectional:
+- 0.16848976910114288
+tf.keras.layers.CategoryEncoding:
+- 0.15487487614154816
+tf.keras.layers.CenterCrop:
+- 0.13662230968475342
+tf.keras.layers.Concatenate:
+- 0.067959263920784
+tf.keras.layers.Conv1D:
+- 0.19945621490478516
+tf.keras.layers.Conv1DTranspose:
+- 0.17399916052818298
+tf.keras.layers.Conv2D:
+- 0.17048519849777222
+tf.keras.layers.Conv2DTranspose:
+- 0.17399916052818298
+tf.keras.layers.Conv3D:
+- 0.2675391733646393
+tf.keras.layers.Conv3DTranspose:
+- 0.17399916052818298
+tf.keras.layers.ConvLSTM1D:
+- 0.12342678010463715
+tf.keras.layers.ConvLSTM2D:
+- 0.09723126143217087
+tf.keras.layers.ConvLSTM3D:
+- 0.13109685480594635
+tf.keras.layers.Convolution1D:
+- 0.19945621490478516
+tf.keras.layers.Convolution1DTranspose:
+- 0.17399916052818298
+tf.keras.layers.Convolution2D:
+- 0.17048519849777222
+tf.keras.layers.Convolution2DTranspose:
+- 0.17399916052818298
+tf.keras.layers.Convolution3D:
+- 0.2675391733646393
+tf.keras.layers.Convolution3DTranspose:
+- 0.17399916052818298
+tf.keras.layers.Cropping1D:
+- 0.22053012251853943
+tf.keras.layers.Cropping2D:
+- 0.11867982894182205
+tf.keras.layers.Cropping3D:
+- 0.3844945430755615
+tf.keras.layers.Dense:
+- 0.21286317706108093
+tf.keras.layers.DenseFeatures:
+- 0.07429318875074387
+tf.keras.layers.DepthwiseConv1D:
+- 0.2143908143043518
+tf.keras.layers.DepthwiseConv2D:
+- 0.19530761241912842
+tf.keras.layers.Discretization:
+- 0.2746744155883789
+tf.keras.layers.Dot:
+- 0.1774536818265915
+tf.keras.layers.Dropout:
+- -0.00469106063246727
+tf.keras.layers.ELU:
+- -0.03358667343854904
+tf.keras.layers.EinsumDense:
+- 0.24671338498592377
+tf.keras.layers.Embedding:
+- 0.1899186372756958
+tf.keras.layers.Flatten:
+- 0.19731608033180237
+tf.keras.layers.GRU:
+- 0.10473477095365524
+tf.keras.layers.GRUCell:
+- 0.15987452864646912
+tf.keras.layers.GaussianDropout:
+- 0.10597337782382965
+tf.keras.layers.GaussianNoise:
+- 0.09033897519111633
+tf.keras.layers.GlobalAveragePooling1D:
+- 0.7875289916992188
+tf.keras.layers.GlobalAveragePooling2D:
+- 0.8892959356307983
+tf.keras.layers.GlobalAveragePooling3D:
+- 0.8023746013641357
+tf.keras.layers.GlobalAvgPool1D:
+- 0.7875289916992188
+tf.keras.layers.GlobalAvgPool2D:
+- 0.8892959356307983
+tf.keras.layers.GlobalAvgPool3D:
+- 0.8023746013641357
+tf.keras.layers.GlobalMaxPool1D:
+- 0.8634936213493347
+tf.keras.layers.GlobalMaxPool2D:
+- 1.0000001192092896
+tf.keras.layers.GlobalMaxPool3D:
+- 0.8871030807495117
+tf.keras.layers.GlobalMaxPooling1D:
+- 0.8634936213493347
+tf.keras.layers.GlobalMaxPooling2D:
+- 1.0000001192092896
+tf.keras.layers.GlobalMaxPooling3D:
+- 0.8871030807495117
+tf.keras.layers.GroupNormalization:
+- 0.1907273381948471
+tf.keras.layers.HashedCrossing:
+- 0.15458381175994873
+tf.keras.layers.Hashing:
+- 0.12462379038333893
+tf.keras.layers.Identity:
+- 0.16665619611740112
+tf.keras.layers.InputLayer:
+- 0.13718898594379425
+tf.keras.layers.InputSpec:
+- 0.13565397262573242
+tf.keras.layers.IntegerLookup:
+- 0.205376535654068
+tf.keras.layers.LSTM:
+- 0.22617009282112122
+tf.keras.layers.LSTMCell:
+- 0.0844033807516098
+tf.keras.layers.Lambda:
+- 0.07291065156459808
+tf.keras.layers.Layer:
+- 0.06692790985107422
+tf.keras.layers.LayerNormalization:
+- 0.22260595858097076
+tf.keras.layers.LeakyReLU:
+- 0.11627979576587677
+tf.keras.layers.LocallyConnected1D:
+- 0.15534625947475433
+tf.keras.layers.LocallyConnected2D:
+- 0.12385846674442291
+tf.keras.layers.Masking:
+- 0.00850006751716137
+tf.keras.layers.MaxPool1D:
+- 0.8057954907417297
+tf.keras.layers.MaxPool2D:
+- 0.911379337310791
+tf.keras.layers.MaxPool3D:
+- 0.8421769142150879
+tf.keras.layers.MaxPooling1D:
+- 0.8057954907417297
+tf.keras.layers.MaxPooling2D:
+- 0.911379337310791
+tf.keras.layers.MaxPooling3D:
+- 0.7808278799057007
+tf.keras.layers.Maximum:
+- 0.2860584855079651
+tf.keras.layers.Minimum:
+- 0.19839376211166382
+tf.keras.layers.MultiHeadAttention:
+- 0.1969437301158905
+tf.keras.layers.Multiply:
+- 0.11786091327667236
+tf.keras.layers.Normalization:
+- 0.1608845591545105
+tf.keras.layers.PReLU:
+- 0.09023256599903107
+tf.keras.layers.Permute:
+- 0.17345008254051208
+tf.keras.layers.RNN:
+- 0.0894288569688797
+tf.keras.layers.RandomBrightness:
+- 0.08973480015993118
+tf.keras.layers.RandomContrast:
+- 0.12745827436447144
+tf.keras.layers.RandomCrop:
+- 0.17868763208389282
+tf.keras.layers.RandomFlip:
+- 0.1525595486164093
+tf.keras.layers.RandomHeight:
+- 0.1555345505475998
+tf.keras.layers.RandomRotation:
+- 0.14472918212413788
+tf.keras.layers.RandomTranslation:
+- 0.1597985327243805
+tf.keras.layers.RandomWidth:
+- 0.16516375541687012
+tf.keras.layers.RandomZoom:
+- 0.1553247570991516
+tf.keras.layers.ReLU:
+- 0.07177813351154327
+tf.keras.layers.RepeatVector:
+- 0.08602868020534515
+tf.keras.layers.Rescaling:
+- 0.17692425847053528
+tf.keras.layers.Reshape:
+- 0.06118561327457428
+tf.keras.layers.Resizing:
+- 0.12158821523189545
+tf.keras.layers.SeparableConv1D:
+- 0.1895725429058075
+tf.keras.layers.SeparableConv2D:
+- 0.19935601949691772
+tf.keras.layers.SeparableConvolution1D:
+- 0.1895725429058075
+tf.keras.layers.SeparableConvolution2D:
+- 0.19935601949691772
+tf.keras.layers.SimpleRNN:
+- 0.15086930990219116
+tf.keras.layers.SimpleRNNCell:
+- 0.12936657667160034
+tf.keras.layers.Softmax:
+- 0.12386328727006912
+tf.keras.layers.SpatialDropout1D:
+- 0.26698464155197144
+tf.keras.layers.SpatialDropout2D:
+- 0.23679034411907196
+tf.keras.layers.SpatialDropout3D:
+- 0.19565844535827637
+tf.keras.layers.StackedRNNCells:
+- 0.10746455192565918
+tf.keras.layers.StringLookup:
+- 0.10067609697580338
+tf.keras.layers.Subtract:
+- 0.07686217874288559
+tf.keras.layers.TextVectorization:
+- 0.09077364206314087
+tf.keras.layers.ThresholdedReLU:
+- 0.11484253406524658
+tf.keras.layers.TimeDistributed:
+- 0.08313942700624466
+tf.keras.layers.UnitNormalization:
+- 0.24934440851211548
+tf.keras.layers.UpSampling1D:
+- 0.20487633347511292
+tf.keras.layers.UpSampling2D:
+- 0.17765115201473236
+tf.keras.layers.UpSampling3D:
+- 0.19422326982021332
+tf.keras.layers.Wrapper:
+- -0.0006733480840921402
+tf.keras.layers.ZeroPadding1D:
+- 0.18943533301353455
+tf.keras.layers.ZeroPadding2D:
+- 0.1507587432861328
+tf.keras.layers.ZeroPadding3D:
+- 0.3778620660305023
