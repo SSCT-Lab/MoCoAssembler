@@ -62,6 +62,7 @@ class MoCoPT:
         self.net_name = ""
         self.block_dict = {}
         self.block_visited = {}
+        self.block_lines = ""
 
     def generate_model(self):
         self.depart()
@@ -200,15 +201,11 @@ class MoCoPT:
             lst = line.strip().split("=", 1)
             self.init_space = utils.count_space(line)
 
-            if "nn." in lst[1]:
+            if "nn." in lst[1] or lst[1].split("(")[0].strip() in self.block_dict.keys():
                 api_name = lst[0].strip()
                 para_lst = lst[1].strip()
                 self.init_input[api_name] = para_lst
                 self.init_api_visited[api_name] = 0
-            elif lst[1].split("(")[0].strip() in self.block_dict.keys():
-                api_name = lst[0].strip()
-                para_lst = lst[1].strip()
-                self.init_input[api_name] = para_lst
             else:
                 self.init_output += line
 
@@ -403,12 +400,64 @@ class MoCoPT:
         return line.split('(', 1)[1].split(')', -1)[0].split(',')
 
     def mutate_on_module(self, function: str, Inception: dict) -> str:
+        # 新class更名
         new_func_name = function + "_" + str(self.block_visited[function])
         self.block_visited[function] += 1
+        block = self.block_dict[function]
+
+        # 如法炮制，前缀加一个inner
+        inner_begin, forward_line, return_line = "", "", ""
+        inner_init_input, inner_forward_input = [], []
+        temp_lst = []
+        for line in block:
+            if "super(" in line:
+                temp_lst.append(line)
+                inner_begin = "".join(temp_lst)
+                temp_lst.clear()
+
+            elif "def forward(" in line:
+                forward_line = line
+                inner_init_input = copy.deepcopy(temp_lst)
+                temp_lst.clear()
+
+            elif "return x" in line:
+                return_line = line
+                inner_forward_input = copy.deepcopy(temp_lst)
+                temp_lst.clear()
+
+            else:
+                temp_lst.append(line)
+
+        return_line += "".join(temp_lst)
+        temp_lst.clear()
+
+        # 这里采用线性组装，一次变一块，因此只需要对init进行变化即可
+        inner_init_dict, inner_init_visited = {}, {}
+        inner_init_space = 0
+        inner_init_output, inner_forward_output = "", ""
+        for line in inner_init_input:
+            if line.strip(' ') == '\n' or line.strip().startswith('#'):
+                continue
+            lst = line.strip().split("=", 1)
+            inner_init_space = utils.count_space(line)
+            if "nn." in lst[1]:
+                api_name = lst[0].strip()
+                para_lst = lst[1].strip()
+                inner_init_dict[api_name] = para_lst
+                inner_init_visited[api_name] = 0
+            else:
+                inner_init_output += line
+
+
+        # 遍历forward列表
+        # for line in inner_forward_input:
+        #     if "self." in line:
+        # self.mutate_on_function(api_torch, simi_path)
+        # line = self.mutate_on_parma(init_sentence + api_nn + "(", constraint_file)
 
         return new_func_name
 
 
 if __name__ == "__main__":
-    m = MoCoPT("alexnet_ptver")
-    m.depart()
+    m = MoCoPT("demo_simple")
+    m.generate_model()
