@@ -6,7 +6,7 @@ from queue import Queue
 import random
 
 import yaml
-from config.keywords import INPUT_TENSOR, OUTPUT_TENSOR, INF
+from config.keywords import INPUT_TENSOR, OUTPUT_TENSOR
 from config.paths import TF_RES_PATH, TF_FUNC_PATH, TF_PARAM_PATH, TF_FUNC_SIM_PATH, TF_LOG_PATH, TF_MODEL_PATH
 
 from utils.MoCo import MoCo
@@ -48,11 +48,8 @@ class MoCoTF(MoCo):
         self.mutate_dir = self.res_model_dir / "mutate"
         self.log_file = TF_LOG_PATH
 
-        self.iteration = 0
-        self.mutate_times = 2
-        self.input_tensor = INPUT_TENSOR
-        self.output_tensor = OUTPUT_TENSOR
-        self.inf = INF
+        self.ITERATION = 0
+        self.MUTATE_TIMES = 2
 
         self.template_file_name = self.res_model_dir.resolve().__str__() + "/" + self.model_name + "_template.py"
         self.function_file_name = self.res_model_dir.resolve().__str__() + "/" + self.model_name + "_function.py"
@@ -87,7 +84,7 @@ class MoCoTF(MoCo):
 
         with Path.open(TF_MODEL_PATH / (self.model_name + ".py"), "r", encoding="utf8") as file_org:
             for line in file_org:
-                if line.find(self.input_tensor) >= 0:
+                if line.find(INPUT_TENSOR) >= 0:
                     template_file.write("# " + self.model_name + " input layer" + "\n")
                     template_file.write(line)
                     template_file.write("# " + self.model_name + " hidden layer" + "\n")
@@ -96,7 +93,7 @@ class MoCoTF(MoCo):
 
             function_file.write("# " + self.model_name + " function layer" + "\n")
             for line in file_org:
-                if line.find(self.output_tensor) >= 0:
+                if line.find(OUTPUT_TENSOR) >= 0:
                     template_file.write("# " + self.model_name + " output layer" + "\n")
                     template_file.write(line)
                     break
@@ -133,7 +130,7 @@ class MoCoTF(MoCo):
             if line.strip().startswith("#") or line == "\n":
                 continue
             else:
-                self.iteration += 1
+                self.ITERATION += 1
 
                 function = self.get_function(line)
                 # print(function)
@@ -147,7 +144,7 @@ class MoCoTF(MoCo):
                     new_line.append(line.replace(function, new_function))
                 else:
                     func_file = "tf." + function + ".yaml"
-                    for i in range(pow(self.mutate_times, self.iteration)):
+                    for i in range(pow(self.MUTATE_TIMES, self.ITERATION)):
                         method = random.choice(self.mutate_list)
                         new_line.append(method(line, func_file))
 
@@ -157,9 +154,9 @@ class MoCoTF(MoCo):
                     content = org_file.read()
                 pos1 = content.find("# " + self.model_name + " output layer")
 
-                for i in range(1, self.mutate_times + 1):
+                for i in range(1, self.MUTATE_TIMES + 1):
                     num += 1
-                    new_file_name = self.mutate_dir.resolve().__str__() + "/" + self.iteration.__str__() + "_" + num.__str__() + ".py"
+                    new_file_name = self.mutate_dir.resolve().__str__() + "/" + self.ITERATION.__str__() + "_" + num.__str__() + ".py"
                     tmp_queue.put(new_file_name)
 
                     if function not in self.api_list:
