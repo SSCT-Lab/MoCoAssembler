@@ -1,4 +1,3 @@
-import json
 import re
 import subprocess
 from pathlib import Path
@@ -7,7 +6,7 @@ import random
 
 import yaml
 from config.keywords import INPUT_TENSOR, OUTPUT_TENSOR
-from config.paths import TF_RES_PATH, TF_FUNC_PATH, TF_PARAM_PATH, TF_FUNC_SIM_PATH, TF_LOG_PATH, TF_MODEL_PATH
+from config.paths import RES_PATH, PARAM_PATH, FUNC_SIM_PATH, LOG_PATH, TF_MODEL_PATH, PATH
 
 from utils.MoCo import MoCo
 
@@ -44,9 +43,9 @@ class MoCoTF(MoCo):
     def __init__(self, model_name):
         super().__init__(model_name)
         self.model_name = model_name
-        self.res_model_dir = TF_RES_PATH / model_name
+        self.res_model_dir = RES_PATH / model_name
         self.mutate_dir = self.res_model_dir / "mutate"
-        self.log_file = TF_LOG_PATH
+        self.log_file = LOG_PATH
 
         self.ITERATION = 0
         self.MUTATE_TIMES = 2
@@ -55,8 +54,8 @@ class MoCoTF(MoCo):
         self.function_file_name = self.res_model_dir.resolve().__str__() + "/" + self.model_name + "_function.py"
         self.inception_file_name = self.res_model_dir.resolve().__str__() + "/" + self.model_name + "_inception.py"
 
-        if not Path.exists(TF_RES_PATH):
-            Path.mkdir(TF_RES_PATH)
+        if not Path.exists(RES_PATH):
+            Path.mkdir(RES_PATH)
 
         if not Path.exists(self.res_model_dir):
             Path.mkdir(self.res_model_dir)
@@ -67,14 +66,13 @@ class MoCoTF(MoCo):
         if not Path.exists(self.log_file):
             Path.mkdir(self.log_file)
 
-        with Path.open(TF_FUNC_PATH / "def.json", "r") as file:
-            data = json.load(file)
-        self.api_list = [_[3:] for _ in data.keys()]
+        with Path.open(PATH / "data/api_list.txt", "r") as file:
+            self.api_list = [_[3:-1] for _ in file]
 
         self.queue = Queue()
         self.queue.put(self.template_file_name)
 
-        self.mutate_list = [self.mutate_on_parma, self.mutate_on_function]
+        self.mutate_list = [self.mutate_on_param, self.mutate_on_function]
         self.error_list = []
 
     def depart(self):
@@ -143,10 +141,9 @@ class MoCoTF(MoCo):
                     new_function = function + "_" + Inception[function].__str__()
                     new_line.append(line.replace(function, new_function))
                 else:
-                    func_file = "tf." + function + ".yaml"
                     for i in range(pow(self.MUTATE_TIMES, self.ITERATION)):
                         method = random.choice(self.mutate_list)
-                        new_line.append(method(line, func_file))
+                        new_line.append(method(line))
 
             while not self.queue.empty():
                 org_file_name = self.queue.get()
@@ -227,7 +224,7 @@ class MoCoTF(MoCo):
 
         return params_dic
 
-    def generate_param_line(self, line, params_dict) -> str:
+    def generate_line(self, line, params_dict) -> str:
         """
         根据参数列表生成新的api
         :param line: 一行api
@@ -273,14 +270,14 @@ class MoCoTF(MoCo):
 
         return param
 
-    def mutate_on_parma(self, line: str, func_file) -> str:
+    def mutate_on_param(self, line: str) -> str:
         """
         :param line: 一行api
         :return: 新生成的api
         """
         dict = self.get_params(line)
-
-        func_file = TF_PARAM_PATH / func_file
+        function = self.get_function(line)
+        func_file = PARAM_PATH / ("tf." + function + ".yaml")
         if func_file.exists():
             with Path.open(func_file, "r") as file:
                 all_data = yaml.load(file, yaml.Loader)
@@ -330,17 +327,17 @@ class MoCoTF(MoCo):
                 else:
                     value = data[param]["default"]
                 params_dict[param] = value
-                new_line = self.generate_param_line(line, params_dict)
+                new_line = self.generate_line(line, params_dict)
         else:
             new_line = line
         return new_line
 
-    def mutate_on_function(self, line: str, func_file: str) -> str:
+    def mutate_on_function(self, line: str) -> str:
         function = self.get_function(line)
-        func_file = TF_FUNC_SIM_PATH / func_file
+        func_file = FUNC_SIM_PATH / ("tf." + function + ".yaml")
 
         # 相似度阈值
-        th = 0.6
+        th = 0.4
         if func_file.exists():
             dict = self.get_params(line)
             with Path.open(func_file, "r") as file:
@@ -348,10 +345,10 @@ class MoCoTF(MoCo):
                 # 有的函数大于阈值的相似度可能只有它本身，但是变异的时候又不想要他本身，所以简单的处理一下数据
                 lst = [_[0] for _ in data.items() if _[1] > th]
                 func_mut = random.choice(lst[1:]) if len(lst) > 1 else lst[0]
-                param_file = TF_PARAM_PATH / (func_mut + ".yaml")
+                param_file = PARAM_PATH / (func_mut + ".yaml")
                 tmp_dict = {}
                 if param_file.exists():
-                    with Path.open(TF_PARAM_PATH / (func_mut + ".yaml"), "r") as param_file:
+                    with Path.open(PARAM_PATH / (func_mut + ".yaml"), "r") as param_file:
                         data = yaml.load(param_file, yaml.Loader)
                         params_dict = data["constraints"]
                         required_list = data["required"]
@@ -364,13 +361,14 @@ class MoCoTF(MoCo):
                                 if "default" in params_dict[_]:
                                     tmp_dict[_] = params_dict[_]["default"]
                                 else:
+                                    print(func_mut)
                                     tmp_dict[_] = random.randint(params_dict[_]["range"][0], params_dict[_]["range"][1])
                 else:
                     # 有的函数的参数列表取值可能没有储存，所以直接copy，不改变其参数列表（可能会出错）
                     tmp_dict = dict.copy()
 
                 line = line.replace(function, func_mut[3:])
-                new_line = self.generate_param_line(line, tmp_dict)
+                new_line = self.generate_line(line, tmp_dict)
 
         return new_line
 
@@ -412,5 +410,5 @@ class MoCoTF(MoCo):
 
 if __name__ == "__main__":
     test = MoCoTF("lenet")
-    # test.depart()
+    test.depart()
     test.generate_model()

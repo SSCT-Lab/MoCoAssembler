@@ -4,28 +4,31 @@ from pathlib import Path
 CUR_ROOT = Path.cwd()
 
 # tensorflow
-TF_PATH = CUR_ROOT.parent
+PATH = CUR_ROOT.parent
 
 # tf模型文件路径
-TF_MODEL_PATH = TF_PATH.parent / "model/tensorflow_version"
+TF_MODEL_PATH = PATH.parent / "model/tensorflow_version"
 
-# tf模型拆分后结果存储的文件路径
-TF_RES_PATH = TF_PATH / "result"
+# PYTORCH模型文件路径
+PT_MODEL_PATH = PATH.parent / "model/pytorch_version"
 
-# tf异常日志存储
-TF_LOG_PATH = TF_PATH / "log"
+# 模型拆分后结果存储的文件路径
+RES_PATH = PATH / "result"
 
-# tf变异函数列表(json格式)
-TF_FUNC_PATH = TF_PATH / "data/function"
+# 异常日志存储
+LOG_PATH = PATH / "log"
 
-# tf参数变异参数储存位置
-TF_PARAM_PATH = TF_PATH / "data/param"
+# 变异函数储存位置
+FUNC_PATH = PATH / "data/function"
 
-# tf函数定义相似度
-TF_FUNC_DEF_PATH = TF_FUNC_PATH / "def_sim"
+# 参数变异参数储存位置
+PARAM_PATH = PATH / "data/param"
 
-# tf函数参数列表相似度
-TF_FUNC_PARAM_PATH = TF_FUNC_PATH / "param_sim"
+# 函数定义相似度
+FUNC_DEF_PATH = FUNC_PATH / "def_sim"
 
-# tf函数相似度
-TF_FUNC_SIM_PATH = TF_FUNC_PATH / "sim"
+# 函数参数列表相似度
+FUNC_PARAM_PATH = FUNC_PATH / "param_sim"
+
+# 函数相似度
+FUNC_SIM_PATH = FUNC_PATH / "sim"

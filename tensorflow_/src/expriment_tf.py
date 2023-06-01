@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from config.paths import tf_res_file
+from config.paths import RES_PATH
 from tensorflow_.src.mutate_tf import MoCoTF
 from utils.Experiments import Experiments
 
@@ -12,7 +12,7 @@ class ExperimentsTF(Experiments):
         self.model = self.simple_model + self.complex_model
 
     def departOne(self, model):
-        if (tf_res_file / model).exists():
+        if (RES_PATH / model).exists():
             print("文件存在")
             return
         mocoTf = MoCoTF(model)
@@ -21,7 +21,7 @@ class ExperimentsTF(Experiments):
 
     def departAll(self):
         for model in self.simple_model:
-            if (tf_res_file / model).exists():
+            if (RES_PATH / model).exists():
                 print("文件存在")
                 continue
             mocoTf = MoCoTF(model)
@@ -29,7 +29,7 @@ class ExperimentsTF(Experiments):
             print(Path(model).name + "\033[92m分解完成\033[0m")
 
         for model in self.complex_model:
-            if (tf_res_file / model).exists():
+            if (RES_PATH / model).exists():
                 print("文件存在")
                 continue
             mocoTf = MoCoTF(model)

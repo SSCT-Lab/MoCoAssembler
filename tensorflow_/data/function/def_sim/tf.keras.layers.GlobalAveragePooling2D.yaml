@@ -1,39 +1,23 @@
-tf.keras.layers.AbstractRNNCell:
-- 0.15168066322803497
 tf.keras.layers.Activation:
 - 0.01529521495103836
 tf.keras.layers.ActivityRegularization:
 - 0.1692952662706375
-tf.keras.layers.Add:
-- -0.007637180387973785
 tf.keras.layers.AdditiveAttention:
 - 0.10791473835706711
 tf.keras.layers.AlphaDropout:
 - 0.023366037756204605
 tf.keras.layers.Attention:
 - 0.10217748582363129
-tf.keras.layers.Average:
-- 0.25438451766967773
 tf.keras.layers.AveragePooling1D:
 - 0.7738368511199951
 tf.keras.layers.AveragePooling2D:
 - 0.9541949033737183
 tf.keras.layers.AveragePooling3D:
 - 0.8641906380653381
-tf.keras.layers.AvgPool1D:
-- 0.7738368511199951
-tf.keras.layers.AvgPool2D:
-- 0.9541949033737183
-tf.keras.layers.AvgPool3D:
-- 0.8641906380653381
 tf.keras.layers.BatchNormalization:
 - 0.1345493197441101
 tf.keras.layers.Bidirectional:
 - 0.15444636344909668
-tf.keras.layers.CategoryEncoding:
-- 0.1106654480099678
-tf.keras.layers.CenterCrop:
-- 0.09980733692646027
 tf.keras.layers.Concatenate:
 - 0.01804770901799202
 tf.keras.layers.Conv1D:
@@ -54,18 +38,6 @@ tf.keras.layers.ConvLSTM2D:
 - 0.0729283019900322
 tf.keras.layers.ConvLSTM3D:
 - 0.09307363629341125
-tf.keras.layers.Convolution1D:
-- 0.17101281881332397
-tf.keras.layers.Convolution1DTranspose:
-- 0.14512644708156586
-tf.keras.layers.Convolution2D:
-- 0.15913772583007812
-tf.keras.layers.Convolution2DTranspose:
-- 0.14512644708156586
-tf.keras.layers.Convolution3D:
-- 0.25454312562942505
-tf.keras.layers.Convolution3DTranspose:
-- 0.14512644708156586
 tf.keras.layers.Cropping1D:
 - 0.19192743301391602
 tf.keras.layers.Cropping2D:
@@ -80,16 +52,12 @@ tf.keras.layers.DepthwiseConv1D:
 - 0.189676433801651
 tf.keras.layers.DepthwiseConv2D:
 - 0.15927419066429138
-tf.keras.layers.Discretization:
-- 0.202635258436203
 tf.keras.layers.Dot:
 - 0.19077281653881073
 tf.keras.layers.Dropout:
 - 0.007012754678726196
 tf.keras.layers.ELU:
 - -0.017030304297804832
-tf.keras.layers.EinsumDense:
-- 0.27779722213745117
 tf.keras.layers.Embedding:
 - 0.16372576355934143
 tf.keras.layers.Flatten:
@@ -98,21 +66,11 @@ tf.keras.layers.GRU:
 - 0.12791229784488678
 tf.keras.layers.GRUCell:
 - 0.11335968226194382
-tf.keras.layers.GaussianDropout:
-- 0.16349947452545166
-tf.keras.layers.GaussianNoise:
-- 0.13031217455863953
 tf.keras.layers.GlobalAveragePooling1D:
 - 0.8918496370315552
 tf.keras.layers.GlobalAveragePooling2D:
 - 1.0
 tf.keras.layers.GlobalAveragePooling3D:
-- 0.8990241289138794
-tf.keras.layers.GlobalAvgPool1D:
-- 0.8918496370315552
-tf.keras.layers.GlobalAvgPool2D:
-- 1.0
-tf.keras.layers.GlobalAvgPool3D:
 - 0.8990241289138794
 tf.keras.layers.GlobalMaxPool1D:
 - 0.7489513754844666
@@ -120,26 +78,6 @@ tf.keras.layers.GlobalMaxPool2D:
 - 0.8892959356307983
 tf.keras.layers.GlobalMaxPool3D:
 - 0.7796611785888672
-tf.keras.layers.GlobalMaxPooling1D:
-- 0.7489513754844666
-tf.keras.layers.GlobalMaxPooling2D:
-- 0.8892959356307983
-tf.keras.layers.GlobalMaxPooling3D:
-- 0.7796611785888672
-tf.keras.layers.GroupNormalization:
-- 0.2112751007080078
-tf.keras.layers.HashedCrossing:
-- 0.10322652757167816
-tf.keras.layers.Hashing:
-- 0.0714312493801117
-tf.keras.layers.Identity:
-- 0.13976384699344635
-tf.keras.layers.InputLayer:
-- 0.10928153991699219
-tf.keras.layers.InputSpec:
-- 0.11877977102994919
-tf.keras.layers.IntegerLookup:
-- 0.1502876579761505
 tf.keras.layers.LSTM:
 - 0.18923965096473694
 tf.keras.layers.LSTMCell:
@@ -156,71 +94,19 @@ tf.keras.layers.LocallyConnected1D:
 - 0.12082701921463013
 tf.keras.layers.LocallyConnected2D:
 - 0.0997173860669136
-tf.keras.layers.Masking:
-- 0.04006392881274223
 tf.keras.layers.MaxPool1D:
 - 0.6929914951324463
 tf.keras.layers.MaxPool2D:
 - 0.7934409976005554
 tf.keras.layers.MaxPool3D:
 - 0.7418029308319092
-tf.keras.layers.MaxPooling1D:
-- 0.6929914951324463
-tf.keras.layers.MaxPooling2D:
-- 0.7934409976005554
-tf.keras.layers.MaxPooling3D:
-- 0.6990574598312378
-tf.keras.layers.Maximum:
-- 0.14251701533794403
-tf.keras.layers.Minimum:
-- 0.15017849206924438
-tf.keras.layers.MultiHeadAttention:
-- 0.1506023406982422
-tf.keras.layers.Multiply:
-- 0.09203347563743591
-tf.keras.layers.Normalization:
-- 0.1133677065372467
 tf.keras.layers.PReLU:
 - 0.08120395243167877
-tf.keras.layers.Permute:
-- 0.16839179396629333
-tf.keras.layers.RNN:
-- 0.0277666337788105
-tf.keras.layers.RandomBrightness:
-- 0.06708391010761261
-tf.keras.layers.RandomContrast:
-- 0.11163368821144104
-tf.keras.layers.RandomCrop:
-- 0.17159248888492584
-tf.keras.layers.RandomFlip:
-- 0.16063731908798218
-tf.keras.layers.RandomHeight:
-- 0.12641271948814392
-tf.keras.layers.RandomRotation:
-- 0.12144768238067627
-tf.keras.layers.RandomTranslation:
-- 0.13866695761680603
-tf.keras.layers.RandomWidth:
-- 0.14397300779819489
-tf.keras.layers.RandomZoom:
-- 0.14850343763828278
 tf.keras.layers.ReLU:
 - 0.08072902262210846
-tf.keras.layers.RepeatVector:
-- 0.09716413915157318
-tf.keras.layers.Rescaling:
-- 0.12212683260440826
-tf.keras.layers.Reshape:
-- 0.07503286004066467
-tf.keras.layers.Resizing:
-- 0.07315581291913986
 tf.keras.layers.SeparableConv1D:
 - 0.1573203206062317
 tf.keras.layers.SeparableConv2D:
-- 0.15884386003017426
-tf.keras.layers.SeparableConvolution1D:
-- 0.1573203206062317
-tf.keras.layers.SeparableConvolution2D:
 - 0.15884386003017426
 tf.keras.layers.SimpleRNN:
 - 0.11916438490152359
@@ -234,28 +120,14 @@ tf.keras.layers.SpatialDropout2D:
 - 0.23843470215797424
 tf.keras.layers.SpatialDropout3D:
 - 0.1902645081281662
-tf.keras.layers.StackedRNNCells:
-- 0.10395897924900055
-tf.keras.layers.StringLookup:
-- 0.07755766808986664
-tf.keras.layers.Subtract:
-- 0.09716901928186417
-tf.keras.layers.TextVectorization:
-- 0.06606252491474152
 tf.keras.layers.ThresholdedReLU:
 - 0.1057286262512207
-tf.keras.layers.TimeDistributed:
-- 0.03446533530950546
-tf.keras.layers.UnitNormalization:
-- 0.2556309998035431
 tf.keras.layers.UpSampling1D:
 - 0.2123214453458786
 tf.keras.layers.UpSampling2D:
 - 0.18669116497039795
 tf.keras.layers.UpSampling3D:
 - 0.1891602724790573
-tf.keras.layers.Wrapper:
-- -0.020682118833065033
 tf.keras.layers.ZeroPadding1D:
 - 0.1867978274822235
 tf.keras.layers.ZeroPadding2D:

@@ -12,12 +12,12 @@ class MoCo:
 
     def get_params(self, line: str): pass
 
-    def generate_param_line(self, line: str, params_dict: dict) -> str: pass
+    def generate_line(self, line: str, params_dict: dict) -> str: pass
 
     def random_param(self, data) -> str: pass
 
-    def mutate_on_parma(self, line: str, func_file: str) -> str: pass
+    def mutate_on_param(self, line: str) -> str: pass
 
-    def mutate_on_function(self, line: str, func_file: str) -> str: pass
+    def mutate_on_function(self, line: str) -> str: pass
 
     def mutate_on_module(self, function: str, Inception: dict) -> str: pass
