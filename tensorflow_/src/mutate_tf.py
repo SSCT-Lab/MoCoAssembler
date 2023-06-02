@@ -1,5 +1,6 @@
 import re
 import subprocess
+import time
 from pathlib import Path
 from queue import Queue
 import random
@@ -175,14 +176,15 @@ class MoCoTF(MoCo):
             while not tmp_queue.empty():
                 model = tmp_queue.get()
 
-                state = subprocess.call(["python", model])
-
-                if state == 0:
+                try:
+                    subprocess.check_output(['python', model], stderr=subprocess.STDOUT)
                     self.queue.put(model)
-                    print(Path(model).name + "\033[95m运行成功\033[0m")
-                else:
-                    print(Path(model).name + "\033[94m运行失败\033[0m")
-                    self.error_list.append(model)
+                    print(model.name + "  \033[34mOK\033[0m")
+                except subprocess.CalledProcessError as e:
+                    print(model.name + "  \033[31mGG\033[0m")
+                    with Path.open(Path(LOG_PATH / Path(self.model_name) / Path(time.time().__str__() + ".txt")), "w+", encoding="utf8") as file:
+                        file.write(e.output.decode())
+
 
             num = 0
             new_line = []
@@ -286,46 +288,7 @@ class MoCoTF(MoCo):
                 # 随机选择一个参数进行变异
 
                 param = self.random_param(data) if len(list(data.keys())) > 1 else list(data.keys())[0]
-                value = ""
-                if "dtype" in data[param]:
-                    dtype = data[param]["dtype"]
-                    type = random.choice(dtype) if isinstance(dtype, list) else dtype
-                    if type == "tf.string":
-                        if "enum" in data[param]:
-                            value = random.choice((data[param]["enum"]))
-                            value = '"' + value + '"'
-                        else:
-                            value = data[param]["default"]
-                            if value == "None":
-                                pass
-                            else:
-                                value = '"' + value + '"'
-                    elif type == "tf.bool":
-                        value = random.choice([True, False])
-                    elif type == "float":
-                        value = random.random().__str__()
-                    elif type == "int":
-                        if "structure" in data[param] and "range" in data[param]:
-                            structure = data[param]["structure"]
-                            structure = random.choice(data[param]["structure"]) if isinstance(structure,
-                                                                                              list) else structure
-                            drange = data[param]["range"]
-                            min_v = int(drange[0])
-                            max_v = int(drange[1])
-
-                            if structure == "integer":
-                                value = random.randint(min_v, max_v)
-                            elif structure == "tuple":
-                                value = tuple(random.randint(min_v, max_v) for _ in range(data[param]["shape"]))
-                            elif structure == "list":
-                                value = list(random.randint(min_v, max_v) for _ in range(data[param]["shape"]))
-                            elif structure == "tuple_of_tuples":
-                                value = tuple(tuple(random.randint(min_v, max_v) for _ in range(2)) for _ in
-                                                  range(data[param]["shape"]))
-                        else:
-                            value = data[param]["default"]
-                else:
-                    value = data[param]["default"]
+                value = self.get_value(data[param])
                 params_dict[param] = value
                 new_line = self.generate_line(line, params_dict)
         else:
@@ -349,20 +312,16 @@ class MoCoTF(MoCo):
                 tmp_dict = {}
                 if param_file.exists():
                     with Path.open(PARAM_PATH / (func_mut + ".yaml"), "r") as param_file:
-                        data = yaml.load(param_file, yaml.Loader)
-                        params_dict = data["constraints"]
-                        required_list = data["required"]
+                        all_data = yaml.load(param_file, yaml.Loader)
+                        data = all_data["constraints"]
+                        required_list = all_data["required"]
                         for _ in dict.items():
-                            if _[0] in params_dict.keys():
+                            if _[0] in data.keys():
                                 tmp_dict[_[0]] = _[1]
 
                         for _ in required_list:
                             if _ not in tmp_dict:
-                                if "default" in params_dict[_]:
-                                    tmp_dict[_] = params_dict[_]["default"]
-                                else:
-                                    print(func_mut)
-                                    tmp_dict[_] = random.randint(params_dict[_]["range"][0], params_dict[_]["range"][1])
+                                tmp_dict[_] = self.get_value(data[_])
                 else:
                     # 有的函数的参数列表取值可能没有储存，所以直接copy，不改变其参数列表（可能会出错）
                     tmp_dict = dict.copy()
@@ -371,6 +330,51 @@ class MoCoTF(MoCo):
                 new_line = self.generate_line(line, tmp_dict)
 
         return new_line
+
+    def get_value(self, dic):
+        value = ""
+        if "dtype" in dic:
+            dtype = dic["dtype"]
+            type = random.choice(dtype) if isinstance(dtype, list) else dtype
+            if type == "tf.string":
+                if "enum" in dic:
+                    value = random.choice((dic["enum"]))
+                    value = '"' + value + '"'
+                else:
+                    value = dic["default"]
+                    if value == "None":
+                        pass
+                    else:
+                        value = '"' + value + '"'
+            elif type == "tf.bool":
+                value = random.choice([True, False])
+            elif type == "float":
+                value = random.random().__str__()
+            elif type == "int":
+                if "structure" in dic and "range" in dic:
+                    structure = dic["structure"]
+                    structure = random.choice(dic["structure"]) \
+                        if isinstance(structure, list) else structure
+                    drange = dic["range"]
+                    min_v = int(drange[0])
+                    min_v = (min_v + 1) if min_v == 0 else min_v
+                    max_v = int(drange[1])
+
+                    if structure == "integer":
+                        value = random.randint(min_v, max_v)
+                    elif structure == "tuple":
+                        value = tuple(random.randint(min_v, max_v) for _ in range(dic["shape"]))
+                    elif structure == "list":
+                        value = list(random.randint(min_v, max_v) for _ in range(dic["shape"]))
+                    elif structure == "tuple_of_tuples":
+                        value = tuple(tuple(random.randint(min_v, max_v) for _ in range(2)) for _ in
+                                      range(dic["shape"]))
+                else:
+                    value = dic["default"]
+        else:
+            value = dic["default"]
+
+        return value
 
     def mutate_on_module(self, function: str, number: int) -> str:
         def_list = []

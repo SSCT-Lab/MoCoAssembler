@@ -5,11 +5,12 @@ class Experiments:
                              "alexnet",
                              "vgg16",
                              "vgg19",
-                             "mobilenet",
-                             "lstm",
-                             "bilstm",
-                             "gru",
+                             "mobilenet"
                              ]
+
+        self.rnn_model = ["lstm",
+                          "bilstm",
+                          "gru"]
 
         self.complex_model = ["googlenet",
                               "resnet18",
@@ -28,6 +29,6 @@ class Experiments:
 
     def mutateAll(self): pass
 
-    def trainOne(self): pass
+    def trainOne(self, model): pass
 
     def trainAll(self): pass

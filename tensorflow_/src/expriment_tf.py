@@ -1,3 +1,4 @@
+import random
 from pathlib import Path
 
 from config.paths import RES_PATH
@@ -13,20 +14,20 @@ class ExperimentsTF(Experiments):
 
     def departOne(self, model):
         if (RES_PATH / model).exists():
-            print("文件存在")
+            print(model + "文件存在")
             return
         mocoTf = MoCoTF(model)
         mocoTf.depart()
-        print(Path(model).name + "\033[92m分解完成\033[0m")
+        print(model + "\033[92m分解完成\033[0m")
 
     def departAll(self):
         for model in self.simple_model:
             if (RES_PATH / model).exists():
-                print("文件存在")
+                print(model + "文件存在")
                 continue
             mocoTf = MoCoTF(model)
             mocoTf.depart()
-            print(Path(model).name + "\033[92m分解完成\033[0m")
+            print(model + "\033[92m分解完成\033[0m")
 
         for model in self.complex_model:
             if (RES_PATH / model).exists():
@@ -34,7 +35,7 @@ class ExperimentsTF(Experiments):
                 continue
             mocoTf = MoCoTF(model)
             mocoTf.depart()
-            print(Path(model).name + "\033[92m分解完成\033[0m")
+            print(model + "\033[92m分解完成\033[0m")
 
     def mutateOne(self, model):
         mocoTf = MoCoTF(model)
@@ -43,9 +44,7 @@ class ExperimentsTF(Experiments):
 
     def mutateAll(self): pass
 
-    def trainOne(self):
-        # model = random.choice(self.model)
-        model = self.model[0]
+    def trainOne(self, model):
         self.departOne(model)
         self.mutateOne(model)
 
@@ -54,6 +53,11 @@ class ExperimentsTF(Experiments):
 
 if __name__ == "__main__":
     exp = ExperimentsTF()
-    exp.departOne("inceptionv3")
-    exp.mutateOne("inceptionv3")
+    # simple_model_list = exp.simple_model
+    # for model in simple_model_list:
+    #     print(model + "\033[94mSTART\033[0m")
+    #     exp.trainOne(model)
+    #     print(model + "\033[94mDONE\033[0m")
+
+    exp.trainOne("lenet")
 
