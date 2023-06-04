@@ -2,7 +2,6 @@ import copy
 
 import jittor
 import jittor.nn as nn
-import jittorsummary
 
 
 class LeNet(nn.Module):
@@ -51,4 +50,4 @@ class LeNet(nn.Module):
 
 # if __name__ == '__main__':
 net = LeNet()
-print(net(jittor.randn((1, 1, 32, 32))))
+print(net(jittor.randn((224, 1, 32, 32))))

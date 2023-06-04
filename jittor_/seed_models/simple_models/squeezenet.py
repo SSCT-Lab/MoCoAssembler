@@ -1,6 +1,5 @@
 import jittor
 import jittor.nn as nn
-from jittorsummary import summary
 
 
 class SqueezeNet(nn.Module):
@@ -156,6 +155,5 @@ class SqueezeNet(nn.Module):
 
 if __name__ == '__main__':
     model = SqueezeNet()
-    summary(model, (3, 244, 244))
-    # x = jt.randn((1,3,244,244))
-    # y = model(x)
+    x = jittor.randn((3, 3, 244, 244))
+    y = model(x)

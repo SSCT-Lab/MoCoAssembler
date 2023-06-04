@@ -1,6 +1,5 @@
 import jittor
 import jittor.nn as nn
-from jittorsummary import summary
 
 
 class VGG_16(nn.Module):
@@ -46,9 +45,9 @@ class VGG_16(nn.Module):
         self.conv5c = jittor.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, stride=1, padding=1)
         self.pool5 = jittor.nn.MaxPool2d(kernel_size=2, stride=2)
 
-        self.fc6 = jittor.nn.Linear(512 * 7 * 7, 4096)
+        self.fc6 = jittor.nn.Linear(25088, 4096)
         self.fc7 = jittor.nn.Linear(4096, 4096)
-        self.fc8 = jittor.nn.Linear(4096, class_num)
+        self.fc8 = jittor.nn.Linear(4096, 1000)
 
         self.softmax = jittor.nn.Softmax(dim=1)
 
@@ -108,6 +107,6 @@ class VGG_16(nn.Module):
 
 if __name__ == '__main__':
     net = VGG_16()
-    # input = jt.randn((4, 3, 224, 224))
-    # output = net(input)
-    summary(net, (3, 244, 244))
+    x = jittor.randn((4, 3, 224, 224))
+    y = net(x)
+    print(y)

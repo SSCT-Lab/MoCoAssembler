@@ -1,7 +1,5 @@
 import jittor
-import jittor as jt
 import jittor.nn as nn
-from jittorsummary import summary
 
 class MobileNet(nn.Module):
     def __init__(self, in_channels):
@@ -170,6 +168,6 @@ class MobileNet(nn.Module):
 
 if __name__ == '__main__':
     model = MobileNet(3)
-    summary(model, (3, 224, 224))
-    # x = jittor.randn((4, 3, 224, 224))
-    # y = model(x)
+    x = jittor.randn((4, 3, 224, 224))
+    y = model(x)
+    print(y)

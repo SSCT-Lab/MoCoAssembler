@@ -1,7 +1,6 @@
 import jittor
 import jittor as jt
 import jittor.nn as nn
-from jittorsummary import summary
 
 
 class AlexNet(nn.Module):
@@ -80,6 +79,5 @@ class AlexNet(nn.Module):
 
 if __name__ == '__main__':
     model = AlexNet()
-    summary(model, (3, 224, 224))
-    # x = jittor.randn((6, 3, 224, 224))
-    # y = model(x)
+    x = jittor.randn((6, 3, 224, 224))
+    print(model(x))
