@@ -12,7 +12,9 @@ constraints:
   dilation:
     default: None
     dtype:
-    - int
+    - str
+    range:
+    - 'None'
   kernel_size:
     default: no default
     dtype:
@@ -21,6 +23,8 @@ constraints:
     default: '"maximum"'
     dtype:
     - str
+    range:
+    - '"maximum"'
   padding:
     default: '0'
     dtype:
@@ -28,7 +32,7 @@ constraints:
   return_indices:
     default: None
     dtype:
-    - int
+    - str
   stride:
     default: None
     dtype:

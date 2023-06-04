@@ -20,7 +20,7 @@ constraints:
   return_indices:
     default: None
     dtype:
-    - int
+    - str
   stride:
     default: None
     dtype:
