@@ -8,13 +8,14 @@ import mutate
 import run
 import shape_fix as s_f
 
+
 class Assembler():
     def __init__(self, model_name: str):
         self.model_name = model_name
         self.splited_model_dict = sms.split_model(os.path.join(file_paths.SIMPLE_MODEL_PATH, (model_name + '.py')))
         self.name_to_api_dict = self.analyse_dict(self.splited_model_dict['part2'])
         self.m = mutate.Mutator()
-        self.n = 2
+        self.n = 3
         self.sf = s_f.ShapeFixer()
 
         return
@@ -145,5 +146,5 @@ class Assembler():
 
 
 if __name__ == '__main__':
-    a = Assembler('lenet')
-    # a.assemble_code_tree()
+    a = Assembler('testnet')
+    a.assemble_code_tree()

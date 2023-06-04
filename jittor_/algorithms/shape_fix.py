@@ -52,7 +52,7 @@ class ShapeFixer:
                 if i == 0:
                     continue
                 else:
-                    result = result + '8, '
+                    result = result + '4, '
             result = result[:-2]
             result = result + ')'
             result = result + '\n'
@@ -67,9 +67,9 @@ class ShapeFixer:
                         if formatlist[i] in para_dict.keys():
                             result = result + para_dict[formatlist[i]] + ', '
                         else:
-                            result = result + '8, '
+                            result = result + '4, '
                     else:
-                        result = result + '8, '
+                        result = result + '4, '
             result = result[:-2]
             result = result + ')'
             result = result + '\n'

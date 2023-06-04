@@ -1,5 +1,6 @@
 import random
 import re
+from depart import Single_Model, Departed_Model
 
 import yaml
 import file_paths
@@ -29,14 +30,65 @@ class Mutator:
         self.api_list = self.api_similarity_info_dict.keys()
         self.layer_list = self.layer_similarity_info_dict.keys()
 
+    def child_model_mutate(self, model: Single_Model) -> Single_Model:
+        result = Single_Model()
+        result.execute = copy.deepcopy(model.execute)
+        result.model_name = copy.deepcopy(model.model_name)
+        result.init_sentence = copy.deepcopy(model.init_sentence)
+        result.execute_sentence = copy.deepcopy(model.execute_sentence)
+        result.other_parts = copy.deepcopy(model.other_parts)
+        result.return_sentence = copy.deepcopy(model.return_sentence)
+        result.block_visited = copy.deepcopy(model.block_visited)
+        result.tag = 'block'
+        names = model.declaration.keys()
+        for name in names:
+            if isinstance(model.declaration[name], str):
+                if '(' not in model.declaration[name]:
+                    dec = model.declaration[name]
+                else:
+                    dec = self.api_mutate(model.declaration[name])[0]
+                result.declaration[name] = dec
+            elif isinstance(model.declaration[name], list):
+                dec = self.sequence_mutate(model.declaration[name])
+                result.declaration[name] = dec
+        return result
+
+    def sequence_mutate(self, seq_api_list: list) -> list:
+        result = []
+        for api_str in seq_api_list:
+            if random.randint(1, 10) < 3:
+                result.append(self.api_mutate(api_str)[0])  # mutate
+            else:
+                result.append(api_str)  # dont mutate
+        return result
+
     def api_mutate(self, api_str: str) -> (str, str):
         # 5.25修改：返回变异结果的同时，返回一个变异类型
         r = random.randint(0, 1)
 
+        # 6.4修改：连括号都没有，不能变
+        if '(' not in api_str:
+            return api_str, 'no mutate'
+
+        # 6.4修改：如果不在层范围内，就不变
+        # if api_str.split('(')[0] not in self.layer_constraint_dict.keys():
+        #     return api_str, 'no mutate'
+        if 'jittor.nn' not in api_str:
+            return api_str, 'no mutate'
+
+        # 6.3修改：如果串中有传参，就不变
+        check_list = api_str.split('(', 1)[1].split(')')[0].split(',')
+        for element in check_list:
+            if len(check_list) == 1 and check_list[0] == '':
+                break
+            if '=' not in element:
+                if tools.get_string_type(element) != 'int' and tools.get_string_type(element) != 'float':
+                    return api_str, 'no mutate'
+
         if 'conv' in api_str.lower():
             result = self.api_name_mutate(api_str)
             result = self.api_para_adapt(result)
-            return result, 'api name mutate'
+            return result, 'api name mutate - conv'
         # TODO：conv变参数的时候，约束需要满足一下，先不变    5.28 : conv只进行name_mutate
 
         result = ''
@@ -178,7 +230,7 @@ class Mutator:
     # ===========================
     def generate_para(self, type: str) -> str:
         if type == 'int':
-            return str(random.randint(1,8))
+            return str(random.choice([-1, 1, 2, 3, 4, 5, 6, 7, 8]))
         elif type == 'str':
             return ''
         elif 'floa' in type:
@@ -217,3 +269,10 @@ if __name__ == '__main__':
     # original_api_name = 'jittor.nn.Conv'
     # api_str = m.api_name_mutate(api1)
     # r = m.api_para_adapt(api_str)
+    import depart
+
+    dm = depart.Departed_Model('ResNet50')
+    seq = dm.block_dict['Bottleneck']
+    seq = seq.declaration['bottleneck']
+    seq = m.sequence_mutate(seq)
+    print(seq)

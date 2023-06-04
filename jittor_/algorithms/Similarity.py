@@ -5,9 +5,9 @@ import yaml
 import file_paths
 import tools
 
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+# from sklearn.feature_extraction.text import TfidfVectorizer
+# from sklearn.feature_extraction.text import CountVectorizer
+# from sklearn.metrics.pairwise import cosine_similarity
 import sentence_transformers
 
 
@@ -56,7 +56,6 @@ class Similarity:
         #     return 1
         # else:
         #     return result
-
 
     def calculate_parameter_similarity(self, api_name_1: str, api_name_2: str):
         api_1, api_2 = self.all_api_info[api_name_1]['api'], self.all_api_info[api_name_2]['api']
