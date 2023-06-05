@@ -1,7 +1,10 @@
 import os
 ALGORITHM_PATH = os.path.dirname(__file__)
 MAIN_PATH = os.path.join(ALGORITHM_PATH, '..')
+MODEL_PATH = os.path.join(MAIN_PATH, 'seed_models')
 SIMPLE_MODEL_PATH = os.path.join(MAIN_PATH, 'seed_models', 'simple_models')
+COMPLEX_MODEL_PATH = os.path.join(MAIN_PATH, 'seed_models', 'complex_models')
+RNN_MODEL_PATH = os.path.join(MAIN_PATH, 'seed_models', 'rnn_models')
 API_INFO_PATH = os.path.join(MAIN_PATH, 'jittor_api_info')
 API_SIMILARITY_PATH = os.path.join(MAIN_PATH, 'jittor_api_similarity')
 API_SIMILARITY_FILE_PATH = os.path.join(API_SIMILARITY_PATH, 'api_similarity.yaml')
@@ -10,5 +13,5 @@ LAYER_SIMILARITY_PATH = os.path.join(MAIN_PATH, 'jittor_layer_similarity')
 LAYER_SIMILARITY_FILE_PATH = os.path.join(LAYER_SIMILARITY_PATH, 'layer_similarity.yaml')
 NN_SOURCE_FILE_PATH = os.path.join(MAIN_PATH, 'nn_source_file')
 MUTATED_MODEL_PATH = os.path.join(MAIN_PATH, 'mutated_model')
-
-
+MAIN_MODEL_LIST = ['ResNet18', ]
+SAVED_MODEL_PATH = os.path.join(MAIN_PATH, 'saved_mutated_models')
