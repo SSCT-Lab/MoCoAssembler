@@ -1,0 +1,82 @@
+api: torch.nn.Conv3d(in_channels, out_channels, kernel_size, stride=1, padding=0,
+  dilation=1, groups=1, bias=True, padding_mode='zeros', device=None, dtype=None)
+constraints:
+  bias:
+    default: 'True'
+    dtype:
+    - torch.bool
+  dilation:
+    default: '1'
+    dtype:
+    - int
+    - Tuple[int](3)
+  groups:
+    default: '1'
+    dtype:
+    - int
+    range: '[0,inf)'
+  in_channels:
+    dtype:
+    - int
+    range: 'LIMITED'
+  kernel_size:
+    dtype:
+    - int
+    - Tuple[int](3)
+    range: '[1,inf)'
+  out_channels:
+    dtype:
+    - int
+    range: 'LIMITED'
+  padding:
+    default: '0'
+    dtype:
+    - int
+    - Tuple[int](3)
+  padding_mode:
+    default: zeros
+    dtype:
+    - enum[string]
+    range:
+    - zeros
+    - reflect
+    - replicate
+    - circular
+  stride:
+    default: '1'
+    dtype:
+    - int
+    - Tuple[int](3)
+    range: '[1,inf)'
+descp: '__doc__ = r"""Applies a 3D convolution over an input signal composed of several
+  input
+
+  planes.
+
+  In the simplest case, the output value of the layer with input size :math:`(N, C_{in},
+  D, H, W)`
+
+  and output :math:`(N, C_{out}, D_{out}, H_{out}, W_{out})` can be precisely described
+  as:
+
+  .. math::
+
+  out(N_i, C_{out_j}) = bias(C_{out_j}) +
+
+  \sum_{k = 0}^{C_{in} - 1} weight(C_{out_j}, k) \star input(N_i, k)
+
+  where :math:`\star` is the valid 3D `cross-correlation`_ operator
+
+  '
+inputs:
+  optional:
+  - stride
+  - padding
+  - dilation
+  - groups
+  - bias
+  - padding_mode
+  required:
+  - in_channels
+  - out_channels
+  - kernel_size

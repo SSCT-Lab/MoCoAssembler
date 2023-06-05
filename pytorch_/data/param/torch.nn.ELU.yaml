@@ -1,13 +1,11 @@
 api: torch.nn.ELU(alpha=1.0, inplace=False)
 constraints:
   alpha:
-    default: '1.0'
-    dtype:
-    - torch.float32
+    default: 1.0
+    dtype: torch.float
   inplace:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
 descp: 'r"""Applies the Exponential Linear Unit (ELU) function, element-wise, as described
 
   in the paper: `Fast and Accurate Deep Network Learning by Exponential Linear

@@ -1,14 +1,11 @@
 api: torch.nn.Dropout2d(p=0.5, inplace=False)
 constraints:
   inplace:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   p:
-    default: '0.5'
-    dtype:
-    - torch.float32
-    range: '[0.0, 1.0]'
+    default: 0.5
+    dtype: torch.float
 descp: 'r"""Randomly zero out entire channels (a channel is a 2D feature map,
 
   e.g., the :math:`j`-th channel of the :math:`i`-th sample in the

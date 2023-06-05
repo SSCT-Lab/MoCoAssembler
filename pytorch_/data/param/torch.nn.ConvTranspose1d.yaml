@@ -3,48 +3,66 @@ api: torch.nn.ConvTranspose1d(in_channels, out_channels, kernel_size, stride=1, 
   dtype=None)
 constraints:
   bias:
-    default: 'True'
-    dtype:
-    - torch.bool
+    default: True
+    dtype: torch.bool
   dilation:
-    default: '1'
-    dtype:
-    - int
-    - Tuple[int](1)
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 1
+    range:
   groups:
-    default: '1'
-    dtype:
-    - int
-    range: '[0,inf)'
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
   in_channels:
-    dtype:
-    - int
-    range: 'LIMITED'
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
   kernel_size:
-    dtype:
-    - int
-    - Tuple[int](1)
-    range: '[1,inf)'
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 1
+    range:
   out_channels:
-    dtype:
-    - int
-    range: 'LIMITED'
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
   output_padding:
-    default: '0'
-    dtype:
-    - int
-    - Tuple[int](1)
+    default: 0
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 1
+    range:
   padding:
-    default: '0'
-    dtype:
-    - int
-    - Tuple[int](1)
+    default: 0
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 1
+    range:
   stride:
-    default: '1'
-    dtype:
-    - int
-    - Tuple[int](1)
-    range: '[1,inf)'
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 1
+    range:
 descp: '__doc__ = r"""Applies a 1D transposed convolution operator over an input image
 
   composed of several input planes.

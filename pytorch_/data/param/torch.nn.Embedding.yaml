@@ -3,32 +3,34 @@ api: torch.nn.Embedding(num_embeddings, embedding_dim, padding_idx=None, max_nor
   device=None, dtype=None)
 constraints:
   embedding_dim:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
   max_norm:
-    dtype:
-    - torch.float32
+    dtype: torch.float32
   norm_type:
-    default: '2.0'
-    dtype:
-    - torch.float32
+    default: 2.0
+    dtype: torch.float32
   num_embeddings:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
   padding_idx:
-    dtype:
-    - int
-    range: '[0, ne)'
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
   scale_grad_by_freq:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   sparse:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
 descp: 'r"""A simple lookup table that stores embeddings of a fixed dictionary and
   size.
 

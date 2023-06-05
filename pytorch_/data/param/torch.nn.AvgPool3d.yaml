@@ -2,31 +2,32 @@ api: torch.nn.AvgPool3d(kernel_size, stride=None, padding=0, ceil_mode=False, co
   divisor_override=None)
 constraints:
   ceil_mode:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   count_include_pad:
-    default: 'True'
-    dtype:
-    - torch.bool
-  divisor_override:
-    default: None
+    default: True
+    dtype: torch.bool
   kernel_size:
-    dtype:
-    - int
-    - Tuple[int](3)
-    range: '[1,inf)'
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 3
+    range:
   padding:
-    default: '0'
-    dtype:
-    - int
-    - Tuple[int](3)
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 3
+    range:
   stride:
-    default: None
-    dtype:
-    - int
-    - Tuple[int](3)
-    range: '[1,inf)'
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 3
+    range:
 descp: 'r"""Applies a 3D average pooling over an input signal composed of several
   input
 

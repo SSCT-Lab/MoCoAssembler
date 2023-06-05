@@ -2,23 +2,19 @@ api: torch.nn.BatchNorm2d(num_features, eps=1e-05, momentum=0.1, affine=True, tr
   device=None, dtype=None)
 constraints:
   affine:
-    default: 'True'
-    dtype:
-    - torch.bool
+    default: True
+    dtype: t.bool
   eps:
     default: 1e-05
-    dtype:
-    - torch.float32
+    dtype: torch.float
   momentum:
-    default: '0.1'
-    dtype:
-    - torch.float32
+    default: 0.1
+    dtype: torch.float
   num_features:
     range: LIMITED
   track_running_stats:
-    default: 'True'
-    dtype:
-    - torch.bool
+    default: True
+    dtype: torch.bool
 descp: 'r"""Applies Batch Normalization over a 4D input (a mini-batch of 2D inputs
 
   with additional channel dimension) as described in the paper

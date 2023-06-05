@@ -2,21 +2,26 @@ api: torch.nn.Bilinear(in1_features, in2_features, out_features, bias=True, devi
   dtype=None)
 constraints:
   bias:
-    default: 'True'
-    dtype:
-    - torch.bool
+    default: True
+    dtype: torch.bool
   in1_features:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
   in2_features:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
   out_features:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
 descp: 'r"""Applies a bilinear transformation to the incoming data:
 
   :math:`y = x_1^T A x_2 + b`

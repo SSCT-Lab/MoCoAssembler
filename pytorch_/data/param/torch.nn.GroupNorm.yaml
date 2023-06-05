@@ -2,21 +2,23 @@ api: torch.nn.GroupNorm(num_groups, num_channels, eps=1e-05, affine=True, device
   dtype=None)
 constraints:
   affine:
-    default: 'True'
-    dtype:
-    - torch.bool
+    default: True
+    dtype: torch.bool
   eps:
     default: 1e-05
-    dtype:
-    - torch.float32
+    dtype: torch.float
   num_channels:
-    dtype:
-    - int
-    range: LIMITED
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
   num_groups:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
 descp: 'r"""Applies Group Normalization over a mini-batch of inputs as described in
 
   the paper `Group Normalization <https://arxiv.org/abs/1803.08494>`__

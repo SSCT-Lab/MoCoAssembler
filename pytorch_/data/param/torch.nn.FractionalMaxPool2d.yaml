@@ -3,24 +3,27 @@ api: torch.nn.FractionalMaxPool2d(kernel_size, output_size=None, output_ratio=No
 check_nan: true
 constraints:
   kernel_size:
-    dtype:
-    - int
-    - Tuple[int](2)
-    range: '[1,inf)'
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
   output_ratio:
-    dtype:
+    dtype: torch.float
+    structure:
     - float
-    - Tuple[float](2)
-    range: '[0.0,1.0]'
+    - tuple
   output_size:
-    dtype:
-    - int
-    - Tuple[int](2)
-    range: '[0,inf)'
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
   return_indices:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
 descp: 'r"""Applies a 2D fractional max pooling over an input signal composed of several
   input planes.
 

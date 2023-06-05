@@ -1,11 +1,12 @@
 api: torch.nn.ConstantPad3d(padding, value)
 constraints:
   padding:
-    dtype:
-    - int
-    - Tuple[int](6)
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 6
     range:
-    - '[0,inf)'
 descp: 'r"""Pads the input tensor boundaries with a constant value.
 
   For `N`-dimensional padding, use :func:`torch.nn.functional.pad()`.
@@ -55,4 +56,3 @@ inputs:
   optional: []
   required:
   - padding
-  - value

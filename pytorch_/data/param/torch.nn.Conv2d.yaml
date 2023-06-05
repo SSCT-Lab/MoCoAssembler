@@ -1,53 +1,71 @@
-api: torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0,
-  dilation=1, groups=1, bias=True, padding_mode='zeros', device=None, dtype=None)
+api: torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros', device=None, dtype=None)
 constraints:
   bias:
-    default: 'True'
-    dtype:
-    - torch.bool
+    default: True
+    dtype: torch.bool
   dilation:
-    default: '1'
-    dtype:
-    - int
-    - Tuple[int](2)
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
   groups:
-    default: '1'
-    dtype:
-    - int
-    range: '[0,inf)'
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
   in_channels:
-    dtype:
-    - int
-    range: 'LIMITED'
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
   kernel_size:
-    dtype:
-    - int
-    - Tuple[int](2)
-    range: '[1,inf)'
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
   out_channels:
-    dtype:
-    - int
-    range: 'LIMITED'
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
   padding:
-    default: '0'
+    default: 0
     dtype:
     - int
-    - Tuple[int](2)
+    - torch.string
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    enum:
+    - same
+    - valid
   padding_mode:
     default: zeros
-    dtype:
-    - enum[string]
-    range:
+    dtype: torch.string
+    enum:
     - zeros
     - reflect
     - replicate
     - circular
   stride:
-    default: '1'
-    dtype:
-    - int
-    - Tuple[int](2)
-    range: '[1,inf)'
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    shape: 2
+    range:
 descp: '__doc__ = r"""Applies a 2D convolution over an input signal composed of several
   input
 
