@@ -4,14 +4,13 @@ import torch.nn.functional as F
 from torchsummary import summary
 
 
-class GoogLeNet(nn.Module):
-    def __init__(self, class_num=1000, aux_logits=True, init_weights=False):
-        super(GoogLeNet, self).__init__()
-        self.aux_logits = aux_logits
+class googlenet(nn.Module):
+    def __init__(self, class_num=1000):
+        super(googlenet, self).__init__()
 
-        self.relu = nn.ReLU()
-
-        self.dropout = nn.Dropout(p=0.5)
+        self.relu1 = nn.ReLU()
+        self.relu2 = nn.ReLU()
+        self.relu3 = nn.ReLU()
 
         self.conv1 = nn.Conv2d(in_channels=3, out_channels=64, kernel_size=7, stride=2, padding=3)
         self.maxpool1 = nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True)
@@ -34,39 +33,29 @@ class GoogLeNet(nn.Module):
         self.inception5a = Inception(832, 256, 160, 320, 32, 128, 128)
         self.inception5b = Inception(832, 384, 192, 384, 48, 128, 128)
 
-        if self.aux_logits:
-            self.aux1 = InceptionAux(512, class_num)
-            self.aux2 = InceptionAux(528, class_num)
-
         self.avgpool1 = nn.AdaptiveAvgPool2d((1, 1))
         self.dropout = nn.Dropout(0.4)
         self.fc = nn.Linear(1024, class_num)
-        if init_weights:
-            self._initialize_weights()
 
     def forward(self, x):
         x = self.conv1(x)
-        x = self.relu(x)
+        x = self.relu1(x)
         x = self.maxpool1(x)
 
         x = self.conv2(x)
-        x = self.relu(x)
+        x = self.relu2(x)
         x = self.conv3(x)
-        x = self.relu(x)
+        x = self.relu3(x)
         x = self.maxpool2(x)
 
         x = self.inception3a(x)
         x = self.inception3b(x)
         x = self.maxpool3(x)
         x = self.inception4a(x)
-        if self.training and self.aux_logits:
-            aux1 = self.aux1(x)
 
         x = self.inception4b(x)
         x = self.inception4c(x)
         x = self.inception4d(x)
-        if self.training and self.aux_logits:
-            aux2 = self.aux2(x)
 
         x = self.inception4e(x)
         x = self.maxpool4(x)
@@ -77,8 +66,6 @@ class GoogLeNet(nn.Module):
         x = torch.flatten(x, 1)
         x = self.dropout(x)
         x = self.fc(x)
-        if self.training and self.aux_logits:
-            return x, aux2, aux1
         return x
 
 
@@ -117,30 +104,6 @@ class Inception(nn.Module):
         return x
 
 
-class InceptionAux(nn.Module):
-    def __init__(self, in_channels, class_num):
-        super(InceptionAux, self).__init__()
-        self.relu = nn.ReLU()
-        self.averagePool = nn.AvgPool2d(kernel_size=5, stride=3)
-        self.conv = nn.Conv2d(in_channels=in_channels, out_channels=128, kernel_size=1, stride=1)
-
-        self.fc1 = nn.Linear(2048, 1024)
-        self.fc2 = nn.Linear(1024, class_num)
-
-    def forward(self, x):
-        x = self.averagePool(x)
-        x = self.relu(self.conv(x))
-        x = torch.flatten(x, 1)
-
-        x = self.dropout(x)
-        x = self.fc1(x)
-        x = F.relu(x)
-
-        x = self.dropout(x)
-        x = self.fc2(x)
-        return x
-
-
 if __name__ == '__main__':
-    net = GoogLeNet()
+    net = googlenet()
     summary(net, (3, 224, 224))

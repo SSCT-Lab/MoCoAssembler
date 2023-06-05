@@ -1,29 +1,39 @@
 api: torch.nn.AvgPool1d(kernel_size, stride=None, padding=0, ceil_mode=False, count_include_pad=True)
 constraints:
   ceil_mode:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   count_include_pad:
-    default: 'True'
-    dtype:
-    - torch.bool
+    default: True
+    dtype: torch.bool
   kernel_size:
-    dtype:
-    - int
-    - Tuple[int](1)
-    range: '[1,inf)'
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 1
+    range:
   padding:
-    default: '0'
+    default: 0
     dtype:
     - int
-    - Tuple[int](1)
+    - torch.string
+    structure:
+    - integer
+    - tuple
+    shape: 1
+    range:
+    enum:
+    - same
+    - valid
   stride:
     default: None
-    dtype:
-    - int
-    - Tuple[int](1)
-    range: '[1,inf)'
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 1
+    range:
 descp: 'r"""Applies a 1D average pooling over an input signal composed of several
 
   input planes.

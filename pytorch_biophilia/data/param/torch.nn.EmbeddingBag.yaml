@@ -3,40 +3,38 @@ api: torch.nn.EmbeddingBag(num_embeddings, embedding_dim, max_norm=None, norm_ty
   padding_idx=None, device=None, dtype=None)
 constraints:
   embedding_dim:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
   include_last_offset:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   max_norm:
-    dtype:
-    - torch.float32
+    dtype: torch.float32
   mode:
     default: mean
-    dtype:
-    - enum[string]
+    dtype: torch.string
     range:
     - sum
     - max
     - mean
   norm_type:
-    default: '2.0'
-    dtype:
-    - torch.float32
+    default: 2.0
+    dtype: torch.float32
   num_embeddings:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
   scale_grad_by_freq:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   sparse:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
 descp: 'r"""Computes sums or means of ''bags'' of embeddings, without instantiating
   the
 

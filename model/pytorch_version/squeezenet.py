@@ -3,42 +3,41 @@ import torch.nn as nn
 from torchsummary import summary
 
 
-class SqueezeNet(nn.Module):
+class squeezenet(nn.Module):
     def __init__(self):
-        super().__init__()
+        super(squeezenet, self).__init__()
         self.relu = nn.ReLU()
         self.pool = nn.MaxPool2d(kernel_size=3, stride=2)
-        self.avgpool = nn.AdaptiveAvgPool2d(1)
+        self.avgpool = nn.AdaptiveAvgPool2d(output_size=1)
         self.softmax = nn.Softmax(dim=1)
 
-        self.conv1 = nn.Conv2d(3, 96, kernel_size=7, stride=2)
+        self.conv1 = nn.Conv2d(in_channels=3, out_channels=96, kernel_size=7, stride=2)
 
-        self.conv2a = nn.Conv2d(96, 16, kernel_size=1, stride=1)
-        self.conv2b = nn.Conv2d(16, 64, kernel_size=1, stride=1)
-        self.conv2c = nn.Conv2d(16, 64, kernel_size=3, stride=1, padding=1)
+        self.conv2a = nn.Conv2d(in_channels=96, out_channels=16, kernel_size=1, stride=1)
+        self.conv2b = nn.Conv2d(in_channels=16, out_channels=64, kernel_size=1, stride=1)
+        self.conv2c = nn.Conv2d(in_channels=16, out_channels=64, kernel_size=3, stride=1, padding=1)
 
-        self.conv3 = nn.Conv2d(64, 16, kernel_size=1, stride=1)
+        self.conv3 = nn.Conv2d(in_channels=64, out_channels=16, kernel_size=1, stride=1)
 
-        self.conv4a = nn.Conv2d(64, 32, kernel_size=1, stride=1)
-        self.conv4b = nn.Conv2d(32, 128, kernel_size=1, stride=1)
-        self.conv4c = nn.Conv2d(32, 128, kernel_size=3, stride=1, padding=1)
+        self.conv4a = nn.Conv2d(in_channels=64, out_channels=32, kernel_size=1, stride=1)
+        self.conv4b = nn.Conv2d(in_channels=32, out_channels=128, kernel_size=1, stride=1)
+        self.conv4c = nn.Conv2d(in_channels=32, out_channels=128, kernel_size=3, stride=1, padding=1)
 
-        self.conv5 = nn.Conv2d(128, 32, kernel_size=1, stride=1)
+        self.conv5 = nn.Conv2d(in_channels=128, out_channels=32, kernel_size=1, stride=1)
 
-        self.conv6a = nn.Conv2d(128, 48, kernel_size=1, stride=1)
-        self.conv6b = nn.Conv2d(48, 192, kernel_size=1, stride=1)
-        self.conv6c = nn.Conv2d(48, 192, kernel_size=3, stride=1, padding=1)
+        self.conv6a = nn.Conv2d(in_channels=128, out_channels=48, kernel_size=1, stride=1)
+        self.conv6b = nn.Conv2d(in_channels=48, out_channels=192, kernel_size=1, stride=1)
+        self.conv6c = nn.Conv2d(in_channels=48, out_channels=192, kernel_size=3, stride=1, padding=1)
 
-        self.conv7 = nn.Conv2d(192, 48, kernel_size=1, stride=1)
+        self.conv7 = nn.Conv2d(in_channels=192, out_channels=48, kernel_size=1, stride=1)
 
-        self.conv8a = nn.Conv2d(192, 64, kernel_size=1, stride=1)
-        self.conv8b = nn.Conv2d(64, 256, kernel_size=1, stride=1)
-        self.conv8c = nn.Conv2d(64, 256, kernel_size=3, stride=1, padding=1)
+        self.conv8a = nn.Conv2d(in_channels=192, out_channels=64, kernel_size=1, stride=1)
+        self.conv8b = nn.Conv2d(in_channels=64, out_channels=256, kernel_size=1, stride=1)
+        self.conv8c = nn.Conv2d(in_channels=64, out_channels=256, kernel_size=3, stride=1, padding=1)
 
-        self.conv9 = nn.Conv2d(256, 64, kernel_size=1, stride=1)
+        self.conv9 = nn.Conv2d(in_channels=256, out_channels=64, kernel_size=1, stride=1)
 
-        self.conv10 = nn.Conv2d(256, 5, kernel_size=1, stride=1)
-
+        self.conv10 = nn.Conv2d(in_channels=256, out_channels=5, kernel_size=1, stride=1)
 
     def forward(self, x):
         # 1st block
@@ -130,5 +129,5 @@ class SqueezeNet(nn.Module):
 
 
 if __name__ == '__main__':
-    model = SqueezeNet()
+    model = squeezenet()
     summary(model, (3, 244, 244))

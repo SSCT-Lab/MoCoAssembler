@@ -1,13 +1,15 @@
 api: torch.nn.AdaptiveMaxPool1d(output_size, return_indices=False)
 constraints:
   output_size:
-    dtype:
-    - int
-    - Tuple[int](1)
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 1
+    range:
   return_indices:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
 descp: 'r"""Applies a 1D adaptive max pooling over an input signal composed of several
   input planes.
 

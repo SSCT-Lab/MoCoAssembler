@@ -7,7 +7,7 @@ from queue import Queue
 
 import yaml
 
-from config.paths import RES_PATH, LOG_PATH, FUNC_PATH, PT_MODEL_PATH, FUNC_SIM_PATH, PARAM_PATH
+from config.paths import RES_PATH, LOG_PATH, FUNC_PATH, PT_MODEL_PATH, FUNC_SIM_PATH, PARAM_PATH, PATH
 from utils.MoCo import MoCo
 
 
@@ -38,7 +38,7 @@ class MoCoPT(MoCo):
         if not Path.exists(self.mutate_dir):
             Path.mkdir(self.mutate_dir)
 
-        with Path.open(FUNC_PATH / "api_list", "r") as file:
+        with Path.open(PATH / "data/api_list", "r") as file:
             self.api_list = [_[:-1] for _ in file]
 
         self.queue = Queue()
@@ -352,7 +352,7 @@ class MoCoPT(MoCo):
 
 
 if __name__ == "__main__":
-    test = MoCoPT("googlenet")
+    test = MoCoPT("lenet")
     # test.depart()
     # test.test()
     test.generate_model()

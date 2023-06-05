@@ -1,13 +1,11 @@
 api: torch.nn.CELU(alpha=1.0, inplace=False)
 constraints:
   alpha:
-    default: '1.0'
-    dtype:
-    - torch.float32
+    default: 1.0
+    dtype: torch.float
   inplace:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
 descp: 'r"""Applies the element-wise function:
 
   .. math::

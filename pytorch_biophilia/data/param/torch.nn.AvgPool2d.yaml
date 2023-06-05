@@ -2,33 +2,32 @@ api: torch.nn.AvgPool2d(kernel_size, stride=None, padding=0, ceil_mode=False, co
   divisor_override=None)
 constraints:
   ceil_mode:
-    default: 'False'
-    dtype:
-      - torch.bool
+    default: False
+    dtype: torch.bool
   count_include_pad:
-    default: 'True'
-    dtype:
-      - torch.bool
-  divisor_override:
-    default: None
-    dtype:
-      - int
+    default: True
+    dtype: torch.bool
   kernel_size:
-    dtype:
-      - int
-      - Tuple[int](2)
-    range: '[1,inf)'
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
   padding:
-    default: '0'
-    dtype:
-      - int
-      - Tuple[int](2)
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
   stride:
-    default: None
-    dtype:
-      - int
-      - Tuple[int](2)
-    range: '[1,inf)'
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
 descp: 'r"""Applies a 2D average pooling over an input signal composed of several
   input
 

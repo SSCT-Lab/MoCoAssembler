@@ -1,14 +1,11 @@
 api: torch.nn.Dropout(p=0.5, inplace=False)
 constraints:
   inplace:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   p:
-    default: '0.5'
-    dtype:
-    - torch.float32
-    range: '[0.0, 1.0]'
+    default: 0.5
+    dtype: torch.float
 descp: 'r"""During training, randomly zeroes some of the elements of the input
 
   tensor with probability :attr:`p` using samples from a Bernoulli

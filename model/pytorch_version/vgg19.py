@@ -2,9 +2,9 @@ import torch.nn as nn
 from torchsummary import summary
 
 
-class VGG19(nn.Module):
+class vgg19(nn.Module):
     def __init__(self, class_num=1000):
-        super().__init__()
+        super(vgg19, self).__init__()
         
         self.relu = nn.ReLU()
 
@@ -34,9 +34,9 @@ class VGG19(nn.Module):
         self.conv5d = nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, stride=1, padding=1)
         self.pool5 = nn.MaxPool2d(kernel_size=2, stride=2)
 
-        self.fc6 = nn.Linear(512 * 7 * 7, 4096)
-        self.fc7 = nn.Linear(4096, 4096)
-        self.fc8 = nn.Linear(4096, class_num)
+        self.fc6 = nn.Linear(in_features=512*7*7, out_features=4096)
+        self.fc7 = nn.Linear(in_features=4096, out_features=4096)
+        self.fc8 = nn.Linear(in_features=4096, out_features=class_num)
 
         self.softmax = nn.Softmax(dim=1)
 
@@ -101,5 +101,5 @@ class VGG19(nn.Module):
 
 
 if __name__ == '__main__':
-    net = VGG19()
+    net = vgg19()
     summary(net, (3, 224, 224))

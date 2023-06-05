@@ -179,9 +179,9 @@ class MoCoTF(MoCo):
                 try:
                     subprocess.check_output(['python', model], stderr=subprocess.STDOUT)
                     self.queue.put(model)
-                    print(model.name + "  \033[34mOK\033[0m")
+                    print(Path(model).name + "  \033[34mOK\033[0m")
                 except subprocess.CalledProcessError as e:
-                    print(model.name + "  \033[31mGG\033[0m")
+                    print(Path(model).name + "  \033[31mGG\033[0m")
                     with Path.open(Path(LOG_PATH / Path(self.model_name) / Path(time.time().__str__() + ".txt")), "w+", encoding="utf8") as file:
                         file.write(e.output.decode())
 

@@ -1,14 +1,11 @@
 api: torch.nn.AlphaDropout(p=0.5, inplace=False)
 constraints:
   inplace:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   p:
-    default: '0.5'
-    dtype:
-    - torch.float32
-    range: '[0.0, 1.0]'
+    default: 0.5
+    dtype: torch.float
 descp: 'r"""Applies Alpha Dropout over the input.
 
   Alpha Dropout is a type of Dropout that maintains the self-normalizing
