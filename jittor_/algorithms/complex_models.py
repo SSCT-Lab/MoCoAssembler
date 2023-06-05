@@ -7,8 +7,14 @@ import depart
 
 
 def get_seed_model(model_name: str) -> Departed_Model:
-    model_name_list = ['ResNet18', 'ResNet50', 'nasnet', 'InceptionV3', 'xception', 'testnet']
+    model_name_list = ['ResNet18', 'ResNet50', 'nasnet', 'InceptionV3', 'xception', 'testnet',
+                       'alexnet', 'lenet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19']
     assert model_name in model_name_list, 'no such model'
+
+    # simple models
+
+    if model_name in ['alexnet', 'lenet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19']:
+        return Departed_Model(model_name)
 
     # testnet
     if model_name == 'testnet':

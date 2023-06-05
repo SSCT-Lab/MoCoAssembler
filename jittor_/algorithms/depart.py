@@ -53,7 +53,8 @@ class Departed_Model:
         self.main_model: Single_Model = None  # the type is Single Model
         self.block_dict: dict = {}  # child block dict, key is block name after 'class', value is <Single_Model>
         self.end: str = ''
-        if model_name in ['ResNet18', 'ResNet50', 'InceptionV3', 'testnet']:
+        if model_name in ['ResNet18', 'ResNet50', 'InceptionV3', 'testnet',
+                          'alexnet', 'lenet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19']:
             self.get_model_from_file(model_name)
 
     def assemble_file(self, generation: int = 0, index: int = 1) -> str:
@@ -186,5 +187,5 @@ def connect_str_list(str_list: list) -> str:  # connect sentences in a list with
 
 
 if __name__ == '__main__':
-    dm = Departed_Model('xception')
+    dm = Departed_Model('testnet')
     # dm.assemble_file()

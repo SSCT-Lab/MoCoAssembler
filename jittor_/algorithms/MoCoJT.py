@@ -11,7 +11,7 @@ import os
 import shutil
 
 
-def delete_folder_contents(folder_path):
+def delete_folder_contents(folder_path=file_paths.MUTATED_MODEL_PATH):
     for filename in os.listdir(folder_path):
         file_path = os.path.join(folder_path, filename)
         try:
@@ -42,20 +42,19 @@ class MoCoJT(MoCo):
         simple_model_list = []
         for n in ['ResNet18', 'ResNet50', 'InceptionV3', 'xception', 'nasnet']:
             complex_model_list.append(n)
-        for n in ['alexnet', 'lenet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19']:
+        for n in ['lenet', 'alexnet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19', 'testnet']:
             simple_model_list.append(n)
         for i in range(1234):
+            for model in simple_model_list:
+                a = assemble_complex.Assembler_Complex(model)
+                a.assemble_code_tree()
+                del a
+                delete_folder_contents(file_paths.MUTATED_MODEL_PATH)
             for model in complex_model_list:
                 a = assemble_complex.Assembler_Complex(model)
                 a.assemble_code_tree()
                 del a
                 delete_folder_contents(file_paths.MUTATED_MODEL_PATH)
-            for model in simple_model_list:
-                a = assemble.Assembler(model)
-                a.assemble_code_tree()
-                del a
-                delete_folder_contents(file_paths.MUTATED_MODEL_PATH)
-
 
     def get_function(self, line: str):
         pass
