@@ -803,10 +803,10 @@ jittor.nn.Conv:
   jittor.nn.BatchNorm3d: 0.1664
   jittor.nn.Bilinear: 0.2018
   jittor.nn.ConstantPad2d: 0.2116
-  jittor.nn.Conv1d: 1.0
+  jittor.nn.Conv1d: 0.8
   jittor.nn.Conv1d_sp: 0.5216
-  jittor.nn.Conv2d: 1.0
-  jittor.nn.Conv3d: 1.0
+  jittor.nn.Conv2d: 0.9555
+  jittor.nn.Conv3d: 0.8
   jittor.nn.ConvTranspose: 0.6638
   jittor.nn.ConvTranspose2d: 0.6203
   jittor.nn.ConvTranspose3d: 0.6181
@@ -869,10 +869,10 @@ jittor.nn.Conv1d:
   jittor.nn.BatchNorm3d: 0.1913
   jittor.nn.Bilinear: 0.2018
   jittor.nn.ConstantPad2d: 0.3395
-  jittor.nn.Conv: 1.0
+  jittor.nn.Conv: 0.8
   jittor.nn.Conv1d_sp: 0.6263
-  jittor.nn.Conv2d: 1.0
-  jittor.nn.Conv3d: 1.0
+  jittor.nn.Conv2d: 0.8
+  jittor.nn.Conv3d: 0.8
   jittor.nn.ConvTranspose: 0.6444
   jittor.nn.ConvTranspose2d: 0.6765
   jittor.nn.ConvTranspose3d: 0.612
@@ -1001,10 +1001,10 @@ jittor.nn.Conv2d:
   jittor.nn.BatchNorm3d: 0.2167
   jittor.nn.Bilinear: 0.2018
   jittor.nn.ConstantPad2d: 0.3909
-  jittor.nn.Conv: 1.0
-  jittor.nn.Conv1d: 1.0
+  jittor.nn.Conv: 0.9555
+  jittor.nn.Conv1d: 0.8
   jittor.nn.Conv1d_sp: 0.5724
-  jittor.nn.Conv3d: 1.0
+  jittor.nn.Conv3d: 0.8
   jittor.nn.ConvTranspose: 0.6511
   jittor.nn.ConvTranspose2d: 0.735
   jittor.nn.ConvTranspose3d: 0.6421
@@ -1067,10 +1067,10 @@ jittor.nn.Conv3d:
   jittor.nn.BatchNorm3d: 0.3388
   jittor.nn.Bilinear: 0.2018
   jittor.nn.ConstantPad2d: 0.256
-  jittor.nn.Conv: 1.0
-  jittor.nn.Conv1d: 1.0
+  jittor.nn.Conv: 0.8
+  jittor.nn.Conv1d: 0.8
   jittor.nn.Conv1d_sp: 0.4698
-  jittor.nn.Conv2d: 1.0
+  jittor.nn.Conv2d: 0.8
   jittor.nn.ConvTranspose: 0.6408
   jittor.nn.ConvTranspose2d: 0.6468
   jittor.nn.ConvTranspose3d: 0.7773
@@ -2612,7 +2612,7 @@ jittor.nn.LeakyReLU:
   jittor.nn.LayerNorm1d: 0.1768
   jittor.nn.LayerNorm2d: 0.1612
   jittor.nn.LayerNorm3d: 0.1268
-  jittor.nn.Leaky_relu: 1.0
+  jittor.nn.Leaky_relu: 0.9555
   jittor.nn.Linear: 0.0444
   jittor.nn.MaxPool2d: 0.0876
   jittor.nn.MaxPool3d: 0.0905
@@ -2678,7 +2678,7 @@ jittor.nn.Leaky_relu:
   jittor.nn.LayerNorm1d: 0.1474
   jittor.nn.LayerNorm2d: 0.1296
   jittor.nn.LayerNorm3d: 0.0946
-  jittor.nn.LeakyReLU: 1.0
+  jittor.nn.LeakyReLU: 0.9555
   jittor.nn.Linear: 0.0244
   jittor.nn.MaxPool2d: 0.0667
   jittor.nn.MaxPool3d: 0.0711
@@ -2947,7 +2947,7 @@ jittor.nn.MaxUnpool2d:
   jittor.nn.Linear: 0.0895
   jittor.nn.MaxPool2d: 0.6987
   jittor.nn.MaxPool3d: 0.6487
-  jittor.nn.MaxUnpool3d: 1.0
+  jittor.nn.MaxUnpool3d: 0.9555
   jittor.nn.Mish: 0.3234
   jittor.nn.PReLU: 0.2611
   jittor.nn.PixelShuffle: 0.3639
@@ -3013,7 +3013,7 @@ jittor.nn.MaxUnpool3d:
   jittor.nn.Linear: 0.1089
   jittor.nn.MaxPool2d: 0.6464
   jittor.nn.MaxPool3d: 0.6977
-  jittor.nn.MaxUnpool2d: 1.0
+  jittor.nn.MaxUnpool2d: 0.9555
   jittor.nn.Mish: 0.3305
   jittor.nn.PReLU: 0.2611
   jittor.nn.PixelShuffle: 0.3904
@@ -3550,7 +3550,7 @@ jittor.nn.ReLU:
   jittor.nn.Pool3d: 0.1212
   jittor.nn.RNNBase: 0.1202
   jittor.nn.RNNCell: 0.1434
-  jittor.nn.ReLU6: 1.0
+  jittor.nn.ReLU6: 0.9555
   jittor.nn.ReflectionPad2d: 0.0387
   jittor.nn.ReplicationPad2d: 0.0395
   jittor.nn.Resize: 0.2142
@@ -3616,7 +3616,7 @@ jittor.nn.ReLU6:
   jittor.nn.Pool3d: 0.1484
   jittor.nn.RNNBase: 0.1095
   jittor.nn.RNNCell: 0.1434
-  jittor.nn.ReLU: 1.0
+  jittor.nn.ReLU: 0.9555
   jittor.nn.ReflectionPad2d: 0.0628
   jittor.nn.ReplicationPad2d: 0.0597
   jittor.nn.Resize: 0.1736
