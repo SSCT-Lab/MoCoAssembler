@@ -3,34 +3,38 @@ api: torch.nn.MaxPool1d(kernel_size, stride=None, padding=0, dilation=1, return_
 check_nan: true
 constraints:
   ceil_mode:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   dilation:
-    default: '1'
-    dtype:
-    - int
-    - Tuple[int](1)
+    default: 1
+    dtype: int
+    structure:
+      - integer
+      - tuple
+    shape: 1
   kernel_size:
-    dtype:
-    - int
-    range: '[1,inf)'
+    dtype: int
+    range:
   padding:
-    default: '0'
-    dtype:
-    - int
-    - Tuple[int](1)
-    range: '[0, ks/2]'
+    default: 0
+    dtype: int
+    structure:
+      - integer
+      - tuple
+    shape: 1
+    range: [ 0, ks/2 ]
   return_indices:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   stride:
     default: None
-    dtype:
-    - int
-    - Tuple[int](1)
-    range: '[1,inf)'
+    dtype: int
+    structure:
+      - integer
+      - tuple
+    shape: 1
+    range:
+
 descp: 'r"""Applies a 1D max pooling over an input signal composed of several input
 
   planes.
@@ -110,10 +114,10 @@ descp: 'r"""Applies a 1D max pooling over an input signal composed of several in
   '
 inputs:
   optional:
-  - stride
-  - padding
-  - dilation
-  - return_indices
-  - ceil_mode
+    - stride
+    - padding
+    - dilation
+    - return_indices
+    - ceil_mode
   required:
-  - kernel_size
+    - kernel_size

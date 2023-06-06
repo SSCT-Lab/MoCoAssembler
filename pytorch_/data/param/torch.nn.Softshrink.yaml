@@ -1,9 +1,9 @@
 api: torch.nn.Softshrink(lambd=0.5)
 constraints:
   lambd:
-    default: '0.5'
-    dtype:
-    - torch.float32
+    default: 0.5
+    dtype: torch.float
+
 descp: 'r"""Applies the soft shrinkage function elementwise:
 
   .. math::

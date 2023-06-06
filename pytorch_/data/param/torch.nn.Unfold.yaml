@@ -1,28 +1,36 @@
 api: torch.nn.Unfold(kernel_size, dilation=1, padding=0, stride=1)
 constraints:
   dilation:
-    default: '1'
-    dtype:
-    - int
-    - Tuple[int](2)
-    range: '[0,inf)'
+    default: 1
+    dtype: int
+    structure:
+      - integer
+      - tuple
+    shape: 2
+    range:
   kernel_size:
-    dtype:
-    - int
-    - Tuple[int](2)
-    range: '[0,inf)'
+    dtype: int
+    structure:
+      - integer
+      - tuple
+    shape: 2
+    range:
   padding:
-    default: '0'
-    dtype:
-    - int
-    - Tuple[int](2)
-    range: '[0,inf)'
+    default: 0
+    dtype: int
+    structure:
+      - integer
+      - tuple
+    shape: 2
+    range:
   stride:
-    default: '1'
-    dtype:
-    - int
-    - Tuple[int](2)
-    range: '[0,inf)'
+    default: 1
+    dtype: int
+    structure:
+      - integer
+      - tuple
+    shape: 2
+    range:
 descp: 'r"""Extracts sliding local blocks from a batched input tensor.
 
   Consider a batched :attr:`input` tensor of shape :math:`(N, C, *)`,
@@ -218,8 +226,8 @@ descp: 'r"""Extracts sliding local blocks from a batched input tensor.
   '
 inputs:
   optional:
-  - dilation
-  - padding
-  - stride
+    - dilation
+    - padding
+    - stride
   required:
-  - kernel_size
+    - kernel_size

@@ -4,39 +4,32 @@ api: torch.nn.TransformerDecoderLayer(d_model, nhead, dim_feedforward=2048, drop
 constraints:
   activation:
     default: relu
-    dtype:
-    - enum[string]
-    range:
+    dtype: torch.string
+    enum:
     - relu
     - gelu
   batch_first:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   d_model:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    range:
   dim_feedforward:
-    default: '2048'
-    dtype:
-    - int
+    default: 2048
+    dtype: int
   dropout:
-    default: '0.1'
-    dtype:
-    - torch.float32
+    default: 0.1
+    dtype: torch.float
   layer_norm_eps:
     default: 1e-5
-    dtype:
-    - torch.float32
+    dtype: torch.float
   nhead:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    range:
   norm_first:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
+
 descp: 'r"""TransformerDecoderLayer is made up of self-attn, multi-head-attn and feedforward
   network.
 

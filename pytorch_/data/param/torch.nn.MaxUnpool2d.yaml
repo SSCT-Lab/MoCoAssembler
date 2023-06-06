@@ -1,22 +1,28 @@
 api: torch.nn.MaxUnpool2d(kernel_size, stride=None, padding=0)
 constraints:
   kernel_size:
-    dtype:
-    - int
-    - Tuple[int](2)
-    range: '[1,inf)'
+    dtype: int
+    structure:
+      - integer
+      - tuple
+    shape: 2
+    range:
   padding:
-    default: '0'
-    dtype:
-    - int
-    - Tuple[int](2)
-    range: '[0,inf)'
+    default: 0
+    dtype: int
+    structure:
+      - integer
+      - tuple
+    shape: 2
+    range:
   stride:
     default: None
-    dtype:
-    - int
-    - Tuple[int](2)
-    range: '[1,inf)'
+    dtype: int
+    structure:
+      - integer
+      - tuple
+    shape: 2
+    range:
 descp: 'r"""Computes a partial inverse of :class:`MaxPool2d`.
 
   :class:`MaxPool2d` is not fully invertible, since the non-maximal values are lost.
@@ -132,7 +138,7 @@ descp: 'r"""Computes a partial inverse of :class:`MaxPool2d`.
   '
 inputs:
   optional:
-  - stride
-  - padding
+    - stride
+    - padding
   required:
-  - kernel_size
+    - kernel_size

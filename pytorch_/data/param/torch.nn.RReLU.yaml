@@ -1,17 +1,15 @@
 api: torch.nn.RReLU(lower=0.125, upper=0.3333333333333333, inplace=False)
 constraints:
   inplace:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   lower:
-    default: '0.125'
-    dtype:
-    - torch.float32
+    default: 0.125
+    dtype: torch.float
   upper:
-    default: '0.3333333333333333'
-    dtype:
-    - torch.float32
+    default: 0.3333333333333333
+    dtype: torch.float
+
 descp: 'r"""Applies the randomized leaky rectified liner unit function, element-wise,
 
   as described in the paper:
@@ -69,7 +67,7 @@ descp: 'r"""Applies the randomized leaky rectified liner unit function, element-
   '
 inputs:
   optional:
-  - lower
-  - upper
-  - inplace
-  required: []
+    - lower
+    - upper
+    - inplace
+  required: [ ]

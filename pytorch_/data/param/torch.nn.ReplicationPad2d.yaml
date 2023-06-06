@@ -1,11 +1,13 @@
 api: torch.nn.ReplicationPad2d(padding)
 constraints:
   padding:
-    dtype:
-    - int
-    - Tuple[int](4)
+    dtype: int
+    structure:
+      - integer
+      - tuple
+    shape: 4
     range:
-    - '[0,inf)'
+
 descp: 'r"""Pads the input tensor using replication of the input boundary.
 
   For `N`-dimensional padding, use :func:`torch.nn.functional.pad()`.
@@ -78,6 +80,6 @@ descp: 'r"""Pads the input tensor using replication of the input boundary.
 
   '
 inputs:
-  optional: []
+  optional: [ ]
   required:
-  - padding
+    - padding

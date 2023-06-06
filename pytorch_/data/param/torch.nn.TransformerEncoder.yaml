@@ -2,18 +2,15 @@ api: torch.nn.TransformerEncoder(encoder_layer, num_layers, norm=None, enable_ne
   mask_check=True)
 constraints:
   enable_nested_tensor:
-    default: 'True'
-    dtype:
-    - torch.bool
+    default: True
+    dtype: torch.bool
   encoder_layer:
-    dtype:
-    - torch.nn.TransformerEncoderLayer
+    dtype: torch.nn.TransformerEncoderLayer
   norm:
     default: None
   num_layers:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    range:
 descp: 'r"""TransformerEncoder is a stack of N encoder layers. Users can build the
 
   BERT(https://arxiv.org/abs/1810.04805) model with corresponding parameters.

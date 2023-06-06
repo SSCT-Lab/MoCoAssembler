@@ -1,11 +1,12 @@
 api: torch.nn.ReflectionPad1d(padding)
 constraints:
   padding:
-    dtype:
-    - int
-    - Tuple[int](2)
+    dtype: int
+    structure:
+      - integer
+      - tuple
+    shape: 2
     range:
-    - '[0,inf)'
 descp: 'r"""Pads the input tensor using the reflection of the input boundary.
 
   For `N`-dimensional padding, use :func:`torch.nn.functional.pad()`.
@@ -58,6 +59,6 @@ descp: 'r"""Pads the input tensor using the reflection of the input boundary.
 
   '
 inputs:
-  optional: []
+  optional: [ ]
   required:
-  - padding
+    - padding

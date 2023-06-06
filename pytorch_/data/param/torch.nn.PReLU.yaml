@@ -1,14 +1,12 @@
 api: torch.nn.PReLU(num_parameters=1, init=0.25, device=None, dtype=None)
 constraints:
   init:
-    default: '0.25'
-    dtype:
-    - torch.float32
+    default: 0.25
+    dtype: torch.float
   num_parameters:
-    default: '1'
-    dtype:
-    - int
-    range: '[0,inf)'
+    default: 1
+    dtype: int
+    range:
 descp: 'r"""Applies the element-wise function:
 
   .. math::

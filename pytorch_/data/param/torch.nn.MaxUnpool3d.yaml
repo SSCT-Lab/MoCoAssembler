@@ -2,22 +2,28 @@ api: torch.nn.MaxUnpool3d(kernel_size, stride=None, padding=0)
 check_nan: true
 constraints:
   kernel_size:
-    dtype:
-    - int
-    - Tuple[int](2)
-    range: '[1,inf)'
+    dtype: int
+    structure:
+      - integer
+      - tuple
+    shape: 3
+    range:
   padding:
-    default: '0'
-    dtype:
-    - int
-    - Tuple[int](3)
-    range: '[0,inf)'
+    default: 0
+    dtype: int
+    structure:
+      - integer
+      - tuple
+    shape: 3
+    range:
   stride:
     default: None
-    dtype:
-    - int
-    - Tuple[int](3)
-    range: '[1,inf)'
+    dtype: int
+    structure:
+      - integer
+      - tuple
+    shape: 3
+    range:
 descp: 'r"""Computes a partial inverse of :class:`MaxPool3d`.
 
   :class:`MaxPool3d` is not fully invertible, since the non-maximal values are lost.
@@ -104,7 +110,7 @@ descp: 'r"""Computes a partial inverse of :class:`MaxPool3d`.
   '
 inputs:
   optional:
-  - stride
-  - padding
+    - stride
+    - padding
   required:
-  - kernel_size
+    - kernel_size

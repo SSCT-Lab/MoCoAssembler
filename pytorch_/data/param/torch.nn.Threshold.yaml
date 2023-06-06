@@ -1,15 +1,14 @@
 api: torch.nn.Threshold(threshold, value, inplace=False)
 constraints:
   inplace:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   threshold:
-    dtype:
-    - torch.float32
+    dtype: torch.float
+    range:
   value:
-    dtype:
-    - torch.float32
+    dtype: torch.float
+    range:
 descp: 'r"""Thresholds each element of the input Tensor.
 
   Threshold is defined as:

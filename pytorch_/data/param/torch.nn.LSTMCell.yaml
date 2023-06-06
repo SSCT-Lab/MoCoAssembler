@@ -1,17 +1,14 @@
 api: torch.nn.LSTMCell(input_size, hidden_size, bias=True, device=None, dtype=None)
 constraints:
   bias:
-    default: 'True'
-    dtype:
-    - torch.bool
+    default: True
+    dtype: torch.bool
   hidden_size:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    range:
   input_size:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    range:
 descp: 'r"""A long short-term memory (LSTM) cell.
 
   .. math::
@@ -111,7 +108,7 @@ descp: 'r"""A long short-term memory (LSTM) cell.
   '
 inputs:
   optional:
-  - bias
+    - bias
   required:
-  - input_size
-  - hidden_size
+    - input_size
+    - hidden_size

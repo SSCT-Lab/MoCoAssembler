@@ -2,10 +2,9 @@ api: torch.nn.LogSoftmax(dim=None)
 constraints:
   dim:
     default: None
-    dtype:
-    - int
+    dtype: int
     range:
-      'LIMITED'
+
 descp: 'r"""Applies the :math:`\log(\text{Softmax}(x))` function to an n-dimensional
 
   input Tensor. The LogSoftmax formulation can be simplified as:
@@ -43,5 +42,5 @@ descp: 'r"""Applies the :math:`\log(\text{Softmax}(x))` function to an n-dimensi
   '
 inputs:
   optional:
-  - dim
-  required: []
+    - dim
+  required: [ ]

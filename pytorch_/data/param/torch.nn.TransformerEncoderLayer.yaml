@@ -5,39 +5,31 @@ check_nan: true
 constraints:
   activation:
     default: relu
-    dtype:
-    - enum[string]
-    range:
-    - relu
-    - gelu
+    dtype: torch.string
+    enum:
+      - relu
+      - gelu
   batch_first:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   d_model:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    range:
   dim_feedforward:
-    default: '2048'
-    dtype:
-    - int
+    default: 2048
+    dtype: int
   dropout:
-    default: '0.1'
-    dtype:
-    - torch.float32
+    default: 0.1
+    dtype: torch.float32
   layer_norm_eps:
     default: 1e-5
-    dtype:
-    - torch.float32
+    dtype: torch.float32
   nhead:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    range:
   norm_first:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
 descp: 'r"""TransformerEncoderLayer is made up of self-attn and feedforward network.
 
   This standard encoder layer is based on the paper "Attention Is All You Need".
@@ -144,12 +136,12 @@ descp: 'r"""TransformerEncoderLayer is made up of self-attn and feedforward netw
   '
 inputs:
   optional:
-  - dim_feedforward
-  - dropout
-  - activation
-  - layer_norm_eps
-  - batch_first
-  - norm_first
+    - dim_feedforward
+    - dropout
+    - activation
+    - layer_norm_eps
+    - batch_first
+    - norm_first
   required:
-  - d_model
-  - nhead
+    - d_model
+    - nhead

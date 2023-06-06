@@ -2,10 +2,9 @@ api: torch.nn.Softmin(dim=None)
 constraints:
   dim:
     default: None
-    dtype:
-    - int
+    dtype: int
     range:
-      'LIMITED'
+
 descp: 'r"""Applies the Softmin function to an n-dimensional input Tensor
 
   rescaling them so that the elements of the n-dimensional output Tensor

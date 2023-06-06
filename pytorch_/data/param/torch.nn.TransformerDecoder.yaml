@@ -1,14 +1,12 @@
 api: torch.nn.TransformerDecoder(decoder_layer, num_layers, norm=None)
 constraints:
   decoder_layer:
-    dtype:
-    - torch.nn.TransformerDecoderLayer
+    dtype: torch.nn.TransformerDecoderLayer
   norm:
     default: None
   num_layers:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    range:
 descp: 'r"""TransformerDecoder is a stack of N decoder layers
 
   Args:

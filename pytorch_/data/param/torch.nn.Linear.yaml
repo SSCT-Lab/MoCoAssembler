@@ -1,17 +1,14 @@
 api: torch.nn.Linear(in_features, out_features, bias=True, device=None, dtype=None)
 constraints:
   bias:
-    default: 'True'
-    dtype:
-    - torch.bool
+    default: True
+    dtype: torch.bool
   in_features:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    range:
   out_features:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    range:
 descp: 'r"""Applies a linear transformation to the incoming data: :math:`y = xA^T
   + b`
 
@@ -73,7 +70,7 @@ descp: 'r"""Applies a linear transformation to the incoming data: :math:`y = xA^
   '
 inputs:
   optional:
-  - bias
+    - bias
   required:
-  - in_features
-  - out_features
+    - in_features
+    - out_features

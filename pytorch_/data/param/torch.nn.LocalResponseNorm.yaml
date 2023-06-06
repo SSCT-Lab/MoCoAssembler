@@ -1,21 +1,17 @@
 api: torch.nn.LocalResponseNorm(size, alpha=0.0001, beta=0.75, k=1.0)
 constraints:
   alpha:
-    default: '0.0001'
-    dtype:
-    - torch.float32
+    default: 0.0001
+    dtype: torch.float
   beta:
-    default: '0.75'
-    dtype:
-    - torch.float32
+    default: 0.75
+    dtype: torch.float
   k:
-    default: '1.0'
-    dtype:
-    - torch.float32
+    default: 1.0
+    dtype: torch.float
   size:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    range:
 descp: 'r"""Applies local response normalization over an input signal composed
 
   of several input planes, where channels occupy the second dimension.
@@ -59,8 +55,8 @@ descp: 'r"""Applies local response normalization over an input signal composed
   '
 inputs:
   optional:
-  - alpha
-  - beta
-  - k
+    - alpha
+    - beta
+    - k
   required:
-  - size
+    - size

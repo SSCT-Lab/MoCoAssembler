@@ -2,29 +2,33 @@ api: torch.nn.Upsample(size=None, scale_factor=None, mode='nearest', align_corne
   recompute_scale_factor=None)
 constraints:
   align_corners:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   mode:
     default: nearest
-    dtype:
-    - enum[string]
-    range:
-    - nearest
-    - linear
-    - bilinear
-    - bicubic
-    - trilinear
+    dtype: torch.string
+    enum:
+      - nearest
+      - linear
+      - bilinear
+      - bicubic
+      - trilinear
   scale_factor:
     default: None
-    dtype:
-    - torch.float32
-    - Tuple[torch.float32]({1,2,3})
+    dtype: torch.float
+    structure:
+      - torch.float
+      - tuple
+    shape: { 1,2,3 }
+    range:
   size:
     default: None
-    dtype:
-    - int
-    - Tuple[int]({1,2,3})
+    dtype: int
+    structure:
+      - int
+      - tuple
+    shape: { 1,2,3 }
+
 descp: 'r"""Upsamples a given multi-channel 1D (temporal), 2D (spatial) or 3D (volumetric)
   data.
 
@@ -238,8 +242,8 @@ descp: 'r"""Upsamples a given multi-channel 1D (temporal), 2D (spatial) or 3D (v
   '
 inputs:
   optional:
-  - size
-  - scale_factor
-  - mode
-  - align_corners
-  required: []
+    - size
+    - scale_factor
+    - mode
+    - align_corners
+  required: [ ]

@@ -5,55 +5,45 @@ api: torch.nn.Transformer(d_model=512, nhead=8, num_encoder_layers=6, num_decode
 constraints:
   activation:
     default: relu
-    dtype:
-    - enum[string]
-    range:
-    - relu
-    - gelu
+    dtype: torch.string
+    enum:
+      - relu
+      - gelu
   batch_first:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   custom_decoder:
     default: None
   custom_encoder:
     default: None
   d_model:
-    default: '512'
-    dtype:
-    - int
-    range: '[0,inf)'
+    default: 512
+    dtype: int
+    range:
   dim_feedforward:
-    default: '2048'
-    dtype:
-    - int
+    default: 2048
+    dtype: int
   dropout:
-    default: '0.1'
-    dtype:
-    - torch.float32
+    default: 0.1
+    dtype: torch.float
   layer_norm_eps:
     default: 1e-5
-    dtype:
-    - torch.float32
+    dtype: torch.float
   nhead:
-    default: '8'
-    dtype:
-    - int
-    range: '[0,inf)'
+    default: 8
+    dtype: int
+    range:
   norm_first:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
   num_decoder_layers:
-    default: '6'
-    dtype:
-    - int
-    range: '[0,inf)'
+    default: 6
+    dtype: int
+    range:
   num_encoder_layers:
-    default: '6'
-    dtype:
-    - int
-    range: '[0,inf)'
+    default: 6
+    dtype: int
+    range:
 descp: 'r"""A transformer model. User is able to modify the attributes as needed.
   The architecture
 
@@ -117,16 +107,16 @@ descp: 'r"""A transformer model. User is able to modify the attributes as needed
   '
 inputs:
   optional:
-  - d_model
-  - nhead
-  - num_encoder_layers
-  - num_decoder_layers
-  - dim_feedforward
-  - dropout
-  - activation
-  - custom_encoder
-  - custom_decoder
-  - layer_norm_eps
-  - batch_first
-  - norm_first
-  required: []
+    - d_model
+    - nhead
+    - num_encoder_layers
+    - num_decoder_layers
+    - dim_feedforward
+    - dropout
+    - activation
+    - custom_encoder
+    - custom_decoder
+    - layer_norm_eps
+    - batch_first
+    - norm_first
+  required: [ ]

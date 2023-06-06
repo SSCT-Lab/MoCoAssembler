@@ -1,9 +1,9 @@
 api: torch.nn.ReLU6(inplace=False)
 constraints:
   inplace:
-    default: 'False'
-    dtype:
-    - torch.bool
+    default: False
+    dtype: torch.bool
+
 descp: 'r"""Applies the element-wise function:
 
   .. math::

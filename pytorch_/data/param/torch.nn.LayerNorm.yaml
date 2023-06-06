@@ -2,18 +2,18 @@ api: torch.nn.LayerNorm(normalized_shape, eps=1e-05, elementwise_affine=True, de
   dtype=None)
 constraints:
   elementwise_affine:
-    default: 'True'
-    dtype:
-    - torch.bool
+    default: True
+    dtype: torch.bool
   eps:
     default: 1e-05
-    dtype:
-    - torch.float32
+    dtype: torch.float
   normalized_shape:
-    dtype:
-    - int
-    - List[int](*)
-    range: LIMITED
+    dtype: int
+    structure:
+      - integer
+      - list
+    shape: ANY
+
 descp: 'r"""Applies Layer Normalization over a mini-batch of inputs as described in
 
   the paper `Layer Normalization <https://arxiv.org/abs/1607.06450>`__
@@ -136,7 +136,7 @@ descp: 'r"""Applies Layer Normalization over a mini-batch of inputs as described
   '
 inputs:
   optional:
-  - eps
-  - elementwise_affine
+    - eps
+    - elementwise_affine
   required:
-  - normalized_shape
+    - normalized_shape

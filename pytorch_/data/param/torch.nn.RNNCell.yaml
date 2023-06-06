@@ -2,24 +2,20 @@ api: torch.nn.RNNCell(input_size, hidden_size, bias=True, nonlinearity='tanh', d
   dtype=None)
 constraints:
   bias:
-    default: 'True'
-    dtype:
-    - torch.bool
+    default: True
+    dtype: torch.bool
   hidden_size:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    range:
   input_size:
-    dtype:
-    - int
-    range: '[0,inf)'
+    dtype: int
+    range:
   nonlinearity:
     default: tanh
-    dtype:
-    - enum[string]
-    range:
-    - tanh
-    - relu
+    dtype: torch.string
+    enum:
+      - tanh
+      - relu
 descp: 'r"""An Elman RNN cell with tanh or ReLU non-linearity.
 
   .. math::
@@ -109,8 +105,8 @@ descp: 'r"""An Elman RNN cell with tanh or ReLU non-linearity.
   '
 inputs:
   optional:
-  - bias
-  - nonlinearity
+    - bias
+    - nonlinearity
   required:
-  - input_size
-  - hidden_size
+    - input_size
+    - hidden_size
