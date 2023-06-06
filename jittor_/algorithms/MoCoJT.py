@@ -40,9 +40,9 @@ class MoCoJT(MoCo):
     def generate_model(self):
         complex_model_list = []
         simple_model_list = []
-        for n in ['ResNet18', 'ResNet50', 'InceptionV3', 'xception', 'nasnet']:
+        for n in ['ResNet18', 'ResNet50', 'InceptionV3', 'xception', 'nasnet', 'LSTM', 'BiLSTM', 'GRU']:
             complex_model_list.append(n)
-        for n in ['lenet', 'alexnet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19', 'testnet']:
+        for n in ['testnet', 'lenet', 'alexnet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19', 'densenet']:
             simple_model_list.append(n)
         for i in range(1234):
             for model in simple_model_list:
@@ -50,11 +50,17 @@ class MoCoJT(MoCo):
                 a.assemble_code_tree()
                 del a
                 delete_folder_contents(file_paths.MUTATED_MODEL_PATH)
+                source = os.path.join(file_paths.MAIN_PATH, 'log.txt')
+                new_source = os.path.join(file_paths.MAIN_PATH, 'log' + model + '_' + str(i) + '.txt')
+                os.rename(source, new_source)
             for model in complex_model_list:
                 a = assemble_complex.Assembler_Complex(model)
                 a.assemble_code_tree()
                 del a
                 delete_folder_contents(file_paths.MUTATED_MODEL_PATH)
+                source = os.path.join(file_paths.MAIN_PATH, 'log.txt')
+                new_source = os.path.join(file_paths.MAIN_PATH, 'log' + model + '_' + str(i) + '.txt')
+                os.rename(source, new_source)
 
     def get_function(self, line: str):
         pass

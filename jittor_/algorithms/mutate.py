@@ -112,14 +112,20 @@ class Mutator:
         elif api_name in self.layer_list:
             now_dict = self.layer_similarity_info_dict[api_name]
             choice = tools.roulette_wheel_selection(now_dict)
+            # 6.6修改：此处新增一个0.5的阈值
+            count = 0
+            while now_dict[choice] < 0.5 and count < 10:
+                choice = tools.roulette_wheel_selection(now_dict)
+                count = count + 1
             # 5.22修改：此处新增传播参数相等的规则
-            while self.layer_constraint_dict[choice]['extra_para'] != self.layer_constraint_dict[api_name]['extra_para']:
+            while self.layer_constraint_dict[choice]['extra_para'] != self.layer_constraint_dict[api_name][
+                'extra_para']:
                 choice = tools.roulette_wheel_selection(now_dict)
             return choice + '(' + api_str.split('(')[1]
         else:
             return api_str
 
-    def api_para_adapt(self, api_str: str) -> str: # 5.20修改：完善了名字编译后的参数适配规则，包括str从range中选择等
+    def api_para_adapt(self, api_str: str) -> str:  # 5.20修改：完善了名字编译后的参数适配规则，包括str从range中选择等
         # TODO: 不完善的规则
         # original_api_info: dict = self.get_api_info(original_api_name)
         new_api_name: str = api_str.split('(')[0]
@@ -176,8 +182,6 @@ class Mutator:
 
         return result
 
-
-
     def api_para_mutate(self, api_str) -> str:
         api_name = api_str.split('(')[0]
         api_info = self.get_api_info(api_name)
@@ -223,14 +227,14 @@ class Mutator:
         result = result + ')'
         return result
 
-
-
     # ===========================
     # toolbox:
     # ===========================
     def generate_para(self, type: str) -> str:
         if type == 'int':
-            return str(random.choice([-1, 1, 2, 3, 4, 5, 6, 7, 8]))
+            if random.randint(1, 20) < 2:
+                return str(-1)
+            return str(random.choice([1, 2, 3, 4, 5, 6, 7, 8]))
         elif type == 'str':
             return ''
         elif 'floa' in type:
@@ -269,10 +273,10 @@ if __name__ == '__main__':
     # original_api_name = 'jittor.nn.Conv'
     # api_str = m.api_name_mutate(api1)
     # r = m.api_para_adapt(api_str)
-    import depart
+    # import depart
 
-    dm = depart.Departed_Model('ResNet50')
-    seq = dm.block_dict['Bottleneck']
-    seq = seq.declaration['bottleneck']
-    seq = m.sequence_mutate(seq)
-    print(seq)
+    # dm = depart.Departed_Model('ResNet50')
+    # seq = dm.block_dict['Bottleneck']
+    # seq = seq.declaration['bottleneck']
+    # seq = m.sequence_mutate(seq)
+    # print(seq)

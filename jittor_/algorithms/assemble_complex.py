@@ -6,7 +6,7 @@ from depart import Departed_Model, Single_Model
 from complex_models import get_seed_model
 import shape_fix
 import run
-
+from MoCoJT import delete_folder_contents
 
 class Model:
     def __init__(self, dm: Departed_Model, g: int, i: int):
@@ -20,7 +20,7 @@ class Assembler_Complex:
         self.seed_model: Departed_Model = get_seed_model(model_name)
         self.mutator = mutate.Mutator()
         self.shape_fixer = shape_fix.ShapeFixer()
-        self.n = 3
+        self.n = 5
 
     def assemble_code_tree(self):
         main_model = self.seed_model.main_model  # this is what to mutate in generation
@@ -59,7 +59,7 @@ class Assembler_Complex:
                 break
 
             # no need to change, add this in all models in queue
-            if 'self.' not in sentence or sentence.startswith('        if') or sentence.startswith('            '):
+            if 'self.' not in sentence or sentence.startswith('        if') or sentence.startswith('            ') or sentence.startswith('        for'):
                 new_queue = queue.Queue()
                 while not model_queue.empty():
                     temp: Model = model_queue.get()
@@ -106,7 +106,7 @@ class Assembler_Complex:
                                 new_dec, mut = self.mutator.api_mutate(dec)
                                 temp.model.main_model.declaration[name] = new_dec
                                 # 6.4尝试增加shape fix
-                                if mut != 'no mutate':
+                                if mut != 'no mutate' and 'GRU' not in new_dec and 'LSTM' not in new_dec:
                                     shape_fix_sentence = self.shape_fixer.get_shape_fix_sentence(
                                         'self.' + name + ' = ' + new_dec
                                     )
@@ -148,5 +148,5 @@ class Assembler_Complex:
 
 
 if __name__ == '__main__':
-    a = Assembler_Complex('testnet')
+    a = Assembler_Complex('LSTM')
     a.assemble_code_tree()
