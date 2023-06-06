@@ -82,3 +82,8 @@ class MoCoJT(MoCo):
 
     def mutate_on_module(self, function: str, Inception: dict) -> str:
         pass
+
+
+if __name__ == '__main__':
+    s = MoCoJT(' ')
+    s.generate_model()

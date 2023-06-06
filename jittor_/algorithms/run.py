@@ -14,6 +14,42 @@ import os
 import re
 
 
+def run_single_model_linux(model_name: str) -> bool:
+    try:
+        result = subprocess.run(['python3', os.path.join(file_paths.MUTATED_MODEL_PATH, model_name)],
+                                capture_output=True, text=True, check=True)
+        output = result.stdout
+        error = ' '
+    except subprocess.CalledProcessError as e:
+        output = e.stdout
+        error = e.stderr
+
+    if error == ' ':
+        return True
+    else:
+        error = str(error)
+        print(model_name + ' error\n')
+        error = error[1848:]
+        result = model_name + '  error   :          \n'
+        now = datetime.now()
+        timenow = str(now.year) + "-" + str(now.month).zfill(2) + "-" + str(now.day).zfill(2) + "   " + str(
+            now.hour).zfill(2) + ':' + str(now.minute).zfill(2)
+        result = result + 'Time:  ' + timenow + '\n'
+        result = result + 'Info: \n' + error + '\n\n\n'
+        with open(os.path.join(file_paths.MAIN_PATH, 'log.txt'), 'a') as f:
+            f.write(result)
+
+        source = os.path.join(file_paths.MUTATED_MODEL_PATH, model_name)
+        target = file_paths.SAVED_MODEL_PATH
+        new_source = source[:-3] + '_' + timenow.replace(' ', '-').replace(':', '-') + '.py'
+        try:
+            os.rename(source, new_source)
+            shutil.copy(new_source, target)
+        except Exception as e:
+            print(e)
+        return False
+
+
 def run_single_model(model_name: str) -> bool:  # 5.25新增，单个模型执行不成功就返回False并把error保存起来
     process = subprocess.Popen(os.path.join(file_paths.MUTATED_MODEL_PATH, model_name), stdout=subprocess.PIPE,
                                stderr=subprocess.PIPE, shell=True)

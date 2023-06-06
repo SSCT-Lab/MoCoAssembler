@@ -6,7 +6,7 @@ from depart import Departed_Model, Single_Model
 from complex_models import get_seed_model
 import shape_fix
 import run
-from MoCoJT import delete_folder_contents
+import random
 
 class Model:
     def __init__(self, dm: Departed_Model, g: int, i: int):
@@ -21,6 +21,9 @@ class Assembler_Complex:
         self.mutator = mutate.Mutator()
         self.shape_fixer = shape_fix.ShapeFixer()
         self.n = 5
+
+    def set_n(self, val: int):
+        self.n = val
 
     def assemble_code_tree(self):
         main_model = self.seed_model.main_model  # this is what to mutate in generation
@@ -110,7 +113,8 @@ class Assembler_Complex:
                                     shape_fix_sentence = self.shape_fixer.get_shape_fix_sentence(
                                         'self.' + name + ' = ' + new_dec
                                     )
-                                    temp.model.main_model.execute.append(shape_fix_sentence)
+                                    if random.randint(1,10) > 3:
+                                        temp.model.main_model.execute.append(shape_fix_sentence)
                                 # no shape fix
                                 temp.model.main_model.execute.append(sentence)
                             else:
@@ -148,5 +152,5 @@ class Assembler_Complex:
 
 
 if __name__ == '__main__':
-    a = Assembler_Complex('LSTM')
+    a = Assembler_Complex('alexnet')
     a.assemble_code_tree()
