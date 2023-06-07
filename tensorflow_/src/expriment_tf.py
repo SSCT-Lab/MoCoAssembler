@@ -1,7 +1,11 @@
-import random
 from pathlib import Path
 
-from config.paths import RES_PATH
+import sys
+sys.path.append(Path.cwd().parent.parent.__str__())
+
+import argparse
+import tensorflow as tf
+
 from tensorflow_.src.mutate_tf import MoCoTF
 from utils.Experiments import Experiments
 
@@ -10,54 +14,74 @@ class ExperimentsTF(Experiments):
 
     def __init__(self):
         super(ExperimentsTF, self).__init__()
-        self.model = self.simple_model + self.complex_model
+        self.model = self.simple_model + self.complex_model + self.rnn_model
 
-    def departOne(self, model):
-        if (RES_PATH / model).exists():
-            print(model + "文件存在")
-            return
-        mocoTf = MoCoTF(model)
-        mocoTf.depart()
-        print(model + "\033[92m分解完成\033[0m")
+    def trainOne(self, model, mutate_times):
+        mocoTf = MoCoTF(model, mutate_times)
 
-    def departAll(self):
-        for model in self.simple_model:
-            if (RES_PATH / model).exists():
-                print(model + "文件存在")
-                continue
-            mocoTf = MoCoTF(model)
+        # depart one model
+        if (mocoTf.res_model_dir / mocoTf.template_file_name).exists():
+            print(model + " decomposition files exist.")
+            pass
+        else:
+            print(model + " decomposition file does not exist, we will create it……")
             mocoTf.depart()
-            print(model + "\033[92m分解完成\033[0m")
+            print(model + " decomposition complete.")
 
-        for model in self.complex_model:
-            if (RES_PATH / model).exists():
-                print("文件存在")
-                continue
-            mocoTf = MoCoTF(model)
-            mocoTf.depart()
-            print(model + "\033[92m分解完成\033[0m")
-
-    def mutateOne(self, model):
-        mocoTf = MoCoTF(model)
+        # generate new model list
         mocoTf.generate_model()
-        print(mocoTf.error_list)
-
-    def mutateAll(self): pass
-
-    def trainOne(self, model):
-        self.departOne(model)
-        self.mutateOne(model)
-
-    def trainAll(self): pass
 
 
 if __name__ == "__main__":
-    exp = ExperimentsTF()
-    # simple_model_list = exp.simple_model
-    # for model in simple_model_list:
-    #     print(model + "\033[94mSTART\033[0m")
-    #     exp.trainOne(model)
-    #     print(model + "\033[94mDONE\033[0m")
+    parser = argparse.ArgumentParser(description='argparse testing')
+    parser.add_argument('--train_simple',
+                        type=bool,
+                        default=False,
+                        required=False,
+                        help="whether train simple seed model")
+    parser.add_argument('--train_complex',
+                        type=bool,
+                        default=False,
+                        required=False,
+                        help="whether train complex seed model")
+    parser.add_argument('--train_all',
+                        type=bool,
+                        default=False,
+                        required=False,
+                        help="whether train all seed model")
+    parser.add_argument('--model_name',
+                        type=str,
+                        default="lenet",
+                        required=False,
+                        help="model name")
+    parser.add_argument('--mutate_times',
+                        type=int,
+                        default=2,
+                        required=True,
+                        help="mutate_times")
 
-    exp.trainOne("lenet")
+    args = parser.parse_args()
 
+    physical_devices = tf.config.list_physical_devices('GPU')
+    tf.config.experimental.set_memory_growth(physical_devices[0], True)
+
+    with tf.device('/GPU:0'):
+        exp = ExperimentsTF()
+        if args.train_simple:
+            for model in exp.simple_model:
+                print(model + " mutation start.")
+                exp.trainOne(model, args.mutate_times)
+                print(model + " mutation complete.")
+        elif args.train_complex:
+            for model in exp.complex_model:
+                print(model + " mutation start.")
+                exp.trainOne(model, args.mutate_times)
+                print(model + " mutation complete.")
+        elif args.train_all:
+            for model in exp.model:
+                print(model + " mutation start.")
+                exp.trainOne(model, args.mutate_times)
+                print(model + " mutation complete.")
+        else:
+            exp.trainOne(args.model_name, args.mutate_times)
+            print(args.model_name + " mutation complete.")

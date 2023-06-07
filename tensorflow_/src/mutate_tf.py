@@ -1,14 +1,17 @@
+from pathlib import Path
+import sys
+sys.path.append(Path.cwd().parent.parent.__str__())
+
+import argparse
+import random
 import re
 import subprocess
 import time
-from pathlib import Path
-from queue import Queue
-import random
-
 import yaml
+from queue import Queue
+
 from config.keywords import INPUT_TENSOR, OUTPUT_TENSOR
 from config.paths import RES_PATH, PARAM_PATH, FUNC_SIM_PATH, LOG_PATH, TF_MODEL_PATH, PATH
-
 from utils.MoCo import MoCo
 
 
@@ -41,15 +44,15 @@ class MoCoTF(MoCo):
                    "gamma_regularizer",
                    ]
 
-    def __init__(self, model_name):
-        super().__init__(model_name)
+    def __init__(self, model_name, mutate_times):
+        super().__init__(model_name, mutate_times)
         self.model_name = model_name
         self.res_model_dir = RES_PATH / model_name
-        self.mutate_dir = self.res_model_dir / "mutate"
+        self.mutate_dir = self.res_model_dir / ("mutate" + int(time.time()).__str__())
         self.log_file = LOG_PATH
 
         self.ITERATION = 0
-        self.MUTATE_TIMES = 2
+        self.MUTATE_TIMES = mutate_times
 
         self.template_file_name = self.res_model_dir.resolve().__str__() + "/" + self.model_name + "_template.py"
         self.function_file_name = self.res_model_dir.resolve().__str__() + "/" + self.model_name + "_function.py"
@@ -161,7 +164,8 @@ class MoCoTF(MoCo):
                         pos2 = content.find("if __name__")
                         if pos1 != -1 and pos2 != -1:
                             new_module = self.mutate_on_module(function, Inception[function])
-                            new_content = content[:pos1] + new_line[0] + content[pos1: pos2] + new_module + content[pos2:]
+                            new_content = content[:pos1] + new_line[0] + content[pos1: pos2] + new_module + content[
+                                                                                                            pos2:]
                             new_file = Path.open(Path(new_file_name), "w", encoding="utf8")
                             new_file.write(new_content)
                             new_file.close()
@@ -179,12 +183,12 @@ class MoCoTF(MoCo):
                 try:
                     subprocess.check_output(['python', model], stderr=subprocess.STDOUT)
                     self.queue.put(model)
-                    print(Path(model).name + "  \033[34mOK\033[0m")
+                    print(Path(model).name + "  \033[34mSUCCESS\033[0m")
                 except subprocess.CalledProcessError as e:
-                    print(Path(model).name + "  \033[31mGG\033[0m")
-                    with Path.open(Path(LOG_PATH / Path(self.model_name) / Path(time.time().__str__() + ".txt")), "w+", encoding="utf8") as file:
+                    print(Path(model).name + "  \033[31mFAIL\033[0m")
+                    with Path.open(Path(LOG_PATH / Path(self.model_name + time.time().__str__() + ".txt")), "w+",
+                                   encoding="utf8") as file:
                         file.write(e.output.decode())
-
 
             num = 0
             new_line = []
@@ -321,6 +325,7 @@ class MoCoTF(MoCo):
 
                         for _ in required_list:
                             if _ not in tmp_dict:
+                                #                                 print(func_mut + " " + _)
                                 tmp_dict[_] = self.get_value(data[_])
                 else:
                     # 有的函数的参数列表取值可能没有储存，所以直接copy，不改变其参数列表（可能会出错）
@@ -413,6 +418,20 @@ class MoCoTF(MoCo):
 
 
 if __name__ == "__main__":
-    test = MoCoTF("lenet")
-    test.depart()
+    parser = argparse.ArgumentParser(description='argparse testing')
+    parser.add_argument('--model_name', '-n', type=str, default="bk", required=True, help="model name")
+    parser.add_argument('--mutate_times', '-t', type=int, default="bk", required=True, help="mutate_times")
+    args = parser.parse_args()
+
+    test = MoCoTF(args.model_name, args.mutate_times)
+    # depart one model
+    if (test.res_model_dir / test.template_file_name).exists():
+        print(args.model_name + " decomposition files exist.")
+        pass
+    else:
+        print(args.model_name + " decomposition file does not exist, we will create it……")
+        test.depart()
+        print(args.model_name + " decomposition complete.")
+
+    # generate new model list
     test.generate_model()

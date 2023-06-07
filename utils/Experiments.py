@@ -21,14 +21,4 @@ class Experiments:
                               "inceptionv3"
                               ]
 
-    def departOne(self, model): pass
-
-    def departAll(self): pass
-
-    def mutateOne(self, model): pass
-
-    def mutateAll(self): pass
-
-    def trainOne(self, model): pass
-
-    def trainAll(self): pass
+    def trainOne(self, model, mutate_times): pass
