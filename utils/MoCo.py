@@ -1,6 +1,6 @@
 class MoCo:
 
-    def __init__(self, model_name: str): pass
+    def __init__(self, model_name: str, mutate_times: int): pass
 
     def depart(self): pass
 
