@@ -13,21 +13,21 @@ constraints:
     - integer
     - tuple
     shape: 2
-    range:
+    range: [1, 8]
   padding:
     dtype: int
     structure:
     - integer
     - tuple
     shape: 2
-    range:
+    range: [1, 8]
   stride:
     dtype: int
     structure:
     - integer
     - tuple
     shape: 2
-    range:
+    range: [1, 4]
 descp: 'r"""Applies a 2D average pooling over an input signal composed of several
   input
 

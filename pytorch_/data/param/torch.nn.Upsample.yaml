@@ -14,20 +14,14 @@ constraints:
       - bicubic
       - trilinear
   scale_factor:
-    default: None
     dtype: torch.float
-    structure:
-      - torch.float
-      - tuple
-    shape: { 1,2,3 }
-    range:
   size:
-    default: None
     dtype: int
     structure:
       - int
       - tuple
-    shape: { 1,2,3 }
+    shape: 3
+    range: [1, 8]
 
 descp: 'r"""Upsamples a given multi-channel 1D (temporal), 2D (spatial) or 3D (volumetric)
   data.

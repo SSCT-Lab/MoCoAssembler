@@ -1,9 +1,11 @@
 api: torch.nn.Softmax(dim=None)
 constraints:
   dim:
-    default: None
     dtype: int
-    range:
+    structure:
+      - integer
+    shape: 1
+    range: [-1, 1]
 
 descp: 'r"""Applies the Softmax function to an n-dimensional input Tensor
 

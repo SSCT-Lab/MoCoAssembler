@@ -1,13 +1,7 @@
 api: torch.nn.UpsamplingNearest2d(size=None, scale_factor=None)
 constraints:
   scale_factor:
-    default: None
     dtype: torch.float
-    structure:
-      - torch.float
-      - tuple
-    shape: 2
-    range:
   size:
     default: None
     dtype: int
@@ -15,7 +9,7 @@ constraints:
       - integer
       - tuple
     shape: 2
-    range:
+    range: [1, 8]
 descp: 'r"""Applies a 2D nearest neighbor upsampling to an input signal composed of
   several input
 

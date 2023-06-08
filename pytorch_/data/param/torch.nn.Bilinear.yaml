@@ -9,19 +9,19 @@ constraints:
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 1200]
   in2_features:
     dtype: int
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 1200]
   out_features:
     dtype: int
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 64]
 descp: 'r"""Applies a bilinear transformation to the incoming data:
 
   :math:`y = x_1^T A x_2 + b`

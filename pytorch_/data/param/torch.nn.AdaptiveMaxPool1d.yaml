@@ -6,7 +6,7 @@ constraints:
     - integer
     - tuple
     shape: 1
-    range:
+    range: [1, 42024]
   return_indices:
     default: False
     dtype: torch.bool

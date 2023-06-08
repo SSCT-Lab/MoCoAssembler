@@ -12,7 +12,7 @@ constraints:
     - integer
     - tuple
     shape: 1
-    range:
+    range: [1, 8]
   padding:
     default: 0
     dtype:
@@ -22,7 +22,7 @@ constraints:
     - integer
     - tuple
     shape: 1
-    range:
+    range: [1, 8]
     enum:
     - same
     - valid
@@ -33,7 +33,7 @@ constraints:
     - integer
     - tuple
     shape: 1
-    range:
+    range: [1, 4]
 descp: 'r"""Applies a 1D average pooling over an input signal composed of several
 
   input planes.

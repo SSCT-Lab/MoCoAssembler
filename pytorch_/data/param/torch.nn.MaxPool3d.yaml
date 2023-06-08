@@ -11,14 +11,14 @@ constraints:
       - integer
       - tuple
     shape: 3
-    range:
+    range: [1, 6]
   kernel_size:
     dtype: int
     structure:
       - integer
       - tuple
     shape: 3
-    range:
+    range: [1, 8]
   padding:
     default: 0
     dtype: int
@@ -26,7 +26,7 @@ constraints:
       - integer
       - tuple
     shape: 3
-    range:
+    range: [1, 8]
   return_indices:
     default: False
     dtype: torch.bool
@@ -37,7 +37,7 @@ constraints:
       - integer
       - tuple
     shape: 3
-    range:
+    range: [1, 4]
 descp: 'r"""Applies a 3D max pooling over an input signal composed of several input
 
   planes.

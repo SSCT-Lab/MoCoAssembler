@@ -6,7 +6,7 @@ constraints:
       - integer
       - tuple
     shape: 6
-    range:
+    range: [1, 8]
 
 descp: 'r"""Pads the input tensor using replication of the input boundary.
 

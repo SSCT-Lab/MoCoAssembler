@@ -7,21 +7,21 @@ constraints:
     - integer
     - tuple
     shape: 1
-    range:
+    range: [1, 6]
   kernel_size:
     dtype: int
     structure:
     - integer
     - tuple
     shape: 2
-    range:
+    range: [1, 8]
   output_size:
     dtype: int
     structure:
     - integer
     - tuple
     shape: 2
-    range:
+    range: [1, 1028]
   padding:
     default: 0
     dtype: int
@@ -29,7 +29,7 @@ constraints:
     - integer
     - tuple
     shape: 2
-    range:
+    range: [1, 8]
   stride:
     default: 1
     dtype: int
@@ -37,7 +37,7 @@ constraints:
     - integer
     - tuple
     shape: 2
-    range:
+    range: [1, 4]
 descp: 'r"""Combines an array of sliding local blocks into a large containing
 
   tensor.

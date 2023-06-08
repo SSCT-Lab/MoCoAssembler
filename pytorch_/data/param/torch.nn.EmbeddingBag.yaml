@@ -7,12 +7,12 @@ constraints:
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 1026]
   include_last_offset:
     default: False
     dtype: torch.bool
   max_norm:
-    dtype: torch.float32
+    dtype: torch.float
   mode:
     default: mean
     dtype: torch.string
@@ -22,13 +22,13 @@ constraints:
     - mean
   norm_type:
     default: 2.0
-    dtype: torch.float32
+    dtype: torch.float
   num_embeddings:
     dtype: int
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 1024]
   scale_grad_by_freq:
     default: False
     dtype: torch.bool

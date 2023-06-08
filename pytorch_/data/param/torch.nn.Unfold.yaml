@@ -7,14 +7,14 @@ constraints:
       - integer
       - tuple
     shape: 2
-    range:
+    range: [1, 6]
   kernel_size:
     dtype: int
     structure:
       - integer
       - tuple
     shape: 2
-    range:
+    range: [1, 8]
   padding:
     default: 0
     dtype: int
@@ -22,7 +22,7 @@ constraints:
       - integer
       - tuple
     shape: 2
-    range:
+    range: [1, 8]
   stride:
     default: 1
     dtype: int
@@ -30,7 +30,7 @@ constraints:
       - integer
       - tuple
     shape: 2
-    range:
+    range: [1, 4]
 descp: 'r"""Extracts sliding local blocks from a batched input tensor.
 
   Consider a batched :attr:`input` tensor of shape :math:`(N, C, *)`,

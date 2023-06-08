@@ -6,10 +6,16 @@ constraints:
     dtype: torch.bool
   hidden_size:
     dtype: int
-    range:
+    structure:
+    - integer
+    shape: 1
+    range: [1, 256]
   input_size:
     dtype: int
-    range:
+    structure:
+    - integer
+    shape: 1
+    range: [1, 1]
   nonlinearity:
     default: tanh
     dtype: torch.string

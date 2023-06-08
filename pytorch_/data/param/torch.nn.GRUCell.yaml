@@ -8,13 +8,13 @@ constraints:
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 256]
   input_size:
     dtype: int
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 1]
 descp: 'r"""A gated recurrent unit (GRU) cell
 
   .. math::

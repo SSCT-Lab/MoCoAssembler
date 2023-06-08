@@ -8,7 +8,7 @@ constraints:
     - integer
     - tuple
     shape: 2
-    range:
+    range: [1, 8]
   output_ratio:
     dtype: torch.float
     structure:
@@ -20,7 +20,7 @@ constraints:
     - integer
     - tuple
     shape: 2
-    range:
+    range: [1, 1028]
   return_indices:
     default: False
     dtype: torch.bool

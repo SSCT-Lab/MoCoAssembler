@@ -11,7 +11,12 @@ constraints:
     default: 0.1
     dtype: torch.float
   num_features:
-    range: LIMITED
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range: [1, 12544]
   track_running_stats:
     default: True
     dtype: torch.bool

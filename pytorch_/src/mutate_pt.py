@@ -12,8 +12,8 @@ from utils.MoCo import MoCo
 
 
 class MoCoPT(MoCo):
-    def __init__(self, model_name: str):
-        super().__init__(model_name)
+    def __init__(self, model_name: str, mutate_times):
+        super().__init__(model_name, mutate_times)
         self.MUTATE_TIMES = 2
         self.ITERATION = 0
         self.model_name = model_name
@@ -22,7 +22,7 @@ class MoCoPT(MoCo):
         self.log_file = LOG_PATH
 
         self.iteration = 0
-        self.mutate_times = 2
+        self.mutate_times = mutate_times
 
         self.template_file_name = self.res_model_dir.resolve().__str__() + "/" + self.model_name + "_template.py"
         self.init_file_name = self.res_model_dir.resolve().__str__() + "/" + self.model_name + "_init.py"
@@ -57,14 +57,14 @@ class MoCoPT(MoCo):
             for line in file_org:
                 if line.find("super(" + self.model_name) >= 0:
                     template_file.write(line)
-                    template_file.write("# " + self.model_name + " forward layer\n")
+                    template_file.write("# " + self.model_name + " forward layer\n\n")
                     break
                 template_file.write(line)
 
             for line in file_org:
                 if line.find("def") >= 0:
                     template_file.write(line)
-                    template_file.write("# " + self.model_name + " output layer\n")
+                    template_file.write("# " + self.model_name + " output layer\n\n")
                     break
                 init_file.write(line)
             init_file.close()
@@ -169,22 +169,22 @@ class MoCoPT(MoCo):
                                 new_file.write(new_content)
                                 new_file.close()
 
-            # while not tmp_queue.empty():
-            #     model = tmp_queue.get()
-            #
-            #     state = subprocess.call(["python", model])
-            #
-            #     if state == 0:
-            #         self.queue.put(model)
-            #         print(Path(model).name + "\033[95m运行成功\033[0m")
-            #     else:
-            #         print(Path(model).name + "\033[94m运行失败\033[0m")
-            #         self.error_list.append(model)
-
-            # 仅生成代码，不考虑运行结果
             while not tmp_queue.empty():
                 model = tmp_queue.get()
-                self.queue.put(model)
+
+                state = subprocess.call(["python", model])
+
+                if state == 0:
+                    self.queue.put(model)
+                    print(Path(model).name + "\033[95m运行成功\033[0m")
+                else:
+                    print(Path(model).name + "\033[94m运行失败\033[0m")
+                    self.error_list.append(model)
+
+            # 仅生成代码，不考虑运行结果
+            # while not tmp_queue.empty():
+            #     model = tmp_queue.get()
+            #     self.queue.put(model)
 
             num = 0
             new_line = []
@@ -237,45 +237,7 @@ class MoCoPT(MoCo):
                 params_dict = dict.copy()
                 # 随机选择一个参数进行变异
                 param = random.choice(list(data.keys())) if len(list(data.keys())) > 1 else list(data.keys())[0]
-                value = ""
-                if "dtype" in data[param]:
-                    dtype = data[param]["dtype"]
-                    type = random.choice(dtype) if isinstance(dtype, list) else dtype
-                    if type == "enum[string]":
-                        if "range" in data[param]:
-                            value = random.choice((data[param]["range"]))
-                            value = '"' + value + '"'
-                        else:
-                            value = data[param]["default"]
-                            if value == "None":
-                                pass
-                            else:
-                                value = '"' + value + '"'
-                    elif type == "torch.bool":
-                        value = random.choice([True, False])
-                    elif type == "float":
-                        value = random.random().__str__()
-                    elif type == "int":
-                        if "structure" in data[param] and "range" in data[param]:
-                            structure = data[param]["structure"]
-                            structure = random.choice(data[param]["structure"]) if isinstance(structure,
-                                                                                              list) else structure
-                            drange = data[param]["range"]
-                            min_v = int(drange[0])
-                            max_v = int(drange[1])
-
-                            if structure == "integer":
-                                value = random.randint(min_v, max_v)
-                            elif structure == "Tuple[int](2)":
-                                value = tuple(random.randint(min_v, max_v) for _ in range(2))
-                            elif structure == "Tuple[int](3)":
-                                value = tuple(random.randint(min_v, max_v) for _ in range(3))
-                        else:
-                            # value = data[param]["default"]
-                            value = "你猜"
-                else:
-                    # value = data[param]["default"]
-                    value = "你猜"
+                value = self.get_value(data[param])
                 params_dict[param] = value
                 new_line = self.generate_line(line, params_dict)
         else:
@@ -307,10 +269,7 @@ class MoCoPT(MoCo):
 
                         for _ in required_list:
                             if _ not in tmp_dict:
-                                if "default" in params_dict[_]:
-                                    tmp_dict[_] = params_dict[_]["default"]
-                                else:
-                                    tmp_dict[_] = random.randint(params_dict[_]["range"][0], params_dict[_]["range"][1])
+                                tmp_dict[_] = self.get_value(data[_])
                 else:
                     # 有的函数的参数列表取值可能没有储存，所以直接copy，不改变其参数列表（可能会出错）
                     tmp_dict = dict.copy()
@@ -319,6 +278,47 @@ class MoCoPT(MoCo):
                 new_line = self.generate_line(line, tmp_dict)
 
             return new_line
+
+    def get_value(self, dic):
+        value = ""
+        if "dtype" in dic:
+            dtype = dic["dtype"]
+            type = random.choice(dtype) if isinstance(dtype, list) else dtype
+            if type == "enum[string]":
+                if "range" in dic:
+                    value = random.choice((dic["range"]))
+                    value = '"' + value + '"'
+                else:
+                    value = dic["default"]
+                    if value == "None":
+                        pass
+                    else:
+                        value = '"' + value + '"'
+            elif type == "torch.bool":
+                value = random.choice([True, False])
+            elif type == "float":
+                value = random.random().__str__()
+            elif type == "int":
+                if "structure" in dic and "range" in dic:
+                    structure = dic["structure"]
+                    structure = random.choice(dic["structure"]) if isinstance(structure,
+                                                                                      list) else structure
+                    drange = dic["range"]
+                    min_v = int(drange[0])
+                    max_v = int(drange[1])
+
+                    if structure == "integer":
+                        value = random.randint(min_v, max_v)
+                    elif structure == "Tuple[int](2)":
+                        value = tuple(random.randint(min_v, max_v) for _ in range(2))
+                    elif structure == "Tuple[int](3)":
+                        value = tuple(random.randint(min_v, max_v) for _ in range(3))
+                else:
+                    value = dic["default"]
+        else:
+            value = dic["default"]
+
+        return value
 
     def mutate_on_module(self, function: str, number: int) -> str:
         def_list = []
@@ -352,7 +352,7 @@ class MoCoPT(MoCo):
 
 
 if __name__ == "__main__":
-    test = MoCoPT("lenet")
-    test.depart()
+    test = MoCoPT("lenet", 2)
+    # test.depart()
     # test.test()
     test.generate_model()

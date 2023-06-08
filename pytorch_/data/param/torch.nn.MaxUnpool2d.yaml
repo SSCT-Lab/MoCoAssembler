@@ -6,7 +6,7 @@ constraints:
       - integer
       - tuple
     shape: 2
-    range:
+    range: [1, 8]
   padding:
     default: 0
     dtype: int
@@ -14,7 +14,7 @@ constraints:
       - integer
       - tuple
     shape: 2
-    range:
+    range: [1, 8]
   stride:
     default: None
     dtype: int
@@ -22,7 +22,7 @@ constraints:
       - integer
       - tuple
     shape: 2
-    range:
+    range: [1, 4]
 descp: 'r"""Computes a partial inverse of :class:`MaxPool2d`.
 
   :class:`MaxPool2d` is not fully invertible, since the non-maximal values are lost.

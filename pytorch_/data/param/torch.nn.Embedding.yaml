@@ -7,24 +7,24 @@ constraints:
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 1026]
   max_norm:
-    dtype: torch.float32
+    dtype: torch.float
   norm_type:
     default: 2.0
-    dtype: torch.float32
+    dtype: torch.float
   num_embeddings:
     dtype: int
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 1024]
   padding_idx:
     dtype: int
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 2]
   scale_grad_by_freq:
     default: False
     dtype: torch.bool

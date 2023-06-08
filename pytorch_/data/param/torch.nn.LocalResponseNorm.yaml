@@ -11,7 +11,10 @@ constraints:
     dtype: torch.float
   size:
     dtype: int
-    range:
+    structure:
+    - integer
+    shape: 1
+    range: [1, 2]
 descp: 'r"""Applies local response normalization over an input signal composed
 
   of several input planes, where channels occupy the second dimension.

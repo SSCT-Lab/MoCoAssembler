@@ -5,10 +5,8 @@ constraints:
     dtype: torch.bool
   threshold:
     dtype: torch.float
-    range:
   value:
     dtype: torch.float
-    range:
 descp: 'r"""Thresholds each element of the input Tensor.
 
   Threshold is defined as:

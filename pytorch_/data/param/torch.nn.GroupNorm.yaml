@@ -12,13 +12,13 @@ constraints:
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 1028]
   num_groups:
     dtype: int
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 3]
 descp: 'r"""Applies Group Normalization over a mini-batch of inputs as described in
 
   the paper `Group Normalization <https://arxiv.org/abs/1803.08494>`__

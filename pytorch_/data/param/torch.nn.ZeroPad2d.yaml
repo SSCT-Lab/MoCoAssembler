@@ -6,7 +6,7 @@ constraints:
       - integer
       - tuple
     shape: 4
-    range:
+    range: [1, 8]
 
 descp: 'r"""Pads the input tensor boundaries with zero.
 

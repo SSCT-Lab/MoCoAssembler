@@ -1,9 +1,11 @@
 api: torch.nn.LogSoftmax(dim=None)
 constraints:
   dim:
-    default: None
     dtype: int
-    range:
+    structure:
+    - integer
+    shape: 1
+    range: [1, 2]
 
 descp: 'r"""Applies the :math:`\log(\text{Softmax}(x))` function to an n-dimensional
 

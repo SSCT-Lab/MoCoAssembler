@@ -12,33 +12,33 @@ constraints:
     - integer
     - tuple
     shape: 1
-    range:
+    range: [1, 6]
   groups:
     default: 1
     dtype: int
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 3]
   in_channels:
     dtype: int
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 512]
   kernel_size:
     dtype: int
     structure:
     - integer
     - tuple
     shape: 1
-    range:
+    range: [1, 8]
   out_channels:
     dtype: int
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 42024]
   output_padding:
     default: 0
     dtype: int
@@ -46,7 +46,7 @@ constraints:
     - integer
     - tuple
     shape: 1
-    range:
+    range: [1, 8]
   padding:
     default: 0
     dtype: int
@@ -54,7 +54,7 @@ constraints:
     - integer
     - tuple
     shape: 1
-    range:
+    range: [1, 8]
   stride:
     default: 1
     dtype: int
@@ -62,7 +62,7 @@ constraints:
     - integer
     - tuple
     shape: 1
-    range:
+    range: [1, 4]
 descp: '__doc__ = r"""Applies a 1D transposed convolution operator over an input image
 
   composed of several input planes.

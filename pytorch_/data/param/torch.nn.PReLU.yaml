@@ -6,7 +6,6 @@ constraints:
   num_parameters:
     default: 1
     dtype: int
-    range:
 descp: 'r"""Applies the element-wise function:
 
   .. math::

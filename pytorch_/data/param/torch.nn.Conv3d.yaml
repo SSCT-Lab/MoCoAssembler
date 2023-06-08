@@ -11,33 +11,33 @@ constraints:
     - integer
     - tuple
     shape: 3
-    range:
+    range: [1, 6]
   groups:
     default: 1
     dtype: int
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 3]
   in_channels:
     dtype: int
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 12544]
   kernel_size:
     dtype: int
     structure:
     - integer
     - tuple
     shape: 3
-    range:
+    range: [1, 8]
   out_channels:
     dtype: int
     structure:
     - integer
     shape: 1
-    range:
+    range: [1, 512]
   padding:
     default: 0
     dtype:
@@ -47,7 +47,7 @@ constraints:
     - integer
     - tuple
     shape: 3
-    range:
+    range: [1, 8]
     enum:
     - same
     - valid
@@ -66,7 +66,7 @@ constraints:
     - integer
     - tuple
     shape: 3
-    range:
+    range: [1, 4]
 descp: '__doc__ = r"""Applies a 3D convolution over an input signal composed of several
   input
 

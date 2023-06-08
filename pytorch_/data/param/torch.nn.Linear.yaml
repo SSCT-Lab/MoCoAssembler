@@ -5,10 +5,16 @@ constraints:
     dtype: torch.bool
   in_features:
     dtype: int
-    range:
+    structure:
+    - integer
+    shape: 1
+    range: [1, 256]
   out_features:
     dtype: int
-    range:
+    structure:
+    - integer
+    shape: 1
+    range: [1, 2]
 descp: 'r"""Applies a linear transformation to the incoming data: :math:`y = xA^T
   + b`
 
