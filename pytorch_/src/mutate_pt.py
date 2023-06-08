@@ -139,7 +139,6 @@ class MoCoPT(MoCo):
                     for i in range(pow(self.MUTATE_TIMES, self.ITERATION)):
                         method = random.choice(self.mutate_list)
                         new_line.append(method(init_line))
-                        # new_line.append(init_line)
 
             while not self.queue.empty():
                 org_file_name = self.queue.get()
@@ -181,13 +180,9 @@ class MoCoPT(MoCo):
                     print(Path(model).name + "\033[94m运行失败\033[0m")
                     self.error_list.append(model)
 
-            # 仅生成代码，不考虑运行结果
-            # while not tmp_queue.empty():
-            #     model = tmp_queue.get()
-            #     self.queue.put(model)
-
             num = 0
             new_line = []
+
             if self.queue.empty():
                 break
 
@@ -309,10 +304,8 @@ class MoCoPT(MoCo):
 
                     if structure == "integer":
                         value = random.randint(min_v, max_v)
-                    elif structure == "Tuple[int](2)":
-                        value = tuple(random.randint(min_v, max_v) for _ in range(2))
-                    elif structure == "Tuple[int](3)":
-                        value = tuple(random.randint(min_v, max_v) for _ in range(3))
+                    elif structure == "tuple":
+                        value = tuple(random.randint(min_v, max_v) for _ in range(dic["shape"]))
                 else:
                     value = dic["default"]
         else:
