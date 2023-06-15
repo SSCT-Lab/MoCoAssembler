@@ -1,3 +1,4 @@
+from importlib import import_module
 from pathlib import Path
 import sys
 sys.path.append(Path.cwd().parent.parent.__str__())
@@ -5,7 +6,7 @@ sys.path.append(Path.cwd().parent.parent.__str__())
 import argparse
 import random
 import re
-import subprocess
+import tensorflow as tf
 import time
 import yaml
 from queue import Queue
@@ -13,6 +14,7 @@ from queue import Queue
 from config.keywords import INPUT_TENSOR, OUTPUT_TENSOR
 from config.paths import RES_PATH, PARAM_PATH, FUNC_SIM_PATH, LOG_PATH, TF_MODEL_PATH, PATH
 from utils.MoCo import MoCo
+
 
 
 class MoCoTF(MoCo):
@@ -177,23 +179,31 @@ class MoCoTF(MoCo):
                             new_file.write(new_content)
                             new_file.close()
 
-            while not tmp_queue.empty():
-                model = tmp_queue.get()
+            if not tmp_queue.empty():
+                lst = []
+                while not tmp_queue.empty():
+                    lst.append(tmp_queue.get())
+                with tf.device('/GPU:0'):
+                    for _ in lst:
+                        __ = '.'.join(_.replace("/", ".").split(".")[-6:-1])
 
-                try:
-                    subprocess.check_output(['python', model], stderr=subprocess.STDOUT)
-                    self.queue.put(model)
-                    print(Path(model).name + "  \033[34mSUCCESS\033[0m")
-                except subprocess.CalledProcessError as e:
-                    print(Path(model).name + "  \033[31mFAIL\033[0m")
-                    with Path.open(Path(LOG_PATH / Path(self.model_name + time.time().__str__() + ".txt")), "w+",
-                                   encoding="utf8") as file:
-                        file.write(e.output.decode())
+                        module = import_module(__)
+                        # module.__getattribute__(self.model_name)
+                        try:
+                            net = module.__getattribute__(self.model_name)
+                            model = net(2, [32, 32, 1])
+                            # model.summary()
+                            self.queue.put(_)
+                            print(Path(_).name + "  \033[34mSUCCESS\033[0m")
+                        except Exception as e:
+                            print(Path(_).name + "  \033[31mFAIL\033[0m")
+                            print(e)
 
             num = 0
             new_line = []
             if self.queue.empty():
                 break
+            # exit(122)
 
     def get_function(self, line: str) -> str:
         """
@@ -418,20 +428,28 @@ class MoCoTF(MoCo):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='argparse testing')
-    parser.add_argument('--model_name', '-n', type=str, default="bk", required=True, help="model name")
-    parser.add_argument('--mutate_times', '-t', type=int, default="bk", required=True, help="mutate_times")
-    args = parser.parse_args()
-
-    test = MoCoTF(args.model_name, args.mutate_times)
-    # depart one model
-    if (test.res_model_dir / test.template_file_name).exists():
-        print(args.model_name + " decomposition files exist.")
-        pass
-    else:
-        print(args.model_name + " decomposition file does not exist, we will create it……")
-        test.depart()
-        print(args.model_name + " decomposition complete.")
+    # parser = argparse.ArgumentParser(description='argparse testing')
+    # parser.add_argument('--model_name', '-n', type=str, default="bk", required=True, help="model name")
+    # parser.add_argument('--mutate_times', '-t', type=int, default="bk", required=True, help="mutate_times")
+    # args = parser.parse_args()
+    #
+    # test = MoCoTF(args.model_name, args.mutate_times)
+    # # depart one model
+    # if (test.res_model_dir / test.template_file_name).exists():
+    #     print(args.model_name + " decomposition files exist.")
+    #     pass
+    # else:
+    #     print(args.model_name + " decomposition file does not exist, we will create it……")
+    #     test.depart()
+    #     print(args.model_name + " decomposition complete.")
 
     # generate new model list
+    test = MoCoTF("lenet", 2)
+    if (test.res_model_dir / test.template_file_name).exists():
+        print("lenet decomposition files exist.")
+        pass
+    else:
+        print("lenet decomposition file does not exist, we will create it……")
+        test.depart()
+        print("lenet decomposition complete.")
     test.generate_model()

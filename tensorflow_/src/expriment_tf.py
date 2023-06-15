@@ -4,7 +4,6 @@ import sys
 sys.path.append(Path.cwd().parent.parent.__str__())
 
 import argparse
-import tensorflow as tf
 
 from tensorflow_.src.mutate_tf import MoCoTF
 from utils.Experiments import Experiments
@@ -62,26 +61,26 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    physical_devices = tf.config.list_physical_devices('GPU')
-    tf.config.experimental.set_memory_growth(physical_devices[0], True)
-
-    with tf.device('/GPU:0'):
-        exp = ExperimentsTF()
-        if args.train_simple:
-            for model in exp.simple_model:
-                print(model + " mutation start.")
-                exp.trainOne(model, args.mutate_times)
-                print(model + " mutation complete.")
-        elif args.train_complex:
-            for model in exp.complex_model:
-                print(model + " mutation start.")
-                exp.trainOne(model, args.mutate_times)
-                print(model + " mutation complete.")
-        elif args.train_all:
-            for model in exp.model:
-                print(model + " mutation start.")
-                exp.trainOne(model, args.mutate_times)
-                print(model + " mutation complete.")
-        else:
-            exp.trainOne(args.model_name, args.mutate_times)
-            print(args.model_name + " mutation complete.")
+    # physical_devices = tf.config.list_physical_devices('GPU')
+    # tf.config.experimental.set_memory_growth(physical_devices[0], True)
+    #
+    # with tf.device('/GPU:0'):
+    exp = ExperimentsTF()
+    if args.train_simple:
+        for model in exp.simple_model:
+            print(model + " mutation start.")
+            exp.trainOne(model, args.mutate_times)
+            print(model + " mutation complete.")
+    elif args.train_complex:
+        for model in exp.complex_model:
+            print(model + " mutation start.")
+            exp.trainOne(model, args.mutate_times)
+            print(model + " mutation complete.")
+    elif args.train_all:
+        for model in exp.model:
+            print(model + " mutation start.")
+            exp.trainOne(model, args.mutate_times)
+            print(model + " mutation complete.")
+    else:
+        exp.trainOne(args.model_name, args.mutate_times)
+        print(args.model_name + " mutation complete.")
