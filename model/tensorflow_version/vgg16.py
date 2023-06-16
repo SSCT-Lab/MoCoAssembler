@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 
-def VGG16(class_num=1000, input_shape=(224, 224, 3)):
+def vgg16(class_num=1000, input_shape=(224, 224, 3)):
     input_tensor = keras.Input(shape=input_shape, dtype="float32")
 
     # 1st block
@@ -47,4 +47,4 @@ def VGG16(class_num=1000, input_shape=(224, 224, 3)):
 
 
 if __name__ == "__main__":
-    net = VGG16(class_num=1000, input_shape=(224, 224, 3))
+    net = vgg16(class_num=1000, input_shape=(224, 224, 3))

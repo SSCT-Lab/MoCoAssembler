@@ -2,17 +2,17 @@ import tensorflow as tf
 from tensorflow import keras
 
 
-def InceptionV3(class_num=1000, input_shape=(299, 299, 3)):
+def inceptionv3(class_num=1000, input_shape=(299, 299, 3)):
     input_tensor = keras.Input(shape=input_shape, dtype="float32")
 
     x = keras.layers.Conv2D(filters=32, kernel_size=(3, 3), strides=2, padding="valid", activation="relu")(input_tensor)
     x = keras.layers.Conv2D(filters=32, kernel_size=(3, 3), strides=1, padding="valid", activation="relu")(x)
     x = keras.layers.Conv2D(filters=64, kernel_size=(3, 3), strides=1, padding="same", activation="relu")(x)
-    x = keras.layers.MaxPooling2D(pool_size=(3, 3), strides=2, padding="valid")(x)
+    x = keras.layers.MaxPool2D(pool_size=(3, 3), strides=2, padding="valid")(x)
 
     x = keras.layers.Conv2D(filters=80, kernel_size=(1, 1), strides=1, padding="valid", activation="relu")(x)
     x = keras.layers.Conv2D(filters=192, kernel_size=(3, 3), strides=1, padding="valid", activation="relu")(x)
-    x = keras.layers.MaxPooling2D(pool_size=(3, 3), strides=2, padding="valid")(x)
+    x = keras.layers.MaxPool2D(pool_size=(3, 3), strides=2, padding="valid")(x)
 
     # 3 InceptionA
     x = InceptionA(x, filter_num=32)
@@ -59,6 +59,10 @@ def InceptionA(inputs, filter_num):
     x4 = keras.layers.AveragePooling2D(pool_size=(3, 3), strides=1, padding="same")(inputs)
     x4 = keras.layers.Conv2D(filters=filter_num, kernel_size=(1, 1), strides=1, padding="same", activation="relu")(x4)
 
+    shape = tf.shape(x1)
+    x2 = tf.reshape(x2, shape)
+    x3 = tf.reshape(x3, shape)
+    x4 = tf.reshape(x4, shape)
     outputs = keras.layers.concatenate([x1, x2, x3, x4])
     return outputs
 
@@ -70,7 +74,11 @@ def InceptionB(inputs):
     x2 = keras.layers.Conv2D(filters=96, kernel_size=(3, 3), strides=1, padding="same", activation="relu")(x2)
     x2 = keras.layers.Conv2D(filters=96, kernel_size=(3, 3), strides=2, padding="valid", activation="relu")(x2)
 
-    x3 = keras.layers.MaxPooling2D(pool_size=(3, 3), strides=2, padding="valid")(inputs)
+    x3 = keras.layers.MaxPool2D(pool_size=(3, 3), strides=2, padding="valid")(inputs)
+
+    shape = tf.shape(x1)
+    x2 = tf.reshape(x2, shape)
+    x3 = tf.reshape(x3, shape)
 
     outputs = keras.layers.concatenate([x1, x2, x3])
     return outputs
@@ -89,8 +97,13 @@ def InceptionC(inputs, filter_num):
     x3 = keras.layers.Conv2D(filters=filter_num, kernel_size=(7, 1), strides=1, padding="same", activation="relu")(x3)
     x3 = keras.layers.Conv2D(filters=192, kernel_size=(1, 7), strides=1, padding="same", activation="relu")(x3)
 
-    x4 = keras.layers.MaxPooling2D(pool_size=(3, 3), strides=1, padding="same")(inputs)
+    x4 = keras.layers.MaxPool2D(pool_size=(3, 3), strides=1, padding="same")(inputs)
     x4 = keras.layers.Conv2D(filters=192, kernel_size=(1, 1), strides=1, padding="same", activation="relu")(x4)
+
+    shape = tf.shape(x1)
+    x2 = tf.reshape(x2, shape)
+    x3 = tf.reshape(x3, shape)
+    x4 = tf.reshape(x4, shape)
 
     outputs = keras.layers.concatenate([x1, x2, x3, x4])
     return outputs
@@ -105,7 +118,11 @@ def InceptionD(inputs):
     x2 = keras.layers.Conv2D(filters=192, kernel_size=(7, 1), strides=1, padding="same", activation="relu")(x2)
     x2 = keras.layers.Conv2D(filters=192, kernel_size=(3, 3), strides=2, padding="valid", activation="relu")(x2)
 
-    x3 = keras.layers.MaxPooling2D(pool_size=(3, 3), strides=2, padding="valid")(inputs)
+    x3 = keras.layers.MaxPool2D(pool_size=(3, 3), strides=2, padding="valid")(inputs)
+
+    shape = tf.shape(x1)
+    x2 = tf.reshape(x2, shape)
+    x3 = tf.reshape(x3, shape)
 
     outputs = keras.layers.concatenate([x1, x2, x3])
     return outputs
@@ -128,9 +145,13 @@ def InceptionE(inputs):
     x4 = keras.layers.AveragePooling2D(pool_size=(3, 3), strides=1, padding="same")(inputs)
     x4 = keras.layers.Conv2D(filters=192, kernel_size=(1, 1), strides=1, padding="same", activation="relu")(x4)
 
+    shape = tf.shape(x1)
+    x2 = tf.reshape(x2, shape)
+    x3 = tf.reshape(x3, shape)
+    x4 = tf.reshape(x4, shape)
     outputs = keras.layers.concatenate([x1, x2, x3, x4], axis=-1)
     return outputs
 
 
 if __name__ == '__main__':
-    net = InceptionV3()
+    net = inceptionv3()

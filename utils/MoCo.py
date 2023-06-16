@@ -20,4 +20,4 @@ class MoCo:
 
     def mutate_on_function(self, line: str) -> str: pass
 
-    def mutate_on_module(self, function: str, Inception: dict) -> str: pass
+    def mutate_on_module(self, function: str, number: int) -> str: pass

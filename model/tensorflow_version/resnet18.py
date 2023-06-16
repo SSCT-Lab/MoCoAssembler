@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 
-def ResNet18(input_shape, class_nums):
+def resnet18(class_nums=3, input_shape=(28, 28, 1)):
     input_tensor = keras.Input(shape=input_shape, dtype="float32")
 
     # 1st block
@@ -40,18 +40,23 @@ def inceptionA(inputs, filters=64, kernel_size=3, strides=1, padding='same'):
     x = keras.layers.Conv2D(filters=filters, kernel_size=3, strides=1, padding='same', activation="relu")(x)
 
     temp = keras.layers.Conv2D(filters=filters, kernel_size=1, strides=2, padding='same', activation="relu")(inputs)
+
+    shape = tf.shape(x)
+    temp = tf.reshape(temp, shape)
     outputs = keras.layers.add([x, temp])
     return outputs
 
 
-def inceptionB(inputs, filters=64, kernel_size=3, strides=1, padding='same',):
+def inceptionB(inputs, filters=64, kernel_size=3, strides=1, padding='same'):
     x = keras.layers.Conv2D(filters=filters, kernel_size=kernel_size, strides=strides, padding=padding, activation="relu")(inputs)
     x = keras.layers.Conv2D(filters=filters, kernel_size=3, strides=1, padding='same', activation="relu")(x)
+
+    shape = tf.shape(x)
+    inputs = tf.reshape(inputs, shape)
 
     outputs = keras.layers.add([x, inputs])
     return outputs
 
 
 if __name__ == '__main__':
-    model = ResNet18([28, 28, 1], 3)
-    model.summary()
+    model = resnet18(3, (28, 28,1))

@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 
-def VGG19(class_num=1000, input_shape=(224, 224, 3)):
+def vgg19(class_num=1000, input_shape=(224, 224, 3)):
     input_tensor = keras.Input(shape=input_shape, dtype="float32")
     # 1st block
     x = keras.layers.Conv2D(filters=64, kernel_size=3, strides=1, activation="relu", padding="same")(input_tensor)
@@ -48,4 +48,4 @@ def VGG19(class_num=1000, input_shape=(224, 224, 3)):
 
 
 if __name__ == "__main__":
-    model = VGG19(class_num=1000, input_shape=(224, 224, 3))
+    model = vgg19(class_num=1000, input_shape=(224, 224, 3))

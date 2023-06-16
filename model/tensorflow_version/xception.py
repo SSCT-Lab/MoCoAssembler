@@ -57,7 +57,10 @@ def inceptionA(inputs, filters1, filters2, filters3):
     x = keras.layers.SeparableConv2D(filters=filters3, kernel_size=(3, 3), padding="same")(x)
     x = keras.layers.BatchNormalization()(x)
 
-    x = keras.layers.MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding="same")(x)
+    x = keras.layers.MaxPool2D(pool_size=(3, 3), strides=(2, 2), padding="same")(x)
+
+    shape = tf.shape(x)
+    residual = tf.reshape(residual, shape)
     x = keras.layers.add([x, residual])
 
     outputs = x
@@ -73,6 +76,8 @@ def inceptionB(inputs):
     x = keras.layers.SeparableConv2D(filters=728, kernel_size=(3, 3), padding="same", activation="relu", use_bias=False)(x)
     x = keras.layers.BatchNormalization()(x)
 
+    shape = tf.shape(x)
+    residual = tf.reshape(residual, shape)
     x = keras.layers.add([x, residual])
     outputs = x
     return outputs

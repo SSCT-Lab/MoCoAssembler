@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 
-def lenet(label_num, input_shape):
+def lenet(label_num=2, input_shape=(32, 32, 1)):
     input_tensor = keras.Input(shape=input_shape)
 
     # 1st block

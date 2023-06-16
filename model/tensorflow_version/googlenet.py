@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 
-def GoogLeNet(class_num=1000, input_shape=(224, 224, 3)):
+def googlenet(class_num=1000, input_shape=(224, 224, 3)):
     input_tensor = keras.Input(shape=input_shape, dtype="float32")
 
     x = keras.layers.Conv2D(filters=64, kernel_size=7, strides=2, padding="same", activation="relu", name="keras.layers.conv2d_1")(input_tensor)
@@ -60,5 +60,5 @@ def inception(inputs, ch1x1, ch3x3red, ch3x3, ch5x5red, ch5x5, pool_proj):
 
 
 if __name__ == '__main__':
-    net = GoogLeNet(class_num=3, input_shape=(224, 224, 3))
+    net = googlenet(class_num=3, input_shape=(224, 224, 3))
     net.summary()

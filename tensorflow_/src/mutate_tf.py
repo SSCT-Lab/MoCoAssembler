@@ -1,3 +1,4 @@
+import traceback
 from importlib import import_module
 from pathlib import Path
 import sys
@@ -50,8 +51,12 @@ class MoCoTF(MoCo):
         super().__init__(model_name, mutate_times)
         self.model_name = model_name
         self.res_model_dir = RES_PATH / model_name
-        self.mutate_dir = self.res_model_dir / ("mutate" + int(time.time()).__str__())
-        self.log_file = LOG_PATH
+        self.log_model_dir = LOG_PATH / model_name
+        self.time = int(time.time()).__str__()
+        self.error_num = 0
+
+        self.mutate_dir = self.res_model_dir / ("mutate" + self.time)
+        self.log_dir = self.log_model_dir / ("log" + self.time)
 
         self.ITERATION = 0
         self.MUTATE_TIMES = mutate_times
@@ -69,8 +74,14 @@ class MoCoTF(MoCo):
         if not Path.exists(self.mutate_dir):
             Path.mkdir(self.mutate_dir)
 
-        if not Path.exists(self.log_file):
-            Path.mkdir(self.log_file)
+        if not Path.exists(LOG_PATH):
+            Path.mkdir(LOG_PATH)
+
+        if not Path.exists(self.log_model_dir):
+            Path.mkdir(self.log_model_dir)
+
+        if not Path.exists(self.log_dir):
+            Path.mkdir(self.log_dir)
 
         with Path.open(PATH / "data/api_list.txt", "r") as file:
             self.api_list = [_[3:-1] for _ in file]
@@ -133,11 +144,25 @@ class MoCoTF(MoCo):
         for line in function_file:
             if line.strip().startswith("#") or line == "\n":
                 continue
+            elif self.get_function(line) == line or line.find("tf.concat") >= 0:
+                while not self.queue.empty():
+                    org_file_name = self.queue.get()
+                    with Path.open(Path(org_file_name), "r", encoding="utf8") as org_file:
+                        content = org_file.read()
+                        output_pos = content.find("# " + self.model_name + " output layer")
+                        if output_pos != -1:
+                            new_content = content[:output_pos] + line + content[output_pos:]
+                    with Path.open(Path(org_file_name), "w", encoding="utf8") as file:
+                        file.write(new_content)
+                    tmp_queue.put(org_file_name)
+
+                while not tmp_queue.empty():
+                    self.queue.put(tmp_queue.get())
+                continue
             else:
                 self.ITERATION += 1
 
                 function = self.get_function(line)
-                # print(function)
                 if function not in self.api_list:
                     if function in Inception.keys():
                         count = Inception[function]
@@ -155,7 +180,7 @@ class MoCoTF(MoCo):
                 org_file_name = self.queue.get()
                 with Path.open(Path(org_file_name), "r", encoding="utf8") as org_file:
                     content = org_file.read()
-                pos1 = content.find("# " + self.model_name + " output layer")
+                output_pos = content.find("# " + self.model_name + " output layer")
 
                 for i in range(1, self.MUTATE_TIMES + 1):
                     num += 1
@@ -163,18 +188,18 @@ class MoCoTF(MoCo):
                     tmp_queue.put(new_file_name)
 
                     if function not in self.api_list:
-                        pos2 = content.find("if __name__")
-                        if pos1 != -1 and pos2 != -1:
+                        __name__pos = content.find("if __name__")
+                        if output_pos != -1 and __name__pos != -1:
                             new_module = self.mutate_on_module(function, Inception[function])
-                            new_content = content[:pos1] + new_line[0] + content[pos1: pos2] + new_module + content[
-                                                                                                            pos2:]
+                            new_content = content[:output_pos] + new_line[0] + content[output_pos: __name__pos] + new_module + content[
+                                                                                                            __name__pos:]
                             new_file = Path.open(Path(new_file_name), "w", encoding="utf8")
                             new_file.write(new_content)
                             new_file.close()
 
                     else:
-                        if pos1 != -1:
-                            new_content = content[:pos1] + new_line[num - 1] + content[pos1:]
+                        if output_pos != -1:
+                            new_content = content[:output_pos] + new_line[num - 1] + content[output_pos:]
                             new_file = Path.open(Path(new_file_name), "w", encoding="utf8")
                             new_file.write(new_content)
                             new_file.close()
@@ -188,30 +213,23 @@ class MoCoTF(MoCo):
                         __ = '.'.join(_.replace("/", ".").split(".")[-6:-1])
 
                         module = import_module(__)
-                        # module.__getattribute__(self.model_name)
                         try:
                             net = module.__getattribute__(self.model_name)
-                            model = net(2, [32, 32, 1])
-                            # model.summary()
+                            model = net()
                             self.queue.put(_)
                             print(Path(_).name + "  \033[34mSUCCESS\033[0m")
-                        except Exception as e:
+                        except Exception:
                             print(Path(_).name + "  \033[31mFAIL\033[0m")
-                            print(e)
+                            self.error_num += 1
+                            with Path.open(self.log_dir / Path("error" + self.error_num.__str__()), "w", encoding="utf8") as file:
+                                file.write(traceback.format_exc())
 
             num = 0
             new_line = []
             if self.queue.empty():
                 break
-            # exit(122)
 
     def get_function(self, line: str) -> str:
-        """
-        根据api找函数调用，如果该行api存在函数调用，则返回函数名（可能是tf库中的，也可能不是）
-                                不存在函数调用，返回该行api
-        :param line: api
-        :return:
-        """
         try:
             function = re.findall(r".*? = (.*?)\(.*?", line)[0]
         except:
@@ -219,11 +237,6 @@ class MoCoTF(MoCo):
         return function
 
     def get_params(self, line: str) -> dict:
-        """
-        获取参数列表
-        :param line: api
-        :return: 参数列表
-        """
         infos1 = re.findall(r".*?\((?P<param>.*?)\)\((?P<input>.*?)\)", line)
 
         params = infos1[0][0] + ', '
@@ -241,12 +254,6 @@ class MoCoTF(MoCo):
         return params_dic
 
     def generate_line(self, line, params_dict) -> str:
-        """
-        根据参数列表生成新的api
-        :param line: 一行api
-        :param params_dict: 参数列表
-        :return: 新生成的api
-        """
         new_params: str = ""
         for _ in params_dict:
             new_params = new_params + _ + "=" + params_dict[_].__str__() + ", "
@@ -287,10 +294,6 @@ class MoCoTF(MoCo):
         return param
 
     def mutate_on_param(self, line: str) -> str:
-        """
-        :param line: 一行api
-        :return: 新生成的api
-        """
         dict = self.get_params(line)
         function = self.get_function(line)
         func_file = PARAM_PATH / ("tf." + function + ".yaml")
@@ -299,7 +302,6 @@ class MoCoTF(MoCo):
                 all_data = yaml.load(file, yaml.Loader)
                 data = all_data["constraints"]
                 params_dict = dict.copy()
-                # 随机选择一个参数进行变异
 
                 param = self.random_param(data) if len(list(data.keys())) > 1 else list(data.keys())[0]
                 value = self.get_value(data[param])
@@ -313,13 +315,11 @@ class MoCoTF(MoCo):
         function = self.get_function(line)
         func_file = FUNC_SIM_PATH / ("tf." + function + ".yaml")
 
-        # 相似度阈值
         th = 0.4
         if func_file.exists():
             dict = self.get_params(line)
             with Path.open(func_file, "r") as file:
                 data = yaml.load(file, yaml.Loader)
-                # 有的函数大于阈值的相似度可能只有它本身，但是变异的时候又不想要他本身，所以简单的处理一下数据
                 lst = [_[0] for _ in data.items() if _[1] > th]
                 func_mut = random.choice(lst[1:]) if len(lst) > 1 else lst[0]
                 param_file = PARAM_PATH / (func_mut + ".yaml")
@@ -335,10 +335,8 @@ class MoCoTF(MoCo):
 
                         for _ in required_list:
                             if _ not in tmp_dict:
-                                #                                 print(func_mut + " " + _)
                                 tmp_dict[_] = self.get_value(data[_])
                 else:
-                    # 有的函数的参数列表取值可能没有储存，所以直接copy，不改变其参数列表（可能会出错）
                     tmp_dict = dict.copy()
 
                 line = line.replace(function, func_mut[3:])
@@ -395,6 +393,9 @@ class MoCoTF(MoCo):
         def_list = []
         inception_file = Path.open(Path(self.inception_file_name), "r", encoding="utf8")
 
+        func_mut = None
+        count = 0
+
         for line in inception_file:
             if line.startswith("def " + function):
                 new_function = function + "_" + number.__str__()
@@ -402,26 +403,20 @@ class MoCoTF(MoCo):
                 break
 
         for line in inception_file:
-            if line.find("return") >= 0:
+            if line.find("#") >= 0 or line == "\n" or line.find("outputs") >= 0:
+                def_list.append(line)
+            elif line.find("return") >= 0:
                 def_list.append(line)
                 break
             else:
-                def_list.append(line)
-
-        # for line in inception_file:
-        #     if line.startswith("def " + function):
-        #         new_function = function + "_" + number.__str__()
-        #         def_list.append(line.replace(function, new_function))
-        #     elif line.find("#") >= 0 or line == "\n" or line.find("outputs") >= 0:
-        #         def_list.append(line)
-        #
-        #     else:
-        #         func = self.get_function(line)
-        #         if func in self.api_list:
-        #             func_file = "tf." + func + ".yaml"
-        #             method = random.choice(self.mutate_list)
-        #             def_list.append(method(line, func_file))
-        #         else: def_list.append(line)
+                func = self.get_function(line)
+                if func in self.api_list and func_mut != func and count <= 2:
+                    func_mut = func
+                    method = random.choice(self.mutate_list)
+                    def_list.append(method(line))
+                    count += 1
+                else:
+                    def_list.append(line)
 
         new_module = "".join(def_list)
         return new_module
@@ -443,13 +438,13 @@ if __name__ == "__main__":
     #     test.depart()
     #     print(args.model_name + " decomposition complete.")
 
+
     # generate new model list
     test = MoCoTF("lenet", 2)
     if (test.res_model_dir / test.template_file_name).exists():
-        print("lenet decomposition files exist.")
-        pass
+        print(test.model_name + " decomposition files exist.")
     else:
-        print("lenet decomposition file does not exist, we will create it……")
+        print(test.model_name + " decomposition file does not exist, we will create it……")
         test.depart()
-        print("lenet decomposition complete.")
+        print(test.model_name + " decomposition complete.")
     test.generate_model()

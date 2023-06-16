@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 
-def GRU(shape):
+def gru(shape=16):
     input_tensor = keras.Input(shape=shape)
     x = keras.layers.Embedding(input_dim=100, output_dim=10, input_length=8)(input_tensor)
     x = keras.layers.GRU(units=32, dropout=0.5, return_sequences=True)(x)
@@ -17,5 +17,5 @@ def GRU(shape):
 
 
 if __name__ == "__main__":
-    model = GRU(16)
+    model = gru(16)
     model.summary()

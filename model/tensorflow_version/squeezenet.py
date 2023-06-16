@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 
-def SqueezeNet(input_shape):
+def squeezenet(input_shape=(224, 224, 3)):
     input_tensor = keras.Input(shape=input_shape)
 
     # 1st block
@@ -48,10 +48,15 @@ def inception(x, s1, e1, e3):
     x = keras.layers.Conv2D(filters=s1, activation="relu", kernel_size=(1, 1), strides=1, padding="same")(x)
     y1 = keras.layers.Conv2D(filters=e1, activation="relu", kernel_size=(1, 1), strides=1, padding="same")(x)
     y2 = keras.layers.Conv2D(filters=e3, activation="relu", kernel_size=(3, 3), strides=1, padding="same")(x)
+
+    shape = tf.shape(x)
+    y1 = tf.reshape(y1, shape)
+    y2 = tf.reshape(y2, shape)
+
     outputs = keras.layers.concatenate([y1, y2])
     return outputs
 
 
 if __name__ == '__main__':
-    model = SqueezeNet((224, 224, 3))
+    model = squeezenet((224, 224, 3))
     model.summary()

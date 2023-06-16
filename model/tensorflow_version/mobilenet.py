@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 
-def MoblieNet(input_shape):
+def moblienet(input_shape=(224, 224, 3)):
     input_tensor = keras.Input(shape=input_shape)
 
     # 1st block
@@ -72,4 +72,4 @@ def MoblieNet(input_shape):
 
 
 if __name__ == '__main__':
-    model = MoblieNet((224, 224, 3))
+    model = moblienet((224, 224, 3))

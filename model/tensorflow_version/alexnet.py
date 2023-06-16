@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 
-def AlexNet(class_num, input_shape):
+def alexnet(class_num=1000, input_shape=(224, 224, 3)):
     input_tensor = keras.Input(shape=input_shape, dtype="float32")
 
     # 1st block
@@ -44,4 +44,4 @@ def AlexNet(class_num, input_shape):
 
 
 if __name__ == '__main__':
-    model = AlexNet(1000, (224, 224, 3))
+    model = alexnet(1000, (224, 224, 3))

@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 
-def BiLSTM(shape):
+def bilstm(shape=16):
     input_tensor = keras.Input(shape=shape)
     x = keras.layers.Embedding(input_dim=100, output_dim=10, input_length=8)(input_tensor)
     x = keras.layers.Dropout(rate=0.1)(x)
@@ -14,6 +14,5 @@ def BiLSTM(shape):
 
 
 if __name__ == "__main__":
-    model = BiLSTM(16)
-    model.summary()
+    model = bilstm(16)
 

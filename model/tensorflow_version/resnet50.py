@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 
-def ResNet50(input_shape, classes):
+def resnet50(classes=1000, input_shape=(224, 224, 3)):
     input_tensor = keras.Input(shape=input_shape)
 
     # 1st block
@@ -52,6 +52,9 @@ def inceptionA(inputs, kernel_size, filters1, filters2, filters3, strides=(2, 2)
     x = keras.layers.Conv2D(filters=filters2, kernel_size=kernel_size, padding='same', activation='relu')(x)
     x = keras.layers.Conv2D(filters=filters3, kernel_size=(1, 1))(x)
     shortcut = keras.layers.Conv2D(filters3, (1, 1), strides=strides)(inputs)
+
+    shape = tf.shape(x)
+    shortcut = tf.reshape(shortcut, shape)
     x = keras.layers.add([x, shortcut])
     x = keras.layers.Activation('relu')(x)
 
@@ -63,6 +66,10 @@ def inceptionB(inputs, kernel_size, filters1, filters2, filters3):
     x = keras.layers.Conv2D(filters=filters1, kernel_size=(1, 1), activation='relu')(inputs)
     x = keras.layers.Conv2D(filters=filters2, kernel_size=kernel_size, padding='same', activation='relu')(x)
     x = keras.layers.Conv2D(filters=filters3, kernel_size=(1, 1))(x)
+
+    shape = tf.shape(x)
+    inputs = tf.reshape(inputs, shape)
+
     x = keras.layers.add([x, inputs])
     x = keras.layers.Activation('relu')(x)
 
@@ -71,5 +78,4 @@ def inceptionB(inputs, kernel_size, filters1, filters2, filters3):
 
 
 if __name__ == '__main__':
-    model = ResNet50([224, 224, 3], 1000)
-    model.summary()
+    model = resnet50()

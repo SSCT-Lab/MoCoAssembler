@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 
-def LSTM(shape):
+def lstm(shape=16):
     input_tensor = keras.Input(shape=shape)
     x = keras.layers.Embedding(input_dim=100, output_dim=10, input_length=8)(input_tensor)
     x = keras.layers.LSTM(units=16, activation='sigmoid')(x)
@@ -16,6 +16,6 @@ def LSTM(shape):
 
 
 if __name__ == "__main__":
-    model = LSTM(16)
+    model = lstm(16)
     model.summary()
 
