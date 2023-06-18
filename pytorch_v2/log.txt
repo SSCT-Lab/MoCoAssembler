@@ -1,0 +1,90 @@
+testnet-1-1.py  error   :          
+Time:  2023-06-08   21:18
+Info: 
+raceback (most recent call last):\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-1-1.py", line 16, in <module>\r\n    y = net(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-1-1.py", line 10, in execute\r\n    x = x.reshape(-1, 5, 4, 4)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 644, in reshape\r\n    return origin_reshape(x, shape)\r\nRuntimeError: Wrong inputs arguments, Please refer to examples(help(jt.ops.reshape)).\r\n\r\nTypes of your inputs are:\r\n self\t= module,\r\n args\t= (Var, tuple, ),\r\n\r\nThe function declarations are:\r\n VarHolder* reshape(VarHolder* x,  NanoVector shape)\r\n\r\nFailed reason:[f 0608 21:18:11.830000 84 reshape_op.cc:50] Check failed: y_items != 0 && x_items % y_items == 0  reshape shape is invalid for input of size  451584\r\n'
+
+
+testnet-1-2.py  error   :          
+Time:  2023-06-08   21:18
+Info: 
+raceback (most recent call last):\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-1-2.py", line 13, in <module>\r\n    net = testnet()\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-1-2.py", line 8, in __init__\r\n    self.conv1 = jittor.nn.Conv(in_channels = -1,out_channels = 6,kernel_size = 5)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\nn.py", line 939, in __init__\r\n    self.weight = init.invariant_uniform([out_channels, in_channels//groups, Kh, Kw], dtype="float")\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\init.py", line 336, in invariant_uniform\r\n    bound = math.sqrt(1.0/fan)\r\nValueError: math domain error\r\n'
+
+
+testnet-3-20.py  error   :          
+Time:  2023-06-08   21:18
+Info: 
+raceback (most recent call last):\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-3-20.py", line 22, in <module>\r\n    y = net(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-3-20.py", line 17, in execute\r\n    x = self.conv2(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\nn.py", line 959, in execute\r\n    assert C==self.in_channels\r\nAssertionError\r\n'
+
+
+testnet-3-21.py  error   :          
+Time:  2023-06-08   21:18
+Info: 
+raceback (most recent call last):\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-3-21.py", line 22, in <module>\r\n    y = net(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-3-21.py", line 17, in execute\r\n    x = self.conv2(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\nn.py", line 959, in execute\r\n    assert C==self.in_channels\r\nAssertionError\r\n'
+
+
+testnet-3-22.py  error   :          
+Time:  2023-06-08   21:18
+Info: 
+raceback (most recent call last):\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-3-22.py", line 21, in <module>\r\n    net = testnet()\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-3-22.py", line 10, in __init__\r\n    self.conv2 = jittor.nn.Conv(in_channels = 6,out_channels = 2,kernel_size = -1)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\nn.py", line 939, in __init__\r\n    self.weight = init.invariant_uniform([out_channels, in_channels//groups, Kh, Kw], dtype="float")\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\init.py", line 337, in invariant_uniform\r\n    return uniform(shape, dtype, -bound, bound)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\init.py", line 234, in uniform\r\n    return jt.random(NanoVector(shape), dtype) * (low - high) + high\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 419, in random\r\n    ret = ops.random(shape, dtype, type)\r\nRuntimeError: Wrong inputs arguments, Please refer to examples(help(jt.ops.random)).\r\n\r\nTypes of your inputs are:\r\n self\t= module,\r\n args\t= (NanoVector, str, str, ),\r\n\r\nThe function declarations are:\r\n VarHolder* random(NanoVector shape,  NanoString dtype=ns_float32,  NanoString type=ns_uniform)\r\n\r\nFailed reason:[f 0608 21:18:42.363000 56 op.cc:90] Check failed: need_sync->num >= 0  Var(38:1:1:1:i0:o0:s1:n0,float32,,2162c80dc60)[2,6,-1,-1,] \'s shape is error\r\n'
+
+
+testnet-3-23.py  error   :          
+Time:  2023-06-08   21:18
+Info: 
+raceback (most recent call last):\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-3-23.py", line 23, in <module>\r\n    y = net(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-3-23.py", line 17, in execute\r\n    x = x.reshape(-1, 5, 4, 4)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 644, in reshape\r\n    return origin_reshape(x, shape)\r\nRuntimeError: Wrong inputs arguments, Please refer to examples(help(jt.ops.reshape)).\r\n\r\nTypes of your inputs are:\r\n self\t= module,\r\n args\t= (Var, tuple, ),\r\n\r\nThe function declarations are:\r\n VarHolder* reshape(VarHolder* x,  NanoVector shape)\r\n\r\nFailed reason:[f 0608 21:18:44.583000 24 reshape_op.cc:50] Check failed: y_items != 0 && x_items % y_items == 0  reshape shape is invalid for input of size  56448\r\n'
+
+
+testnet-3-25.py  error   :          
+Time:  2023-06-08   21:18
+Info: 
+raceback (most recent call last):\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-3-25.py", line 21, in <module>\r\n    net = testnet()\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-3-25.py", line 10, in __init__\r\n    self.conv2 = jittor.nn.Conv(in_channels = 7,out_channels = -1,kernel_size = 4)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\nn.py", line 939, in __init__\r\n    self.weight = init.invariant_uniform([out_channels, in_channels//groups, Kh, Kw], dtype="float")\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\init.py", line 337, in invariant_uniform\r\n    return uniform(shape, dtype, -bound, bound)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\init.py", line 234, in uniform\r\n    return jt.random(NanoVector(shape), dtype) * (low - high) + high\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 419, in random\r\n    ret = ops.random(shape, dtype, type)\r\nRuntimeError: Wrong inputs arguments, Please refer to examples(help(jt.ops.random)).\r\n\r\nTypes of your inputs are:\r\n self\t= module,\r\n args\t= (NanoVector, str, str, ),\r\n\r\nThe function declarations are:\r\n VarHolder* random(NanoVector shape,  NanoString dtype=ns_float32,  NanoString type=ns_uniform)\r\n\r\nFailed reason:[f 0608 21:18:49.160000 16 op.cc:90] Check failed: need_sync->num >= 0  Var(38:1:1:1:i0:o0:s1:n0,float32,,2c141cbfc60)[-1,7,4,4,] \'s shape is error\r\n'
+
+
+testnet-3-26.py  error   :          
+Time:  2023-06-08   21:18
+Info: 
+raceback (most recent call last):\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-3-26.py", line 23, in <module>\r\n    y = net(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-3-26.py", line 18, in execute\r\n    x = self.conv2(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\nn.py", line 962, in execute\r\n    assert oh>0 and ow>0\r\nAssertionError\r\n'
+
+
+testnet-3-27.py  error   :          
+Time:  2023-06-08   21:18
+Info: 
+raceback (most recent call last):\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-3-27.py", line 23, in <module>\r\n    y = net(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-3-27.py", line 18, in execute\r\n    x = self.conv2(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\nn.py", line 962, in execute\r\n    assert oh>0 and ow>0\r\nAssertionError\r\n'
+
+
+testnet-4-55.py  error   :          
+Time:  2023-06-08   21:18
+Info: 
+raceback (most recent call last):\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-4-55.py", line 26, in <module>\r\n    y = net(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-4-55.py", line 19, in execute\r\n    x = x.reshape(-1, 4, 4, 4)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 644, in reshape\r\n    return origin_reshape(x, shape)\r\nRuntimeError: Wrong inputs arguments, Please refer to examples(help(jt.ops.reshape)).\r\n\r\nTypes of your inputs are:\r\n self\t= module,\r\n args\t= (Var, tuple, ),\r\n\r\nThe function declarations are:\r\n VarHolder* reshape(VarHolder* x,  NanoVector shape)\r\n\r\nFailed reason:[f 0608 21:18:55.876000 20 reshape_op.cc:50] Check failed: y_items != 0 && x_items % y_items == 0  reshape shape is invalid for input of size  39690\r\n'
+
+
+testnet-4-56.py  error   :          
+Time:  2023-06-08   21:18
+Info: 
+raceback (most recent call last):\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-4-56.py", line 26, in <module>\r\n    y = net(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-4-56.py", line 19, in execute\r\n    x = x.reshape(-1, 4, 4, 4)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 644, in reshape\r\n    return origin_reshape(x, shape)\r\nRuntimeError: Wrong inputs arguments, Please refer to examples(help(jt.ops.reshape)).\r\n\r\nTypes of your inputs are:\r\n self\t= module,\r\n args\t= (Var, tuple, ),\r\n\r\nThe function declarations are:\r\n VarHolder* reshape(VarHolder* x,  NanoVector shape)\r\n\r\nFailed reason:[f 0608 21:18:58.086000 80 reshape_op.cc:50] Check failed: y_items != 0 && x_items % y_items == 0  reshape shape is invalid for input of size  39690\r\n'
+
+
+testnet-4-70.py  error   :          
+Time:  2023-06-08   21:19
+Info: 
+raceback (most recent call last):\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-4-70.py", line 27, in <module>\r\n    y = net(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-4-70.py", line 20, in execute\r\n    x = x.reshape(-1, 4, 4, 4)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 644, in reshape\r\n    return origin_reshape(x, shape)\r\nRuntimeError: Wrong inputs arguments, Please refer to examples(help(jt.ops.reshape)).\r\n\r\nTypes of your inputs are:\r\n self\t= module,\r\n args\t= (Var, tuple, ),\r\n\r\nThe function declarations are:\r\n VarHolder* reshape(VarHolder* x,  NanoVector shape)\r\n\r\nFailed reason:[f 0608 21:19:02.579000 40 reshape_op.cc:50] Check failed: y_items != 0 && x_items % y_items == 0  reshape shape is invalid for input of size  3024\r\n'
+
+
+testnet-4-71.py  error   :          
+Time:  2023-06-08   21:19
+Info: 
+raceback (most recent call last):\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-4-71.py", line 27, in <module>\r\n    y = net(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-4-71.py", line 20, in execute\r\n    x = x.reshape(-1, 4, 4, 4, 4)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 644, in reshape\r\n    return origin_reshape(x, shape)\r\nRuntimeError: Wrong inputs arguments, Please refer to examples(help(jt.ops.reshape)).\r\n\r\nTypes of your inputs are:\r\n self\t= module,\r\n args\t= (Var, tuple, ),\r\n\r\nThe function declarations are:\r\n VarHolder* reshape(VarHolder* x,  NanoVector shape)\r\n\r\nFailed reason:[f 0608 21:19:04.771000 80 reshape_op.cc:50] Check failed: y_items != 0 && x_items % y_items == 0  reshape shape is invalid for input of size  3024\r\n'
+
+
+testnet-5-170.py  error   :          
+Time:  2023-06-08   21:19
+Info: 
+raceback (most recent call last):\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-5-170.py", line 30, in <module>\r\n    y = net(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-5-170.py", line 24, in execute\r\n    x = self.relu(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\nn.py", line 3045, in execute\r\n    return x * jt.tanh(jt.softplus(x))\r\nAttributeError: module \'jittor\' has no attribute \'softplus\'\r\n'
+
+
+testnet-5-216.py  error   :          
+Time:  2023-06-08   21:19
+Info: 
+raceback (most recent call last):\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-5-216.py", line 30, in <module>\r\n    y = net(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "D:\\PythonProjects\\ModelAssembler-main\\jittor_\\mutated_model\\testnet-5-216.py", line 24, in execute\r\n    x = self.relu(x)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\__init__.py", line 1168, in __call__\r\n    return self.execute(*args, **kw)\r\n  File "C:\\Users\\90768\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\jittor\\nn.py", line 3045, in execute\r\n    return x * jt.tanh(jt.softplus(x))\r\nAttributeError: module \'jittor\' has no attribute \'softplus\'\r\n'
+
+
