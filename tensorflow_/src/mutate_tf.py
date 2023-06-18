@@ -2,6 +2,9 @@ import traceback
 from importlib import import_module
 from pathlib import Path
 import sys
+
+from tqdm import trange, tqdm
+
 sys.path.append(Path.cwd().parent.parent.__str__())
 
 import argparse
@@ -53,13 +56,15 @@ class MoCoTF(MoCo):
         self.res_model_dir = RES_PATH / model_name
         self.log_model_dir = LOG_PATH / model_name
         self.time = int(time.time()).__str__()
-        self.error_num = 0
+        self.ERROR_NUM = 0
 
         self.mutate_dir = self.res_model_dir / ("mutate" + self.time)
         self.log_dir = self.log_model_dir / ("log" + self.time)
 
         self.ITERATION = 0
         self.MUTATE_TIMES = mutate_times
+        self.NODE_ALL = 1
+        self.NODE_ALIVE = 1
 
         self.template_file_name = self.res_model_dir.resolve().__str__() + "/" + self.model_name + "_template.py"
         self.function_file_name = self.res_model_dir.resolve().__str__() + "/" + self.model_name + "_function.py"
@@ -172,7 +177,9 @@ class MoCoTF(MoCo):
                     new_function = function + "_" + Inception[function].__str__()
                     new_line.append(line.replace(function, new_function))
                 else:
-                    for i in range(pow(self.MUTATE_TIMES, self.ITERATION)):
+                    self.NODE_ALL = self.NODE_ALIVE * self.MUTATE_TIMES
+
+                    for i in range(self.NODE_ALL):
                         method = random.choice(self.mutate_list)
                         new_line.append(method(line))
 
@@ -204,25 +211,29 @@ class MoCoTF(MoCo):
                             new_file.write(new_content)
                             new_file.close()
 
-            if not tmp_queue.empty():
-                lst = []
-                while not tmp_queue.empty():
-                    lst.append(tmp_queue.get())
-                with tf.device('/GPU:0'):
-                    for _ in lst:
-                        __ = '.'.join(_.replace("/", ".").split(".")[-6:-1])
+            self.NODE_ALIVE = 0
+            lst = []
+            while not tmp_queue.empty():
+                lst.append(tmp_queue.get())
 
-                        module = import_module(__)
-                        try:
-                            net = module.__getattribute__(self.model_name)
-                            model = net()
-                            self.queue.put(_)
-                            print(Path(_).name + "  \033[34mSUCCESS\033[0m")
-                        except Exception:
-                            print(Path(_).name + "  \033[31mFAIL\033[0m")
-                            self.error_num += 1
-                            with Path.open(self.log_dir / Path("error" + self.error_num.__str__()), "w", encoding="utf8") as file:
-                                file.write(traceback.format_exc())
+            pbar = tqdm(lst, desc="ITERATION: {}".format(self.ITERATION))
+            for file_name in pbar:
+                pbar.update(self.MUTATE_TIMES)
+
+                module_name = '.'.join(file_name.replace("/", ".").split(".")[-6:-1])
+                module = import_module(module_name)
+                try:
+                    net = module.__getattribute__(self.model_name)
+                    model = net()
+                    self.queue.put(file_name)
+                    self.NODE_ALIVE += 1
+                    # print(Path(_).name + "  \033[34mSUCCESS\033[0m")
+                except Exception:
+                    # print(Path(file_name).name + "  \033[31mFAIL\033[0m")
+                    self.ERROR_NUM += 1
+                    with Path.open(self.log_dir / Path("error" + self.ERROR_NUM.__str__()), "w", encoding="utf8") as file:
+                        file.write(traceback.format_exc())
+            del pbar
 
             num = 0
             new_line = []
