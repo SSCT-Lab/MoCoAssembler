@@ -1,0 +1,27 @@
+api: jittor.nn.GRUCell(self, input_size, hidden_size, bias=True)
+constraints:
+  bias:
+    default: 'True'
+    dtype:
+    - bool
+  hidden_size:
+    default: no default
+    dtype:
+    - int
+  input_size:
+    default: no default
+    dtype:
+    - int
+descp: "    ''' A gated recurrent unit (GRU) cell.\n\n    :param input_size: The number\
+  \ of expected features in the input\n    :type input_size: int\n\n    :param hidden_size:\
+  \ The number of features in the hidden state\n    :type hidden_size: int\n\n   \
+  \ :param bias: If False, then the layer does not use bias weights b_ih and b_hh.\
+  \ Default: True.\n    :type bias: bool, optional\n\n    \n'''"
+extra_para: 0
+inputs:
+  optional:
+  - bias
+  required:
+  - input_size
+  - hidden_size
+kind: layer

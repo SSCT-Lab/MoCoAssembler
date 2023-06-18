@@ -1,0 +1,22 @@
+api: jittor.nn.Softplus(self, beta=1, threshold=20)
+constraints:
+  beta:
+    default: '1'
+    dtype:
+    - int
+  threshold:
+    default: '20'
+    dtype:
+    - int
+descp: "    r'''\n    SoftPlus is a smooth approximation to the ReLU function and\
+  \ can be used to constrain the output of a machine to always be positive.\n    \n\
+  \    Args:\n        \n        [in] beta (float): the beta value for the Softplus\
+  \ formulation. Default: 1.\n        \n        [in] threshold (float): values above\
+  \ this revert to a linear function. Default: 20.\n\n'''"
+extra_para: 0
+inputs:
+  optional:
+  - beta
+  - threshold
+  required: []
+kind: layer

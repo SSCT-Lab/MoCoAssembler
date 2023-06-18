@@ -1,0 +1,18 @@
+api: jittor.nn.AdaptiveMaxPool2d(self, output_size, return_indices=False)
+constraints:
+  output_size:
+    default: no default
+    dtype:
+    - int
+  return_indices:
+    default: 'False'
+    dtype:
+    - bool
+descp: no description
+extra_para: 0
+inputs:
+  optional:
+  - return_indices
+  required:
+  - output_size
+kind: layer
