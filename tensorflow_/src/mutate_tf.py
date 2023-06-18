@@ -121,14 +121,14 @@ class MoCoTF(MoCo):
             function_file.close()
 
             for line in file_org:
-                if line.find("def") >= 0:
+                if line.find("def ") >= 0 and line.find("def go()") < 0:
                     inception_file.write("# " + self.model_name + " inception layer" + "\n")
                     inception_file.write(line)
                     break
                 template_file.write(line)
 
             for line in file_org:
-                if line.find("__name__") >= 0:
+                if line.find("def go()") >= 0:
                     template_file.write(line)
                     break
                 inception_file.write(line)
@@ -220,11 +220,10 @@ class MoCoTF(MoCo):
             for file_name in pbar:
                 pbar.update(self.MUTATE_TIMES)
 
-                module_name = '.'.join(file_name.replace("/", ".").split(".")[-6:-1])
-                module = import_module(module_name)
                 try:
-                    net = module.__getattribute__(self.model_name)
-                    model = net()
+                    module_name = '.'.join(file_name.replace("/", ".").split(".")[-6:-1])
+                    module = import_module(module_name)
+                    module.go()
                     self.queue.put(file_name)
                     self.NODE_ALIVE += 1
                     # print(Path(_).name + "  \033[34mSUCCESS\033[0m")
