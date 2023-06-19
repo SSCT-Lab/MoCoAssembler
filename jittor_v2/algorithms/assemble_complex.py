@@ -10,6 +10,7 @@ import random
 import os
 import shutil
 import file_paths
+from alive_progress import alive_bar
 
 
 class Model:
@@ -92,15 +93,18 @@ class Assembler_Complex:
 
             model_list: list[Model] = []
             next_layer_count = 0
-            for i in range(last_layer_count):
-                temp_model = model_queue.get()
-                file_name = temp_model.model.assemble_file(generation=temp_model.generation, index=temp_model.index)
-                model_type = temp_model.model.net_name
-                run_flag = run.run_single_model(file_name, model_type)
-                if run_flag:
-                    model_list.append(temp_model)
-                else:
-                    pass
+            with alive_bar(last_layer_count, bar='filling', title='generation'+str(generation)) as bar:
+                for i in range(last_layer_count):
+                    temp_model = model_queue.get()
+                    file_name = temp_model.model.assemble_file(generation=temp_model.generation, index=temp_model.index)
+                    model_type = temp_model.model.net_name
+                    run_flag = run.run_single_model(file_name, model_type)
+                    bar()
+                    if run_flag:
+                        model_list.append(temp_model)
+                    else:
+                        pass
+
 
             count = len(model_list)
             next_layer_count = count * self.n
@@ -164,15 +168,17 @@ class Assembler_Complex:
             last_layer_count = next_layer_count
             self.dfc(os.path.join(file_paths.MUTATED_MODEL_PATH, self.seed_model.net_name))
 
-
-        for i in range(last_layer_count):
-            if model_queue.empty():
-                break
-            temp = model_queue.get()
-            file_name = temp.model.assemble_file(temp.generation, temp.index)
-            model_type = temp.model.net_name
-            run.run_single_model(file_name, model_type)
+        with alive_bar(last_layer_count, bar='filling', title='generation'+str(generation)) as bar:
+            for i in range(last_layer_count):
+                if model_queue.empty():
+                    break
+                temp = model_queue.get()
+                file_name = temp.model.assemble_file(temp.generation, temp.index)
+                model_type = temp.model.net_name
+                run.run_single_model(file_name, model_type)
+                bar()
         self.dfc(os.path.join(file_paths.MUTATED_MODEL_PATH, self.seed_model.net_name))
+
 
 
 if __name__ == '__main__':

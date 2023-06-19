@@ -19,12 +19,12 @@ def run_single_model(model_name: str, model_type: str) -> bool:
         error = error + str(traceback.format_exc())
 
     if flag:
-        print(model_name + ' succeed')
+        # print(model_name + ' succeed')
         return True
     else:
         f = Filter()
         if not f.judge(error):
-            print(model_name + ' has error, but filtered out...')
+            # print(model_name + ' has error, but filtered out...')
             return False
         print(model_name + ' has error, and witten into log...')
         result = model_name + '  error   :          \n'

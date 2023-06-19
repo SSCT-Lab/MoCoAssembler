@@ -71,7 +71,7 @@ class Departed_Model:
             f.write(model.assemble())
         f.write(self.end)
         f.close()
-        print(self.net_name + '-' + str(generation) + '-' + str(index) + '.py' + '      successfully assembled')
+        # print(self.net_name + '-' + str(generation) + '-' + str(index) + '.py' + '      successfully assembled')
         return self.net_name + '-' + str(generation) + '-' + str(index) + '.py'
 
     def get_model_from_file(self, model_name: str) -> None:
