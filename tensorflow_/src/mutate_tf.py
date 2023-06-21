@@ -3,22 +3,22 @@ from importlib import import_module
 from pathlib import Path
 import sys
 
-from tqdm import trange, tqdm
-
 sys.path.append(Path.cwd().parent.parent.__str__())
 
 import argparse
+import multiprocessing as mp
+import pynvml
 import random
 import re
 import tensorflow as tf
 import time
 import yaml
+from alive_progress import alive_bar
 from queue import Queue
 
 from config.keywords import INPUT_TENSOR, OUTPUT_TENSOR
-from config.paths import RES_PATH, PARAM_PATH, FUNC_SIM_PATH, LOG_PATH, TF_MODEL_PATH, PATH
+from config.paths import RES_PATH, PARAM_PATH, FUNC_SIM_PATH, LOG_PATH, TF_MODEL_PATH, TF_PATH
 from utils.MoCo import MoCo
-
 
 
 class MoCoTF(MoCo):
@@ -63,8 +63,6 @@ class MoCoTF(MoCo):
 
         self.ITERATION = 0
         self.MUTATE_TIMES = mutate_times
-        self.NODE_ALL = 1
-        self.NODE_ALIVE = 1
 
         self.template_file_name = self.res_model_dir.resolve().__str__() + "/" + self.model_name + "_template.py"
         self.function_file_name = self.res_model_dir.resolve().__str__() + "/" + self.model_name + "_function.py"
@@ -88,7 +86,7 @@ class MoCoTF(MoCo):
         if not Path.exists(self.log_dir):
             Path.mkdir(self.log_dir)
 
-        with Path.open(PATH / "data/api_list.txt", "r") as file:
+        with Path.open(TF_PATH / "data/api_list.txt", "r") as file:
             self.api_list = [_[3:-1] for _ in file]
 
         self.queue = Queue()
@@ -140,8 +138,7 @@ class MoCoTF(MoCo):
 
     def generate_model(self):
         Inception = {}
-        new_line = []
-        num = 0
+        node_alive = 1
         tmp_queue = Queue()
 
         function_file = Path.open(Path(self.function_file_name), "r", encoding="utf8")
@@ -165,6 +162,8 @@ class MoCoTF(MoCo):
                     self.queue.put(tmp_queue.get())
                 continue
             else:
+                new_line = []
+                num = 0
                 self.ITERATION += 1
 
                 function = self.get_function(line)
@@ -177,9 +176,9 @@ class MoCoTF(MoCo):
                     new_function = function + "_" + Inception[function].__str__()
                     new_line.append(line.replace(function, new_function))
                 else:
-                    self.NODE_ALL = self.NODE_ALIVE * self.MUTATE_TIMES
+                    node_all = node_alive * self.MUTATE_TIMES
 
-                    for i in range(self.NODE_ALL):
+                    for i in range(node_all):
                         method = random.choice(self.mutate_list)
                         new_line.append(method(line))
 
@@ -198,8 +197,9 @@ class MoCoTF(MoCo):
                         __name__pos = content.find("if __name__")
                         if output_pos != -1 and __name__pos != -1:
                             new_module = self.mutate_on_module(function, Inception[function])
-                            new_content = content[:output_pos] + new_line[0] + content[output_pos: __name__pos] + new_module + content[
-                                                                                                            __name__pos:]
+                            new_content = content[:output_pos] + new_line[0] + content[
+                                                                               output_pos: __name__pos] + new_module + content[
+                                                                                                                       __name__pos:]
                             new_file = Path.open(Path(new_file_name), "w", encoding="utf8")
                             new_file.write(new_content)
                             new_file.close()
@@ -211,31 +211,36 @@ class MoCoTF(MoCo):
                             new_file.write(new_content)
                             new_file.close()
 
-            self.NODE_ALIVE = 0
-            lst = []
+            node_alive = 0
+            model_list = []
+            model_param_dict = {}
             while not tmp_queue.empty():
-                lst.append(tmp_queue.get())
+                model_list.append(tmp_queue.get())
 
-            pbar = tqdm(lst, desc="ITERATION: {}".format(self.ITERATION))
-            for file_name in pbar:
-                pbar.update(self.MUTATE_TIMES)
+            with alive_bar(len(model_list), force_tty=True, title=("ITERATION : " + self.ITERATION.__str__())) as bar:
+                for i in range(len(model_list)):
+                    model_name = model_list[i]
 
-                try:
-                    module_name = '.'.join(file_name.replace("/", ".").split(".")[-6:-1])
-                    module = import_module(module_name)
-                    module.go()
-                    self.queue.put(file_name)
-                    self.NODE_ALIVE += 1
-                    # print(Path(_).name + "  \033[34mSUCCESS\033[0m")
-                except Exception:
-                    # print(Path(file_name).name + "  \033[31mFAIL\033[0m")
-                    self.ERROR_NUM += 1
-                    with Path.open(self.log_dir / Path("error" + self.ERROR_NUM.__str__()), "w", encoding="utf8") as file:
-                        file.write(traceback.format_exc())
-            del pbar
+                    bar()
+                    try:
+                        module_name = '.'.join(model_name.replace("/", ".").split(".")[-6:-1])
+                        module = import_module(module_name)
+                        total_params = module.go()
+                        model_param_dict[model_name] = total_params
+                        node_alive += 1
+                    except Exception:
+                        self.ERROR_NUM += 1
+                        with Path.open(self.log_dir / Path("error" + self.ERROR_NUM.__str__()), "w",
+                                       encoding="utf8") as file:
+                            file.write(traceback.format_exc())
 
-            num = 0
-            new_line = []
+            node_threshold = self.get_node_number(function)
+            print("node_threshold: " + str(node_threshold), end=" ")
+            print("node_alive: " + str(node_alive), end=" ")
+
+            self.queue, node_alive = self.beam_search(model_param_dict, node_threshold, node_alive)
+
+            print("next_node: " + str(node_alive))
             if self.queue.empty():
                 break
 
@@ -413,9 +418,9 @@ class MoCoTF(MoCo):
                 break
 
         for line in inception_file:
-            if line.find("#") >= 0 or line == "\n" or line.find("outputs") >= 0:
+            if line == "\n":
                 def_list.append(line)
-            elif line.find("return") >= 0:
+            elif line.find("# reshape") >= 0:
                 def_list.append(line)
                 break
             else:
@@ -428,8 +433,52 @@ class MoCoTF(MoCo):
                 else:
                     def_list.append(line)
 
+        for line in inception_file:
+            def_list.append(line)
+
         new_module = "".join(def_list)
         return new_module
+
+    def get_node_number(self, function: str) -> int:
+        file_name = "tf." + function + ".yaml"
+        api_count = 0
+        param_count = 0
+        with Path.open(FUNC_SIM_PATH / file_name, "r", encoding="utf8") as file:
+            data = yaml.load(file, yaml.Loader)
+            for _ in data.items():
+                if _[1] >= 0.6:
+                    api_count += 1
+
+        with Path.open(PARAM_PATH / file_name, "r", encoding="utf8") as file:
+            data = yaml.load(file, yaml.Loader)
+            constraints = data["constraints"]
+            for _ in constraints.items():
+                if "dtype" in _[1]:
+                    dtype = _[1]["dtype"]
+                    if "int" in dtype:
+                        param_count += 5
+                    if "tf.string" in dtype:
+                        param_count += 2
+                    if "tf.bool" in dtype:
+                        param_count += 2
+                    if "float" in dtype:
+                        param_count += 5
+
+        return param_count * api_count
+
+    def beam_search(self, model_param_dict, node_threshold, node_alive):
+        queue = Queue()
+        if node_alive < node_threshold: pass
+        else:
+            model_param_dict = dict(sorted(model_param_dict.items(), key=lambda x: x[1], reverse=False)[:node_threshold])
+            node_alive = node_threshold
+
+        for _ in model_param_dict.keys():
+            queue.put(_)
+        return queue, node_alive
+
+    def test(self):
+        print(self.get_node_number("keras.layers.Conv2D"))
 
 
 if __name__ == "__main__":
@@ -448,9 +497,8 @@ if __name__ == "__main__":
     #     test.depart()
     #     print(args.model_name + " decomposition complete.")
 
-
     # generate new model list
-    test = MoCoTF("lenet", 2)
+    test = MoCoTF("lenet", 3)
     if (test.res_model_dir / test.template_file_name).exists():
         print(test.model_name + " decomposition files exist.")
     else:

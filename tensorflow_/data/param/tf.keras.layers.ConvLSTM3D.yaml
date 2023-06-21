@@ -36,7 +36,7 @@ constraints:
     dtype: int
     structure: integer
     shape: 1
-    range: [0, 8192]
+    range: [0, 2048]
   go_backwards:
     default: False
     dtype: tf.bool

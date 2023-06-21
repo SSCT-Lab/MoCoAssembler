@@ -12,6 +12,8 @@ constraints:
     structure: list
   weights:
     default: None
+  layer:
+    default: None
 required:
   - layer
 descp:

@@ -41,7 +41,7 @@ constraints:
     dtype: int
     structure: integer
     shape: 1
-    range: [0, 8192]
+    range: [0, 2048]
   depthwise_constraint:
     default: None
     dtype: tf.string
@@ -61,7 +61,7 @@ constraints:
     dtype: int
     structure: integer
     shape: 1
-    range: [0, 8192]
+    range: [0, 2048]
   kernel_size:
     dtype: int
     structure: integer

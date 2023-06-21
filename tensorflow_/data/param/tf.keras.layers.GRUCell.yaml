@@ -22,7 +22,7 @@ constraints:
     dtype: int
     structure: integer
     shape: 1
-    range: [0, 8192]
+    range: [0, 2048]
   kernel_constraint:
     default: None
     dtype: tf.string
@@ -54,7 +54,7 @@ constraints:
     dtype: int
     structure: integer
     shape: 1
-    range: [0, 8192]
+    range: [0, 2048]
   use_bias:
     default: True
     dtype: tf.bool

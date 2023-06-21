@@ -1,8 +1,9 @@
+import keras.layers
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 
-from config.paths import DATASETS_PATH
+from config.paths import DATA_PATH
 
 
 def googlenet(class_num=1000, input_shape=(224, 224, 3)):
@@ -42,15 +43,14 @@ def inception(inputs, ch1x1, ch3x3red, ch3x3, ch5x5red, ch5x5, pool_proj):
     x1 = keras.layers.Conv2D(filters=ch1x1, kernel_size=1, activation="relu")(inputs)
 
     x2 = keras.layers.Conv2D(filters=ch3x3red, kernel_size=1, strides=1, padding="same", activation="relu")(inputs)
-    x2 = keras.layers.Conv2D(filters=ch3x3, kernel_size=3, strides=1, padding="same", activation="relu")(x2)
+    x2 = keras.layers.Conv2D(filters=300, kernel_size=3, strides=1, padding="same", activation="relu")(x2)
 
-    x3 = keras.layers.Conv2D(filters=ch5x5red, kernel_size=1, strides=1, padding="same", activation="relu")(inputs)
-    x3 = keras.layers.Conv2D(filters=ch5x5, kernel_size=5, strides=1, padding="same", activation="relu")(x3)
+    x3 = keras.layers.Conv2D(filters=400, kernel_size=1, strides=1, padding="same", activation="relu")(inputs)
+    x3 = keras.layers.Conv2D(filters=500, kernel_size=5, strides=1, padding="same", activation="relu")(x3)
 
     x4 = keras.layers.MaxPool2D(pool_size=3, strides=1, padding="same")(inputs)
     x4 = keras.layers.Conv2D(filters=pool_proj, kernel_size=1, strides=1, padding="same", activation="relu")(x4)
 
-    # reshape
     target_height = inputs.shape[1]
     target_width = inputs.shape[2]
     x1 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x1)
@@ -70,16 +70,17 @@ def go():
                                                                     memory_limit=8192)])
 
     with tf.device("/GPU:0"):
-        imagenet = np.load(DATASETS_PATH / "sampled_imagenet_1500.npz")
+        imagenet = np.load(DATA_PATH / "sampled_imagenet_1500.npz")
         x_train = imagenet['x_test'][:100]
         y_train = imagenet['y_test'][:100]
+        print(x_train[0].shape)
 
         model = googlenet(1000, (224, 224, 3))
         # model.summary()
         model.compile(optimizer=tf.keras.optimizers.legacy.SGD(learning_rate=0.3),
                       loss="sparse_categorical_crossentropy",
                       metrics=["accuracy"])
-        model.fit(x_train, y_train, batch_size=2, epochs=1, verbose=0)
+        model.fit(x_train, y_train, batch_size=2, epochs=1, verbose=1)
 
 
 if __name__ == "__main__":

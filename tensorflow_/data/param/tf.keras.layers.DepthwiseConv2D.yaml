@@ -24,7 +24,7 @@ constraints:
     default: 1
     dtype: int
     structure: integer
-    range: [0, 8192]
+    range: [0, 2048]
   depthwise_constraint:
     default: None
     dtype: tf.string
