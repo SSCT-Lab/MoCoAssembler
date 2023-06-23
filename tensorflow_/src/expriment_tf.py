@@ -15,7 +15,7 @@ class ExperimentsTF(Experiments):
         super(ExperimentsTF, self).__init__()
         self.model = self.simple_model + self.complex_model + self.rnn_model
 
-    def trainOne(self, model, mutate_times):
+    def train(self, model, mutate_times):
         mocoTf = MoCoTF(model, mutate_times)
 
         # depart one model
@@ -28,7 +28,7 @@ class ExperimentsTF(Experiments):
             print(model + " decomposition complete.")
 
         # generate new model list
-        mocoTf.generate_model()
+        mocoTf.mutate()
 
 
 if __name__ == "__main__":
@@ -69,18 +69,18 @@ if __name__ == "__main__":
     if args.train_simple:
         for model in exp.simple_model:
             print(model + " mutation start.")
-            exp.trainOne(model, args.mutate_times)
+            exp.train(model, args.mutate_times)
             print(model + " mutation complete.")
     elif args.train_complex:
         for model in exp.complex_model:
             print(model + " mutation start.")
-            exp.trainOne(model, args.mutate_times)
+            exp.train(model, args.mutate_times)
             print(model + " mutation complete.")
     elif args.train_all:
         for model in exp.model:
             print(model + " mutation start.")
-            exp.trainOne(model, args.mutate_times)
+            exp.train(model, args.mutate_times)
             print(model + " mutation complete.")
     else:
-        exp.trainOne(args.model_name, args.mutate_times)
+        exp.train(args.model_name, args.mutate_times)
         print(args.model_name + " mutation complete.")
