@@ -1,12 +1,13 @@
+import numpy as np
 import tensorflow as tf
 from tensorflow import keras
+from config.paths import DATASETS_PATH
 
 
 def alexnet(label_num=1000, input_shape=(224, 224, 3)):
     input_tensor = keras.Input(shape=input_shape, dtype="float32")
 
-    x = keras.layers.Conv2D(filters=64, kernel_size=(11, 11), activation='relu', strides=(4, 4), padding='same')(
-        input_tensor)
+    x = keras.layers.Conv2D(filters=64, kernel_size=(11, 11), activation='relu', strides=(4, 4), padding='same')(input_tensor)
     x = keras.layers.MaxPool2D(pool_size=(3, 3), strides=(2, 2))(x)
 
     x = keras.layers.Conv2D(filters=192, kernel_size=(5, 5), activation='relu', padding='same')(x)
@@ -41,11 +42,11 @@ def go():
                                                                 memory_limit=8192)])
 
     with tf.device("/GPU:0"):
-        (x_train, y_train), (x_test, y_test) = keras.datasets.cifar10.load_data()
-        x_train = x_train[:100]
-        y_train = y_train[:100]
+        cifar10 = np.load(DATASETS_PATH / "cifar10.npz")
+        x_train = cifar10['x_train'][:100]
+        y_train = cifar10['y_train'][:100]
 
-        x_train, x_test = x_train / 255.0, x_test / 255.0
+        x_train = x_train / 255.0
 
         model = alexnet(10, (32, 32, 3))
         # model.summary()
@@ -53,6 +54,8 @@ def go():
                       loss="sparse_categorical_crossentropy",
                       metrics=["accuracy"])
         model.fit(x_train, y_train, batch_size=2, epochs=1, verbose=1)
+
+        return model.count_params()
 
 
 if __name__ == "__main__":

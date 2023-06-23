@@ -1,6 +1,7 @@
+import numpy as np
 import tensorflow as tf
-from keras.datasets import mnist
 from tensorflow import keras
+from config.paths import DATASETS_PATH
 
 
 def lenet(label_num=10, input_shape=(28, 28, 1)):
@@ -31,9 +32,10 @@ def go():
                                                         [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=8192)])
 
     with tf.device("/GPU:0"):
-        (x_train, y_train), (x_test, y_test) = mnist.load_data()
-        x_train = x_train[:100]
-        y_train = y_train[:100]
+        mnist = np.load(DATASETS_PATH / "mnist.npz")
+
+        x_train = mnist['x_train'][:100]
+        y_train = mnist['y_train'][:100]
 
         x_train = x_train.reshape(-1, 28, 28, 1) / 255.0
 

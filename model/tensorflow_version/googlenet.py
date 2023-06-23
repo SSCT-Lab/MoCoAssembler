@@ -1,11 +1,10 @@
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
-
 from config.paths import DATASETS_PATH
 
 
-def googlenet(class_num=1000, input_shape=(224, 224, 3)):
+def googlenet(num_class=1000, input_shape=(224, 224, 3)):
     input_tensor = keras.Input(shape=input_shape, dtype="float32")
 
     x = keras.layers.Conv2D(filters=64, kernel_size=7, strides=2, padding="same", activation="relu")(input_tensor)
@@ -32,7 +31,7 @@ def googlenet(class_num=1000, input_shape=(224, 224, 3)):
     x = inception(x, 384, 192, 384, 48, 128, 128)
     x = keras.layers.AveragePooling2D(pool_size=7, strides=1)(x)
 
-    output_tensor = keras.layers.Dense(units=class_num, activation="softmax")(keras.layers.Flatten()(x))
+    output_tensor = keras.layers.Dense(units=num_class, activation="softmax")(keras.layers.Flatten()(x))
 
     model = keras.models.Model(inputs=input_tensor, outputs=output_tensor)
     return model
@@ -70,7 +69,8 @@ def go():
                                                                     memory_limit=8192)])
 
     with tf.device("/GPU:0"):
-        imagenet = np.load(DATASETS_PATH / "sampled_imagenet_1500.npz")
+        imagenet = np.load(DATASETS_PATH / "imagenet.npz")
+        print(imagenet.__dict__)
         x_train = imagenet['x_test'][:100]
         y_train = imagenet['y_test'][:100]
 

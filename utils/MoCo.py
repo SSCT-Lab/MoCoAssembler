@@ -6,8 +6,6 @@ class MoCo:
 
     def mutate(self): pass
 
-    def generate_model(self): pass
-
     def get_function(self, line: str): pass
 
     def get_params(self, line: str): pass

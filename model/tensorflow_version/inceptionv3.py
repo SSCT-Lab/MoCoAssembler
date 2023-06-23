@@ -1,5 +1,7 @@
+import numpy as np
 import tensorflow as tf
 from tensorflow import keras
+from config.paths import DATASETS_PATH
 
 
 def inceptionv3(class_num=1000, input_shape=(299, 299, 3)):
@@ -59,10 +61,14 @@ def InceptionA(inputs, filter_num):
     x4 = keras.layers.AveragePooling2D(pool_size=(3, 3), strides=1, padding="same")(inputs)
     x4 = keras.layers.Conv2D(filters=filter_num, kernel_size=(1, 1), strides=1, padding="same", activation="relu")(x4)
 
-    shape = tf.shape(x1)
-    x2 = tf.reshape(x2, shape)
-    x3 = tf.reshape(x3, shape)
-    x4 = tf.reshape(x4, shape)
+    # reshape
+    target_height = inputs.shape[1]
+    target_width = inputs.shape[2]
+    x1 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x1)
+    x2 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x2)
+    x3 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x3)
+    x4 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x4)
+
     outputs = keras.layers.concatenate([x1, x2, x3, x4])
     return outputs
 
@@ -76,9 +82,12 @@ def InceptionB(inputs):
 
     x3 = keras.layers.MaxPool2D(pool_size=(3, 3), strides=2, padding="valid")(inputs)
 
-    shape = tf.shape(x1)
-    x2 = tf.reshape(x2, shape)
-    x3 = tf.reshape(x3, shape)
+    # reshape
+    target_height = inputs.shape[1]
+    target_width = inputs.shape[2]
+    x1 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x1)
+    x2 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x2)
+    x3 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x3)
 
     outputs = keras.layers.concatenate([x1, x2, x3])
     return outputs
@@ -100,10 +109,13 @@ def InceptionC(inputs, filter_num):
     x4 = keras.layers.MaxPool2D(pool_size=(3, 3), strides=1, padding="same")(inputs)
     x4 = keras.layers.Conv2D(filters=192, kernel_size=(1, 1), strides=1, padding="same", activation="relu")(x4)
 
-    shape = tf.shape(x1)
-    x2 = tf.reshape(x2, shape)
-    x3 = tf.reshape(x3, shape)
-    x4 = tf.reshape(x4, shape)
+    # reshape
+    target_height = inputs.shape[1]
+    target_width = inputs.shape[2]
+    x1 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x1)
+    x2 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x2)
+    x3 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x3)
+    x4 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x4)
 
     outputs = keras.layers.concatenate([x1, x2, x3, x4])
     return outputs
@@ -120,9 +132,12 @@ def InceptionD(inputs):
 
     x3 = keras.layers.MaxPool2D(pool_size=(3, 3), strides=2, padding="valid")(inputs)
 
-    shape = tf.shape(x1)
-    x2 = tf.reshape(x2, shape)
-    x3 = tf.reshape(x3, shape)
+    # reshape
+    target_height = inputs.shape[1]
+    target_width = inputs.shape[2]
+    x1 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x1)
+    x2 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x2)
+    x3 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x3)
 
     outputs = keras.layers.concatenate([x1, x2, x3])
     return outputs
@@ -145,13 +160,37 @@ def InceptionE(inputs):
     x4 = keras.layers.AveragePooling2D(pool_size=(3, 3), strides=1, padding="same")(inputs)
     x4 = keras.layers.Conv2D(filters=192, kernel_size=(1, 1), strides=1, padding="same", activation="relu")(x4)
 
-    shape = tf.shape(x1)
-    x2 = tf.reshape(x2, shape)
-    x3 = tf.reshape(x3, shape)
-    x4 = tf.reshape(x4, shape)
+    # reshape
+    target_height = inputs.shape[1]
+    target_width = inputs.shape[2]
+    x1 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x1)
+    x2 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x2)
+    x3 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x3)
+    x4 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x4)
+
     outputs = keras.layers.concatenate([x1, x2, x3, x4], axis=-1)
     return outputs
 
 
-if __name__ == '__main__':
-    net = inceptionv3()
+def go():
+    gpus = tf.config.experimental.list_physical_devices('GPU')
+    if gpus:
+        tf.config.experimental.set_virtual_device_configuration(gpus[0],
+                                                                [tf.config.experimental.VirtualDeviceConfiguration(
+                                                                    memory_limit=8192)])
+
+    with tf.device("/GPU:0"):
+        imagenet = np.load(DATASETS_PATH / "imagenet.npz")
+        x_train = imagenet['x_test'][:100]
+        y_train = imagenet['y_test'][:100]
+
+        model = inceptionv3(1000, (224, 224, 3))
+        # model.summary()
+        model.compile(optimizer=tf.keras.optimizers.legacy.SGD(learning_rate=0.3),
+                      loss="sparse_categorical_crossentropy",
+                      metrics=["accuracy"])
+        model.fit(x_train, y_train, batch_size=2, epochs=1, verbose=1)
+
+
+if __name__ == "__main__":
+    go()

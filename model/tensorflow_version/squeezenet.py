@@ -1,8 +1,10 @@
+import numpy as np
 import tensorflow as tf
 from tensorflow import keras
+from config.paths import DATASETS_PATH
 
 
-def squeezenet(input_shape=(224, 224, 3)):
+def squeezenet(label_num=1000, input_shape=(224, 224, 3)):
     input_tensor = keras.Input(shape=input_shape)
 
     # 1st block
@@ -36,10 +38,8 @@ def squeezenet(input_shape=(224, 224, 3)):
     # 10th block
     x = keras.layers.Conv2D(filters=5, activation="relu", kernel_size=(1, 1), strides=1, padding="same")(x)
     x = keras.layers.GlobalAveragePooling2D()(x)
-    x = tf.nn.softmax(x)
 
-    # output
-    output_tensor = x
+    output_tensor = keras.layers.Flatten()(keras.layers.Dense(units=label_num, activation="softmax")(x))
     model = keras.models.Model(inputs=input_tensor, outputs=output_tensor)
     return model
 
@@ -49,14 +49,34 @@ def inception(x, s1, e1, e3):
     y1 = keras.layers.Conv2D(filters=e1, activation="relu", kernel_size=(1, 1), strides=1, padding="same")(x)
     y2 = keras.layers.Conv2D(filters=e3, activation="relu", kernel_size=(3, 3), strides=1, padding="same")(x)
 
-    shape = tf.shape(x)
-    y1 = tf.reshape(y1, shape)
-    y2 = tf.reshape(y2, shape)
+    # reshape
+    target_height = x.shape[1]
+    target_width = x.shape[2]
+    y1 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(y1)
+    y2 = keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(y2)
 
     outputs = keras.layers.concatenate([y1, y2])
     return outputs
 
 
-if __name__ == '__main__':
-    model = squeezenet((224, 224, 3))
-    model.summary()
+def go():
+    gpus = tf.config.experimental.list_physical_devices('GPU')
+    if gpus:
+        tf.config.experimental.set_virtual_device_configuration(gpus[0],
+                                                                [tf.config.experimental.VirtualDeviceConfiguration(
+                                                                    memory_limit=8192)])
+
+    with tf.device("/GPU:0"):
+        imagenet = np.load(DATASETS_PATH / "imagenet.npz")
+        x_train = imagenet['x_test'][:100]
+        y_train = imagenet['y_test'][:100]
+
+        model = squeezenet(1000, (224, 224, 3))
+        model.compile(optimizer=tf.keras.optimizers.legacy.SGD(learning_rate=0.3),
+                      loss="sparse_categorical_crossentropy",
+                      metrics=["accuracy"])
+        model.fit(x_train, y_train, batch_size=2, epochs=1, verbose=1)
+
+
+if __name__ == "__main__":
+    go()

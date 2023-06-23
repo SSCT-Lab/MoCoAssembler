@@ -1,8 +1,10 @@
+import numpy as np
 import tensorflow as tf
 from tensorflow import keras
+from config.paths import DATASETS_PATH
 
 
-def densenet(input_shape=(224, 224, 3)):
+def densenet(num_class=1000, input_shape=(224, 224, 3)):
     input_tensor = keras.Input(shape=input_shape)
     features_list = []
 
@@ -66,14 +68,32 @@ def densenet(input_shape=(224, 224, 3)):
         x = tf.concat(features_list, axis=-1)
     features_list.clear()
     x = keras.layers.GlobalAveragePooling2D()(x)
-    x = keras.layers.Dense(units=10, activation='softmax')(x)
 
-    output_tensor = x
+    output_tensor = keras.layers.Dense(units=num_class, activation="softmax")(keras.layers.Flatten()(x))
 
     model = keras.models.Model(inputs=input_tensor, outputs=output_tensor)
     return model
 
 
-if __name__ == '__main__':
-    model = densenet((224, 224, 3))
-    model.summary()
+def go():
+    gpus = tf.config.experimental.list_physical_devices('GPU')
+    if gpus:
+        tf.config.experimental.set_virtual_device_configuration(gpus[0],
+                                                                [tf.config.experimental.VirtualDeviceConfiguration(
+                                                                    memory_limit=8192)])
+
+    with tf.device("/GPU:0"):
+        imagenet = np.load(DATASETS_PATH / "imagenet.npz")
+        x_train = imagenet['x_test'][:100]
+        y_train = imagenet['y_test'][:100]
+
+        model = densenet(1000, (224, 224, 3))
+        # model.summary()
+        model.compile(optimizer=tf.keras.optimizers.legacy.SGD(learning_rate=0.3),
+                      loss="sparse_categorical_crossentropy",
+                      metrics=["accuracy"])
+        model.fit(x_train, y_train, batch_size=2, epochs=1, verbose=1)
+
+
+if __name__ == "__main__":
+    go()
