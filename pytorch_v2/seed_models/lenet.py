@@ -15,7 +15,7 @@ class LeNet(nn.Module):
         self.conv_5 = torch.nn.Sigmoid()
         self.conv_6 = torch.nn.MaxPool2d(kernel_size=2, stride=2)
 
-        self.fc_1 = torch.nn.Linear(in_features=400, out_features=120)
+        self.fc_1 = torch.nn.Linear(in_features=256, out_features=120)
         self.fc_2 = torch.nn.Sigmoid()
 
         self.fc_3 = torch.nn.Linear(in_features=120, out_features=84)
@@ -51,4 +51,5 @@ class LeNet(nn.Module):
 def go():
     device = torch.device('cuda')
     net = LeNet().to(device)
-    y = net(torch.randn((224, 1, 32, 32)).to(device))
+    y = net(torch.randn((224, 1, 28, 28)).to(device))
+    return net

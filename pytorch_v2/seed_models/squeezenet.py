@@ -150,11 +150,13 @@ class SqueezeNet(nn.Module):
 
         # output
         x = self.softmax(x)
+
         return x
 
 
 def go():
     device = torch.device('cuda')
-    model = SqueezeNet().to(device)
-    x = torch.randn((3, 3, 244, 244)).to(device)
+    model = SqueezeNet()
+    x = torch.randn((3, 3, 244, 244))
     y = model(x)
+    return model

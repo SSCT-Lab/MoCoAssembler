@@ -81,3 +81,4 @@ def go():
     model = AlexNet().to(device)
     x = torch.randn((6, 3, 224, 224)).to(device)
     y = model(x)
+    return model

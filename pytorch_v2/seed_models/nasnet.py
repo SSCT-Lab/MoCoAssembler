@@ -180,3 +180,4 @@ def go():
     model = ResNet([2, 2, 2, 2]).to(device)
     x = torch.randn(3, 3, 244, 244).to(device)
     y = model(x)
+    return model

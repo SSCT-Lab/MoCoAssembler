@@ -121,3 +121,4 @@ def go():
     net = VGG_19().to(device)
     x = torch.randn((1, 3, 224, 224)).to(device)
     output = net(x)
+    return net

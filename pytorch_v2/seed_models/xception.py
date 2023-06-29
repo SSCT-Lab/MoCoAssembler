@@ -247,3 +247,4 @@ def go():
     model = Xception().to(device)
     x = torch.randn(3, 3, 224, 224).to(device)
     y = model(x)
+    return model

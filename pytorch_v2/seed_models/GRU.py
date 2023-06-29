@@ -31,3 +31,4 @@ def go():
     net = GRU(20, 100, 20)
     x = torch.randn((5, 100, 20))
     y = net(x)
+    return net

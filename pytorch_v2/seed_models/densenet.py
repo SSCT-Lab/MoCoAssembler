@@ -159,7 +159,6 @@ class DenseNet(nn.Module):
 
         x = self.avgpool(x)
         x = self.softmax(x)
-
         return x
 
 
@@ -168,3 +167,4 @@ def go():
     model = DenseNet([1, 2, 4, 3])
     x = torch.randn(3, 3, 224, 224)
     y = model(x)
+    return model

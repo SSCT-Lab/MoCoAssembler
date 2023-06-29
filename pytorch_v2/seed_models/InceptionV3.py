@@ -267,3 +267,4 @@ def go():
     model = InceptionV3().to(device)
     x = jt.randn((3, 3, 299, 299)).to(device)
     y = model(x)
+    return model
