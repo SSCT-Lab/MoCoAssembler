@@ -3,20 +3,24 @@ import os
 import queue
 import shutil
 
+import yaml
+
 import mutate
 from depart import Departed_Model, Single_Model
 from complex_models import get_seed_model
 import run
 import random
-
-from pytorch_v2.algorithms import file_paths
+from alive_progress import alive_bar
+import file_paths
 
 
 class Model:
-    def __init__(self, dm: Departed_Model, g: int, i: int):
+    def __init__(self, dm: Departed_Model, g: int, i: int, info: str = 'default', c: int = 0):
         self.model: Departed_Model = dm
         self.generation: int = g
         self.index: int = i
+        self.mutate_info = info
+        self.param_count = c
 
 
 class Assembler_Complex:
@@ -24,7 +28,7 @@ class Assembler_Complex:
         self.seed_model: Departed_Model = get_seed_model(model_name)
         self.mutator = mutate.Mutator()
         # self.shape_fixer = shape_fix.ShapeFixer()
-        self.n = 5
+        self.n = 2
 
     def set_n(self, val: int):
         self.n = val
@@ -41,6 +45,10 @@ class Assembler_Complex:
                     shutil.rmtree(file_path)
             except Exception as e:
                 print(f"无法删除文件: {file_path}，错误信息: {e}")
+
+    def sort_dict_by_value(self, input_dict: dict) -> dict:
+        sorted_dict = dict(sorted(input_dict.items(), key=lambda x: x[1]))
+        return sorted_dict
 
     def assemble_code_tree(self):
         import sys
@@ -75,13 +83,16 @@ class Assembler_Complex:
 
         generation = 1
         last_layer_count = 1
+        mutate_info_dict = {}
+        filename_to_model_dict = {}
 
         for sentence in execute_list:
             if model_queue.empty():
                 break
 
             # no need to change, add this in all models in queue
-            if 'self.' not in sentence or sentence.startswith('        if') or sentence.startswith('            ') or sentence.startswith('        for'):
+            if 'self.' not in sentence or sentence.startswith('        if') or sentence.startswith(
+                    '            ') or sentence.startswith('        for'):
                 new_queue = queue.Queue()
                 while not model_queue.empty():
                     temp: Model = model_queue.get()
@@ -92,14 +103,65 @@ class Assembler_Complex:
 
             model_list: list[Model] = []
             next_layer_count = 0
-            for i in range(last_layer_count):
-                temp_model = model_queue.get()
-                file_name = temp_model.model.assemble_file(generation=temp_model.generation, index=temp_model.index)
-                run_flag = run.run_single_model(file_name, temp_model.model.net_name)
-                if run_flag:
-                    model_list.append(temp_model)
+
+            # test
+            # with open(os.path.join('D:/PythonProjects/test_dict', 'gen' + str(generation-2) + '.yaml'), 'w') as f:
+            #     yaml.dump(mutate_info_dict, f)
+            # test
+
+            mutate_info_dict.clear()
+            filename_to_model_dict.clear()
+            with alive_bar(last_layer_count, bar='smooth',
+                           title='generation' + str(generation - 1) + '~test run') as bar:
+                for i in range(last_layer_count):
+                    temp_model: Model = model_queue.get()
+                    file_name = temp_model.model.assemble_file(generation=temp_model.generation, index=temp_model.index)
+                    run_flag, param_flag = run.run_single_model(file_name, temp_model.model.net_name)
+                    # something else also need to be returned
+                    bar()
+                    if run_flag:
+                        temp_model.param_count = param_flag
+                        mutate_info = temp_model.mutate_info
+                        if mutate_info not in mutate_info_dict.keys():
+                            mutate_info_dict[mutate_info] = {}
+                        mutate_info_dict[temp_model.mutate_info][file_name] = param_flag
+                        filename_to_model_dict[file_name] = copy.deepcopy(temp_model)
+                    else:
+                        pass
+
+            # now, this model list is for all models that has passed 'run', next they will get cut and trained. and
+            # we have file_name to param count dict mutate_info_dict to cut, and a filename_to_model_dict to get Models.
+            file_list: list[str] = []
+            for mutate_info in mutate_info_dict.keys():
+                now_dict = mutate_info_dict[mutate_info]
+                if len(now_dict.keys()) == 0:
+                    continue
+                elif len(now_dict.keys()) == 1:
+                    f = list(now_dict.keys())[0]  # file name
+                    model = filename_to_model_dict[f]
+                    file_list.append(f)
                 else:
-                    pass
+                    n = len(now_dict.keys())
+                    if n % 2 == 1:
+                        n = int(n / 2) + 1
+                    else:
+                        n = int(n / 2)
+                    now_dict = self.sort_dict_by_value(now_dict)
+                    for i in range(n):
+                        file_list.append(list(now_dict.keys())[i])
+
+            # now, we have a file list that filled with file names of models that have been cut,
+            # next, they will be trained and judged
+
+            with alive_bar(len(file_list), bar='smooth',
+                           title='generation' + str(generation - 1) + '~test train') as bar:
+                for file_name in file_list:
+                    train_flag = run.train_single_model(file_name, self.seed_model.net_name)
+                    bar()
+                    if train_flag:
+                        model_list.append(filename_to_model_dict[file_name])
+                    else:
+                        continue
 
             count = len(model_list)
             next_layer_count = count * self.n
@@ -121,24 +183,19 @@ class Assembler_Complex:
                         dec: list or str = main_model.declaration[name]
                         if isinstance(dec, list):
                             new_dec = self.mutator.sequence_mutate(dec)
+                            temp.mutate_info = 'sequence mutate'
                             temp.model.main_model.declaration[name] = new_dec
                             temp.model.main_model.execute.append(sentence)
                         else:
                             if 'torch.nn.' in dec:
-                                new_dec, mut = self.mutator.api_mutate(dec)
+                                new_dec, mut_info = self.mutator.api_mutate(dec)
                                 temp.model.main_model.declaration[name] = new_dec
-                                # 6.4尝试增加shape fix
-                                # if mut != 'no mutate' and 'GRU' not in new_dec and 'LSTM' not in new_dec:
-                                #     shape_fix_sentence = self.shape_fixer.get_shape_fix_sentence(
-                                #         'self.' + name + ' = ' + new_dec
-                                #     )
-                                #     if random.randint(1,10) > 3:
-                                #         temp.model.main_model.execute.append(shape_fix_sentence)
-                                # no shape fix
+                                temp.mutate_info = mut_info
                                 temp.model.main_model.execute.append(sentence)
                             else:
                                 for block_name in block_list:
                                     if block_name in dec:
+                                        temp.mutate_info = 'child model mutate'
                                         child_model = child_model_dict[block_name]
                                         new_child_model = self.mutator.child_model_mutate(child_model)
                                         child_model_dict[block_name].block_visited += 1
@@ -163,15 +220,73 @@ class Assembler_Complex:
             generation = generation + 1
             last_layer_count = next_layer_count
 
-        for i in range(last_layer_count):
-            if model_queue.empty():
-                break
-            temp = model_queue.get()
-            file_name = temp.model.assemble_file(temp.generation, temp.index)
-            run.run_single_model(file_name, temp.model.net_name)
+        model_list: list[Model] = []
+        next_layer_count = 0
+
+        # test
+        # with open(os.path.join('D:/PythonProjects/test_dict', 'gen' + str(generation - 2) + '.yaml'), 'w') as f:
+        #     yaml.dump(mutate_info_dict, f)
+        # test
+
+        mutate_info_dict.clear()
+        filename_to_model_dict.clear()
+        with alive_bar(last_layer_count, bar='smooth',
+                       title='generation' + str(generation - 1) + '~test run') as bar:
+            for i in range(last_layer_count):
+                if model_queue.empty():
+                    break
+                temp_model: Model = model_queue.get()
+                file_name = temp_model.model.assemble_file(generation=temp_model.generation, index=temp_model.index)
+                run_flag, param_flag = run.run_single_model(file_name, temp_model.model.net_name)
+                # something else also need to be returned
+                bar()
+                if run_flag:
+                    temp_model.param_count = param_flag
+                    mutate_info = temp_model.mutate_info
+                    if mutate_info not in mutate_info_dict.keys():
+                        mutate_info_dict[mutate_info] = {}
+                    mutate_info_dict[temp_model.mutate_info][file_name] = param_flag
+                    filename_to_model_dict[file_name] = copy.deepcopy(temp_model)
+                else:
+                    pass
+
+        # now, this model list is for all models that has passed 'run', next they will get cut and trained. and
+        # we have file_name to param count dict mutate_info_dict to cut, and a filename_to_model_dict to get Models.
+        file_list: list[str] = []
+        for mutate_info in mutate_info_dict.keys():
+            now_dict = mutate_info_dict[mutate_info]
+            if len(now_dict.keys()) == 0:
+                continue
+            elif len(now_dict.keys()) == 1:
+                f = list(now_dict.keys())[0]  # file name
+                model = filename_to_model_dict[f]
+                file_list.append(f)
+            else:
+                n = len(now_dict.keys())
+                if n % 2 == 1:
+                    n = int(n / 2) + 1
+                else:
+                    n = int(n / 2)
+                now_dict = self.sort_dict_by_value(now_dict)
+                for i in range(n):
+                    file_list.append(list(now_dict.keys())[i])
+
+        # now, we have a file list that filled with file names of models that have been cut,
+        # next, they will be trained and judged
+
+        with alive_bar(len(file_list), bar='smooth',
+                       title='generation' + str(generation - 1) + '~test train') as bar:
+            for file_name in file_list:
+                train_flag = run.train_single_model(file_name, self.seed_model.net_name)
+                bar()
+                if train_flag:
+                    model_list.append(filename_to_model_dict[file_name])
+                else:
+                    continue
+
         self.dfc(os.path.join(file_paths.MUTATED_MODEL_PATH, self.seed_model.net_name))
 
 
 if __name__ == '__main__':
-    a = Assembler_Complex('ResNet18')
+    a = Assembler_Complex('lenet')
     a.assemble_code_tree()

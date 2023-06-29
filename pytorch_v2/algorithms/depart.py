@@ -55,7 +55,7 @@ class Departed_Model:
         self.end: str = ''
         if model_name in ['ResNet18', 'ResNet50', 'InceptionV3', 'testnet',
                           'alexnet', 'lenet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19',
-                          'densenet', 'LSTM', 'GRU']:
+                          'densenet', 'LSTM', 'GRU', 'googlenet']:
             self.get_model_from_file(model_name)
 
     def assemble_file(self, generation: int = 0, index: int = 1) -> str:
@@ -71,7 +71,7 @@ class Departed_Model:
             f.write(model.assemble())
         f.write(self.end)
         f.close()
-        print(self.net_name + '-' + str(generation) + '-' + str(index) + '.py' + '      successfully assembled')
+        # print(self.net_name + '-' + str(generation) + '-' + str(index) + '.py' + '      successfully assembled')
         return self.net_name + '-' + str(generation) + '-' + str(index) + '.py'
 
     def get_model_from_file(self, model_name: str) -> None:
@@ -188,5 +188,5 @@ def connect_str_list(str_list: list) -> str:  # connect sentences in a list with
 
 
 if __name__ == '__main__':
-    testnet = Departed_Model('testnet')
+    lenet = Departed_Model('lenet')
     # dm.assemble_file()

@@ -12,3 +12,5 @@ MUTATED_MODEL_PATH = os.path.join(MAIN_PATH, 'mutated_model')
 SAVED_MODEL_PATH = os.path.join(MAIN_PATH, 'saved_mutated_models')
 
 LOG_PATH = os.path.join(MAIN_PATH, 'logs')
+
+DATASET_PATH = os.path.join(MAIN_PATH, '..', 'datasets')
