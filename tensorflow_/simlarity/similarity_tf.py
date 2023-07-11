@@ -3,10 +3,9 @@ import operator
 
 import numpy as np
 import yaml
-import spacy
-from sentence_transformers import SentenceTransformer, util
+from sentence_transformers import util
 from pathlib import Path
-from config.paths import TF_FUNC_PATH, TF_FUNC_DEF_PATH, TF_FUNC_PARAM_PATH, TF_FUNC_SIM_PATH
+from config.paths import FUNC_PATH, FUNC_DEF_PATH, FUNC_PARAM_PATH, FUNC_SIM_PATH
 from utils.Similarity import Similarity
 
 
@@ -127,7 +126,7 @@ class SimTF(Similarity):
 
                 param_sim_dic[__[0]] = sim
 
-            new = Path.open(TF_FUNC_PARAM_PATH / (_[0] + ".yaml"), "w")
+            new = Path.open(FUNC_PARAM_PATH / (_[0] + ".yaml"), "w")
             yaml.dump(param_sim_dic, new)
 
             print(_[0], "\033[33mDONE\033[0m")
@@ -149,8 +148,8 @@ class SimTF(Similarity):
         :param def_json: 函数定义以字典形式存储在json中
         """
         def_sim_dic = {}
-        if not Path.exists(TF_FUNC_DEF_PATH):
-            Path.mkdir(TF_FUNC_DEF_PATH)
+        if not Path.exists(FUNC_DEF_PATH):
+            Path.mkdir(FUNC_DEF_PATH)
 
         for _ in def_json.items():
             print(_[0], "\033[31mSTART\033[0m")
@@ -162,35 +161,35 @@ class SimTF(Similarity):
 
                 def_sim_dic[__[0]] = sim
 
-            new = Path.open(TF_FUNC_DEF_PATH / (_[0] + ".yaml"), "w")
+            new = Path.open(FUNC_DEF_PATH / (_[0] + ".yaml"), "w")
             yaml.dump(def_sim_dic, new)
             print(_[0], "\033[31mDONE\033[0m")
 
     def data_dumps(self):
         # 函数参数列表相似度
-        with Path.open(TF_FUNC_PATH / "param.json", "r") as file:
+        with Path.open(FUNC_PATH / "param.json", "r") as file:
             data = json.load(file)
             self.api_param_sim(data)
 
         # 函数定义相似度
-        with Path.open(TF_FUNC_PATH / "def.json", "r") as file:
+        with Path.open(FUNC_PATH / "def.json", "r") as file:
             data = json.load(file)
             self.api_def_sim(data)
 
     def sim_calcu(self, w_def: float, w_param: float):
 
-        if not Path.exists(TF_FUNC_SIM_PATH):
-            Path.mkdir(TF_FUNC_SIM_PATH)
+        if not Path.exists(FUNC_SIM_PATH):
+            Path.mkdir(FUNC_SIM_PATH)
 
-        with Path.open(TF_FUNC_PATH / "def.json", "r") as file:
+        with Path.open(FUNC_PATH / "def.json", "r") as file:
             data = json.load(file)
         api_list = list(data.keys())
 
         for api in api_list:
             sim = {}
             print(api, "\033[34mSTART\033[0m")
-            def_file = Path.open(TF_FUNC_DEF_PATH / (api + ".yaml"), "r")
-            param_file = Path.open(TF_FUNC_PARAM_PATH / (api + ".yaml"), "r")
+            def_file = Path.open(FUNC_DEF_PATH / (api + ".yaml"), "r")
+            param_file = Path.open(FUNC_PARAM_PATH / (api + ".yaml"), "r")
 
             def_data = yaml.load(def_file, yaml.Loader)
             param_data = yaml.load(param_file, yaml.Loader)
@@ -200,7 +199,7 @@ class SimTF(Similarity):
                 param_sim = param_data[_]
                 sim[_] = def_sim * w_def + param_sim * w_param
 
-            new = Path.open(TF_FUNC_SIM_PATH / (api + ".yaml"), "w")
+            new = Path.open(FUNC_SIM_PATH / (api + ".yaml"), "w")
             res = dict(sorted(sim.items(), key=operator.itemgetter(1), reverse=True))
             yaml.dump(res, new, sort_keys=False)
             print(api, "\033[34mDONE\033[0m")

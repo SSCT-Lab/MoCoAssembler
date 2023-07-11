@@ -6,6 +6,7 @@ constraints:
     - channels_first
     - channels_last
   rate:
+    default: 0.0
     dtype: float
 required:
   - rate

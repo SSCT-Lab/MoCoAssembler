@@ -37,13 +37,9 @@ constraints:
     - channels_first
     - channels_last
   dilation_rate:
-    default: (1, 1, 1)
+    default: 1
     dtype: int
-    structure:
-    - integer
-    - list
-    - tuple
-    shape: 3
+    structure: integer
     range: [0, 6]
   filters:
     dtype: int

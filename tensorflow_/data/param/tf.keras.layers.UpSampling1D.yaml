@@ -4,6 +4,7 @@ constraints:
     dtype: int
     structure: integer
     shape: 1
+    range: [0, 4]
 required: []
 descp:
   'Upsampling layer for 1D inputs.'

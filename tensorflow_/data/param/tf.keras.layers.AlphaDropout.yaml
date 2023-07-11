@@ -1,5 +1,6 @@
 constraints:
   rate:
+    default: 0.0
     dtype: float
   noise_shape:
     default: None

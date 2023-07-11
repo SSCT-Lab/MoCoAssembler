@@ -1,5 +1,6 @@
 constraints:
   feature_columns:
+    default: None
     structure:
     - list
   name:

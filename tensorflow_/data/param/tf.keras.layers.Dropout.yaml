@@ -2,10 +2,8 @@ constraints:
   noise_shape:
     default: None
   rate:
+    default: 0.0
     dtype: float
-  seed:
-    default: None
-    dtype: int
 required:
   - rate
 descp:

@@ -2,7 +2,7 @@ constraints:
   use_scale:
     default: False
     dtype: tf.bool
-  score_model:
+  score_mode:
     default: 'dot'
     dtype: tf.string
 required: []

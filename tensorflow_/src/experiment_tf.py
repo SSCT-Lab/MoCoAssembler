@@ -6,29 +6,39 @@ sys.path.append(Path.cwd().parent.parent.__str__())
 import argparse
 
 from tensorflow_.src.mutate_tf import MoCoTF
-from utils.Experiments import Experiments
 
+simple_model = ["lenet",
+                "alexnet",
+                "vgg16",
+                "vgg19",
+                "mobilenet"
+                ]
 
-class ExperimentsTF(Experiments):
+complex_model = ["googlenet",
+                 "resnet18",
+                 "resnet50",
+                 "squeezenet",
+                 "xception",
+                 "densenet",
+                 "inceptionv3",
+                 "lstm",
+                 "bilstm",
+                 "gru"
+                ]
+def train(model, mutate_times):
+    mocoTf = MoCoTF(model, mutate_times)
 
-    def __init__(self):
-        super(ExperimentsTF, self).__init__()
-        self.model = self.simple_model + self.complex_model + self.rnn_model
+    # depart one model
+    if (mocoTf.res_model_dir / mocoTf.template_file_name).exists():
+        print(model + " decomposition files exist.")
+        pass
+    else:
+        print(model + " decomposition file does not exist, we will create it……")
+        mocoTf.depart()
+        print(model + " decomposition complete.")
 
-    def train(self, model, mutate_times):
-        mocoTf = MoCoTF(model, mutate_times)
-
-        # depart one model
-        if (mocoTf.res_model_dir / mocoTf.template_file_name).exists():
-            print(model + " decomposition files exist.")
-            pass
-        else:
-            print(model + " decomposition file does not exist, we will create it……")
-            mocoTf.depart()
-            print(model + " decomposition complete.")
-
-        # generate new model list
-        mocoTf.mutate()
+    # generate new model list
+    mocoTf.mutate()
 
 
 if __name__ == "__main__":
@@ -61,26 +71,21 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    # physical_devices = tf.config.list_physical_devices('GPU')
-    # tf.config.experimental.set_memory_growth(physical_devices[0], True)
-    #
-    # with tf.device('/GPU:0'):
-    exp = ExperimentsTF()
     if args.train_simple:
-        for model in exp.simple_model:
+        for model in simple_model:
             print(model + " mutation start.")
-            exp.train(model, args.mutate_times)
+            train(model, args.mutate_times)
             print(model + " mutation complete.")
     elif args.train_complex:
-        for model in exp.complex_model:
+        for model in complex_model:
             print(model + " mutation start.")
-            exp.train(model, args.mutate_times)
+            train(model, args.mutate_times)
             print(model + " mutation complete.")
     elif args.train_all:
-        for model in exp.model:
+        for model in simple_model + simple_model:
             print(model + " mutation start.")
-            exp.train(model, args.mutate_times)
+            train(model, args.mutate_times)
             print(model + " mutation complete.")
     else:
-        exp.train(args.model_name, args.mutate_times)
+        train(args.model_name, args.mutate_times)
         print(args.model_name + " mutation complete.")

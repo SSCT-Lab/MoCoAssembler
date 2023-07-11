@@ -1,9 +1,13 @@
-import traceback
-from importlib import import_module
 from pathlib import Path
+
 import sys
 
 sys.path.append(Path.cwd().parent.parent.__str__())
+
+# import os
+#
+# os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+# os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
 import argparse
 import random
@@ -11,11 +15,14 @@ import re
 import tensorflow as tf
 import time
 import yaml
+import traceback
+from importlib import import_module
+from math import ceil
 from alive_progress import alive_bar
 from queue import Queue
 
-from config.keywords import INPUT_TENSOR, OUTPUT_TENSOR
 from config.paths import RES_PATH, PARAM_PATH, FUNC_SIM_PATH, LOG_PATH, TF_MODEL_PATH, TF_PATH
+from config.keywords import INPUT_TENSOR, OUTPUT_TENSOR
 from utils.MoCo import MoCo
 
 
@@ -46,8 +53,8 @@ class MoCoTF(MoCo):
                    "gamma_regularizer",
                    ]
 
-    def __init__(self, model_name, mutate_times):
-        super().__init__(model_name, mutate_times)
+    def __init__(self, model_name, mutate_times, is_mutate):
+        super().__init__(model_name, mutate_times, is_mutate)
         self.model_name = model_name
         self.res_model_dir = RES_PATH / model_name
         self.log_model_dir = LOG_PATH / model_name
@@ -71,17 +78,11 @@ class MoCoTF(MoCo):
         if not Path.exists(self.res_model_dir):
             Path.mkdir(self.res_model_dir)
 
-        if not Path.exists(self.mutate_dir):
-            Path.mkdir(self.mutate_dir)
-
         if not Path.exists(LOG_PATH):
             Path.mkdir(LOG_PATH)
 
         if not Path.exists(self.log_model_dir):
             Path.mkdir(self.log_model_dir)
-
-        if not Path.exists(self.log_dir):
-            Path.mkdir(self.log_dir)
 
         with Path.open(TF_PATH / "data/api_list.txt", "r") as file:
             self.api_list = [_[3:-1] for _ in file]
@@ -96,6 +97,10 @@ class MoCoTF(MoCo):
         self.THIS_NODE_ALL = 1
         self.NODE_ALL = 0
         self.NODE_RES = 1
+
+        self.success_list = []
+
+        self.is_mutate = is_mutate
 
     def depart(self):
         template_file = Path.open(Path(self.template_file_name), "a+", encoding="utf8")
@@ -139,6 +144,12 @@ class MoCoTF(MoCo):
             template_file.close()
 
     def mutate(self):
+        if not Path.exists(self.mutate_dir):
+            Path.mkdir(self.mutate_dir)
+
+        if not Path.exists(self.log_dir):
+            Path.mkdir(self.log_dir)
+
         function_file = Path.open(Path(self.function_file_name), "r", encoding="utf8")
 
         for line in function_file:
@@ -177,6 +188,8 @@ class MoCoTF(MoCo):
         self.ITERATION += 1
 
         function = self.get_function(line)
+        self.THIS_NODE_ALL = self.NODE_RES * self.MUTATE_TIMES
+        self.NODE_ALL += self.THIS_NODE_ALL
         if function not in self.api_list:
             if function in self.Inception.keys():
                 count = self.Inception[function]
@@ -186,8 +199,6 @@ class MoCoTF(MoCo):
             new_function = function + "_" + self.Inception[function].__str__()
             new_line.append(line.replace(function, new_function))
         else:
-            self.THIS_NODE_ALL = self.NODE_RES * self.MUTATE_TIMES
-            self.NODE_ALL += self.THIS_NODE_ALL
             for i in range(self.THIS_NODE_ALL):
                 method = random.choice(self.mutate_list)
                 _new_line, label = method(line)
@@ -214,7 +225,10 @@ class MoCoTF(MoCo):
                         new_file = Path.open(Path(new_file_name), "w", encoding="utf8")
                         new_file.write(new_content)
                         new_file.close()
-                        self.detail_dict[function] = {new_file_name: 0}
+                        if function in self.detail_dict:
+                            self.detail_dict[function][new_file_name] = 0
+                        else:
+                            self.detail_dict[function] = {new_file_name: 0}
 
                 else:
                     if output_pos != -1:
@@ -244,7 +258,12 @@ class MoCoTF(MoCo):
                     try:
                         module_name = '.'.join(model_name.replace("/", ".").split(".")[-6:-1])
                         module = import_module(module_name)
-                        self.detail_dict[_[0]][__] = module.go()
+                        if self.is_mutate:
+                            self.detail_dict[_[0]][__] = module.go()
+                        else:
+                            net = getattr(module, self.model_name)()
+                            self.detail_dict[_[0]][__] = net.count_params()
+                            del net
                         self.NODE_ALIVE += 1
                         self.queue.put(model_name)
                     except Exception:
@@ -268,7 +287,10 @@ class MoCoTF(MoCo):
     def get_params(self, line: str) -> dict:
         infos1 = re.findall(r".*?\((?P<param>.*?)\)\((?P<input>.*?)\)", line)
 
-        params = infos1[0][0] + ', '
+        if not infos1:
+            params = line.split("(")[1][:-1] + ', '
+        else:
+            params = infos1[0][0] + ', '
 
         infos2 = re.findall(r".*?\((.*?)\).*?", params, re.S)
         for _ in infos2:
@@ -290,10 +312,33 @@ class MoCoTF(MoCo):
         new_params = new_params[:-2]
         new_params = "(" + new_params + ")"
 
-        org_params: str = re.findall(r".*?(\(.*?\))\(.*?", line, re.S)[0]
+        org_params = re.findall(r".*?(\(.*?\))\(.*?", line, re.S)
+        if not org_params:
+            org_params = "(" + line.split("(")[1] + "\n"
+        else:
+            org_params = org_params[0]
 
         new_line = line.replace(org_params, new_params, 1)
         return new_line
+
+    def mutate_on_param(self, line: str) -> (str, str):
+        dict = self.get_params(line)
+        function = self.get_function(line)
+        func_file = PARAM_PATH / ("tf." + function + ".yaml")
+        if func_file.exists():
+            with Path.open(func_file, "r") as file:
+                all_data = yaml.load(file, yaml.Loader)
+                data = all_data["constraints"]
+                params_dict = dict.copy()
+
+                param = self.random_param(data) if len(list(data.keys())) > 1 else list(data.keys())[0]
+                value, label = self.get_value(data[param])
+                label = param + ": " + str(label)
+                params_dict[param] = value
+                new_line = self.generate_line(line, params_dict)
+        else:
+            new_line = line
+        return new_line, label
 
     def random_param(self, data) -> str:
         rare_probability = 0.005
@@ -322,36 +367,15 @@ class MoCoTF(MoCo):
 
         return param
 
-    def mutate_on_param(self, line: str) -> (str, str):
-        dict = self.get_params(line)
-        function = self.get_function(line)
-        func_file = PARAM_PATH / ("tf." + function + ".yaml")
-        if func_file.exists():
-            with Path.open(func_file, "r") as file:
-                all_data = yaml.load(file, yaml.Loader)
-                data = all_data["constraints"]
-                params_dict = dict.copy()
-
-                param = self.random_param(data) if len(list(data.keys())) > 1 else list(data.keys())[0]
-                value, label = self.get_value(data[param])
-                label = param + ": " + str(label)
-                params_dict[param] = value
-                new_line = self.generate_line(line, params_dict)
-        else:
-            new_line = line
-        return new_line, label
-
     def mutate_on_function(self, line: str) -> (str, str):
         function = self.get_function(line)
         func_file = FUNC_SIM_PATH / ("tf." + function + ".yaml")
 
-        th = 0.4
         if func_file.exists():
             dict = self.get_params(line)
             with Path.open(func_file, "r") as file:
                 data = yaml.load(file, yaml.Loader)
-                lst = [_[0] for _ in data.items() if _[1] > th]
-                func_mut = random.choice(lst[1:]) if len(lst) > 1 else lst[0]
+                func_mut = self.random_function(data)
                 param_file = PARAM_PATH / (func_mut + ".yaml")
                 tmp_dict = {}
                 if param_file.exists():
@@ -365,14 +389,32 @@ class MoCoTF(MoCo):
 
                         for _ in required_list:
                             if _ not in tmp_dict:
-                                tmp_dict[_] = self.get_value(data[_])
+                                tmp_dict[_], label = self.get_value(data[_])
                 else:
                     tmp_dict = dict.copy()
 
                 line = line.replace(function, func_mut[3:])
-                new_line = self.generate_line(line, tmp_dict)
+                _line = self.generate_line(line, tmp_dict)
 
-        return new_line, func_mut
+                new_line, label = self.mutate_on_param(_line)
+
+        return new_line, func_mut[3:]
+
+    def random_function(self, data) -> str:
+        sim_sum = sum(data.values())
+        probabilities = {func: value / sim_sum for func, value in data.items()}
+        cumulative_probabilities = {}
+        cumulative_sum = 0
+
+        for func_mut, probability in probabilities.items():
+            cumulative_sum += probability
+            cumulative_probabilities[func_mut] = cumulative_sum
+
+        random_num = random.random()
+
+        for func_mut, cumulative_probability in cumulative_probabilities.items():
+            if cumulative_probability >= random_num:
+                return func_mut
 
     def get_value(self, dic):
         value = ""
@@ -440,11 +482,14 @@ class MoCoTF(MoCo):
                     elif structure == "tuple_of_tuples":
                         value = tuple(tuple(random.randint(min_v, max_v) for _ in range(2)) for _ in
                                       range(dic["shape"]))
-                        if any(min_v in subtuple for subtuple in value) and any(max_v in subtuple for subtuple in value):
+                        if any(min_v in subtuple for subtuple in value) and any(
+                                max_v in subtuple for subtuple in value):
                             label = "min_max"
-                        elif any(min_v in subtuple for subtuple in value) and not any(max_v in subtuple for subtuple in value):
+                        elif any(min_v in subtuple for subtuple in value) and not any(
+                                max_v in subtuple for subtuple in value):
                             label = "min"
-                        elif any(max_v in subtuple for subtuple in value) and not any(min_v in subtuple for subtuple in value):
+                        elif any(max_v in subtuple for subtuple in value) and not any(
+                                min_v in subtuple for subtuple in value):
                             label = "max"
                         else:
                             label = "legal"
@@ -480,19 +525,21 @@ class MoCoTF(MoCo):
                 if func in self.api_list and func_mut != func and count <= 2:
                     func_mut = func
                     method = random.choice(self.mutate_list)
-                    def_list.append(method(line))
+                    new_line, label = method(line)
+                    def_list.append(new_line)
                     count += 1
                 else:
                     def_list.append(line)
 
         for line in inception_file:
+            if line.find("def") >= 0:
+                break
             def_list.append(line)
 
         new_module = "".join(def_list)
         return new_module
 
     def beam_search(self, line):
-        # print(self.detail_dict)
         self.queue = Queue()
         self.NODE_RES = 0
         function = self.get_function(line)
@@ -501,38 +548,49 @@ class MoCoTF(MoCo):
             # inception
             for _ in self.detail_dict.items():
                 for __ in _[1].items():
-                    self.queue.put(__[0])
-                    self.NODE_RES += 1
-        else:
-            for _ in self.detail_dict.items():
-                sorted_dict = dict(sorted(_[1].items(), key=lambda x: x[1], reverse=False))
-                for __ in sorted_dict.items():
                     if __[1] == 0:
                         pass
                     else:
                         self.queue.put(__[0])
                         self.NODE_RES += 1
+        else:
+            for _ in self.detail_dict.items():
+                sorted_dict = dict(sorted(_[1].items(), key=lambda x: x[1]), reversed=False)
+                if self.ITERATION < 10:
+                    alive = ceil(len(sorted_dict) / 3)
+                else:
+                    alive = ceil(len(sorted_dict) / 4)
+                for __ in sorted_dict.items():
+                    if __[1] == 0:
+                        pass
+                    elif alive == 0:
                         break
+                    else:
+                        self.queue.put(__[0])
+                        self.NODE_RES += 1
+                        alive -= 1
+
+                        with open(self.res_model_dir / (self.model_name + "_success.txt"), "a+") as file:
+                            file.write(str(__[0]) + '\n')
 
 
 if __name__ == "__main__":
-    # parser = argparse.ArgumentParser(description='argparse testing')
-    # parser.add_argument('--model_name', '-n', type=str, default="bk", required=True, help="model name")
-    # parser.add_argument('--mutate_times', '-t', type=int, default="bk", required=True, help="mutate_times")
-    # args = parser.parse_args()
-    #
-    # test = MoCoTF(args.model_name, args.mutate_times)
-    # # depart one model
-    # if (test.res_model_dir / test.template_file_name).exists():
-    #     print(args.model_name + " decomposition files exist.")
-    #     pass
-    # else:
-    #     print(args.model_name + " decomposition file does not exist, we will create it……")
-    #     test.depart()
-    #     print(args.model_name + " decomposition complete.")
+    parser = argparse.ArgumentParser(description='argparse testing')
+    parser.add_argument('--model_name',
+                        type=str,
+                        default="lenet",
+                        required=False)
+    parser.add_argument('--mutate_times',
+                        type=int,
+                        default=3,
+                        required=False)
+    parser.add_argument('--is_mutate',
+                        action='store_true')
+
+    args = parser.parse_args()
 
     # generate new model list
-    test = MoCoTF("lenet", 3)
+    test = MoCoTF("lenet", 2, False)
     if (test.res_model_dir / test.template_file_name).exists():
         print(test.model_name + " decomposition files exist.")
     else:
@@ -541,3 +599,4 @@ if __name__ == "__main__":
         print(test.model_name + " decomposition complete.")
 
     test.mutate()
+
