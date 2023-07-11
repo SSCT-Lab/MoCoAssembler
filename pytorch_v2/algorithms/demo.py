@@ -1,4 +1,6 @@
 import os
+import traceback
+
 import file_paths
 from assemble_complex import Assembler_Complex
 import argparse
@@ -6,7 +8,7 @@ import argparse
 if __name__ == '__main__':
     MODEL_LIST = ['ResNet18', 'ResNet50', 'nasnet', 'InceptionV3', 'xception', 'testnet',
                   'alexnet', 'lenet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19',
-                  'densenet', 'LSTM', 'GRU', 'LOOP']
+                  'densenet', 'LSTM', 'GRU', 'googlenet', 'LOOP']
 
     # params: ========
     parser = argparse.ArgumentParser()
@@ -33,11 +35,17 @@ if __name__ == '__main__':
                     os.rename(os.path.join(file_paths.LOG_PATH, model, 'log.txt'),
                               os.path.join(file_paths.LOG_PATH, model, 'log' + str(i) + '.txt'))
                 except Exception:
+                    error = str(traceback.format_exc())
+                    f = open(os.path.join(file_paths.MAIN_PATH, 'report.txt'), 'a', encoding='utf-8')
+                    f.write(error)
+                    f.close()
+                    MODEL_LIST.remove(model)
                     continue
 
     # ================
 
     # run
-    a = Assembler_Complex(MODEL)
-    a.set_n(N)
-    a.assemble_code_tree()
+    else:
+        a = Assembler_Complex(MODEL)
+        a.set_n(N)
+        a.assemble_code_tree()

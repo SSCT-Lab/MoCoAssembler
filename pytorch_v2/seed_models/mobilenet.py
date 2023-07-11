@@ -171,3 +171,4 @@ def go():
     model = MobileNet(3).to(device)
     x = torch.randn((4, 3, 224, 224)).to(device)
     y = model(x)
+    return model

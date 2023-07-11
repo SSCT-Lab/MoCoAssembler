@@ -9,7 +9,7 @@ class Xception(nn.Module):
 
         self.num_classes = num_classes
 
-        self.conv1 = torch.nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, padding=2, dilation=0, bias=False)
+        self.conv1 = torch.nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, stride=2, padding=0, bias=False)
         self.bn1 = torch.nn.BatchNorm2d(num_features=32)
         self.relu = torch.nn.ReLU()
 
@@ -223,3 +223,4 @@ def go():
     model = Xception().to(device)
     x = torch.randn(3, 3, 224, 224).to(device)
     y = model(x)
+    return model

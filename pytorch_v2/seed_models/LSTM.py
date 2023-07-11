@@ -54,3 +54,4 @@ def go():
     y = net(x)
     # print('total_params: ' + str(total_params))
     # print(net)
+    return net

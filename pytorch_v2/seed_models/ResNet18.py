@@ -25,7 +25,7 @@ class ResNet18(nn.Module):
         self.conv5 = self._make_layer(BasicBlock, 512, [[2, 1], [1, 1]])
 
         self.avgpool = torch.nn.AdaptiveAvgPool2d(output_size=(1, 1))
-        self.fc = torch.nn.Linear(in_features=512, out_features=10)
+        self.fc = torch.nn.Linear(in_features=512, out_features=1000)
 
     # 这个函数主要是用来，重复同一个残差块
     def _make_layer(self, block, out_channels, strides):
@@ -93,3 +93,4 @@ def go():
     res18 = ResNet18().to(device)
     x = torch.randn((2, 3, 224, 224)).to(device)
     y = res18(x)
+    return res18

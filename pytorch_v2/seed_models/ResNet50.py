@@ -25,7 +25,7 @@ class ResNet50(nn.Module):
         self.conv5 = self._make_layer(Bottleneck, 512, [[1, 2, 1]] + [[1, 1, 1]] * 2, [[0, 1, 0]] * 3)
 
         self.avgpool = torch.nn.AdaptiveAvgPool2d(output_size=(1, 1))
-        self.fc = torch.nn.Linear(in_features=2048, out_features=10)
+        self.fc = torch.nn.Linear(in_features=2048, out_features=1000)
 
     def _make_layer(self, block, out_channels, strides, paddings):
         layers = []
@@ -97,4 +97,5 @@ def go():
     device = torch.device('cuda')
     res50 = ResNet50().to(device)
     xin = torch.randn((3, 3, 224, 224)).to(device)
-    yout = res50(xin)
+    y = res50(xin)
+    return res50
