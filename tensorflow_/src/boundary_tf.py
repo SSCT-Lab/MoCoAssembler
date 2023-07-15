@@ -11,8 +11,6 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
 import argparse
 import random
-import shutil
-import subprocess
 from importlib import import_module
 from pathlib import Path
 
@@ -47,7 +45,7 @@ def boundary_generate(function) -> list:
                             max = key["range"][1]  # max
                             max_1 = max + 1  # max + 1
                             values = [min, min_1, min_2, max, max_1]
-                            labels = ["SUCCESS", "FAIL", "FAIL", "SUCCESS", "DEPENDS"]
+                            labels = ["SUCCESS", "FAIL", "FAIL", "SUCCESS", "SUCCESS"]
                             params_list = generate_params_list(params_list, _, values, labels)
 
                     elif key["dtype"] == "float":
@@ -105,8 +103,7 @@ def generate_params_list(params_list, _, values: list, labels: list) -> list:
                             else:
                                 label = "SUCCESS"
                             dict = {
-                                param + ":" + symbol[0] + str(values[i]) + "," + str(values[j]) + "," + str(values[k]) +
-                                symbol[1]: label}
+                                param + ":" + symbol[0] + str(values[i]) + "," + str(values[j]) + "," + str(values[k]) + symbol[1]: label}
                             params_list.append(dict)
     else:
         for i in range(len(values)):
@@ -168,7 +165,7 @@ def boundary_assembler(model):
     return detail
 
 
-def write_to_xlsx(xlsx, output_file, model):
+def write_to_xlsx(xlsx, output_file):
     workbook = Workbook()
     sheet = workbook.active
 
@@ -200,6 +197,12 @@ def run_model(detail):
     xlsx = []
 
     with alive_bar(len(detail), force_tty=True) as bar:
+        output_file = moco_tf.res_model_dir / (moco_tf.model_name + "_boundary_output.xlsx")
+        workbook = Workbook()
+        sheet = workbook.active
+        headers = list(detail[0].keys())
+        sheet.append(headers)
+
         for _ in detail:
             tmp = _.copy()
             if "file_name" in tmp:
@@ -220,30 +223,29 @@ def run_model(detail):
                 if tmp["true_result"] == tmp["except_result"]:
                     pass
                 else:
-                    xlsx.append(tmp)
+                    items = list(tmp.values())
+                    sheet.append(items)
 
-    return xlsx
+            workbook.save(output_file)
+
+
+def test():
+    code = 'x = keras.layers.DepthwiseConv2D(kernel_size=3, strides=[5, 2], padding="same", activation="relu")(x)'
+
+    function = moco_tf.get_function(code)
+    if function in moco_tf.api_list:
+        dict = moco_tf.get_params(code)
+        params_list = boundary_generate(function)
+        for params in params_list:
+            params_dict = dict.copy()
+            print(params_dict)
+            key, value = list(params.keys())[0].split(":")
+            params_dict[key] = value
+            new_line = moco_tf.generate_line(code, params_dict)
+            print(new_line)
 
 
 if __name__ == "__main__":
-    simple_model = ["lenet",
-                    "alexnet",
-                    "vgg16",
-                    "vgg19",
-                    "mobilenet",
-                    "lstm",
-                    "gru"
-                    ]
-
-    complex_model = ["googlenet",
-                     "resnet18",
-                     "resnet50",
-                     "squeezenet",
-                     "xception",
-                     "densenet",
-                     "inceptionv3",
-                     ]
-
     parser = argparse.ArgumentParser(description='argparse testing')
     parser.add_argument('--model_name',
                         type=str,
@@ -258,7 +260,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    moco_tf = MoCoTF("lenet", 2, False)
+    moco_tf = MoCoTF(args.model_name, args.mutate_times, args.is_mutate)
+    test()
 
     # if (moco_tf.res_model_dir / moco_tf.template_file_name).exists():
     #     print(moco_tf.model_name + " decomposition files exist.")
@@ -269,16 +272,12 @@ if __name__ == "__main__":
 
     # moco_tf.mutate()
 
-    print(moco_tf.model_name + " boundary test start...")
-    bounary_file = moco_tf.res_model_dir / (moco_tf.model_name + "_boundary.xlsx")
-    if not bounary_file.exists():
-        detail = boundary_assembler(moco_tf)
-        write_to_xlsx(detail, bounary_file, moco_tf)
-    else:
-        detail = write_to_dict(bounary_file, "Sheet")
-
-    xlsx = run_model(detail)
-
-    bounary_file = moco_tf.res_model_dir
-    output_file = moco_tf.res_model_dir / (moco_tf.model_name + "_boundary_output.xlsx")
-    write_to_xlsx(xlsx, output_file, moco_tf)
+    # print(moco_tf.model_name + " boundary test start...")
+    # bounary_file = moco_tf.res_model_dir / (moco_tf.model_name + "_boundary.xlsx")
+    # if not bounary_file.exists():
+    #     detail = boundary_assembler(moco_tf)
+    #     write_to_xlsx(detail, bounary_file)
+    # else:
+    #     detail = write_to_dict(bounary_file, "Sheet")
+    #
+    # run_model(detail)

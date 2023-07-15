@@ -285,6 +285,9 @@ class MoCoTF(MoCo):
         return function
 
     def get_params(self, line: str) -> dict:
+        if line.find("[") >= 0:
+            line = line.replace("[", "(").replace("]", ")")
+
         infos1 = re.findall(r".*?\((?P<param>.*?)\)\((?P<input>.*?)\)", line)
 
         if not infos1:
