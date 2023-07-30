@@ -23,37 +23,37 @@
 |  PyTorch   |              torch.nn.MultiheadAttention lacks parameter validation check               |   https://github.com/pytorch/pytorch/issues/105630    | confirmed |
 |  PyTorch   |            torch.nn.TransformerDecoderLayer lacks parameter validation check            |   https://github.com/pytorch/pytorch/issues/105632    | confirmed |
 |   Jittor   |                            jittor.nn.Mish is unable to work                             |      https://github.com/Jittor/jittor/issues/447      |   fixed   |
-|   Jittor   |      jittor.nn.Flatten accepts the input tensor while cannot cover all dimensions       |      https://github.com/Jittor/jittor/issues/448      | submitted |
-|   Jittor   |              jittor.nn.Upsample is unable to work with default parameters               |      https://github.com/Jittor/jittor/issues/450      | submitted |
-|   Jittor   |       jittor.nn.MaxPool2d's special value causes compilation failure of operators       |      https://github.com/Jittor/jittor/issues/451      | submitted |
-|   Jittor   |             jittor.nn.AdaptiveMaxPool3d throw an error for compliant inputs             |      https://github.com/Jittor/jittor/issues/452      | submitted |
-|   Jittor   |                jittor.nn.AdaptiveMaxPool3d has errors in its source code                |      https://github.com/Jittor/jittor/issues/453      | submitted |
-|   Jittor   |     jittor.nn.MaxPool2d accepts illegal parameters and causes illegal computations      |      https://github.com/Jittor/jittor/issues/456      | submitted |
-|   Jittor   |                        jittor.nn.Pool accepts illegal parameters                        |      https://github.com/Jittor/jittor/issues/457      | submitted |
-|   Jittor   |                    jittor.nn.PixelShuffle accepts illegal parameters                    |      https://github.com/Jittor/jittor/issues/458      | submitted |
-|   Jittor   |                    jittor.cat generates incorrect exception messages                    |      https://github.com/Jittor/jittor/issues/459      | submitted |
-|   Jittor   |           jittor.nn.AdaptiveMaxPool3d generates incorrect exception messages            |      https://github.com/Jittor/jittor/issues/460      | submitted |
-|   Jittor   |                   jittor.nn.Resize accepts illegal parameters "size"                    |      https://github.com/Jittor/jittor/issues/461      | submitted |
-|   Jittor   |            jittor.nn.Resize is unable to calculate tensors with 0 batch-size            |      https://github.com/Jittor/jittor/issues/462      | submitted |
-|   Jittor   |              jittor.nn.AvgPool2d has illegal operations during calculating              |      https://github.com/Jittor/jittor/issues/463      | submitted |
-|   Jittor   |                  jittor.nn.ReflectionPad2d accepts illegal parameters                   |      https://github.com/Jittor/jittor/issues/464      | submitted |
-|   Jittor   |     jittor.nn.ZeroPad2d accepts illegal parameters and causes the operator to crash     |      https://github.com/Jittor/jittor/issues/465      | submitted |
-|   Jittor   | jittor.nn.ReplicationPad2d accepts illegal parameters and causes the operator to crash  |      https://github.com/Jittor/jittor/issues/466      | submitted |
-|   Jittor   |   jittor.nn.ConstantPad2d accepts illegal parameters and causes the operator to crash   |      https://github.com/Jittor/jittor/issues/467      | submitted |
-|   Jittor   |             jittor.nn.LSTM is unable to respond correctly to illegal inputs             |      https://github.com/Jittor/jittor/issues/468      | submitted |
-|   Jittor   |            jittor.nn.AdaptiveMaxPool2d has incorrect handling of dimensions             |      https://github.com/Jittor/jittor/issues/469      | submitted |
-|   Jittor   |      jittor.nn.AdaptiveMaxPool2d lacks input dimension checks in specific branches      |      https://github.com/Jittor/jittor/issues/470      | submitted |
-|   Jittor   |      jittor.nn.Conv2d accepts illegal parameters and causes the operator to crash       |      https://github.com/Jittor/jittor/issues/471      | submitted |
-|   Jittor   |            jittor.nn.Conv2d's parameter "kernel_size" accepts illegal values            |      https://github.com/Jittor/jittor/issues/472      | submitted |
-|   Jittor   |              jittor.nn.Conv2d's parameter "stride" accepts illegal values               |      https://github.com/Jittor/jittor/issues/473      | submitted |
-|   Jittor   |             jittor.nn.Conv2d's parameter "dilation" accepts illegal values              |      https://github.com/Jittor/jittor/issues/474      | submitted |
-|   Jittor   |              jittor.nn.Conv2d's parameter "groups" accepts illegal values               |      https://github.com/Jittor/jittor/issues/475      | submitted |
-|   Jittor   |            jittor.nn.Conv2d's parameter "in_channels" accepts illegal values            |      https://github.com/Jittor/jittor/issues/476      | submitted |
-|   Jittor   |           jittor.nn.Conv2d's parameter "out_channels" accepts illegal values            |      https://github.com/Jittor/jittor/issues/477      | submitted |
-|   Jittor   |          jittor.nn.ConvTranspose's parameter "padding" accepts illegal values           |      https://github.com/Jittor/jittor/issues/478      | submitted |
-|   Jittor   | jittor.nn.ConvTranspose has illegal operations while setting "padding" to a large value |      https://github.com/Jittor/jittor/issues/479      | submitted |
-|   Jittor   |          jittor.nn.MaxPool2d's parameter "kernel_size" accepts illegal values           |      https://github.com/Jittor/jittor/issues/480      | submitted |
-|   Jittor   |             jittor.nn.MaxPool2d's parameter "stride" accepts illegal values             |      https://github.com/Jittor/jittor/issues/481      | submitted |
-|   Jittor   |             jittor.nn.Pool's parameter "kernel_size" accepts illegal values             |      https://github.com/Jittor/jittor/issues/482      | submitted |
-|   Jittor   |               jittor.nn.Pool's parameter "stride" accepts illegal values                |      https://github.com/Jittor/jittor/issues/483      | submitted |
-|   Jittor   |          jittor.nn.AdaptiveMaxPool3d's documentation is missing on the website          |      https://github.com/Jittor/jittor/issues/484      | submitted |
+|   Jittor   |      jittor.nn.Flatten accepts the input tensor while cannot cover all dimensions       |      https://github.com/Jittor/jittor/issues/448      | confirmed |
+|   Jittor   |              jittor.nn.Upsample is unable to work with default parameters               |      https://github.com/Jittor/jittor/issues/450      | confirmed |
+|   Jittor   |       jittor.nn.MaxPool2d's special value causes compilation failure of operators       |      https://github.com/Jittor/jittor/issues/451      | confirmed |
+|   Jittor   |             jittor.nn.AdaptiveMaxPool3d throw an error for compliant inputs             |      https://github.com/Jittor/jittor/issues/452      | confirmed |
+|   Jittor   |                jittor.nn.AdaptiveMaxPool3d has errors in its source code                |      https://github.com/Jittor/jittor/issues/453      | confirmed |
+|   Jittor   |     jittor.nn.MaxPool2d accepts illegal parameters and causes illegal computations      |      https://github.com/Jittor/jittor/issues/456      | confirmed |
+|   Jittor   |                        jittor.nn.Pool accepts illegal parameters                        |      https://github.com/Jittor/jittor/issues/457      | confirmed |
+|   Jittor   |                    jittor.nn.PixelShuffle accepts illegal parameters                    |      https://github.com/Jittor/jittor/issues/458      | confirmed |
+|   Jittor   |                    jittor.cat generates incorrect exception messages                    |      https://github.com/Jittor/jittor/issues/459      | confirmed |
+|   Jittor   |           jittor.nn.AdaptiveMaxPool3d generates incorrect exception messages            |      https://github.com/Jittor/jittor/issues/460      | confirmed |
+|   Jittor   |                   jittor.nn.Resize accepts illegal parameters "size"                    |      https://github.com/Jittor/jittor/issues/461      | confirmed |
+|   Jittor   |            jittor.nn.Resize is unable to calculate tensors with 0 batch-size            |      https://github.com/Jittor/jittor/issues/462      | confirmed |
+|   Jittor   |              jittor.nn.AvgPool2d has illegal operations during calculating              |      https://github.com/Jittor/jittor/issues/463      | confirmed |
+|   Jittor   |                  jittor.nn.ReflectionPad2d accepts illegal parameters                   |      https://github.com/Jittor/jittor/issues/464      | confirmed |
+|   Jittor   |     jittor.nn.ZeroPad2d accepts illegal parameters and causes the operator to crash     |      https://github.com/Jittor/jittor/issues/465      | confirmed |
+|   Jittor   | jittor.nn.ReplicationPad2d accepts illegal parameters and causes the operator to crash  |      https://github.com/Jittor/jittor/issues/466      | confirmed |
+|   Jittor   |   jittor.nn.ConstantPad2d accepts illegal parameters and causes the operator to crash   |      https://github.com/Jittor/jittor/issues/467      | confirmed |
+|   Jittor   |             jittor.nn.LSTM is unable to respond correctly to illegal inputs             |      https://github.com/Jittor/jittor/issues/468      | confirmed |
+|   Jittor   |            jittor.nn.AdaptiveMaxPool2d has incorrect handling of dimensions             |      https://github.com/Jittor/jittor/issues/469      | confirmed |
+|   Jittor   |      jittor.nn.AdaptiveMaxPool2d lacks input dimension checks in specific branches      |      https://github.com/Jittor/jittor/issues/470      | confirmed |
+|   Jittor   |      jittor.nn.Conv2d accepts illegal parameters and causes the operator to crash       |      https://github.com/Jittor/jittor/issues/471      | confirmed |
+|   Jittor   |            jittor.nn.Conv2d's parameter "kernel_size" accepts illegal values            |      https://github.com/Jittor/jittor/issues/472      | confirmed |
+|   Jittor   |              jittor.nn.Conv2d's parameter "stride" accepts illegal values               |      https://github.com/Jittor/jittor/issues/473      | confirmed |
+|   Jittor   |             jittor.nn.Conv2d's parameter "dilation" accepts illegal values              |      https://github.com/Jittor/jittor/issues/474      | confirmed |
+|   Jittor   |              jittor.nn.Conv2d's parameter "groups" accepts illegal values               |      https://github.com/Jittor/jittor/issues/475      | confirmed |
+|   Jittor   |            jittor.nn.Conv2d's parameter "in_channels" accepts illegal values            |      https://github.com/Jittor/jittor/issues/476      | confirmed |
+|   Jittor   |           jittor.nn.Conv2d's parameter "out_channels" accepts illegal values            |      https://github.com/Jittor/jittor/issues/477      | confirmed |
+|   Jittor   |          jittor.nn.ConvTranspose's parameter "padding" accepts illegal values           |      https://github.com/Jittor/jittor/issues/478      | confirmed |
+|   Jittor   | jittor.nn.ConvTranspose has illegal operations while setting "padding" to a large value |      https://github.com/Jittor/jittor/issues/479      | confirmed |
+|   Jittor   |          jittor.nn.MaxPool2d's parameter "kernel_size" accepts illegal values           |      https://github.com/Jittor/jittor/issues/480      | confirmed |
+|   Jittor   |             jittor.nn.MaxPool2d's parameter "stride" accepts illegal values             |      https://github.com/Jittor/jittor/issues/481      | confirmed |
+|   Jittor   |             jittor.nn.Pool's parameter "kernel_size" accepts illegal values             |      https://github.com/Jittor/jittor/issues/482      | confirmed |
+|   Jittor   |               jittor.nn.Pool's parameter "stride" accepts illegal values                |      https://github.com/Jittor/jittor/issues/483      | confirmed |
+|   Jittor   |          jittor.nn.AdaptiveMaxPool3d's documentation is missing on the website          |      https://github.com/Jittor/jittor/issues/484      | confirmed |
