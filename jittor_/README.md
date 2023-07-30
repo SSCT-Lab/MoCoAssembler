@@ -3,7 +3,7 @@ final version:
 MoCo's final version for Jittor has been uploaded
 
 ### REQUIREMENTS
-run MoCo_Jittor need some libs, just pip them:
+Running MoCo_Jittor need some libs, just pip them:
 ```
 pip install pyyaml
 pip install alive_progress
@@ -45,11 +45,12 @@ python go_Fuzzing.py --MODEL 'lenet' --N 5 --TSF 0
 'densenet'
 'BiLSTM'
 'LSTM'
-'GRU'`
+'GRU'
+'googlenet'`
 . And if you want to run with all seed models in a loop, set para MODEL to `LOOP`.
-2. `N` means times that MoCo will execute mutate operation in one generation. Set it to an int.
+3. `N` means times that MoCo will execute mutate operation in one generation. Set it to an int.
    (please don't make this too big, or it will boom~)
-3. `TSF` means "Train_Stop_Flag", set it to 0 or 1. If 1, MoCo will run without training. 
+4. `TSF` means "Train_Stop_Flag", set it to 0 or 1. If 1, MoCo will run without training. 
 
 II. Boundary
 
