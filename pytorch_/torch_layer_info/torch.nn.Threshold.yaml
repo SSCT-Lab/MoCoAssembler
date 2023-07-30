@@ -1,0 +1,54 @@
+api: torch.nn.Threshold(threshold, value, inplace=False)
+constraints:
+  inplace:
+    default: False
+    dtype: torch.bool
+  threshold:
+    dtype: torch.float
+  value:
+    dtype: torch.float
+descp: 'r"""Thresholds each element of the input Tensor.
+
+  Threshold is defined as:
+
+  .. math::
+
+  y =
+
+  \begin{cases}
+
+  x, &\text{ if } x > \text{threshold} \\
+
+  \text{value}, &\text{ otherwise }
+
+  \end{cases}
+
+  Args:
+
+  threshold: The value to threshold at
+
+  value: The value to replace with
+
+  inplace: can optionally do the operation in-place. Default: ``False``
+
+  Shape:
+
+  - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
+
+  - Output: :math:`(*)`, same shape as the input.
+
+  Examples::
+
+  >>> m = nn.Threshold(0.1, 20)
+
+  >>> input = torch.randn(2)
+
+  >>> output = m(input)
+
+  '
+inputs:
+  optional:
+  - inplace
+  required:
+  - threshold
+  - value

@@ -1,0 +1,63 @@
+api: torch.nn.Hardtanh(min_val=- 1.0, max_val=1.0, inplace=False, min_value=None,
+  max_value=None)
+constraints:
+  inplace:
+    default: False
+    dtype: torch.bool
+  max_val:
+    default: 1.0
+    dtype: torch.float
+  min_val:
+    default: -1.0
+    dtype: torch.float
+descp: 'r"""Applies the HardTanh function element-wise.
+
+  HardTanh is defined as:
+
+  .. math::
+
+  \text{HardTanh}(x) = \begin{cases}
+
+  \text{max\_val} & \text{ if } x > \text{ max\_val } \\
+
+  \text{min\_val} & \text{ if } x < \text{ min\_val } \\
+
+  x & \text{ otherwise } \\
+
+  \end{cases}
+
+  Args:
+
+  min_val: minimum value of the linear region range. Default: -1
+
+  max_val: maximum value of the linear region range. Default: 1
+
+  inplace: can optionally do the operation in-place. Default: ``False``
+
+  Keyword arguments :attr:`min_value` and :attr:`max_value`
+
+  have been deprecated in favor of :attr:`min_val` and :attr:`max_val`.
+
+  Shape:
+
+  - Input: :math:`(*)`, where :math:`*` means any number of dimensions.
+
+  - Output: :math:`(*)`, same shape as the input.
+
+  .. image:: ../scripts/activation_images/Hardtanh.png
+
+  Examples::
+
+  >>> m = nn.Hardtanh(-2, 2)
+
+  >>> input = torch.randn(2)
+
+  >>> output = m(input)
+
+  '
+inputs:
+  optional:
+  - min_val
+  - max_val
+  - inplace
+  required: []
