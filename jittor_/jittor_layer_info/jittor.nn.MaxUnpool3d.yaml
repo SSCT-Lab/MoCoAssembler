@@ -1,0 +1,20 @@
+api: jittor.nn.MaxUnpool3d(self, kernel_size, stride=None)
+constraints:
+  kernel_size:
+    default: no default
+    dtype:
+    - int
+  stride:
+    default: None
+    dtype:
+    - int
+descp: "    ''' MaxUnpool3d is the invert version of MaxPool3d with indices.\n   \
+  \ It takes the output index of MaxPool3d as input.\n    The element will be zero\
+  \ if it is not the max pooled value.\n\n'''"
+extra_para: 1
+inputs:
+  optional:
+  - stride
+  required:
+  - kernel_size
+kind: layer

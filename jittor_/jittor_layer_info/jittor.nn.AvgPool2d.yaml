@@ -1,0 +1,34 @@
+api: jittor.nn.AvgPool2d(self, kernel_size, stride=None, padding=0, ceil_mode=False,
+  count_include_pad=True)
+constraints:
+  ceil_mode:
+    default: 'False'
+    dtype:
+    - bool
+  count_include_pad:
+    default: 'True'
+    dtype:
+    - bool
+  kernel_size:
+    default: no default
+    dtype:
+    - int
+  padding:
+    default: '0'
+    dtype:
+    - int
+  stride:
+    default: None
+    dtype:
+    - int
+descp: no description
+extra_para: 0
+inputs:
+  optional:
+  - stride
+  - padding
+  - ceil_mode
+  - count_include_pad
+  required:
+  - kernel_size
+kind: layer

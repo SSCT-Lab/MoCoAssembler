@@ -1,0 +1,13 @@
+api: jittor.nn.Mish(self, inplace=False)
+constraints:
+  inplace:
+    default: 'False'
+    dtype:
+    - bool
+descp: no description
+extra_para: 0
+inputs:
+  optional:
+  - inplace
+  required: []
+kind: layer

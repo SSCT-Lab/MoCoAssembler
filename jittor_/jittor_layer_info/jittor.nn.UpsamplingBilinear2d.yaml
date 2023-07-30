@@ -1,0 +1,13 @@
+api: jittor.nn.UpsamplingBilinear2d(self, scale_factor=None)
+constraints:
+  scale_factor:
+    default: None
+    dtype:
+    - int
+descp: no description
+extra_para: 0
+inputs:
+  optional:
+  - scale_factor
+  required: []
+kind: layer
