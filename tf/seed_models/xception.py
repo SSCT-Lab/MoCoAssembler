@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
-from config.paths import DATASETS_PATH
+from tf.config.paths import DATASETS_PATH
 
 
 def xception(class_num=1000, input_shape=(224, 224, 3)):
@@ -88,7 +88,6 @@ def go():
         y_train = imagenet["y_test"][:100]
 
     model = xception(1000, (224, 224, 3))
-    # model.summary()
     model.compile(optimizer=tf.keras.optimizers.legacy.SGD(learning_rate=0.3),
                   loss="sparse_categorical_crossentropy",
                   metrics=["accuracy"])

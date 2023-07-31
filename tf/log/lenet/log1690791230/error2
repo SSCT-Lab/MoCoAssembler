@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/Users/wuduo/Documents/导师组/MOCO/ModelAssembler/tf/src/mutate_tf.py", line 277, in run_model
+    net = getattr(module, self.model_name)()
+  File "/Users/wuduo/Documents/导师组/MOCO/ModelAssembler/tf/result/lenet/mutate1690791230/3_3.py", line 13, in lenet
+    x = keras.layers.AdditiveAttention(use_scale=True)(x)
+  File "/Users/wuduo/miniconda3/envs/moco/lib/python3.10/site-packages/keras/utils/traceback_utils.py", line 70, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/Users/wuduo/miniconda3/envs/moco/lib/python3.10/site-packages/keras/layers/attention/base_dense_attention.py", line 215, in _validate_call_args
+    raise ValueError(
+ValueError: Exception encountered when calling layer "additive_attention" (type AdditiveAttention).
+
+AdditiveAttention layer must be called on a list of inputs, namely [query, value] or [query, value, key]. Received: Tensor("Placeholder:0", shape=(None, 6), dtype=float32).
+
+Call arguments received by layer "additive_attention" (type AdditiveAttention):
+  • inputs=tf.Tensor(shape=(None, 6), dtype=float32)
+  • mask=None
+  • training=None
+  • return_attention_scores=False
+  • use_causal_mask=False

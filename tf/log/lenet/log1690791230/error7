@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/wuduo/Documents/导师组/MOCO/ModelAssembler/tf/src/mutate_tf.py", line 277, in run_model
+    net = getattr(module, self.model_name)()
+  File "/Users/wuduo/Documents/导师组/MOCO/ModelAssembler/tf/result/lenet/mutate1690791230/5_7.py", line 15, in lenet
+    x = keras.layers.Conv2D(filters=32, kernel_size=5, activation="relu", padding="same", dilation_rate=(3, 4))(x)
+  File "/Users/wuduo/miniconda3/envs/moco/lib/python3.10/site-packages/keras/utils/traceback_utils.py", line 70, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/Users/wuduo/miniconda3/envs/moco/lib/python3.10/site-packages/keras/engine/input_spec.py", line 253, in assert_input_compatibility
+    raise ValueError(
+ValueError: Input 0 of layer "conv2d_17" is incompatible with the layer: expected min_ndim=4, found ndim=2. Full shape received: (None, 2688)

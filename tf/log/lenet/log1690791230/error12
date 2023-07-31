@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/wuduo/Documents/导师组/MOCO/ModelAssembler/tf/src/mutate_tf.py", line 277, in run_model
+    net = getattr(module, self.model_name)()
+  File "/Users/wuduo/Documents/导师组/MOCO/ModelAssembler/tf/result/lenet/mutate1690791230/6_5.py", line 16, in lenet
+    x = keras.layers.MaxPool2D(pool_size=3, strides=2)(x)
+  File "/Users/wuduo/miniconda3/envs/moco/lib/python3.10/site-packages/keras/utils/traceback_utils.py", line 70, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/Users/wuduo/miniconda3/envs/moco/lib/python3.10/site-packages/keras/engine/input_spec.py", line 235, in assert_input_compatibility
+    raise ValueError(
+ValueError: Input 0 of layer "max_pooling2d_34" is incompatible with the layer: expected ndim=4, found ndim=2. Full shape received: (None, 6)

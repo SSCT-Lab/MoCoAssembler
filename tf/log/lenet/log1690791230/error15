@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/Users/wuduo/Documents/导师组/MOCO/ModelAssembler/tf/src/mutate_tf.py", line 277, in run_model
+    net = getattr(module, self.model_name)()
+  File "/Users/wuduo/Documents/导师组/MOCO/ModelAssembler/tf/result/lenet/mutate1690791230/6_8.py", line 16, in lenet
+    x = keras.layers.Cropping2D(cropping=1)(x)
+  File "/Users/wuduo/miniconda3/envs/moco/lib/python3.10/site-packages/keras/utils/traceback_utils.py", line 70, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/Users/wuduo/miniconda3/envs/moco/lib/python3.10/site-packages/keras/layers/reshaping/cropping2d.py", line 185, in call
+    raise ValueError(
+ValueError: Exception encountered when calling layer "cropping2d_8" (type Cropping2D).
+
+Argument `cropping` must be greater than the input shape. Received: inputs.shape=(None, 3, 2, 32), and cropping=((1, 1), (1, 1))
+
+Call arguments received by layer "cropping2d_8" (type Cropping2D):
+  • inputs=tf.Tensor(shape=(None, 3, 2, 32), dtype=float32)
