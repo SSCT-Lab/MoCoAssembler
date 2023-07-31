@@ -36,8 +36,11 @@ def go():
 
     x_train = mnist['x_train'][:100]
     y_train = mnist['y_train'][:100]
+    x_test = mnist["x_test"][:50]
+    y_test = mnist["y_test"][:50]
 
     x_train = x_train.reshape(-1, 28, 28, 1) / 255.0
+    x_test = x_test.reshape(-1, 28, 28, 1) / 255.0
 
     model = lenet(10, (28, 28, 1))
 
@@ -45,6 +48,8 @@ def go():
                   loss="sparse_categorical_crossentropy",
                   metrics=["accuracy"])
     model.fit(x_train, y_train, batch_size=2, epochs=1, verbose=0)
+
+    model.evaluate(x_test, y_test, verbose=0)
 
     return model.count_params()
 

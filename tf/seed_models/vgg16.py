@@ -50,16 +50,22 @@ def go():
 
     with tf.device("/GPU:0"):
         cifar10 = np.load(DATASETS_PATH / "cifar10.npz")
-        x_train = cifar10["x_train"][:100]
-        y_train = cifar10["y_train"][:100]
+
+    x_train = cifar10["x_train"][:100]
+    y_train = cifar10["y_train"][:100]
+    x_test = cifar10["x_test"][:50]
+    y_test = cifar10["y_test"][:50]
 
     x_train = x_train / 255.0
+    x_test = x_test / 255.0
 
     model = vgg16(10, (32, 32, 3))
     model.compile(optimizer=tf.keras.optimizers.legacy.SGD(learning_rate=0.3),
                   loss="sparse_categorical_crossentropy",
                   metrics=["accuracy"])
     model.fit(x_train, y_train, batch_size=2, epochs=1, verbose=0)
+
+    model.evaluate(x_test, y_test, verbose=0)
 
     return model.count_params()
 

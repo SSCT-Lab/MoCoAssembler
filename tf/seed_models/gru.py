@@ -19,7 +19,7 @@ def gru(num_units=25, input_shape=10):
 
 
 def go():
-    data = read_csv(DATASETS_PATH / "DIS.csv", header=None, index_col=None, delimiter=",")
+    data = read_csv(DATASETS_PATH / "DIS.csv", header=None, index_col=None, delimiter=',')
 
     dataset = data[5].values.reshape(-1, 1)
 
@@ -27,19 +27,26 @@ def go():
     dataset = scaler.fit_transform(dataset)
 
     train_size = int(len(dataset) * 0.5)
-    train = dataset[:train_size,:]
+    train, test = dataset[0:train_size, :], dataset[train_size:len(dataset), :]
 
     X, Y = [], []
     for i in range(len(train) - 10):
-        X.append(train[i:i+10, 0])
-        Y.append(train[i+10, 0])
+        X.append(train[i:i + 10, 0])
+        Y.append(train[i + 10, 0])
 
-    X_train, Y_train = np.array(X), np.array(Y)
+    trainX, trainY = np.array(X), np.array(Y)
+
+    X, Y = [], []
+    for i in range(len(test) - 10):
+        X.append(test[i:i + 10, 0])
+        Y.append(test[i + 10, 0])
+
+    testX, testY = np.array(X), np.array(Y)
 
     model = gru(25, 10)
-    model.compile(loss="mse", optimizer="adam")
 
-    model.fit(X_train, Y_train, batch_size=8, epochs=1, verbose=0)
+    model.predict(trainX, verbose=0)
+    model.predict(testX, verbose=0)
 
     return model.count_params()
 

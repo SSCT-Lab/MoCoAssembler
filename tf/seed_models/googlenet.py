@@ -66,15 +66,24 @@ def go():
 
     with tf.device("/GPU:0"):
         imagenet = np.load(DATASETS_PATH / "imagenet.npz")
-        print(imagenet.__dict__)
-        x_train = imagenet["x_test"][:100]
-        y_train = imagenet["y_test"][:100]
+
+    x_train = imagenet["x_test"][:100]
+    y_train = imagenet["y_test"][:100]
+    x_test = imagenet["x_test"][101:150]
+    y_test = imagenet["y_test"][101:150]
 
     model = googlenet(1000, (224, 224, 3))
     model.compile(optimizer=tf.keras.optimizers.legacy.SGD(learning_rate=0.3),
                   loss="sparse_categorical_crossentropy",
                   metrics=["accuracy"])
     model.fit(x_train, y_train, batch_size=2, epochs=1, verbose=0)
+
+    data_val = imagenet["x_test"][-1]
+    data_val = data_val[None, ...]
+    model.predict(data_val, verbose=0)
+
+    model.evaluate(x_test, y_test, verbose=0)
+
     return model.count_params()
 
 
