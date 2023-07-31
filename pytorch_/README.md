@@ -1,6 +1,6 @@
 # MoCo for PyTorch
-final version:
-MoCo's final version for PyTorch has been uploaded
+### PYTORCH VERSION
+2.0.0
 
 ### REQUIREMENTS
 run MoCo_PyTorch need some libs, just pip them:
@@ -48,7 +48,6 @@ python go_Fuzzing.py --MODEL 'lenet' --N 5
 'GRU'`
 . And if you want to run with all seed models in a loop, set para MODEL to `LOOP`.
 2. `N` means times that MoCo will execute mutate operation in one generation. Set it to an int.
-   (please don't make this too big, or it will boom~)
 
 II. Boundary
 
@@ -65,7 +64,7 @@ The result will be written in several directories
 
 ```pytorch_/mutated_models``` -- models generated during running, but will be deleted every generation.
 
-```pytorch_/saved_mutated_models``` -- models that have some errors in it and have not passed the filter.
+```pytorch_/saved_mutated_models``` -- error models will be saved here, they may show some potential bugs of pytorch.
 
 ```pytorch_/logs``` -- error logs will be recorded here.
 

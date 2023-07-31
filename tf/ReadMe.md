@@ -35,7 +35,7 @@ cd mnt/ModelAssembler/tensorflow_/src
 
 I. Running a single model with fuzzing test. 
 
-**Note: Researchers can query `tensorflow_/config/model.py` for the names of all the network models which can run. **
+**Note: Researchers can query `tensorflow_/config/model.py` for the names of all the network models which can run.**
 
 ```
 python mutate_tf.py --model_name "lenet" --mutate_times 3 
@@ -47,7 +47,7 @@ The initial value of `model_name` is `"lenet"`; The initial value of `mutate_tim
 python mutate_tf.py --model_name "lenet" --mutate_times 3 --is_train
 ```
 
-II. Run all models with Fuzzing test. (Not recommended)
+II. Run all models with Fuzzing test. **(Not recommended)**
 
 ```
 python mutate_tf.py --run_all True
@@ -76,8 +76,6 @@ I. Obtain the output for fuzzing test.
 `tensorflow_/log`: After fuzzing runs, a log of those models that run the error.
 
 `tensorflow_/log/model_name/log.csv`: All error logs. 
-
-`tensorflow_/log/model_name/log_filter.csv`: Final result of error logs processing. 
 
 II. Obtain the output for boundary test.
 
