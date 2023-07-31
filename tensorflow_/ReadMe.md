@@ -47,7 +47,7 @@ The initial value of `model_name` is `"lenet"`; The initial value of `mutate_tim
 python mutate_tf.py --model_name "lenet" --mutate_times 3 --is_train
 ```
 
-II. Run all models with Fuzzing test. (Not recommended)
+II. Run all models with Fuzzing test. **(Not recommended)**
 
 ```
 python mutate_tf.py --run_all True
