@@ -11,16 +11,16 @@ pip install openpyxl
 ```
 
 ### DIRECTORY
-All files about MoCo_Jittor is in this directory(jittor_), but the datasets used for training is in the main directory.
-There are several directory in jittor_:
+All files about MoCo_Jittor are in this directory(jittor), but the datasets used for training are in the main directory.
+There are several directories in jittor:
 
-```jittor_/algorithms``` -- algorithms .
+```jittor/algorithms``` -- algorithms.
 
-```jittor_/jittor_layer_info``` -- layers info which is written in yaml files.
+```jittor/jittor_layer_info``` -- layers info which is written in yaml files.
 
-```jittor_/jittor_layer_similarity``` -- layers similarity info which is written in yaml files.
+```jittor/jittor_layer_similarity``` -- layers similarity info which is written in yaml files.
 
-```jittor_/seed_models``` -- seed model files.
+```jittor/seed_models``` -- seed model files.
 
 And then, several directories will be created(auto) during running to contain running results.
 
@@ -48,7 +48,7 @@ python go_Fuzzing.py --MODEL 'lenet' --N 5 --TSF 0
 'GRU'
 'googlenet'`
 . And if you want to run with all seed models in a loop, set para MODEL to `LOOP`.
-2. `N` means times that MoCo will execute mutate operation in one generation. Set it to an int.
+2. `N` means times of mutation on every model in one generation. Set it to an int.
 
 3. `TSF` means "Train_Stop_Flag", set it to 0 or 1. If 1, MoCo will run without training. 
 
@@ -65,12 +65,12 @@ and if you want to run with all seed models in a loop, set para MODEL to `LOOP`.
 The result will be written in several directories
 (if not exists, these directories will be created while running):
 
-```jittor_/mutated_models``` -- models generated during running, but will be deleted every generation.
+```jittor/mutated_models``` -- models generated during running (will be deleted every generation).
 
-```jittor_/saved_mutated_models``` -- error models will be saved here, they may show some potential bugs of jittor.
+```jittor/saved_mutated_models``` -- error models will be saved here, they may show some potential bugs of jittor.
 
-```jittor_/logs``` -- error logs will be recorded here.
+```jittor/logs``` -- error logs will be recorded here.
 
-```jittor_/boundary_logs``` -- boundary test result.
+```jittor/boundary_logs``` -- boundary test results.
 
-```jittor_/boundary_models``` -- models related to boundary test result.
+```jittor/boundary_models``` -- models related to boundary test results.
