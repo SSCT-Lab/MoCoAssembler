@@ -3,6 +3,7 @@ import sys
 # sys.path.append(Path.cwd().parent.parent.__str__())
 
 import os
+
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
@@ -20,6 +21,7 @@ from queue import Queue
 
 from tensorflow_.config.paths import RES_PATH, PARAM_PATH, FUNC_SIM_PATH, LOG_PATH, TF_MODEL_PATH, TF_PATH
 from tensorflow_.config.models import models
+from tensorflow_.src.logger_process_tf import log_process
 from utils.MoCo import MoCo
 
 
@@ -662,7 +664,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    args.run_all = False
+    # args.run_all = False
     if args.run_all:
         for model in models:
             moco_tf = MoCoTF(model, 3, False)
@@ -672,9 +674,10 @@ if __name__ == "__main__":
             else:
                 moco_tf.depart()
             moco_tf.mutate()
+            log_process(moco_tf.model_name)
     else:
         moco_tf = MoCoTF(args.model_name, args.mutate_times, args.is_train)
-        # moco_tf = MoCoTF("lenet", 3, False)
+        # moco_tf = MoCoTF("lenet", 2, False)
         if (moco_tf.res_model_dir / moco_tf.template_file_name).exists():
             print("{} decomposition files exist.".format(moco_tf.model_name))
         else:
@@ -683,3 +686,4 @@ if __name__ == "__main__":
             print("{} decomposition complete.".format(moco_tf.model_name))
 
         moco_tf.mutate()
+        log_process(moco_tf.model_name)

@@ -220,14 +220,11 @@ if __name__ == "__main__":
                         default="lenet",
                         required=False,
                         help="Model name")
-    parser.add_argument('--is_train',
-                        action='store_true',
-                        help="Model trained or not")
 
     args = parser.parse_args()
 
     # moco_tf = MoCoTF("lenet", 3, False)
-    moco_tf = MoCoTF(args.model_name, 3, args.is_train)
+    moco_tf = MoCoTF(args.model_name, 3, False)
 
     if (moco_tf.res_model_dir / "{}_success.txt".format(moco_tf.model_name)).exists():
         print("{} model mutation has been completed.".format(moco_tf.model_name))
