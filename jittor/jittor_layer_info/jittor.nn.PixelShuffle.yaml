@@ -1,0 +1,13 @@
+api: jittor.nn.PixelShuffle(self, upscale_factor)
+constraints:
+  upscale_factor:
+    default: no default
+    dtype:
+    - int
+descp: no description
+extra_para: 0
+inputs:
+  optional: []
+  required:
+  - upscale_factor
+kind: layer
