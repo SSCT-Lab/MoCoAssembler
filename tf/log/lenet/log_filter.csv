@@ -1,3 +1,0 @@
-error_type,log_path,error_path,error_message,error_code,error_line
-SyntaxError,/log/lenet/log1690791230/error4,/result/lenet/mutate1690791230/3_4.py,SyntaxError: invalid syntax,"x = keras.layers.SimpleRNN(activation=""relu"", units=983, use_bias=True)(x)",13
-ValueError,/log/lenet/log1690791230/error6,/result/lenet/mutate1690791230/5_5.py,"raise ValueError( ValueError: Invalid border mode for LocallyConnected2D (only ""valid"" is supported if implementation is 1): same","x = keras.layers.LocallyConnected2D(filters=32, kernel_size=5, activation=""relu"", padding=""same"", activity_regularizer=None)(x)",15
