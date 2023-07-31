@@ -36,12 +36,33 @@ class MyDataset(torch.utils.data.Dataset):
 
 IMAGE_NUM = 100
 BATCH_SIZE = 5
+test_loader_28_mn = ""
+test_loader_224_im = ""
+test_loader_244_im = ""
+test_loader_299_im = ""
+test_loader_224_cf = ""
+test_loader_sp = ""
 
 
 def get_mnist() -> DataLoader:
     data = np.load(os.path.join(file_paths.DATASET_PATH, 'MNIST.npz'))
     images = data['x_train']
     labels = data['y_train']
+    transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize((0.1307,), (0.3081,))
+    ])
+    dataset = MyDataset(images, labels, transform=transform)
+    sub_dataset = torch.utils.data.Subset(dataset=dataset, indices=range(IMAGE_NUM))
+    dataloader = DataLoader(sub_dataset, batch_size=BATCH_SIZE, shuffle=True)
+    del data, images, labels, dataset
+    return dataloader
+
+
+def get_mnist_test() -> DataLoader:
+    data = np.load(os.path.join(file_paths.DATASET_PATH, 'MNIST.npz'))
+    images = data['x_test']
+    labels = data['y_test']
     transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize((0.1307,), (0.3081,))
@@ -90,6 +111,43 @@ def get_imagenet(size: int = 224) -> DataLoader:
     return dataloader
 
 
+def get_imagenet_test(size: int = 224) -> DataLoader:
+    data = np.load(os.path.join(file_paths.DATASET_PATH, 'imagenet.npz'))
+    images = data['x_test']
+    labels = data['y_test']
+    transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ])
+    if size == 224:
+        dataset = MyDataset(images[IMAGE_NUM: IMAGE_NUM * 2], labels[IMAGE_NUM: IMAGE_NUM * 2], transform=transform)
+    elif size == 244:
+        resized_images = []
+        for i in range(IMAGE_NUM, IMAGE_NUM * 2):
+            image = images[i]
+            resized_image = image.astype(np.uint8)
+            resized_image = Image.fromarray(resized_image)
+            resized_image = resized_image.resize((244, 244))
+            resized_image = np.array(resized_image)
+            resized_images.append(resized_image)
+        dataset = MyDataset(resized_images, labels[IMAGE_NUM: IMAGE_NUM * 2], transform=transform)
+    elif size == 299:
+        resized_images = []
+        for i in range(IMAGE_NUM, IMAGE_NUM * 2):
+            image = images[i]
+            resized_image = image.astype(np.uint8)
+            resized_image = Image.fromarray(resized_image)
+            resized_image = resized_image.resize((299, 299))
+            resized_image = np.array(resized_image)
+            resized_images.append(resized_image)
+        dataset = MyDataset(resized_images, labels[IMAGE_NUM: IMAGE_NUM * 2], transform=transform)
+    else:
+        dataset = MyDataset(images[IMAGE_NUM: IMAGE_NUM * 2], labels[IMAGE_NUM: IMAGE_NUM * 2], transform=transform)
+    dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
+    del data, images, labels, dataset
+    return dataloader
+
+
 def get_cifar10() -> DataLoader:
     data = np.load(os.path.join(file_paths.DATASET_PATH, 'cifar10.npz'))
     images = data['x_train']
@@ -107,6 +165,28 @@ def get_cifar10() -> DataLoader:
         resized_image = np.array(resized_image)
         resized_images.append(resized_image)
     dataset = MyDataset(resized_images, labels[:IMAGE_NUM], transform=transform)
+    dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
+    del data, images, labels, dataset
+    return dataloader
+
+
+def get_cifar10_test() -> DataLoader:
+    data = np.load(os.path.join(file_paths.DATASET_PATH, 'cifar10.npz'))
+    images = data['x_train']
+    labels = data['y_train']
+    transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
+    ])
+    resized_images = []
+    for i in range(IMAGE_NUM, IMAGE_NUM * 2):
+        image = images[i]
+        resized_image = image.astype(np.uint8)
+        resized_image = Image.fromarray(resized_image)
+        resized_image = resized_image.resize((224, 224))
+        resized_image = np.array(resized_image)
+        resized_images.append(resized_image)
+    dataset = MyDataset(resized_images, labels[IMAGE_NUM: IMAGE_NUM * 2], transform=transform)
     dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
     del data, images, labels, dataset
     return dataloader
@@ -133,6 +213,15 @@ def get_stockprice() -> DataLoader:
     data = pd.read_csv(os.path.join(file_paths.DATASET_PATH, 'DIS.csv'))
     price_sequence = data.iloc[:, 1].values.astype(np.float32)
     price_sequence = price_sequence[:100]
+    dataset = StockPriceDataset(price_sequence)
+    dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=False)
+    return dataloader
+
+
+def get_stockprice_test() -> DataLoader:
+    data = pd.read_csv(os.path.join(file_paths.DATASET_PATH, 'DIS.csv'))
+    price_sequence = data.iloc[:, 1].values.astype(np.float32)
+    price_sequence = price_sequence[100:200]
     dataset = StockPriceDataset(price_sequence)
     dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=False)
     return dataloader
@@ -197,7 +286,7 @@ def reshape_tensor(input_tensor, target_shape: tuple):
 
 class Trainer:
     def __init__(self):
-        MODEL_LIST = ['ResNet18', 'ResNet50', 'nasnet', 'InceptionV3', 'xception', 'testnet',
+        MODEL_LIST = ['ResNet18', 'ResNet50', 'InceptionV3', 'xception', 'testnet',
                       'alexnet', 'lenet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19',
                       'densenet', 'LSTM', 'GRU', 'googlenet', 'BiLSTM']
         self.dataloader_dict = {}
@@ -288,14 +377,106 @@ class Trainer:
         return
 
 
+class Tester:
+    def __init__(self):
+        MODEL_LIST = ['ResNet18', 'ResNet50', 'InceptionV3', 'xception', 'testnet',
+                      'alexnet', 'lenet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19',
+                      'densenet', 'LSTM', 'GRU', 'googlenet', 'BiLSTM']
+        self.dataloader_dict = {}
+        self.train_count = 0
+        self.dataloader_dict['ResNet18'] = get_imagenet_test(224)
+        self.dataloader_dict['ResNet50'] = self.dataloader_dict['ResNet18']
+        self.dataloader_dict['nasnet'] = get_imagenet_test(244)
+        self.dataloader_dict['InceptionV3'] = get_imagenet_test(299)
+        self.dataloader_dict['xception'] = self.dataloader_dict['ResNet18']
+        self.dataloader_dict['alexnet'] = get_cifar10_test()
+        self.dataloader_dict['lenet'] = get_mnist_test()
+        self.dataloader_dict['mobilenet'] = self.dataloader_dict['ResNet18']
+        self.dataloader_dict['squeezenet'] = self.dataloader_dict['nasnet']
+        self.dataloader_dict['vgg16'] = self.dataloader_dict['alexnet']
+        self.dataloader_dict['vgg19'] = self.dataloader_dict['alexnet']
+        self.dataloader_dict['densenet'] = self.dataloader_dict['ResNet18']
+        self.dataloader_dict['LSTM'] = get_stockprice_test()
+        self.dataloader_dict['GRU'] = self.dataloader_dict['LSTM']
+        self.dataloader_dict['googlenet'] = self.dataloader_dict['ResNet18']
+        self.dataloader_dict['BiLSTM'] = self.dataloader_dict['LSTM']
+        return
+
+    def test(self, net_to_train: nn.Module, net_name: str) -> float | None:
+        if net_name in self.dataloader_dict.keys():
+            dataloader = self.dataloader_dict[net_name]
+        else:
+            dataloader = None
+        if dataloader is None:
+            print(str(net_to_train).split('(', 1)[0] + ' no train')
+            return
+        net = net_to_train
+
+        # rnn
+        if net_name in ['LSTM', 'BiLSTM', 'GRU']:
+            correct = 0
+            total = 0
+            for i, inputs in enumerate(dataloader):
+                reshaped_inputs = torch.unsqueeze(torch.unsqueeze(inputs, dim=1), dim=2)
+                labels = inputs.clone()  # 在这个示例中，将输入作为标签（仅用于示例目的，您可能需要更改为目标变量）
+
+                outputs = net(reshaped_inputs)  # 前向传播
+                outputs = reshape_tensor(outputs, (5, 1))
+                _, predicted = torch.max(outputs, 1)
+                total += labels.size(0)
+                correct += (predicted == labels).sum().item()
+            # print('Train finished (RNN)')
+            return correct / total
+
+        net.to('cuda')
+        criterion = nn.CrossEntropyLoss()
+        criterion.to('cuda')
+        optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+        for param in optimizer.param_groups:
+            for key, value in param.items():
+                if isinstance(value, torch.Tensor):
+                    param[key] = value.to('cuda')
+        running_loss = 0.0
+        correct = 0
+        total = 0
+        for i, data in enumerate(dataloader, 0):
+            # forward:
+            inputs, labels = data
+            labels = labels.to('cuda')
+            inputs = inputs.to('cuda')
+            outputs = net(inputs).to('cuda')
+            if net_name in ['alexnet', 'vgg16', 'vgg19']:
+                labels = labels.squeeze()
+                labels = labels.to('cuda')
+
+            # outputs reshape:
+            if net_name in ['lenet', 'alexnet', 'vgg16', 'vgg19']:
+                target_shape = (BATCH_SIZE, 10)
+            else:
+                target_shape = (BATCH_SIZE, 1000)
+            outputs = reshape_tensor(outputs, target_shape)
+            outputs = outputs.to('cuda')
+
+            # loss calculation and backward:
+            _, predicted = torch.max(outputs, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
+            # print(str(i) + ':  ' + str(loss.item()))
+        self.train_count += 1
+        # print('Training Finished, ' + str(net).split('(', 1)[0] + ', count ' + str(self.train_count))
+        # torch.cpu.empty_cache()
+        return correct / total
+
+
 if __name__ == '__main__':
     # test
-    t = Trainer()
+    t = Tester()
 
 
     def traintrain(net_name: str):
         module = import_module(net_name)
         net = module.go()
-        t.train(net, net_name)
+        print(t.test(net, net_name))
+
 
     traintrain('BiLSTM')
