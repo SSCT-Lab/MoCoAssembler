@@ -1,8 +1,12 @@
 import csv
 import re
+import sys
+import traceback
 from pathlib import Path
+sys.path.append(Path.cwd().parent.parent.__str__())
 
-from config.paths import LOG_PATH
+from tensorflow_.config.paths import LOG_PATH
+from tensorflow_.config.models import models
 
 
 def log_process(model_name):
@@ -37,7 +41,7 @@ def log_process(model_name):
                     for i in range(len(trackback_list)):
                         line = trackback_list[i]
                         if line.find("in " + model_name) >= 0:
-                            error_code = trackback_list[i+1].strip()
+                            error_code = trackback_list[i + 1].strip()
                             error = re.findall(r'"([^"]*)"|(\d+)', line)
                             for match in error:
                                 if match[0]:
@@ -50,11 +54,30 @@ def log_process(model_name):
                     error_message = " ".join(message)
                     error_type = error_message.split(":")[0]
 
+                with Path.open(__, "r", encoding="utf8") as error_file:
+                    message = []
+                    for line in error_file:
+                        if line.find("Error") >= 0:
+                            message.append(line.strip())
+                            break
+
+                    for line in error_file:
+                        if line == "\n":
+                            pass
+                        message.append(line.strip())
+
+                    error_message = " ".join(message)
+
+                try:
+                    error_path = error_path[error_path.index("/result"):]
+                    log_path = log_path[log_path.index("/log"):]
+                except:
+                    continue
 
                 dict = {
                     "error_type": error_type.strip(),
-                    "log_path": log_path[log_path.index("/log"):],
-                    "error_path": error_path[error_path.index("/result"):],
+                    "log_path": log_path,
+                    "error_path": error_path,
                     "error_message": error_message.strip(),
                     "error_code": error_code.strip(),
                     "error_line": error_line_number.__str__()
@@ -70,7 +93,6 @@ def log_process(model_name):
             writer.writeheader()
             writer.writerows(data)
 
-
         # 对分练过的csv文件排序
         sort_csv(model_file)
 
@@ -82,7 +104,6 @@ def log_process(model_name):
 
         # 过滤
         filter(model_file)
-
 
 
 def sort_csv(_):
@@ -123,7 +144,7 @@ def remove_duplicates(_):
     unique_rows = []
     last_row3, last_row4 = "", ""
     for row in rows:
-        if row["error_message"] == last_row3 or row["error_code"] == last_row4:
+        if row["error_message"] == last_row3:
             continue
         else:
             unique_rows.append(row)
@@ -138,14 +159,58 @@ def filter(_):
 
     filter_rows = []
     for row in rows:
-        if len(re.findall(r'.*?expected.*?found.*?', row["error_message"])) > 0:
+        if len(re.findall(r".*?expected.*?found.*?", row["error_message"])) > 0:
             # 过滤掉形状不同的
             continue
-        elif len(re.findall(r'.*?Exception encountered when calling layer.*?', row["error_message"])) > 0:
+        elif len(re.findall(r".*?Exception encountered when calling layer.*?Negative dimension",
+                            row["error_message"])) > 0:
             # 过滤掉由于padding值不对而产生的问题
             continue
-        elif len(re.findall(r'.*?One of the dimensions in the output is <= 0.*?', row["error_message"])) > 0:
+        elif len(re.findall(r".*?Argument `cropping` must be greater than the input shape.*?",
+                            row["error_message"])) > 0:
+            # 过滤cropping错误
+            continue
+        elif len(re.findall(r".*?Attention layer must be called on a list of inputs.*?",
+                            row["error_message"])) > 0:
+            # 过滤AdditiveAttention输入错误
+            continue
+        elif len(re.findall(r".*?layer should be called on a list of.*?", row["error_message"])) > 0:
+            # 过滤输入错误
+            continue
+        elif len(re.findall(r".*?One of the dimensions in the output is <= 0.*?", row["error_message"])) > 0:
             # 过滤掉由于padding值不对而产生的问题
+            continue
+        elif len(re.findall(r".*?missing 1 required positional argument: 'states'.*?",
+                            row["error_message"])) > 0:
+            # 过滤rnn网络的states问题
+            continue
+        elif len(re.findall(r".*?`dim` must be in the range.*?", row["error_message"])) > 0:
+            # 过滤dim错误
+            continue
+        elif len(re.findall(r".*?rank.*?", row["error_message"])) > 0:
+            # 过滤rank错误
+            continue
+        elif len(re.findall(r".*?Strides must be greater than output padding.*?", row["error_message"])) > 0:
+            # 过滤Strides must be greater than output padding
+            continue
+        elif len(re.findall(r".*?`strides > 1` not supported in conjunction with `dilation_rate > 1`.*?", row["error_message"])) > 0:
+            # 过滤`strides > 1` not supported in conjunction with `dilation_rate > 1`
+            continue
+        elif len(re.findall(r".*?'images' must have either.*? or .*? dimensions.*?",
+                                row["error_message"])) > 0:
+            # 过滤lambda错误
+            continue
+        elif len(re.findall(r".*?`interpolation` argument should be one of.*?",
+                                row["error_message"])) > 0:
+            # 过滤interpolation错误
+            continue
+        elif len(re.findall(r".*?list index out of range.*?",
+                                row["error_message"])) > 0:
+            # 过滤列表超出错误
+            continue
+
+        elif len(re.findall(r".*?function=None.*?", row["error_code"])) > 0:
+            # 过滤Lambda函数错误
             continue
         elif row["error_type"] == "tensorflow.python.framework.errors_impl.ResourceExhaustedError":
             # 过滤掉OOM
@@ -184,17 +249,9 @@ def is_dir_empty(directory_path):
 
 
 if __name__ == "__main__":
-    model_list = ["lenet",
-                  "alexnet",
-                  "vgg16",
-                  "vgg19",
-                  "resnet18",
-                  "resnet50",
-                  "squeezenet",
-                  ]
-    # for model in model_list:
-    #     print(model + " log process start.")
-    #     log_process(model)
-    #     print(model + " log process end.")
-
-    log_process("googlenet")
+    for model in models:
+        try:
+            log_process(model)
+            print("{} success!\n".format(model))
+        except Exception as e:
+            print("{} wrong!\n".format(model) + traceback.format_exc())

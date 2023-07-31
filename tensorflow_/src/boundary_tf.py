@@ -1,11 +1,8 @@
 from pathlib import Path
-
 import sys
-
 sys.path.append(Path.cwd().parent.parent.__str__())
 
 import os
-
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
@@ -20,7 +17,7 @@ from openpyxl import Workbook
 import yaml
 from openpyxl.reader.excel import load_workbook
 
-from config.paths import PARAM_PATH
+from tensorflow_.config.paths import PARAM_PATH
 from tensorflow_.src.mutate_tf import MoCoTF
 
 
@@ -114,12 +111,17 @@ def generate_params_list(params_list, _, values: list, labels: list) -> list:
 
 def boundary_assembler(model):
     with Path.open(model.res_model_dir / (model.model_name + "_success.txt"), "r") as file:
-        # 逐行读取文件内容并存储为列表
         success_list = file.readlines()
 
-    detail = []
+    output_file = moco_tf.res_model_dir / (moco_tf.model_name + "_boundary_output.xlsx")
+    workbook = Workbook()
+    sheet = workbook.active
+    headers = ["file_name", "code", "except_result", "true_result"]
+    sheet.append(headers)
+    workbook.save(output_file)
 
     for success in success_list:
+        detail = []
         time = str(success).split("/")[-2][6:]
         boundary_model_dir = model.res_model_dir / ("boundary" + time)
         if not Path.exists(boundary_model_dir):
@@ -159,10 +161,10 @@ def boundary_assembler(model):
                                "true_result": None,
                                }
                 detail.append(detail_dict)
+            if len(detail) > 0:
+                run_model(detail, output_file, function)
         else:
             pass
-
-    return detail
 
 
 def write_to_xlsx(xlsx, output_file):
@@ -180,29 +182,12 @@ def write_to_xlsx(xlsx, output_file):
     workbook.save(output_file)
 
 
-def write_to_dict(file_path, sheet_name):
-    wb = load_workbook(file_path)
-    sheet = wb[sheet_name]
-
-    headers = [cell.value for cell in sheet[1]]
-    data = []
-    for row in sheet.iter_rows(min_row=2, values_only=True):
-        item = dict(zip(headers, row))
-        data.append(item)
-
-    return data
-
-
-def run_model(detail):
-    xlsx = []
+def run_model(detail, output_file, function):
+    workbook = load_workbook(output_file)
+    worksheet = workbook["Sheet"]
 
     with alive_bar(len(detail), force_tty=True) as bar:
-        output_file = moco_tf.res_model_dir / (moco_tf.model_name + "_boundary_output.xlsx")
-        workbook = Workbook()
-        sheet = workbook.active
-        headers = list(detail[0].keys())
-        sheet.append(headers)
-
+        print("{} on processing...".format(function))
         for _ in detail:
             tmp = _.copy()
             if "file_name" in tmp:
@@ -224,25 +209,8 @@ def run_model(detail):
                     pass
                 else:
                     items = list(tmp.values())
-                    sheet.append(items)
-
-            workbook.save(output_file)
-
-
-def test():
-    code = 'x = keras.layers.DepthwiseConv2D(kernel_size=3, strides=[5, 2], padding="same", activation="relu")(x)'
-
-    function = moco_tf.get_function(code)
-    if function in moco_tf.api_list:
-        dict = moco_tf.get_params(code)
-        params_list = boundary_generate(function)
-        for params in params_list:
-            params_dict = dict.copy()
-            print(params_dict)
-            key, value = list(params.keys())[0].split(":")
-            params_dict[key] = value
-            new_line = moco_tf.generate_line(code, params_dict)
-            print(new_line)
+                    worksheet.append(items)
+                    workbook.save(output_file)
 
 
 if __name__ == "__main__":
@@ -250,34 +218,28 @@ if __name__ == "__main__":
     parser.add_argument('--model_name',
                         type=str,
                         default="lenet",
-                        required=False)
-    parser.add_argument('--mutate_times',
-                        type=int,
-                        default=3,
-                        required=False)
-    parser.add_argument('--is_mutate',
-                        action='store_true')
+                        required=False,
+                        help="Model name")
+    parser.add_argument('--is_train',
+                        action='store_true',
+                        help="Model trained or not")
 
     args = parser.parse_args()
 
-    moco_tf = MoCoTF(args.model_name, args.mutate_times, args.is_mutate)
-    test()
+    # moco_tf = MoCoTF("lenet", 3, False)
+    moco_tf = MoCoTF(args.model_name, 3, args.is_train)
 
-    # if (moco_tf.res_model_dir / moco_tf.template_file_name).exists():
-    #     print(moco_tf.model_name + " decomposition files exist.")
-    # else:
-    #     print(moco_tf.model_name + " decomposition file does not exist, we will create it……")
-    #     moco_tf.depart()
-    #     print(moco_tf.model_name + " decomposition complete.")
+    if (moco_tf.res_model_dir / "{}_success.txt".format(moco_tf.model_name)).exists():
+        print("{} model mutation has been completed.".format(moco_tf.model_name))
+    else:
+        if (moco_tf.res_model_dir / moco_tf.template_file_name).exists():
+            print("{} decomposition files exist.".format(moco_tf.model_name))
+        else:
+            print("{} decomposition file does not exist, we will create it……".format(moco_tf.model_name))
+            moco_tf.depart()
+            print("{} decomposition complete.".format(moco_tf.model_name))
 
-    # moco_tf.mutate()
+        moco_tf.mutate()
 
-    # print(moco_tf.model_name + " boundary test start...")
-    # bounary_file = moco_tf.res_model_dir / (moco_tf.model_name + "_boundary.xlsx")
-    # if not bounary_file.exists():
-    #     detail = boundary_assembler(moco_tf)
-    #     write_to_xlsx(detail, bounary_file)
-    # else:
-    #     detail = write_to_dict(bounary_file, "Sheet")
-    #
-    # run_model(detail)
+    print("{} boundary test start...".format(moco_tf.model_name))
+    boundary_assembler(moco_tf)

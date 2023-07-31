@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
-from config.paths import DATASETS_PATH
+from tensorflow_.config.paths import DATASETS_PATH
 
 
 def alexnet(label_num=10, input_shape=(32, 32, 3)):

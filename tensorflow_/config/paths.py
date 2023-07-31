@@ -11,14 +11,11 @@ PATH = PROJ_PATH / "ModelAssembler"
 # datasets
 DATASETS_PATH = PATH / "datasets"
 
-# tf模型文件路径
-TF_MODEL_PATH = PATH / "model/tensorflow_version"
-
-# PYTORCH模型文件路径
-PT_MODEL_PATH = PATH / "model/pytorch_version"
-
 # tf
 TF_PATH = PATH / "tensorflow_"
+
+# tf模型文件路径
+TF_MODEL_PATH = TF_PATH / "seed_models"
 
 # tf模型拆分后结果存储的文件路径
 RES_PATH = TF_PATH / "result"

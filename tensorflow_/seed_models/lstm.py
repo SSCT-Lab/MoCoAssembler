@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from pandas import read_csv
 from tensorflow import keras
-from config.paths import DATASETS_PATH
+from tensorflow_.config.paths import DATASETS_PATH
 
 
 def lstm(num_units=25, input_shape=10):

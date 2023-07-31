@@ -1,10 +1,10 @@
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
-from config.paths import DATASETS_PATH
+from tensorflow_.config.paths import DATASETS_PATH
 
 
-def vgg19(label_num=1000, input_shape=(224, 224, 3)):
+def vgg16(label_num=1000, input_shape=(224, 224, 3)):
     input_tensor = keras.Input(shape=input_shape, dtype="float32")
 
     x = keras.layers.Conv2D(filters=64, kernel_size=3, strides=1, activation="relu", padding="same")(input_tensor)
@@ -18,23 +18,20 @@ def vgg19(label_num=1000, input_shape=(224, 224, 3)):
     x = keras.layers.Conv2D(filters=256, kernel_size=3, strides=1, activation="relu", padding="same")(x)
     x = keras.layers.Conv2D(filters=256, kernel_size=3, strides=1, activation="relu", padding="same")(x)
     x = keras.layers.Conv2D(filters=256, kernel_size=3, strides=1, activation="relu", padding="same")(x)
-    x = keras.layers.Conv2D(filters=256, kernel_size=3, strides=1, activation="relu", padding="same")(x)
     x = keras.layers.MaxPool2D(pool_size=2, strides=2)(x)
 
     x = keras.layers.Conv2D(filters=512, kernel_size=3, strides=1, activation="relu", padding="same")(x)
     x = keras.layers.Conv2D(filters=512, kernel_size=3, strides=1, activation="relu", padding="same")(x)
     x = keras.layers.Conv2D(filters=512, kernel_size=3, strides=1, activation="relu", padding="same")(x)
-    x = keras.layers.Conv2D(filters=512, kernel_size=3, strides=1, activation="relu", padding="same")(x)
     x = keras.layers.MaxPool2D(pool_size=2, strides=2)(x)
 
-    x = keras.layers.Conv2D(filters=512, kernel_size=3, strides=1, activation="relu", padding="same")(x)
     x = keras.layers.Conv2D(filters=512, kernel_size=3, strides=1, activation="relu", padding="same")(x)
     x = keras.layers.Conv2D(filters=512, kernel_size=3, strides=1, activation="relu", padding="same")(x)
     x = keras.layers.Conv2D(filters=512, kernel_size=3, strides=1, activation="relu", padding="same")(x)
     x = keras.layers.MaxPool2D(pool_size=2, strides=2)(x)
 
     x = keras.layers.Flatten()(x)
-    x = keras.layers.Dense(units=4096, activation="relu",)(x)
+    x = keras.layers.Dense(units=4096, activation="relu")(x)
 
     x = keras.layers.Dense(units=4096, activation="relu")(x)
 
@@ -56,10 +53,9 @@ def go():
         x_train = cifar10["x_train"][:100]
         y_train = cifar10["y_train"][:100]
 
-    x_train= x_train / 255.0
+    x_train = x_train / 255.0
 
-    model = vgg19(10, (32, 32, 3))
-    # model.summary()
+    model = vgg16(10, (32, 32, 3))
     model.compile(optimizer=tf.keras.optimizers.legacy.SGD(learning_rate=0.3),
                   loss="sparse_categorical_crossentropy",
                   metrics=["accuracy"])

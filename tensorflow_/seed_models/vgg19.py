@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
-from config.paths import DATASETS_PATH
+from tensorflow_.config.paths import DATASETS_PATH
 
 
 def vgg19(label_num=1000, input_shape=(224, 224, 3)):
@@ -59,7 +59,6 @@ def go():
     x_train= x_train / 255.0
 
     model = vgg19(10, (32, 32, 3))
-    # model.summary()
     model.compile(optimizer=tf.keras.optimizers.legacy.SGD(learning_rate=0.3),
                   loss="sparse_categorical_crossentropy",
                   metrics=["accuracy"])

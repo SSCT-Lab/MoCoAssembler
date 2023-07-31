@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
-from config.paths import DATASETS_PATH
+from tensorflow_.config.paths import DATASETS_PATH
 
 
 def lenet(label_num=10, input_shape=(28, 28, 1)):

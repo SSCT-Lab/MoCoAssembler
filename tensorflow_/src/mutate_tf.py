@@ -1,13 +1,10 @@
 from pathlib import Path
-
 import sys
+# sys.path.append(Path.cwd().parent.parent.__str__())
 
-sys.path.append(Path.cwd().parent.parent.__str__())
-
-# import os
-#
-# os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-# os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
 import argparse
 import random
@@ -21,8 +18,8 @@ from math import ceil
 from alive_progress import alive_bar
 from queue import Queue
 
-from config.paths import RES_PATH, PARAM_PATH, FUNC_SIM_PATH, LOG_PATH, TF_MODEL_PATH, TF_PATH
-from config.keywords import INPUT_TENSOR, OUTPUT_TENSOR
+from tensorflow_.config.paths import RES_PATH, PARAM_PATH, FUNC_SIM_PATH, LOG_PATH, TF_MODEL_PATH, TF_PATH
+from tensorflow_.config.models import models
 from utils.MoCo import MoCo
 
 
@@ -103,13 +100,16 @@ class MoCoTF(MoCo):
         self.is_mutate = is_mutate
 
     def depart(self):
+        """
+        Split network model
+        """
         template_file = Path.open(Path(self.template_file_name), "a+", encoding="utf8")
         function_file = Path.open(Path(self.function_file_name), "w", encoding="utf8")
         inception_file = Path.open(Path(self.inception_file_name), "w", encoding="utf8")
 
         with Path.open(TF_MODEL_PATH / (self.model_name + ".py"), "r", encoding="utf8") as file_org:
             for line in file_org:
-                if line.find(INPUT_TENSOR) >= 0:
+                if line.find("input_tensor") >= 0:
                     template_file.write("# " + self.model_name + " input layer" + "\n")
                     template_file.write(line)
                     template_file.write("# " + self.model_name + " hidden layer" + "\n")
@@ -118,7 +118,7 @@ class MoCoTF(MoCo):
 
             function_file.write("# " + self.model_name + " function layer" + "\n")
             for line in file_org:
-                if line.find(OUTPUT_TENSOR) >= 0:
+                if line.find("output_tensor") >= 0:
                     template_file.write("# " + self.model_name + " output layer" + "\n")
                     template_file.write(line)
                     break
@@ -144,6 +144,9 @@ class MoCoTF(MoCo):
             template_file.close()
 
     def mutate(self):
+        """
+        Mutate network model
+        """
         if not Path.exists(self.mutate_dir):
             Path.mkdir(self.mutate_dir)
 
@@ -181,6 +184,10 @@ class MoCoTF(MoCo):
                 print("NODE_ALL: " + str(self.NODE_ALL))
 
     def generate_model(self, line):
+        """
+        Generate a layer of network model
+        @param line: A line of mutable API code in the seed model
+        """
         new_line = []
         new_mut = []
         num = 0
@@ -242,6 +249,10 @@ class MoCoTF(MoCo):
                             self.detail_dict[new_mut[num - 1]] = {new_file_name: 0}
 
     def run_model(self, line):
+        """
+        Run a layer of network models
+        @param line: A line of mutable API code in the seed model, same as the input of function generate_model
+        """
         self.NODE_ALIVE = 0
         self.queue = Queue()
         model_list = []
@@ -278,6 +289,11 @@ class MoCoTF(MoCo):
         self.beam_search(line)
 
     def get_function(self, line: str) -> str:
+        """
+        Get the API function name for that line
+        @param line: A line of mutable API code in the seed model
+        @return: API function name
+        """
         try:
             function = re.findall(r".*? = (.*?)\(.*?", line)[0]
         except:
@@ -285,6 +301,11 @@ class MoCoTF(MoCo):
         return function
 
     def get_params(self, line: str) -> dict:
+        """
+        Get the API parameters for that line of code and return them as a dictionary
+        @param line: A line of mutable API code in the seed model
+        @return: parameters dictionary
+        """
         if line.find("[") >= 0:
             line = line.replace("[", "(").replace("]", ")")
 
@@ -308,6 +329,12 @@ class MoCoTF(MoCo):
         return params_dic
 
     def generate_line(self, line, params_dict) -> str:
+        """
+        Generate a new line of code based on the API function name and the argument list, which is very similar to the original code
+        @param line: A line of mutable API code in the seed model
+        @param params_dict: New parameters dictionary
+        @return: A new line of code
+        """
         new_params: str = ""
         for _ in params_dict:
             new_params = new_params + _ + "=" + params_dict[_].__str__() + ", "
@@ -325,6 +352,11 @@ class MoCoTF(MoCo):
         return new_line
 
     def mutate_on_param(self, line: str) -> (str, str):
+        """
+        Parameter mutation
+        @param line: A line of mutable API code in the seed model
+        @return: (A new line of code, A label of this line)
+        """
         dict = self.get_params(line)
         function = self.get_function(line)
         func_file = PARAM_PATH / ("tf." + function + ".yaml")
@@ -344,6 +376,11 @@ class MoCoTF(MoCo):
         return new_line, label
 
     def random_param(self, data) -> str:
+        """
+        The parameters to be mutated are selected according to the roulette wheel method
+        @param data: Parameters dictionary
+        @return: A parameter for this mutation
+        """
         rare_probability = 0.005
         rare_count = 0
         params_list = list(data.keys())
@@ -371,6 +408,11 @@ class MoCoTF(MoCo):
         return param
 
     def mutate_on_function(self, line: str) -> (str, str):
+        """
+        API function name mutation
+        @param line: A line of mutable API code in the seed model
+        @return: (A new line of code, A label of this line)
+        """
         function = self.get_function(line)
         func_file = FUNC_SIM_PATH / ("tf." + function + ".yaml")
 
@@ -404,6 +446,11 @@ class MoCoTF(MoCo):
         return new_line, func_mut[3:]
 
     def random_function(self, data) -> str:
+        """
+        The target function of the API function mutation
+        @param data: Function similarity dictionary of the source API
+        @return: A function for this mutation
+        """
         sim_sum = sum(data.values())
         probabilities = {func: value / sim_sum for func, value in data.items()}
         cumulative_probabilities = {}
@@ -420,6 +467,11 @@ class MoCoTF(MoCo):
                 return func_mut
 
     def get_value(self, dic):
+        """
+        Get the values for the selected parameters
+        @param dic: A dictionary of specific values for the selected parameters, which is different from the input dictionary for random_param
+        @return: A valid value for the parameter is selected
+        """
         value = ""
         label = ""
         if "dtype" in dic:
@@ -505,6 +557,12 @@ class MoCoTF(MoCo):
         return value, label
 
     def mutate_on_module(self, function: str, number: int) -> str:
+        """
+        Special mutation is applied to complex models
+        @param function: The function name of inception block
+        @param number: The number of mutations for the inception block
+        @return: Mutation of the entire inception block
+        """
         def_list = []
         inception_file = Path.open(Path(self.inception_file_name), "r", encoding="utf8")
 
@@ -543,6 +601,10 @@ class MoCoTF(MoCo):
         return new_module
 
     def beam_search(self, line):
+        """
+        Beam search
+        @param line: A line of mutable API code in the seed model
+        """
         self.queue = Queue()
         self.NODE_RES = 0
         function = self.get_function(line)
@@ -579,27 +641,45 @@ class MoCoTF(MoCo):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='argparse testing')
+    parser.add_argument('--run_all',
+                        type=bool,
+                        default=False,
+                        required=False,
+                        help="Whether to run all models")
     parser.add_argument('--model_name',
                         type=str,
                         default="lenet",
-                        required=False)
+                        required=False,
+                        help="Model name")
     parser.add_argument('--mutate_times',
                         type=int,
                         default=3,
-                        required=False)
-    parser.add_argument('--is_mutate',
-                        action='store_true')
+                        required=False,
+                        help="The number of mutations per node")
+    parser.add_argument('--is_train',
+                        action='store_true',
+                        help="Model trained or not")
 
     args = parser.parse_args()
 
-    # generate new model list
-    test = MoCoTF("lenet", 2, False)
-    if (test.res_model_dir / test.template_file_name).exists():
-        print(test.model_name + " decomposition files exist.")
+    args.run_all = False
+    if args.run_all:
+        for model in models:
+            moco_tf = MoCoTF(model, 3, False)
+            print("{} Start".format(moco_tf.model_name))
+            if (moco_tf.res_model_dir / moco_tf.template_file_name).exists():
+                pass
+            else:
+                moco_tf.depart()
+            moco_tf.mutate()
     else:
-        print(test.model_name + " decomposition file does not exist, we will create it……")
-        test.depart()
-        print(test.model_name + " decomposition complete.")
+        moco_tf = MoCoTF(args.model_name, args.mutate_times, args.is_train)
+        # moco_tf = MoCoTF("lenet", 3, False)
+        if (moco_tf.res_model_dir / moco_tf.template_file_name).exists():
+            print("{} decomposition files exist.".format(moco_tf.model_name))
+        else:
+            print("{} decomposition file does not exist, we will create it……".format(moco_tf.model_name))
+            moco_tf.depart()
+            print("{} decomposition complete.".format(moco_tf.model_name))
 
-    test.mutate()
-
+        moco_tf.mutate()
