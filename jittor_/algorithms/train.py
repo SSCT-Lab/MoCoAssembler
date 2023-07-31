@@ -28,10 +28,51 @@ def get_mnist():
     return jittor.array(images / 255.0), jittor.array(labels / 10.0)
 
 
+def get_mnist_test():
+    data = np.load(os.path.join(file_paths.DATASET_PATH, 'MNIST.npz'))
+    images = data['x_test'][:IMAGE_NUM, :, :]
+    images = np.expand_dims(images, axis=1)
+    labels = data['y_test'][:IMAGE_NUM]
+    return jittor.array(images / 255.0), jittor.array(labels / 10.0)
+
+
 def get_imagenet(size: int = 224):
     data = np.load(os.path.join(file_paths.DATASET_PATH, 'imagenet.npz'))
     images = data['x_test'][:IMAGE_NUM, :, :, :]
     labels = data['y_test'][:IMAGE_NUM]
+    if size == 224:
+        images = np.transpose(images, (0, 3, 1, 2))
+        return jittor.array(images / 255.0), jittor.array(labels / 1000.0)
+    elif size == 244:
+        resized_images = []
+        for i in range(IMAGE_NUM):
+            image = images[i]
+            resized_image = image.astype(np.uint8)
+            resized_image = Image.fromarray(resized_image)
+            resized_image = resized_image.resize((244, 244))
+            resized_image = np.array(resized_image)
+            resized_images.append(resized_image)
+        resized_images = np.transpose(resized_images, (0, 3, 1, 2))
+        return jittor.array(resized_images / 255.0), jittor.array(labels / 1000.0)
+    elif size == 299:
+        resized_images = []
+        for i in range(IMAGE_NUM):
+            image = images[i]
+            resized_image = image.astype(np.uint8)
+            resized_image = Image.fromarray(resized_image)
+            resized_image = resized_image.resize((299, 299))
+            resized_image = np.array(resized_image)
+            resized_images.append(resized_image)
+        resized_images = np.transpose(resized_images, (0, 3, 1, 2))
+        return jittor.array(resized_images / 255.0), jittor.array(labels / 1000.0)
+    else:
+        return jittor.array(images / 255.0), jittor.array(labels / 1000.0)
+
+
+def get_imagenet_test(size: int = 224):
+    data = np.load(os.path.join(file_paths.DATASET_PATH, 'imagenet.npz'))
+    images = data['x_test'][IMAGE_NUM: IMAGE_NUM * 2, :, :, :]
+    labels = data['y_test'][IMAGE_NUM: IMAGE_NUM * 2]
     if size == 224:
         images = np.transpose(images, (0, 3, 1, 2))
         return jittor.array(images / 255.0), jittor.array(labels / 1000.0)
@@ -77,10 +118,33 @@ def get_cifar10():
     return jittor.array(resized_images / 255.0), jittor.array(labels / 10.0).squeeze()
 
 
+def get_cifar10_test():
+    data = np.load(os.path.join(file_paths.DATASET_PATH, 'cifar10.npz'))
+    images = data['x_train'][IMAGE_NUM: IMAGE_NUM * 2, :, :, :]
+    labels = data['y_train'][IMAGE_NUM: IMAGE_NUM * 2, :]
+    resized_images = []
+    for i in range(IMAGE_NUM):
+        image = images[i]
+        resized_image = image.astype(np.uint8)
+        resized_image = Image.fromarray(resized_image)
+        resized_image = resized_image.resize((224, 224))
+        resized_image = np.array(resized_image)
+        resized_images.append(resized_image)
+    resized_images = np.transpose(resized_images, (0, 3, 1, 2))
+    return jittor.array(resized_images / 255.0), jittor.array(labels / 10.0).squeeze()
+
+
 def get_stock_price():
     data = pd.read_csv(os.path.join(file_paths.DATASET_PATH, 'DIS.csv'))
     price_sequence = data.iloc[:, 1].values.astype(np.float32)
     price_sequence = price_sequence[:100]
+    return jittor.array(price_sequence), jittor.array(price_sequence)
+
+
+def get_stock_price_test():
+    data = pd.read_csv(os.path.join(file_paths.DATASET_PATH, 'DIS.csv'))
+    price_sequence = data.iloc[:, 1].values.astype(np.float32)
+    price_sequence = price_sequence[100:200]
     return jittor.array(price_sequence), jittor.array(price_sequence)
 
 
@@ -164,7 +228,7 @@ class Trainer:
                 labels = labels.unsqueeze(dim=1)
                 loss = criterion(outputs, labels)
                 optimizer.step(loss)
-            print('Training Finished, ' + str(net).split('(', 1)[0] + ', count ' + str(self.train_count))
+            # print('Training Finished, ' + str(net).split('(', 1)[0] + ', count ' + str(self.train_count))
             return
         criterion = nn.CrossEntropyLoss()
         # criterion.to('cuda')
@@ -200,12 +264,102 @@ class Trainer:
         return
 
 
+class Tester:
+    def __init__(self):
+        MODEL_LIST = ['ResNet18', 'ResNet50', 'InceptionV3', 'xception', 'testnet',
+                      'alexnet', 'lenet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19',
+                      'densenet', 'LSTM', 'GRU', 'BiLSTM', 'googlenet']
+        self.dataloader_dict = {}
+        self.train_count = 0
+        self.dataloader_dict['ResNet18'] = get_imagenet_test(224)
+        self.dataloader_dict['ResNet50'] = self.dataloader_dict['ResNet18']
+        self.dataloader_dict['nasnet'] = get_imagenet_test(244)
+        self.dataloader_dict['InceptionV3'] = get_imagenet_test(299)
+        self.dataloader_dict['xception'] = self.dataloader_dict['ResNet18']
+        self.dataloader_dict['alexnet'] = get_cifar10_test()
+        self.dataloader_dict['lenet'] = get_mnist_test()
+        self.dataloader_dict['mobilenet'] = self.dataloader_dict['ResNet18']
+        self.dataloader_dict['squeezenet'] = self.dataloader_dict['nasnet']
+        self.dataloader_dict['vgg16'] = self.dataloader_dict['alexnet']
+        self.dataloader_dict['vgg19'] = self.dataloader_dict['alexnet']
+        self.dataloader_dict['densenet'] = self.dataloader_dict['ResNet18']
+        self.dataloader_dict['LSTM'] = get_stock_price_test()
+        self.dataloader_dict['GRU'] = self.dataloader_dict['LSTM']
+        self.dataloader_dict['BiLSTM'] = self.dataloader_dict['LSTM']
+        self.dataloader_dict['googlenet'] = self.dataloader_dict['ResNet18']
+        return
+
+    def test(self, net_to_train: nn.Module, net_name: str) -> float:
+        if net_name in self.dataloader_dict.keys():
+            dataloader = self.dataloader_dict[net_name]  # now, data_loader is a tuple: (images, labels)
+        else:
+            dataloader = None
+        if dataloader is None:
+            # print(str(net_to_train).split('(', 1)[0] + ' no train')
+            return 0.0
+        net = net_to_train
+        images = dataloader[0]
+        results = dataloader[1]
+        if net_name in ['LSTM', 'BiLSTM', 'GRU']:
+            criterion = nn.MSELoss()
+            optimizer = optim.Adam(net.parameters(), lr=0.001)
+            correct = 0
+            total = 0
+            for i in range(int(IMAGE_NUM/BATCH_SIZE)):
+                # forward
+                inputs, labels = images[i*BATCH_SIZE:(i+1)*BATCH_SIZE], results[i*BATCH_SIZE:(i+1)*BATCH_SIZE]
+                inputs = inputs.unsqueeze(dim=1)
+                inputs = inputs.unsqueeze(dim=2)
+                outputs = net(inputs)
+                outputs = reshape_tensor(outputs, (5, 1))
+                labels = labels.unsqueeze(dim=1)
+                _, predicted = jittor.max(outputs, 1)
+                total += labels.size(0)
+                correct += (predicted == labels).sum().item()
+            # print('Training Finished, ' + str(net).split('(', 1)[0] + ', count ' + str(self.train_count))
+            return correct / total
+        criterion = nn.CrossEntropyLoss()
+        # criterion.to('cuda')
+        optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+        correct = 0
+        total = 0
+        # for param in optimizer.param_groups:
+        #     for key, value in param.items():
+        #         if isinstance(value, torch.Tensor):
+        #             param[key] = value.to('cuda')
+        running_loss = 0.0
+
+        for i in range(int(IMAGE_NUM/BATCH_SIZE)):
+            # forward:
+            inputs, labels = images[i*BATCH_SIZE:(i+1)*BATCH_SIZE], results[i*BATCH_SIZE:(i+1)*BATCH_SIZE]
+            outputs = net(inputs)
+
+            # outputs reshape:
+            if net_name in ['lenet', 'alexnet', 'vgg16', 'vgg19']:
+                target_shape = (BATCH_SIZE, 10)
+            else:
+                target_shape = (BATCH_SIZE, 1000)
+            outputs = reshape_tensor(outputs, target_shape)
+
+            # loss calculation and backward:
+            _, predicted = jittor.max(outputs, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
+            # running_loss += loss.item()
+            # print(str(i) + ':  ' + str(loss.item()))
+        if os.environ['TRAIN_STOP_FLAG'] == '0':
+            self.train_count += 1
+        # print('Training Finished, ' + str(net).split('(', 1)[0] + ', count ' + str(self.train_count))
+        # torch.cpu.empty_cache()
+        return correct / total
+
+
 if __name__ == '__main__':
     # test
-    t = Trainer()
+    t = Tester()
 
 
     def traintrain(net_name: str):
         module = import_module(net_name)
         net = module.go()
-        t.train(net, net_name)
+        t.test(net, net_name)
