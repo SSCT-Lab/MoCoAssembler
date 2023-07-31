@@ -1,5 +1,5 @@
 # MoCo for Jittor
-### Jittor version
+### JITTOR VERSION
 1.3.7.16
 
 ### REQUIREMENTS
