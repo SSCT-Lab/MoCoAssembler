@@ -64,7 +64,7 @@ The result will be written in several directories
 
 ```pytorch_/mutated_models``` -- models generated during running, but will be deleted every generation.
 
-```pytorch_/saved_mutated_models``` -- models that have some errors in it and have not passed the filter.
+```pytorch_/saved_mutated_models``` -- error models will be saved here, they may show some potential bugs of pytorch.
 
 ```pytorch_/logs``` -- error logs will be recorded here.
 
