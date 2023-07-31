@@ -32,6 +32,8 @@ link: https://github.com/pytorch/pytorch
 
 Jittor is a high-performance deep learning framework based on JIT compiling and meta-operators. The whole framework and meta-operators are compiled just-in-time. A powerful op compiler and tuner are integrated into Jittor. It allowed us to generate high-performance code with specialized for your model. Jittor also contains a wealth of high-performance model libraries, including: image recognition, detection, segmentation, generation, differentiable rendering, geometric learning, reinforcement learning, etc. .
 
+link: https://github.com/Jittor/jittor
+
 ### DIRECTORIES
 
 ```ModelAssembler/jittor```  --  MoCo for jittor
