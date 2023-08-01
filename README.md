@@ -1,4 +1,4 @@
-# ModelAssembler(MoCo)
+# MoCoAssembler
 
 ### BUG LIST
 We have a list of bugs we have detected with MoCo, check ```ModelAssembler/bug_list.md```
