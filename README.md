@@ -84,15 +84,3 @@ To use our tool, please download and unzip it first. We provide different ways t
 | Tensorflow | https://github.com/SATE-Lab/MoCoAssembler/blob/main/tf/ReadMe.md |
 | Pytorch    | https://github.com/SATE-Lab/MoCoAssembler/blob/main/pytorch/README.md |
 | Jittor     | https://github.com/SATE-Lab/MoCoAssembler/blob/main/jittor/README.md |
-
-## Contact
-
-Authors information:
-
-| Name | Email Address | GitHUb id |
-| ---- | ------------- | --------- |
-|      |               |           |
-|      |               |           |
-|      |               |           |
-|      |               |           |
-
