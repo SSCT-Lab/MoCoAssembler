@@ -1,4 +1,0 @@
-torch.nn.Fold:
-  torch.nn.Unfold: 0.75
-torch.nn.Unfold:
-  torch.nn.Fold: 0.6

@@ -1,9 +1,0 @@
-torch.nn.InstanceNorm1d:
-  torch.nn.InstanceNorm2d: 0.9622
-  torch.nn.InstanceNorm3d: 0.9563
-torch.nn.InstanceNorm2d:
-  torch.nn.InstanceNorm1d: 0.9622
-  torch.nn.InstanceNorm3d: 0.9866
-torch.nn.InstanceNorm3d:
-  torch.nn.InstanceNorm1d: 0.9563
-  torch.nn.InstanceNorm2d: 0.9866

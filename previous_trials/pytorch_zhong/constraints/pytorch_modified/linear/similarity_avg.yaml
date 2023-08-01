@@ -1,4 +1,0 @@
-torch.nn.Bilinear:
-  torch.nn.Linear: 0.7843
-torch.nn.Linear:
-  torch.nn.Bilinear: 0.7176
