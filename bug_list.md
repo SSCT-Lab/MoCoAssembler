@@ -12,14 +12,14 @@
 | TensorFlow |                   Could not interpret serialized activation function                    | https://github.com/tensorflow/tensorflow/issues/60840 | confirmed |
 | TensorFlow |                       The value range of parameters of SimpleRNN                        | https://github.com/tensorflow/tensorflow/issues/61256 | confirmed |
 |  PyTorch   |            torch.nn.Conv2d's padding mode circular cannot accept 3-dim input            |   https://github.com/pytorch/pytorch/issues/104860    |   fixed   |
-|  PyTorch   |              torch.nn.MultiheadAttention lacks parameter validation check               |   https://github.com/pytorch/pytorch/issues/105630    | confirmed |
+|  PyTorch   |              torch.nn.MultiheadAttention lacks parameter validation check               |   https://github.com/pytorch/pytorch/issues/105630    |   fixed   |
 |  PyTorch   |                           "padding" dimensions of Pad Layers                            |   https://github.com/pytorch/pytorch/issues/105627    |   fixed   |
 |  PyTorch   |                             Input dimensions of Pad Layers                              |   https://github.com/pytorch/pytorch/issues/105627    |   fixed   |
 |  PyTorch   |              Incomplete Documentation for torch.nn.FractionalMaxPool2d API              |   https://github.com/pytorch/pytorch/issues/104861    |   fixed   |
 |  PyTorch   |              The document does not emphasize hidden range in nn.MaxPool2d               |   https://github.com/pytorch/pytorch/issues/103423    | confirmed |
 |  PyTorch   |              The document does not emphasize hidden range in nn.Embedding               |   https://github.com/pytorch/pytorch/issues/103424    | confirmed |
 |  PyTorch   |                  F.pad will accept 0 and negative values as parameter                   |   https://github.com/pytorch/pytorch/issues/105629    | confirmed |
-|  PyTorch   |                      Incomplete Documentation for torch.nn.RNNBase                      |   https://github.com/pytorch/pytorch/issues/105628    | confirmed |
+|  PyTorch   |                      Incomplete Documentation for torch.nn.RNNBase                      |   https://github.com/pytorch/pytorch/issues/105628    | fixed     |
 |  PyTorch   |              torch.nn.MultiheadAttention lacks parameter validation check               |   https://github.com/pytorch/pytorch/issues/105630    | confirmed |
 |  PyTorch   |            torch.nn.TransformerDecoderLayer lacks parameter validation check            |   https://github.com/pytorch/pytorch/issues/105632    | confirmed |
 |   Jittor   |                            jittor.nn.Mish is unable to work                             |      https://github.com/Jittor/jittor/issues/447      |   fixed   |
