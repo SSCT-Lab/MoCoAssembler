@@ -2,53 +2,15 @@ api: torch.nn.Softmin(dim=None)
 constraints:
   dim:
     dtype: int
-    structure:
-      - integer
+    range:
+    - -1
+    - 1
     shape: 1
-    range: [-1, 1]
-
-
-descp: 'r"""Applies the Softmin function to an n-dimensional input Tensor
-
-  rescaling them so that the elements of the n-dimensional output Tensor
-
-  lie in the range `[0, 1]` and sum to 1.
-
-  Softmin is defined as:
-
-  .. math::
-
-  \text{Softmin}(x_{i}) = \frac{\exp(-x_i)}{\sum_j \exp(-x_j)}
-
-  Shape:
-
-  - Input: :math:`(*)` where `*` means, any number of additional
-
-  dimensions
-
-  - Output: :math:`(*)`, same shape as the input
-
-  Args:
-
-  dim (int): A dimension along which Softmin will be computed (so every slice
-
-  along dim will sum to 1).
-
-  Returns:
-
-  a Tensor of the same dimension and shape as the input, with
-
-  values in the range [0, 1]
-
-  Examples::
-
-  >>> m = nn.Softmin(dim=1)
-
-  >>> input = torch.randn(2, 3)
-
-  >>> output = m(input)
-
-  '
+    structure:
+    - integer
+descp: Applies the Softmin function to an n-dimensional input Tensor rescaling them
+  so that the elements of the n-dimensional output Tensor lie in the range [0, 1]
+  and sum to 1.
 inputs:
   optional:
   - dim

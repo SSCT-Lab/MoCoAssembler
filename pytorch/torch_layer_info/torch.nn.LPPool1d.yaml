@@ -1,82 +1,44 @@
 api: torch.nn.LPPool1d(norm_type, kernel_size, stride=None, ceil_mode=False)
 constraints:
   ceil_mode:
-    default: False
+    default: false
+    descp: when True, will use
     dtype: torch.bool
   kernel_size:
+    descp: a single int, the size of the window
     dtype: int
-    structure:
-      - integer
-      - tuple
+    range:
+    - 1
+    - 8
     shape: 2
-    range: [1, 8]
+    structure:
+    - integer
+    - tuple
   norm_type:
     dtype: int
-    structure:
-      - integer
-      - tuple
+    range:
+    - 1
+    - 4
     shape: 2
-    range: [1, 4]
+    structure:
+    - integer
+    - tuple
   stride:
+    descp: a single int, the stride of the window.
     dtype: int
-    structure:
-      - integer
-      - tuple
+    range:
+    - 1
+    - 4
     shape: 2
-    range: [1, 4]
-descp: 'r"""Applies a 1D power-average pooling over an input signal composed of several
-  input
-
-  planes.
-
-  On each window, the function computed is:
-
-  .. math::
-
-  f(X) = \sqrt[p]{\sum_{x \in X} x^{p}}
-
-  - At p = :math:`\infty`, one gets Max Pooling
-
-  - At p = 1, one gets Sum Pooling (which is proportional to Average Pooling)
-
-  .. note:: If the sum to the power of `p` is zero, the gradient of this function
-  is
-
-  not defined. This implementation will set the gradient to zero in this case.
-
-  Args:
-
-  kernel_size: a single int, the size of the window
-
-  stride: a single int, the stride of the window. Default value is :attr:`kernel_size`
-
-  ceil_mode: when True, will use `ceil` instead of `floor` to compute the output shape
-
-  Shape:
-
-  - Input: :math:`(N, C, L_{in})` or :math:`(C, L_{in})`.
-
-  - Output: :math:`(N, C, L_{out})` or :math:`(C, L_{out})`, where
-
-  .. math::
-
-  L_{out} = \left\lfloor\frac{L_{in} - \text{kernel\_size}}{\text{stride}} + 1\right\rfloor
-
-  Examples::
-
-  >>> # power-2 pool of window of length 3, with stride 2.
-
-  >>> m = nn.LPPool1d(2, 3, stride=2)
-
-  >>> input = torch.randn(20, 16, 50)
-
-  >>> output = m(input)
-
-  '
+    structure:
+    - integer
+    - tuple
+descp: Applies a 1D power-average pooling over an input signal composed of several
+  input planes.
 inputs:
   optional:
-    - stride
-    - ceil_mode
+  - stride
+  - ceil_mode
   required:
-    - norm_type
-    - kernel_size
+  - norm_type
+  - kernel_size

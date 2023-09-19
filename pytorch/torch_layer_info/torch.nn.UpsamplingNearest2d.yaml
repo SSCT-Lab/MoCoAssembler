@@ -1,77 +1,23 @@
 api: torch.nn.UpsamplingNearest2d(size=None, scale_factor=None)
 constraints:
   scale_factor:
+    descp: multiplier for spatial size.
     dtype: torch.float
   size:
     default: None
+    descp: output spatial sizes
     dtype: int
-    structure:
-      - integer
-      - tuple
+    range:
+    - 1
+    - 8
     shape: 2
-    range: [1, 8]
-descp: 'r"""Applies a 2D nearest neighbor upsampling to an input signal composed of
-  several input
-
-  channels.
-
-  To specify the scale, it takes either the :attr:`size` or the :attr:`scale_factor`
-
-  as it''s constructor argument.
-
-  When :attr:`size` is given, it is the output size of the image `(h, w)`.
-
-  Args:
-
-  size (int or Tuple[int, int], optional): output spatial sizes
-
-  scale_factor (float or Tuple[float, float], optional): multiplier for
-
-  spatial size.
-
-  .. warning::
-
-  This class is deprecated in favor of :func:`~nn.functional.interpolate`.
-
-  Shape:
-
-  - Input: :math:`(N, C, H_{in}, W_{in})`
-
-  - Output: :math:`(N, C, H_{out}, W_{out})` where
-
-  .. math::
-
-  H_{out} = \left\lfloor H_{in} \times \text{scale\_factor} \right\rfloor
-
-  .. math::
-
-  W_{out} = \left\lfloor W_{in} \times \text{scale\_factor} \right\rfloor
-
-  Examples::
-
-  >>> input = torch.arange(1, 5, dtype=torch.float32).view(1, 1, 2, 2)
-
-  >>> input
-
-  tensor([[[[1., 2.],
-
-  [3., 4.]]]])
-
-  >>> m = nn.UpsamplingNearest2d(scale_factor=2)
-
-  >>> m(input)
-
-  tensor([[[[1., 1., 2., 2.],
-
-  [1., 1., 2., 2.],
-
-  [3., 3., 4., 4.],
-
-  [3., 3., 4., 4.]]]])
-
-  '
+    structure:
+    - integer
+    - tuple
+descp: Applies a 2D nearest neighbor upsampling to an input signal composed of several
+  input channels.
 inputs:
   optional:
-    - size
-    - scale_factor
-  required: [ ]
+  - size
+  - scale_factor
+  required: []

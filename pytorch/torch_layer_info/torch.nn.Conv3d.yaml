@@ -2,57 +2,77 @@ api: torch.nn.Conv3d(in_channels, out_channels, kernel_size, stride=1, padding=0
   dilation=1, groups=1, bias=True, padding_mode='zeros', device=None, dtype=None)
 constraints:
   bias:
-    default: True
+    default: true
+    descp: If True, adds a learnable bias to the output.
     dtype: torch.bool
   dilation:
     default: 1
+    descp: Spacing between kernel elements.
     dtype: int
+    range:
+    - 1
+    - 6
+    shape: 3
     structure:
     - integer
     - tuple
-    shape: 3
-    range: [1, 6]
   groups:
     default: 1
+    descp: Number of blocked connections from input channels to output channels.
     dtype: int
+    range:
+    - 1
+    - 3
+    shape: 1
     structure:
     - integer
-    shape: 1
-    range: [1, 3]
   in_channels:
+    descp: Number of channels in the input image
     dtype: int
+    range:
+    - 1
+    - 12544
+    shape: 1
     structure:
     - integer
-    shape: 1
-    range: [1, 12544]
   kernel_size:
+    descp: Size of the convolving kernel
     dtype: int
+    range:
+    - 1
+    - 8
+    shape: 3
     structure:
     - integer
     - tuple
-    shape: 3
-    range: [1, 8]
   out_channels:
+    descp: Number of channels produced by the convolution
     dtype: int
+    range:
+    - 1
+    - 512
+    shape: 1
     structure:
     - integer
-    shape: 1
-    range: [1, 512]
   padding:
     default: 0
+    descp: Padding added to all six sides of the input.
     dtype:
     - int
     - torch.string
-    structure:
-    - integer
-    - tuple
-    shape: 3
-    range: [1, 8]
     enum:
     - same
     - valid
+    range:
+    - 1
+    - 8
+    shape: 3
+    structure:
+    - integer
+    - tuple
   padding_mode:
     default: zeros
+    descp: '''zeros'', ''reflect'', ''replicate'' or ''circular''.'
     dtype: torch.string
     enum:
     - zeros
@@ -61,32 +81,16 @@ constraints:
     - circular
   stride:
     default: 1
+    descp: Stride of the convolution.
     dtype: int
+    range:
+    - 1
+    - 4
+    shape: 3
     structure:
     - integer
     - tuple
-    shape: 3
-    range: [1, 4]
-descp: '__doc__ = r"""Applies a 3D convolution over an input signal composed of several
-  input
-
-  planes.
-
-  In the simplest case, the output value of the layer with input size :math:`(N, C_{in},
-  D, H, W)`
-
-  and output :math:`(N, C_{out}, D_{out}, H_{out}, W_{out})` can be precisely described
-  as:
-
-  .. math::
-
-  out(N_i, C_{out_j}) = bias(C_{out_j}) +
-
-  \sum_{k = 0}^{C_{in} - 1} weight(C_{out_j}, k) \star input(N_i, k)
-
-  where :math:`\star` is the valid 3D `cross-correlation`_ operator
-
-  '
+descp: Applies a 3D convolution over an input signal composed of several input planes.
 inputs:
   optional:
   - stride
