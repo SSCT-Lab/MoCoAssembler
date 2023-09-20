@@ -1,13 +1,7 @@
 constraints:
   use_scale:
-    default: True
+    default: true
+    descp: If True, will create a variable to scale the attention scores.
     dtype: tf.bool
+descp: Additive attention layer, a.k.a. Bahdanau-style attention.
 required: []
-descp:
-   'Additive attention layer, a.k.a. Bahdanau-style attention.
-   Inputs are query tensor of shape [batch_size, Tq, dim], value tensor of shape [batch_size, Tv, dim] and key tensor of shape [batch_size, Tv, dim]. The calculation follows the steps:
-
-   Reshape query and key into shapes [batch_size, Tq, 1, dim] and [batch_size, 1, Tv, dim] respectively.
-   Calculate scores with shape [batch_size, Tq, Tv] as a non-linear sum: scores = tf.reduce_sum(tf.tanh(query + key), axis=-1)
-   Use scores to calculate a distribution with shape [batch_size, Tq, Tv]: distribution = tf.nn.softmax(scores).
-   Use distribution to create a linear combination of value with shape [batch_size, Tq, dim]: return tf.matmul(distribution, value).'

@@ -16,7 +16,7 @@ constraints:
     descp: A boolean, whether to keep the spatial dimensions or not. If keepdims is
       False (default), the rank of the tensor is reduced for spatial dimensions. If
       keepdims is True, the spatial dimensions are retained with length 1. The behavior
-      is the same as for tf.reduce_mean or np.mean.
+      is the same as for tf.reduce_max or np.max.
     dtype: tf.bool
-descp: Global average pooling operation for spatial data.
+descp: Global max pooling operation for spatial data.
 required: []

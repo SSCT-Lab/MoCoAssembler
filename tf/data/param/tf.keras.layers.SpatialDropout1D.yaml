@@ -1,9 +1,8 @@
 constraints:
   rate:
     default: 0.0
+    descp: Float between 0 and 1. Fraction of the input units to drop.
     dtype: float
+descp: Spatial 1D version of Dropout.
 required:
-  - rate
-descp:
-  'Spatial 1D version of Dropout.
-   This version performs the same function as Dropout, however, it drops entire 1D feature maps instead of individual elements. If adjacent frames within feature maps are strongly correlated (as is normally the case in early convolution layers) then regular dropout will not regularize the activations and will otherwise just result in an effective learning rate decrease. In this case, SpatialDropout1D will help promote independence between feature maps and should be used instead.'
+- rate

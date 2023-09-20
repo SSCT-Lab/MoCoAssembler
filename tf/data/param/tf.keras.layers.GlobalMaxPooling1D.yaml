@@ -9,5 +9,5 @@ constraints:
     enum:
     - channels_first
     - channels_last
-descp: Global average pooling operation for temporal data.
+descp: Global max pooling operation for 1D temporal data.
 required: []

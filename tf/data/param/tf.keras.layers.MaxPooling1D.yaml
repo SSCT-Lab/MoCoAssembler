@@ -20,7 +20,7 @@ constraints:
     - valid
   pool_size:
     default: 2
-    descp: Integer, size of the average pooling windows.
+    descp: Integer, size of the max pooling window.
     dtype: int
     range:
     - 0
@@ -29,13 +29,13 @@ constraints:
     structure: integer
   strides:
     default: None
-    descp: Integer, or None. Factor by which to downscale. E.g. 2 will halve the input.
-      If None, it will default to pool_size.
+    descp: Integer, or None. Specifies how much the pooling window moves for each
+      pooling step. If None, it will default to pool_size.
     dtype: int
     range:
     - 0
     - 6
     shape: 1
     structure: integer
-descp: Average pooling for temporal data.
+descp: Max pooling operation for 1D temporal data.
 required: []

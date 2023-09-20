@@ -22,9 +22,9 @@ constraints:
     - valid
   pool_size:
     default: (2, 2)
-    descp: integer or tuple of 2 integers, factors by which to downscale (vertical,
-      horizontal). (2, 2) will halve the input in both spatial dimension. If only
-      one integer is specified, the same window length will be used for both dimensions.
+    descp: integer or tuple of 2 integers, window size over which to take the maximum.
+      (2, 2) will take the max value over a 2x2 pooling window. If only one integer
+      is specified, the same window length will be used for both dimensions.
     dtype: int
     range:
     - 0
@@ -35,8 +35,9 @@ constraints:
     - tuple
   strides:
     default: None
-    descp: Integer, tuple of 2 integers, or None. Strides values. If None, it will
-      default to pool_size.
+    descp: Integer, tuple of 2 integers, or None. Strides values.  Specifies how far
+      the pooling window moves for each pooling step. If None, it will default to
+      pool_size.
     dtype: int
     range:
     - 0
@@ -45,5 +46,5 @@ constraints:
     structure:
     - integer
     - tuple
-descp: Average pooling operation for spatial data.
+descp: Max pooling operation for 2D spatial data.
 required: []

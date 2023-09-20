@@ -1,15 +1,13 @@
 constraints:
-  use_scale:
-    default: False
-    dtype: tf.bool
   score_mode:
-    default: 'dot'
+    default: dot
+    descp: Function to use to compute attention scores, one of {"dot", "concat"}.
+      "dot" refers to the dot product between the query and key vectors. "concat"
+      refers to the hyperbolic tangent of the concatenation of the query and key vectors.
     dtype: tf.string
+  use_scale:
+    default: false
+    descp: If True, will create a scalar variable to scale the attention scores.
+    dtype: tf.bool
+descp: Dot-product attention layer, a.k.a. Luong-style attention.
 required: []
-descp:
-  'Dot-product attention layer, a.k.a. Luong-style attention.
-   Inputs are query tensor of shape [batch_size, Tq, dim], value tensor of shape [batch_size, Tv, dim] and key tensor of shape [batch_size, Tv, dim]. The calculation follows the steps:
- 
-   Calculate scores with shape [batch_size, Tq, Tv] as a query-key dot product: scores = tf.matmul(query, key, transpose_b=True).
-   Use scores to calculate a distribution with shape [batch_size, Tq, Tv]: distribution = tf.nn.softmax(scores).
-   Use distribution to create a linear combination of value with shape [batch_size, Tq, dim]: return tf.matmul(distribution, value).'
