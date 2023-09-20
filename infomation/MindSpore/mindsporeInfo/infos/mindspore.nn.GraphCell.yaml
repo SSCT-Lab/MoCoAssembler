@@ -1,0 +1,37 @@
+api: mindspore.nn.GraphCell(graph, params_init=None, obf_random_seed=None)
+descp: Base class for running the graph loaded from a MindIR.
+constraints:
+  graph:
+    descp: graph (FuncGraph) – A compiled graph loaded from MindIR.
+    default: null
+    dtype:
+    - funcgraph
+  params_init:
+    descp: 'params_init (dict) – Parameters need to be inited in the graph. The key
+      is the parameter name whose type is str, and the value is a Tensor or Parameter.
+      If the parameter exists in the graph according to the name, update it’s value.
+      If the parameter does not exist, ignore it. Default: None .'
+    default: None
+    dtype: null
+    structure:
+    - dict
+  obf_random_seed:
+    descp: 'obf_random_seed (Union[int, None]) – The random seed used for dynamic
+      obfuscation. “dynamic obfuscation” is used for model protection, which can refer
+      to mindspore.obfuscate_model(). If the input graph is a func_graph loaded from
+      a mindir file obfuscated with obf_random_seed , then obf_random_seed should
+      be provided. obf_random_seed should be in (0, 9223372036854775807]. default:
+      None .'
+    default: null
+    dtype:
+    - int
+    - str
+    structure:
+    - single
+    shape: null
+    range: null
+    enum:
+    - None
+inputs:
+  optional: []
+  required: []

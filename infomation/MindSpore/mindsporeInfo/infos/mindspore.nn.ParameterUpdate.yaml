@@ -1,0 +1,11 @@
+api: mindspore.nn.ParameterUpdate(param)
+descp: Cell that updates parameter.
+constraints:
+  param:
+    descp: param (Parameter) – The parameter to be updated manually.
+    default: null
+    dtype:
+    - parameter
+inputs:
+  optional: []
+  required: []

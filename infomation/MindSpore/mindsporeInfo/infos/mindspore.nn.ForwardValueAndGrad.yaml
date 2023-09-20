@@ -1,0 +1,45 @@
+api: mindspore.nn.ForwardValueAndGrad(network, weights=None, get_all=False, get_by_list=False,
+  sens_param=False)
+descp: Encapsulate training network.
+constraints:
+  network:
+    descp: network (Cell) – The training network.
+    default: null
+    dtype:
+    - cell
+  weights:
+    descp: 'weights (ParameterTuple) – The parameters of the training network that
+      need to calculate the gradient. Default: None .'
+    default: None
+    dtype:
+    - parametertuple
+    structure:
+    - tuple
+  get_all:
+    descp: 'get_all (bool) – If True , get all the gradients with respect to inputs.
+      Default: False .'
+    default: 'False'
+    dtype:
+    - bool
+  get_by_list:
+    descp: 'get_by_list (bool) – If True s, get all the gradients with respect to
+      Parameter variables. If get_all and get_by_list are both False , get the gradient
+      with respect to first input. If get_all and get_by_list are both True , get
+      the gradients with respect to inputs and Parameter variables  at the same time
+      in the form of ((gradients with respect to inputs), (gradients with respect
+      to parameters)). Default: False .'
+    default: 'False'
+    dtype:
+    - bool
+  sens_param:
+    descp: 'sens_param (bool) – Whether to append sensitivity (gradient with respect
+      to output) as input. If sens_param is False , a ‘ones_like(outputs)’ sensitivity
+      will be attached automatically. Default: False . If the sens_param is True ,
+      a sensitivity (gradient with respect to output) needs to be transferred through
+      the input parameter.'
+    default: 'False'
+    dtype:
+    - bool
+inputs:
+  optional: []
+  required: []
