@@ -1,0 +1,16 @@
+api: mindspore.nn.GLU(axis=- 1)
+descp: The gated linear unit function.
+constraints:
+  axis:
+    descp: 'axis (int) – the axis to split the input. Default: -1 , the last axis
+      in x.'
+    default: -1 , the last axis in x
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+inputs:
+  optional: []
+  required: []

@@ -1,0 +1,14 @@
+api: mindspore.nn.FixedLossScaleUpdateCell(loss_scale_value)
+descp: Update cell with fixed loss scaling value.
+constraints:
+  loss_scale_value:
+    descp: loss_scale_value (float) – Initializes loss scale.
+    default: null
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+inputs:
+  optional: []
+  required: []

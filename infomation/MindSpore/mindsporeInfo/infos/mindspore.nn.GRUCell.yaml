@@ -1,0 +1,30 @@
+api: 'mindspore.nn.GRUCell(input_size: int, hidden_size: int, has_bias: bool = True)'
+descp: A GRU(Gated Recurrent Unit) cell.
+constraints:
+  input_size:
+    descp: input_size (int) – Number of features of input.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+  hidden_size:
+    descp: hidden_size (int) – Number of features of hidden layer.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+  has_bias:
+    descp: 'has_bias (bool) – Whether the cell has bias b_in and b_hn. Default: True
+      .'
+    default: 'True'
+    dtype:
+    - bool
+inputs:
+  optional: []
+  required: []

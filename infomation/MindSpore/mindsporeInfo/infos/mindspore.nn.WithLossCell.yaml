@@ -1,0 +1,16 @@
+api: mindspore.nn.WithLossCell(backbone, loss_fn)
+descp: Cell with loss function.
+constraints:
+  backbone:
+    descp: backbone (Cell) – The backbone network to wrap.
+    default: null
+    dtype:
+    - cell
+  loss_fn:
+    descp: loss_fn (Cell) – The loss function used to compute loss.
+    default: null
+    dtype:
+    - cell
+inputs:
+  optional: []
+  required: []

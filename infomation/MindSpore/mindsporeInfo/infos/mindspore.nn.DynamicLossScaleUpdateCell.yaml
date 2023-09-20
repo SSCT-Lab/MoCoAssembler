@@ -1,0 +1,33 @@
+api: mindspore.nn.DynamicLossScaleUpdateCell(loss_scale_value, scale_factor, scale_window)
+descp: Dynamic Loss scale update cell.
+constraints:
+  loss_scale_value:
+    descp: loss_scale_value (float) – Initializes loss scale.
+    default: null
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+  scale_factor:
+    descp: scale_factor (int) – Coefficient of increase and decrease.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+  scale_window:
+    descp: scale_window (int) – Maximum continuous training steps that do not have
+      overflow to increase the loss scale.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+inputs:
+  optional: []
+  required: []

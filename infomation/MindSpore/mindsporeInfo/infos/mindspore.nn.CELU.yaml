@@ -1,0 +1,15 @@
+api: mindspore.nn.CELU(alpha=1.0)
+descp: Continuously differentiable exponential linear units activation function.
+constraints:
+  alpha:
+    descp: 'alpha (float) – The (alpha) value for the Celu formulation. Default: 1.0
+      .'
+    default: '1'
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+inputs:
+  optional: []
+  required: []
