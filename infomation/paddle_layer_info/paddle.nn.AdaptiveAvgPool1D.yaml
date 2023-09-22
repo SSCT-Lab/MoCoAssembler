@@ -1,0 +1,37 @@
+api: paddle.nn.AdaptiveAvgPool1D
+constraints:
+  name:
+    default: None
+    descp: 'For details, please refer to Name. Generally, no setting is required.
+      Default: None.           Returns          A callable object for computing 1D
+      adaptive average pooling'
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  output_size:
+    default: null
+    descp: The target output size. Its data type must be int
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+descp: A 1D adaptive average pooling over an input signal composed of several input
+  planes, based on output_size. Input and output are in NCL format, where N is batch
+  size, C is the number of channels and L is the length of the feature. The shape
+  of output will be \([N, C, output\_size]\).
+inputs:
+  optional:
+  - name
+  required:
+  - output_size

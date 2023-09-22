@@ -1,0 +1,82 @@
+api: paddle.nn.LayerNorm
+constraints:
+  bias_attr:
+    default: None
+    descp: 'The parameter attribute for the learnable bias \(b\). If is False, bias
+      is None. If is None, a default ParamAttr would be added as bias. The bias_attr
+      is initialized as 0 if it is added. Default: None. For more information, please
+      refer to ParamAttr '
+    dtype:
+    - bool
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+    - bool
+  epsilon:
+    default: 1e-05
+    descp: 'The small value added to the variance to prevent division by zero. Default:
+      1e-05'
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  name:
+    default: None
+    descp: 'Name for the LayerNorm, default is None. For more information, please
+      refer to Name '
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  normalized_shape:
+    default: null
+    descp: 'Input shape from an expected input of size \([*, normalized_shape[0],
+      normalized_shape[1], '
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 2
+    structure:
+    - int
+    - list
+    - tuple
+  weight_attr:
+    default: None
+    descp: 'The parameter attribute for the learnable gain \(g\). If False, weight
+      is None. If is None, a default ParamAttr would be added as scale. The param_attr
+      is initialized as 1 if it is added. Default: None. For more information, please
+      refer to ParamAttr '
+    dtype:
+    - bool
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+    - bool
+descp: Construct a callable object of the LayerNorm class. For more details, refer
+  to code examples. It implements the function of the Layer Normalization Layer and
+  can be applied to mini-batch input data. Refer to Layer Normalization
+inputs:
+  optional:
+  - epsilon
+  - weight_attr
+  - bias_attr
+  - name
+  required:
+  - normalized_shape

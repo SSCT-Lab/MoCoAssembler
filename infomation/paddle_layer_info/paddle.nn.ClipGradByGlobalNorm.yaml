@@ -1,0 +1,41 @@
+api: paddle.nn.ClipGradByGlobalNorm
+constraints:
+  auto_skip_clip:
+    default: 'False'
+    descp: skip clipping gradient. Default value is False
+    dtype:
+    - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - bool
+  clip_norm:
+    default: null
+    descp: The maximum norm value
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  group_name:
+    default: '''default_group'''
+    descp: The group name for this clip. Default value is default_group
+    dtype:
+    - str
+    enum:
+    - name
+    range: null
+    shape: null
+    structure:
+    - str
+descp: Given a list of Tensor \(t\_list\) , calculate the global norm for the elements
+  of all tensors in \(t\_list\) , and limit it to clip_norm .
+inputs:
+  optional:
+  - group_name
+  - auto_skip_clip
+  required:
+  - clip_norm

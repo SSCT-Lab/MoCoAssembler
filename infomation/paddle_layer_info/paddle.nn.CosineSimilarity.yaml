@@ -1,0 +1,29 @@
+api: paddle.nn.CosineSimilarity
+constraints:
+  axis:
+    default: '1'
+    descp: Dimension of vectors to compute cosine similarity. Default is 1
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  eps:
+    default: 1e-08
+    descp: Small value to avoid division by zero. Default is 1e-8.           Returns          None
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+descp: This interface is used to compute cosine similarity between x1 and x2 along
+  axis.
+inputs:
+  optional:
+  - axis
+  - eps
+  required: []

@@ -1,0 +1,39 @@
+api: paddle.nn.AlphaDropout
+constraints:
+  p:
+    default: '0.5'
+    descp: 'Probability of setting units to zero. Default: 0.5'
+    dtype:
+    - int
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+    - int
+  name:
+    default: None
+    descp: For detailed information, please refer to Name. Usually name is no need
+      to set and None by default
+    dtype:
+      - str
+    enum:
+      - need
+      - need
+      - need
+      - need
+    range: null
+    shape: null
+    structure:
+      - str
+descp: Alpha Dropout is a type of Dropout that maintains the self-normalizing property.
+  For an input with zero mean and unit standard deviation, the output of Alpha Dropout
+  maintains the original mean and standard deviation of the input. Alpha Dropout fits
+  well to SELU activate function by randomly setting activations to the negative saturation
+  value.
+inputs:
+  optional:
+  - p
+  - name
+  required: []

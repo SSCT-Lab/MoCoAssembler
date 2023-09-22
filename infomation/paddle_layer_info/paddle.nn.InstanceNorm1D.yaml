@@ -1,0 +1,108 @@
+api: paddle.nn.InstanceNorm1D
+constraints:
+  bias_attr:
+    default: None
+    descp: 'The parameter attribute for the bias of instance_norm. If it is set to
+      None or one attribute of ParamAttr, instance_norm will create ParamAttr as bias_attr,
+      the name of bias can be set in ParamAttr. If the Initializer of the bias_attr
+      is not set, the bias is initialized zero. If it is set to False, will not create
+      bias_attr. Default: None. For more information, please refer to ParamAttr '
+    dtype:
+    - bool
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+    - bool
+  data_format:
+    default: '''NCL'''
+    descp: "Specify the input data format, may be \u201CNC\u201D, \u201CNCL\u201D\
+      . Default \u201CNCL\u201D"
+    dtype:
+    - str
+    enum:
+    - NC
+    - NCL
+    range: null
+    shape: null
+    structure:
+    - str
+  epsilon:
+    default: 1e-05
+    descp: A value added to the denominator for numerical stability. Default is 1e-5
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  momentum:
+    default: '0.9'
+    descp: 'The value used for the moving_mean and moving_var computation. Default:
+      0'
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  name:
+    default: None
+    descp: 'Name for the InstanceNorm, default is None. For more information, please
+      refer to Name '
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  num_features:
+    default: null
+    descp: Indicate the number of channels of the input Tensor
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  weight_attr:
+    default: None
+    descp: 'The parameter attribute for Parameter scale of instance_norm. If it is
+      set to None or one attribute of ParamAttr, instance_norm will create ParamAttr
+      as weight_attr, the name of scale can be set in ParamAttr. If the Initializer
+      of the weight_attr is not set, the parameter is initialized one. If it is set
+      to False, will not create weight_attr. Default: None. For more information,
+      please refer to ParamAttr '
+    dtype:
+    - bool
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+    - bool
+descp: 'Create a callable object of InstanceNorm1D. Applies Instance Normalization
+  over a 3D input (a mini-batch of 1D inputs with additional channel dimension) as
+  described in the paper Instance Normalization: The Missing Ingredient for Fast Stylization
+  .'
+inputs:
+  optional:
+  - epsilon
+  - momentum
+  - weight_attr
+  - bias_attr
+  - data_format
+  - name
+  required:
+  - num_features

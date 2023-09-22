@@ -1,0 +1,85 @@
+api: paddle.nn.UpsamplingBilinear2D
+constraints:
+  data_format:
+    default: '''NCHW'''
+    descp: "Specify the data format of the input, and the data format of the output\
+      \ will be consistent with that of the input. An optional string from:NCW, NWC,\
+      \ \u201CNCHW\u201D, \u201CNHWC\u201D, \u201CNCDHW\u201D, \u201CNDHWC\u201D.\
+      \ The default is \u201CNCHW\u201D. When it is \u201CNCHW\u201D, the data is\
+      \ stored in the order of: [batch_size, input_channels, input_height, input_width].\
+      \ When it is \u201CNCHW\u201D, the data is stored in the order of: [batch_size,\
+      \ input_channels, input_depth, input_height, input_width]"
+    dtype:
+    - str
+    enum:
+    - NCHW
+    - NHWC
+    range: null
+    shape: null
+    structure:
+    - str
+  name:
+    default: None
+    descp: The default value is None. Normally there is no need for user to set this
+      property. For more information, please refer to Name           Returns          A
+      4-D Tensor of the shape (num_batches, channels, out_h, out_w) or (num_batches,
+      out_h, out_w, channels),
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  scale_factor:
+    default: None
+    descp: 'The multiplier for the input height or width. At least one of size or
+      scale_factor must be set. And size has a higher priority than scale_factor.
+      Has to match input size if it is either a list or a tuple or a Tensor. Default:
+      None'
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 2
+    structure:
+    - float
+    - int
+    - list
+    - tuple
+    - Tensor
+    - None
+  size:
+    default: None
+    descp: 'Output shape of image resize layer, the shape is (out_h, out_w) when input
+      is a 4-D Tensor. Default: None. If a list/tuple, each element can be an integer
+      or a Tensor of shape: [1]. If a Tensor , its dimensions size should be a 1'
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 2
+    structure:
+    - list
+    - tuple
+    - Tensor
+    - None
+descp: "This op upsamples a batch of images, using bilinear\u2019 pixel values. The\
+  \ input must be a 4-D Tensor of the shape (num_batches, channels, in_h, in_w), where\
+  \ in_w is width of the input tensor, in_h is the height of the input tensor. And\
+  \ the upsampling only applies on the two dimensions(height and width). Bilinear\
+  \ interpolation is an extension of linear interpolation for interpolating functions\
+  \ of two variables (e.g. H-direction and W-direction in this op) on a rectilinear\
+  \ 2D grid. The key idea is to perform linear interpolation first in one direction,\
+  \ and then again in the other direction."
+inputs:
+  optional:
+  - size
+  - scale_factor
+  - data_format
+  - name
+  required: []

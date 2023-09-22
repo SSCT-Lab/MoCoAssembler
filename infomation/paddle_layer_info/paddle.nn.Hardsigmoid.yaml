@@ -1,0 +1,23 @@
+api: paddle.nn.Hardsigmoid
+constraints:
+  name:
+    default: None
+    descp: Name for the operation (optional, default is None). For more information,
+      please refer to Name
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+descp: Hardsigmoid Activiation Layers, Construct a callable object of the Hardsigmoid
+  class. This layer calcluate the hardsigmoid of input x.
+inputs:
+  optional:
+  - name
+  required: []

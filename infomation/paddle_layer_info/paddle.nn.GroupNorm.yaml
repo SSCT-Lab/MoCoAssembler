@@ -1,0 +1,101 @@
+api: paddle.nn.GroupNorm
+constraints:
+  bias_attr:
+    default: None
+    descp: 'The parameter attribute for the learnable bias \(b\). If it is set to
+      False, no bias will be added to the output units. If it is set to None, the
+      bias is initialized zero. Default: None'
+    dtype:
+    - bool
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+    - bool
+  data_format:
+    default: '''NCHW'''
+    descp: 'Specify the input data format. Only NCHW is supported. Default: NCHW'
+    dtype:
+    - str
+    enum:
+    - NCHW
+    - NHWC
+    range: null
+    shape: null
+    structure:
+    - str
+  epsilon:
+    default: 1e-05
+    descp: 'The small value added to the variance to prevent division by zero. Default:
+      1e-05'
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  name:
+    default: None
+    descp: Name for the GroupNorm, default is None. For more information, please refer
+      to Name
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  num_channels:
+    default: null
+    descp: The number of channels of input
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  num_groups:
+    default: null
+    descp: The number of groups that divided from channels
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  weight_attr:
+    default: None
+    descp: 'The parameter attribute for the learnable scale \(g\). If it is set to
+      False, no scale will be added to the output units. If it is set to None, the
+      bias is initialized one. Default: None'
+    dtype:
+    - bool
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+    - bool
+descp: This interface is used to construct a callable object of the GroupNorm class.
+  For more details, refer to code examples. It implements the function of the Group
+  Normalization Layer. Refer to Group Normalization .
+inputs:
+  optional:
+  - epsilon
+  - weight_attr
+  - bias_attr
+  - data_format
+  - name
+  required:
+  - num_groups
+  - num_channels

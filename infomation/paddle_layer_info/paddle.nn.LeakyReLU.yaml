@@ -1,0 +1,34 @@
+api: paddle.nn.LeakyReLU
+constraints:
+  name:
+    default: None
+    descp: Name for the operation (optional, default is None). For more information,
+      please refer to Name
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  negative_slope:
+    default: '0.01'
+    descp: Slope of the activation function at \(x < 0\) . Default is 0
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+descp: Leaky ReLU Activation. Create a callable object of LeakyReLU to calculate the
+  LeakyReLU of input x.
+inputs:
+  optional:
+  - negative_slope
+  - name
+  required: []

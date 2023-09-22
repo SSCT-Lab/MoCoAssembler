@@ -1,0 +1,37 @@
+api: paddle.nn.ZeroPad2D
+constraints:
+  data_format:
+    default: '''NCHW'''
+    descp: "An string from: \u201CNCHW\u201D, \u201CNHWC\u201D. Specify the data format\
+      \ of the input data. Default is \u201CNCHW\u201D"
+    dtype:
+    - str
+    enum:
+    - NCHW
+    - NHWC
+    range: null
+    shape: null
+    structure:
+    - str
+  padding:
+    default: null
+    descp: The padding size with data type int. If is int, use the same padding in
+      all dimensions. Else [len(padding)/2] dimensions of input will be padded. The
+      pad has the form (pad_left, pad_right, pad_top, pad_bottom)
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 2
+    structure:
+    - Tensor
+    - list
+    - int
+descp: This interface is used to construct a callable object of the ZeroPad2D class.
+  Pads the input tensor boundaries with zero.
+inputs:
+  optional:
+  - data_format
+  - name
+  required:
+  - padding

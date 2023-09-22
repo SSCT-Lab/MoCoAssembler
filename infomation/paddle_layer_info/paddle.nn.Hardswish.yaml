@@ -1,0 +1,24 @@
+api: paddle.nn.Hardswish
+constraints:
+  name:
+    default: None
+    descp: Name for the operation (optional, default is None). For more information,
+      please refer to Name
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+descp: 'Hardswish activation. Create a callable object of Hardswish. Hardswish is
+  proposed in MobileNetV3, and performs better in computational stability and efficiency
+  compared to swish function. For more details please refer to: https://arxiv.org/pdf/1905.02244.pdf'
+inputs:
+  optional:
+  - name
+  required: []

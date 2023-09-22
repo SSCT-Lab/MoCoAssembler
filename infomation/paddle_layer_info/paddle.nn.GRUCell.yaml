@@ -1,0 +1,89 @@
+api: paddle.nn.GRUCell
+constraints:
+  bias_hh_attr:
+    default: None
+    descp: 'The parameter attribute for the bias_hh. Default: None'
+    dtype:
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+  bias_ih_attr:
+    default: None
+    descp: 'The parameter attribute for the bias_ih. Default: None'
+    dtype:
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+  hidden_size:
+    default: null
+    descp: The hidden size
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  input_size:
+    default: null
+    descp: The input size
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  name:
+    default: None
+    descp: Name for the operation (optional, default is None). For more information,
+      please refer to Name
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  weight_hh_attr:
+    default: None
+    descp: 'The parameter attribute for weight_hh. Default: None'
+    dtype:
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+  weight_ih_attr:
+    default: None
+    descp: 'The parameter attribute for weight_ih. Default: None'
+    dtype:
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+descp: Gated Recurrent Unit (GRU) RNN cell. Given the inputs and previous states,
+  it computes the outputs and updates states.
+inputs:
+  optional:
+  - weight_ih_attr
+  - weight_hh_attr
+  - bias_ih_attr
+  - bias_hh_attr
+  - name
+  required:
+  - input_size
+  - hidden_size

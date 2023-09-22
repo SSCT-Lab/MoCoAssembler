@@ -1,0 +1,78 @@
+api: paddle.nn.BeamSearchDecoder
+constraints:
+  beam_size:
+    default: null
+    descp: The beam width used in beam search
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  cell:
+    default: null
+    descp: An instance of RNNCellBase or object with the same interface
+    dtype:
+    - RNNCell
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - RNNCellBase
+  embedding_fn:
+    default: None
+    descp: A callable to apply to selected candidate ids. Mostly it is an embedding
+      layer to transform ids to embeddings, and the returned value acts as the input
+      argument for cell
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - optional
+  end_token:
+    default: null
+    descp: The end token id
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  output_fn:
+    default: None
+    descp: "A callable to apply to the cell\u2019s output prior to calculate scores\
+      \ and select candidate token ids. Default None.           Returns          An\
+      \ instance of decoder which can be used in paddle"
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - optional
+  start_token:
+    default: null
+    descp: The start token id
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+descp: Decoder with beam search decoding strategy. It wraps a cell to get probabilities,
+  and follows a beam search step to calculate scores and select candidate token ids
+  for each decoding step.
+inputs:
+  optional:
+  - embedding_fn
+  - output_fn
+  required:
+  - cell
+  - start_token
+  - end_token
+  - beam_size

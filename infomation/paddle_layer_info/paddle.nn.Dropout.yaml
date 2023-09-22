@@ -1,0 +1,64 @@
+api: paddle.nn.Dropout
+constraints:
+  mode:
+    default: '''upscale_in_train'''
+    descp: "Way to setting units to zero. Default: upscale_in_train"
+    dtype:
+    - str
+    enum:
+    - upscale_in_train
+    - downscale_in_infer
+    range: null
+    shape: null
+    structure:
+    - str
+  p:
+    default: '0.5'
+    descp: 'Probability of setting units to zero. Default: 0'
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  axis:
+    default: None
+    descp: "The axis along which the dropout is performed. Default: None."
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 1
+    structure:
+    - int
+    - list
+    - tuple
+  name:
+    default: None
+    descp: 'For details, please refer to Name. Generally, no setting is required.
+      Default: None.           Returns          A callable object for computing 1D
+      adaptive average pooling'
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+descp: 'Dropout is a regularization technique for reducing overfitting by preventing
+  neuron co-adaption during training as described in the paper: Improving neural networks
+  by preventing co-adaptation of feature detectors The dropout operator randomly sets
+  the outputs of some units to zero, while upscale others according to the given dropout
+  probability.'
+inputs:
+  optional:
+  - p
+  - axis
+  - mode
+  - name
+  required: []

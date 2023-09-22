@@ -1,0 +1,44 @@
+api: paddle.nn.Hardtanh
+constraints:
+  max:
+    default: '1.0'
+    descp: The value of max for Hardtanh. Default is 1
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  min:
+    default: '-1.0'
+    descp: The value of min for Hardtanh. Default is -1
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  name:
+    default: None
+    descp: Name for the operation (optional, default is None). For more information,
+      please refer to Name
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+descp: Hardtanh Activation. Create a callable object of Hardtanh.
+inputs:
+  optional:
+  - min
+  - max
+  - name
+  required: []

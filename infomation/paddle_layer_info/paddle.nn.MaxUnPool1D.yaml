@@ -1,0 +1,91 @@
+api: paddle.nn.MaxUnPool1D
+constraints:
+  data_format:
+    default: '''NCL'''
+    descp: "The data format of the input and output data. The default is \u201CNCL\u201D\
+      . When it is \u201CNCL\u201D, the data is stored in the order of: [batch_size,\
+      \ input_channels, input_length]"
+    dtype:
+    - str
+    enum:
+      - NCL
+    range: null
+    shape: null
+    structure:
+    - str
+  kernel_size:
+    default: null
+    descp: The unpool kernel size. If unpool kernel size is a tuple or list, it must
+      contain an integer
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 1
+    structure:
+    - int
+    - list
+    - tuple
+  name:
+    default: None
+    descp: For detailed information, please refer to Name. Usually name is no need
+      to set and None by default.           Returns          A callable object of
+      MaxUnPool1D
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  output_size:
+    default: None
+    descp: The target output size. If output_size is not specified, the actual output
+      shape will be automatically calculated by (input_shape, kernel_size, stride,
+      padding)
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 1
+    structure:
+    - list
+    - tuple
+  padding:
+    default: '0'
+    descp: Padding that was added to the input
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 1
+    structure:
+    - int
+    - tuple
+  stride:
+    default: None
+    descp: The unpool stride size. If unpool stride size is a tuple or list, it must
+      contain an integer
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 1
+    structure:
+    - int
+    - list
+    - tuple
+descp: This API implements max unpooling 1d opereation.
+inputs:
+  optional:
+  - stride
+  - padding
+  - data_format
+  - output_size
+  - name
+  required:
+  - kernel_size

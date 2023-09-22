@@ -1,0 +1,97 @@
+api: paddle.nn.Fold
+constraints:
+  kernel_sizes:
+    default: null
+    descp: The size of convolution kernel, should be [k_h, k_w] or an integer k treated
+      as [k, k]
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 2
+    structure:
+    - int
+    - list
+    - tuple
+  name:
+    default: None
+    descp: The default value is None. Normally there is no need for user to set this
+      property. For more information, please refer to Name           Returns          The
+      tensor formed by combining a group of sliding local blocks The output shape
+      is [N, Cout, H, W] as decriabled above
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  output_sizes:
+    default: null
+    descp: The size of output size, should be [output_size_h, output_size_w] or an
+      interger o treated as [o, o]
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 2
+    structure:
+    - list
+  paddings:
+    default: '0'
+    descp: "The paddings of each dimension, should be [padding_top, padding_left,\
+      \ padding_bottom, padding_right] or [padding_h, padding_w] or an integer padding.\
+      \ If [padding_h, padding_w] was given, it will expanded to [padding_h, padding_w,\
+      \ padding_h, padding_w]. If an integer padding was given, [padding, padding,\
+      \ padding, padding] will be used. For default, paddings will be [0, 0, 0, 0]"
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 2
+    structure:
+    - int
+    - list
+    - tuple
+  strides:
+    default: '1'
+    descp: The strides, should be [stride_h, stride_w] or an integer stride treated
+      as [sride, stride]. For default, strides will be [1, 1]
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 2
+    structure:
+    - int
+    - list
+    - tuple
+  dilations:
+    default: '1'
+    descp: "the dilations of convolution kernel, should be [dilation_h, dilation_w],\
+      \ or an integer dilation treated as [dilation, dilation]. For default, it will be [1, 1]."
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 2
+    structure:
+    - int
+    - list
+    - tuple
+descp: Combines an array of sliding local blocks into a large containing tensor. also
+  known as col2im when operated on batched 2D image tensor. Fold calculates each combined
+  value in the resulting large tensor by summing all values from all containing blocks.
+inputs:
+  optional:
+  - dilations
+  - paddings
+  - strides
+  - name
+  required:
+  - output_sizes
+  - kernel_sizes

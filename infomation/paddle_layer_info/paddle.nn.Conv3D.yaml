@@ -1,0 +1,182 @@
+api: paddle.nn.Conv3D
+constraints:
+  bias_attr:
+    default: None
+    descp: The parameter attribute for the bias of conv3d. If it is set to False,
+      no bias will be added to the output units. If it is set to None or one attribute
+      of ParamAttr, conv3d will create ParamAttr as bias_attr. If the Initializer
+      of the bias_attr is not set, the bias is initialized zero. The default value
+      is None
+    dtype:
+    - bool
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+    - bool
+  data_format:
+    default: '''NCDHW'''
+    descp: "Data format that specifies the layout of input. It can be \u201CNCDHW\u201D\
+      \ or \u201CNDHWC\u201D. Default: \u201CNCDHW\u201D"
+    dtype:
+    - str
+    enum:
+    - NCDHW
+    - NDHWC
+    range: null
+    shape: null
+    structure:
+    - str
+  dilation:
+    default: '1'
+    descp: The dilation size. If dilation is a list/tuple, it must contain three integers,
+      (dilation_D, dilation_H, dilation_W). Otherwise, the dilation_D = dilation_H
+      = dilation_W = dilation. The default value is 1
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 3
+    structure:
+    - int
+    - list
+    - tuple
+  groups:
+    default: '1'
+    descp: "The groups number of the Conv3D Layer. According to grouped convolution\
+      \ in Alex Krizhevsky\u2019s Deep CNN paper: when group=2, the first half of\
+      \ the filters is only connected to the first half of the input channels, while\
+      \ the second half of the filters is only connected to the second half of the\
+      \ input channels. The default value is 1"
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  in_channels:
+    default: null
+    descp: The number of input channels in the input image
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  kernel_size:
+    default: null
+    descp: The size of the convolving kernel
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 3
+    structure:
+    - int
+    - list
+    - tuple
+  out_channels:
+    default: null
+    descp: The number of output channels produced by the convolution
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  padding:
+    default: '0'
+    descp: "The padding size. Padding coule be in one of the following forms. 1. a\
+      \ string in [\u2018valid\u2019, \u2018same\u2019]. 2. an int, which means each\
+      \ spartial dimension(depth, height, width) is zero paded by size of padding\
+      \ 3. a list[int] or tuple[int] whose length is the number of spartial dimensions,\
+      \ which contains the amount of padding on each side for each spartial dimension.\
+      \ It has the form [pad_d1, pad_d2, \u2026]. 4. a list[int] or tuple[int] whose\
+      \ length is 2 * number of spartial dimensions. It has the form [pad_before,\
+      \ pad_after, pad_before, pad_after, \u2026] for all spartial dimensions. 5.\
+      \ a list or tuple of pairs of ints. It has the form [[pad_before, pad_after],\
+      \ [pad_before, pad_after], \u2026]. Note that, the batch dimension and channel\
+      \ dimension are also included. Each pair of integers correspond to the amount\
+      \ of padding for a dimension of the input. Padding in batch dimension and channel\
+      \ dimension should be [0, 0] or (0, 0). The default value is 0"
+    dtype:
+    - str
+    - int
+    enum:
+    - valid
+    - same
+    range: null
+    shape: 3
+    structure:
+    - int
+    - str
+    - tuple
+    - list
+  padding_mode:
+    default: '''zeros'''
+    descp: '''zeros'', ''reflect'', ''replicate'' or ''circular''. Default: ''zeros'''
+    dtype:
+    - str
+    enum:
+    - zeros
+    - reflect
+    - replicate
+    - circular
+    range: null
+    shape: null
+    structure:
+    - str
+  stride:
+    default: '1'
+    descp: The stride size. If stride is a list/tuple, it must contain three integers,
+      (stride_D, stride_H, stride_W). Otherwise, the stride_D = stride_H = stride_W
+      = stride. The default value is 1
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 3
+    structure:
+    - int
+    - list
+    - tuple
+  weight_attr:
+    default: None
+    descp: The parameter attribute for learnable parameters/weights of conv3d. If
+      it is set to None or one attribute of ParamAttr, conv3d will create ParamAttr
+      as param_attr. If it is set to None, the parameter is initialized with \(Normal(0
+    dtype:
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+descp: 'Convlution3d Layer The convolution3d layer calculates the output based on
+  the input, filter and strides, paddings, dilations, groups parameters. Input(Input)
+  and Output(Output) are multidimensional tensors with a shape of \([N, C, D, H, W]\)
+  . Where N is batch size, C is the number of channels, D is the depth of the feature,
+  H is the height of the feature, and W is the width of the feature. Convlution3D
+  is similar with Convlution2D but adds one dimension(depth). If bias attribution
+  and activation type are provided, bias is added to the output of the convolution,
+  and the corresponding activation function is applied to the final result. For each
+  input \(X\), the equation is:'
+inputs:
+  optional:
+  - stride
+  - padding
+  - dilation
+  - groups
+  - padding_mode
+  - weight_attr
+  - bias_attr
+  - data_format
+  required:
+  - in_channels
+  - out_channels
+  - kernel_size

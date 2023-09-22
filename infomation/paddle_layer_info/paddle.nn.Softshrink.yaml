@@ -1,0 +1,19 @@
+api: paddle.nn.Softshrink
+constraints:
+  threshold:
+    default: '0.5'
+    descp: The value of threshold(must be no less than zero) for softplus. Default
+      is 0
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+descp: Softshrink Activation
+inputs:
+  optional:
+  - threshold
+  - name
+  required: []

@@ -1,0 +1,81 @@
+api: paddle.nn.Pad3D
+constraints:
+  data_format:
+    default: '''NCDHW'''
+    descp: "An string from: 'NCDHW', 'NDHWC'. Specify the data format of the input\
+      \ data. Default: 'NCDHW'"
+    dtype:
+    - str
+    enum:
+    - NCDHW
+    - NDHWC
+    range: null
+    shape: null
+    structure:
+    - str
+  mode:
+    default: '''constant'''
+    descp: 'Four modes: ''constant'' (default), ''reflect'', ''replicate'', ''circular''.
+      Default: ''constant'''
+    dtype:
+    - str
+    enum:
+    - constant
+    - reflect
+    - replicate
+    - circular
+    range: null
+    shape: null
+    structure:
+    - str
+  padding:
+    default: null
+    descp: The padding size with data type 'int'. If is 'int', use the same padding
+      in all dimensions. Else [len(padding)/2] dimensions of input will be padded.
+      The pad has the form (pad_left, pad_right, pad_top, pad_bottom, pad_front, pad_back)
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - Tensor
+    - list[int]
+    - int
+  name:
+    default: None
+    descp: 'For details, please refer to Name. Generally, no setting is required.
+      Default: ''None''.           Returns          None'
+    dtype:
+      - str
+    enum:
+      - need
+      - need
+      - need
+      - need
+    range: null
+    shape: null
+    structure:
+      - str
+  value:
+    default: 0.0
+    descp: The value to fill the padded areas. Default is 0.0
+    dtype:
+      - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+      - float
+descp: This interface is used to construct a callable object of the Pad3D class. Pad
+  tensor according to 'pad', 'mode' and 'value'. If mode is 'reflect', pad[0] and
+  pad[1] must be no greater than width-1. The height and depth dimension has the same
+  condition.
+inputs:
+  optional:
+  - mode
+  - value
+  - data_format
+  - name
+  required:
+  - padding

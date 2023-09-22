@@ -1,0 +1,30 @@
+api: paddle.nn.Flatten
+constraints:
+  start_axis:
+    default: '1'
+    descp: first dim to flatten
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  stop_axis:
+    default: '-1'
+    descp: last dim to flatten
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+descp: This interface is used to construct a callable object of the FLatten class.
+  For more details, refer to code examples. It implements flatten a contiguous range
+  of dims into a tensor.
+inputs:
+  optional:
+  - start_axis
+  - stop_axis
+  required: []

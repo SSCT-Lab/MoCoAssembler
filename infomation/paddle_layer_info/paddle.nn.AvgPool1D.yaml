@@ -1,0 +1,102 @@
+api: paddle.nn.AvgPool1D
+constraints:
+  ceil_mode:
+    default: 'False'
+    descp: ${ceil_mode_comment}Whether to use the ceil function to calculate output
+      height and width. If it is set to False, the floor function will be used. The
+      default value is False
+    dtype:
+    - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - bool
+  exclusive:
+    default: 'True'
+    descp: Whether to exclude padding points in average pooling mode, default is True
+    dtype:
+    - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - bool
+  kernel_size:
+    default: null
+    descp: The pool kernel size. If pool kernel size is a tuple or list, it must contain
+      an integer
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 1
+    structure:
+    - int
+    - list
+    - tuple
+  name:
+    default: None
+    descp: For eed to detailed information, please refer to Name. Usually name is
+      no nset and None by default
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  padding:
+    default: '0'
+    descp: "The padding size. Padding could be in one of the following forms. 1. A\
+      \ string in valid, same]. 2. An int, which means the\
+      \ feature map is zero padded by size of padding on every sides. 3. A list[int]\
+      \ or tuple(int) whose length is 1, which means the feature map is zero padded\
+      \ by the size of padding[0] on every sides. 4. A list[int] or tuple(int) whose\
+      \ length is 2. It has the form [pad_before, pad_after]. 5. A list or tuple of\
+      \ pairs of integers. It has the form [[pad_before, pad_after], [pad_before,\
+      \ pad_after], ...]. Note that, the batch dimension and channel dimension\
+      \ should be [0,0] or (0,0). The default value is 0"
+    dtype:
+    - str
+    - int
+    enum:
+    - valid
+    - same
+    range: null
+    shape: 1
+    structure:
+    - str
+    - int
+    - list
+    - tuple
+  stride:
+    default: None
+    descp: The pool stride size. If pool stride size is a tuple or list, it must contain
+      an integer. Default None, then stride will be equal to the kernel_size
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 1
+    structure:
+    - int
+    - list
+    - tuple
+descp: This operation applies a 1D average pooling over an input signal composed of
+  several input planes, based on the input, output_size, return_mask parameters. Input(X)
+  and output(Out) are in NCL format, where N is batch size, C is the number of channels,
+  L is the length of the feature. The output tensor shape will be [N, C, output_size].
+inputs:
+  optional:
+  - stride
+  - padding
+  - exclusive
+  - ceil_mode
+  - name
+  required:
+  - kernel_size

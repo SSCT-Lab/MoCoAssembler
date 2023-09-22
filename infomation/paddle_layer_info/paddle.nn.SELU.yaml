@@ -1,0 +1,44 @@
+api: paddle.nn.SELU
+constraints:
+  alpha:
+    default: '1.6732632423543772'
+    descp: The value of alpha(must be no less than zero) for SELU. Default is 1
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  name:
+    default: None
+    descp: Name for the operation (optional, default is None). For more information,
+      please refer to Name
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  scale:
+    default: '1.0507009873554805'
+    descp: The value of scale(must be greater than 1
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+descp: SELU Activation
+inputs:
+  optional:
+  - scale
+  - alpha
+  - name
+  required: []

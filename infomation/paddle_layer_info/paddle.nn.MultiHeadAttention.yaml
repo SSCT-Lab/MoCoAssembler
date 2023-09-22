@@ -1,0 +1,94 @@
+api: paddle.nn.MultiHeadAttention
+constraints:
+  bias_attr:
+    default: None
+    descp: 'To specify the bias parameter property. Default: None, which means the
+      default bias parameter property is used. If it is set to False, this layer will
+      not have trainable bias parameter. See usage for details in ParamAttr '
+    dtype:
+    - bool
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+    - bool
+  dropout:
+    default: '0.0'
+    descp: "The dropout probability used on attention weights to drop some attention\
+      \ targets. 0 for no dropout. Default 0kdim (int, optional) \u2013 The feature\
+      \ size in key. If None, assumed equal to embed_dim. Default None"
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  embed_dim:
+    default: null
+    descp: The expected feature size in the input and output
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  need_weights:
+    default: 'False'
+    descp: Indicate whether to return the attention weights. Default False
+    dtype:
+    - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - bool
+  num_heads:
+    default: null
+    descp: The number of heads in multi-head attention
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  vdim:
+    default: None
+    descp: The feature size in value. If None, assumed equal to embed_dim. Default
+      None
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  weight_attr:
+    default: None
+    descp: 'To specify the weight parameter property. Default: None, which means the
+      default weight parameter property is used. See usage for details in ParamAttr '
+    dtype:
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+descp: Attention mapps queries and a set of key-value pairs to outputs, and Multi-Head
+  Attention performs multiple parallel attention to jointly attending to information
+  from different representation subspaces.
+inputs:
+  optional:
+  - dropout
+  - kdim
+  - vdim
+  - need_weights
+  - weight_attr
+  - bias_attr
+  required:
+  - embed_dim
+  - num_heads
