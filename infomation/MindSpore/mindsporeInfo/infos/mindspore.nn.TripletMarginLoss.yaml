@@ -5,12 +5,11 @@ constraints:
   p:
     descp: 'p (int, optional) – The degree of norm for pairwise distance. Default:
       2 .'
-    default: '2'
+    default: 2
     dtype:
     - int
     structure:
     - single
-    shape: null
     range: null
   eps:
     descp: 'eps (float, optional) – Add small value to avoid division by zero. Default:
@@ -18,28 +17,27 @@ constraints:
     default: 1e-06
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   swap:
     descp: 'swap (bool, optional) – The distance swap change the negative distance
       to the distance between positive sample and negative sample. Default: False
       .'
-    default: 'False'
+    default: False
     dtype:
     - bool
   reduction:
     descp: 'reduction (str, optional) – Apply specific reduction method to the output:
       ''none'' , ''mean'' , ''sum'' . Default: "mean" .'
-    default: '"mean"'
+    default: mean
     dtype:
     - str
-    enum: null
+    enum:
+    - none
+    - mean
+    - sum
   margin:
     descp: 'margin (Union[Tensor, float]) – Default: 1.0 .'
-    default: '1'
+    default: 1.0
     dtype:
-    - union[tensor, float]
     - float
     structure:
     - single

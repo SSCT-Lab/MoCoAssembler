@@ -14,19 +14,17 @@ constraints:
     descp: 'lr (Union[int, float, Tensor], optional) – learning rate. Default: 1e-3.'
     default: 1e-3
     dtype:
-    - union[int, float, tensor], optional
     - int
     - float
     structure:
     - single
-    shape: null
     range: null
   betas:
     descp: 'betas (Tuple[float, float], optional) – The exponential decay rate for
       the moment estimations. Default: (0.9, 0.999).'
-    default: (0
+    default: (0.9, 0.999)
     dtype:
-    - tuple[float, float], optional
+    - float
     structure:
     - tuple
   eps:
@@ -35,21 +33,15 @@ constraints:
     default: 1e-8
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   weight_decay:
     descp: 'weight_decay (float, optional) – weight decay (L2 penalty). Default: 0.'
-    default: '0'
+    default: 0
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   amsgrad:
     descp: 'amsgrad (bool, optional) – whether to use the AMSGrad algorithm. Default:
       False.'
-    default: 'False'
+    default: False
     dtype:
     - bool
 inputs:
@@ -59,4 +51,5 @@ inputs:
   - eps
   - weight_decay
   - amsgrad
-  required: []
+  required:
+  - params

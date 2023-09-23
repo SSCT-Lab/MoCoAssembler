@@ -5,21 +5,25 @@ constraints:
   margin:
     descp: 'margin (float, int) – Threshold defined by Hinge Embedding Loss (margin).
       Represented as (Delta) in the formula. Default: 1.0 .'
-    default: '1'
+    default: 1.0
     dtype:
     - int
     - float
     structure:
     - single
-    shape: null
     range: null
   reduction:
     descp: 'reduction (str) – Specify the computing method to be applied to the outputs:
       ''none'' , ''mean'' , or ''sum'' . Default: ''mean'' .'
-    default: '''mean'''
+    default: mean
     dtype:
     - str
-    enum: null
+    enum:
+    - none
+    - mean
+    - sum
 inputs:
-  optional: []
+  optional:
+  - margin
+  - reduction
   required: []

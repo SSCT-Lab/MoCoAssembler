@@ -11,8 +11,9 @@ constraints:
     structure:
     - single
     - tuple
-    shape: null
+    shape: 4
     range: null
 inputs:
   optional: []
-  required: []
+  required:
+  - padding

@@ -1,0 +1,6 @@
+api: mindspore.nn.Softmax
+descp: Softmax function applied to 2D features data.
+constraints:
+inputs:
+  optional: []
+  required: []

@@ -9,14 +9,14 @@ constraints:
     - cell
   interleave_num:
     descp: 'interleave_num (int, optional) – split num of batch size. Default: 2 .'
-    default: '2'
+    default: 2
     dtype:
     - int
     structure:
     - single
-    shape: null
     range: null
 inputs:
   optional:
   - interleave_num
-  required: []
+  required:
+  - network

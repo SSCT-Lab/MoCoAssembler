@@ -4,7 +4,7 @@ constraints:
   margin:
     descp: 'margin (float, optional) – Specify the adjustment factor of the operation.
       Default: 0.0 .'
-    default: '0'
+    default: 0.0
     dtype:
     - float
     structure:
@@ -14,10 +14,13 @@ constraints:
     descp: 'reduction (str, optional) – Specifies which reduction to be applied to
       the output. It must be one of "none" , "mean" , and "sum" , meaning no reduction,
       reduce mean and sum on output, respectively. Default: "mean" .'
-    default: '"mean"'
+    default: mean
     dtype:
     - str
-    enum: null
+    enum:
+    - none
+    - mean
+    - sum
 inputs:
   optional:
   - margin

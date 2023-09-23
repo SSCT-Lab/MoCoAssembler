@@ -4,12 +4,10 @@ constraints:
   alpha:
     descp: 'alpha (float) – The (alpha) value for the Celu formulation. Default: 1.0
       .'
-    default: '1'
+    default: 1.0
     dtype:
     - float
-    structure:
-    - single
-    shape: null
 inputs:
-  optional: []
+  optional:
+  - alpha
   required: []

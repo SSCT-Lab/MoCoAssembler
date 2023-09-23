@@ -40,39 +40,28 @@ constraints:
       will take the i-th value as the learning rate. LearningRateSchedule: Learning
       rate is dynamic. During training, the optimizer calls the instance of LearningRateSchedule
       with step as the input to get the learning rate of current step.  '
-    default: '0'
+    default: 0.1
     dtype:
-    - union[float, int, tensor, iterable, learningrateschedule]
     - int
     - float
     structure:
     - single
-    shape: null
     range: null
   lambd:
     descp: 'lambd (float) – The decay term. Default: 1e-4 .'
     default: 1e-4
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   alpha:
     descp: 'alpha (float) – The power for (eta) update. Default: 0.75 .'
-    default: '0'
+    default: 0.75
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   t0:
     descp: 't0 (float) – The point of starting averaging. Default: 1e6 .'
     default: 1e6
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   weight_decay:
     descp: 'weight_decay (Union[float, int, Cell]) – Weight decay (L2 penalty). Default:
       0.0 .  float: The fixed weight decay value. Must be equal to or greater than
@@ -80,15 +69,20 @@ constraints:
       will be converted to float. Cell: Weight decay is dynamic. During training,
       the optimizer calls the instance of the Cell with step as the input to get the
       weight decay value of current step.  '
-    default: '0'
+    default: 0.0
     dtype:
-    - union[float, int, cell]
     - int
     - float
+    - cell
     structure:
     - single
-    shape: null
     range: null
 inputs:
-  optional: []
-  required: []
+  optional:
+  - learning_rate
+  - lambd
+  - alpha
+  - t0
+  - weight_decay
+  required:
+  - params

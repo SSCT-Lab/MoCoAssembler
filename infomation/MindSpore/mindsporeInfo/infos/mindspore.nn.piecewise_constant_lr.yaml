@@ -25,4 +25,6 @@ constraints:
     shape: null
 inputs:
   optional: []
-  required: []
+  required:
+  - milestone
+  - learning_rates

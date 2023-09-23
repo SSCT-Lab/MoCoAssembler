@@ -4,12 +4,13 @@ constraints:
   lambd:
     descp: 'lambd (float) – The threshold (lambda) defined by the Hard Shrink formula.
       Default: 0.5 .'
-    default: '0'
+    default: 0.5
     dtype:
     - float
     structure:
     - single
     shape: null
 inputs:
-  optional: []
+  optional:
+  - lambd
   required: []

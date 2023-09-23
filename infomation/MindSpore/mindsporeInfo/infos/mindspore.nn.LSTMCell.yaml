@@ -8,7 +8,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   hidden_size:
     descp: hidden_size (int) – Number of features of hidden layer.
@@ -17,14 +16,16 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   has_bias:
     descp: 'has_bias (bool) – Whether the cell has bias b_ih and b_hh. Default: True
       .'
-    default: 'True'
+    default: True
     dtype:
     - bool
 inputs:
-  optional: []
-  required: []
+  optional:
+  - has_bias
+  required:
+  - input_size
+  - hidden_size

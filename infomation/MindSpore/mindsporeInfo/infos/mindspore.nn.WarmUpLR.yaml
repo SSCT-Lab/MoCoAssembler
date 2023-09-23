@@ -6,9 +6,6 @@ constraints:
     default: null
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   warmup_steps:
     descp: warmup_steps (int) – The warm up steps of learning rate.
     default: null
@@ -16,8 +13,9 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
 inputs:
   optional: []
-  required: []
+  required:
+  - learning_rate
+  - warmup_steps

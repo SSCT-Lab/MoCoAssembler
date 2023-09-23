@@ -11,7 +11,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   out_channels:
     descp: out_channels (int) – The channel number of the output tensor of the Conv2d
@@ -21,7 +20,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   kernel_size:
     descp: kernel_size (Union[int, tuple[int]]) – Specifies the height and width of
@@ -34,7 +32,7 @@ constraints:
     structure:
     - single
     - tuple
-    shape: null
+    shape: 2
     range: null
   stride:
     descp: 'stride (Union[int, tuple[int]]) – The movement stride of the 2D convolution
@@ -42,13 +40,13 @@ constraints:
       represents the movement step size in both height and width directions. A tuple
       of two integers represents the movement step size in the height and width directions
       respectively. Default: 1 .'
-    default: '1'
+    default: 1
     dtype:
     - int
     structure:
     - single
     - tuple
-    shape: null
+    shape: 2
     range: null
   pad_mode:
     descp: 'pad_mode (str) – Specifies padding mode. The optional values are "same"
@@ -59,10 +57,13 @@ constraints:
       mode is set, the value of padding must be 0. "pad": Pads the input. Padding
       padding size of zero on both sides of the input. If this mode is set, the value
       of padding must be greater than or equal to 0.  '
-    default: '"same"'
+    default: same
     dtype:
     - str
-    enum: null
+    enum:
+    - same
+    - valid
+    - pad
   padding:
     descp: 'padding (Union[int, tuple[int]]) – The number of padding on the height
       and width directions of the input. The data type is an integer or a tuple of
@@ -71,43 +72,44 @@ constraints:
       the top, bottom, left, and right padding is equal to padding[0], padding[1],
       padding[2], and padding[3] respectively. The value should be greater than or
       equal to 0. Default: 0 .'
-    default: '0'
+    default: 0
     dtype:
     - int
     structure:
     - single
     - tuple
-    shape: null
+    shape: 4
     range: null
   dilation:
     descp: 'dilation (Union[int, tuple[int]]) – Dilation size of 2D convolution kernel.
       The data type is an integer or a tuple of two or four integers. If (k > 1),
       the kernel is sampled every k elements. The value of k on the height and width
       directions is in range of [1, H] and [1, W] respectively. Default: 1 .'
-    default: '1'
+    default: 1
     dtype:
     - int
     structure:
     - single
     - tuple
-    shape: null
-    range: null
+    shape:
+    - 2
+    - 4
+    range: [1, ]
   group:
     descp: 'group (int) – Splits filter into groups, in_channels and out_channels
       must be divisible by group. If the group is equal to in_channels and out_channels,
       this 2D convolution layer also can be called 2D depthwise convolution layer.
       Default: 1 .'
-    default: '1'
+    default: 1
     dtype:
     - int
     structure:
     - single
-    shape: null
     range: null
   has_bias:
     descp: 'has_bias (bool) – Whether the Conv2d layer has a bias parameter. Default:
       False .'
-    default: 'False'
+    default: False
     dtype:
     - bool
   weight_init:
@@ -119,28 +121,60 @@ constraints:
       , ''he_uniform'' , ''ones'' and ''zeros'' are acceptable. Uppercase and lowercase
       are both acceptable. Refer to the values of Initializer for more details. Default:
       None , weight will be initialized using HeUniform.'
-    default: None , weight will be initialized using HeUniform
+    default: None
     dtype:
-    - union[tensor, str, initializer, numbers.number]
     - str
-    enum: null
+    enum:
+    - None
+    - truncatedNormal
+    - normal
+    - uniform
+    - HeUniform
+    - XavierUniform
+    - xavier_uniform
+    - he_uniform
+    - ones
+    - zeros
   bias_init:
     descp: 'bias_init (Union[Tensor, str, Initializer, numbers.Number]) – Initialization
       method of bias parameter. Available initialization methods are the same as ‘weight_init’.
       Refer to the values of Initializer for more details. Default: None , bias will
       be initialized using Uniform.'
-    default: None , bias will be initialized using Uniform
+    default: None
     dtype:
-    - union[tensor, str, initializer, numbers.number]
     - str
-    enum: null
+    enum:
+    - None
+    - truncatedNormal
+    - normal
+    - uniform
+    - HeUniform
+    - XavierUniform
+    - xavier_uniform
+    - he_uniform
+    - ones
+    - zeros
   data_format:
     descp: 'data_format (str) – The optional value for data format, is ''NHWC'' or
       ''NCHW'' . Default: ''NCHW'' .'
-    default: '''NCHW'''
+    default: NCHW
     dtype:
     - str
-    enum: null
+    enum:
+    - NCHW
+    - NHWC
 inputs:
-  optional: []
-  required: []
+  optional:
+  - stride
+  - pad_mode
+  - padding
+  - dilation
+  - group
+  - has_bias
+  - weight_init
+  - bias_init
+  - data_format
+  required:
+  - in_channels
+  - out_channels
+  - kernel_size

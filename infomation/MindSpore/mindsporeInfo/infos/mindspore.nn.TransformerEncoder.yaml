@@ -14,14 +14,15 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   norm:
     descp: 'norm (Cell, optional) – The layer normalization module. Default: None.'
     default: None
     dtype:
-    - cell, optional
+    - cell
 inputs:
   optional:
   - norm
-  required: []
+  required:
+  - encoder_layer
+  - num_layers

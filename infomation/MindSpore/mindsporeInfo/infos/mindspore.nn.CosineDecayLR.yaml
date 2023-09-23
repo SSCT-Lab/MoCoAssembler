@@ -6,17 +6,11 @@ constraints:
     default: null
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   max_lr:
     descp: max_lr (float) – The maximum value of learning rate.
     default: null
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   decay_steps:
     descp: decay_steps (int) – Number of steps to decay over.
     default: null
@@ -24,8 +18,10 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
 inputs:
   optional: []
-  required: []
+  required:
+  - min_lr
+  - max_lr
+  - decay_steps

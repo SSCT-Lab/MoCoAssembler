@@ -1,5 +1,5 @@
-api: 'mindspore.nn.RNNCell(input_size: int, hidden_size: int, has_bias: bool = True,
-  nonlinearity: str = ''tanh'')'
+api: mindspore.nn.RNNCell(input_size, hidden_size, has_bias = True,
+  nonlinearity = ''tanh'')
 descp: An Elman RNN cell with tanh or ReLU non-linearity.
 constraints:
   input_size:
@@ -9,7 +9,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   hidden_size:
     descp: hidden_size (int) – Number of features of hidden layer.
@@ -18,21 +17,26 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   has_bias:
     descp: 'has_bias (bool) – Whether the cell has bias b_ih and b_hh. Default: True
       .'
-    default: 'True'
+    default: True
     dtype:
     - bool
   nonlinearity:
     descp: 'nonlinearity (str) – The non-linearity to use. Can be either "tanh" or
       "relu" . Default: "tanh" .'
-    default: '"tanh"'
+    default: tanh
     dtype:
     - str
-    enum: null
+    enum:
+    - tanh
+    - relu
 inputs:
-  optional: []
-  required: []
+  optional:
+  - nonlinearity
+  - has_bias
+  required:
+  - input_size
+  - hidden_size

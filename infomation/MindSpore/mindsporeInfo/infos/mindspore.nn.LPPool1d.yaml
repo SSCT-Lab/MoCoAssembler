@@ -13,7 +13,6 @@ constraints:
     - float
     structure:
     - single
-    shape: null
     range: null
   kernel_size:
     descp: kernel_size (int) – The size of kernel window.
@@ -22,7 +21,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   stride:
     descp: 'stride (int) – The distance of kernel moving, an int number that represents
@@ -33,14 +31,17 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   ceil_mode:
     descp: 'ceil_mode (bool) – Whether to use ceil or floor to calculate output shape.
       Default: False .'
-    default: 'False'
+    default: False
     dtype:
     - bool
 inputs:
-  optional: []
-  required: []
+  optional:
+  - stride
+  - ceil_mode
+  required:
+  - norm_type
+  - kernel_size

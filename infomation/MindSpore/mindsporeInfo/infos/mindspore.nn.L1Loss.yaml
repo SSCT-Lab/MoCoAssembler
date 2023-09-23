@@ -7,10 +7,14 @@ constraints:
       values are "mean" , "sum" , and "none" . Default: "mean" . If reduction is "mean"
       or "sum" , then output a scalar Tensor, if reduction is "none" , the shape of
       the output Tensor is the broadcasted shape.'
-    default: '"mean"'
+    default: mean
     dtype:
     - str
-    enum: null
+    enum:
+    - none
+    - mean
+    - sum
 inputs:
-  optional: []
+  optional:
+  - reduction
   required: []

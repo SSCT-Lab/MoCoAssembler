@@ -1,0 +1,12 @@
+api: mindspore.nn.Dropout3d(p=0.5)
+descp: During training, randomly zeroes some channels of the input tensor with probability p from a Bernoulli distribution (For a 5-dimensional tensor with a shape of NCDHW, the channel feature map refers to a 3-dimensional feature map with a shape of DHW).
+constraints:
+  p:
+    descp: 'p (float) – The dropping probability of a channel, between 0 and 1, e.g. p = 0.8, which means dropping out 80% of channels. Default: 0.5 .'
+    default: 0.5
+    dtype:
+    - float
+inputs:
+  optional:
+  - p
+  required: []

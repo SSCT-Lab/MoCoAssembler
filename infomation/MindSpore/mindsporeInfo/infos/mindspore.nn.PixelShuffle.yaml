@@ -10,8 +10,8 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
 inputs:
   optional: []
-  required: []
+  required:
+  - upscale_factor

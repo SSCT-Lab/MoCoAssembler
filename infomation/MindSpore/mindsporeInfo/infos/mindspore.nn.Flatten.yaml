@@ -4,21 +4,19 @@ constraints:
   start_dim:
     descp: 'start_dim (int, optional) – The first dimension to flatten. Default: 1
       .'
-    default: '1'
+    default: 1
     dtype:
     - int
     structure:
     - single
-    shape: null
     range: null
   end_dim:
     descp: 'end_dim (int, optional) – The last dimension to flatten. Default: -1 .'
-    default: '-1'
+    default: -1
     dtype:
     - int
     structure:
     - single
-    shape: null
     range: null
 inputs:
   optional:

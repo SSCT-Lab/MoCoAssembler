@@ -8,26 +8,26 @@ constraints:
       the max value, is an int number or a single element tuple that represents height
       and width are both kernel_size, or a tuple of two int numbers that represent
       height and width respectively. Default: 1 .'
-    default: '1'
+    default: 1
     dtype:
     - int
     structure:
     - single
     - tuple
-    shape: null
+    shape: 2
     range: null
   stride:
     descp: 'stride (Union[int, tuple[int]]) – The distance of kernel moving, an int
       number or a single element tuple that represents the height and width of movement
       are both stride, or a tuple of two int numbers that represent height and width
       of movement respectively. Default: 1 .'
-    default: '1'
+    default: 1
     dtype:
     - int
     structure:
     - single
     - tuple
-    shape: null
+    shape: 2
     range: null
   pad_mode:
     descp: 'pad_mode (str) – The optional value for pad mode, is "same" , "valid"
@@ -37,10 +37,13 @@ constraints:
       will be discarded. "pad": pads the input. Pads the top, bottom, left, and right
       sides of the input with padding number of zeros. If this mode is set, padding
       must be greater than or equal to 0.  '
-    default: '"valid"'
+    default: valid
     dtype:
     - str
-    enum: null
+    enum:
+    - same
+    - valis
+    - pad
   padding:
     descp: 'padding (Union(int, tuple[int], list[int])) – Specifies the padding value
       of the pooling operation. Default: 0 . padding can only be an integer or a tuple/list
@@ -49,47 +52,57 @@ constraints:
       If padding is a tuple/list containing two integers, it will be padded padding[0]
       times in the up-down direction of the input and padding[1] times in the left-right
       direction of the input.'
-    default: '0'
+    default: 0
     dtype:
     - int
     structure:
     - list
     - single
     - tuple
-    shape: null
+    shape: 2
     range: null
   dilation:
     descp: 'dilation (Union(int, tuple[int])) – The spacing between the elements of
       the kernel in convolution, used to increase the receptive field of the pooling
       operation. If it is a tuple, it must contain one or two integers. Default: 1
       .'
-    default: '1'
+    default: 1
     dtype:
     - int
     structure:
     - single
     - tuple
-    shape: null
+    shape: 2
     range: null
   return_indices:
     descp: 'return_indices (bool) – If True , the function will return both the result
       of max pooling and the indices of the max elements. Default: False .'
-    default: 'False'
+    default: False
     dtype:
     - bool
   ceil_mode:
     descp: 'ceil_mode (bool) – If True , use ceil to compute the output shape instead
       of floor. Default: False .'
-    default: 'False'
+    default: False
     dtype:
     - bool
   data_format:
     descp: 'data_format (str) – The optional value for data format, is ''NHWC'' or
       ''NCHW'' . Default: ''NCHW'' .'
-    default: '''NCHW'''
+    default: NCHW
     dtype:
     - str
-    enum: null
+    enum:
+    - NCHW
+    - NHWC
 inputs:
-  optional: []
+  optional:
+  - kernel_size
+  - stride
+  - pad_mode
+  - padding
+  - dilation
+  - return_indices
+  - ceil_mode
+  - data_format
   required: []

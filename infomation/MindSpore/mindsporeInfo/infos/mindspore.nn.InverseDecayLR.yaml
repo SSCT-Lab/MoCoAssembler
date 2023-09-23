@@ -6,17 +6,11 @@ constraints:
     default: null
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   decay_rate:
     descp: decay_rate (float) – The decay rate.
     default: null
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   decay_steps:
     descp: decay_steps (int) – Number of steps to decay over.
     default: null
@@ -24,14 +18,17 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   is_stair:
     descp: 'is_stair (bool) – If true, learning rate decay once every decay_steps
       times. Default: False .'
-    default: 'False'
+    default: False
     dtype:
     - bool
 inputs:
-  optional: []
-  required: []
+  optional:
+  - is_stair
+  required:
+  - learning_rate
+  - decay_rate
+  - decay_steps

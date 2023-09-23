@@ -1,5 +1,5 @@
 api: mindspore.nn.AdaSumByGradWrapCell(optimizer)
-descp: Enable the adasum in “auto_parallel/semi_auto_parallel” mode.
+descp: Enable the adasum in “auto_parallel/semi_auto_parallel” mode. The implementation of the Adaptive Summation (AdaSum) algorithm is calculated by gradients.
 constraints:
   optimizer:
     descp: optimizer (Union[Cell]) – Optimizer for updating the weights. The construct

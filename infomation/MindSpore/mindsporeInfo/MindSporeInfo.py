@@ -101,4 +101,3 @@ if __name__ == '__main__':
     #     for param in constraints.items():
     #         param_ = param[1]
     #         print(f'{param[0]}\ntype of descp: {type(param_["descp"])}\n descp: {param_["descp"]}')
-

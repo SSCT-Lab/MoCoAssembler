@@ -1,6 +1,6 @@
 api: mindspore.nn.Adagrad(params, accum=0.1, learning_rate=0.001, update_slots=True,
   loss_scale=1.0, weight_decay=0.0)
-descp: Implements the Adagrad algorithm.
+descp: Implements the Adagrad algorithm. Adagrad is an online Learning and Stochastic Optimization.
 constraints:
   params:
     descp: 'params (Union[list[Parameter], list[dict]]) – Must be list of Parameter
@@ -32,12 +32,9 @@ constraints:
   accum:
     descp: 'accum (float) – The starting value for (h), must be zero or positive values.
       Default: 0.1 .'
-    default: '0'
+    default: 0。1
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   learning_rate:
     descp: 'learning_rate (Union[float, int, Tensor, Iterable, LearningRateSchedule])
       – Default: 0.001 .  float: The fixed learning rate value. Must be equal to or
@@ -49,9 +46,8 @@ constraints:
       i-th value as the learning rate. LearningRateSchedule: Learning rate is dynamic.
       During training, the optimizer calls the instance of LearningRateSchedule with
       step as the input to get the learning rate of current step.  '
-    default: '0'
+    default: 0.001
     dtype:
-    - union[float, int, tensor, iterable, learningrateschedule]
     - int
     - float
     structure:
@@ -60,7 +56,7 @@ constraints:
     range: null
   update_slots:
     descp: 'update_slots (bool) – Whether the (h) will be updated. Default: True .'
-    default: 'True'
+    default: True
     dtype:
     - bool
   loss_scale:
@@ -70,12 +66,9 @@ constraints:
       False, then this value needs to be the same as the loss_scale in FixedLossScaleManager.
       Refer to class mindspore.amp.FixedLossScaleManager for more details. Default:
       1.0 .'
-    default: '1'
+    default: 1.0
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   weight_decay:
     descp: 'weight_decay (Union[float, int, Cell]) – Weight decay (L2 penalty). Default:
       0.0 .  float: The fixed weight decay value. Must be equal to or greater than
@@ -83,15 +76,21 @@ constraints:
       will be converted to float. Cell: Weight decay is dynamic. During training,
       the optimizer calls the instance of the Cell with step as the input to get the
       weight decay value of current step.  '
-    default: '0'
+    default: 0.0
     dtype:
-    - union[float, int, cell]
     - int
     - float
+    - cell
     structure:
     - single
     shape: null
     range: null
 inputs:
-  optional: []
-  required: []
+  optional:
+  - accum
+  - learning_rate
+  - update_slots
+  - loss_scale
+  - weight_decay
+  required:
+  - params

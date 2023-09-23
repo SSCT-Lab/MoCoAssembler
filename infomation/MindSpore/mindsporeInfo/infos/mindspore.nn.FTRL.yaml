@@ -31,53 +31,38 @@ constraints:
   initial_accum:
     descp: 'initial_accum (float) – The starting value for accumulators m, must be
       zero or positive values. Default: 0.1 .'
-    default: '0'
+    default: 0.1
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   learning_rate:
     descp: 'learning_rate (float) – The learning rate value, must be zero or positive,
       dynamic learning rate is currently not supported. Default: 0.001 .'
-    default: '0'
+    default: 0.001
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   lr_power:
     descp: 'lr_power (float) – Learning rate power controls how the learning rate
       decreases during training, must be less than or equal to zero. Use fixed learning
       rate if lr_power is zero. Default: -0.5 .'
-    default: '-0'
+    default: -0.5
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   l1:
     descp: 'l1 (float) – l1 regularization strength, must be greater than or equal
       to zero. Default: 0.0 .'
-    default: '0'
+    default: 0.0
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   l2:
     descp: 'l2 (float) – l2 regularization strength, must be greater than or equal
       to zero. Default: 0.0 .'
-    default: '0'
+    default: 0.0
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   use_locking:
     descp: 'use_locking (bool) – If true, use locks for updating operation. Default:
       False .'
-    default: 'False'
+    default: False
     dtype:
     - bool
   loss_scale:
@@ -87,12 +72,9 @@ constraints:
       False , then this value needs to be the same as the loss_scale in FixedLossScaleManager.
       Refer to class mindspore.amp.FixedLossScaleManager for more details. Default:
       1.0 .'
-    default: '1'
+    default: 1.0
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   weight_decay:
     descp: 'weight_decay (Union[float, int, Cell]) – Weight decay (L2 penalty). Default:
       0.0 .  float: The fixed weight decay value. Must be equal to or greater than
@@ -100,15 +82,22 @@ constraints:
       will be converted to float. Cell: Weight decay is dynamic. During training,
       the optimizer calls the instance of the Cell with step as the input to get the
       weight decay value of current step.  '
-    default: '0'
+    default: 0.0
     dtype:
-    - union[float, int, cell]
     - int
     - float
     structure:
     - single
-    shape: null
     range: null
 inputs:
-  optional: []
-  required: []
+  optional:
+  - initial_accum
+  - learning_rate
+  - lr_power
+  - l1
+  - l2
+  - use_locking
+  - loss_scale
+  - weight_decay
+  required:
+  - params

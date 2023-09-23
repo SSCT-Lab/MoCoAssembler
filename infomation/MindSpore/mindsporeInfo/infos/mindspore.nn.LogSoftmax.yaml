@@ -4,13 +4,13 @@ constraints:
   axis:
     descp: 'axis (int) – The axis to apply LogSoftmax operation, -1 means the last
       dimension. Default: -1 .'
-    default: '-1'
+    default: -1
     dtype:
     - int
     structure:
     - single
-    shape: null
     range: null
 inputs:
-  optional: []
+  optional:
+  - axis
   required: []

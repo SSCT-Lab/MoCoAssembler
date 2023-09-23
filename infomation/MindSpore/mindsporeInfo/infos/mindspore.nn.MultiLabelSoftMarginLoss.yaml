@@ -7,20 +7,22 @@ constraints:
     default: None
     dtype:
     - int
-    - union[tensor, int, float]
     - float
     structure:
     - single
-    shape: null
     range: null
   reduction:
     descp: 'reduction (str) – Specifies which reduction to be applied to the output.
       It must be one of ''none'' , ''mean'' , and ''sum'' , meaning no reduction,
       reduce mean and sum on output, respectively. Default: ''mean'' .'
-    default: '''mean'''
+    default: mean
     dtype:
     - str
-    enum: null
+    enum:
+    - none
+    - mean
+    - sum
 inputs:
-  optional: []
+  optional:
+  - reduction
   required: []

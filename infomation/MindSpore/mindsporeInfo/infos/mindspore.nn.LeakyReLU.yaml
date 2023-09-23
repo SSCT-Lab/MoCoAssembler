@@ -4,7 +4,7 @@ constraints:
   alpha:
     descp: 'alpha (Union[int, float]) – Slope of the activation function at x < 0.
       Default: 0.2 .'
-    default: '0'
+    default: 0.2
     dtype:
     - int
     - float
@@ -13,5 +13,6 @@ constraints:
     shape: null
     range: null
 inputs:
-  optional: []
+  optional:
+  - alpha
   required: []

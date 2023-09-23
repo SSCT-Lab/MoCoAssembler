@@ -1,6 +1,6 @@
 api: mindspore.nn.Adadelta(params, learning_rate=1.0, rho=0.9, epsilon=1e-06, loss_scale=1.0,
   weight_decay=0.0)
-descp: Implements the Adadelta algorithm.
+descp: Implements the Adadelta algorithm. Adadelta is an online Learning and Stochastic Optimization.
 constraints:
   params:
     descp: 'params (Union[list[Parameter], list[dict]]) – Must be list of Parameter
@@ -51,21 +51,15 @@ constraints:
     range: null
   rho:
     descp: 'rho (float) – Decay rate, must be in range [0.0, 1.0]. Default: 0.9 .'
-    default: '0'
+    default: 0.9
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   epsilon:
     descp: 'epsilon (float) – A small value added for numerical stability, must be
       non-negative. Default: 1e-6 .'
     default: 1e-6
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   loss_scale:
     descp: 'loss_scale (float) – Value for the loss scale. It must be greater than
       0.0. In general, use the default value. Only when FixedLossScaleManager is used
@@ -73,12 +67,9 @@ constraints:
       False , then this value needs to be the same as the loss_scale in FixedLossScaleManager.
       Refer to class mindspore.amp.FixedLossScaleManager for more details. Default:
       1.0 .'
-    default: '1'
+    default: 1.0
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   weight_decay:
     descp: 'weight_decay (Union[float, int, Cell]) – Weight decay (L2 penalty). Default:
       0.0 .  float: The fixed weight decay value. Must be equal to or greater than
@@ -86,16 +77,21 @@ constraints:
       will be converted to float. Cell: Weight decay is dynamic. During training,
       the optimizer calls the instance of the Cell with step as the input to get the
       weight decay value of current step.  '
-    default: '0'
+    default: 0.0
     dtype:
-    - union[float, int, cell]
     - int
     - float
+    - cell
     structure:
     - single
     shape: null
     range: null
 inputs:
-  optional: []
+  optional:
+  - learning_rate
+  - rho
+  - epsilon
+  - loss_scale
+  - weight_decay
   required:
   - params

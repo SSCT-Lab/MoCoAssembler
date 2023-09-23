@@ -4,17 +4,22 @@ constraints:
   sparse:
     descp: 'sparse (bool) – Specifies whether labels use sparse format or not. Default:
       False .'
-    default: 'False'
+    default: False
     dtype:
     - bool
   reduction:
     descp: 'reduction (str) – Type of reduction to be applied to loss. The optional
       values are "mean" , "sum" , and "none" . If "none" , do not perform reduction.
       Default: "none" .'
-    default: '"none"'
+    default: none
     dtype:
     - str
-    enum: null
+    enum:
+    - none
+    - mean
+    - sum
 inputs:
-  optional: []
+  optional:
+  - sparse
+  - reduction
   required: []

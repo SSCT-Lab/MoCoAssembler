@@ -13,7 +13,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   out_channels:
     descp: out_channels (int) – The channel number of the output tensor of the Conv1dTranspose
@@ -23,7 +22,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   kernel_size:
     descp: kernel_size (int) – Specifies the width of the 1D convolution kernel.
@@ -32,17 +30,15 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   stride:
     descp: 'stride (int) – The movement stride of the 1D convolution kernel. Default:
       1 .'
-    default: '1'
+    default: 1
     dtype:
     - int
     structure:
     - single
-    shape: null
     range: null
   pad_mode:
     descp: 'pad_mode (str) – Specifies padding mode. The optional values are "same"
@@ -53,46 +49,46 @@ constraints:
       mode is set, the value of padding must be 0. "pad": Pads the input. Padding
       padding size of zero on both sides of the input. If this mode is set, the value
       of padding must be greater than or equal to 0.  '
-    default: '"same"'
+    default: same
     dtype:
     - str
-    enum: null
+    enum:
+    - same
+    - valid
+    - pad
   padding:
     descp: 'padding (int) – The number of padding on both sides of input. The value
       should be greater than or equal to 0. Default: 0 .'
-    default: '0'
+    default: 0
     dtype:
     - int
     structure:
     - single
-    shape: null
     range: null
   dilation:
     descp: 'dilation (int) – Dilation size of 1D convolution kernel. If (k > 1), the
       kernel is sampled every k elements. The value of k is in range of [1, L]. Default:
       1 .'
-    default: '1'
+    default: 1
     dtype:
     - int
     structure:
     - single
-    shape: null
-    range: null
+    range: [1, ]
   group:
     descp: 'group (int) – Splits filter into groups, in_channels and out_channels
       must be divisible by group. When group > 1, the Ascend platform is not supported
       yet. Default: 1 .'
-    default: '1'
+    default: 1
     dtype:
     - int
     structure:
     - single
-    shape: null
     range: null
   has_bias:
     descp: 'has_bias (bool) – Whether the Conv1dTranspose layer has a bias parameter.
       Default: False.'
-    default: 'False'
+    default: False
     dtype:
     - bool
   weight_init:
@@ -104,21 +100,50 @@ constraints:
       , ''he_uniform'', ''ones'' and ''zeros'' are acceptable. Uppercase and lowercase
       are both acceptable. Refer to the values of Initializer for more details. Default:
       None , weight will be initialized using HeUniform.'
-    default: None , weight will be initialized using HeUniform
+    default: None
     dtype:
-    - union[tensor, str, initializer, numbers.number]
     - str
-    enum: null
+    enum:
+    - None
+    - truncatedNormal
+    - normal
+    - uniform
+    - HeUniform
+    - XavierUniform
+    - xavier_uniform
+    - he_uniform
+    - ones
+    - zeros
   bias_init:
     descp: 'bias_init (Union[Tensor, str, Initializer, numbers.Number]) – Initialization
       method of bias parameter. Available initialization methods are the same as ‘weight_init’.
       Refer to the values of Initializer for more details. Default: None , bias will
       be initialized using Uniform.'
-    default: None , bias will be initialized using Uniform
+    default: None
     dtype:
-    - union[tensor, str, initializer, numbers.number]
     - str
-    enum: null
+    enum:
+    - None
+    - truncatedNormal
+    - normal
+    - uniform
+    - HeUniform
+    - XavierUniform
+    - xavier_uniform
+    - he_uniform
+    - ones
+    - zeros
 inputs:
-  optional: []
-  required: []
+  optional:
+  - stride
+  - pad_mode
+  - padding
+  - dilation
+  - group
+  - has_bias
+  - weight_init
+  - bias_init
+  required:
+  - in_channels
+  - out_channels
+  - kernel_size

@@ -9,7 +9,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   num_classes:
     descp: num_classes (int) – The number of possible classes.
@@ -18,17 +17,15 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   num_true:
     descp: 'num_true (int) – The number of labels classes per training example. Default:
       1 .'
-    default: '1'
+    default: 1
     dtype:
     - int
     structure:
     - single
-    shape: null
     range: null
   sampled_values:
     descp: 'sampled_values (Union[list, tuple]) – List or tuple of (sampled_candidates,
@@ -43,26 +40,35 @@ constraints:
   remove_accidental_hits:
     descp: 'remove_accidental_hits (bool) – Whether to remove “accidental hits” where
       a sampled class equals to one of the labels classes. Default: True .'
-    default: 'True'
+    default: True
     dtype:
     - bool
   seed:
     descp: 'seed (int) – Random seed for candidate sampling. Default: 0'
-    default: null
+    default: 0
     dtype:
     - int
     structure:
     - single
-    shape: null
     range: null
   reduction:
     descp: 'reduction (str) – Type of reduction to be applied to loss. The optional
       values are "mean" , "sum" , and "none" . If "none" , do not perform reduction.
       Default: "none" .'
-    default: '"none"'
+    default: none
     dtype:
     - str
-    enum: null
+    enum:
+    - none
+    - mean
+    - sum
 inputs:
-  optional: []
-  required: []
+  optional:
+  - num_true
+  - sampled_values
+  - remove_accidental_hits
+  - seed
+  - reduction
+  required:
+  - num_sampled
+  - num_classes

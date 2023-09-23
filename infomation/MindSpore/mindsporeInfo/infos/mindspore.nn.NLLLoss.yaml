@@ -11,20 +11,25 @@ constraints:
   ignore_index:
     descp: 'ignore_index (int) – Specifies a target value that is ignored (typically
       for padding value) and does not contribute to the gradient. Default: -100 .'
-    default: '-100'
+    default: -100
     dtype:
     - int
     structure:
     - single
-    shape: null
     range: null
   reduction:
     descp: 'reduction (str) – Apply specific reduction method to the output: ''none''
       , ''mean'' , or ''sum'' . Default: ''mean'' .'
-    default: '''mean'''
+    default: mean
     dtype:
     - str
-    enum: null
+    enum:
+    - none
+    - mean
+    - sum
 inputs:
-  optional: []
+  optional:
+  - weight
+  - ignore_index
+  - reduction
   required: []

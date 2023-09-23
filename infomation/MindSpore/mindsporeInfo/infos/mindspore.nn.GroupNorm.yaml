@@ -10,7 +10,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   num_channels:
     descp: num_channels (int) – The number of input channels.
@@ -19,7 +18,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   eps:
     descp: 'eps (float) – A value added to the denominator for numerical stability.
@@ -27,13 +25,10 @@ constraints:
     default: 1e-05
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   affine:
     descp: 'affine (bool) – A bool value, this layer will have learnable affine parameters
       when set to true . Default: True .'
-    default: 'True'
+    default: True
     dtype:
     - bool
   gamma_init:
@@ -41,21 +36,33 @@ constraints:
       for the gamma weight. The values of str refer to the function initializer including
       ''zeros'' , ''ones'' , ''xavier_uniform'' , ''he_uniform'' , etc. Default: ''ones''
       . If gamma_init is a Tensor, the shape must be ((num_channels)).'
-    default: '''ones'''
+    default: ones
     dtype:
-    - union[tensor, str, initializer, numbers.number]
     - str
-    enum: null
+    enum:
+    - zeros
+    - ones
+    - xavier_uniform
+    - he_uniform
   beta_init:
     descp: 'beta_init (Union[Tensor, str, Initializer, numbers.Number]) – Initializer
       for the beta weight. The values of str refer to the function initializer including
       ''zeros'' , ''ones'' , ''xavier_uniform'' , ''he_uniform'' , etc. Default: ''zeros''
       . If beta_init is a Tensor, the shape must be ((num_channels)).'
-    default: '''zeros'''
+    default: zeros
     dtype:
-    - union[tensor, str, initializer, numbers.number]
     - str
-    enum: null
+    enum:
+    - zeros
+    - ones
+    - xavier_uniform
+    - he_uniform
 inputs:
-  optional: []
-  required: []
+  optional:
+  - eps
+  - affine=
+  - gamma_init
+  - beta_init
+  required:
+  - num_groups
+  - num_channels

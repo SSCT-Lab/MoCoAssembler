@@ -9,19 +9,18 @@ constraints:
     - float
     structure:
     - single
-    shape: null
     range: null
   value:
-    descp: value (Union[int, float]) – The value to replace with when element is less
-      than threshold.
+    descp: value (Union[int, float]) – The value to replace with when element is less than threshold.
     default: null
     dtype:
     - int
     - float
     structure:
     - single
-    shape: null
     range: null
 inputs:
   optional: []
-  required: []
+  required:
+  - threshold
+  - value

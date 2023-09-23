@@ -10,7 +10,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   eps:
     descp: 'eps (float) – (epsilon), a value added to the denominator for numerical
@@ -18,22 +17,16 @@ constraints:
     default: 1e-5
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   momentum:
     descp: 'momentum (float) – A floating hyperparameter of the momentum for the running_mean
       and running_var computation. Default: 0.9 .'
-    default: '0'
+    default: 0.9
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   affine:
     descp: 'affine (bool) – A bool value. When set to True , (gamma) and (beta) can
       be learned. Default: True .'
-    default: 'True'
+    default: True
     dtype:
     - bool
   gamma_init:
@@ -41,41 +34,53 @@ constraints:
       for the (gamma) weight. The values of str refer to the function initializer
       including ''zeros'' , ''ones'' , ''xavier_uniform'' , ''he_uniform'' , etc.
       Default: ''ones'' .'
-    default: '''ones'''
+    default: ones
     dtype:
-    - union[tensor, str, initializer, numbers.number]
     - str
-    enum: null
+    enum:
+    - zeros
+    - ones
+    - xavier_uniform
+    - he_uniform
   beta_init:
     descp: 'beta_init (Union[Tensor, str, Initializer, numbers.Number]) – Initializer
       for the (beta) weight. The values of str refer to the function initializer including
       ''zeros'' , ''ones'' , ''xavier_uniform'' , ''he_uniform'' , etc. Default: ''zeros''
       .'
-    default: '''zeros'''
+    default: zeros
     dtype:
-    - union[tensor, str, initializer, numbers.number]
     - str
-    enum: null
+    enum:
+    - zeros
+    - ones
+    - xavier_uniform
+    - he_uniform
   moving_mean_init:
     descp: 'moving_mean_init (Union[Tensor, str, Initializer, numbers.Number]) – Initializer
       for the moving mean. The values of str refer to the function initializer including
       ''zeros'' , ''ones'' , ''xavier_uniform'' , ''he_uniform'' , etc. Default: ''zeros''
       .'
-    default: '''zeros'''
+    default: zeros
     dtype:
-    - union[tensor, str, initializer, numbers.number]
     - str
-    enum: null
+    enum:
+    - zeros
+    - ones
+    - xavier_uniform
+    - he_uniform
   moving_var_init:
     descp: 'moving_var_init (Union[Tensor, str, Initializer, numbers.Number]) – Initializer
       for the moving variance. The values of str refer to the function initializer
       including ''zeros'' , ''ones'' , ''xavier_uniform'' , ''he_uniform'' , etc.
       Default: ''ones'' .'
-    default: '''ones'''
+    default: ones
     dtype:
-    - union[tensor, str, initializer, numbers.number]
     - str
-    enum: null
+    enum:
+    - zeros
+    - ones
+    - xavier_uniform
+    - he_uniform
   use_batch_statistics:
     descp: 'use_batch_statistics (bool) – If true , use the mean value and variance
       value of current batch data. If false , use the mean value and variance value
@@ -91,10 +96,20 @@ constraints:
       rank ids which need to be synchronized in the same group. All int values must
       be in [0, rank_size) and different from each other. Default: None , indicating
       synchronization across all devices.'
-    default: None , indicating synchronization across all devices
+    default: None
     dtype: null
     structure:
     - list
 inputs:
-  optional: []
-  required: []
+  optional:
+  - eps
+  - momentum
+  - affine
+  - gamma_init
+  - beta_init
+  - moving_mean_init
+  - moving_var_init
+  - use_batch_statistics
+  - process_groups
+  required:
+  - num_features

@@ -12,30 +12,33 @@ constraints:
   ignore_index:
     descp: 'ignore_index (int) – Specifies a target value that is ignored (typically
       for padding value) and does not contribute to the gradient. Default: -100 .'
-    default: '-100'
+    default: -100
     dtype:
     - int
     structure:
     - single
-    shape: null
     range: null
   reduction:
     descp: 'reduction (str) – Apply specific reduction method to the output: ''none''
       , ''mean'' , or ''sum'' . Default: ''mean'' .'
-    default: '''mean'''
+    default: mean
     dtype:
     - str
-    enum: null
+    enum:
+    - none
+    - mean
+    - sum
   label_smoothing:
     descp: 'label_smoothing (float) – Label smoothing values, a regularization tool
       used to prevent the model from overfitting when calculating Loss. The value
       range is [0.0, 1.0]. Default value: 0.0 .'
-    default: null
+    default: 0.0
     dtype:
     - float
-    structure:
-    - single
-    shape: null
 inputs:
-  optional: []
+  optional:
+  - weight
+  - ignore_index
+  - reduction
+  - label_smoothing
   required: []

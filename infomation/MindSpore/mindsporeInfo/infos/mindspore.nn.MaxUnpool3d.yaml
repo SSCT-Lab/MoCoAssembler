@@ -12,7 +12,7 @@ constraints:
     structure:
     - single
     - tuple
-    shape: null
+    shape: 3
     range: null
   stride:
     descp: 'stride (Union[int, tuple[int]]) – The distance of kernel moving, an int
@@ -26,21 +26,24 @@ constraints:
     structure:
     - single
     - tuple
-    shape: null
+    shape: 3
     range: null
   padding:
     descp: 'padding (Union[int, tuple[int]]) – The pad value to be filled. Default:
       0 . If padding is an integer, the paddings of depth, height and width are the
       same, equal to padding. If padding is a tuple of three integers, the padding
       of depth, height and width equal to padding[0], padding[1] and padding[2] correspondingly.'
-    default: '0'
+    default: 0
     dtype:
     - int
     structure:
     - single
     - tuple
-    shape: null
+    shape: 3
     range: null
 inputs:
-  optional: []
-  required: []
+  optional:
+  - stride
+  - padding
+  required:
+  - kernel_size

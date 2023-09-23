@@ -5,10 +5,14 @@ constraints:
   reduction:
     descp: 'reduction (str) – Type of reduction to be applied to loss. The optional
       values are "mean" , "sum" , and "none" . Default: ''mean'' .'
-    default: '''mean'''
+    default: mean
     dtype:
     - str
-    enum: null
+    enum:
+    - none
+    - mean
+    - sum
 inputs:
-  optional: []
+  optional:
+  - reduction
   required: []

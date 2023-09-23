@@ -12,8 +12,8 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
 inputs:
   optional: []
-  required: []
+  required:
+  - groups

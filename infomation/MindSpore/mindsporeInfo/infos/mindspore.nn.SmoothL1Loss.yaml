@@ -6,19 +6,21 @@ constraints:
   beta:
     descp: 'beta (float) – The loss function calculates the threshold of the transformation
       between L1Loss and L2Loss. Default: 1.0 .'
-    default: '1'
+    default: 1.0
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   reduction:
     descp: 'reduction (str) – Type of reduction to be applied to loss. The optional
       values are "mean" , "sum" , and "none" . Default: "none" .'
-    default: '"none"'
+    default: none
     dtype:
     - str
-    enum: null
+    enum:
+    - none
+    - mean
+    - sum
 inputs:
-  optional: []
+  optional:
+  - beta
+  - reductio
   required: []

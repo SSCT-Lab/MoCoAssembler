@@ -4,12 +4,10 @@ constraints:
   lambd:
     descp: 'lambd (float) – the (lambda) must be no less than zero for the SoftShrink
       formulation. Default: 0.5 .'
-    default: '0'
+    default: 0.5
     dtype:
     - float
-    structure:
-    - single
-    shape: null
 inputs:
-  optional: []
+  optional:
+  - lambd
   required: []

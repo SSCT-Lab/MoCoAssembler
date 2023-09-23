@@ -13,16 +13,17 @@ constraints:
     structure:
     - single
     - tuple
-    shape: null
+    shape: 3
     range: null
   return_indices:
     descp: 'return_indices (bool, optional) – If return_indices is True , the indices
       of max value would be output. Otherwise, the indices will not be returned. Default:
       False .'
-    default: 'False'
+    default: False
     dtype:
     - bool
 inputs:
   optional:
   - return_indices
-  required: []
+  required:
+  - output_size

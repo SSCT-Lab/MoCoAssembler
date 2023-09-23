@@ -42,12 +42,10 @@ constraints:
       learning rate of current step.  '
     default: null
     dtype:
-    - union[float, int, tensor, iterable, learningrateschedule]
     - int
     - float
     structure:
     - single
-    shape: null
     range: null
   momentum:
     descp: momentum (float) – Hyperparameter of type float, means momentum for the
@@ -55,9 +53,6 @@ constraints:
     default: null
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   weight_decay:
     descp: 'weight_decay (Union[float, int, Cell]) – Weight decay (L2 penalty). Default:
       0.0 .  float: The fixed weight decay value. Must be equal to or greater than
@@ -65,14 +60,12 @@ constraints:
       will be converted to float. Cell: Weight decay is dynamic. During training,
       the optimizer calls the instance of the Cell with step as the input to get the
       weight decay value of current step.  '
-    default: '0'
+    default: 0.0
     dtype:
-    - union[float, int, cell]
     - int
     - float
     structure:
     - single
-    shape: null
     range: null
   loss_scale:
     descp: 'loss_scale (float) – A floating point value for the loss scale. It must
@@ -81,17 +74,20 @@ constraints:
       set to False , then this value needs to be the same as the loss_scale in FixedLossScaleManager.
       Refer to class mindspore.amp.FixedLossScaleManager for more details. Default:
       1.0 .'
-    default: '1'
+    default: 1.0
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   use_nesterov:
     descp: 'use_nesterov (bool) – Enable Nesterov momentum. Default: False .'
-    default: 'False'
+    default: False
     dtype:
     - bool
 inputs:
-  optional: []
-  required: []
+  optional:
+  - weight_decay=
+  - loss_scale
+  - use_nesterov
+  required:
+  - params
+  - learning_rate
+  - momentum

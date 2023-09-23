@@ -4,10 +4,14 @@ constraints:
   reduction:
     descp: 'reduction (str) – Apply specific reduction method to the output: ''none''
       , ''mean'' , ''sum'' . Default: "mean" .'
-    default: '"mean"'
+    default: mean
     dtype:
     - str
-    enum: null
+    enum:
+    - none
+    - mean
+    - sum
 inputs:
-  optional: []
+  optional:
+  - reduction
   required: []

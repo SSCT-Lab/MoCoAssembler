@@ -8,9 +8,7 @@ constraints:
     default: 1e-5
     dtype:
     - float
-    structure:
-    - single
-    shape: null
 inputs:
-  optional: []
+  optional:
+  - smooth
   required: []

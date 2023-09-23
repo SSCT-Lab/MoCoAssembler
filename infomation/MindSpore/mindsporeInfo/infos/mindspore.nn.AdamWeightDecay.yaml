@@ -39,7 +39,6 @@ constraints:
       step as the input to get the learning rate of current step.  '
     default: 1e-3
     dtype:
-    - union[float, int, tensor, iterable, learningrateschedule]
     - int
     - float
     structure:
@@ -49,30 +48,21 @@ constraints:
   beta1:
     descp: 'beta1 (float) – The exponential decay rate for the 1st moment estimations.
       Default: 0.9 . Should be in range (0.0, 1.0).'
-    default: '0'
+    default: 0.9
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   beta2:
     descp: 'beta2 (float) – The exponential decay rate for the 2nd moment estimations.
       Default: 0.999 . Should be in range (0.0, 1.0).'
-    default: '0'
+    default: 0.999
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   eps:
     descp: 'eps (float) – Term added to the denominator to improve numerical stability.
       Default: 1e-6 . Should be greater than 0.'
     default: 1e-6
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   weight_decay:
     descp: 'weight_decay (Union[float, int, Cell]) – Weight decay (L2 penalty). Default:
       0.0 .  float: The fixed weight decay value. Must be equal to or greater than
@@ -80,15 +70,21 @@ constraints:
       will be converted to float. Cell: Weight decay is dynamic. During training,
       the optimizer calls the instance of the Cell with step as the input to get the
       weight decay value of current step.  '
-    default: '0'
+    default: 0.0
     dtype:
-    - union[float, int, cell]
     - int
     - float
+    - cell
     structure:
     - single
     shape: null
     range: null
 inputs:
-  optional: []
-  required: []
+  optional:
+  - learning_rate
+  - beta1
+  - beta2
+  - eps
+  - weight_decay
+  required:
+  - params

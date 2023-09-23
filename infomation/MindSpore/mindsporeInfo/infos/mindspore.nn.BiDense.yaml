@@ -9,7 +9,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   in2_channels:
     descp: in2_channels (int) – The number of channels in the input2 space.
@@ -18,7 +17,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   out_channels:
     descp: out_channels (int) – The number of channels in the output space.
@@ -27,7 +25,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   weight_init:
     descp: 'weight_init (Union[Tensor, str, Initializer, numbers.Number]) – The trainable
@@ -35,24 +32,30 @@ constraints:
       Default: None .'
     default: None
     dtype:
-    - union[tensor, str, initializer, numbers.number]
     - str
-    enum: null
+    enum:
+    - None
   bias_init:
     descp: 'bias_init (Union[Tensor, str, Initializer, numbers.Number]) – The trainable
       bias_init parameter. The values of str refer to the function initializer. Default:
       None .'
     default: None
     dtype:
-    - union[tensor, str, initializer, numbers.number]
     - str
-    enum: null
+    enum:
+    - None
   has_bias:
     descp: 'has_bias (bool) – Specifies whether the layer uses (text{bias}) vector.
       Default: True .'
-    default: 'True'
+    default: True
     dtype:
     - bool
 inputs:
-  optional: []
-  required: []
+  optional:
+  - weight_init
+  - bias_init
+  - has_bias
+  required:
+  - in1_channels
+  - in2_channels
+  - out_channels

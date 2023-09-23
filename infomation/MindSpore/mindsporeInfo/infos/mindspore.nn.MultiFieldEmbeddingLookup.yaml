@@ -11,7 +11,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   embedding_size:
     descp: embedding_size (int) – The size of each embedding vector.
@@ -20,7 +19,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   field_size:
     descp: field_size (int) – The field size of the final outputs.
@@ -29,31 +27,33 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   param_init:
     descp: 'param_init (Union[Tensor, str, Initializer, numbers.Number]) – Initializer
       for the embedding_table. Refer to class initializer for the values of string
       when a string is specified. Default: ''normal'' .'
-    default: '''normal'''
+    default: normal
     dtype:
-    - union[tensor, str, initializer, numbers.number]
     - str
-    enum: null
+    enum:
+    - normal
   target:
     descp: 'target (str) – Specifies the target where the op is executed. The value
       must in [ ''DEVICE'' , ''CPU'' ]. Default: ''CPU'' .'
-    default: '''CPU'''
+    default: CPU
     dtype:
     - str
-    enum: null
+    enum:
+    - CPU
+    - DEVICE
   slice_mode:
     descp: 'slice_mode (str) – The slicing way in semi_auto_parallel/auto_parallel.
       The value must get through mindspore.nn.EmbeddingLookup. Default: ''batch_slice''.'
-    default: '''batch_slice'''
+    default: batch_slice
     dtype:
     - str
-    enum: null
+    enum:
+    - batch_slice
   feature_num_list:
     descp: 'feature_num_list (tuple) – The accompaniment array in field slice mode.
       This is unused currently. Default:  None .'
@@ -68,24 +68,34 @@ constraints:
     dtype:
     - float
     - str
-    structure:
-    - single
-    shape: null
     enum:
     - None
   sparse:
     descp: 'sparse (bool) – Using sparse mode. When ‘target’ is set to ''CPU'' , ‘sparse’
       has to be true. Default: True .'
-    default: 'True'
+    default: True
     dtype:
     - bool
   operator:
     descp: 'operator (str) – The pooling method for the features in one field. Support
       ''SUM'' , ''MEAN'' and ''MAX'' . Default: ''SUM'' .'
-    default: '''SUM'''
+    default: SUM
     dtype:
     - str
-    enum: null
+    enum:
+    - SUM
+    - MEAN
+    - MAX
 inputs:
-  optional: []
-  required: []
+  optional:
+  - param_init
+  - target
+  - slice_mode
+  - feature_num_list
+  - max_norm
+  - sparse
+  - operator
+  required:
+  - vocab_size
+  - embedding_size
+  - field_size

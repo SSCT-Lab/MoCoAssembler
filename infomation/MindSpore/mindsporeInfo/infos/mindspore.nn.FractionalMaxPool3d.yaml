@@ -13,7 +13,7 @@ constraints:
     structure:
     - single
     - tuple
-    shape: null
+    shape: 3
     range: null
   output_size:
     descp: 'output_size (Union[int, tuple[int]], optional) – The shape of the target
@@ -27,7 +27,7 @@ constraints:
     structure:
     - single
     - tuple
-    shape: null
+    shape: 3
     range: null
   output_ratio:
     descp: 'output_ratio (Union[float, tuple[float]], optional) – The ratio of target
@@ -41,11 +41,11 @@ constraints:
     structure:
     - single
     - tuple
-    shape: null
+    shape: 3
   return_indices:
     descp: 'return_indices (bool, optional) – Whether to return the indices of max
       value. Default: False .'
-    default: 'False'
+    default: False
     dtype:
     - bool
   _random_samples:
@@ -54,10 +54,9 @@ constraints:
       is between [0, 1). Supported shape ((N, C, 3)) or ((1, C, 3)) . Default: None,
       the values of _random_samples will be randomly distributed using uniform distribution
       over an interval [0,1).'
-    default: None, the values of _random_samples will be randomly distributed using
-      uniform distribution over an interval [0,1)
+    default: None
     dtype:
-    - tensor, optional
+    - tensor
 inputs:
   optional:
   - output_size

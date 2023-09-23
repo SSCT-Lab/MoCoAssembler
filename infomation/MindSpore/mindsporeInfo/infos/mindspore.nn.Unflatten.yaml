@@ -8,7 +8,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   unflattened_size:
     descp: unflattened_size (Union(tuple[int], list[int])) – the new shape of the
@@ -24,4 +23,6 @@ constraints:
     range: null
 inputs:
   optional: []
-  required: []
+  required:
+  - axis
+  - unflattened_size

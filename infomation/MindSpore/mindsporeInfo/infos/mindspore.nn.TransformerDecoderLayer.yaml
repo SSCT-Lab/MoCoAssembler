@@ -10,7 +10,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   nhead:
     descp: nhead (int) – The number of heads in the MultiheadAttention modules.
@@ -19,57 +18,58 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   dim_feedforward:
     descp: 'dim_feedforward (int) – The dimension of the feedforward layer. Default:
       2048.'
-    default: '2048'
+    default: 2048
     dtype:
     - int
     structure:
     - single
-    shape: null
     range: null
   dropout:
     descp: 'dropout (float) – The dropout value. Default: 0.1.'
-    default: '0'
+    default: 0.1
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   activation:
     descp: 'activation (Union[str, callable, Cell]) – The activation function of the
       intermediate layer, can be a string (“relu” or “gelu”), Cell instance (nn.ReLU()
       or nn.GELU()) or a callable (ops.relu or ops.gelu). Default: "relu"'
-    default: null
+    default: relu
     dtype:
-    - union[str, callable, cell]
     - str
-    enum: null
+    enum:
+    - relu
+    - gelu
   layer_norm_eps:
     descp: 'layer_norm_eps (float) – The epsilon value in LayerNorm modules. Default:
       1e-5.'
     default: 1e-5
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   batch_first:
     descp: 'batch_first (bool) – If batch_first = True, then the shape of input and
       output tensors is ((batch, seq, feature)) , otherwise the shape is ((seq, batch,
       feature)). Default: False.'
-    default: 'False'
+    default: False
     dtype:
     - bool
   norm_first:
     descp: 'norm_first (bool) – If norm_first = True, layer norm is done prior to
       attention and feedforward operations, respectively. Default: False.'
-    default: 'False'
+    default: False
     dtype:
     - bool
 inputs:
-  optional: []
-  required: []
+  optional:
+  - dim_feedforward
+  - dropout
+  - activation
+  - layer_norm_eps
+  - batch_first
+  - norm_first
+  required:
+  - d_model
+  - nhead

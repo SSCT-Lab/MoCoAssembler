@@ -5,15 +5,10 @@ descp: During training, randomly zeroes entire channels of the input tensor with
   shape of \(L\)).
 constraints:
   p:
-    descp: 'p (float, optional) – The dropping probability of a channel, between 0
-      and 1, e.g. p = 0.8, which means an 80% chance of being set to 0. Default: 0.5
-      .'
-    default: '0'
+    descp: 'p (float, optional) – The dropping probability of a channel, between 0 and 1, e.g. p = 0.8, which means an 80% chance of being set to 0. Default: 0.5 .'
+    default: 0.5
     dtype:
     - float
-    structure:
-    - single
-    shape: null
 inputs:
   optional:
   - p

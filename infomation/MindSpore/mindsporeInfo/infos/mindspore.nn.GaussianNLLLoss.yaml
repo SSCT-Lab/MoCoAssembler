@@ -5,7 +5,7 @@ constraints:
     descp: 'full (bool, optional) – Whether include the constant term in the loss
       calculation. When (full=True), the constant term const. will be (0.5 * log(2pi)).
       Default: False .'
-    default: 'False'
+    default: False
     dtype:
     - bool
   eps:
@@ -14,16 +14,16 @@ constraints:
     default: 1e-6
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   reduction:
     descp: 'reduction (str, optional) – Apply specific reduction method to the output:
       ''none'' , ''mean'' , or ''sum'' . Default: ''mean'' .'
-    default: '''mean'''
+    default: mean
     dtype:
     - str
-    enum: null
+    enum:
+    - none
+    - mean
+    - sum
 inputs:
   optional:
   - full

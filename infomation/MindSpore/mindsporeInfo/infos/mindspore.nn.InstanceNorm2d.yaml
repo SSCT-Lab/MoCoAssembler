@@ -10,7 +10,6 @@ constraints:
     - int
     structure:
     - single
-    shape: null
     range: null
   eps:
     descp: 'eps (float) – A value added to the denominator for numerical stability.
@@ -18,22 +17,16 @@ constraints:
     default: 1e-5
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   momentum:
     descp: 'momentum (float) – A floating hyperparameter of the momentum for the running_mean
       and running_var computation. Default: 0.1 .'
-    default: '0'
+    default: 0.1
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   affine:
     descp: 'affine (bool) – A bool value. When set to True , gamma and beta can be
       learned. Default: True .'
-    default: 'True'
+    default: True
     dtype:
     - bool
   gamma_init:
@@ -41,21 +34,30 @@ constraints:
       for the gamma weight. The values of str refer to the function initializer including
       ''zeros'' , ''ones'' , etc. When initialized with Tensor, the shape should be
       ((C)). Default: ''ones'' .'
-    default: '''ones'''
+    default: ones
     dtype:
-    - union[tensor, str, initializer, numbers.number]
     - str
-    enum: null
+    enum:
+    - zeros
+    - ones
   beta_init:
     descp: 'beta_init (Union[Tensor, str, Initializer, numbers.Number]) – Initializer
       for the beta weight. The values of str refer to the function initializer including
       ''zeros'' , ''ones'' , etc. When initialized with Tensor, the shape should be
       ((C)). Default: ''zeros'' .'
-    default: '''zeros'''
+    default: zeros
     dtype:
-    - union[tensor, str, initializer, numbers.number]
     - str
-    enum: null
+    enum:
+    - zeros
+    - ones
 inputs:
-  optional: []
-  required: []
+  optional:
+  - eps
+  - momentum
+  - affine
+  - gamma_init
+  - beta_init
+  required:
+  - num_features
+

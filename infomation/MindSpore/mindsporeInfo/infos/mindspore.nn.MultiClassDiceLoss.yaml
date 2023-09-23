@@ -7,7 +7,6 @@ constraints:
       The weight shape[0] should be equal to labels shape[1]. Default: None .'
     default: None
     dtype:
-    - union[tensor, none]
     - str
     enum:
     - None
@@ -20,7 +19,6 @@ constraints:
     - str
     structure:
     - single
-    shape: null
     range: null
     enum:
     - None
@@ -29,11 +27,19 @@ constraints:
       of the fully connected layer, eg. ‘ReLU’. Default: ''softmax'' . Choose from:
       [ ''softmax'' , ''logsoftmax'' , ''relu'' , ''relu6'' , ''tanh'' , ''Sigmoid''
       ]'
-    default: '''softmax'''
+    default: softmax
     dtype:
-    - union[str, cell]
     - str
-    enum: null
+    enum:
+    - softmax
+    - logsoftmax
+    - relu
+    - relu6
+    - tanh
+    - Sigmoid
 inputs:
-  optional: []
+  optional:
+  - weights
+  - ignore_indiex
+  - activation
   required: []

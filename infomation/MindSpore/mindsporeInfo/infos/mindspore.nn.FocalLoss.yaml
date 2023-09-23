@@ -5,19 +5,15 @@ constraints:
   gamma:
     descp: 'gamma (float) – Gamma is used to adjust the steepness of weight curve
       in focal loss. Default: 2.0 .'
-    default: '2'
+    default: 2.0
     dtype:
     - float
-    structure:
-    - single
-    shape: null
   weight:
     descp: 'weight (Union[Tensor, None]) – A rescaling weight applied to the loss
       of each batch element. The dimension of weight should be 1. If None, no weight
       is applied. Default: None .'
     default: None
     dtype:
-    - union[tensor, none]
     - str
     enum:
     - None
@@ -25,10 +21,16 @@ constraints:
     descp: 'reduction (str) – Type of reduction to be applied to loss. The optional
       values are "mean" , "sum" , and "none". If “none”, do not perform reduction.
       Default: "mean" .'
-    default: '"mean"'
+    default: mean
     dtype:
     - str
-    enum: null
+    enum:
+    - none
+    - mean
+    - sum
 inputs:
-  optional: []
+  optional:
+  - weight
+  - gamma
+  - reduction
   required: []

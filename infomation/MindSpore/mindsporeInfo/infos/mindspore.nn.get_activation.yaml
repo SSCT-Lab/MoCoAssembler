@@ -13,7 +13,33 @@ constraints:
     dtype:
     - str
     enum:
-    - None
+    - softmin
+    - softmax
+    - softmax2d
+    - logsoftmax
+    - relu
+    - relu6
+    - rrelu
+    - silu
+    - tanh
+    - tanhshrink
+    - hardtanh
+    - gelu
+    - fast_gelu
+    - elu
+    - sigmoid
+    - softsign
+    - prelu
+    - leakyrelu
+    - hswish
+    - hsigmoid
+    - logsigmoid
+    - softshrink
+    - hshrink
+    - threshold
+    - mish
 inputs:
-  optional: []
-  required: []
+  optional:
+  - prim_name
+  required:
+  - name

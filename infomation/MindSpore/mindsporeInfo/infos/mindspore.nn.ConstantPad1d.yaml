@@ -13,7 +13,7 @@ constraints:
     structure:
     - single
     - tuple
-    shape: null
+    shape: 2
     range: null
   value:
     descp: value (Union[int, float]) – Padding value.
@@ -23,8 +23,9 @@ constraints:
     - float
     structure:
     - single
-    shape: null
     range: null
 inputs:
   optional: []
-  required: []
+  required:
+  - padding
+  - value

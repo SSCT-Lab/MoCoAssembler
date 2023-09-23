@@ -12,7 +12,7 @@ constraints:
     - float
     structure:
     - single
-    shape: null
+    shape: 2
     range: null
   kernel_size:
     descp: kernel_size (Union[int, tuple[int]]) – The size of kernel window. The data
@@ -24,7 +24,7 @@ constraints:
     structure:
     - single
     - tuple
-    shape: null
+    shape: 2
     range: null
   stride:
     descp: 'stride (Union[int, tuple[int]]) – The distance of kernel moving, an int
@@ -37,14 +37,18 @@ constraints:
     structure:
     - single
     - tuple
-    shape: null
+    shape: 2
     range: null
   ceil_mode:
     descp: 'ceil_mode (bool) – Whether to use ceil or floor to calculate output shape.
       Default: False .'
-    default: 'False'
+    default: False
     dtype:
     - bool
 inputs:
-  optional: []
-  required: []
+  optional:
+  - stride
+  - ceil_mode
+  required:
+  - norm_type
+  - kernel_size

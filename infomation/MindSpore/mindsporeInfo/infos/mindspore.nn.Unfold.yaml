@@ -43,10 +43,16 @@ constraints:
       that the patch can take the part beyond the original image, and this part is
       filled with 0. "valid": Means that the taken patch area must be completely covered
       in the original image.  '
-    default: '"valid"'
+    default: valid
     dtype:
     - str
-    enum: null
+    enum:
+    - same
+    - valid
 inputs:
-  optional: []
-  required: []
+  optional:
+  - padding
+  required:
+  - ksizes
+  - strides
+  - rates
