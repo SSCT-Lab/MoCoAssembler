@@ -1,0 +1,42 @@
+api: paddle.nn.RNN
+constraints:
+  cell:
+    default: null
+    descp: An instance of RNNCellBase
+    dtype:
+    - RNNCell
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - RNNCellBase
+  is_reverse:
+    default: 'False'
+    descp: Indicate whether to calculate in the reverse order of input sequences.
+      Defaults to False
+    dtype:
+    - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - bool
+  time_major:
+    default: 'False'
+    descp: Whether the first dimension of the input means the time steps. Defaults
+      to False
+    dtype:
+    - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - bool
+descp: Wrapper for RNN, which creates a recurrent neural network with an RNN cell.
+  It performs cell.forward() repeatedly until reaches to the maximum length of inputs.
+inputs:
+  optional:
+  - is_reverse
+  - time_major
+  required:
+  - cell

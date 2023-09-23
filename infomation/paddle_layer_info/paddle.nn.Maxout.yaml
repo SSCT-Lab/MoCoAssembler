@@ -1,0 +1,48 @@
+api: paddle.nn.Maxout
+constraints:
+  axis:
+    default: '1'
+    descp: The axis along which to perform maxout calculations. It should be 1 when
+      data format is NCHW, be -1 or 3 when data format is NHWC. If axis < 0, it works
+      the same way as \(axis + D\) , where D is the dimensions of x . Default is 1
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  groups:
+    default: null
+    descp: The groups number of maxout. groups specifies the index of channel dimension
+      where maxout will be performed. This must be a factor of number of features.
+      Default is 1
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  name:
+    default: None
+    descp: Name for the operation (optional, default is None). For more information,
+      please refer to Name
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+descp: Maxout Activation. Create a callable object of Maxout.
+inputs:
+  optional:
+  - axis
+  - name
+  required:
+  - groups

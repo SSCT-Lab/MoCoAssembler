@@ -1,0 +1,80 @@
+api: paddle.nn.LocalResponseNorm
+constraints:
+  alpha:
+    default: '0.0001'
+    descp: "The scaling parameter, positive. Default:1e-4"
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  beta:
+    default: '0.75'
+    descp: "The exponent, positive. Default:0.75"
+    dtype:
+      - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+      - float
+  k:
+    default: '1.0'
+    descp: "An offset, positive. Default: 1.0"
+    dtype:
+      - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+      - float
+  name:
+    default: None
+    descp: Name for the operation (optional, default is None). For more information,
+      please refer to Name
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  size:
+    default: null
+    descp: The number of channels to sum over
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  data_format:
+    default: NCHW
+    descp: "Specify the data format of the input, and the data format of the output will be consistent with that of the input."
+    dtype: str
+    enum:
+    - NCHW
+    - NHWC
+    range: null
+    shape: null
+    structure:
+    - str
+descp: "Local Response Normalization performs a type of \u201Clateral inhibition\u201D\
+  \ by normalizing over local input regions. For more information, please refer to\
+  \ ImageNet Classification with Deep Convolutional Neural Networks"
+inputs:
+  optional:
+  - alpha
+  - beta
+  - k
+  - data_format
+  - name
+  required:
+  - size

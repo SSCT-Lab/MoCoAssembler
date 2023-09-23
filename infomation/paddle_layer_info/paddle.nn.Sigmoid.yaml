@@ -1,0 +1,23 @@
+api: paddle.nn.Sigmoid
+constraints:
+  name:
+    default: None
+    descp: 'For details, please refer to Name. Generally, no setting is required.
+      Default: None'
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+descp: this interface is used to construct a callable object of the Sigmoid class.
+  This layer calcluate the sigmoid of input x.
+inputs:
+  optional:
+  - name
+  required: []

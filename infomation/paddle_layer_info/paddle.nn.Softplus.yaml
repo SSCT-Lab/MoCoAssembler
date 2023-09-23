@@ -1,0 +1,29 @@
+api: paddle.nn.Softplus
+constraints:
+  beta:
+    default: '1'
+    descp: "The value of \\(\\beta\\) for Softplus. Default is 1"
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  threshold:
+    default: '20'
+    descp: "The value of ε for Softplus. Default is 20"
+    dtype:
+      - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+      - float
+descp: Softplus Activation
+inputs:
+  optional:
+  - beta
+  - threshold
+  - name
+  required: []

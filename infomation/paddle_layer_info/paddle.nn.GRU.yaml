@@ -1,0 +1,142 @@
+api: paddle.nn.GRU
+constraints:
+  bias_hh_attr:
+    default: None
+    descp: 'The parameter attribute for the bias_hh of each cells. Default: None'
+    dtype:
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+  bias_ih_attr:
+    default: None
+    descp: 'The parameter attribute for the bias_ih of each cells. Default: None'
+    dtype:
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+  direction:
+    default: '''forward'''
+    descp: "The direction of the network. It can be \u201Cforward\u201D or \u201C\
+      bidirect\u201D(or \u201Cbidirectional\u201D). When \u201Cbidirect\u201D, the\
+      \ way to merge outputs of forward and backward is concatenating. Defaults to\
+      \ \u201Cforward\u201D"
+    dtype:
+    - str
+    enum:
+    - forward
+    - bidirect
+    range: null
+    shape: null
+    structure:
+    - str
+  dropout:
+    default: '0.0'
+    descp: The droput probability. Dropout is applied to the input of each layer except
+      for the first layer. The range of dropout from 0 to 1. Defaults to 0
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  hidden_size:
+    default: null
+    descp: "The hidden size of \\(h\\) for each layer\u2019s cell"
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  input_size:
+    default: null
+    descp: "The input size of \\(x\\) for the first layer\u2019s cell"
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  name:
+    default: None
+    descp: Name for the operation (optional, default is None). For more information,
+      please refer to Name
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  num_layers:
+    default: '1'
+    descp: Number of recurrent layers. Defaults to 1
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  time_major:
+    default: 'False'
+    descp: Whether the first dimension of the input means the time steps. If time_major
+      is True, the shape of Tensor is [time_steps,batch_size,input_size], otherwise
+      [batch_size, time_steps,input_size]. Defaults to False. time_steps means the
+      length of input sequence
+    dtype:
+    - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - bool
+  weight_hh_attr:
+    default: None
+    descp: 'The parameter attribute for weight_hh of each cell. Default: None'
+    dtype:
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+  weight_ih_attr:
+    default: None
+    descp: 'The parameter attribute for weight_ih of each cell. Default: None'
+    dtype:
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+descp: Multilayer GRU. It takes input sequencse and initial states as inputs, and
+  returns the output sequences and the final states.
+inputs:
+  optional:
+  - num_layers
+  - direction
+  - time_major
+  - dropout
+  - weight_ih_attr
+  - weight_hh_attr
+  - bias_ih_attr
+  - bias_hh_attr
+  - name
+  required:
+  - input_size
+  - hidden_size

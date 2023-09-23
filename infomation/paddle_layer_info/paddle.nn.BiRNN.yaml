@@ -1,0 +1,42 @@
+api: paddle.nn.BiRNN
+constraints:
+  cell_bw:
+    default: null
+    descp: A RNNCellBase instance used for backward RNN
+    dtype:
+    - RNNCell
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - RNNCellBase
+  cell_fw:
+    default: null
+    descp: A RNNCellBase instance used for forward RNN
+    dtype:
+    - RNNCell
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - RNNCellBase
+  time_major:
+    default: 'False'
+    descp: Whether the first dimension of the input means the time steps. Defaults
+      to False
+    dtype:
+    - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - bool
+descp: Wrapper for bidirectional RNN, which builds a bidiretional RNN given the forward
+  rnn cell and backward rnn cell. A BiRNN applies forward RNN and backward RNN with
+  coresponding cells separately and concats the outputs along the last axis.
+inputs:
+  optional:
+  - time_major
+  required:
+  - cell_fw
+  - cell_bw

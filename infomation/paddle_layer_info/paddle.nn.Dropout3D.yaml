@@ -1,0 +1,54 @@
+api: paddle.nn.Dropout3D
+constraints:
+  data_format:
+    default: '''NCDHW'''
+    descp: 'Specify the data format of the input, and the data format of the output
+      will be consistent with that of the input. An optional string from NCDHW or
+      NDHWC. When it is NCDHW, the data is stored in the order of: [batch_size, input_channels,
+      input_depth, input_height, input_width]. Default: NCDHW'
+    dtype:
+    - str
+    enum:
+    - NCDHW
+    - NDHWC
+    range: null
+    shape: null
+    structure:
+    - str
+  name:
+    default: None
+    descp: 'Name for the operation, Default: None. For more information, please refer
+      to Name'
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  p:
+    default: '0.5'
+    descp: 'Probability of setting units to zero. Default: 0'
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+descp: 'Randomly zero out entire channels (in the batched input 5d tensor with the
+  shape NCDHW , a channel is a 3D feature map with the shape DHW ). Each channel will
+  be zeroed out independently on every forward call with probability p using samples
+  from a Bernoulli distribution. Dropout3D will help promote independence between
+  feature maps as described in the paper: Efficient Object Localization Using Convolutional
+  Networks'
+inputs:
+  optional:
+  - p
+  - data_format
+  - name
+  required: []

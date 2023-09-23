@@ -1,0 +1,208 @@
+api: paddle.nn.BatchNorm
+constraints:
+  act:
+    default: None
+    descp: 'Activation to be applied to the output of batch normalization. Default:
+      None'
+    dtype:
+    - str
+    enum:
+    - tanh
+    - softmax
+    - sigmoid
+    - relu
+    range: null
+    shape: null
+    structure:
+    - str
+  bias_attr:
+    default: None
+    descp: 'The parameter attribute for the bias of batch_norm. If it is set to None
+      or one attribute of ParamAttr, batch_norm will create ParamAttr as bias_attr.
+      If the Initializer of the bias_attr is not set, the bias is initialized zero.
+      Default: None'
+    dtype:
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+  data_layout:
+    default: '''NCHW'''
+    descp: "Specify the input data format, the data format can be \u201CNCHW\u201D\
+      \ or \u201CNHWC\u201D, where N is batch size, C is the number of the feature\
+      \ map, H is the height of the feature map, W is the width of the feature map.\
+      \ Default: NCHW"
+    dtype:
+    - str
+    enum:
+    - NCHW
+    - NHWC
+    range: null
+    shape: null
+    structure:
+    - str
+  do_model_average_for_mean_and_var:
+    default: 'True'
+    descp: 'Whether parameter mean and variance should do model average when model
+      average is enabled. Default: True'
+    dtype:
+    - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - bool
+  dtype:
+    default: '''float32'''
+    descp: 'Indicate the data type of the input Tensor, which can be float32 or float64.
+      Default: float32'
+    dtype:
+    - str
+    enum:
+    - float32
+    - float64
+    range: null
+    shape: null
+    structure:
+    - str
+  epsilon:
+    default: 1e-05
+    descp: 'The small value added to the variance to prevent division by zero. Default:
+      1e-5'
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  in_place:
+    default: 'False'
+    descp: 'Make the input and output of batch norm reuse memory. Default: False'
+    dtype:
+    - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - bool
+  is_test:
+    default: 'False'
+    descp: 'A flag indicating whether it is in test phrase or not. This flag only
+      has effect on static graph mode. For dygraph mode, please use eval(). Default:
+      False'
+    dtype:
+    - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - bool
+  momentum:
+    default: '0.9'
+    descp: 'The value used for the moving_mean and moving_var computation. Default:
+      0'
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  moving_mean_name:
+    default: None
+    descp: 'The name of moving_mean which store the global Mean. Default: None'
+    dtype:
+    - str
+    enum:
+    - name
+    range: null
+    shape: null
+    structure:
+    - str
+  moving_variance_name:
+    default: None
+    descp: 'The name of the moving_variance which store the global Variance. Default:
+      None'
+    dtype:
+    - str
+    enum:
+    - name
+    range: null
+    shape: null
+    structure:
+    - str
+  num_channels:
+    default: null
+    descp: Indicate the number of channels of the input Tensor
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  param_attr:
+    default: None
+    descp: 'The parameter attribute for Parameter scale of batch_norm. If it is set
+      to None or one attribute of ParamAttr, batch_norm will create ParamAttr as param_attr.
+      If the Initializer of the param_attr is not set, the parameter is initialized
+      with Xavier. Default: None'
+    dtype:
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+  trainable_statistics:
+    default: 'False'
+    descp: 'Whether to calculate mean and var in eval mode. In eval mode, when setting
+      trainable_statistics True, mean and variance will be calculated by current batch
+      statistics. Default: False.           Returns          None'
+    dtype:
+    - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - bool
+  use_global_stats:
+    default: 'False'
+    descp: 'Whether to use global mean and variance. In inference or test mode, set
+      use_global_stats to true or is_test to true, and the behavior is equivalent.
+      In train mode, when setting use_global_stats True, the global mean and variance
+      are also used during train period. Default: False'
+    dtype:
+    - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - bool
+descp: 'This interface is used to construct a callable object of the BatchNorm class.
+  For more details, refer to code examples. It implements the function of the Batch
+  Normalization Layer and can be used as a normalizer function for conv2d and fully
+  connected operations. The data is normalized by the mean and variance of the channel
+  based on the current batch data. Refer to Batch Normalization: Accelerating Deep
+  Network Training by Reducing Internal Covariate Shift for more details.'
+inputs:
+  optional:
+  - act
+  - is_test
+  - momentum
+  - epsilon
+  - param_attr
+  - bias_attr
+  - dtype
+  - data_layout
+  - in_place
+  - moving_mean_name
+  - moving_variance_name
+  - do_model_average_for_mean_and_var
+  - use_global_stats
+  - trainable_statistics
+  required:
+  - num_channels

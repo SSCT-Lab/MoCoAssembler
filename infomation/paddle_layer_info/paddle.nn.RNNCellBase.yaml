@@ -1,0 +1,24 @@
+api: paddle.nn.RNNCellBase
+constraints:
+  dtype:
+    default: '''float32'''
+    descp: "A (possibly nested structure of) data type[s]. The structure must be same\
+      \ as that of shape, except when all tensors\u2019 in states has the same data\
+      \ type, a single data type can be used. If None and property cell"
+    dtype:
+    - str
+    enum:
+    - float32
+    range: null
+    shape: 1
+    structure:
+    - str
+    - list
+    - tuple
+descp: RNNCellBase is the base class for abstraction representing the calculations
+  mapping the input and state to the output and new state. It is suitable to and mostly
+  used in RNN.
+inputs:
+  optional:
+  - dtype
+  required: []

@@ -1,0 +1,33 @@
+api: paddle.nn.GELU
+constraints:
+  approximate:
+    default: 'False'
+    descp: Wether to enable approximation. Default is False
+    dtype:
+    - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - bool
+  name:
+    default: None
+    descp: Name for the operation (optional, default is None). For more information,
+      please refer to Name
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+descp: GELU Activation.
+inputs:
+  optional:
+  - approximate
+  - name
+  required: []

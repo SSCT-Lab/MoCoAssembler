@@ -1,0 +1,54 @@
+api: paddle.nn.Dropout2D
+constraints:
+  data_format:
+    default: '''NCHW'''
+    descp: 'Specify the data format of the input, and the data format of the output
+      will be consistent with that of the input. An optional string from NCHW or NHWC.
+      When it is NCHW, the data is stored in the order of: [batch_size, input_channels,
+      input_height, input_width]. Default: NCHW'
+    dtype:
+    - str
+    enum:
+    - NCHW
+    - NWHC
+    range: null
+    shape: null
+    structure:
+    - str
+  name:
+    default: None
+    descp: 'Name for the operation, Default: None. For more information, please refer
+      to Name'
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  p:
+    default: '0.5'
+    descp: 'Probability of setting units to zero. Default: 0.5'
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+descp: 'Randomly zero out entire channels (in the batched input 4d tensor with the
+  shape NCHW , a channel is a 2D feature map with the shape HW). Each channel will
+  be zeroed out independently on every forward call with probability p using samples
+  from a Bernoulli distribution. Dropout2D will help promote independence between
+  feature maps as described in the paper: Efficient Object Localization Using Convolutional
+  Networks'
+inputs:
+  optional:
+  - p
+  - data_format
+  - name
+  required: []

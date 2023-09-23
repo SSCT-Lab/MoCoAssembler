@@ -1,0 +1,35 @@
+api: paddle.nn.Softmax
+constraints:
+  axis:
+    default: '-1'
+    descp: The axis along which to perform log_softmax calculations. It should be
+      in range [-D, D), where D is the dimensions of x . If axis < 0, it works the
+      same way as \(axis + D\) . Default is -1
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  name:
+    default: None
+    descp: Name for the operation (optional, default is None). For more information,
+      please refer to Name
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+descp: Softmax Activation.
+inputs:
+  optional:
+  - axis
+  - name
+  required: []

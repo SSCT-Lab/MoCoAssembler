@@ -1,0 +1,123 @@
+api: paddle.nn.Upsample
+constraints:
+  data_format:
+    default: '''NCHW'''
+    descp: "Specify the data format of the input, and the data format of the output\
+      \ will be consistent with that of the input. An optional string from:NCW, NWC,\
+      \ \u201CNCHW\u201D, \u201CNHWC\u201D, \u201CNCDHW\u201D, \u201CNDHWC\u201D.\
+      \ The default is \u201CNCHW\u201D. When it is \u201CNCHW\u201D, the data is\
+      \ stored in the order of: [batch_size, input_channels, input_height, input_width].\
+      \ When it is \u201CNCHW\u201D, the data is stored in the order of: [batch_size,\
+      \ input_channels, input_depth, input_height, input_width]"
+    dtype:
+    - str
+    enum:
+    - NCHW
+    - NHWC
+    range: null
+    shape: null
+    structure:
+    - str
+  mode:
+    default: '''nearest'''
+    descp: "The resample method. It supports \u2018linear\u2019, \u2018nearst\u2019\
+      , \u2018bilinear\u2019, \u2018bicubic\u2019 and \u2018trilinear\u2019 currently.\
+      \ Default: \u2018nearest\u2019"
+    dtype:
+    - str
+    enum:
+    - linear
+    - nearest
+    - bilinear
+    - bicubic
+    - trilinear
+    range: null
+    shape: null
+    structure:
+    - str
+  name:
+    default: None
+    descp: The default value is None. Normally there is no need for user to set this
+      property. For more information, please refer to Name           Returns          A
+      3-D Tensor of the shape (num_batches, channels, out_w) or (num_batches, out_w,
+      channels), A 4-D Tensor of the shape (num_batches, channels, out_h, out_w) or
+      (num_batches, out_h, out_w, channels), or 5-D Tensor of the shape (num_batches,
+      channels, out_d, out_h, out_w) or (num_batches, out_d, out_h, out_w, channels)
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  scale_factor:
+    default: None
+    descp: 'The multiplier for the input height or width. At least one of size or
+      scale_factor must be set. And size has a higher priority than scale_factor.
+      Has to match input size if it is either a list or a tuple or a Tensor. Default:
+      None'
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 2
+    structure:
+    - float
+    - Tensor
+    - list
+    - tuple
+    - None
+  size:
+    default: None
+    descp: 'Output shape of image resize layer, the shape is (out_w, ) when input
+      is a 3-D Tensor, the shape is (out_h, out_w) when input is a 4-D Tensor and
+      is (out_d, out_h, out_w) when input is a 5-D Tensor. Default: None. If a list/tuple,
+      each element can be an integer or a Tensor of shape: [1]. If a Tensor , its
+      dimensions size should be a 1'
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 2
+    structure:
+    - list
+    - tuple
+    - Tensor
+    - None
+  align_corners:
+    default: 'True'
+    descp: "An optional bool, If True, the centers of the 4 corner pixels of the input and
+     output tensors are aligned, preserving the values at the corner pixels. Default: False"
+    dtype:
+      - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+      - bool
+  align_mode:
+    default: '0'
+    descp: "An optional for linear/bilinear/trilinear interpolation. Refer to the formula in the example above,
+     it can be ‘0’ for src_idx = scale_factor*(dst_indx+0.5)-0.5 , can be ‘1’ for src_idx = scale_factor*dst_index."
+    dtype:
+      - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+      - int
+descp: This op resizes a batch of images.
+inputs:
+  optional:
+  - size
+  - scale_factor
+  - mode
+  - align_corners
+  - align_mode
+  - data_format
+  - name
+  required: []

@@ -1,0 +1,18 @@
+api: paddle.nn.ThresholdedReLU
+constraints:
+  threshold:
+    default: '1.0'
+    descp: The value of threshold for ThresholdedReLU. Default is 1
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+descp: Thresholded ReLU Activation
+inputs:
+  optional:
+  - threshold
+  - name
+  required: []

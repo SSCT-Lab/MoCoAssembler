@@ -1,0 +1,72 @@
+api: paddle.nn.SpectralNorm
+constraints:
+  dim:
+    default: '0'
+    descp: 'The index of dimension which should be permuted to the first before reshaping
+      Input(Weight) to matrix, it should be set as 0 if Input(Weight) is the weight
+      of fc layer, and should be set as 1 if Input(Weight) is the weight of conv layer.
+      Default: 0'
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  dtype:
+    default: '''float32'''
+    descp: "Data type, it can be \u201Cfloat32\u201D or \u201Cfloat64\u201D. Default:\
+      \ \u201Cfloat32\u201D.           Returns          None"
+    dtype:
+    - str
+    enum:
+    - float32
+    - float64
+    range: null
+    shape: null
+    structure:
+    - str
+  eps:
+    default: 1e-12
+    descp: 'The epsilon for numerical stability in calculating norms. Default: 1e-12'
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  power_iters:
+    default: '1'
+    descp: 'The number of power iterations to calculate spectral norm. Default: 1'
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  weight_shape:
+    default: null
+    descp: The shape of weight parameter
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 2
+    structure:
+    - list
+    - tuple
+descp: This interface is used to construct a callable object of the SpectralNorm class.
+  For more details, refer to code examples. It implements the function of the Spectral
+  Normalization Layer. This layer calculates the spectral normalization value of weight
+  parameters of fc, conv1d, conv2d, conv3d layers which should be 2-D, 3-D, 4-D, 5-D
+  Parameters. Calculations are showed as follows.
+inputs:
+  optional:
+  - dim
+  - power_iters
+  - eps
+  - dtype
+  required:
+  - weight_shape

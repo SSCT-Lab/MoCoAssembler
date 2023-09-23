@@ -1,0 +1,22 @@
+api: paddle.nn.Mish
+constraints:
+  name:
+    default: None
+    descp: Name for the operation (optional, default is None). For more information,
+      please refer to Name
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+descp: Mish Activation.
+inputs:
+  optional:
+  - name
+  required: []

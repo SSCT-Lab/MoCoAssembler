@@ -1,0 +1,71 @@
+api: paddle.nn.Bilinear
+constraints:
+  in1_features:
+    default: null
+    descp: The dimension of each first input(x1)
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  in2_features:
+    default: null
+    descp: The dimension of each second input(x2)
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  name:
+    default: None
+    descp: 'The default value is None. Normally there is no need for user to set this
+      property. For more information, please refer to Name. Default: None'
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  out_features:
+    default: null
+    descp: The dimension of output of this layer
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  weight_attr:
+    default: None
+    descp: "The parameter attribute for the learnable w, parameters/weights ofNone.\
+      \ (this layer. The default value is) \u2013 bias_attr (ParamAttr, optional)\
+      \ \u2013 The parameter attribute for the bias of this layer. If it is set to\
+      \ False, no bias will be added to the output units. If it is set to None, the\
+      \ bias is initialized zero. The default value is None"
+    dtype:
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+descp: This layer performs bilinear on two inputs.
+inputs:
+  optional:
+  - weight_attr
+  - bias_attr
+  - name
+  required:
+  - in1_features
+  - in2_features
+  - out_features

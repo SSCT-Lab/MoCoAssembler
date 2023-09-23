@@ -1,0 +1,74 @@
+api: paddle.nn.Linear
+constraints:
+  bias_attr:
+    default: None
+    descp: The attribute for the learnable bias of this layer. If it is set to False,
+      no bias will be added to the output. If it is set to None or one kind of ParamAttr,
+      a bias parameter will be created according to ParamAttr. For detailed information,
+      please refer to paddle
+    dtype:
+    - bool
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+    - bool
+  in_features:
+    default: null
+    descp: The number of input units
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  name:
+    default: None
+    descp: 'Normally there is no need for user to set this parameter. For detailed
+      information, please refer to Name '
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  out_features:
+    default: null
+    descp: The number of output units
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+  weight_attr:
+    default: None
+    descp: The attribute for the learnable weight of this layer. The default value
+      is None. If the Initializer of the param_attr is not set, the parameter is initialized
+      with Xavier. For detailed information, please refer to paddle
+    dtype:
+    - ParamAttr
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - ParamAttr
+descp: 'Fully-connected linear transformation layer. For each input \(X\) , the equation
+  is:'
+inputs:
+  optional:
+  - weight_attr
+  - bias_attr
+  - name
+  required:
+  - in_features
+  - out_features

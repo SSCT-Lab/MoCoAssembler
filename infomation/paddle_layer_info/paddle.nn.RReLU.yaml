@@ -1,0 +1,44 @@
+api: paddle.nn.RReLU
+constraints:
+  lower:
+    default: '0.125'
+    descp: 'The lower bound of uniform distribution. Default: 1'
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  name:
+    default: None
+    descp: Name for the operation (optional, default is None). For more information,
+      please refer to Name
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  upper:
+    default: '0.3333333333333333'
+    descp: 'The upper bound of uniform distribution. Default: 0.3333333333333333'
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+descp: RReLU activation layer.
+inputs:
+  optional:
+  - lower
+  - upper
+  - name
+  required: []

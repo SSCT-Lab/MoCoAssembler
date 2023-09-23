@@ -1,0 +1,17 @@
+api: paddle.nn.ClipGradByNorm
+constraints:
+  clip_norm:
+    default: null
+    descp: The maximum norm value
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+descp: Limit the l2 norm of multi-dimensional Tensor \(X\) to clip_norm .
+inputs:
+  optional: []
+  required:
+  - clip_norm

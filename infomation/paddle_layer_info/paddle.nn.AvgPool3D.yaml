@@ -1,0 +1,136 @@
+api: paddle.nn.AvgPool3D
+constraints:
+  ceil_mode:
+    default: 'False'
+    descp: "${ceil_mode_comment}exclusive (bool, optional) \u2013 Whether to exclude\
+      \ padding points in average pooling mode, default is True"
+    dtype:
+    - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - bool
+  data_format:
+    default: '''NCDHW'''
+    descp: "The data format of the input and output data. An optional string from:\
+      \ \u201CNCDHW\u201D, \u201CNDHWC\u201D. The default is \u201CNCDHW\u201D. When\
+      \ it is \u201CNCDHW\u201D, the data is stored in the order of: [batch_size,\
+      \ input_channels, input_depth, input_height, input_width]"
+    dtype:
+    - str
+    enum:
+    - NCDHW
+    - NDHWC
+    range: null
+    shape: null
+    structure:
+    - str
+  divisor_override:
+    default: None
+    descp: if specified, it will be used as divisor, otherwise kernel_size will be
+      used. Default None
+    dtype:
+    - int
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - int
+    - float
+  kernel_size:
+    default: null
+    descp: The pool kernel size. If pool kernel size is a tuple or list, it must contain
+      three integers, (kernel_size_Depth, kernel_size_Height, kernel_size_Width).
+      Otherwise, the pool kernel size will be the cube of an int
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 3
+    structure:
+    - int
+    - list
+    - tuple
+  name:
+    default: None
+    descp: For detailed information, please refer to Name. Usually name is no need
+      to set and None by default.           Returns          A callable object of
+      AvgPool3D
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  padding:
+    default: '0'
+    descp: "The padding size. Padding could be in one of the following forms. 1. A\
+      \ string in [\u2018valid\u2019, \u2018same\u2019]. 2. An int, which means the\
+      \ feature map is zero padded by size of padding on every sides. 3. A list[int]\
+      \ or tuple(int) whose length is 3, [pad_depth, pad_height, pad_weight] whose\
+      \ value means the padding size of each dimension. 4. A list[int] or tuple(int)\
+      \ whose length is 6. [pad_depth_front, pad_depth_back, pad_height_top, pad_height_bottom,\
+      \ pad_width_left, pad_width_right] whose value means the padding size of each\
+      \ side. 5. A list or tuple of pairs of integers. It has the form [[pad_before,\
+      \ pad_after], [pad_before, pad_after], \u2026]. Note that, the batch dimension\
+      \ and channel dimension should be [0,0] or (0,0). The default value is 0"
+    dtype:
+    - str
+    - int
+    enum:
+    - valid
+    - same
+    range: null
+    shape: 3
+    structure:
+    - str
+    - int
+    - list
+    - tuple
+  stride:
+    default: None
+    descp: The pool stride size. If pool stride size is a tuple or list, it must contain
+      three integers, [stride_Depth, stride_Height, stride_Width). Otherwise, the
+      pool stride size will be a cube of an int. Default None, then stride will be
+      equal to the kernel_size
+    dtype:
+    - int
+    enum: null
+    range: null
+    shape: 2
+    structure:
+    - int
+    - list
+    - tuple
+  exclusive:
+    default: 'True'
+    descp: Whether to exclude padding points in average pooling mode, default is true
+    dtype:
+      - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+      - bool
+descp: This operation applies 3D max pooling over input features based on the input,
+  and kernel_size, stride, padding parameters. Input(X) and Output(Out) are in NCDHW
+  format, where N is batch size, C is the number of channels, H is the height of the
+  feature, D is the depth of the feature, and W is the width of the feature.
+inputs:
+  optional:
+  - stride
+  - padding
+  - ceil_mode
+  - exclusive
+  - divisor_override
+  - data_format
+  - name
+  required:
+  - kernel_size

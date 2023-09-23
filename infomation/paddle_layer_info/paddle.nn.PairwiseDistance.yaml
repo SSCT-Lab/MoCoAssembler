@@ -1,0 +1,58 @@
+api: paddle.nn.PairwiseDistance
+constraints:
+  epsilon:
+    default: 1e-06
+    descp: 'Add small value to avoid division by zero. Default: \(1e-6\)'
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+  keepdim:
+    default: 'False'
+    descp: 'Whether to reserve the reduced dimension in the output Tensor. The result
+      tensor is one dimension less than the result of |x-y| unless keepdim is True.
+      Default: False'
+    dtype:
+    - bool
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - bool
+  name:
+    default: None
+    descp: 'For details, please refer to Name. Generally, no setting is required.
+      Default: None'
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+  p:
+    default: '2.0'
+    descp: 'The order of norm. Default: \(2'
+    dtype:
+    - float
+    enum: null
+    range: null
+    shape: null
+    structure:
+    - float
+descp: 'It computes the pairwise distance between two vectors. The distance is calculated
+  by p-oreder norm:'
+inputs:
+  optional:
+  - p
+  - epsilon
+  - keepdim
+  - name
+  required: []

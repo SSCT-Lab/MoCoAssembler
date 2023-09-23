@@ -1,0 +1,22 @@
+api: paddle.nn.Silu
+constraints:
+  name:
+    default: None
+    descp: 'For details, please refer to Name. Generally, no setting is required.
+      Default: None'
+    dtype:
+    - str
+    enum:
+    - need
+    - need
+    - need
+    - need
+    range: null
+    shape: null
+    structure:
+    - str
+descp: Silu Activation
+inputs:
+  optional:
+  - name
+  required: []
