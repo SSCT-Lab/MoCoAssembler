@@ -1,0 +1,6 @@
+api: torch.nn.Tanhshrink(class , *args, **kwargs)
+constraints: {}
+descp: 'Applies the element-wise function:'
+inputs:
+  optional: []
+  required: []

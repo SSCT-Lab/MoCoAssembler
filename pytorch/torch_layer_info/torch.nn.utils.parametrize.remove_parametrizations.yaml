@@ -1,0 +1,23 @@
+api: torch.nn.utils.parametrize.remove_parametrizations(module, tensor_name, leave_parametrized=True)
+constraints:
+  module:
+    descp: module from which remove the parametrization
+    dtype:
+    - nn.module
+  tensor_name:
+    descp: name of the parametrization to be removed
+    dtype:
+    - str
+    enum: null
+  leave_parametrized:
+    descp: leave the attribute tensor_name parametrized.
+    default: 'True'
+    dtype:
+    - bool
+descp: Removes the parametrizations on a tensor in a module.
+inputs:
+  optional:
+  - leave_parametrized
+  required:
+  - module
+  - tensor_name

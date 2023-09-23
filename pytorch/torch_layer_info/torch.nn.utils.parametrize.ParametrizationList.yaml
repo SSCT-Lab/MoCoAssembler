@@ -1,0 +1,26 @@
+api: torch.nn.utils.parametrize.ParametrizationList(class , modules, original, unsafe=False)
+constraints:
+  modules:
+    descp: sequence of modules representing the parametrizations
+    dtype:
+    - sequence
+  original:
+    descp: parameter or buffer that is parametrized
+    dtype:
+    - parameter or tensor
+    - parameter or tensor
+  unsafe:
+    descp: a boolean flag that denotes whether the parametrization may change the
+      dtype and shape of the tensor.
+    default: 'False Warning: the parametrization is not checked for consistency upon
+      registration. Enable this flag at your own risk.'
+    dtype:
+    - bool
+descp: "A sequential container that holds and manages the original or original0, original1,\
+  \ \u2026 parameters or buffers of a parametrized torch.nn.Module."
+inputs:
+  optional: []
+  required:
+  - modules
+  - original
+  - unsafe

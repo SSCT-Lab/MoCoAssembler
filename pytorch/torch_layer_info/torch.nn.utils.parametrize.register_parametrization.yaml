@@ -1,0 +1,23 @@
+api: torch.nn.utils.parametrize.register_parametrization(module, tensor_name, parametrization,
+  *, unsafe=False)
+constraints:
+  module:
+    descp: module on which to register the parametrization
+    dtype:
+    - nn.module
+  tensor_name:
+    descp: name of the parameter or buffer on which to register the parametrization
+    dtype:
+    - str
+    enum: null
+  parametrization:
+    descp: the parametrization to register
+    dtype:
+    - nn.module
+descp: Adds a parametrization to a tensor in a module.
+inputs:
+  optional: []
+  required:
+  - module
+  - tensor_name
+  - parametrization

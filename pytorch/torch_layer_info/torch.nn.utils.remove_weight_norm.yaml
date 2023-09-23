@@ -1,0 +1,17 @@
+api: torch.nn.utils.remove_weight_norm(module, name='weight')
+constraints:
+  module:
+    descp: containing module
+    dtype:
+    - module
+  name:
+    descp: name of weight parameter
+    dtype:
+    - str
+    enum: null
+descp: Removes the weight normalization reparameterization from a module.
+inputs:
+  optional:
+  - name
+  required:
+  - module

@@ -1,0 +1,28 @@
+api: torch.nn.PairwiseDistance(class , p=2.0, eps=1e-06, keepdim=False)
+constraints:
+  p:
+    descp: the norm degree. Can be negative.
+    default: '2'
+    dtype:
+    - real, optional
+  eps:
+    descp: Small value to avoid division by zero.
+    default: 1e-6
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+  keepdim:
+    descp: Determines whether or not to keep the vector dimension.
+    default: 'False'
+    dtype:
+    - bool
+descp: Computes the pairwise distance between input vectors, or between columns of
+  input matrices.
+inputs:
+  optional:
+  - p
+  - eps
+  - keepdim
+  required: []

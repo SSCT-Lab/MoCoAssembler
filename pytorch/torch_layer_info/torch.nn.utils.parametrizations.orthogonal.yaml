@@ -1,0 +1,33 @@
+api: torch.nn.utils.parametrizations.orthogonal(module, name='weight', orthogonal_map=None,
+  *, use_trivialization=True)
+constraints:
+  module:
+    descp: module on which to register the parametrization.
+    dtype:
+    - nn.module
+  name:
+    descp: name of the tensor to make orthogonal.
+    default: '"weight".'
+    dtype:
+    - str
+    enum: null
+  orthogonal_map:
+    descp: 'One of the following: "matrix_exp", "cayley", "householder".'
+    default: '"matrix_exp" if the matrix is square or complex, "householder" otherwise.'
+    dtype:
+    - str
+    enum: null
+  use_trivialization:
+    descp: whether to use the dynamic trivialization framework.
+    default: True.
+    dtype:
+    - bool
+descp: Applies an orthogonal or unitary parametrization to a matrix or a batch of
+  matrices.
+inputs:
+  optional:
+  - name
+  - orthogonal_map
+  - use_trivialization
+  required:
+  - module

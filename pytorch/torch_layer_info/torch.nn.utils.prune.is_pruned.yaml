@@ -1,0 +1,10 @@
+api: torch.nn.utils.prune.is_pruned(module)
+constraints:
+  module:
+    descp: object that is either pruned or unpruned
+descp: Check whether module is pruned by looking for forward_pre_hooks in its modules
+  that inherit from the BasePruningMethod.
+inputs:
+  optional: []
+  required:
+  - module

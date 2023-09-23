@@ -2,13 +2,13 @@ api: torch.nn.LayerNorm(normalized_shape, eps=1e-05, elementwise_affine=True, de
   dtype=None)
 constraints:
   elementwise_affine:
-    default: true
     descp: a boolean value that when set to True, this module has learnable per-element
       affine parameters initialized to ones (for weights) and zeros (for biases).
+    default: true
     dtype: torch.bool
   eps:
-    default: 1e-05
     descp: a value added to the denominator for numerical stability.
+    default: 1e-05
     dtype: torch.float
   normalized_shape:
     descp: 'input shape from an expected input of size
@@ -17,10 +17,10 @@ constraints:
       will normalize over the last dimension which is expected to be of that specific
       size.'
     dtype: int
-    shape: ANY
     structure:
     - integer
     - list
+    shape: ANY
 descp: Applies Layer Normalization over a mini-batch of inputs as described in the
   paper Layer Normalization
 inputs:

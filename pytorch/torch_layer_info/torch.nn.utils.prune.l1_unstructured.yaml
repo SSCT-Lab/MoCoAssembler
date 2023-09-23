@@ -1,0 +1,40 @@
+api: torch.nn.utils.prune.l1_unstructured(module, name, amount, importance_scores=None)
+constraints:
+  module:
+    descp: module containing the tensor to prune
+    dtype:
+    - nn.module
+  name:
+    descp: parameter name within module on which pruning will act.
+    dtype:
+    - str
+    enum: null
+  amount:
+    descp: quantity of parameters to prune. If float, should be between 0.0 and 1.0
+      and represent the fraction of parameters to prune. If int, it represents the
+      absolute number of parameters to prune.
+    dtype:
+    - int
+    - float
+    structure:
+    - single
+    - single
+    shape: null
+    range: null
+  importance_scores:
+    descp: tensor of importance scores (of same shape as module parameter) used to
+      compute mask for pruning. The values in this tensor indicate the importance
+      of the corresponding elements in the parameter being pruned. If unspecified
+      or None, the module parameter will be used in its place.
+    dtype:
+    - torch.tensor
+descp: 'Prunes tensor corresponding to parameter called name in module by removing
+  the specified amount of (currently unpruned) units with the lowest L1-norm. Modifies
+  module in place (and also return the modified module) by:'
+inputs:
+  optional: []
+  required:
+  - module
+  - name
+  - amount
+  - importance_scores

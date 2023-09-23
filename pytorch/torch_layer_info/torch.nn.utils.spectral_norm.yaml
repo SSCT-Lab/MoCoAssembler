@@ -1,0 +1,45 @@
+api: torch.nn.utils.spectral_norm(module, name='weight', n_power_iterations=1, eps=1e-12,
+  dim=None)
+constraints:
+  module:
+    descp: containing module
+    dtype:
+    - nn.module
+  name:
+    descp: name of weight parameter
+    dtype:
+    - str
+    enum: null
+  n_power_iterations:
+    descp: number of power iterations to calculate spectral norm
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+  eps:
+    descp: epsilon for numerical stability in calculating norms
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+  dim:
+    descp: dimension corresponding to number of outputs, the default is 0, except
+      for modules that are instances of ConvTranspose{1,2,3}d, when it is 1
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+descp: Applies spectral normalization to a parameter in the given module.
+inputs:
+  optional:
+  - name
+  - n_power_iterations
+  - eps
+  - dim
+  required:
+  - module

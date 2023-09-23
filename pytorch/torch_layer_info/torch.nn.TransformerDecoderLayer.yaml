@@ -1,0 +1,80 @@
+api: torch.nn.TransformerDecoderLayer(class , d_model, nhead, dim_feedforward=2048,
+  dropout=0.1, activation=<function relu>, layer_norm_eps=1e-05, batch_first=False,
+  norm_first=False, device=None, dtype=None)
+constraints:
+  d_model:
+    descp: the number of expected features in the input (required).
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+  nhead:
+    descp: the number of heads in the multiheadattention models (required).
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+  dim_feedforward:
+    descp: the dimension of the feedforward network model (default=2048).
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+  dropout:
+    descp: the dropout value (default=0.1).
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+  activation:
+    descp: "the activation function of the intermediate layer, can be a string (\u201C\
+      relu\u201D or \u201Cgelu\u201D) or a unary callable."
+    default: relu
+    dtype:
+    - str
+    - union[str, callable[[tensor], tensor]]
+    - union[str, callable[[tensor], tensor]]
+    enum: null
+  layer_norm_eps:
+    descp: the eps value in layer normalization components (default=1e-5).
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+  batch_first:
+    descp: If True, then the input and output tensors are provided as (batch, seq,
+      feature).
+    default: False (seq, batch, feature).
+    dtype:
+    - bool
+  norm_first:
+    descp: "if True, layer norm is done prior to self attention, multihead attention\
+      \ and feedforward operations, respectively. Otherwise it\u2019s done after."
+    default: False (after).
+    dtype:
+    - bool
+descp: "TransformerDecoderLayer is made up of self-attn, multi-head-attn and feedforward\
+  \ network. This standard decoder layer is based on the paper \u201CAttention Is\
+  \ All You Need\u201D. Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit,\
+  \ Llion Jones, Aidan N Gomez, Lukasz Kaiser, and Illia Polosukhin. 2017. Attention\
+  \ is all you need. In Advances in Neural Information Processing Systems, pages 6000-6010.\
+  \ Users may modify or implement in a different way during application."
+inputs:
+  optional: []
+  required:
+  - d_model
+  - nhead
+  - dim_feedforward
+  - dropout
+  - activation
+  - layer_norm_eps
+  - batch_first
+  - norm_first

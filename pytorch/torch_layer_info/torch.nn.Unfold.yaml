@@ -1,48 +1,48 @@
 api: torch.nn.Unfold(kernel_size, dilation=1, padding=0, stride=1)
 constraints:
   dilation:
-    default: 1
     descp: a parameter that controls the stride of elements within the neighborhood.
+    default: 1
     dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
     range:
     - 1
     - 6
-    shape: 2
-    structure:
-    - integer
-    - tuple
   kernel_size:
     descp: the size of the sliding blocks
     dtype: int
-    range:
-    - 1
-    - 8
-    shape: 2
     structure:
     - integer
     - tuple
+    shape: 2
+    range:
+    - 1
+    - 8
   padding:
-    default: 0
     descp: implicit zero padding to be added on both sides of input.
+    default: 0
     dtype: int
-    range:
-    - 1
-    - 8
-    shape: 2
     structure:
     - integer
     - tuple
+    shape: 2
+    range:
+    - 1
+    - 8
   stride:
-    default: 1
     descp: the stride of the sliding blocks in the input spatial dimensions.
+    default: 1
     dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
     range:
     - 1
     - 4
-    shape: 2
-    structure:
-    - integer
-    - tuple
 descp: Extracts sliding local blocks from a batched input tensor.
 inputs:
   optional:

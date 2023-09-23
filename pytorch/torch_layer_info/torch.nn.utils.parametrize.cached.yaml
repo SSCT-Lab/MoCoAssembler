@@ -1,0 +1,7 @@
+api: torch.nn.utils.parametrize.cached()
+constraints: {}
+descp: Context manager that enables the caching system within parametrizations registered
+  with register_parametrization().
+inputs:
+  optional: []
+  required: []

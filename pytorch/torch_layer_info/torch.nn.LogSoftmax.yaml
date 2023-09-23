@@ -2,12 +2,12 @@ api: torch.nn.LogSoftmax(dim=None)
 constraints:
   dim:
     dtype: int
+    structure:
+    - integer
+    shape: 1
     range:
     - 1
     - 2
-    shape: 1
-    structure:
-    - integer
 descp: "Applies the log\u2061(Softmax(x))\\log(\\text{Softmax}(x))log(Softmax(x))\
   \ function to an n-dimensional input Tensor. The LogSoftmax formulation can be simplified\
   \ as:"

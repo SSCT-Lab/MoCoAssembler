@@ -6,13 +6,13 @@ constraints:
     descp: the size of the window to take a max over. Can be a single number k (for
       a square kernel of k x k) or a tuple
     dtype: int
-    range:
-    - 1
-    - 8
-    shape: 2
     structure:
     - integer
     - tuple
+    shape: 2
+    range:
+    - 1
+    - 8
   output_ratio:
     descp: If one wants to have an output size as a ratio of the input size, this
       option can be given. This has to be a number or tuple in the range (0, 1)
@@ -23,17 +23,17 @@ constraints:
   output_size:
     descp: the target output size of the image of the form
     dtype: int
-    range:
-    - 1
-    - 1028
-    shape: 2
     structure:
     - integer
     - tuple
+    shape: 2
+    range:
+    - 1
+    - 1028
   return_indices:
-    default: false
     descp: if True, will return the indices along with the outputs. Useful to pass
       to False
+    default: false
     dtype: torch.bool
 descp: Applies a 2D fractional max pooling over an input signal composed of several
   input planes.

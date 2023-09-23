@@ -1,12 +1,12 @@
 api: torch.nn.CELU(alpha=1.0, inplace=False)
 constraints:
   alpha:
-    default: 1.0
     descp: the
+    default: 1.0
     dtype: torch.float
   inplace:
-    default: false
     descp: can optionally do the operation in-place.
+    default: false
     dtype: torch.bool
 descp: 'Applies the element-wise function:'
 inputs:

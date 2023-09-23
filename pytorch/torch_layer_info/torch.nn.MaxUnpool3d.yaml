@@ -4,35 +4,35 @@ constraints:
   kernel_size:
     descp: Size of the max pooling window.
     dtype: int
-    range:
-    - 1
-    - 8
-    shape: 3
     structure:
     - integer
     - tuple
+    shape: 3
+    range:
+    - 1
+    - 8
   padding:
-    default: 0
     descp: Padding that was added to the input
+    default: 0
     dtype: int
-    range:
-    - 1
-    - 8
-    shape: 3
     structure:
     - integer
     - tuple
+    shape: 3
+    range:
+    - 1
+    - 8
   stride:
-    default: None
     descp: Stride of the max pooling window. It is set to
+    default: None
     dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 3
     range:
     - 1
     - 4
-    shape: 3
-    structure:
-    - integer
-    - tuple
 descp: Computes a partial inverse of MaxPool3d.
 inputs:
   optional:

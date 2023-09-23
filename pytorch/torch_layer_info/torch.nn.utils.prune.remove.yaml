@@ -1,0 +1,20 @@
+api: torch.nn.utils.prune.remove(module, name)
+constraints:
+  module:
+    descp: module containing the tensor to prune
+    dtype:
+    - nn.module
+  name:
+    descp: parameter name within module on which pruning will act.
+    dtype:
+    - str
+    enum: null
+descp: Removes the pruning reparameterization from a module and the pruning method
+  from the forward hook. The pruned parameter named name remains permanently pruned,
+  and the parameter named name+'_orig' is removed from the parameter list. Similarly,
+  the buffer named name+'_mask' is removed from the buffers.
+inputs:
+  optional: []
+  required:
+  - module
+  - name

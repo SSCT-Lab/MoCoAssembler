@@ -1,0 +1,19 @@
+api: torch.nn.utils.prune.identity(module, name)
+constraints:
+  module:
+    descp: module containing the tensor to prune.
+    dtype:
+    - nn.module
+  name:
+    descp: parameter name within module on which pruning will act.
+    dtype:
+    - str
+    enum: null
+descp: 'Applies pruning reparametrization to the tensor corresponding to the parameter
+  called name in module without actually pruning any units. Modifies module in place
+  (and also return the modified module) by:'
+inputs:
+  optional: []
+  required:
+  - module
+  - name

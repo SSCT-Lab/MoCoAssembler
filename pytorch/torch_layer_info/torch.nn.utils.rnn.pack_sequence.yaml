@@ -1,0 +1,20 @@
+api: torch.nn.utils.rnn.pack_sequence(sequences, enforce_sorted=True)
+constraints:
+  sequences:
+    descp: A list of sequences of decreasing length.
+    dtype:
+    - list[tensor]
+    structure:
+    - list
+  enforce_sorted:
+    descp: if True, checks that the input contains sequences sorted by length in a
+      decreasing order. If False, this condition is not checked.
+    default: True.
+    dtype:
+    - bool
+descp: Packs a list of variable length Tensors
+inputs:
+  optional:
+  - enforce_sorted
+  required:
+  - sequences

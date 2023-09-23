@@ -1,0 +1,7 @@
+api: torch.nn.utils.rnn.PackedSequence(class , data, batch_sizes=None, sorted_indices=None,
+  unsorted_indices=None)
+constraints: {}
+descp: Holds the data and list of batch_sizes of a packed sequence.
+inputs:
+  optional: []
+  required: []

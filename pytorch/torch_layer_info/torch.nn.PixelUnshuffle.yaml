@@ -1,0 +1,16 @@
+api: torch.nn.PixelUnshuffle(class , downscale_factor)
+constraints:
+  downscale_factor:
+    descp: factor to decrease spatial resolution by
+    structure:
+    - single
+    shape: null
+    range: null
+descp: "Reverses the PixelShuffle operation by rearranging elements in a tensor of\
+  \ shape (\u2217,C,H\xD7r,W\xD7r)(*, C, H \\times r, W \\times r)(\u2217,C,H\xD7\
+  r,W\xD7r) to a tensor of shape (\u2217,C\xD7r2,H,W)(*, C \\times r^2, H, W)(\u2217\
+  ,C\xD7r2,H,W), where r is a downscale factor."
+inputs:
+  optional: []
+  required:
+  - downscale_factor

@@ -2,13 +2,13 @@ api: torch.nn.ConstantPad3d(padding, value)
 constraints:
   padding:
     dtype: int
-    range:
-    - 1
-    - 8
-    shape: 6
     structure:
     - integer
     - tuple
+    shape: 6
+    range:
+    - 1
+    - 8
 descp: Pads the input tensor boundaries with a constant value.
 inputs:
   optional: []

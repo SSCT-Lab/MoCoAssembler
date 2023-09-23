@@ -1,0 +1,6 @@
+api: torch.nn.LogSigmoid(class , *args, **kwargs)
+constraints: {}
+descp: 'Applies the element-wise function:'
+inputs:
+  optional: []
+  required: []

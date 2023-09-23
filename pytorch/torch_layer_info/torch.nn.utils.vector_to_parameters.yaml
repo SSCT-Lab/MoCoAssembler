@@ -1,0 +1,16 @@
+api: torch.nn.utils.vector_to_parameters(vec, parameters)
+constraints:
+  vec:
+    descp: a single vector represents the parameters of a model.
+    dtype:
+    - tensor
+  parameters:
+    descp: an iterator of Tensors that are the parameters of a model.
+    dtype:
+    - iterable[tensor]
+descp: Convert one vector to the parameters
+inputs:
+  optional: []
+  required:
+  - vec
+  - parameters

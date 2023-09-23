@@ -1,0 +1,23 @@
+api: torch.nn.TransformerEncoder(class , encoder_layer, num_layers, norm=None, enable_nested_tensor=True,
+  mask_check=True)
+constraints:
+  encoder_layer:
+    descp: an instance of the TransformerEncoderLayer() class (required).
+  num_layers:
+    descp: the number of sub-encoder-layers in the encoder (required).
+  norm:
+    descp: the layer normalization component (optional).
+  enable_nested_tensor:
+    descp: if True, input will automatically convert to nested tensor (and convert
+      back on output). This will improve the overall performance of TransformerEncoder
+      when padding rate is high.
+    default: True (enabled).
+descp: TransformerEncoder is a stack of N encoder layers. Users can build the BERT(https://arxiv.org/abs/1810.04805)
+  model with corresponding parameters.
+inputs:
+  optional: []
+  required:
+  - encoder_layer
+  - num_layers
+  - norm
+  - enable_nested_tensor

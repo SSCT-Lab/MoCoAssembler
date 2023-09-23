@@ -1,0 +1,7 @@
+api: torch.nn.Mish(class , inplace=False)
+constraints: {}
+descp: 'Applies the Mish function, element-wise. Mish: A Self Regularized Non-Monotonic
+  Neural Activation Function.'
+inputs:
+  optional: []
+  required: []

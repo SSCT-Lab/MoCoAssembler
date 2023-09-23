@@ -2,56 +2,56 @@ api: torch.nn.MaxPool3d(kernel_size, stride=None, padding=0, dilation=1, return_
   ceil_mode=False)
 constraints:
   ceil_mode:
-    default: false
     descp: when True, will use
+    default: false
     dtype: torch.bool
   dilation:
-    default: 1
     descp: a parameter that controls the stride of elements in the window
+    default: 1
     dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 3
     range:
     - 1
     - 6
-    shape: 3
-    structure:
-    - integer
-    - tuple
   kernel_size:
     descp: the size of the window to take a max over
     dtype: int
-    range:
-    - 1
-    - 8
-    shape: 3
     structure:
     - integer
     - tuple
+    shape: 3
+    range:
+    - 1
+    - 8
   padding:
-    default: 0
     descp: Implicit negative infinity padding to be added on all three sides
+    default: 0
     dtype: int
-    range:
-    - 1
-    - 8
-    shape: 3
     structure:
     - integer
     - tuple
+    shape: 3
+    range:
+    - 1
+    - 8
   return_indices:
-    default: false
     descp: if True, will return the max indices along with the outputs. Useful for
+    default: false
     dtype: torch.bool
   stride:
-    default: None
     descp: the stride of the window.
+    default: None
     dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 3
     range:
     - 1
     - 4
-    shape: 3
-    structure:
-    - integer
-    - tuple
 descp: Applies a 3D max pooling over an input signal composed of several input planes.
 inputs:
   optional:

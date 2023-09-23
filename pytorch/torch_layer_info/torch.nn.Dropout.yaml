@@ -1,12 +1,12 @@
 api: torch.nn.Dropout(p=0.5, inplace=False)
 constraints:
   inplace:
-    default: false
     descp: If set to True, will do this operation in-place.
+    default: false
     dtype: torch.bool
   p:
-    default: 0.5
     descp: probability of an element to be zeroed.
+    default: 0.5
     dtype: torch.float
 descp: During training, randomly zeroes some of the elements of the input tensor with
   probability p using samples from a Bernoulli distribution. Each channel will be

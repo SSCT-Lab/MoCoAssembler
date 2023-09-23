@@ -1,0 +1,50 @@
+api: torch.nn.TripletMarginWithDistanceLoss(class , *, distance_function=None, margin=1.0,
+  swap=False, reduction='mean')
+constraints:
+  distance_function:
+    descp: A nonnegative, real-valued function that quantifies the closeness of two
+      tensors. If not specified, nn.PairwiseDistance will be used.
+    default: None
+    dtype:
+    - callable, optional
+  margin:
+    descp: A nonnegative margin representing the minimum difference between the positive
+      and negative distances required for the loss to be 0. Larger margins penalize
+      cases where the negative examples are not distant enough from the anchors, relative
+      to the positives.
+    default: '111.'
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+  swap:
+    descp: Whether to use the distance swap described in the paper Learning shallow
+      convolutional feature descriptors with triplet losses by V. Balntas, E. Riba
+      et al. If True, and if the positive example is closer to the negative example
+      than the anchor is, swaps the positive example and the anchor in the loss computation.
+    default: False.
+    dtype:
+    - bool
+  reduction:
+    descp: 'Specifies the (optional) reduction to apply to the output: none | mean
+      | sum. none: no reduction will be applied, mean: the sum of the output will
+      be divided by the number of elements in the output, sum: the output will be
+      summed.'
+    default: mean
+    dtype:
+    - str
+    enum: null
+descp: "Creates a criterion that measures the triplet loss given input tensors aaa,\
+  \ ppp, and nnn (representing anchor, positive, and negative examples, respectively),\
+  \ and a nonnegative, real-valued function (\u201Cdistance function\u201D) used to\
+  \ compute the relationship between the anchor and positive example (\u201Cpositive\
+  \ distance\u201D) and the anchor and negative example (\u201Cnegative distance\u201D\
+  )."
+inputs:
+  optional:
+  - distance_function
+  - margin
+  - swap
+  - reduction
+  required: []

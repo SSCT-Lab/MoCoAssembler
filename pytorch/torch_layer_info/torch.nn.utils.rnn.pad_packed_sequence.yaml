@@ -1,0 +1,36 @@
+api: torch.nn.utils.rnn.pad_packed_sequence(sequence, batch_first=False, padding_value=0.0,
+  total_length=None)
+constraints:
+  sequence:
+    descp: batch to pad
+    dtype:
+    - packedsequence
+  batch_first:
+    descp: if True, the output will be in B x T x * format.
+    dtype:
+    - bool
+  padding_value:
+    descp: values for padded elements.
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+  total_length:
+    descp: if not None, the output will be padded to have length total_length. This
+      method will throw ValueError if total_length is less than the max sequence length
+      in sequence.
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+descp: Pads a packed batch of variable length sequences.
+inputs:
+  optional:
+  - batch_first
+  - padding_value
+  - total_length
+  required:
+  - sequence

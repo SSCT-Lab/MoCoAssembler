@@ -1,0 +1,26 @@
+api: torch.nn.Unflatten(class , dim, unflattened_size)
+constraints:
+  dim:
+    descp: Dimension to be unflattened
+    dtype:
+    - int
+    - str
+    structure:
+    - single
+    shape: null
+    range: null
+    enum: null
+  unflattened_size:
+    descp: New shape of the unflattened dimension
+    dtype:
+    - union[torch.size, tuple, list, namedshape]
+    - union[torch.size, tuple, list, namedshape]
+    structure:
+    - tuple
+    - list
+descp: Unflattens a tensor dim expanding it to a desired shape. For use with Sequential.
+inputs:
+  optional: []
+  required:
+  - dim
+  - unflattened_size

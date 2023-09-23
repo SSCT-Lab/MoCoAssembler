@@ -2,16 +2,16 @@ api: torch.nn.Hardtanh(min_val=- 1.0, max_val=1.0, inplace=False, min_value=None
   max_value=None)
 constraints:
   inplace:
-    default: false
     descp: can optionally do the operation in-place.
+    default: false
     dtype: torch.bool
   max_val:
-    default: 1.0
     descp: maximum value of the linear region range.
+    default: 1.0
     dtype: torch.float
   min_val:
-    default: -1.0
     descp: minimum value of the linear region range.
+    default: -1.0
     dtype: torch.float
 descp: Applies the HardTanh function element-wise.
 inputs:

@@ -1,0 +1,22 @@
+api: torch.nn.utils.rnn.unpad_sequence(padded_sequences, lengths, batch_first=False)
+constraints:
+  padded_sequences:
+    descp: padded sequences.
+    dtype:
+    - tensor
+  lengths:
+    descp: length of original (unpadded) sequences.
+    dtype:
+    - tensor
+  batch_first:
+    descp: whether batch dimension first or not.
+    default: False.
+    dtype:
+    - bool
+descp: Unpad padded Tensor into a list of variable length Tensors
+inputs:
+  optional:
+  - batch_first
+  required:
+  - padded_sequences
+  - lengths

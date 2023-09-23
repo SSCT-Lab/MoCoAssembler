@@ -1,0 +1,22 @@
+api: torch.nn.Dropout1d(class , p=0.5, inplace=False)
+constraints:
+  p:
+    descp: probability of an element to be zero-ed.
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+  inplace:
+    descp: If set to True, will do this operation in-place
+    dtype:
+    - bool
+descp: Randomly zero out entire channels (a channel is a 1D feature map, e.g., the
+  jjj-th channel of the iii-th sample in the batched input is a 1D tensor input[i,j]\text{input}[i,
+  j]input[i,j]). Each channel will be zeroed out independently on every forward call
+  with probability p using samples from a Bernoulli distribution.
+inputs:
+  optional:
+  - p
+  - inplace
+  required: []

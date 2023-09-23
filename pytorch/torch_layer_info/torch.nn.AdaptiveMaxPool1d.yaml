@@ -3,17 +3,17 @@ constraints:
   output_size:
     descp: the target output size
     dtype: int
-    range:
-    - 1
-    - 42024
-    shape: 1
     structure:
     - integer
     - tuple
+    shape: 1
+    range:
+    - 1
+    - 42024
   return_indices:
-    default: false
     descp: if True, will return the indices along with the outputs. Useful to pass
       to nn.MaxUnpool1d.
+    default: false
     dtype: torch.bool
 descp: Applies a 1D adaptive max pooling over an input signal composed of several
   input planes.

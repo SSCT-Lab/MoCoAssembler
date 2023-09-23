@@ -1,0 +1,26 @@
+api: torch.nn.utils.weight_norm(module, name='weight', dim=0)
+constraints:
+  module:
+    descp: containing module
+    dtype:
+    - module
+  name:
+    descp: name of weight parameter
+    dtype:
+    - str
+    enum: null
+  dim:
+    descp: dimension over which to compute the norm
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+descp: Applies weight normalization to a parameter in the given module.
+inputs:
+  optional:
+  - name
+  - dim
+  required:
+  - module

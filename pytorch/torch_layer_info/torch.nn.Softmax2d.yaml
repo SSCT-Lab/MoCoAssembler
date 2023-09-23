@@ -1,0 +1,6 @@
+api: torch.nn.Softmax2d(class , *args, **kwargs)
+constraints: {}
+descp: Applies SoftMax over features to each spatial location.
+inputs:
+  optional: []
+  required: []

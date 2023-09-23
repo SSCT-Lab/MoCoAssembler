@@ -1,0 +1,18 @@
+api: torch.nn.utils.skip_init(module_cls, *args, **kwargs)
+constraints:
+  module_cls:
+    descp: Class object; should be a subclass of torch.nn.Module
+  args:
+    descp: "args to pass to the module\u2019s constructor"
+  kwargs:
+    descp: "kwargs to pass to the module\u2019s constructor"
+descp: 'Given a module class object and args / kwargs, instantiates the module without
+  initializing parameters / buffers.  This can be useful if initialization is slow
+  or if custom initialization will be performed, making the default initialization
+  unnecessary. There are some caveats to this, due to the way this function is implemented:'
+inputs:
+  optional: []
+  required:
+  - module_cls
+  - args
+  - kwargs

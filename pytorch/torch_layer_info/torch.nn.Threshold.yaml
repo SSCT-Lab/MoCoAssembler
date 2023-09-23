@@ -1,8 +1,8 @@
 api: torch.nn.Threshold(threshold, value, inplace=False)
 constraints:
   inplace:
-    default: false
     descp: can optionally do the operation in-place.
+    default: false
     dtype: torch.bool
   threshold:
     descp: The value to threshold at
