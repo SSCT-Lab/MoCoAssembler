@@ -1,0 +1,15 @@
+api: torch.nn.PixelShuffle(class , upscale_factor)
+constraints:
+  upscale_factor:
+    descp: factor to increase spatial resolution by
+    structure:
+    - single
+    shape: null
+    range: null
+descp: "Rearranges elements in a tensor of shape (\u2217,C\xD7r2,H,W)(*, C \\times\
+  \ r^2, H, W)(\u2217,C\xD7r2,H,W) to a tensor of shape (\u2217,C,H\xD7r,W\xD7r)(*,\
+  \ C, H \\times r, W \\times r)(\u2217,C,H\xD7r,W\xD7r), where r is an upscale factor."
+inputs:
+  optional: []
+  required:
+  - upscale_factor

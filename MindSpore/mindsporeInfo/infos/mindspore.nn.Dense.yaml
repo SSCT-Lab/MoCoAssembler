@@ -1,0 +1,82 @@
+api: mindspore.nn.Dense(in_channels, out_channels, weight_init=None, bias_init=None,
+  has_bias=True, activation=None)
+descp: The dense connected layer.
+constraints:
+  in_channels:
+    descp: in_channels (int) – The number of channels in the input space.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  out_channels:
+    descp: out_channels (int) – The number of channels in the output space.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  weight_init:
+    descp: 'weight_init (Union[Tensor, str, Initializer, numbers.Number]) – The trainable
+      weight_init parameter. The dtype is same as x. The values of str refer to the
+      function initializer. Default: None , weight will be initialized using HeUniform.'
+    default: None
+    dtype:
+    - str
+    enum:
+    - None
+  bias_init:
+    descp: 'bias_init (Union[Tensor, str, Initializer, numbers.Number]) – The trainable
+      bias_init parameter. The dtype is same as x. The values of str refer to the
+      function initializer. Default: None , bias will be initialized using Uniform.'
+    default: None
+    dtype:
+    - str
+    enum:
+    - None
+  has_bias:
+    descp: 'has_bias (bool) – Specifies whether the layer uses a bias vector (text{bias}).
+      Default: True.'
+    default: True
+    dtype:
+    - bool
+  activation:
+    descp: 'activation (Union[str, Cell, Primitive, None]) – activate function applied
+      to the output of the fully connected layer. Both activation name, e.g. ‘relu’,
+      and mindspore activation function, e.g. mindspore.ops.ReLU(), are supported.
+      Default: None .'
+    default: None
+    dtype:
+    - str
+    enum:
+    - None
+    - softmin
+    - softmax
+    - softmax2d
+    - logsoftmax
+    - relu
+    - relu6
+    - rrelu
+    - silu
+    - tanh
+    - tanhshrink
+    - hardtanh
+    - gelu
+    - fast_gelu
+    - elu
+    - sigmoid
+    - softsign
+    - prelu
+    - leakyrelu
+    - hswish
+    - hsigmoid
+    - logsigmoid
+    - softshrink
+    - hshrink
+    - threshold
+    - mish
+inputs:
+  optional: []
+  required: []

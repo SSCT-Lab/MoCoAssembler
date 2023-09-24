@@ -1,0 +1,62 @@
+api: mindspore.nn.Embedding(vocab_size, embedding_size, use_one_hot=False, embedding_table='normal',
+  dtype=mstype.float32, padding_idx=None)
+descp: A simple lookup table that stores embeddings of a fixed dictionary and size.
+constraints:
+  vocab_size:
+    descp: vocab_size (int) – Size of the dictionary of embeddings.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  embedding_size:
+    descp: embedding_size (int) – The size of each embedding vector.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  use_one_hot:
+    descp: 'use_one_hot (bool) – Specifies whether to apply one_hot encoding form.
+      Default: False .'
+    default: False
+    dtype:
+    - bool
+  embedding_table:
+    descp: 'embedding_table (Union[Tensor, str, Initializer, numbers.Number]) – Initializer
+      for the embedding_table. Refer to class initializer for the values of string
+      when a string is specified. Default: ''normal'' .'
+    default: normal
+    dtype:
+    - str
+    enum:
+    - normal
+  dtype:
+    descp: 'dtype (mindspore.dtype) – Data type of x. Default: mstype.float32 .'
+    default: mstype.float32
+    dtype:
+    - mindspore.dtype
+  padding_idx:
+    descp: 'padding_idx (int, None) – When the padding_idx encounters index, the output
+      embedding vector of this index will be initialized to zero. Default: None .
+      The feature is inactivated.'
+    default: None
+    dtype:
+    - int
+    - str
+    structure:
+    - single
+    range: null
+    enum:
+    - None
+inputs:
+  optional:
+  - use_one_hot
+  - embedding_table
+  - dtype
+  - padding_idx
+  required:
+  - vocab_size
+  - embedding_size

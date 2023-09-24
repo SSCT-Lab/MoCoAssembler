@@ -1,0 +1,47 @@
+api: mindspore.nn.LPPool1d(norm_type, kernel_size, stride=None, ceil_mode=False)
+descp: Applying 1D LPPooling operation on an input Tensor can be regarded as forming
+  a 1D input plane.
+constraints:
+  norm_type:
+    descp: 'norm_type (Union[int, float]) – Type of normalization, represents p in
+      the formula, can not be 0.  if p = 1, the result is the sum of the elements
+      within the pooling kernel(proportional to average pooling). if p = (infty),
+      the result is the result of maximum pooling.  '
+    default: null
+    dtype:
+    - int
+    - float
+    structure:
+    - single
+    range: null
+  kernel_size:
+    descp: kernel_size (int) – The size of kernel window.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  stride:
+    descp: 'stride (int) – The distance of kernel moving, an int number that represents
+      the width of movement is stride, if the value is None, the default value kernel_size
+      is used. Default: None .'
+    default: None
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  ceil_mode:
+    descp: 'ceil_mode (bool) – Whether to use ceil or floor to calculate output shape.
+      Default: False .'
+    default: False
+    dtype:
+    - bool
+inputs:
+  optional:
+  - stride
+  - ceil_mode
+  required:
+  - norm_type
+  - kernel_size

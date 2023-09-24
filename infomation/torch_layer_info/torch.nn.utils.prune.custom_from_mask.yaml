@@ -1,0 +1,24 @@
+api: torch.nn.utils.prune.custom_from_mask(module, name, mask)
+constraints:
+  module:
+    descp: module containing the tensor to prune
+    dtype:
+    - nn.module
+  name:
+    descp: parameter name within module on which pruning will act.
+    dtype:
+    - str
+    enum: null
+  mask:
+    descp: binary mask to be applied to the parameter.
+    dtype:
+    - tensor
+descp: 'Prunes tensor corresponding to parameter called name in module by applying
+  the pre-computed mask in mask. Modifies module in place (and also return the modified
+  module) by:'
+inputs:
+  optional: []
+  required:
+  - module
+  - name
+  - mask

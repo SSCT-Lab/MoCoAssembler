@@ -1,0 +1,25 @@
+constraints:
+  activation:
+    default: None
+    descp: Activation function, such as tf.nn.relu, or string name of built-in activation
+      function, such as "relu".
+    dtype: tf.string
+    enum:
+    - softmax
+    - elu
+    - selu
+    - softplus
+    - softsign
+    - swish
+    - relu
+    - gelu
+    - tanh
+    - sigmoid
+    - exponential
+    - hard_sigmoid
+    - linear
+    - serialize
+    - deserialize
+descp: Applies an activation function to an output.
+required:
+- activation

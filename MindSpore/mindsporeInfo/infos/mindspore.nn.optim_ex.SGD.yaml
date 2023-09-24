@@ -1,0 +1,59 @@
+api: mindspore.nn.optim_ex.SGD(params, lr, momentum=0, dampening=0, weight_decay=0,
+  nesterov=False, *, maximize=False)
+descp: Stochastic Gradient Descent optimizer.
+constraints:
+  params:
+    descp: params (Union[list(Parameter), list(dict)]) – list of parameters to optimize
+      or dicts defining parameter groups.
+    default: null
+    dtype:
+    - union[list(parameter), list(dict)]
+    structure:
+    - list
+  lr:
+    descp: lr (Union[int, float, Tensor]) – learning rate.
+    default: null
+    dtype:
+    - int
+    - float
+    structure:
+    - single
+    range: null
+  momentum:
+    descp: 'momentum (Union[int, float], optional) – momentum factor. Default: 0.'
+    default: 0
+    dtype:
+    - int
+    - float
+    structure:
+    - single
+    range: null
+  weight_decay:
+    descp: 'weight_decay (float, optional) – weight decay (L2 penalty). Default: 0.'
+    default: 0
+    dtype:
+    - float
+  dampening:
+    descp: 'dampening (Union[int, float], optional) – dampening for momentum. Default:
+      0.'
+    default: 0
+    dtype:
+    - int
+    - float
+    structure:
+    - single
+    range: null
+  nesterov:
+    descp: 'nesterov (bool, optional) – enables Nesterov momentum. Default: False.'
+    default: False
+    dtype:
+    - bool
+inputs:
+  optional:
+  - momentum
+  - weight_decay
+  - dampening
+  - nesterov
+  required:
+  - params
+  - lr

@@ -1,0 +1,22 @@
+api: mindspore.nn.PReLU(channel=1, w=0.25)
+descp: PReLU activation function.
+constraints:
+  channel:
+    descp: 'channel (int) – The elements number of parameter (w). It could be an int,
+      and the value is 1 or the channels number of input tensor x. Default: 1 .'
+    default: 1
+    dtype:
+    - int
+    structure:
+    - single
+    range: [1, ]
+  w:
+    descp: 'w (Union[float, list, Tensor]) – The initial value of parameter. It could
+      be a float, a float list or a tensor has the same dtype as the input tensor
+      x. Default: 0.25 .'
+    default: 0.25
+    dtype:
+    - float
+inputs:
+  optional: []
+  required: []

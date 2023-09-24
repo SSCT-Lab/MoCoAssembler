@@ -1,0 +1,28 @@
+api: torch.nn.utils.rnn.pad_sequence(sequences, batch_first=False, padding_value=0.0)
+constraints:
+  sequences:
+    descp: list of variable length sequences.
+    dtype:
+    - list[tensor]
+    structure:
+    - list
+  batch_first:
+    descp: output will be in B x T x * if True, or in T x B x * otherwise.
+    default: False.
+    dtype:
+    - bool
+  padding_value:
+    descp: value for padded elements.
+    default: '0.'
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+descp: Pad a list of variable length Tensors with padding_value
+inputs:
+  optional:
+  - batch_first
+  - padding_value
+  required:
+  - sequences

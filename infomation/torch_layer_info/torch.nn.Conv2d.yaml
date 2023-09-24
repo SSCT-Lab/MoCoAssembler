@@ -1,0 +1,105 @@
+api: torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0,
+  dilation=1, groups=1, bias=True, padding_mode='zeros', device=None, dtype=None)
+constraints:
+  bias:
+    descp: If True, adds a learnable bias to the output.
+    default: true
+    dtype: torch.bool
+  dilation:
+    descp: Spacing between kernel elements.
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    - 1
+    - 6
+  groups:
+    descp: Number of blocked connections from input channels to output channels.
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 3
+  in_channels:
+    descp: Number of channels in the input image
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 512
+  kernel_size:
+    descp: Size of the convolving kernel
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    - 1
+    - 8
+  out_channels:
+    descp: Number of channels produced by the convolution
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 42024
+  padding:
+    descp: Padding added to all four sides of the input.
+    default: 0
+    dtype:
+    - int
+    - torch.string
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    - 1
+    - 8
+    enum:
+    - same
+    - valid
+  padding_mode:
+    descp: zeros, reflect, replicate or circular.
+    default: zeros
+    dtype: torch.string
+    enum:
+    - zeros
+    - reflect
+    - replicate
+    - circular
+  stride:
+    descp: Stride of the convolution.
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    shape: 2
+    range:
+    - 1
+    - 4
+descp: Applies a 2D convolution over an input signal composed of several input planes.
+inputs:
+  optional:
+  - stride
+  - padding
+  - dilation
+  - groups
+  - bias
+  - padding_mode
+  required:
+  - in_channels
+  - out_channels
+  - kernel_size

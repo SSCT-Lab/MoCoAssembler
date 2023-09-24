@@ -1,0 +1,27 @@
+constraints:
+  cropping:
+    default: ((0, 0), (0, 0))
+    descp: Int, or tuple of 2 ints, or tuple of 2 tuples of 2 ints.
+    dtype: int
+    range:
+    - 0
+    - 8
+    shape: 2
+    structure:
+    - integer
+    - tuple
+    - tuple_of_tuples
+  data_format:
+    default: None
+    descp: A string, one of channels_last (default) or channels_first. The ordering
+      of the dimensions in the inputs. channels_last corresponds to inputs with shape
+      (batch_size, height, width, channels) while channels_first corresponds to inputs
+      with shape (batch_size, channels, height, width). When unspecified, uses image_data_format
+      value found in your Keras config file at ~/.keras/keras.json (if exists) else
+      'channels_last'. Defaults to 'channels_last'.
+    dtype: tf.string
+    enum:
+    - channels_first
+    - channels_last
+descp: Cropping layer for 2D input (e.g. picture).
+required: []

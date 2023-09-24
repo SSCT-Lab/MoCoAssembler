@@ -1,0 +1,31 @@
+api: torch.nn.Linear(in_features, out_features, bias=True, device=None, dtype=None)
+constraints:
+  bias:
+    descp: If set to False, the layer will not learn an additive bias.
+    default: true
+    dtype: torch.bool
+  in_features:
+    descp: size of each input sample
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 256
+  out_features:
+    descp: size of each output sample
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 2
+descp: 'Applies a linear transformation to the incoming data: y=xAT+by = xA^T + by=xAT+b'
+inputs:
+  optional:
+  - bias
+  required:
+  - in_features
+  - out_features

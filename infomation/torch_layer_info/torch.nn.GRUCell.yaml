@@ -1,0 +1,31 @@
+api: torch.nn.GRUCell(input_size, hidden_size, bias=True, device=None, dtype=None)
+constraints:
+  bias:
+    descp: If False, then the layer does not use bias weights True
+    default: true
+    dtype: torch.bool
+  hidden_size:
+    descp: The number of features in the hidden state
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 256
+  input_size:
+    descp: The number of expected features in the input
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 1
+descp: A gated recurrent unit (GRU) cell
+inputs:
+  optional:
+  - bias
+  required:
+  - input_size
+  - hidden_size

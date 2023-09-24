@@ -1,0 +1,23 @@
+api: torch.nn.UpsamplingNearest2d(size=None, scale_factor=None)
+constraints:
+  scale_factor:
+    descp: multiplier for spatial size.
+    dtype: torch.float
+  size:
+    descp: output spatial sizes
+    default: None
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    - 1
+    - 8
+descp: Applies a 2D nearest neighbor upsampling to an input signal composed of several
+  input channels.
+inputs:
+  optional:
+  - size
+  - scale_factor
+  required: []

@@ -1,0 +1,44 @@
+api: mindspore.nn.CrossEntropyLoss(weight=None, ignore_index=- 100, reduction='mean',
+  label_smoothing=0.0)
+descp: The cross entropy loss between input and target.
+constraints:
+  weight:
+    descp: 'weight (Tensor) – The rescaling weight to each class. If the value is
+      not None, the shape is ((C,)). The data type only supports float32 or float16.
+      Default: None .'
+    default: None
+    dtype:
+    - tensor
+  ignore_index:
+    descp: 'ignore_index (int) – Specifies a target value that is ignored (typically
+      for padding value) and does not contribute to the gradient. Default: -100 .'
+    default: -100
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  reduction:
+    descp: 'reduction (str) – Apply specific reduction method to the output: ''none''
+      , ''mean'' , or ''sum'' . Default: ''mean'' .'
+    default: mean
+    dtype:
+    - str
+    enum:
+    - none
+    - mean
+    - sum
+  label_smoothing:
+    descp: 'label_smoothing (float) – Label smoothing values, a regularization tool
+      used to prevent the model from overfitting when calculating Loss. The value
+      range is [0.0, 1.0]. Default value: 0.0 .'
+    default: 0.0
+    dtype:
+    - float
+inputs:
+  optional:
+  - weight
+  - ignore_index
+  - reduction
+  - label_smoothing
+  required: []

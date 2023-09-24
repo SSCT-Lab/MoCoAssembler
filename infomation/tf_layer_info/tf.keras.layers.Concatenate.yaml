@@ -1,0 +1,7 @@
+constraints:
+  axis:
+    default: -1
+    descp: Axis along which to concatenate.
+    dtype: int
+descp: Layer that concatenates a list of inputs.
+required: []

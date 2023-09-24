@@ -1,0 +1,20 @@
+api: mindspore.nn.AdaptiveAvgPool2d(output_size)
+descp: This operator applies a 2D adaptive average pooling to an input signal composed
+  of multiple input planes.
+constraints:
+  output_size:
+    descp: output_size (Union[int, tuple]) – The target output size is H x W. output_size
+      can be a tuple consisted of int type H and W, or a single H for H x H, or None.
+      If it is None, it means the output size is the same as the input size.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    - tuple
+    shape: 2
+    range: null
+inputs:
+  optional: []
+  required:
+  - output_size

@@ -1,0 +1,31 @@
+api: 'mindspore.nn.LSTMCell(input_size: int, hidden_size: int, has_bias: bool = True)'
+descp: A LSTM (Long Short-Term Memory) cell.
+constraints:
+  input_size:
+    descp: input_size (int) – Number of features of input.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  hidden_size:
+    descp: hidden_size (int) – Number of features of hidden layer.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  has_bias:
+    descp: 'has_bias (bool) – Whether the cell has bias b_ih and b_hh. Default: True
+      .'
+    default: True
+    dtype:
+    - bool
+inputs:
+  optional:
+  - has_bias
+  required:
+  - input_size
+  - hidden_size

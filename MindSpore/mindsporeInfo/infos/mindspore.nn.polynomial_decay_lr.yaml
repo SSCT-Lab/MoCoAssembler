@@ -1,0 +1,59 @@
+api: mindspore.nn.polynomial_decay_lr(learning_rate, end_learning_rate, total_step,
+  step_per_epoch, decay_epoch, power, update_decay_epoch=False)
+descp: Calculates learning rate base on polynomial decay function.
+constraints:
+  learning_rate:
+    descp: learning_rate (float) – The initial value of learning rate.
+    default: null
+    dtype:
+    - float
+  end_learning_rate:
+    descp: end_learning_rate (float) – The end value of learning rate.
+    default: null
+    dtype:
+    - float
+  total_step:
+    descp: total_step (int) – The total number of steps.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  step_per_epoch:
+    descp: step_per_epoch (int) – The number of steps in per epoch.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  decay_epoch:
+    descp: decay_epoch (int) – Number of epochs to decay over.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  power:
+    descp: power (float) – The power of polynomial. It must be greater than 0.
+    default: null
+    dtype:
+    - float
+  update_decay_epoch:
+    descp: 'update_decay_epoch (bool) – If true, update decay_epoch. Default: False
+      .'
+    default: False
+    dtype:
+    - bool
+inputs:
+  optional:
+  - update_decay_epoch
+  required:
+  - learning_rate
+  - end_learning_rate
+  - total_step
+  - step_per_epoch
+  - decay_epoch
+  - power

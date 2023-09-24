@@ -1,0 +1,30 @@
+api: jittor.nn.Conv1d_sp(self, inchannels, outchannels, kernel_size=1, bias=True)
+constraints:
+  bias:
+    default: 'True'
+    dtype:
+    - bool
+  inchannels:
+    default: no default
+    dtype:
+    - int
+  kernel_size:
+    default: '1'
+    dtype:
+    - int
+    range:
+    - '1'
+  outchannels:
+    default: no default
+    dtype:
+    - int
+descp: no description
+extra_para: 0
+inputs:
+  optional:
+  - kernel_size
+  - bias
+  required:
+  - inchannels
+  - outchannels
+kind: layer

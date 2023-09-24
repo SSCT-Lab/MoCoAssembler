@@ -1,0 +1,40 @@
+api: mindspore.nn.warmup_lr(learning_rate, total_step, step_per_epoch, warmup_epoch)
+descp: Gets learning rate warming up.
+constraints:
+  learning_rate:
+    descp: learning_rate (float) – The initial value of learning rate.
+    default: null
+    dtype:
+    - float
+  total_step:
+    descp: total_step (int) – The total number of steps.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  step_per_epoch:
+    descp: step_per_epoch (int) – The number of steps in per epoch.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  warmup_epoch:
+    descp: warmup_epoch (int) – A value that determines the epochs of the learning
+      rate is warmed up.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+inputs:
+  optional: []
+  required:
+  - learning_rate
+  - total_step
+  - step_per_epoch
+  - warmup_epoch

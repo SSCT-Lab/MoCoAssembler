@@ -1,0 +1,9 @@
+api: torch.nn.utils.rnn.unpack_sequence(packed_sequences)
+constraints:
+  packed_sequences:
+    descp: A PackedSequence object.
+descp: Unpacks PackedSequence into a list of variable length Tensors
+inputs:
+  optional: []
+  required:
+  - packed_sequences

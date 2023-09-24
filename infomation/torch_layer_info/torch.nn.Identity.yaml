@@ -1,0 +1,16 @@
+api: torch.nn.Identity(class , *args, **kwargs)
+constraints:
+  args:
+    descp: any argument (unused)
+    dtype:
+    - any
+  kwargs:
+    descp: any keyword argument (unused)
+    dtype:
+    - any
+descp: A placeholder identity operator that is argument-insensitive.
+inputs:
+  optional: []
+  required:
+  - args
+  - kwargs

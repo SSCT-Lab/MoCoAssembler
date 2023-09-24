@@ -1,0 +1,22 @@
+constraints:
+  data_format:
+    default: None
+    descp: A string, one of channels_last (default) or channels_first. The ordering
+      of the dimensions in the inputs. channels_last corresponds to inputs with shape
+      (batch, height, width, channels) while channels_first corresponds to inputs
+      with shape (batch, channels, height, width). It defaults to the image_data_format
+      value found in your Keras config file at ~/.keras/keras.json. If you never set
+      it, then it will be "channels_last".
+    dtype: tf.string
+    enum:
+    - channels_first
+    - channels_last
+  keepdims:
+    default: false
+    descp: A boolean, whether to keep the spatial dimensions or not. If keepdims is
+      False (default), the rank of the tensor is reduced for spatial dimensions. If
+      keepdims is True, the spatial dimensions are retained with length 1. The behavior
+      is the same as for tf.reduce_max or np.max.
+    dtype: tf.bool
+descp: Global max pooling operation for spatial data.
+required: []

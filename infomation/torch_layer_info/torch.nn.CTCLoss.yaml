@@ -1,0 +1,32 @@
+api: torch.nn.CTCLoss(class , blank=0, reduction='mean', zero_infinity=False)
+constraints:
+  blank:
+    descp: blank label.
+    default: '00.'
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+  reduction:
+    descp: 'Specifies the reduction to apply to the output: none | mean | sum. none:
+      no reduction will be applied, mean: the output losses will be divided by the
+      target lengths and then the mean over the batch is taken.'
+    default: mean
+    dtype:
+    - str
+    enum: null
+  zero_infinity:
+    descp: Whether to zero infinite losses and the associated gradients.
+    default: False Infinite losses mainly occur when the inputs are too short to be
+      aligned to the targets.
+    dtype:
+    - bool
+descp: The Connectionist Temporal Classification loss.
+inputs:
+  optional:
+  - blank
+  - reduction
+  - zero_infinity
+  required: []

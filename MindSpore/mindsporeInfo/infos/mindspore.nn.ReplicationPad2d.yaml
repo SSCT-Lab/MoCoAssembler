@@ -1,0 +1,20 @@
+api: mindspore.nn.ReplicationPad2d(padding)
+descp: Pad on HW dimension of input x according to padding.
+constraints:
+  padding:
+    descp: 'padding (union[int, tuple]) – The padding size to pad the last two dimension
+      of x .  If padding is an integer, all directions will be padded with the same
+      size. If padding is a tuple, uses ((pad_{left}, pad_{right}, pad_{up}, pad_{down}))
+      to pad.  '
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    - tuple
+    shape: 4
+    range: null
+inputs:
+  optional: []
+  required:
+  - padding

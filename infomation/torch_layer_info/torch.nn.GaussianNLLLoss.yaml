@@ -1,0 +1,30 @@
+api: torch.nn.GaussianNLLLoss(class , *, full=False, eps=1e-06, reduction='mean')
+constraints:
+  full:
+    descp: include the constant term in the loss calculation.
+    default: False.
+    dtype:
+    - bool
+  eps:
+    descp: value used to clamp var (see note below), for stability.
+    default: 1e-6.
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+  reduction:
+    descp: 'specifies the reduction to apply to the output:none | mean | sum. none:
+      no reduction will be applied, mean: the output is the average of all batch member
+      losses, sum: the output is the sum of all batch member losses.'
+    default: mean.
+    dtype:
+    - str
+    enum: null
+descp: Gaussian negative log likelihood loss.
+inputs:
+  optional:
+  - full
+  - eps
+  - reduction
+  required: []

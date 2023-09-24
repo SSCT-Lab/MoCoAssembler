@@ -1,0 +1,70 @@
+api: mindspore.nn.AvgPool1d(kernel_size=1, stride=1, pad_mode='valid', padding=0,
+  ceil_mode=False, count_include_pad=True)
+descp: Applies a 1D average pooling over an input Tensor which can be regarded as
+  a composition of 1D input planes.
+constraints:
+  kernel_size:
+    descp: 'kernel_size (int) – The size of kernel window used to take the average value, Default: 1 .'
+    default: 1
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  stride:
+    descp: 'stride (int) – The distance of kernel moving, an int number that represents the width of movement is strides, Default: 1 .'
+    default: 1
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  pad_mode:
+    descp: 'pad_mode (str) – "pad" , case insensitive. Default: "valid" .  same: The
+      width of the output is the same as the value after the input is divided by stride.
+      valid: Returns the output obtained by effective calculation without padding.
+      The excess pixels that do not meet the calculation will be discarded. pad: Performs
+      padding on the input. Adds padding size of zeros to both ends of the input.
+      If this mode is set, padding must be greater than or equal to 0 .  '
+    default: valid
+    dtype:
+    - str
+    enum:
+    - same
+    - valid
+    - pad
+  padding:
+    descp: 'padding (Union(int, tuple[int], list[int])) – Pooling padding value, only
+      ‘pad’ mode can be set to non-zero. Default: 0 . padding can only be an integer
+      or a tuple/list containing a single integer, in which case padding times or
+      padding[0] times are padded on both sides of the input.'
+    default: 0
+    dtype:
+    - int
+    structure:
+    - list
+    - single
+    - tuple
+    shape: 1
+    range: null
+  ceil_mode:
+    descp: 'ceil_mode (bool) – If True , use ceil to compute the output shape instead
+      of floor. Default: False .'
+    default: False
+    dtype:
+    - bool
+  count_include_pad:
+    descp: 'count_include_pad (bool) – If True , averaging calculation will include
+      the zero-padding. Default: True .'
+    default: True
+    dtype:
+    - bool
+inputs:
+  optional:
+  - kernel_size
+  - stride
+  - pad_mode
+  - padding
+  - ceil_mode
+  - count_include_pad
+  required: []

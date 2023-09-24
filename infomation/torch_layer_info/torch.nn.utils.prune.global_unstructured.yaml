@@ -1,0 +1,39 @@
+api: torch.nn.utils.prune.global_unstructured(parameters, pruning_method, importance_scores=None,
+  **kwargs)
+constraints:
+  parameters:
+    descp: parameters of the model to prune in a global fashion, i.e. by aggregating
+      all weights prior to deciding which ones to prune. module must be of type nn.Module,
+      and name must be a string.
+    dtype:
+    - iterable of (module, name) tuples
+    - iterable of (module, name) tuples
+    structure:
+    - tuple
+  pruning_method:
+    descp: a valid pruning function from this module, or a custom one implemented
+      by the user that satisfies the implementation guidelines and has PRUNING_TYPE=unstructured.
+    dtype:
+    - function
+  importance_scores:
+    descp: "a dictionary mapping (module, name) tuples to the corresponding parameter\u2019\
+      s importance scores tensor. The tensor should be the same shape as the parameter,\
+      \ and is used for computing mask for pruning. If unspecified or None, the parameter\
+      \ will be used in place of its importance scores."
+    dtype: null
+    structure:
+    - dict
+  kwargs:
+    descp: 'other keyword arguments such as: amount (int or float): quantity of parameters
+      to prune across the specified parameters. If float, should be between 0.0 and
+      1.0 and represent the fraction of parameters to prune. If int, it represents
+      the absolute number of parameters to prune.'
+descp: 'Globally prunes tensors corresponding to all parameters in parameters by applying
+  the specified pruning_method. Modifies modules in place by:'
+inputs:
+  optional: []
+  required:
+  - parameters
+  - pruning_method
+  - importance_scores
+  - kwargs

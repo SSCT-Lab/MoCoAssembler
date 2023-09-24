@@ -1,0 +1,43 @@
+api: 'mindspore.nn.LARS(optimizer, epsilon=1e-05, coefficient=0.001, use_clip=False,
+  lars_filter=lambda x: ...)'
+descp: Implements the LARS algorithm.
+constraints:
+  optimizer:
+    descp: optimizer (mindspore.nn.Optimizer) – MindSpore optimizer for which to wrap
+      and modify gradients.
+    default: null
+    dtype:
+    - mindspore.nn.optimizer
+  epsilon:
+    descp: 'epsilon (float) – Term added to the denominator to improve numerical stability.
+      Default: 1e-05 .'
+    default: 1e-05
+    dtype:
+    - float
+  coefficient:
+    descp: 'coefficient (float) – Trust coefficient for calculating the local learning
+      rate. Default: 0.001 .'
+    default: 0.001
+    dtype:
+    - float
+  use_clip:
+    descp: 'use_clip (bool) – Whether to use clip operation for calculating the local
+      learning rate. Default: False .'
+    default: False
+    dtype:
+    - bool
+  lars_filter:
+    descp: 'lars_filter (Function) – A function to determine which of the network
+      parameters to use LARS algorithm. Default: lambda x: ‘LayerNorm’ not in x.name
+      and ‘bias’ not in x.name.'
+    default: null
+    dtype:
+    - function
+inputs:
+  optional:
+  - optimizer
+  - epsilon
+  - coefficient
+  - use_clip
+  - lars_filter
+  required: []

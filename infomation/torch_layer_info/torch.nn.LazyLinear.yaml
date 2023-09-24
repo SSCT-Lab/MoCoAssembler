@@ -1,0 +1,21 @@
+api: torch.nn.LazyLinear(class , out_features, bias=True, device=None, dtype=None)
+constraints:
+  out_features:
+    descp: size of each output sample
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+  bias:
+    descp: If set to False, the layer will not learn an additive bias.
+    default: 'True'
+    dtype:
+    - uninitializedparameter
+descp: A torch.nn.Linear module where in_features is inferred.
+inputs:
+  optional: []
+  required:
+  - out_features
+  - bias

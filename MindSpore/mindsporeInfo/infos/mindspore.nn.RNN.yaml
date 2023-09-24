@@ -1,0 +1,71 @@
+api: mindspore.nn.RNN(*args, **kwargs)
+descp: Stacked Elman RNN layers.
+constraints:
+  input_size:
+    descp: input_size (int) – Number of features of input.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  hidden_size:
+    descp: hidden_size (int) – Number of features of hidden layer.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  num_layers:
+    descp: 'num_layers (int) – Number of layers of stacked RNN. Default: 1 .'
+    default: 1
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  nonlinearity:
+    descp: 'nonlinearity (str) – The non-linearity to use. Can be either ''tanh''
+      or ''relu''. Default: ''tanh'''
+    default: tanh
+    dtype:
+    - str
+    enum:
+    - tanh
+    - relu
+  has_bias:
+    descp: 'has_bias (bool) – Whether the cell has bias b_ih and b_hh. Default: True.'
+    default: True
+    dtype:
+    - bool
+  batch_first:
+    descp: 'batch_first (bool) – Specifies whether the first dimension of input x
+      is batch_size. Default: False .'
+    default: False
+    dtype:
+    - bool
+  dropout:
+    descp: dropout (float) – If not 0.0, append Dropout layer on the outputs of each
+      RNN layer except the last layer. Default 0.0 . The range of dropout is [0.0,
+      1.0).
+    default: 0.0
+    dtype:
+    - float
+  bidirectional:
+    descp: 'bidirectional (bool) – Specifies whether it is a bidirectional RNN, num_directions=2
+      if bidirectional=True otherwise 1. Default: False .'
+    default: False
+    dtype:
+    - bool
+inputs:
+  optional:
+  - num_layers
+  - nonlinearity
+  - has_bias
+  - batch_first
+  - dropout
+  - bidirectional
+  required:
+  - input_size
+  - hidden_size

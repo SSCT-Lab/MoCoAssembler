@@ -1,0 +1,25 @@
+api: torch.nn.AdaptiveMaxPool3d(output_size, return_indices=False)
+constraints:
+  output_size:
+    descp: the target output size of the image of the form int, or None which means
+      the size will be the same as that of the input.
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 3
+    range:
+    - 1
+    - 42024
+  return_indices:
+    descp: if True, will return the indices along with the outputs. Useful to pass
+      to nn.MaxUnpool3d.
+    default: false
+    dtype: torch.bool
+descp: Applies a 3D adaptive max pooling over an input signal composed of several
+  input planes.
+inputs:
+  optional:
+  - return_indices
+  required:
+  - output_size

@@ -1,0 +1,45 @@
+api: torch.nn.LPPool2d(norm_type, kernel_size, stride=None, ceil_mode=False)
+check_nan: true
+constraints:
+  ceil_mode:
+    descp: when True, will use
+    default: false
+    dtype: torch.bool
+  kernel_size:
+    descp: the size of the window
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    - 1
+    - 8
+  norm_type:
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 1
+    range:
+    - 1
+    - 8
+  stride:
+    descp: the stride of the window.
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    - 1
+    - 4
+descp: Applies a 2D power-average pooling over an input signal composed of several
+  input planes.
+inputs:
+  optional:
+  - stride
+  - ceil_mode
+  required:
+  - norm_type
+  - kernel_size

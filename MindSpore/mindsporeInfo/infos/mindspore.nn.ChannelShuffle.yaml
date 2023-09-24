@@ -1,0 +1,19 @@
+api: mindspore.nn.ChannelShuffle(groups)
+descp: Divide the channels of Tensor whose shape is \((*, C, H, W)\) into \(g\) groups
+  to obtain a Tensor with shape \((*, C \frac g, g, H, W)\), and transpose along the
+  corresponding axis of \(C\), \(\frac{g}{}\) and \(g\) to restore Tensor to the original
+  shape.
+constraints:
+  groups:
+    descp: groups (int) – Number of groups to divide channels in, must be greater
+      than 0. Refer to (g).
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+inputs:
+  optional: []
+  required:
+  - groups

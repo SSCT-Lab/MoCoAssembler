@@ -1,0 +1,24 @@
+api: torch.nn.Flatten(class , start_dim=1, end_dim=- 1)
+constraints:
+  start_dim:
+    descp: first dim to flatten (default = 1).
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+  end_dim:
+    descp: last dim to flatten (default = -1).
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+descp: Flattens a contiguous range of dims into a tensor. For use with Sequential.
+inputs:
+  optional: []
+  required:
+  - start_dim
+  - end_dim

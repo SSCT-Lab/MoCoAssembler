@@ -1,0 +1,7 @@
+constraints:
+  use_scale:
+    default: true
+    descp: If True, will create a variable to scale the attention scores.
+    dtype: tf.bool
+descp: Additive attention layer, a.k.a. Bahdanau-style attention.
+required: []

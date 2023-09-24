@@ -1,0 +1,42 @@
+api: torch.nn.Upsample(size=None, scale_factor=None, mode='nearest', align_corners=None,
+  recompute_scale_factor=None)
+constraints:
+  align_corners:
+    descp: if True, the corner pixels of the input and output tensors are aligned,
+      and thus preserving the values at those pixels. This only has effect when linear,
+      bilinear, bicubic, or trilinear.
+    default: false
+    dtype: torch.bool
+  mode:
+    descp: 'the upsampling algorithm: one of nearest, linear, bilinear, bicubic and
+      trilinear.'
+    default: nearest
+    dtype: torch.string
+    enum:
+    - nearest
+    - linear
+    - bilinear
+    - bicubic
+    - trilinear
+  scale_factor:
+    descp: multiplier for spatial size. Has to match input size if it is a tuple.
+    dtype: torch.float
+  size:
+    descp: output spatial sizes
+    dtype: int
+    structure:
+    - int
+    - tuple
+    shape: 3
+    range:
+    - 1
+    - 8
+descp: Upsamples a given multi-channel 1D (temporal), 2D (spatial) or 3D (volumetric)
+  data.
+inputs:
+  optional:
+  - size
+  - scale_factor
+  - mode
+  - align_corners
+  required: []

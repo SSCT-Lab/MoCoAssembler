@@ -1,0 +1,22 @@
+api: torch.nn.RReLU(lower=0.125, upper=0.3333333333333333, inplace=False)
+constraints:
+  inplace:
+    descp: can optionally do the operation in-place.
+    default: false
+    dtype: torch.bool
+  lower:
+    descp: lower bound of the uniform distribution.
+    default: 0.125
+    dtype: torch.float
+  upper:
+    descp: upper bound of the uniform distribution.
+    default: 0.3333333333333333
+    dtype: torch.float
+descp: 'Applies the randomized leaky rectified liner unit function, element-wise,
+  as described in the paper:'
+inputs:
+  optional:
+  - lower
+  - upper
+  - inplace
+  required: []

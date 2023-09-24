@@ -1,0 +1,6 @@
+api: mindspore.nn.Softsign
+descp: Softsign activation function.
+constraints: []
+inputs:
+  optional: []
+  required: []

@@ -1,0 +1,27 @@
+api: mindspore.nn.AdaptiveMaxPool2d(output_size, return_indices=False)
+descp: This operator applies a 2D adaptive max pooling to an input signal composed
+  of multiple input planes.
+constraints:
+  output_size:
+    descp: output_size (Union[int, tuple]) – The target output size. output_size can
+      be a tuple ((H, W)), or an int H for ((H, H)). (H) and (W) can be int or None.
+      If it is None, it means the output size is the same as the input size.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    - tuple
+    shape: 2
+    range: null
+  return_indices:
+    descp: 'return_indices (bool) – If return_indices is True , the indices of max
+      value would be output. Default: False .'
+    default: False
+    dtype:
+    - bool
+inputs:
+  optional:
+  - return_indices
+  required:
+  - output_size

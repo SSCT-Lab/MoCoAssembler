@@ -1,0 +1,16 @@
+api: torch.nn.ReflectionPad2d(padding)
+constraints:
+  padding:
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 4
+    range:
+    - 1
+    - 8
+descp: Pads the input tensor using the reflection of the input boundary.
+inputs:
+  optional: []
+  required:
+  - padding

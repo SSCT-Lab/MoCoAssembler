@@ -1,0 +1,9 @@
+api: torch.nn.utils.parameters_to_vector(parameters)
+constraints:
+  parameters:
+    descp: an iterator of Tensors that are the parameters of a model.
+descp: Convert parameters to one vector
+inputs:
+  optional: []
+  required:
+  - parameters

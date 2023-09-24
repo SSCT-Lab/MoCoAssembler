@@ -1,0 +1,24 @@
+api: jittor.nn.PReLU(self, num_parameters=1, init_=0.25)
+constraints:
+  init_:
+    default: '0.25'
+    dtype:
+    - float
+  num_parameters:
+    default: '1'
+    dtype:
+    - int
+descp: "    r''' Applies the element-wise function:\n\n    .. math::\n        \\text{PReLU}(x)\
+  \ =\n        \\begin{cases}\n        x, & \\text{ if } x \\geq 0 \\\\\n        ax,\
+  \ & \\text{ otherwise }\n        \\end{cases}\n\n    :param x: the input var\n \
+  \   :type x: jt.Var\n\n    :param num_parameters: number of :math:`a` to learn,\
+  \ can be either 1 or the number of channels at input. Default: 1\n    :type num_parameters:\
+  \ int, optional\n\n    :param init: the initial value of :math:`a`. Default: 0.25\n\
+  \    :param init: float, optional\n\n    \n'''"
+extra_para: 0
+inputs:
+  optional:
+  - num_parameters
+  - init_
+  required: []
+kind: layer

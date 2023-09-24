@@ -1,0 +1,15 @@
+api: torch.nn.ChannelShuffle(class , groups)
+constraints:
+  groups:
+    descp: number of groups to divide channels in.
+    structure:
+    - single
+    shape: null
+    range: null
+descp: "Divide the channels in a tensor of shape (\u2217,C,H,W)(*, C , H, W)(\u2217\
+  ,C,H,W) into g groups and rearrange them as (\u2217,Cg,g,H,W)(*, C \\frac g, g,\
+  \ H, W)(\u2217,C,g\u200Bg,H,W), while keeping the original tensor shape."
+inputs:
+  optional: []
+  required:
+  - groups

@@ -1,0 +1,22 @@
+constraints:
+  alpha_constraint:
+    default: None
+    descp: Constraint for the weights.
+    dtype: tf.string
+  alpha_initializer:
+    default: zeros
+    descp: Initializer function for the weights.
+    dtype: tf.string
+  alpha_regularizer:
+    default: None
+    descp: Regularizer for the weights.
+    dtype: tf.string
+  shared_axes:
+    default: None
+    descp: The axes along which to share learnable parameters for the activation function.
+      For example, if the incoming feature maps are from a 2D convolution with output
+      shape (batch, height, width, channels), and you wish to share parameters across
+      space so that each filter only has one set of parameters, set shared_axes=[1,
+      2].
+descp: Parametric Rectified Linear Unit.
+required: []

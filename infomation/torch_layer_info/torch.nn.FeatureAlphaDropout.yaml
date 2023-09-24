@@ -1,0 +1,25 @@
+api: torch.nn.FeatureAlphaDropout(class , p=0.5, inplace=False)
+constraints:
+  p:
+    descp: probability of an element to be zeroed.
+    default: '0.5'
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+  inplace:
+    descp: If set to True, will do this operation in-place
+    dtype:
+    - bool
+descp: Randomly masks out entire channels (a channel is a feature map, e.g. the jjj-th
+  channel of the iii-th sample in the batch input is a tensor input[i,j]\text{input}[i,
+  j]input[i,j]) of the input tensor). Instead of setting activations to zero, as in
+  regular Dropout, the activations are set to the negative saturation value of the
+  SELU activation function. More details can be found in the paper Self-Normalizing
+  Neural Networks .
+inputs:
+  optional:
+  - p
+  - inplace
+  required: []

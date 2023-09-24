@@ -1,0 +1,26 @@
+api: torch.nn.CosineSimilarity(class , dim=1, eps=1e-08)
+constraints:
+  dim:
+    descp: Dimension where cosine similarity is computed.
+    default: '1'
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+  eps:
+    descp: Small value to avoid division by zero.
+    default: 1e-8
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+descp: "Returns cosine similarity between x1x_1x1\u200B and x2x_2x2\u200B, computed\
+  \ along dim."
+inputs:
+  optional:
+  - dim
+  - eps
+  required: []

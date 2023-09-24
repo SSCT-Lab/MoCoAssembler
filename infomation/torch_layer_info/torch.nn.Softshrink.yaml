@@ -1,0 +1,10 @@
+api: torch.nn.Softshrink(lambd=0.5)
+constraints:
+  lambd:
+    default: 0.5
+    dtype: torch.float
+descp: 'Applies the soft shrinkage function elementwise:'
+inputs:
+  optional:
+  - lambd
+  required: []

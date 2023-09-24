@@ -1,0 +1,88 @@
+api: mindspore.nn.ASGD(params, learning_rate=0.1, lambd=0.0001, alpha=0.75, t0=1000000.0,
+  weight_decay=0.0)
+descp: Implements Average Stochastic Gradient Descent.
+constraints:
+  params:
+    descp: 'params (Union[list[Parameter], list[dict]]) – Must be list of Parameter
+      or list of dict. When the parameters is a list of dict, the “params”, “lr”,
+      “weight_decay”, “grad_centralization” and “order_params” are the keys can be
+      parsed.  params: Required. Parameters in current group. The value must be a
+      list of Parameter. lr: Optional. If “lr” in the keys, the value of corresponding
+      learning rate will be used. If not, the learning_rate in optimizer will be used.
+      Fixed and dynamic learning rate are supported. weight_decay: Optional. If “weight_decay”
+      in the keys, the value of corresponding weight decay will be used. If not, the
+      weight_decay in the optimizer will be used. It should be noted that weight decay
+      can be a constant value or a Cell. It is a Cell only when dynamic weight decay
+      is applied. Dynamic weight decay is similar to dynamic learning rate, users
+      need to customize a weight decay schedule only with global step as input, and
+      during training, the optimizer calls the instance of WeightDecaySchedule to
+      get the weight decay value of current step. grad_centralization: Optional. Must
+      be Boolean. If “grad_centralization” is in the keys, the set value will be used.
+      If not, the grad_centralization is False by default. This configuration only
+      works on the convolution layer. order_params: Optional. When parameters is grouped,
+      this usually is used to maintain the order of parameters that appeared in the
+      network to improve performance. The value should be parameters whose order will
+      be followed in optimizer. If order_params in the keys, other keys will be ignored
+      and the element of ‘order_params’ must be in one group of params.  '
+    default: null
+    dtype:
+    - union[list[parameter], list[dict]]
+    structure:
+    - list
+  learning_rate:
+    descp: 'learning_rate (Union[float, int, Tensor, Iterable, LearningRateSchedule])
+      – learning_rate. Default: 0.1 .  float: The fixed learning rate value. Must
+      be equal to or greater than 0. int: The fixed learning rate value. Must be equal
+      to or greater than 0. It will be converted to float. Tensor: Its value should
+      be a scalar or a 1-D vector. For scalar, fixed learning rate will be applied.
+      For vector, learning rate is dynamic, then the i-th step will take the i-th
+      value as the learning rate. Iterable: Learning rate is dynamic. The i-th step
+      will take the i-th value as the learning rate. LearningRateSchedule: Learning
+      rate is dynamic. During training, the optimizer calls the instance of LearningRateSchedule
+      with step as the input to get the learning rate of current step.  '
+    default: 0.1
+    dtype:
+    - int
+    - float
+    structure:
+    - single
+    range: null
+  lambd:
+    descp: 'lambd (float) – The decay term. Default: 1e-4 .'
+    default: 1e-4
+    dtype:
+    - float
+  alpha:
+    descp: 'alpha (float) – The power for (eta) update. Default: 0.75 .'
+    default: 0.75
+    dtype:
+    - float
+  t0:
+    descp: 't0 (float) – The point of starting averaging. Default: 1e6 .'
+    default: 1e6
+    dtype:
+    - float
+  weight_decay:
+    descp: 'weight_decay (Union[float, int, Cell]) – Weight decay (L2 penalty). Default:
+      0.0 .  float: The fixed weight decay value. Must be equal to or greater than
+      0. int: The fixed weight decay value. Must be equal to or greater than 0. It
+      will be converted to float. Cell: Weight decay is dynamic. During training,
+      the optimizer calls the instance of the Cell with step as the input to get the
+      weight decay value of current step.  '
+    default: 0.0
+    dtype:
+    - int
+    - float
+    - cell
+    structure:
+    - single
+    range: null
+inputs:
+  optional:
+  - learning_rate
+  - lambd
+  - alpha
+  - t0
+  - weight_decay
+  required:
+  - params

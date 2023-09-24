@@ -1,0 +1,75 @@
+api: 'mindspore.nn.TransformerEncoderLayer(d_model: int, nhead: int, dim_feedforward:
+  int = 2048, dropout: float = 0.1, activation: Union[str, Cell, callable] = ''relu'',
+  layer_norm_eps: float = 1e-05, batch_first: bool = False, norm_first: bool = False)'
+descp: Transformer Encoder Layer.
+constraints:
+  d_model:
+    descp: d_model (int) – The number of features in the input tensor.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  nhead:
+    descp: nhead (int) – The number of heads in the MultiheadAttention modules.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  dim_feedforward:
+    descp: 'dim_feedforward (int) – The dimension of the feedforward layer. Default:
+      2048.'
+    default: 2048
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  dropout:
+    descp: 'dropout (float) – The dropout value. Default: 0.1.'
+    default: 0.1
+    dtype:
+    - float
+  activation:
+    descp: 'activation (Union[str, callable, Cell]) – The activation function of the
+      intermediate layer, can be a string ("relu" or "gelu"), Cell instance (nn.ReLU()
+      or nn.GELU()) or a callable (ops.relu or ops.gelu). Default: "relu".'
+    default: relu
+    dtype:
+    - str
+    enum:
+    - relu
+    - gelu
+  layer_norm_eps:
+    descp: 'layer_norm_eps (float) – The epsilon value in LayerNorm modules. Default:
+      1e-5.'
+    default: 1e-5
+    dtype:
+    - float
+  batch_first:
+    descp: 'batch_first (bool) – If batch_first = True, then the shape of input and
+      output tensors is ((batch, seq, feature)) , otherwise the shape is ((seq, batch,
+      feature)) . Default: False.'
+    default: False
+    dtype:
+    - bool
+  norm_first:
+    descp: 'norm_first (bool) – If norm_first = True, layer norm is done prior to
+      attention and feedforward operations, respectively. Default: False.'
+    default: False
+    dtype:
+    - bool
+inputs:
+  optional:
+  - dim_feedforward
+  - dropout
+  - activation
+  - layer_norm_eps
+  - batch_first
+  - norm_first
+  required:
+  - d_model
+  - nhead

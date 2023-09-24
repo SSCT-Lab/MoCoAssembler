@@ -1,0 +1,37 @@
+api: torch.nn.KLDivLoss(class , size_average=None, reduce=None, reduction='mean',
+  log_target=False)
+constraints:
+  size_average:
+    descp: Deprecated (see reduction). By default, the losses are averaged over each
+      loss element in the batch. Note that for some losses, there are multiple elements
+      per sample. If the field size_average is set to False, the losses are instead
+      summed for each minibatch. Ignored when reduce is False.
+    default: 'True'
+    dtype:
+    - bool
+  reduce:
+    descp: Deprecated (see reduction). By default, the losses are averaged or summed
+      over observations for each minibatch depending on size_average. When reduce
+      is False, returns a loss per batch element instead and ignores size_average.
+    default: 'True'
+    dtype:
+    - bool
+  reduction:
+    descp: Specifies the reduction to apply to the output.
+    default: "\u201Cmean\u201D"
+    dtype:
+    - str
+    enum: null
+  log_target:
+    descp: Specifies whether target is the log space.
+    default: 'False'
+    dtype:
+    - bool
+descp: The Kullback-Leibler divergence loss.
+inputs:
+  optional:
+  - size_average
+  - reduce
+  - reduction
+  - log_target
+  required: []

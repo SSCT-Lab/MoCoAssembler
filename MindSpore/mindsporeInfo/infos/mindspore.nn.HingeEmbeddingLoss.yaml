@@ -1,0 +1,29 @@
+api: mindspore.nn.HingeEmbeddingLoss(margin=1.0, reduction='mean')
+descp: Calculate the Hinge Embedding Loss value based on the input ‘logits’ and’ labels’
+  (only including 1 or -1).
+constraints:
+  margin:
+    descp: 'margin (float, int) – Threshold defined by Hinge Embedding Loss (margin).
+      Represented as (Delta) in the formula. Default: 1.0 .'
+    default: 1.0
+    dtype:
+    - int
+    - float
+    structure:
+    - single
+    range: null
+  reduction:
+    descp: 'reduction (str) – Specify the computing method to be applied to the outputs:
+      ''none'' , ''mean'' , or ''sum'' . Default: ''mean'' .'
+    default: mean
+    dtype:
+    - str
+    enum:
+    - none
+    - mean
+    - sum
+inputs:
+  optional:
+  - margin
+  - reduction
+  required: []

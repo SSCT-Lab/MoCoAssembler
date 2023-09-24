@@ -1,0 +1,11 @@
+api: torch.nn.Hardswish(class , inplace=False)
+constraints:
+  inplace:
+    descp: can optionally do the operation in-place.
+    default: 'False'
+descp: 'Applies the Hardswish function, element-wise, as described in the paper: Searching
+  for MobileNetV3.'
+inputs:
+  optional: []
+  required:
+  - inplace

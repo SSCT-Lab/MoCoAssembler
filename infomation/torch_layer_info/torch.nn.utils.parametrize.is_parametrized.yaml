@@ -1,0 +1,18 @@
+api: torch.nn.utils.parametrize.is_parametrized(module, tensor_name=None)
+constraints:
+  module:
+    descp: module to query
+    dtype:
+    - nn.module
+  tensor_name:
+    descp: attribute in the module to query
+    default: None
+    dtype:
+    - str
+    enum: null
+descp: Returns True if module has an active parametrization.
+inputs:
+  optional:
+  - tensor_name
+  required:
+  - module

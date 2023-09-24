@@ -1,0 +1,65 @@
+api: torch.nn.utils.prune.ln_structured(module, name, amount, n, dim, importance_scores=None)
+constraints:
+  module:
+    descp: module containing the tensor to prune
+    dtype:
+    - nn.module
+  name:
+    descp: parameter name within module on which pruning will act.
+    dtype:
+    - str
+    enum: null
+  amount:
+    descp: quantity of parameters to prune. If float, should be between 0.0 and 1.0
+      and represent the fraction of parameters to prune. If int, it represents the
+      absolute number of parameters to prune.
+    dtype:
+    - int
+    - float
+    structure:
+    - single
+    - single
+    shape: null
+    range: null
+  n:
+    descp: See documentation of valid entries for argument p in torch.norm().
+    dtype:
+    - int
+    - float
+    - int, float, inf, -inf, 'fro', 'nuc'
+    - int, float, inf, -inf, 'fro', 'nuc'
+    - int, float, inf, -inf, 'fro', 'nuc'
+    - int, float, inf, -inf, 'fro', 'nuc'
+    structure:
+    - single
+    - single
+    shape: null
+    range: null
+  dim:
+    descp: index of the dim along which we define channels to prune.
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+  importance_scores:
+    descp: tensor of importance scores (of same shape as module parameter) used to
+      compute mask for pruning. The values in this tensor indicate the importance
+      of the corresponding elements in the parameter being pruned. If unspecified
+      or None, the module parameter will be used in its place.
+    dtype:
+    - torch.tensor
+descp: 'Prunes tensor corresponding to parameter called name in module by removing
+  the specified amount of (currently unpruned) channels along the specified dim with
+  the lowest Ln-norm. Modifies module in place (and also return the modified module)
+  by:'
+inputs:
+  optional: []
+  required:
+  - module
+  - name
+  - amount
+  - n
+  - dim
+  - importance_scores

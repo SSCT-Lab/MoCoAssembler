@@ -1,0 +1,105 @@
+api: torch.nn.ConvTranspose2d(in_channels, out_channels, kernel_size, stride=1, padding=0,
+  output_padding=0, groups=1, bias=True, dilation=1, padding_mode='zeros', device=None,
+  dtype=None)
+constraints:
+  bias:
+    descp: If True, adds a learnable bias to the output.
+    default: true
+    dtype: torch.bool
+  dilation:
+    descp: Spacing between kernel elements.
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    - 1
+    - 6
+  groups:
+    descp: Number of blocked connections from input channels to output channels.
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 3
+  in_channels:
+    descp: Number of channels in the input image
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 512
+  kernel_size:
+    descp: Size of the convolving kernel
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    - 1
+    - 8
+  out_channels:
+    descp: Number of channels produced by the convolution
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 42024
+  output_padding:
+    descp: Additional size added to one side of each dimension in the output shape.
+    default: 0
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    - 1
+    - 8
+  padding:
+    descp: dilation zero-padding will be added to both sides of each dimension in
+      the input.
+    default: 0
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    - 1
+    - 8
+  stride:
+    descp: Stride of the convolution.
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    - 1
+    - 4
+descp: Applies a 2D transposed convolution operator over an input image composed of
+  several input planes.
+inputs:
+  optional:
+  - stride
+  - padding
+  - output_padding
+  - groups
+  - bias
+  - dilation
+  required:
+  - in_channels
+  - out_channels
+  - kernel_size

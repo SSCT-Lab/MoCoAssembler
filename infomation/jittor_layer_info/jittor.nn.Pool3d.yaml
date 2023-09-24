@@ -1,0 +1,53 @@
+api: jittor.nn.Pool3d(self, kernel_size, stride=None, padding=0, dilation=None, return_indices=None,
+  ceil_mode=False, count_include_pad=True, op="maximum")
+constraints:
+  ceil_mode:
+    default: 'False'
+    dtype:
+    - bool
+  count_include_pad:
+    default: 'True'
+    dtype:
+    - bool
+  dilation:
+    default: None
+    dtype:
+    - str
+    range:
+    - 'None'
+  kernel_size:
+    default: no default
+    dtype:
+    - int
+  op:
+    default: '"maximum"'
+    dtype:
+    - str
+    range:
+    - '"maximum"'
+  padding:
+    default: '0'
+    dtype:
+    - int
+  return_indices:
+    default: None
+    dtype:
+    - str
+  stride:
+    default: None
+    dtype:
+    - int
+descp: no description
+extra_para: 0
+inputs:
+  optional:
+  - stride
+  - padding
+  - dilation
+  - return_indices
+  - ceil_mode
+  - count_include_pad
+  - op
+  required:
+  - kernel_size
+kind: layer
