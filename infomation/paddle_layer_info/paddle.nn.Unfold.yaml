@@ -29,11 +29,11 @@ constraints:
     - str
   paddings:
     default: '0'
-    descp: "The paddings of each dimension, should be [padding_top, padding_left,\
-      \ padding_bottom, padding_right] or [padding_h, padding_w] or an integer padding.\
-      \ If [padding_h, padding_w] was given, it will expanded to [padding_h, padding_w,\
-      \ padding_h, padding_w]. If an integer padding was given, [padding, padding,\
-      \ padding, padding] will be used. For default, paddings will be [0, 0, 0, 0]"
+    descp: The paddings of each dimension, should be [padding_top, padding_left, padding_bottom,
+      padding_right] or [padding_h, padding_w] or an integer padding. If [padding_h,
+      padding_w] was given, it will expanded to [padding_h, padding_w, padding_h,
+      padding_w]. If an integer padding was given, [padding, padding, padding, padding]
+      will be used. For default, paddings will be [0, 0, 0, 0]
     dtype:
     - int
     enum: null
@@ -56,16 +56,17 @@ constraints:
     - list
   dilations:
     default: '1'
-    descp: the dilations of convolution kernel, should be [dilation_h, dilation_w], 
-      or an integer dilation treated as [dilation, dilation]. For default, it will be [1, 1].
+    descp: the dilations of convolution kernel, should be [dilation_h, dilation_w],
+      or an integer dilation treated as [dilation, dilation]. For default, it will
+      be [1, 1].
     dtype:
-      - int
+    - int
     enum: null
     range: null
     shape: 2
     structure:
-      - int
-      - list
+    - int
+    - list
 descp: Returns a col buffer of sliding local blocks of input x, also known as im2col
   for batched 2D image tensors. For each block under the convolution filter, all element
   will be rearranged as a column. While the convolution filter sliding over the input

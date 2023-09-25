@@ -2,7 +2,7 @@ api: paddle.nn.CELU
 constraints:
   alpha:
     default: '1.0'
-    descp: "The \u2018alpha\u2019 value of the CELU formulation. Default is 1"
+    descp: The ‘alpha’ value of the CELU formulation. Default is 1
     dtype:
     - float
     enum: null

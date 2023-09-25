@@ -2,8 +2,8 @@ api: paddle.nn.MaxPool2D
 constraints:
   ceil_mode:
     default: 'False'
-    descp: "when True, will use ceil instead of floor to compute the output shapereturn_mask\
-      \ (bool, optional) \u2013 Whether to return the max indices along with the outputs"
+    descp: when True, will use ceil instead of floor to compute the output shapereturn_mask
+      (bool, optional) – Whether to return the max indices along with the outputs
     dtype:
     - bool
     enum: null
@@ -13,10 +13,9 @@ constraints:
     - bool
   data_format:
     default: '''NCHW'''
-    descp: "The data format of the input and output data. An optional string from:\
-      \ \u201CNCHW\u201D, \u201CNDHW\u201D. The default is \u201CNCHW\u201D. When\
-      \ it is \u201CNCHW\u201D, the data is stored in the order of: [batch_size, input_channels,\
-      \ input_height, input_width]"
+    descp: 'The data format of the input and output data. An optional string from:
+      “NCHW”, “NDHW”. The default is “NCHW”. When it is “NCHW”, the data is stored
+      in the order of: [batch_size, input_channels, input_height, input_width]'
     dtype:
     - str
     enum:
@@ -58,16 +57,16 @@ constraints:
     - str
   padding:
     default: '0'
-    descp: "The padding size. Padding could be in one of the following forms. 1. A\
-      \ string in [\u2018valid\u2019, \u2018same\u2019]. 2. An int, which means the\
-      \ feature map is zero padded by size of padding on every sides. 3. A list[int]\
-      \ or tuple(int) whose length is 2, [pad_height, pad_weight] whose value means\
-      \ the padding size of each dimension. 4. A list[int] or tuple(int) whose length\
-      \ is 4. [pad_height_top, pad_height_bottom, pad_width_left, pad_width_right]\
-      \ whose value means the padding size of each side. 5. A list or tuple of pairs\
-      \ of integers. It has the form [[pad_before, pad_after], [pad_before, pad_after],\
-      \ \u2026]. Note that, the batch dimension and channel dimension should be [0,0]\
-      \ or (0,0). The default value is 0"
+    descp: The padding size. Padding could be in one of the following forms. 1. A
+      string in [‘valid’, ‘same’]. 2. An int, which means the feature map is zero
+      padded by size of padding on every sides. 3. A list[int] or tuple(int) whose
+      length is 2, [pad_height, pad_weight] whose value means the padding size of
+      each dimension. 4. A list[int] or tuple(int) whose length is 4. [pad_height_top,
+      pad_height_bottom, pad_width_left, pad_width_right] whose value means the padding
+      size of each side. 5. A list or tuple of pairs of integers. It has the form
+      [[pad_before, pad_after], [pad_before, pad_after], …]. Note that, the batch
+      dimension and channel dimension should be [0,0] or (0,0). The default value
+      is 0
     dtype:
     - str
     - int

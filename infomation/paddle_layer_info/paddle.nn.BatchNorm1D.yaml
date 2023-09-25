@@ -17,9 +17,9 @@ constraints:
     - bool
   data_format:
     default: '''NCL'''
-    descp: "Specify the input data format, may be \u201CNC\u201D, \u201CNCL\u201D\
-      \ or \u201CNLC\u201D, where N is batch size, C is the number of the feature\
-      \ map, L is the length of the feature map. Default \u201CNCL\u201D"
+    descp: Specify the input data format, may be “NC”, “NCL” or “NLC”, where N is
+      batch size, C is the number of the feature map, L is the length of the feature
+      map. Default “NCL”
     dtype:
     - str
     enum:

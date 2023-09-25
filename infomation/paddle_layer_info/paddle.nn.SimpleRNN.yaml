@@ -35,10 +35,9 @@ constraints:
     - ParamAttr
   direction:
     default: '''forward'''
-    descp: "The direction of the network. It can be \u201Cforward\u201D or \u201C\
-      bidirect\u201D(or \u201Cbidirectional\u201D). When \u201Cbidirect\u201D, the\
-      \ way to merge outputs of forward and backward is concatenating. Defaults to\
-      \ \u201Cforward\u201D"
+    descp: The direction of the network. It can be “forward” or “bidirect”(or “bidirectional”).
+      When “bidirect”, the way to merge outputs of forward and backward is concatenating.
+      Defaults to “forward”
     dtype:
     - str
     enum:
@@ -61,7 +60,7 @@ constraints:
     - float
   hidden_size:
     default: null
-    descp: "The hidden size of \\(h\\) for each layer\u2019s cell"
+    descp: The hidden size of \(h\) for each layer’s cell
     dtype:
     - int
     enum: null
@@ -71,7 +70,7 @@ constraints:
     - int
   input_size:
     default: null
-    descp: "The input size of \\(x\\) for the first layer\u2019s cell"
+    descp: The input size of \(x\) for the first layer’s cell
     dtype:
     - int
     enum: null

@@ -61,12 +61,12 @@ constraints:
     default: 0.0
     descp: The value to fill the padded areas. Default is 0.0
     dtype:
-      - float
+    - float
     enum: null
     range: null
     shape: null
     structure:
-      - float
+    - float
 descp: This interface is used to construct a callable object of the Pad2D class. Pad
   tensor according to pad, mode and value. If mode is 'reflect', pad[0] and pad[1]
   must be no greater than width-1. The height dimension has the same condition.

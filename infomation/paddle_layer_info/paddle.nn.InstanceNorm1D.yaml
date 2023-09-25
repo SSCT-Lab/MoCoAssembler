@@ -18,8 +18,7 @@ constraints:
     - bool
   data_format:
     default: '''NCL'''
-    descp: "Specify the input data format, may be \u201CNC\u201D, \u201CNCL\u201D\
-      . Default \u201CNCL\u201D"
+    descp: Specify the input data format, may be “NC”, “NCL”. Default “NCL”
     dtype:
     - str
     enum:

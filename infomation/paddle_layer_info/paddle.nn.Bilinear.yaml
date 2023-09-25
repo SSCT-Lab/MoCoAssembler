@@ -47,11 +47,11 @@ constraints:
     - int
   weight_attr:
     default: None
-    descp: "The parameter attribute for the learnable w, parameters/weights ofNone.\
-      \ (this layer. The default value is) \u2013 bias_attr (ParamAttr, optional)\
-      \ \u2013 The parameter attribute for the bias of this layer. If it is set to\
-      \ False, no bias will be added to the output units. If it is set to None, the\
-      \ bias is initialized zero. The default value is None"
+    descp: The parameter attribute for the learnable w, parameters/weights ofNone.
+      (this layer. The default value is) – bias_attr (ParamAttr, optional) – The parameter
+      attribute for the bias of this layer. If it is set to False, no bias will be
+      added to the output units. If it is set to None, the bias is initialized zero.
+      The default value is None
     dtype:
     - ParamAttr
     enum: null

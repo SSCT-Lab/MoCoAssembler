@@ -2,9 +2,9 @@ api: paddle.nn.PixelShuffle
 constraints:
   data_format:
     default: '''NCHW'''
-    descp: "The data format of the input and output data. An optional string from:\
-      \ \u2018NCHW\u2019`, 'NHWC'. When it is 'NCHW', the data is stored in the order\
-      \ of: [batch_size, input_channels, input_height, input_width]. Default: 'NCHW'"
+    descp: 'The data format of the input and output data. An optional string from:
+      ‘NCHW’`, ''NHWC''. When it is ''NCHW'', the data is stored in the order of:
+      [batch_size, input_channels, input_height, input_width]. Default: ''NCHW'''
     dtype:
     - str
     enum:

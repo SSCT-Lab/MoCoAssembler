@@ -43,11 +43,11 @@ constraints:
     - list
   paddings:
     default: '0'
-    descp: "The paddings of each dimension, should be [padding_top, padding_left,\
-      \ padding_bottom, padding_right] or [padding_h, padding_w] or an integer padding.\
-      \ If [padding_h, padding_w] was given, it will expanded to [padding_h, padding_w,\
-      \ padding_h, padding_w]. If an integer padding was given, [padding, padding,\
-      \ padding, padding] will be used. For default, paddings will be [0, 0, 0, 0]"
+    descp: The paddings of each dimension, should be [padding_top, padding_left, padding_bottom,
+      padding_right] or [padding_h, padding_w] or an integer padding. If [padding_h,
+      padding_w] was given, it will expanded to [padding_h, padding_w, padding_h,
+      padding_w]. If an integer padding was given, [padding, padding, padding, padding]
+      will be used. For default, paddings will be [0, 0, 0, 0]
     dtype:
     - int
     enum: null
@@ -72,8 +72,9 @@ constraints:
     - tuple
   dilations:
     default: '1'
-    descp: "the dilations of convolution kernel, should be [dilation_h, dilation_w],\
-      \ or an integer dilation treated as [dilation, dilation]. For default, it will be [1, 1]."
+    descp: the dilations of convolution kernel, should be [dilation_h, dilation_w],
+      or an integer dilation treated as [dilation, dilation]. For default, it will
+      be [1, 1].
     dtype:
     - int
     enum: null

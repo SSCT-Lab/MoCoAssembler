@@ -2,8 +2,8 @@ api: paddle.nn.ZeroPad2D
 constraints:
   data_format:
     default: '''NCHW'''
-    descp: "An string from: \u201CNCHW\u201D, \u201CNHWC\u201D. Specify the data format\
-      \ of the input data. Default is \u201CNCHW\u201D"
+    descp: 'An string from: “NCHW”, “NHWC”. Specify the data format of the input data.
+      Default is “NCHW”'
     dtype:
     - str
     enum:

@@ -32,11 +32,11 @@ constraints:
     - list
   groups:
     default: '1'
-    descp: "The groups number of the Conv2D transpose layer. Inspired by grouped convolution\
-      \ in Alex Krizhevsky\u2019s Deep CNN paper, in which when group=2, the first\
-      \ half of the filters is only connected to the first half of the input channels,\
-      \ while the second half of the filters is only connected to the second half\
-      \ of the input channels. Default: groups = 1"
+    descp: 'The groups number of the Conv2D transpose layer. Inspired by grouped convolution
+      in Alex Krizhevsky’s Deep CNN paper, in which when group=2, the first half of
+      the filters is only connected to the first half of the input channels, while
+      the second half of the filters is only connected to the second half of the input
+      channels. Default: groups = 1'
     dtype:
     - int
     enum: null
@@ -93,11 +93,11 @@ constraints:
     - tuple
   padding:
     default: '0'
-    descp: "The padding size. The padding argument effectively adds dilation * (kernel\
-      \ - 1) amount of zero-padding on both sides of input. If padding is a string,\
-      \ either \u2018VALID\u2019 or \u2018SAME\u2019 supported, which is the padding\
-      \ algorithm. If padding is a tuple or list, it could be in two forms: [pad]\
-      \ or [pad_left, pad_right]. Default: padding = 0"
+    descp: 'The padding size. The padding argument effectively adds dilation * (kernel
+      - 1) amount of zero-padding on both sides of input. If padding is a string,
+      either ‘VALID’ or ‘SAME’ supported, which is the padding algorithm. If padding
+      is a tuple or list, it could be in two forms: [pad] or [pad_left, pad_right].
+      Default: padding = 0'
     dtype:
     - str
     - int
@@ -138,15 +138,15 @@ constraints:
     shape: null
     structure:
     - ParamAttr
-descp: "This interface is used to construct a callable object of the Conv1DTranspose\
-  \ class. For more details, refer to code examples. The 1-D convolution transpose\
-  \ layer calculates the output based on the input, filter, and dilation, stride,\
-  \ padding. Input(Input) and output(Output) are in \u2018NCL\u2019 format or \u2018\
-  NLC\u2019 where N is batch size, C is the number of channels, L is the length of\
-  \ the feature. The details of convolution transpose layer, please refer to the following\
-  \ explanation and references therein. If bias attribution and activation type are\
-  \ provided, bias is added to the output of the convolution, and the corresponding\
-  \ activation function is applied to the final result."
+descp: This interface is used to construct a callable object of the Conv1DTranspose
+  class. For more details, refer to code examples. The 1-D convolution transpose layer
+  calculates the output based on the input, filter, and dilation, stride, padding.
+  Input(Input) and output(Output) are in ‘NCL’ format or ‘NLC’ where N is batch size,
+  C is the number of channels, L is the length of the feature. The details of convolution
+  transpose layer, please refer to the following explanation and references therein.
+  If bias attribution and activation type are provided, bias is added to the output
+  of the convolution, and the corresponding activation function is applied to the
+  final result.
 inputs:
   optional:
   - stride
