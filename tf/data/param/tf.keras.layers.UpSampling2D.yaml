@@ -1,3 +1,5 @@
+api: tf.keras.layers.UpSampling2D(size=(2, 2), data_format=None, interpolation='nearest',
+  **kwargs)
 constraints:
   data_format:
     default: None

@@ -1,0 +1,16 @@
+api: tf.keras.layers.Permute(dims, **kwargs)
+constraints:
+  dims:
+    descp: Tuple of integers. Permutation pattern, does not include the samples dimension.
+      Indexing starts at 1. For instance, `(2, 1)` permutes the first and second dimensions
+      of the input.
+    dtype:
+    - int
+    - tf.string
+    structure:
+    - tuple
+descp: Permutes the dimensions of the input according to a given pattern.
+inputs:
+  optional: []
+  required:
+  - dims

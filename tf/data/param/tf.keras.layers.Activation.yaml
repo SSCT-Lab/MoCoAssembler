@@ -1,3 +1,4 @@
+api: tf.keras.layers.Activation(activation, **kwargs)
 constraints:
   activation:
     default: None

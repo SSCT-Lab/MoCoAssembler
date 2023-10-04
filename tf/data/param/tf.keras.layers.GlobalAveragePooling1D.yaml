@@ -1,3 +1,4 @@
+api: tf.keras.layers.GlobalAveragePooling1D(data_format='channels_last', **kwargs)
 constraints:
   data_format:
     default: channels_last

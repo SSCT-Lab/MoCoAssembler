@@ -1,3 +1,4 @@
+api: tf.keras.layers.SpatialDropout1D(rate, **kwargs)
 constraints:
   rate:
     default: 0.0

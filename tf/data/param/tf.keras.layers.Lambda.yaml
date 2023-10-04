@@ -1,3 +1,5 @@
+api: tf.keras.layers.Lambda(function, output_shape=None, mask=None, arguments=None,
+  **kwargs)
 constraints:
   arguments:
     default: None

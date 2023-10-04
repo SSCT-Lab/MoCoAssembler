@@ -1,0 +1,9 @@
+api: tf.keras.layers.Maximum(**kwargs)
+constraints:
+  '**kwargs':
+    descp: Standard layer keyword arguments.
+descp: Layer that computes the maximum (element-wise) a list of inputs.
+inputs:
+  optional: []
+  required:
+  - '**kwargs'

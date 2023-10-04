@@ -1,0 +1,9 @@
+api: tf.keras.layers.Average(**kwargs)
+constraints:
+  '**kwargs':
+    descp: Standard layer keyword arguments.
+descp: Layer that averages a list of inputs element-wise.
+inputs:
+  optional: []
+  required:
+  - '**kwargs'

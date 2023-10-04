@@ -1,3 +1,4 @@
+api: tf.keras.layers.ELU(alpha=1.0, **kwargs)
 constraints:
   alpha:
     default: 1.0

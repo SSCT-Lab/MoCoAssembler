@@ -1,0 +1,34 @@
+api: tf.keras.layers.InputSpec(dtype=None, shape=None, ndim=None, max_ndim=None, min_ndim=None,
+  axes=None, allow_last_axis_squeeze=False, name=None)
+constraints:
+  axes:
+    default: None
+    descp: Dictionary mapping integer axes to a specific dimension value.
+  dtype:
+    default: None
+    descp: Expected DataType of the input.
+  max_ndim:
+    default: None
+    descp: Integer, maximum rank of the input.
+  min_ndim:
+    default: None
+    descp: Integer, minimum rank of the input.
+  ndim:
+    default: None
+    descp: Integer, expected rank of the input.
+  shape:
+    default: None
+    descp: Shape tuple, expected shape of the input (may include None for unchecked
+      axes).
+    structure:
+    - tuple
+descp: Specifies the rank, dtype and shape of every input to a layer.
+inputs:
+  optional:
+  - dtype
+  - shape
+  - ndim
+  - max_ndim
+  - min_ndim
+  - axes
+  required: []

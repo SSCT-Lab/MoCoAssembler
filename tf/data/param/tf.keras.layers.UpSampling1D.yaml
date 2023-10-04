@@ -1,3 +1,4 @@
+api: tf.keras.layers.UpSampling1D(size=2, **kwargs)
 constraints:
   size:
     default: 2

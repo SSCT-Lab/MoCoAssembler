@@ -1,3 +1,4 @@
+api: tf.keras.layers.Concatenate(axis=-1, **kwargs)
 constraints:
   axis:
     default: -1

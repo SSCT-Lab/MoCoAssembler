@@ -1,0 +1,9 @@
+api: tf.keras.layers.Subtract(**kwargs)
+constraints:
+  '**kwargs':
+    descp: Standard layer keyword arguments.
+descp: Layer that subtracts two inputs.
+inputs:
+  optional: []
+  required:
+  - '**kwargs'

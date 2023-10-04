@@ -1,3 +1,4 @@
+api: tf.keras.layers.AdditiveAttention(use_scale=True, **kwargs)
 constraints:
   use_scale:
     default: true

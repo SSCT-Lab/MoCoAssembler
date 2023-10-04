@@ -1,0 +1,9 @@
+api: tf.keras.layers.Add(**kwargs)
+constraints:
+  '**kwargs':
+    descp: Standard layer keyword arguments.
+descp: Layer that adds a list of inputs.
+inputs:
+  optional: []
+  required:
+  - '**kwargs'

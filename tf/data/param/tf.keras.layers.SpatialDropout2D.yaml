@@ -1,3 +1,4 @@
+api: tf.keras.layers.SpatialDropout2D(rate, data_format=None, **kwargs)
 constraints:
   data_format:
     default: None
