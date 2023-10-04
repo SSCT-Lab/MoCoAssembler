@@ -1,0 +1,10 @@
+function:
+  torch: torch.nn.Hardswish
+  paddle: paddle.nn.Hardswish
+descp:
+  torch: 'Applies the Hardswish function, element-wise, as described in the paper:
+    Searching for MobileNetV3.'
+  paddle: 'Hardswish activation. Create a callable object of Hardswish. Hardswish
+    is proposed in MobileNetV3, and performs better in computational stability and
+    efficiency compared to swish function. For more details please refer to: https://arxiv.org/pdf/1905.02244.pdf'
+param: null

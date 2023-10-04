@@ -1,0 +1,5 @@
+function:
+  ms: mindspore.nn.get_activation
+descp:
+  ms: Gets the activation function.
+param: null

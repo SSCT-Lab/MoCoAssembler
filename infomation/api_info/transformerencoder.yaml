@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.TransformerEncoder
+  ms: mindspore.nn.TransformerEncoder
+descp:
+  torch: TransformerEncoder is a stack of N encoder layers. Users can build the BERT(https://arxiv.org/abs/1810.04805)
+    model with corresponding parameters.
+  ms: Transformer Encoder module with multi-layer stacked of TransformerEncoderLayer,
+    including multihead self attention and feedforward layer.
+param: null

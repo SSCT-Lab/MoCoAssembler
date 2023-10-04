@@ -1,0 +1,13 @@
+function:
+  torch: torch.nn.MaxUnpool2d
+  ms: mindspore.nn.MaxUnpool2d
+  paddle: paddle.nn.MaxUnPool2D
+  jittor: jittor.nn.MaxUnpool2d
+descp:
+  torch: Computes a partial inverse of MaxPool2d.
+  ms: Computes the inverse of mindspore.
+  paddle: This API implements max unpooling 2d opereation.
+  jittor: "    ''' MaxUnpool2d is the invert version of MaxPool2d with indices.\n\
+    \    It takes the output index of MaxPool2d as input.\n    The element will be\
+    \ zero if it is not the max pooled value.\n\n    \n'''"
+param: null

@@ -1,0 +1,29 @@
+function:
+  torch: torch.nn.ConvTranspose2d
+  ms: mindspore.nn.Conv2dTranspose
+  paddle: paddle.nn.Conv2DTranspose
+  jittor: jittor.nn.ConvTranspose2d
+  tf: tf.keras.layers.Conv2DTranspose
+descp:
+  torch: Applies a 2D transposed convolution operator over an input image composed
+    of several input planes.
+  ms: Calculates a 2D transposed convolution, which can be regarded as Conv2d for
+    the gradient of the input, also called deconvolution (although it is not an actual
+    deconvolution).
+  paddle: "This interface is used to construct a callable object of the Conv2DTranspose\
+    \ class. For more details, refer to code examples. The convolution2D transpose\
+    \ layer calculates the output based on the input, filter, and dilations, strides,\
+    \ paddings. Input and output are in NCHW format. Where N is batch size, C is the\
+    \ number of feature map, H is the height of the feature map, and W is the width\
+    \ of the feature map. Filter\u2019s shape is [CMHW] , where C is the number of\
+    \ input feature map, M is the number of output feature map, H is the height of\
+    \ the filter, and W is the width of the filter. If the groups is greater than\
+    \ 1, C will equal the number of input feature map divided by the groups. If bias\
+    \ attribution and activation type are provided, bias is added to the output of\
+    \ the convolution, and the corresponding activation function is applied to the\
+    \ final result. The details of convolution transpose layer, please refer to the\
+    \ following explanation and references conv2dtranspose . For each input \\(X\\\
+    ), the equation is:"
+  jittor: no description
+  tf: Transposed convolution layer (sometimes called Deconvolution).
+param: null

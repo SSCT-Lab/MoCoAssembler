@@ -1,0 +1,5 @@
+function:
+  jittor: jittor.nn.Conv1d_sp
+descp:
+  jittor: no description
+param: null

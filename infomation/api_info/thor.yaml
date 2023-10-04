@@ -1,0 +1,5 @@
+function:
+  ms: mindspore.nn.thor
+descp:
+  ms: "Updates gradients by second-order algorithm\u2013THOR."
+param: null

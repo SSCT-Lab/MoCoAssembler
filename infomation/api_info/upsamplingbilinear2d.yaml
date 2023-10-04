@@ -1,0 +1,17 @@
+function:
+  torch: torch.nn.UpsamplingBilinear2d
+  paddle: paddle.nn.UpsamplingBilinear2D
+  jittor: jittor.nn.UpsamplingBilinear2d
+descp:
+  torch: Applies a 2D bilinear upsampling to an input signal composed of several input
+    channels.
+  paddle: "This op upsamples a batch of images, using bilinear\u2019 pixel values.\
+    \ The input must be a 4-D Tensor of the shape (num_batches, channels, in_h, in_w),\
+    \ where in_w is width of the input tensor, in_h is the height of the input tensor.\
+    \ And the upsampling only applies on the two dimensions(height and width). Bilinear\
+    \ interpolation is an extension of linear interpolation for interpolating functions\
+    \ of two variables (e.g. H-direction and W-direction in this op) on a rectilinear\
+    \ 2D grid. The key idea is to perform linear interpolation first in one direction,\
+    \ and then again in the other direction."
+  jittor: no description
+param: null

@@ -1,0 +1,6 @@
+function:
+  ms: mindspore.nn.AdaMax
+descp:
+  ms: Implements the AdaMax algorithm, a variant of Adaptive Movement Estimation (Adam)
+    based on the infinity norm.
+param: null

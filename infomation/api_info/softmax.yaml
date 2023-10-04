@@ -1,0 +1,15 @@
+function:
+  torch: torch.nn.Softmax
+  ms: mindspore.nn.Softmax
+  paddle: paddle.nn.Softmax
+  jittor: jittor.nn.Softmax
+  tf: tf.keras.layers.Softmax
+descp:
+  torch: Applies the Softmax function to an n-dimensional input Tensor rescaling them
+    so that the elements of the n-dimensional output Tensor lie in the range [0,1]
+    and sum to 1.
+  ms: Softmax activation function, which is a two-category function mindspore.
+  paddle: Softmax Activation.
+  jittor: no description
+  tf: Softmax activation function.
+param: null

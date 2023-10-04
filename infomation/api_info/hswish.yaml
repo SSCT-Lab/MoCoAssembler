@@ -1,0 +1,5 @@
+function:
+  ms: mindspore.nn.HSwish
+descp:
+  ms: Applies hswish-type activation element-wise.
+param: null

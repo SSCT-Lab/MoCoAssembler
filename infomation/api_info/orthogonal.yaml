@@ -1,0 +1,6 @@
+function:
+  torch: torch.nn.utils.parametrizations.orthogonal
+descp:
+  torch: Applies an orthogonal or unitary parametrization to a matrix or a batch of
+    matrices.
+param: null

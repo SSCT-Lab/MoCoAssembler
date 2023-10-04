@@ -1,0 +1,5 @@
+function:
+  torch: torch.nn.utils.prune.RandomUnstructured
+descp:
+  torch: Prune (currently unpruned) units in a tensor at random.
+param: null

@@ -1,0 +1,5 @@
+function:
+  tf: tf.keras.layers.Dense
+descp:
+  tf: Just your regular densely-connected NN layer.
+param: null

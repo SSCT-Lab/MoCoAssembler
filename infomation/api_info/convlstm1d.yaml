@@ -1,0 +1,5 @@
+function:
+  tf: tf.keras.layers.ConvLSTM1D
+descp:
+  tf: 1D Convolutional LSTM.
+param: null

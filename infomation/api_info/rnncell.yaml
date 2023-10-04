@@ -1,0 +1,18 @@
+function:
+  torch: torch.nn.RNNCell
+  ms: mindspore.nn.RNNCell
+  paddle: paddle.nn.SimpleRNNCell
+  jittor: jittor.nn.RNNCell
+descp:
+  torch: An Elman RNN cell with tanh or ReLU non-linearity.
+  ms: An Elman RNN cell with tanh or ReLU non-linearity.
+  paddle: Elman RNN (SimpleRNN) cell. Given the inputs and previous states, it computes
+    the outputs and updates states.
+  jittor: "    ''' An Elman RNN cell with tanh or ReLU non-linearity.\n\n    :param\
+    \ input_size: The number of expected features in the input\n    :type input_size:\
+    \ int\n\n    :param hidden_size: The number of features in the hidden state\n\
+    \    :type hidden_size: int\n\n    :param bias: If False, then the layer does\
+    \ not use bias weights b_ih and b_hh. Default: True.\n    :type bias: bool, optional\n\
+    \n    :param nonlinearity: The non-linearity to use. Can be either 'tanh' or 'relu'.\
+    \ Default: 'tanh'.\n    :type nonlinearity: str, optional\n\n    \n'''"
+param: null

@@ -1,0 +1,11 @@
+function:
+  torch: torch.nn.HingeEmbeddingLoss
+  ms: mindspore.nn.HingeEmbeddingLoss
+descp:
+  torch: Measures the loss given an input tensor xxx and a labels tensor yyy (containing
+    1 or -1). This is usually used for measuring whether two inputs are similar or
+    dissimilar, e.g. using the L1 pairwise distance as xxx, and is typically used
+    for learning nonlinear embeddings or semi-supervised learning.
+  ms: "Calculate the Hinge Embedding Loss value based on the input \u2018logits\u2019\
+    \ and\u2019 labels\u2019 (only including 1 or -1)."
+param: null

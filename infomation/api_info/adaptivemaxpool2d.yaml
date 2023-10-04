@@ -1,0 +1,16 @@
+function:
+  torch: torch.nn.AdaptiveMaxPool2d
+  ms: mindspore.nn.AdaptiveMaxPool2d
+  paddle: paddle.nn.AdaptiveMaxPool2D
+  jittor: jittor.nn.AdaptiveMaxPool2d
+descp:
+  torch: Applies a 2D adaptive max pooling over an input signal composed of several
+    input planes.
+  ms: This operator applies a 2D adaptive max pooling to an input signal composed
+    of multiple input planes.
+  paddle: This operation applies 2D adaptive max pooling on input tensor. The h and
+    w dimensions of the output tensor are determined by the parameter output_size.
+    The difference between adaptive pooling and pooling is adaptive one focus on the
+    output size.
+  jittor: no description
+param: null

@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.LazyConvTranspose2d
+descp:
+  torch: A torch.nn.ConvTranspose2d module with lazy initialization of the in_channels
+    argument of the ConvTranspose2d that is inferred from the input.size(1). The attributes
+    that will be lazily initialized are weight and bias.
+param: null

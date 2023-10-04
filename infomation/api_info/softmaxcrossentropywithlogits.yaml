@@ -1,0 +1,5 @@
+function:
+  ms: mindspore.nn.SoftmaxCrossEntropyWithLogits
+descp:
+  ms: Computes softmax cross entropy between logits and labels.
+param: null

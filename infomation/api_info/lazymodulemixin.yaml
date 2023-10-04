@@ -1,0 +1,6 @@
+function:
+  torch: torch.nn.modules.lazy.LazyModuleMixin
+descp:
+  torch: "A mixin for modules that lazily initialize parameters, also known as \u201C\
+    lazy modules.\u201D"
+param: null

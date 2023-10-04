@@ -1,0 +1,5 @@
+function:
+  tf: tf.keras.layers.SpatialDropout2D
+descp:
+  tf: Spatial 2D version of Dropout.
+param: null

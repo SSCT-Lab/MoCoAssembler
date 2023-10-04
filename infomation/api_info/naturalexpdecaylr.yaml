@@ -1,0 +1,5 @@
+function:
+  ms: mindspore.nn.NaturalExpDecayLR
+descp:
+  ms: Calculates learning rate base on natural exponential decay function.
+param: null

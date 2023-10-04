@@ -1,0 +1,7 @@
+function:
+  ms: mindspore.nn.AdaSumByDeltaWeightWrapCell
+descp:
+  ms: "Enable the adasum in \u201Cauto_parallel/semi_auto_parallel\u201D mode. The\
+    \ implementation of the Adaptive Summation (AdaSum) algorithm is calculated based\
+    \ on the difference of weights before and after the updating of optimizer."
+param: null

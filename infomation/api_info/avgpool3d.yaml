@@ -1,0 +1,16 @@
+function:
+  torch: torch.nn.AvgPool3d
+  ms: mindspore.nn.AvgPool3d
+  paddle: paddle.nn.AvgPool3D
+  jittor: jittor.nn.AvgPool3d
+descp:
+  torch: Applies a 3D average pooling over an input signal composed of several input
+    planes.
+  ms: Applies a 3D average pooling over an input Tensor which can be regarded as a
+    composition of 3D input planes.
+  paddle: This operation applies 3D max pooling over input features based on the input,
+    and kernel_size, stride, padding parameters. Input(X) and Output(Out) are in NCDHW
+    format, where N is batch size, C is the number of channels, H is the height of
+    the feature, D is the depth of the feature, and W is the width of the feature.
+  jittor: no description
+param: null

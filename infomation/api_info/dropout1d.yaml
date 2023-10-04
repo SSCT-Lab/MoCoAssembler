@@ -1,0 +1,13 @@
+function:
+  torch: torch.nn.Dropout1d
+  ms: mindspore.nn.Dropout1d
+descp:
+  torch: Randomly zero out entire channels (a channel is a 1D feature map, e.g., the
+    jjj-th channel of the iii-th sample in the batched input is a 1D tensor input[i,j]\text{input}[i,
+    j]input[i,j]). Each channel will be zeroed out independently on every forward
+    call with probability p using samples from a Bernoulli distribution.
+  ms: During training, randomly zeroes entire channels of the input tensor with probability
+    p from a Bernoulli distribution (For a 3-dimensional tensor with a shape of \((N,
+    C, L)\), the channel feature map refers to a 1-dimensional feature map with the
+    shape of \(L\)).
+param: null

@@ -1,0 +1,19 @@
+function:
+  torch: torch.nn.Dropout
+  ms: mindspore.nn.Dropout
+  paddle: paddle.nn.Dropout
+  jittor: jittor.nn.Dropout
+  tf: tf.keras.layers.Dropout
+descp:
+  torch: During training, randomly zeroes some of the elements of the input tensor
+    with probability p using samples from a Bernoulli distribution. Each channel will
+    be zeroed out independently on every forward call.
+  ms: Dropout layer for the input.
+  paddle: 'Dropout is a regularization technique for reducing overfitting by preventing
+    neuron co-adaption during training as described in the paper: Improving neural
+    networks by preventing co-adaptation of feature detectors The dropout operator
+    randomly sets the outputs of some units to zero, while upscale others according
+    to the given dropout probability.'
+  jittor: no description
+  tf: Applies Dropout to the input.
+param: null

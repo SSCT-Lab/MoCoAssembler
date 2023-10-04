@@ -1,0 +1,5 @@
+function:
+  ms: mindspore.nn.AdamWeightDecay
+descp:
+  ms: Implements the Adam algorithm with weight decay.
+param: null

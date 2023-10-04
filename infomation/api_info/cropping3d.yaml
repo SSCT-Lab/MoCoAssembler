@@ -1,0 +1,5 @@
+function:
+  tf: tf.keras.layers.Cropping3D
+descp:
+  tf: Cropping layer for 3D data (e.g. spatial or spatio-temporal).
+param: null

@@ -1,0 +1,5 @@
+function:
+  ms: mindspore.nn.LRScheduler
+descp:
+  ms: Basic class of learning rate schedule.
+param: null

@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.LazyConv3d
+descp:
+  torch: A torch.nn.Conv3d module with lazy initialization of the in_channels argument
+    of the Conv3d that is inferred from the input.size(1). The attributes that will
+    be lazily initialized are weight and bias.
+param: null

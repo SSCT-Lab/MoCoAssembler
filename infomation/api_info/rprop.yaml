@@ -1,0 +1,5 @@
+function:
+  ms: mindspore.nn.Rprop
+descp:
+  ms: Implements Resilient backpropagation.
+param: null
