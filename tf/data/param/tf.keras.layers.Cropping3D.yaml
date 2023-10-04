@@ -1,3 +1,5 @@
+api: tf.keras.layers.Cropping3D(cropping=((1, 1), (1, 1), (1, 1)), data_format=None,
+  **kwargs)
 constraints:
   cropping:
     default: ((1, 1), (1, 1), (1, 1))

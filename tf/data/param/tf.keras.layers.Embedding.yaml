@@ -1,3 +1,6 @@
+api: tf.keras.layers.Embedding(input_dim, output_dim, embeddings_initializer='uniform',
+  embeddings_regularizer=None, activity_regularizer=None, embeddings_constraint=None,
+  mask_zero=False, input_length=None, sparse=False, **kwargs)
 constraints:
   activity_regularizer:
     default: None

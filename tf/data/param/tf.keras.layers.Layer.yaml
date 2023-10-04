@@ -1,3 +1,4 @@
+api: tf.keras.layers.Layer(trainable=True, name=None, dtype=None, dynamic=False, **kwargs)
 constraints:
   dtype:
     default: None

@@ -1,3 +1,4 @@
+api: tf.keras.layers.AlphaDropout(rate, noise_shape=None, seed=None, **kwargs)
 constraints:
   noise_shape:
     default: None

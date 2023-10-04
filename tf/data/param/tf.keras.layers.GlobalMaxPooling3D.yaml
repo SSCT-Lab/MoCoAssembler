@@ -1,3 +1,4 @@
+api: tf.keras.layers.GlobalMaxPooling3D(data_format=None, keepdims=False, **kwargs)
 constraints:
   data_format:
     default: None

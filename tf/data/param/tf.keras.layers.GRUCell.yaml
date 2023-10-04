@@ -1,3 +1,8 @@
+api: tf.keras.layers.GRUCell(units, activation='tanh', recurrent_activation='sigmoid',
+  use_bias=True, kernel_initializer='glorot_uniform', recurrent_initializer='orthogonal',
+  bias_initializer='zeros', kernel_regularizer=None, recurrent_regularizer=None, bias_regularizer=None,
+  kernel_constraint=None, recurrent_constraint=None, bias_constraint=None, dropout=0.0,
+  recurrent_dropout=0.0, reset_after=True, **kwargs)
 constraints:
   activation:
     default: tanh

@@ -1,3 +1,4 @@
+api: tf.keras.layers.DenseFeatures(feature_columns, trainable=True, name=None, **kwargs)
 constraints:
   feature_columns:
     default: None

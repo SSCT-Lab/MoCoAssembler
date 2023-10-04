@@ -1,3 +1,5 @@
+api: tf.keras.layers.Bidirectional(layer, merge_mode='concat', weights=None, backward_layer=None,
+  **kwargs)
 constraints:
   backward_layer:
     default: None

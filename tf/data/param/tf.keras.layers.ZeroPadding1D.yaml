@@ -1,3 +1,4 @@
+api: tf.keras.layers.ZeroPadding1D(padding=1, **kwargs)
 constraints:
   padding:
     default: 1

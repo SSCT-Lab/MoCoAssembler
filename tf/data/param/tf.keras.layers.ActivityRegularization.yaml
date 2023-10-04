@@ -1,3 +1,4 @@
+api: tf.keras.layers.ActivityRegularization(l1=0.0, l2=0.0, **kwargs)
 constraints:
   l1:
     default: 0.0

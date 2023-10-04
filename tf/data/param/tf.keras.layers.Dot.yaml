@@ -1,3 +1,4 @@
+api: tf.keras.layers.Dot(axes, normalize=False, **kwargs)
 constraints:
   axes:
     default: (0, 0)

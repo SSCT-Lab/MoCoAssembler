@@ -1,3 +1,4 @@
+api: tf.keras.layers.ThresholdedReLU(theta=1.0, **kwargs)
 constraints:
   theta:
     default: 1.0

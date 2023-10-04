@@ -1,3 +1,5 @@
+api: tf.keras.layers.GlobalMaxPooling1D(data_format='channels_last', keepdims=False,
+  **kwargs)
 constraints:
   data_format:
     default: channels_last

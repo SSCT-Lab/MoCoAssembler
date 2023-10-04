@@ -1,3 +1,4 @@
+api: tf.keras.layers.Attention(use_scale=False, score_mode='dot', **kwargs)
 constraints:
   score_mode:
     default: dot

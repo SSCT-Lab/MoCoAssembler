@@ -1,3 +1,5 @@
+api: tf.keras.layers.PReLU(alpha_initializer='zeros', alpha_regularizer=None, alpha_constraint=None,
+  shared_axes=None, **kwargs)
 constraints:
   alpha_constraint:
     default: None

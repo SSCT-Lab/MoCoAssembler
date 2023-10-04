@@ -1,3 +1,5 @@
+api: tf.keras.layers.AveragePooling3D(pool_size=(2, 2, 2), strides=None, padding='valid',
+  data_format=None, **kwargs)
 constraints:
   data_format:
     default: None

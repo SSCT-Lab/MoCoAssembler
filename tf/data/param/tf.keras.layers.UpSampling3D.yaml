@@ -1,3 +1,4 @@
+api: tf.keras.layers.UpSampling3D(size=(2, 2, 2), data_format=None, **kwargs)
 constraints:
   data_format:
     default: None

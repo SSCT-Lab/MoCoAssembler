@@ -1,3 +1,4 @@
+api: tf.keras.layers.GlobalAveragePooling2D(data_format=None, keepdims=False, **kwargs)
 constraints:
   data_format:
     default: None

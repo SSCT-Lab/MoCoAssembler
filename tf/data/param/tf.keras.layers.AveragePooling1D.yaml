@@ -1,3 +1,5 @@
+api: tf.keras.layers.AveragePooling1D(pool_size=2, strides=None, padding='valid',
+  data_format='channels_last', **kwargs)
 constraints:
   data_format:
     default: channels_last
