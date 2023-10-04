@@ -1,6 +1,0 @@
-api: mindspore.nn.SeLU
-descp: Activation function SeLU (Scaled exponential Linear Unit).
-constraints: []
-inputs:
-  optional: []
-  required: []
