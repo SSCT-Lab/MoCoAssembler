@@ -1,0 +1,18 @@
+api: mindspore.nn.MultilabelMarginLoss(reduction='mean')
+descp: Creates a loss criterion that minimizes the hinge loss for multi-class classification
+  tasks.
+constraints:
+  reduction:
+    descp: 'reduction (str, optional) – Apply specific reduction method to the output:
+      ''none'' , ''mean'' , ''sum'' . Default: "mean" .'
+    default: mean
+    dtype:
+    - str
+    enum:
+    - none
+    - mean
+    - sum
+inputs:
+  optional:
+  - reduction
+  required: []

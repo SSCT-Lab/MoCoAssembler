@@ -1,0 +1,6 @@
+api: mindspore.nn.RMSELoss
+descp: RMSELoss creates a criterion to measure the root mean square error between x and y element-wise, where x is the input and y is the labels.
+constraints: []
+inputs:
+  optional: []
+  required: []

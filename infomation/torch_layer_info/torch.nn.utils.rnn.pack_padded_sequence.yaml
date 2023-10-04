@@ -1,0 +1,34 @@
+api: torch.nn.utils.rnn.pack_padded_sequence(input, lengths, batch_first=False, enforce_sorted=True)
+constraints:
+  input:
+    descp: padded batch of variable length sequences.
+    dtype:
+    - tensor
+  lengths:
+    descp: list of sequence lengths of each batch element (must be on the CPU if provided
+      as a tensor).
+    dtype:
+    - tensor or list(int)
+    - int
+    structure:
+    - list
+    shape: null
+    range: null
+  batch_first:
+    descp: if True, the input is expected in B x T x * format.
+    dtype:
+    - bool
+  enforce_sorted:
+    descp: if True, the input is expected to contain sequences sorted by length in
+      a decreasing order. If False, the input will get sorted unconditionally.
+    default: True.
+    dtype:
+    - bool
+descp: Packs a Tensor containing padded sequences of variable length.
+inputs:
+  optional:
+  - batch_first
+  - enforce_sorted
+  required:
+  - input
+  - lengths

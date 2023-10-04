@@ -1,0 +1,16 @@
+api: torch.nn.ConstantPad1d(padding, value)
+constraints:
+  padding:
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    - 1
+    - 8
+descp: Pads the input tensor boundaries with a constant value.
+inputs:
+  optional: []
+  required:
+  - padding

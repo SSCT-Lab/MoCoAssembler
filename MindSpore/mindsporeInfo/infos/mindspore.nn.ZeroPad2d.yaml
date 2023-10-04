@@ -1,0 +1,23 @@
+api: mindspore.nn.ZeroPad2d(padding)
+descp: Pads the last two dimensions of input tensor with zero.
+constraints:
+  padding:
+    descp: padding (Union[int, tuple]) – The padding size to pad the last two dimensions
+      of input tensor. If is int, uses the same padding in boundaries of input’s last
+      two dimensions. If is tuple and length of padding is 4 uses (padding_0, padding_1,
+      padding_2, padding_3) to pad. If the input is x, the size of last dimension
+      of output is (padding_0 + x.shape[-1] + padding_1). The size of penultimate
+      dimension of output is (padding_2 + x.shape[-2] + padding_3). The remaining
+      dimensions of the output are consistent with those of the input.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    - tuple
+    shape: 4
+    range: null
+inputs:
+  optional: []
+  required:
+  - padding

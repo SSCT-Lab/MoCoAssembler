@@ -1,0 +1,47 @@
+api: torch.nn.AdaptiveLogSoftmaxWithLoss(class , in_features, n_classes, cutoffs,
+  div_value=4.0, head_bias=False, device=None, dtype=None)
+constraints:
+  in_features:
+    descp: Number of features in the input tensor
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+  n_classes:
+    descp: Number of classes in the dataset
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+  cutoffs:
+    descp: Cutoffs used to assign targets to their buckets
+    dtype:
+    - sequence
+  div_value:
+    descp: value used as an exponent to compute sizes of the clusters.
+    default: '4.0'
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+  head_bias:
+    descp: "If True, adds a bias term to the \u2018head\u2019 of the adaptive softmax."
+    default: 'False'
+    dtype:
+    - bool
+descp: "Efficient softmax approximation as described in Efficient softmax approximation\
+  \ for GPUs by Edouard Grave, Armand Joulin, Moustapha Ciss\xE9, David Grangier,\
+  \ and Herv\xE9 J\xE9gou."
+inputs:
+  optional:
+  - div_value
+  - head_bias
+  required:
+  - in_features
+  - n_classes
+  - cutoffs

@@ -1,0 +1,43 @@
+api: torch.nn.Bilinear(in1_features, in2_features, out_features, bias=True, device=None,
+  dtype=None)
+constraints:
+  bias:
+    descp: If set to False, the layer will not learn an additive bias.
+    default: true
+    dtype: torch.bool
+  in1_features:
+    descp: size of each first input sample
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 1200
+  in2_features:
+    descp: size of each second input sample
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 1200
+  out_features:
+    descp: size of each output sample
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 64
+descp: "Applies a bilinear transformation to the incoming data: y=x1TAx2+by = x_1^T\
+  \ A x_2 + by=x1T\u200BAx2\u200B+b"
+inputs:
+  optional:
+  - bias
+  required:
+  - in1_features
+  - in2_features
+  - out_features

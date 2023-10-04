@@ -1,0 +1,13 @@
+api: mindspore.nn.SoftShrink(lambd=0.5)
+descp: Applies the SoftShrink function element-wise.
+constraints:
+  lambd:
+    descp: 'lambd (float) – the (lambda) must be no less than zero for the SoftShrink
+      formulation. Default: 0.5 .'
+    default: 0.5
+    dtype:
+    - float
+inputs:
+  optional:
+  - lambd
+  required: []

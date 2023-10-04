@@ -1,0 +1,36 @@
+api: mindspore.nn.BCEWithLogitsLoss(reduction='mean', weight=None, pos_weight=None)
+descp: Adds sigmoid activation function to input logits, and uses the given logits
+  to compute binary cross entropy between the logits and the labels.
+constraints:
+  reduction:
+    descp: 'reduction (str) – Type of reduction to be applied to loss. The optional
+      values are ''mean'' , ''sum'' , and ''none'' . If ''none'' , do not perform
+      reduction. Default: ''mean'' .'
+    default: mean
+    dtype:
+    - str
+    enum:
+    - none
+    - mean
+    - sum
+  weight:
+    descp: 'weight (Tensor, optional) – A rescaling weight applied to the loss of
+      each batch element. If not None, it can be broadcast to a tensor with shape
+      of logits, data type must be float16 or float32. Default: None .'
+    default: None
+    dtype:
+    - tensor
+  pos_weight:
+    descp: 'pos_weight (Tensor, optional) – A weight of positive examples. Must be
+      a vector with length equal to the number of classes. If not None, it must be
+      broadcast to a tensor with shape of logits, data type must be float16 or float32.
+      Default: None .'
+    default: None
+    dtype:
+    - tensor
+inputs:
+  optional:
+  - reduction
+  - weight
+  - pos_weight
+  required: []

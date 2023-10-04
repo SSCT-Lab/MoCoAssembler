@@ -16,9 +16,9 @@ constraints:
     - bool
   dropout:
     default: '0.0'
-    descp: "The dropout probability used on attention weights to drop some attention\
-      \ targets. 0 for no dropout. Default 0kdim (int, optional) \u2013 The feature\
-      \ size in key. If None, assumed equal to embed_dim. Default None"
+    descp: The dropout probability used on attention weights to drop some attention
+      targets. 0 for no dropout. Default 0kdim (int, optional) – The feature size
+      in key. If None, assumed equal to embed_dim. Default None
     dtype:
     - float
     enum: null

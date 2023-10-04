@@ -1,0 +1,18 @@
+api: mindspore.nn.Softmin(axis=- 1)
+descp: Softmin activation function, which is a two-category function mindspore.
+constraints:
+  axis:
+    descp: 'axis (Union[int, tuple[int]]) – The axis to apply Softmin operation, if
+      the dimension of input x is x.ndim, the range of axis is [-x.ndim, x.ndim).
+      -1 means the last dimension. Default: -1 .'
+    default: -1
+    dtype:
+    - int
+    structure:
+    - single
+    - tuple
+    range: null
+inputs:
+  optional:
+  - axis
+  required: []

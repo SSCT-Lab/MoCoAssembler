@@ -1,0 +1,21 @@
+api: jittor.nn.Flatten(self, start_dim=1, end_dim=-1)
+constraints:
+  end_dim:
+    default: '-1'
+    dtype:
+    - int
+  start_dim:
+    default: '1'
+    dtype:
+    - int
+descp: "    ''' Flattens the contiguous range of dimensions in a Var.\n\n    :param\
+  \ start_dim: the first dimension to be flattened. Defaults: 1.\n    :type start_dim:\
+  \ int\n\n    :param end_dim: the last dimension to be flattened. Defaults: -1.\n\
+  \    :type end_dim: int\n\n'''"
+extra_para: 0
+inputs:
+  optional:
+  - start_dim
+  - end_dim
+  required: []
+kind: layer

@@ -1,0 +1,41 @@
+api: mindspore.nn.MaxUnpool1d(kernel_size, stride=None, padding=0)
+descp: Computes the inverse of mindspore.nn.MaxPool1d.
+constraints:
+  kernel_size:
+    descp: kernel_size (Union[int, tuple[int]]) – The size of kernel used to take
+      the maximum value.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    - tuple
+    shape: null
+    range: null
+  stride:
+    descp: 'stride (Union[int, tuple[int]]) – The distance of kernel moving, If stride
+      is None, then stride equal to kernel_size. Default: None .'
+    default: None
+    dtype:
+    - int
+    structure:
+    - single
+    - tuple
+    shape: null
+    range: null
+  padding:
+    descp: 'padding (Union[int, tuple[int]]) – The pad value to be filled. Default: 0 .'
+    default: 0
+    dtype:
+    - int
+    structure:
+    - single
+    - tuple
+    shape: null
+    range: null
+inputs:
+  optional:
+  - stride
+  - padding
+  required:
+  - kernel_size

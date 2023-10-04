@@ -1,0 +1,17 @@
+api: mindspore.nn.PixelShuffle(upscale_factor)
+descp: Applies the PixelShuffle operation over input which implements sub-pixel convolutions
+  with stride \(1/r\) .
+constraints:
+  upscale_factor:
+    descp: upscale_factor (int) – factor to shuffle the input, and is a positive integer.
+      upscale_factor is the above-mentioned (r).
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+inputs:
+  optional: []
+  required:
+  - upscale_factor

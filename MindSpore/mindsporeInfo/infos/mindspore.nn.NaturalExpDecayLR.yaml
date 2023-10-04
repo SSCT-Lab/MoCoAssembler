@@ -1,0 +1,34 @@
+api: mindspore.nn.NaturalExpDecayLR(learning_rate, decay_rate, decay_steps, is_stair=False)
+descp: Calculates learning rate base on natural exponential decay function.
+constraints:
+  learning_rate:
+    descp: learning_rate (float) – The initial value of learning rate.
+    default: null
+    dtype:
+    - float
+  decay_rate:
+    descp: decay_rate (float) – The decay rate.
+    default: null
+    dtype:
+    - float
+  decay_steps:
+    descp: decay_steps (int) – Number of steps to decay over.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  is_stair:
+    descp: 'is_stair (bool) – If true , learning rate is decayed once every decay_steps
+      time. Default: False .'
+    default: False
+    dtype:
+    - bool
+inputs:
+  optional:
+  - is_stair
+  required:
+  - learning_rate
+  - decay_rate
+  - decay_steps

@@ -2,9 +2,8 @@ api: paddle.nn.PReLU
 constraints:
   data_format:
     default: '''NCHW'''
-    descp: "Data format that specifies the layout of input. It may be \u201CNC\u201D\
-      , \u201CNCL\u201D, \u201CNCHW\u201D, \u201CNCDHW\u201D, \u201CNLC\u201D, \u201C\
-      NHWC\u201D or \u201CNDHWC\u201D. Default: \u201CNCHW\u201D"
+    descp: 'Data format that specifies the layout of input. It may be “NC”, “NCL”,
+      “NCHW”, “NCDHW”, “NLC”, “NHWC” or “NDHWC”. Default: “NCHW”'
     dtype:
     - str
     enum:

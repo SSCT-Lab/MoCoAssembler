@@ -1,0 +1,40 @@
+api: torch.nn.RNNCell(input_size, hidden_size, bias=True, nonlinearity='tanh', device=None,
+  dtype=None)
+constraints:
+  bias:
+    descp: If False, then the layer does not use bias weights True
+    default: true
+    dtype: torch.bool
+  hidden_size:
+    descp: The number of features in the hidden state
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 256
+  input_size:
+    descp: The number of expected features in the input
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 1
+  nonlinearity:
+    descp: The non-linearity to use. Can be either tanh or relu.
+    default: tanh
+    dtype: torch.string
+    enum:
+    - tanh
+    - relu
+descp: An Elman RNN cell with tanh or ReLU non-linearity.
+inputs:
+  optional:
+  - bias
+  - nonlinearity
+  required:
+  - input_size
+  - hidden_size

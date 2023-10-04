@@ -1,0 +1,33 @@
+api: torch.nn.LocalResponseNorm(size, alpha=0.0001, beta=0.75, k=1.0)
+constraints:
+  alpha:
+    descp: multiplicative factor.
+    default: 0.0001
+    dtype: torch.float
+  beta:
+    descp: exponent.
+    default: 0.75
+    dtype: torch.float
+  k:
+    descp: additive factor.
+    default: 1.0
+    dtype: torch.float
+  size:
+    descp: amount of neighbouring channels used for normalization
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 2
+descp: Applies local response normalization over an input signal composed of several
+  input planes, where channels occupy the second dimension. Applies normalization
+  across channels.
+inputs:
+  optional:
+  - alpha
+  - beta
+  - k
+  required:
+  - size

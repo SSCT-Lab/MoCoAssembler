@@ -1,0 +1,7 @@
+constraints:
+  alpha:
+    default: 1.0
+    descp: Scale for the negative factor.
+    dtype: float
+descp: Exponential Linear Unit.
+required: []

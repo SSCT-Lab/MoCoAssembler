@@ -2,9 +2,9 @@ api: paddle.nn.RNNCellBase
 constraints:
   dtype:
     default: '''float32'''
-    descp: "A (possibly nested structure of) data type[s]. The structure must be same\
-      \ as that of shape, except when all tensors\u2019 in states has the same data\
-      \ type, a single data type can be used. If None and property cell"
+    descp: A (possibly nested structure of) data type[s]. The structure must be same
+      as that of shape, except when all tensors’ in states has the same data type,
+      a single data type can be used. If None and property cell
     dtype:
     - str
     enum:

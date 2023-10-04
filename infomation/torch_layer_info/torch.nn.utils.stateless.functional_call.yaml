@@ -1,0 +1,50 @@
+api: torch.nn.utils.stateless.functional_call(module, parameters_and_buffers, args,
+  kwargs=None, *, tie_weights=True, strict=False)
+constraints:
+  module:
+    descp: the module to call
+    dtype:
+    - torch.nn.module
+  parameters_and_buffers:
+    descp: the parameters that will be used in the module call.
+    dtype:
+    - dict of str and tensor
+  args:
+    descp: arguments to be passed to the module call. If not a tuple, considered a
+      single argument.
+    dtype:
+    - any or tuple
+    structure:
+    - tuple
+  kwargs:
+    descp: keyword arguments to be passed to the module call
+    dtype: null
+    structure:
+    - dict
+  tie_weights:
+    descp: If True, then parameters and buffers tied in the original model will be
+      treated as tied in the reparamaterized version. Therefore, if True and different
+      values are passed for the tied paramaters and buffers, it will error. If False,
+      it will not respect the originally tied parameters and buffers unless the values
+      passed for both weights are the same.
+    default: True.
+    dtype:
+    - bool
+  strict:
+    descp: If True, then the parameters and buffers passed in must match the parameters
+      and buffers in the original module. Therefore, if True and there are any missing
+      or unexpected keys, it will error.
+    default: False.
+    dtype:
+    - bool
+descp: Performs a functional call on the module by replacing the module parameters
+  and buffers with the provided ones.
+inputs:
+  optional:
+  - tie_weights
+  - strict
+  required:
+  - module
+  - parameters_and_buffers
+  - args
+  - kwargs

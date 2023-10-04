@@ -1,0 +1,25 @@
+api: torch.nn.utils.prune.RandomUnstructured(class , amount)
+constraints:
+  name:
+    descp: parameter name within module on which pruning will act.
+    dtype:
+    - str
+    enum: null
+  amount:
+    descp: quantity of parameters to prune. If float, should be between 0.0 and 1.0
+      and represent the fraction of parameters to prune. If int, it represents the
+      absolute number of parameters to prune.
+    dtype:
+    - int
+    - float
+    structure:
+    - single
+    - single
+    shape: null
+    range: null
+descp: Prune (currently unpruned) units in a tensor at random.
+inputs:
+  optional: []
+  required:
+  - name
+  - amount

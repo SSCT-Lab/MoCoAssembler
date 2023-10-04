@@ -1,0 +1,7 @@
+constraints:
+  theta:
+    default: 1.0
+    descp: Float >= 0. Threshold location of activation.
+    dtype: float
+descp: Thresholded Rectified Linear Unit.
+required: []

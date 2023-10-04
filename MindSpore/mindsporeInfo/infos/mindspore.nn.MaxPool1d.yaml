@@ -1,0 +1,88 @@
+api: mindspore.nn.MaxPool1d(kernel_size=1, stride=1, pad_mode='valid', padding=0,
+  dilation=1, return_indices=False, ceil_mode=False)
+descp: Applies a 1D max pooling over an input Tensor which can be regarded as a composition
+  of 1D planes.
+constraints:
+  kernel_size:
+    descp: 'kernel_size (int) – The size of kernel used to take the max value, Default: 1 .'
+    default: 1
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  stride:
+    descp: 'stride (int) – The distance of kernel moving, an int number that represents
+      the width of movement is stride, Default: 1 .'
+    default: 1
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  pad_mode:
+    descp: 'pad_mode (str) – The optional value for pad mode, is "same" , "valid"
+      or "pad" , not case sensitive. Default: "valid" .  "same": Adopts the way of
+      completion. The total number of padding will be calculated in horizontal and
+      vertical directions and evenly distributed to top and bottom, left and right
+      if possible. Otherwise, the last extra padding will be done from the bottom
+      and the right side. "valid": Adopts the way of discarding. The possible largest
+      height and width of output will be returned without padding. Extra pixels will
+      be discarded. "pad": Performs padding on the input. Adds padding size of zeros
+      to both ends of the input. If this mode is set, padding must be greater than
+      or equal to 0.  '
+    default: valid
+    dtype:
+    - str
+    enum:
+    - same
+    - valis
+    - pad
+  padding:
+    descp: padding (Union(int, tuple[int], list[int])) – Padding value for the pooling.
+      Default value is 0. padding can only be an integer or a tuple/list containing
+      a single integer, in which case padding times or padding[0] times are padded
+      on both sides of the input.
+    default: 0
+    dtype:
+    - int
+    structure:
+    - list
+    - single
+    - tuple
+    shape: 1
+    range: null
+  dilation:
+    descp: 'dilation (Union(int, tuple[int])) – The spacing between the elements of
+      the kernel in convolution, used to increase the receptive field of the pooling
+      operation. If it is a tuple, its length can only be 1. Default: 1 .'
+    default: 1
+    dtype:
+    - int
+    structure:
+    - single
+    - tuple
+    shape: 1
+    range: null
+  return_indices:
+    descp: 'return_indices (bool) – If True , the function will return both the result
+      of max pooling and the indices of the max elements. Default: False .'
+    default: False
+    dtype:
+    - bool
+  ceil_mode:
+    descp: 'ceil_mode (bool) – If True, use ceil to compute the output shape instead
+      of floor. Default: False .'
+    default: False
+    dtype:
+    - bool
+inputs:
+  optional:
+  - kernel_size
+  - stride
+  - pad_mode
+  - padding
+  - dilation
+  - return_indices
+  - ceil_mode
+  required: []

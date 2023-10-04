@@ -1,0 +1,7 @@
+api: torch.nn.modules.lazy.LazyModuleMixin(class , *args, **kwargs)
+constraints: {}
+descp: "A mixin for modules that lazily initialize parameters, also known as \u201C\
+  lazy modules.\u201D"
+inputs:
+  optional: []
+  required: []

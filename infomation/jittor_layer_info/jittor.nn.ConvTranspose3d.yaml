@@ -1,0 +1,54 @@
+2api: jittor.nn.ConvTranspose3d(self, in_channels, out_channels, kernel_size, stride=1,
+  padding=0, output_padding=0, groups=1, bias=True, dilation=1)
+constraints:
+  bias:
+    default: 'True'
+    dtype:
+    - bool
+  dilation:
+    default: '1'
+    dtype:
+    - int
+  groups:
+    default: '1'
+    dtype:
+    - int
+  in_channels:
+    default: no default
+    dtype:
+    - int
+  kernel_size:
+    default: no default
+    dtype:
+    - int
+  out_channels:
+    default: no default
+    dtype:
+    - int
+  output_padding:
+    default: '0'
+    dtype:
+    - int
+  padding:
+    default: '0'
+    dtype:
+    - int
+  stride:
+    default: '1'
+    dtype:
+    - int
+descp: no description
+extra_para: 0
+inputs:
+  optional:
+  - stride
+  - padding
+  - output_padding
+  - groups
+  - bias
+  - dilation
+  required:
+  - in_channels
+  - out_channels
+  - kernel_size
+kind: layer

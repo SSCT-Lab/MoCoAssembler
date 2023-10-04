@@ -1,0 +1,10 @@
+api: torch.nn.Hardsigmoid(class , inplace=False)
+constraints:
+  inplace:
+    descp: can optionally do the operation in-place.
+    default: 'False'
+descp: Applies the Hardsigmoid function element-wise.
+inputs:
+  optional: []
+  required:
+  - inplace

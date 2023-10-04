@@ -1,0 +1,44 @@
+api: mindspore.nn.StepLR(optimizer, step_size, gamma=0.5, last_epoch=- 1, verbose=False)
+descp: Decays the learning rate of each parameter group by gamma every step_size epochs.
+constraints:
+  optimizer:
+    descp: optimizer (mindspore.nn.optim_ex.Optimizer) – Wrapped optimizer.
+    default: null
+    dtype:
+    - mindspore.nn.optim_ex.optimizer
+  step_size:
+    descp: step_size (int) – Period of learning rate decay.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  gamma:
+    descp: 'gamma (float, optional) – Multiplicative factor of learning rate decay.
+      Default: 0.1.'
+    default: 0.1
+    dtype:
+    - float
+  last_epoch:
+    descp: 'last_epoch (int, optional) – The index of last epoch. Default: -1.'
+    default: -1
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  verbose:
+    descp: 'verbose (bool, optional) – If True, prints a message to stdout for each
+      update. Default: False.'
+    default: False
+    dtype:
+    - bool
+inputs:
+  optional:
+  - gamma
+  - last_epoch
+  - verbose
+  required:
+  - optimizer
+  - step_size

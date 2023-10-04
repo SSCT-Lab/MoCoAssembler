@@ -1,0 +1,10 @@
+api: torch.nn.ReLU6(inplace=False)
+constraints:
+  inplace:
+    default: false
+    dtype: torch.bool
+descp: 'Applies the element-wise function:'
+inputs:
+  optional:
+  - inplace
+  required: []

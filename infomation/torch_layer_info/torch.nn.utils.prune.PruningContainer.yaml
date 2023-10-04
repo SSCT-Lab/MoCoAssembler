@@ -1,0 +1,11 @@
+api: torch.nn.utils.prune.PruningContainer(class , *args)
+constraints:
+  method:
+    descp: child pruning method to be added to the container.
+descp: Container holding a sequence of pruning methods for iterative pruning. Keeps
+  track of the order in which pruning methods are applied and handles combining successive
+  pruning calls.
+inputs:
+  optional: []
+  required:
+  - method

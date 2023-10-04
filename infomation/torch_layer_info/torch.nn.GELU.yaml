@@ -1,0 +1,11 @@
+api: torch.nn.GELU(class , approximate='none')
+constraints:
+  approximate:
+    descp: 'the gelu approximation algorithm to use: none | tanh.'
+    default: none
+    enum: null
+descp: 'Applies the Gaussian Error Linear Units function:'
+inputs:
+  optional:
+  - approximate
+  required: []

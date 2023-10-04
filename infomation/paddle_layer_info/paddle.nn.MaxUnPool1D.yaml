@@ -2,13 +2,13 @@ api: paddle.nn.MaxUnPool1D
 constraints:
   data_format:
     default: '''NCL'''
-    descp: "The data format of the input and output data. The default is \u201CNCL\u201D\
-      . When it is \u201CNCL\u201D, the data is stored in the order of: [batch_size,\
-      \ input_channels, input_length]"
+    descp: 'The data format of the input and output data. The default is “NCL”. When
+      it is “NCL”, the data is stored in the order of: [batch_size, input_channels,
+      input_length]'
     dtype:
     - str
     enum:
-      - NCL
+    - NCL
     range: null
     shape: null
     structure:

@@ -2,13 +2,12 @@ api: paddle.nn.Upsample
 constraints:
   data_format:
     default: '''NCHW'''
-    descp: "Specify the data format of the input, and the data format of the output\
-      \ will be consistent with that of the input. An optional string from:NCW, NWC,\
-      \ \u201CNCHW\u201D, \u201CNHWC\u201D, \u201CNCDHW\u201D, \u201CNDHWC\u201D.\
-      \ The default is \u201CNCHW\u201D. When it is \u201CNCHW\u201D, the data is\
-      \ stored in the order of: [batch_size, input_channels, input_height, input_width].\
-      \ When it is \u201CNCHW\u201D, the data is stored in the order of: [batch_size,\
-      \ input_channels, input_depth, input_height, input_width]"
+    descp: 'Specify the data format of the input, and the data format of the output
+      will be consistent with that of the input. An optional string from:NCW, NWC,
+      “NCHW”, “NHWC”, “NCDHW”, “NDHWC”. The default is “NCHW”. When it is “NCHW”,
+      the data is stored in the order of: [batch_size, input_channels, input_height,
+      input_width]. When it is “NCHW”, the data is stored in the order of: [batch_size,
+      input_channels, input_depth, input_height, input_width]'
     dtype:
     - str
     enum:
@@ -20,9 +19,8 @@ constraints:
     - str
   mode:
     default: '''nearest'''
-    descp: "The resample method. It supports \u2018linear\u2019, \u2018nearst\u2019\
-      , \u2018bilinear\u2019, \u2018bicubic\u2019 and \u2018trilinear\u2019 currently.\
-      \ Default: \u2018nearest\u2019"
+    descp: 'The resample method. It supports ‘linear’, ‘nearst’, ‘bilinear’, ‘bicubic’
+      and ‘trilinear’ currently. Default: ‘nearest’'
     dtype:
     - str
     enum:
@@ -90,26 +88,28 @@ constraints:
     - None
   align_corners:
     default: 'True'
-    descp: "An optional bool, If True, the centers of the 4 corner pixels of the input and
-     output tensors are aligned, preserving the values at the corner pixels. Default: False"
+    descp: 'An optional bool, If True, the centers of the 4 corner pixels of the input
+      and output tensors are aligned, preserving the values at the corner pixels.
+      Default: False'
     dtype:
-      - bool
+    - bool
     enum: null
     range: null
     shape: null
     structure:
-      - bool
+    - bool
   align_mode:
     default: '0'
-    descp: "An optional for linear/bilinear/trilinear interpolation. Refer to the formula in the example above,
-     it can be ‘0’ for src_idx = scale_factor*(dst_indx+0.5)-0.5 , can be ‘1’ for src_idx = scale_factor*dst_index."
+    descp: An optional for linear/bilinear/trilinear interpolation. Refer to the formula
+      in the example above, it can be ‘0’ for src_idx = scale_factor*(dst_indx+0.5)-0.5
+      , can be ‘1’ for src_idx = scale_factor*dst_index.
     dtype:
-      - int
+    - int
     enum: null
     range: null
     shape: null
     structure:
-      - int
+    - int
 descp: This op resizes a batch of images.
 inputs:
   optional:

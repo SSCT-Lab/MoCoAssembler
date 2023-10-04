@@ -1,0 +1,68 @@
+api: mindspore.nn.GroupNorm(num_groups, num_channels, eps=1e-05, affine=True, gamma_init='ones',
+  beta_init='zeros')
+descp: Group Normalization over a mini-batch of inputs.
+constraints:
+  num_groups:
+    descp: num_groups (int) – The number of groups to be divided along the channel
+      dimension.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  num_channels:
+    descp: num_channels (int) – The number of input channels.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  eps:
+    descp: 'eps (float) – A value added to the denominator for numerical stability.
+      Default: 1e-05 .'
+    default: 1e-05
+    dtype:
+    - float
+  affine:
+    descp: 'affine (bool) – A bool value, this layer will have learnable affine parameters
+      when set to true . Default: True .'
+    default: True
+    dtype:
+    - bool
+  gamma_init:
+    descp: 'gamma_init (Union[Tensor, str, Initializer, numbers.Number]) – Initializer
+      for the gamma weight. The values of str refer to the function initializer including
+      ''zeros'' , ''ones'' , ''xavier_uniform'' , ''he_uniform'' , etc. Default: ''ones''
+      . If gamma_init is a Tensor, the shape must be ((num_channels)).'
+    default: ones
+    dtype:
+    - str
+    enum:
+    - zeros
+    - ones
+    - xavier_uniform
+    - he_uniform
+  beta_init:
+    descp: 'beta_init (Union[Tensor, str, Initializer, numbers.Number]) – Initializer
+      for the beta weight. The values of str refer to the function initializer including
+      ''zeros'' , ''ones'' , ''xavier_uniform'' , ''he_uniform'' , etc. Default: ''zeros''
+      . If beta_init is a Tensor, the shape must be ((num_channels)).'
+    default: zeros
+    dtype:
+    - str
+    enum:
+    - zeros
+    - ones
+    - xavier_uniform
+    - he_uniform
+inputs:
+  optional:
+  - eps
+  - affine=
+  - gamma_init
+  - beta_init
+  required:
+  - num_groups
+  - num_channels

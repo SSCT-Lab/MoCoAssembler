@@ -1,0 +1,25 @@
+api: mindspore.nn.CosineEmbeddingLoss(margin=0.0, reduction='mean')
+descp: CosineEmbeddingLoss creates a criterion to measure the similarity between two
+  tensors using cosine distance.
+constraints:
+  margin:
+    descp: 'margin (float) – Should be in [-1.0, 1.0]. Default: 0.0 .'
+    default: 0.0
+    dtype:
+    - float
+  reduction:
+    descp: 'reduction (str) – Specifies which reduction to be applied to the output.
+      It must be one of "none" , "mean" , and "sum" , meaning no reduction, reduce
+      mean and sum on output, respectively. Default: "mean" .'
+    default: mean
+    dtype:
+    - str
+    enum:
+    - none
+    - mean
+    - sum
+inputs:
+  optional:
+  - margin
+  - reduction
+  required: []

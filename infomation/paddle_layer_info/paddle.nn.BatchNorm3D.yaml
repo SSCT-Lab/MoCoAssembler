@@ -17,10 +17,10 @@ constraints:
     - bool
   data_format:
     default: '''NCDHW'''
-    descp: "Specify the input data format, the data format can be \u201CNCDHW\u201D\
-      \ or \u201CNDHWC\u201D, where N is batch size, C is the number of the feature\
-      \ map, D is the depth of the feature, H is the height of the feature map, W\
-      \ is the width of the feature map. Default: NCDHW"
+    descp: 'Specify the input data format, the data format can be “NCDHW” or “NDHWC”,
+      where N is batch size, C is the number of the feature map, D is the depth of
+      the feature, H is the height of the feature map, W is the width of the feature
+      map. Default: NCDHW'
     dtype:
     - str
     enum:

@@ -1,0 +1,14 @@
+constraints:
+  noise_shape:
+    default: None
+    descp: 1D integer tensor representing the shape of the binary dropout mask that
+      will be multiplied with the input. For instance, if your inputs have shape (batch_size,
+      timesteps, features) and you want the dropout mask to be the same for all timesteps,
+      you can use noise_shape=(batch_size, 1, features).
+  rate:
+    default: 0.0
+    descp: Float between 0 and 1. Fraction of the input units to drop.
+    dtype: float
+descp: Applies Dropout to the input.
+required:
+- rate

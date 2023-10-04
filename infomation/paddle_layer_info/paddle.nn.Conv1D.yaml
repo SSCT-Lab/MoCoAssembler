@@ -30,11 +30,11 @@ constraints:
     - list
   groups:
     default: '1'
-    descp: "The groups number of the conv2d Layer. According to grouped convolution\
-      \ in Alex Krizhevsky\u2019s Deep CNN paper: when group=2, the first half of\
-      \ the filters is only connected to the first half of the input channels, while\
-      \ the second half of the filters is only connected to the second half of the\
-      \ input channels. Default: 1"
+    descp: 'The groups number of the conv2d Layer. According to grouped convolution
+      in Alex Krizhevsky’s Deep CNN paper: when group=2, the first half of the filters
+      is only connected to the first half of the input channels, while the second
+      half of the filters is only connected to the second half of the input channels.
+      Default: 1'
     dtype:
     - int
     enum: null
@@ -77,11 +77,11 @@ constraints:
     - int
   padding:
     default: '0'
-    descp: "The size of zeros to be padded. It must be in one of the following forms.\
-      \ 1. a string in [\u2018valid\u2019, \u2018same\u2019]. 2. an int, which means\
-      \ the feature map is zero paded by size of padding on both sides. 3. a list[int]\
-      \ or tuple[int] whose length is 1, which means the feature map is zero paded\
-      \ by size of padding[0] on both sides. The default value is 0"
+    descp: The size of zeros to be padded. It must be in one of the following forms.
+      1. a string in [‘valid’, ‘same’]. 2. an int, which means the feature map is
+      zero paded by size of padding on both sides. 3. a list[int] or tuple[int] whose
+      length is 1, which means the feature map is zero paded by size of padding[0]
+      on both sides. The default value is 0
     dtype:
     - str
     - int
@@ -97,12 +97,11 @@ constraints:
     - list
   padding_mode:
     default: '''zeros'''
-    descp: "Four modes: \u2018zeros\u2019, \u2018reflect\u2019, \u2018replicate\u2019\
-      , \u2018circular\u2019. When in \u2018zeros\u2019 mode, this op uses zeros to\
-      \ pad the input tensor. When in \u2018reflect\u2019 mode, uses reflection of\
-      \ the input boundaries to pad the input tensor. When in \u2018replicate\u2019\
-      \ mode, uses input boundaries to pad the input tensor. When in \u2018circular\u2019\
-      \ mode, uses circular input to pad the input tensor. Default is \u2018zeros\u2019"
+    descp: 'Four modes: ‘zeros’, ‘reflect’, ‘replicate’, ‘circular’. When in ‘zeros’
+      mode, this op uses zeros to pad the input tensor. When in ‘reflect’ mode, uses
+      reflection of the input boundaries to pad the input tensor. When in ‘replicate’
+      mode, uses input boundaries to pad the input tensor. When in ‘circular’ mode,
+      uses circular input to pad the input tensor. Default is ‘zeros’'
     dtype:
     - str
     enum:
@@ -140,17 +139,16 @@ constraints:
     shape: null
     structure:
     - ParamAttr
-descp: "This interface is used to construct a callable object of the Conv1D class.\
-  \ For more details, refer to code examples. The convolution1D layer calculates the\
-  \ output based on the input, filter and stride, padding, dilation, groups parameters.\
-  \ Input and Output are in NCL format or NLC format, where N is batch size, C is\
-  \ the number of the feature map, L is the length of the feature map. Filter\u2019\
-  s shape is [MCK] , where M is the number of output feature map, C is the number\
-  \ of input feature map, K is the size of the kernel. If the groups is greater than\
-  \ 1, C will equal the number of input feature map divided by the groups. If bias\
-  \ attribution and activation type are provided, bias is added to the output of the\
-  \ convolution, and the corresponding activation function is applied to the final\
-  \ result."
+descp: This interface is used to construct a callable object of the Conv1D class.
+  For more details, refer to code examples. The convolution1D layer calculates the
+  output based on the input, filter and stride, padding, dilation, groups parameters.
+  Input and Output are in NCL format or NLC format, where N is batch size, C is the
+  number of the feature map, L is the length of the feature map. Filter’s shape is
+  [MCK] , where M is the number of output feature map, C is the number of input feature
+  map, K is the size of the kernel. If the groups is greater than 1, C will equal
+  the number of input feature map divided by the groups. If bias attribution and activation
+  type are provided, bias is added to the output of the convolution, and the corresponding
+  activation function is applied to the final result.
 inputs:
   optional:
   - stride

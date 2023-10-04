@@ -1,0 +1,28 @@
+api: mindspore.nn.TransformerEncoder(encoder_layer, num_layers, norm=None)
+descp: Transformer Encoder module with multi-layer stacked of TransformerEncoderLayer,
+  including multihead self attention and feedforward layer.
+constraints:
+  encoder_layer:
+    descp: encoder_layer (Cell) – An instance of the TransformerEncoderLayer() class.
+    default: null
+    dtype:
+    - cell
+  num_layers:
+    descp: num_layers (int) – The number of encoder-layers in the encoder.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  norm:
+    descp: 'norm (Cell, optional) – The layer normalization module. Default: None.'
+    default: None
+    dtype:
+    - cell
+inputs:
+  optional:
+  - norm
+  required:
+  - encoder_layer
+  - num_layers

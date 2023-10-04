@@ -2,8 +2,8 @@ api: paddle.nn.Pad3D
 constraints:
   data_format:
     default: '''NCDHW'''
-    descp: "An string from: 'NCDHW', 'NDHWC'. Specify the data format of the input\
-      \ data. Default: 'NCDHW'"
+    descp: 'An string from: ''NCDHW'', ''NDHWC''. Specify the data format of the input
+      data. Default: ''NCDHW'''
     dtype:
     - str
     enum:
@@ -47,26 +47,26 @@ constraints:
     descp: 'For details, please refer to Name. Generally, no setting is required.
       Default: ''None''.           Returns          None'
     dtype:
-      - str
+    - str
     enum:
-      - need
-      - need
-      - need
-      - need
+    - need
+    - need
+    - need
+    - need
     range: null
     shape: null
     structure:
-      - str
+    - str
   value:
     default: 0.0
     descp: The value to fill the padded areas. Default is 0.0
     dtype:
-      - float
+    - float
     enum: null
     range: null
     shape: null
     structure:
-      - float
+    - float
 descp: This interface is used to construct a callable object of the Pad3D class. Pad
   tensor according to 'pad', 'mode' and 'value'. If mode is 'reflect', pad[0] and
   pad[1] must be no greater than width-1. The height and depth dimension has the same

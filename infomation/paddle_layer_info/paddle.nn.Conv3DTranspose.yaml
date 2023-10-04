@@ -18,8 +18,8 @@ constraints:
     - bool
   data_format:
     default: '''NCDHW'''
-    descp: "Data format that specifies the layout of input. It can be \u201CNCDHW\u201D\
-      \ or \u201CNDHWC\u201D. Default: \u201CNCDHW\u201D"
+    descp: 'Data format that specifies the layout of input. It can be “NCDHW” or “NDHWC”.
+      Default: “NCDHW”'
     dtype:
     - str
     enum:
@@ -45,11 +45,11 @@ constraints:
     - tuple
   groups:
     default: '1'
-    descp: "The groups number of the Conv3D transpose layer. Inspired by grouped convolution\
-      \ in Alex Krizhevsky\u2019s Deep CNN paper, in which when groups = 2, the first\
-      \ half of the filters is only connected to the first half of the input channels,\
-      \ while the second half of the filters is only connected to the second half\
-      \ of the input channels. Default: 1"
+    descp: 'The groups number of the Conv3D transpose layer. Inspired by grouped convolution
+      in Alex Krizhevsky’s Deep CNN paper, in which when groups = 2, the first half
+      of the filters is only connected to the first half of the input channels, while
+      the second half of the filters is only connected to the second half of the input
+      channels. Default: 1'
     dtype:
     - int
     enum: null
@@ -106,19 +106,18 @@ constraints:
     - tuple
   padding:
     default: '0'
-    descp: "The padding size. Padding coule be in one of the following forms. 1. a\
-      \ string in [\u2018valid\u2019, \u2018same\u2019]. 2. an int, which means each\
-      \ spartial dimension(depth, height, width) is zero paded by size of padding\
-      \ 3. a list[int] or tuple[int] whose length is the number of spartial dimensions,\
-      \ which contains the amount of padding on each side for each spartial dimension.\
-      \ It has the form [pad_d1, pad_d2, \u2026]. 4. a list[int] or tuple[int] whose\
-      \ length is 2 * number of spartial dimensions. It has the form [pad_before,\
-      \ pad_after, pad_before, pad_after, \u2026] for all spartial dimensions. 5.\
-      \ a list or tuple of pairs of ints. It has the form [[pad_before, pad_after],\
-      \ [pad_before, pad_after], \u2026]. Note that, the batch dimension and channel\
-      \ dimension are also included. Each pair of integers correspond to the amount\
-      \ of padding for a dimension of the input. Padding in batch dimension and channel\
-      \ dimension should be [0, 0] or (0, 0). Default: 0"
+    descp: 'The padding size. Padding coule be in one of the following forms. 1. a
+      string in [‘valid’, ‘same’]. 2. an int, which means each spartial dimension(depth,
+      height, width) is zero paded by size of padding 3. a list[int] or tuple[int]
+      whose length is the number of spartial dimensions, which contains the amount
+      of padding on each side for each spartial dimension. It has the form [pad_d1,
+      pad_d2, …]. 4. a list[int] or tuple[int] whose length is 2 * number of spartial
+      dimensions. It has the form [pad_before, pad_after, pad_before, pad_after, …]
+      for all spartial dimensions. 5. a list or tuple of pairs of ints. It has the
+      form [[pad_before, pad_after], [pad_before, pad_after], …]. Note that, the batch
+      dimension and channel dimension are also included. Each pair of integers correspond
+      to the amount of padding for a dimension of the input. Padding in batch dimension
+      and channel dimension should be [0, 0] or (0, 0). Default: 0'
     dtype:
     - str
     - int

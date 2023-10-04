@@ -17,8 +17,8 @@ constraints:
     - bool
   data_format:
     default: '''NCHW'''
-    descp: "Data format that specifies the layout of input. It can be \u201CNCHW\u201D\
-      \ or \u201CNHWC\u201D. Default: \u201CNCHW\u201D"
+    descp: 'Data format that specifies the layout of input. It can be “NCHW” or “NHWC”.
+      Default: “NCHW”'
     dtype:
     - str
     enum:
@@ -44,11 +44,11 @@ constraints:
     - tuple
   groups:
     default: '1'
-    descp: "The groups number of the Conv2D transpose layer. Inspired by grouped convolution\
-      \ in Alex Krizhevsky\u2019s Deep CNN paper, in which when group=2, the first\
-      \ half of the filters is only connected to the first half of the input channels,\
-      \ while the second half of the filters is only connected to the second half\
-      \ of the input channels. Default: 1"
+    descp: 'The groups number of the Conv2D transpose layer. Inspired by grouped convolution
+      in Alex Krizhevsky’s Deep CNN paper, in which when group=2, the first half of
+      the filters is only connected to the first half of the input channels, while
+      the second half of the filters is only connected to the second half of the input
+      channels. Default: 1'
     dtype:
     - int
     enum: null
@@ -104,19 +104,19 @@ constraints:
     - tuple
   padding:
     default: '0'
-    descp: "The padding size. Padding coule be in one of the following forms. 1. a\
-      \ string in [\u2018valid\u2019, \u2018same\u2019]. 2. an int, which means each\
-      \ spartial dimension(depth, height, width) is zero paded by size of padding\
-      \ on both sides 3. a list[int] or tuple[int] whose length is the number of spartial\
-      \ dimensions, which contains the amount of padding on each side for each spartial\
-      \ dimension. It has the form [pad_d1, pad_d2, \u2026]. 4. a list[int] or tuple[int]\
-      \ whose length is 2 * number of spartial dimensions. It has the form [pad_before,\
-      \ pad_after, pad_before, pad_after, \u2026] for all spartial dimensions. 5.\
-      \ a list or tuple of pairs of ints. It has the form [[pad_before, pad_after],\
-      \ [pad_before, pad_after], \u2026]. Note that, the batch dimension and channel\
-      \ dimension are also included. Each pair of integers correspond to the amount\
-      \ of padding for a dimension of the input. Padding in batch dimension and channel\
-      \ dimension should be [0, 0] or (0, 0). The default value is 0"
+    descp: The padding size. Padding coule be in one of the following forms. 1. a
+      string in [‘valid’, ‘same’]. 2. an int, which means each spartial dimension(depth,
+      height, width) is zero paded by size of padding on both sides 3. a list[int]
+      or tuple[int] whose length is the number of spartial dimensions, which contains
+      the amount of padding on each side for each spartial dimension. It has the form
+      [pad_d1, pad_d2, …]. 4. a list[int] or tuple[int] whose length is 2 * number
+      of spartial dimensions. It has the form [pad_before, pad_after, pad_before,
+      pad_after, …] for all spartial dimensions. 5. a list or tuple of pairs of ints.
+      It has the form [[pad_before, pad_after], [pad_before, pad_after], …]. Note
+      that, the batch dimension and channel dimension are also included. Each pair
+      of integers correspond to the amount of padding for a dimension of the input.
+      Padding in batch dimension and channel dimension should be [0, 0] or (0, 0).
+      The default value is 0
     dtype:
     - str
     - int
@@ -157,19 +157,19 @@ constraints:
     shape: null
     structure:
     - ParamAttr
-descp: "This interface is used to construct a callable object of the Conv2DTranspose\
-  \ class. For more details, refer to code examples. The convolution2D transpose layer\
-  \ calculates the output based on the input, filter, and dilations, strides, paddings.\
-  \ Input and output are in NCHW format. Where N is batch size, C is the number of\
-  \ feature map, H is the height of the feature map, and W is the width of the feature\
-  \ map. Filter\u2019s shape is [CMHW] , where C is the number of input feature map,\
-  \ M is the number of output feature map, H is the height of the filter, and W is\
-  \ the width of the filter. If the groups is greater than 1, C will equal the number\
-  \ of input feature map divided by the groups. If bias attribution and activation\
-  \ type are provided, bias is added to the output of the convolution, and the corresponding\
-  \ activation function is applied to the final result. The details of convolution\
-  \ transpose layer, please refer to the following explanation and references conv2dtranspose\
-  \ . For each input \\(X\\), the equation is:"
+descp: 'This interface is used to construct a callable object of the Conv2DTranspose
+  class. For more details, refer to code examples. The convolution2D transpose layer
+  calculates the output based on the input, filter, and dilations, strides, paddings.
+  Input and output are in NCHW format. Where N is batch size, C is the number of feature
+  map, H is the height of the feature map, and W is the width of the feature map.
+  Filter’s shape is [CMHW] , where C is the number of input feature map, M is the
+  number of output feature map, H is the height of the filter, and W is the width
+  of the filter. If the groups is greater than 1, C will equal the number of input
+  feature map divided by the groups. If bias attribution and activation type are provided,
+  bias is added to the output of the convolution, and the corresponding activation
+  function is applied to the final result. The details of convolution transpose layer,
+  please refer to the following explanation and references conv2dtranspose . For each
+  input \(X\), the equation is:'
 inputs:
   optional:
   - stride

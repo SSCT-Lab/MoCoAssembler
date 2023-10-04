@@ -1,0 +1,25 @@
+api: mindspore.nn.SoftmaxCrossEntropyWithLogits(sparse=False, reduction='none')
+descp: Computes softmax cross entropy between logits and labels.
+constraints:
+  sparse:
+    descp: 'sparse (bool) – Specifies whether labels use sparse format or not. Default:
+      False .'
+    default: False
+    dtype:
+    - bool
+  reduction:
+    descp: 'reduction (str) – Type of reduction to be applied to loss. The optional
+      values are "mean" , "sum" , and "none" . If "none" , do not perform reduction.
+      Default: "none" .'
+    default: none
+    dtype:
+    - str
+    enum:
+    - none
+    - mean
+    - sum
+inputs:
+  optional:
+  - sparse
+  - reduction
+  required: []

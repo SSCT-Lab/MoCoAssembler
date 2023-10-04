@@ -1,0 +1,11 @@
+api: jittor.nn.GELU()
+constraints: {}
+descp: "    r''' Applies the element-wise function:\n\n    .. math::\n        \\text{GELU}(x)\
+  \ = x * \\Phi(x)\n\n    where :math:`\\Phi(x)` is the Cumulative Distribution Function\
+  \ for Gaussian Distribution.\n\n    :param x: the input var\n    :type x: jt.Var\n\
+  \n    \n'''"
+extra_para: 0
+inputs:
+  optional: []
+  required: []
+kind: layer

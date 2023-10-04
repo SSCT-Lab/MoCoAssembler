@@ -1,0 +1,44 @@
+api: torch.nn.utils.clip_grad_norm_(parameters, max_norm, norm_type=2.0, error_if_nonfinite=False,
+  foreach=None)
+constraints:
+  parameters:
+    descp: an iterable of Tensors or a single Tensor that will have gradients normalized
+    dtype:
+    - iterable[tensor] or tensor
+    - iterable[tensor] or tensor
+  max_norm:
+    descp: max norm of the gradients
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+  norm_type:
+    descp: type of the used p-norm. Can be inf for infinity norm.
+    dtype:
+    - float
+    structure:
+    - single
+    shape: null
+  error_if_nonfinite:
+    descp: if True, an error is thrown if the total norm of the gradients from parameters
+      is nan, inf, or -inf.
+    default: False (will switch to True in the future)
+    dtype:
+    - bool
+  foreach:
+    descp: use the faster foreach-based implementation. If None, use the foreach implementation
+      for CUDA and CPU native tensors and silently fall back to the slow implementation
+      for other device types.
+    default: None
+    dtype:
+    - bool
+descp: Clips gradient norm of an iterable of parameters.
+inputs:
+  optional: []
+  required:
+  - parameters
+  - max_norm
+  - norm_type
+  - error_if_nonfinite
+  - foreach

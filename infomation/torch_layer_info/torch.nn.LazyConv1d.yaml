@@ -1,0 +1,84 @@
+api: torch.nn.LazyConv1d(class , out_channels, kernel_size, stride=1, padding=0, dilation=1,
+  groups=1, bias=True, padding_mode='zeros', device=None, dtype=None)
+constraints:
+  out_channels:
+    descp: Number of channels produced by the convolution
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+  kernel_size:
+    descp: Size of the convolving kernel
+    dtype:
+    - int
+    structure:
+    - single
+    - tuple
+    shape: null
+    range: null
+  stride:
+    descp: Stride of the convolution.
+    default: '1'
+    dtype:
+    - int
+    structure:
+    - single
+    - tuple
+    shape: null
+    range: null
+  padding:
+    descp: Zero-padding added to both sides of the input.
+    default: '0'
+    dtype:
+    - int
+    structure:
+    - single
+    - tuple
+    shape: null
+    range: null
+  padding_mode:
+    descp: zeros, reflect, replicate or circular.
+    default: zeros
+    dtype:
+    - str
+    enum: null
+  dilation:
+    descp: Spacing between kernel elements.
+    default: '1'
+    dtype:
+    - int
+    structure:
+    - single
+    - tuple
+    shape: null
+    range: null
+  groups:
+    descp: Number of blocked connections from input channels to output channels.
+    default: '1'
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+  bias:
+    descp: If True, adds a learnable bias to the output.
+    default: 'True'
+    dtype:
+    - bool
+descp: A torch.nn.Conv1d module with lazy initialization of the in_channels argument
+  of the Conv1d that is inferred from the input.size(1). The attributes that will
+  be lazily initialized are weight and bias.
+inputs:
+  optional:
+  - stride
+  - padding
+  - padding_mode
+  - dilation
+  - groups
+  - bias
+  required:
+  - out_channels
+  - kernel_size

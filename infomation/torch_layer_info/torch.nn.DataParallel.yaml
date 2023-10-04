@@ -1,0 +1,29 @@
+api: torch.nn.DataParallel(class , module, device_ids=None, output_device=None, dim=0)
+constraints:
+  module:
+    descp: module to be parallelized
+    dtype:
+    - module
+  device_ids:
+    descp: 'CUDA devices (default: all devices)'
+    dtype:
+    - list of python:int or torch.device
+    - list of python:int or torch.device
+    structure:
+    - list
+  output_device:
+    descp: 'device location of output (default: device_ids[0])'
+    dtype:
+    - int
+    - int or torch.device
+    structure:
+    - single
+    shape: null
+    range: null
+descp: Implements data parallelism at the module level.
+inputs:
+  optional: []
+  required:
+  - module
+  - device_ids
+  - output_device

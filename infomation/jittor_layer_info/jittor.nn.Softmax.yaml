@@ -1,0 +1,8 @@
+api: jittor.nn.Softmax()
+constraints: {}
+descp: no description
+extra_para: 0
+inputs:
+  optional: []
+  required: []
+kind: layer

@@ -1,0 +1,34 @@
+api: mindspore.nn.ConstantPad3d(padding, value)
+descp: Using a given constant value to pads the last three dimensions of input tensor.
+constraints:
+  padding:
+    descp: padding (Union[int, tuple]) – The padding size to pad the last three dimensions
+      of input tensor. If is int, uses the same padding in boundaries of input’s last
+      three dimensions. If is tuple and length of padding is 6 uses (padding_0, padding_1,
+      padding_2, padding_3, padding_4, padding_5) to pad. If the input is x, the size
+      of last dimension of output is (padding_0 + x.shape[-1] + padding_1). The size
+      of penultimate dimension of output is (padding_2 + x.shape[-2] + padding_3).
+      The size of 3rd to last dimension of output is (padding_4 + x.shape[-3] + padding_5).
+      The remaining dimensions of the output are consistent with those of the input.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    - tuple
+    shape: 6
+    range: null
+  value:
+    descp: value (Union[int, float]) – Padding value.
+    default: null
+    dtype:
+    - int
+    - float
+    structure:
+    - single
+    range: null
+inputs:
+  optional: []
+  required:
+  - padding
+  - value

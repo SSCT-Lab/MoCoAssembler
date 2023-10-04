@@ -1,0 +1,10 @@
+api: torch.nn.SELU(inplace=False)
+constraints:
+  inplace:
+    default: false
+    dtype: torch.bool
+descp: 'Applied element-wise, as:'
+inputs:
+  optional:
+  - inplace
+  required: []

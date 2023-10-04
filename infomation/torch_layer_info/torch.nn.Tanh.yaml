@@ -1,0 +1,6 @@
+api: torch.nn.Tanh(class , *args, **kwargs)
+constraints: {}
+descp: Applies the Hyperbolic Tangent (Tanh) function element-wise.
+inputs:
+  optional: []
+  required: []

@@ -1,0 +1,10 @@
+api: torch.nn.ReLU(inplace=False)
+constraints:
+  inplace:
+    default: false
+    dtype: torch.bool
+descp: 'Applies the rectified linear unit function element-wise:'
+inputs:
+  optional:
+  - inplace
+  required: []

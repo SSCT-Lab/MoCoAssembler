@@ -1,0 +1,21 @@
+constraints:
+  axes:
+    default: (0, 0)
+    descp: Integer or tuple of integers, axis or axes along which to take the dot
+      product. If a tuple, should be two integers corresponding to the desired axis
+      from the first input and the desired axis from the second input, respectively.
+      Note that the size of the two selected axes must match.
+    dtype: int
+    shape: 2
+    structure:
+    - integer
+    - tuple
+  normalize:
+    default: false
+    descp: Whether to L2-normalize samples along the dot product axis before taking
+      the dot product. If set to True, then the output of the dot product is the cosine
+      proximity between the two samples.
+    dtype: tf.bool
+descp: Layer that computes a dot product between samples in two tensors.
+required:
+- axes

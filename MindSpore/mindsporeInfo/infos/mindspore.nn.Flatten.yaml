@@ -1,0 +1,25 @@
+api: mindspore.nn.Flatten(start_dim=1, end_dim=- 1)
+descp: Flatten the input Tensor along dimensions from start_dim to end_dim.
+constraints:
+  start_dim:
+    descp: 'start_dim (int, optional) – The first dimension to flatten. Default: 1
+      .'
+    default: 1
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  end_dim:
+    descp: 'end_dim (int, optional) – The last dimension to flatten. Default: -1 .'
+    default: -1
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+inputs:
+  optional:
+  - start_dim
+  - end_dim
+  required: []

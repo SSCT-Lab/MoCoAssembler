@@ -1,0 +1,32 @@
+api: mindspore.nn.GaussianNLLLoss(*, full=False, eps=1e-06, reduction='mean')
+descp: Gaussian negative log likelihood loss.
+constraints:
+  full:
+    descp: 'full (bool, optional) – Whether include the constant term in the loss
+      calculation. When (full=True), the constant term const. will be (0.5 * log(2pi)).
+      Default: False .'
+    default: False
+    dtype:
+    - bool
+  eps:
+    descp: 'eps (float, optional) – Used to improve the stability of log function.
+      Default: 1e-6 .'
+    default: 1e-6
+    dtype:
+    - float
+  reduction:
+    descp: 'reduction (str, optional) – Apply specific reduction method to the output:
+      ''none'' , ''mean'' , or ''sum'' . Default: ''mean'' .'
+    default: mean
+    dtype:
+    - str
+    enum:
+    - none
+    - mean
+    - sum
+inputs:
+  optional:
+  - full
+  - eps
+  - reduction
+  required: []

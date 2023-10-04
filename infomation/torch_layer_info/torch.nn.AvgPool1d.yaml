@@ -1,0 +1,57 @@
+api: torch.nn.AvgPool1d(kernel_size, stride=None, padding=0, ceil_mode=False, count_include_pad=True)
+constraints:
+  ceil_mode:
+    descp: when True, will use
+    default: false
+    dtype: torch.bool
+  count_include_pad:
+    descp: when True, will include the zero-padding in the averaging calculation
+    default: true
+    dtype: torch.bool
+  kernel_size:
+    descp: the size of the window
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 1
+    range:
+    - 1
+    - 8
+  padding:
+    descp: implicit zero padding to be added on both sides
+    default: 0
+    dtype:
+    - int
+    - torch.string
+    structure:
+    - integer
+    - tuple
+    shape: 1
+    range:
+    - 1
+    - 8
+    enum:
+    - same
+    - valid
+  stride:
+    descp: the stride of the window.
+    default: None
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 1
+    range:
+    - 1
+    - 4
+descp: Applies a 1D average pooling over an input signal composed of several input
+  planes.
+inputs:
+  optional:
+  - stride
+  - padding
+  - ceil_mode
+  - count_include_pad
+  required:
+  - kernel_size

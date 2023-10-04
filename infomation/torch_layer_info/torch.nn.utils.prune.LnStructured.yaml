@@ -1,0 +1,44 @@
+api: torch.nn.utils.prune.LnStructured(class , amount, n, dim=- 1)
+constraints:
+  amount:
+    descp: quantity of channels to prune. If float, should be between 0.0 and 1.0
+      and represent the fraction of parameters to prune. If int, it represents the
+      absolute number of parameters to prune.
+    dtype:
+    - int
+    - float
+    structure:
+    - single
+    - single
+    shape: null
+    range: null
+  n:
+    descp: See documentation of valid entries for argument p in torch.norm().
+    dtype:
+    - int
+    - float
+    - int, float, inf, -inf, 'fro', 'nuc'
+    - int, float, inf, -inf, 'fro', 'nuc'
+    - int, float, inf, -inf, 'fro', 'nuc'
+    - int, float, inf, -inf, 'fro', 'nuc'
+    structure:
+    - single
+    - single
+    shape: null
+    range: null
+  dim:
+    descp: index of the dim along which we define channels to prune.
+    default: '-1.'
+    dtype:
+    - int
+    structure:
+    - single
+    shape: null
+    range: null
+descp: Prune entire (currently unpruned) channels in a tensor based on their Ln-norm.
+inputs:
+  optional:
+  - dim
+  required:
+  - amount
+  - n

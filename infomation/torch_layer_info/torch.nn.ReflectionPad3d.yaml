@@ -1,0 +1,17 @@
+api: torch.nn.ReflectionPad3d(class , padding)
+constraints:
+  padding:
+    descp: the size of the padding. If is int, uses the same padding in all boundaries.
+      If a 6-tuple, uses (padding_left\text{padding\_left}padding_left, padding_right\text{padding\_right}padding_right,
+      padding_top\text{padding\_top}padding_top, padding_bottom\text{padding\_bottom}padding_bottom,
+      padding_front\text{padding\_front}padding_front, padding_back\text{padding\_back}padding_back)
+    structure:
+    - single
+    - tuple
+    shape: null
+    range: null
+descp: Pads the input tensor using the reflection of the input boundary.
+inputs:
+  optional: []
+  required:
+  - padding

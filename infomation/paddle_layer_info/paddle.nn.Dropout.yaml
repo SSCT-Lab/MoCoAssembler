@@ -2,7 +2,7 @@ api: paddle.nn.Dropout
 constraints:
   mode:
     default: '''upscale_in_train'''
-    descp: "Way to setting units to zero. Default: upscale_in_train"
+    descp: 'Way to setting units to zero. Default: upscale_in_train'
     dtype:
     - str
     enum:
@@ -24,7 +24,7 @@ constraints:
     - float
   axis:
     default: None
-    descp: "The axis along which the dropout is performed. Default: None."
+    descp: 'The axis along which the dropout is performed. Default: None.'
     dtype:
     - int
     enum: null

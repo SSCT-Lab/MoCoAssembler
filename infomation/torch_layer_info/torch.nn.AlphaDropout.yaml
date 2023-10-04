@@ -1,0 +1,16 @@
+api: torch.nn.AlphaDropout(p=0.5, inplace=False)
+constraints:
+  inplace:
+    descp: If set to True, will do this operation in-place
+    default: false
+    dtype: torch.bool
+  p:
+    descp: probability of an element to be dropped.
+    default: 0.5
+    dtype: torch.float
+descp: Applies Alpha Dropout over the input.
+inputs:
+  optional:
+  - p
+  - inplace
+  required: []

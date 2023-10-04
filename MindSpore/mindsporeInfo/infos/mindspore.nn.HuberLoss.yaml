@@ -1,0 +1,30 @@
+api: mindspore.nn.HuberLoss(reduction='mean', delta=1.0)
+descp: HuberLoss calculate the error between the predicted value and the target value.
+constraints:
+  reduction:
+    descp: 'reduction (str) – Type of reduction to be applied to loss. The optional
+      values are "mean" , "sum" , and "none" . If reduction is "mean" or "sum" , then
+      output a scalar Tensor, if reduction is "none" , the shape of the output Tensor
+      is the broadcasted shape. Default: "mean".'
+    default: mean
+    dtype:
+    - str
+    enum:
+    - none
+    - mean
+    - sum
+  delta:
+    descp: 'delta (Union[int, float]) – The threshold to change between two type of
+      loss. The value must be positive. Default: 1.0 .'
+    default: 1.0
+    dtype:
+    - int
+    - float
+    structure:
+    - single
+    range: null
+inputs:
+  optional:
+  - reduction
+  - delta
+  required: []

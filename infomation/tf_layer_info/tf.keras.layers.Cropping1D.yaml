@@ -1,0 +1,16 @@
+constraints:
+  cropping:
+    default: (1, 1)
+    descp: Int or tuple of int (length 2) How many units should be trimmed off at
+      the beginning and end of the cropping dimension (axis 1). If a single int is
+      provided, the same value will be used for both.
+    dtype: int
+    range:
+    - 0
+    - 8
+    shape: 2
+    structure:
+    - integer
+    - tuple
+descp: Cropping layer for 1D input (e.g. temporal sequence).
+required: []

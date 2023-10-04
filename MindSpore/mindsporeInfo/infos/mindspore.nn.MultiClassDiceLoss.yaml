@@ -1,0 +1,45 @@
+api: mindspore.nn.MultiClassDiceLoss(weights=None, ignore_indiex=None, activation='softmax')
+descp: When there are multiple classifications, label is transformed into multiple
+  binary classifications by one hot.
+constraints:
+  weights:
+    descp: 'weights (Union[Tensor, None]) – Tensor of shape ((num_classes, dim)).
+      The weight shape[0] should be equal to labels shape[1]. Default: None .'
+    default: None
+    dtype:
+    - str
+    enum:
+    - None
+  ignore_indiex:
+    descp: 'ignore_indiex (Union[int, None]) – Class index to ignore. Default: None
+      .'
+    default: None
+    dtype:
+    - int
+    - str
+    structure:
+    - single
+    range: null
+    enum:
+    - None
+  activation:
+    descp: 'activation (Union[str, Cell]) – Activate function applied to the output
+      of the fully connected layer, eg. ‘ReLU’. Default: ''softmax'' . Choose from:
+      [ ''softmax'' , ''logsoftmax'' , ''relu'' , ''relu6'' , ''tanh'' , ''Sigmoid''
+      ]'
+    default: softmax
+    dtype:
+    - str
+    enum:
+    - softmax
+    - logsoftmax
+    - relu
+    - relu6
+    - tanh
+    - Sigmoid
+inputs:
+  optional:
+  - weights
+  - ignore_indiex
+  - activation
+  required: []

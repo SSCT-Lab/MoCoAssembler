@@ -1,0 +1,18 @@
+api: torch.nn.utils.prune.CustomFromMask(class , mask)
+constraints:
+  module:
+    descp: module containing the tensor to prune
+    dtype:
+    - nn.module
+  name:
+    descp: parameter name within module on which pruning will act.
+    dtype:
+    - str
+    enum: null
+descp: Adds the forward pre-hook that enables pruning on the fly and the reparametrization
+  of a tensor in terms of the original tensor and the pruning mask.
+inputs:
+  optional: []
+  required:
+  - module
+  - name

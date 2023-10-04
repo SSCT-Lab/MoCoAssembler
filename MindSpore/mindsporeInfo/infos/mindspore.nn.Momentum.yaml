@@ -1,0 +1,93 @@
+api: mindspore.nn.Momentum(params, learning_rate, momentum, weight_decay=0.0, loss_scale=1.0,
+  use_nesterov=False)
+descp: Implements the Momentum algorithm.
+constraints:
+  params:
+    descp: 'params (Union[list[Parameter], list[dict]]) – Must be list of Parameter
+      or list of dict. When the params is a list of dict, the string “params”, “lr”,
+      “weight_decay”, “grad_centralization” and “order_params” are the keys can be
+      parsed.  params: Required. Parameters in current group. The value must be a
+      list of Parameter. lr: Optional. If “lr” in the keys, the value of corresponding
+      learning rate will be used. If not, the learning_rate in optimizer will be used.
+      Fixed and dynamic learning rate are supported. weight_decay: Optional. If “weight_decay”
+      in the keys, the value of corresponding weight decay will be used. If not, the
+      weight_decay in the optimizer will be used. It should be noted that weight decay
+      can be a constant value or a Cell. It is a Cell only when dynamic weight decay
+      is applied. Dynamic weight decay is similar to dynamic learning rate, users
+      need to customize a weight decay schedule only with global step as input, and
+      during training, the optimizer calls the instance of WeightDecaySchedule to
+      get the weight decay value of current step. grad_centralization: Optional. Must
+      be Boolean. If “grad_centralization” is in the keys, the set value will be used.
+      If not, the grad_centralization is False by default. This configuration only
+      works on the convolution layer. order_params: Optional. When parameters is grouped,
+      this usually is used to maintain the order of parameters that appeared in the
+      network to improve performance. The value should be parameters whose order will
+      be followed in optimizer. If order_params in the keys, other keys will be ignored
+      and the element of ‘order_params’ must be in one group of params.  '
+    default: null
+    dtype:
+    - union[list[parameter], list[dict]]
+    structure:
+    - list
+  learning_rate:
+    descp: 'learning_rate (Union[float, int, Tensor, Iterable, LearningRateSchedule])
+      –  float: The fixed learning rate value. Must be equal to or greater than 0.
+      int: The fixed learning rate value. Must be equal to or greater than 0. It will
+      be converted to float. Tensor: Its value should be a scalar or a 1-D vector.
+      For scalar, fixed learning rate will be applied. For vector, learning rate is
+      dynamic, then the i-th step will take the i-th value as the learning rate. Iterable:
+      Learning rate is dynamic. The i-th step will take the i-th value as the learning
+      rate. LearningRateSchedule: Learning rate is dynamic. During training, the optimizer
+      calls the instance of LearningRateSchedule with step as the input to get the
+      learning rate of current step.  '
+    default: null
+    dtype:
+    - int
+    - float
+    structure:
+    - single
+    range: null
+  momentum:
+    descp: momentum (float) – Hyperparameter of type float, means momentum for the
+      moving average. It must be at least 0.0.
+    default: null
+    dtype:
+    - float
+  weight_decay:
+    descp: 'weight_decay (Union[float, int, Cell]) – Weight decay (L2 penalty). Default:
+      0.0 .  float: The fixed weight decay value. Must be equal to or greater than
+      0. int: The fixed weight decay value. Must be equal to or greater than 0. It
+      will be converted to float. Cell: Weight decay is dynamic. During training,
+      the optimizer calls the instance of the Cell with step as the input to get the
+      weight decay value of current step.  '
+    default: 0.0
+    dtype:
+    - int
+    - float
+    structure:
+    - single
+    range: null
+  loss_scale:
+    descp: 'loss_scale (float) – A floating point value for the loss scale. It must
+      be greater than 0.0. In general, use the default value. Only when FixedLossScaleManager
+      is used for training and the drop_overflow_update in FixedLossScaleManager is
+      set to False , then this value needs to be the same as the loss_scale in FixedLossScaleManager.
+      Refer to class mindspore.amp.FixedLossScaleManager for more details. Default:
+      1.0 .'
+    default: 1.0
+    dtype:
+    - float
+  use_nesterov:
+    descp: 'use_nesterov (bool) – Enable Nesterov momentum. Default: False .'
+    default: False
+    dtype:
+    - bool
+inputs:
+  optional:
+  - weight_decay=
+  - loss_scale
+  - use_nesterov
+  required:
+  - params
+  - learning_rate
+  - momentum

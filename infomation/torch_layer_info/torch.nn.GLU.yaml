@@ -1,0 +1,16 @@
+api: torch.nn.GLU(class , dim=- 1)
+constraints:
+  dim:
+    descp: the dimension on which to split the input.
+    default: '-1'
+    structure:
+    - single
+    shape: null
+    range: null
+descp: "Applies the gated linear unit function GLU(a,b)=a\u2297\u03C3(b){GLU}(a, b)=\
+  \ a \\otimes \\sigma(b)GLU(a,b)=a\u2297\u03C3(b) where aaa is the first half of\
+  \ the input matrices and bbb is the second half."
+inputs:
+  optional: []
+  required:
+  - dim

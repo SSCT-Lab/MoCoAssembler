@@ -43,15 +43,15 @@ constraints:
     - str
   padding:
     default: '0'
-    descp: "The padding size. Padding could be in one of the following forms. 1. A\
-      \ string in [\u2018valid\u2019, \u2018same\u2019]. 2. An integer, which means\
-      \ the feature map is zero padded by size of padding on every sides. 3. A list[int]\
-      \ or tuple(int) whose length is 1, which means the feature map is zero padded\
-      \ by the size of padding[0] on every sides. 4. A list[int] or tuple(int) whose\
-      \ length is 2, It has the form [pad_before, pad_after]. 5. A list or tuple of\
-      \ pairs of integers. It has the form [[pad_before, pad_after], [pad_before,\
-      \ pad_after], \u2026]. Note that, the batch dimension and channel dimension\
-      \ should be [0,0] or(0,0). The default value is 0"
+    descp: The padding size. Padding could be in one of the following forms. 1. A
+      string in [‘valid’, ‘same’]. 2. An integer, which means the feature map is zero
+      padded by size of padding on every sides. 3. A list[int] or tuple(int) whose
+      length is 1, which means the feature map is zero padded by the size of padding[0]
+      on every sides. 4. A list[int] or tuple(int) whose length is 2, It has the form
+      [pad_before, pad_after]. 5. A list or tuple of pairs of integers. It has the
+      form [[pad_before, pad_after], [pad_before, pad_after], …]. Note that, the batch
+      dimension and channel dimension should be [0,0] or(0,0). The default value is
+      0
     dtype:
     - str
     - int

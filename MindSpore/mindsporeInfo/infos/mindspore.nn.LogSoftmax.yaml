@@ -1,0 +1,16 @@
+api: mindspore.nn.LogSoftmax(axis=- 1)
+descp: Applies the LogSoftmax function to n-dimensional input tensor.
+constraints:
+  axis:
+    descp: 'axis (int) – The axis to apply LogSoftmax operation, -1 means the last
+      dimension. Default: -1 .'
+    default: -1
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+inputs:
+  optional:
+  - axis
+  required: []

@@ -44,9 +44,9 @@ constraints:
     - int
   output_fn:
     default: None
-    descp: "A callable to apply to the cell\u2019s output prior to calculate scores\
-      \ and select candidate token ids. Default None.           Returns          An\
-      \ instance of decoder which can be used in paddle"
+    descp: A callable to apply to the cell’s output prior to calculate scores and
+      select candidate token ids. Default None.           Returns          An instance
+      of decoder which can be used in paddle
     dtype:
     - int
     enum: null

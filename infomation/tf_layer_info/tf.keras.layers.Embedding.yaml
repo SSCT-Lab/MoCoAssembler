@@ -1,0 +1,51 @@
+constraints:
+  activity_regularizer:
+    default: None
+    dtype: tf.string
+  embeddings_constraint:
+    default: None
+    descp: Constraint function applied to the embeddings matrix (see keras.constraints).
+    dtype: tf.string
+  embeddings_initializer:
+    default: uniform
+    descp: Initializer for the embeddings matrix (see keras.initializers).
+    dtype: tf.string
+  embeddings_regularizer:
+    default: None
+    descp: Regularizer function applied to the embeddings matrix (see keras.regularizers).
+    dtype: tf.string
+  input_dim:
+    descp: Integer. Size of the vocabulary, i.e. maximum integer index + 1.
+    dtype: int
+    range:
+    - 0
+    - 2048
+    shape: 1
+    structure: integer
+  input_length:
+    default: None
+    descp: Length of input sequences, when it is constant. This argument is required
+      if you are going to connect Flatten then Dense layers upstream (without it,
+      the shape of the dense outputs cannot be computed).
+    dtype: tf.string
+  mask_zero:
+    default: false
+    descp: Boolean, whether or not the input value 0 is a special "padding" value
+      that should be masked out. This is useful when using recurrent layers which
+      may take variable length input. If this is True, then all subsequent layers
+      in the model need to support masking or an exception will be raised. If mask_zero
+      is set to True, as a consequence, index 0 cannot be used in the vocabulary (input_dim
+      should equal size of vocabulary + 1).
+    dtype: tf.bool
+  output_dim:
+    descp: Integer. Dimension of the dense embedding.
+    dtype: int
+    range:
+    - 0
+    - 2048
+    shape: 1
+    structure: integer
+descp: Turns positive integers (indexes) into dense vectors of fixed size.
+required:
+- input_dim
+- output_dim

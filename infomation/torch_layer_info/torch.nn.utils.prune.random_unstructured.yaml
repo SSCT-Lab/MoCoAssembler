@@ -1,0 +1,32 @@
+api: torch.nn.utils.prune.random_unstructured(module, name, amount)
+constraints:
+  module:
+    descp: module containing the tensor to prune
+    dtype:
+    - nn.module
+  name:
+    descp: parameter name within module on which pruning will act.
+    dtype:
+    - str
+    enum: null
+  amount:
+    descp: quantity of parameters to prune. If float, should be between 0.0 and 1.0
+      and represent the fraction of parameters to prune. If int, it represents the
+      absolute number of parameters to prune.
+    dtype:
+    - int
+    - float
+    structure:
+    - single
+    - single
+    shape: null
+    range: null
+descp: 'Prunes tensor corresponding to parameter called name in module by removing
+  the specified amount of (currently unpruned) units selected at random. Modifies
+  module in place (and also return the modified module) by:'
+inputs:
+  optional: []
+  required:
+  - module
+  - name
+  - amount

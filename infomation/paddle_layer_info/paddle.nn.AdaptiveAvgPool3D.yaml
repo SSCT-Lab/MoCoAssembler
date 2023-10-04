@@ -2,10 +2,9 @@ api: paddle.nn.AdaptiveAvgPool3D
 constraints:
   data_format:
     default: '''NCDHW'''
-    descp: "The data format of the input and output data. An optional string from:\
-      \ NCDHW, NDHWC. The default is NCDHW. When\
-      \ it is NCDHW, the data is stored in the order of: [batch_size,\
-      \ input_channels, input_depth, input_height, input_width]"
+    descp: 'The data format of the input and output data. An optional string from:
+      NCDHW, NDHWC. The default is NCDHW. When it is NCDHW, the data is stored in
+      the order of: [batch_size, input_channels, input_depth, input_height, input_width]'
     dtype:
     - str
     enum:

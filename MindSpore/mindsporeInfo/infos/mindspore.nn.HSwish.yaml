@@ -1,0 +1,6 @@
+api: mindspore.nn.HSwish
+descp: Applies hswish-type activation element-wise.
+constraints: []
+inputs:
+  optional: []
+  required: []

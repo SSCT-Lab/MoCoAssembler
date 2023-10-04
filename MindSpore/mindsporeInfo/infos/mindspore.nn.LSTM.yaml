@@ -1,0 +1,66 @@
+api: mindspore.nn.LSTM(*args, **kwargs)
+descp: Stacked LSTM (Long Short-Term Memory) layers.
+constraints:
+  input_size:
+    descp: input_size (int) – Number of features of input.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  hidden_size:
+    descp: hidden_size (int) – Number of features of hidden layer.
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  num_layers:
+    descp: 'num_layers (int) – Number of layers of stacked LSTM . Default: 1 .'
+    default: 1
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  has_bias:
+    descp: 'has_bias (bool) – Whether the cell has bias b_ih and b_hh. Default: True
+      .'
+    default: True
+    dtype:
+    - bool
+  batch_first:
+    descp: 'batch_first (bool) – Specifies whether the first dimension of input x
+      is batch_size. Default: False .'
+    default: False
+    dtype:
+    - bool
+  dropout:
+    descp: dropout (float, int) – If not 0, append Dropout layer on the outputs of
+      each LSTM layer except the last layer. Default 0 . The range of dropout is [0.0,
+      1.0).
+    default: 0
+    dtype:
+    - int
+    - float
+    structure:
+    - single
+    range: null
+  bidirectional:
+    descp: 'bidirectional (bool) – Specifies whether it is a bidirectional LSTM, num_directions=2
+      if bidirectional=True otherwise 1. Default: False .'
+    default: False
+    dtype:
+    - bool
+inputs:
+  optional:
+  - num_layers
+  - has_bias
+  - batch_first
+  - dropout
+  - bidirectional
+  required:
+  - input_size
+  - hidden_size

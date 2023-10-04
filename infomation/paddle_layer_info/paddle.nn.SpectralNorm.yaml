@@ -15,8 +15,7 @@ constraints:
     - int
   dtype:
     default: '''float32'''
-    descp: "Data type, it can be \u201Cfloat32\u201D or \u201Cfloat64\u201D. Default:\
-      \ \u201Cfloat32\u201D.           Returns          None"
+    descp: 'Data type, it can be “float32” or “float64”. Default: “float32”.           Returns          None'
     dtype:
     - str
     enum:

@@ -1,0 +1,45 @@
+api: mindspore.nn.get_activation(name, prim_name=None)
+descp: Gets the activation function.
+constraints:
+  name:
+    descp: name (str) – The name of the activation function.
+    default: null
+    dtype:
+    - str
+    enum: null
+  prim_name:
+    descp: 'prim_name (Union[str, None]) – The name of primitive. Default: None .'
+    default: None
+    dtype:
+    - str
+    enum:
+    - softmin
+    - softmax
+    - softmax2d
+    - logsoftmax
+    - relu
+    - relu6
+    - rrelu
+    - silu
+    - tanh
+    - tanhshrink
+    - hardtanh
+    - gelu
+    - fast_gelu
+    - elu
+    - sigmoid
+    - softsign
+    - prelu
+    - leakyrelu
+    - hswish
+    - hsigmoid
+    - logsigmoid
+    - softshrink
+    - hshrink
+    - threshold
+    - mish
+inputs:
+  optional:
+  - prim_name
+  required:
+  - name

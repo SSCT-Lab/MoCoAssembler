@@ -1,0 +1,12 @@
+constraints:
+  size:
+    default: 2
+    descp: Integer. Upsampling factor.
+    dtype: int
+    range:
+    - 0
+    - 4
+    shape: 1
+    structure: integer
+descp: Upsampling layer for 1D inputs.
+required: []

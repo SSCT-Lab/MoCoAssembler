@@ -1,0 +1,39 @@
+api: torch.nn.GroupNorm(num_groups, num_channels, eps=1e-05, affine=True, device=None,
+  dtype=None)
+constraints:
+  affine:
+    descp: a boolean value that when set to True, this module has learnable per-channel
+      affine parameters initialized to ones (for weights) and zeros (for biases).
+    default: true
+    dtype: torch.bool
+  eps:
+    descp: a value added to the denominator for numerical stability.
+    default: 1e-05
+    dtype: torch.float
+  num_channels:
+    descp: number of channels expected in input
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 1028
+  num_groups:
+    descp: number of groups to separate the channels into
+    dtype: int
+    structure:
+    - integer
+    shape: 1
+    range:
+    - 1
+    - 3
+descp: Applies Group Normalization over a mini-batch of inputs as described in the
+  paper Group Normalization
+inputs:
+  optional:
+  - eps
+  - affine
+  required:
+  - num_groups
+  - num_channels

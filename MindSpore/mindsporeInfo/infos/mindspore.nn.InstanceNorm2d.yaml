@@ -1,0 +1,63 @@
+api: mindspore.nn.InstanceNorm2d(num_features, eps=1e-05, momentum=0.1, affine=True,
+  gamma_init='ones', beta_init='zeros')
+descp: This layer applies Instance Normalization over a 4D input (a mini-batch of
+  2D inputs with additional channel dimension).
+constraints:
+  num_features:
+    descp: num_features (int) – C from an expected input of size ((N, C, H, W)).
+    default: null
+    dtype:
+    - int
+    structure:
+    - single
+    range: null
+  eps:
+    descp: 'eps (float) – A value added to the denominator for numerical stability.
+      Default: 1e-5 .'
+    default: 1e-5
+    dtype:
+    - float
+  momentum:
+    descp: 'momentum (float) – A floating hyperparameter of the momentum for the running_mean
+      and running_var computation. Default: 0.1 .'
+    default: 0.1
+    dtype:
+    - float
+  affine:
+    descp: 'affine (bool) – A bool value. When set to True , gamma and beta can be
+      learned. Default: True .'
+    default: True
+    dtype:
+    - bool
+  gamma_init:
+    descp: 'gamma_init (Union[Tensor, str, Initializer, numbers.Number]) – Initializer
+      for the gamma weight. The values of str refer to the function initializer including
+      ''zeros'' , ''ones'' , etc. When initialized with Tensor, the shape should be
+      ((C)). Default: ''ones'' .'
+    default: ones
+    dtype:
+    - str
+    enum:
+    - zeros
+    - ones
+  beta_init:
+    descp: 'beta_init (Union[Tensor, str, Initializer, numbers.Number]) – Initializer
+      for the beta weight. The values of str refer to the function initializer including
+      ''zeros'' , ''ones'' , etc. When initialized with Tensor, the shape should be
+      ((C)). Default: ''zeros'' .'
+    default: zeros
+    dtype:
+    - str
+    enum:
+    - zeros
+    - ones
+inputs:
+  optional:
+  - eps
+  - momentum
+  - affine
+  - gamma_init
+  - beta_init
+  required:
+  - num_features
+

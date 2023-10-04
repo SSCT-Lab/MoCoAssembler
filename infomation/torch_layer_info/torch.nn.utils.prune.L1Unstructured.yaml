@@ -1,0 +1,17 @@
+api: torch.nn.utils.prune.L1Unstructured(class , amount)
+constraints:
+  amount:
+    descp: quantity of parameters to prune. If float, should be between 0.0 and 1.0
+      and represent the fraction of parameters to prune. If int, it represents the
+      absolute number of parameters to prune.
+    structure:
+    - single
+    - single
+    shape: null
+    range: null
+descp: Prune (currently unpruned) units in a tensor by zeroing out the ones with the
+  lowest L1-norm.
+inputs:
+  optional: []
+  required:
+  - amount

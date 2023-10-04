@@ -18,7 +18,7 @@ constraints:
     - bool
   data_format:
     default: '''NCDHW'''
-    descp: "Specify the input data format, could be \u201CNCDHW\u201D. Default: NCDHW"
+    descp: 'Specify the input data format, could be “NCDHW”. Default: NCDHW'
     dtype:
     - str
     enum:

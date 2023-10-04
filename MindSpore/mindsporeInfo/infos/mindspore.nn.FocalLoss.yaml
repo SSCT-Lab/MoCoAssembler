@@ -1,0 +1,36 @@
+api: mindspore.nn.FocalLoss(weight=None, gamma=2.0, reduction='mean')
+descp: It is a loss function to solve the imbalance of categories and the difference
+  of classification difficulty.
+constraints:
+  gamma:
+    descp: 'gamma (float) – Gamma is used to adjust the steepness of weight curve
+      in focal loss. Default: 2.0 .'
+    default: 2.0
+    dtype:
+    - float
+  weight:
+    descp: 'weight (Union[Tensor, None]) – A rescaling weight applied to the loss
+      of each batch element. The dimension of weight should be 1. If None, no weight
+      is applied. Default: None .'
+    default: None
+    dtype:
+    - str
+    enum:
+    - None
+  reduction:
+    descp: 'reduction (str) – Type of reduction to be applied to loss. The optional
+      values are "mean" , "sum" , and "none". If “none”, do not perform reduction.
+      Default: "mean" .'
+    default: mean
+    dtype:
+    - str
+    enum:
+    - none
+    - mean
+    - sum
+inputs:
+  optional:
+  - weight
+  - gamma
+  - reduction
+  required: []
