@@ -1,185 +1,185 @@
 googlenet:
-- layer: conv2d
-  param:
-    in_channels: 3
-    out_channels: 64
-    kernel_size: 7
-    stride: 2
-    padding: 3
-  in: x
-  out: x
-- layer: relu
-  param: {}
-  in: x
-  out: x
-- layer: maxpool2d
-  param:
-    kernel_size: 3
-    stride: 2
-    ceil_mode: True
-  in: x
-  out: x
-- layer: conv2d
-  param:
-    in_channels: 64
-    out_channels: 64
-    kernel_size: 1
-    stride: 1
-  in: x
-  out: x
-- layer: relu
-  param: {}
-  in: x
-  out: x
-- layer: conv2d
-  param:
-    in_channels: 64
-    out_channels: 192
-    kernel_size: 3
-    stride: 1
-    padding: 1
-  in: x
-  out: x
-- layer: relu
-  param: {}
-  in: x
-  out: x
-- layer: maxpool2d
-  param:
-    kernel_size: 3
-    stride: 2
-    ceil_mode: True
-  in: x
-  out: x
-- layer: inception
-  param:
-    in_channels: 192
-    ch1x1: 64
-    ch3x3red: 96
-    ch3x3: 128
-    h5x5red: 16
-    ch5x5: 32
-    pool_proj: 32
-  in: x
-  out: x
-- layer: inception
-  param:
-    in_channels: 256
-    ch1x1: 128
-    ch3x3red: 128
-    ch3x3: 192
-    h5x5red: 32
-    ch5x5: 96
-    pool_proj: 64
-  in: x
-  out: x
-- layer: maxpool2d
-  param:
-    kernel_size: 3
-    stride: 2
-    ceil_mode: True
-  in: x
-  out: x
-- layer: inception
-  param:
-    in_channels: 480
-    ch1x1: 192
-    ch3x3red: 96
-    ch3x3: 208
-    h5x5red: 16
-    ch5x5: 48
-    pool_proj: 64
-  in: x
-  out: x
-- layer: inception
-  param:
-    in_channels: 512
-    ch1x1: 160
-    ch3x3red: 112
-    ch3x3: 224
-    h5x5red: 24
-    ch5x5: 64
-    pool_proj: 64
-  in: x
-  out: x
-- layer: inception
-  param:
-    in_channels: 512
-    ch1x1: 128
-    ch3x3red: 128
-    ch3x3: 256
-    h5x5red: 24
-    ch5x5: 64
-    pool_proj: 64
-  in: x
-  out: x
-- layer: inception
-  param:
-    in_channels: 512
-    ch1x1: 112
-    ch3x3red: 144
-    ch3x3: 288
-    h5x5red: 32
-    ch5x5: 64
-    pool_proj: 64
-  in: x
-  out: x
-- layer: inception
-  param:
-    in_channels: 528
-    ch1x1: 256
-    ch3x3red: 160
-    ch3x3: 320
-    h5x5red: 32
-    ch5x5: 128
-    pool_proj: 128
-  in: x
-  out: x
-- layer: maxpool2d
-  param:
-    kernel_size: 3
-    stride: 2
-    ceil_mode: True
-  in: x
-  out: x
-- layer: inception
-  param:
-    in_channels: 832
-    ch1x1: 256
-    ch3x3red: 160
-    ch3x3: 320
-    h5x5red: 32
-    ch5x5: 128
-    pool_proj: 128
-  in: x
-  out: x
-- layer: inception
-  param:
-    in_channels: 832
-    ch1x1: 384
-    ch3x3red: 192
-    ch3x3: 384
-    h5x5red: 48
-    ch5x5: 128
-    pool_proj: 128
-  in: x
-  out: x
-- layer: adaptiveavgpool2d
-  param:
-    output_size: 1
-  in: x
-  out: x
-- layer: dropout
-  param:
-    p: 0.4
-  in: x
-  out: x
-- layer: linear
-  param:
-    in_features: 1024
-    out_features: 1000
-  in: x
-  out: x
+  - layer: conv2d
+    param:
+      in_channels: 3
+      out_channels: 64
+      kernel_size: 7
+      stride: 2
+      padding: 3
+    in: x
+    out: x
+  - layer: relu
+    param: {}
+    in: x
+    out: x
+  - layer: maxpool2d
+    param:
+      kernel_size: 3
+      stride: 2
+      ceil_mode: True
+    in: x
+    out: x
+  - layer: conv2d
+    param:
+      in_channels: 64
+      out_channels: 64
+      kernel_size: 1
+      stride: 1
+    in: x
+    out: x
+  - layer: relu
+    param: {}
+    in: x
+    out: x
+  - layer: conv2d
+    param:
+      in_channels: 64
+      out_channels: 192
+      kernel_size: 3
+      stride: 1
+      padding: 1
+    in: x
+    out: x
+  - layer: relu
+    param: {}
+    in: x
+    out: x
+  - layer: maxpool2d
+    param:
+      kernel_size: 3
+      stride: 2
+      ceil_mode: True
+    in: x
+    out: x
+  - layer: inception
+    param:
+      in_channels: 192
+      ch1x1: 64
+      ch3x3red: 96
+      ch3x3: 128
+      h5x5red: 16
+      ch5x5: 32
+      pool_proj: 32
+    in: x
+    out: x
+  - layer: inception
+    param:
+      in_channels: 256
+      ch1x1: 128
+      ch3x3red: 128
+      ch3x3: 192
+      h5x5red: 32
+      ch5x5: 96
+      pool_proj: 64
+    in: x
+    out: x
+  - layer: maxpool2d
+    param:
+      kernel_size: 3
+      stride: 2
+      ceil_mode: True
+    in: x
+    out: x
+  - layer: inception
+    param:
+      in_channels: 480
+      ch1x1: 192
+      ch3x3red: 96
+      ch3x3: 208
+      h5x5red: 16
+      ch5x5: 48
+      pool_proj: 64
+    in: x
+    out: x
+  - layer: inception
+    param:
+      in_channels: 512
+      ch1x1: 160
+      ch3x3red: 112
+      ch3x3: 224
+      h5x5red: 24
+      ch5x5: 64
+      pool_proj: 64
+    in: x
+    out: x
+  - layer: inception
+    param:
+      in_channels: 512
+      ch1x1: 128
+      ch3x3red: 128
+      ch3x3: 256
+      h5x5red: 24
+      ch5x5: 64
+      pool_proj: 64
+    in: x
+    out: x
+  - layer: inception
+    param:
+      in_channels: 512
+      ch1x1: 112
+      ch3x3red: 144
+      ch3x3: 288
+      h5x5red: 32
+      ch5x5: 64
+      pool_proj: 64
+    in: x
+    out: x
+  - layer: inception
+    param:
+      in_channels: 528
+      ch1x1: 256
+      ch3x3red: 160
+      ch3x3: 320
+      h5x5red: 32
+      ch5x5: 128
+      pool_proj: 128
+    in: x
+    out: x
+  - layer: maxpool2d
+    param:
+      kernel_size: 3
+      stride: 2
+      ceil_mode: True
+    in: x
+    out: x
+  - layer: inception
+    param:
+      in_channels: 832
+      ch1x1: 256
+      ch3x3red: 160
+      ch3x3: 320
+      h5x5red: 32
+      ch5x5: 128
+      pool_proj: 128
+    in: x
+    out: x
+  - layer: inception
+    param:
+      in_channels: 832
+      ch1x1: 384
+      ch3x3red: 192
+      ch3x3: 384
+      h5x5red: 48
+      ch5x5: 128
+      pool_proj: 128
+    in: x
+    out: x
+  - layer: adaptiveavgpool2d
+    param:
+      output_size: 1
+    in: x
+    out: x
+  - layer: dropout
+    param:
+      p: 0.4
+    in: x
+    out: x
+  - layer: linear
+    param:
+      in_features: 1024
+      out_features: 1000
+    in: x
+    out: x
 inception:
   - layer: conv2d
     param:
