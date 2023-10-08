@@ -1,0 +1,9 @@
+api: tf.keras.activations.linear(x)
+constraints:
+  x:
+    descp: Input tensor.
+descp: Linear activation function (pass-through).
+inputs:
+  optional: []
+  required:
+  - x

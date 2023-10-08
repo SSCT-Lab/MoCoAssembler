@@ -1,0 +1,9 @@
+api: tf.keras.activations.sigmoid(x)
+constraints:
+  x:
+    descp: Input tensor.
+descp: Sigmoid activation function, sigmoid(x) = 1 / (1 + exp(-x)).
+inputs:
+  optional: []
+  required:
+  - x

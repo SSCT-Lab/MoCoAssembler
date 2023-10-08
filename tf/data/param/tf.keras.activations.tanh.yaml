@@ -1,0 +1,9 @@
+api: tf.keras.activations.tanh(x)
+constraints:
+  x:
+    descp: Input tensor.
+descp: Hyperbolic tangent activation function.
+inputs:
+  optional: []
+  required:
+  - x

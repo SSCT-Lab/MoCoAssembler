@@ -1,0 +1,9 @@
+api: tf.keras.activations.hard_sigmoid(x)
+constraints:
+  x:
+    descp: Input tensor.
+descp: Hard sigmoid activation function.
+inputs:
+  optional: []
+  required:
+  - x

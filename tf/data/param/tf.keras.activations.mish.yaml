@@ -1,0 +1,9 @@
+api: tf.keras.activations.mish(x)
+constraints:
+  x:
+    descp: Input tensor.
+descp: Mish activation function.
+inputs:
+  optional: []
+  required:
+  - x
