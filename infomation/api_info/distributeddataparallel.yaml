@@ -1,6 +1,0 @@
-function:
-  torch: torch.nn.parallel.DistributedDataParallel
-descp:
-  torch: Implements distributed data parallelism that is based on torch.distributed
-    package at the module level.
-param: null

@@ -1,5 +1,0 @@
-function:
-  tf: tf.keras.layers.Layer
-descp:
-  tf: This is the class from which all layers inherit.
-param: null

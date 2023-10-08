@@ -1,0 +1,9 @@
+api: tf.keras.activations.swish(x)
+constraints:
+  x:
+    descp: Input tensor.
+descp: Swish activation function, swish(x) = x * sigmoid(x).
+inputs:
+  optional: []
+  required:
+  - x

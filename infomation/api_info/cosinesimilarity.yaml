@@ -1,9 +1,0 @@
-function:
-  torch: torch.nn.CosineSimilarity
-  paddle: paddle.nn.CosineSimilarity
-descp:
-  torch: "Returns cosine similarity between x1x_1x1\u200B and x2x_2x2\u200B, computed\
-    \ along dim."
-  paddle: This interface is used to compute cosine similarity between x1 and x2 along
-    axis.
-param: null

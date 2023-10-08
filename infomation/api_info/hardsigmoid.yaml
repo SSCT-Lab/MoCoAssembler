@@ -1,8 +1,0 @@
-function:
-  torch: torch.nn.Hardsigmoid
-  paddle: paddle.nn.Hardsigmoid
-descp:
-  torch: Applies the Hardsigmoid function element-wise.
-  paddle: Hardsigmoid Activiation Layers, Construct a callable object of the Hardsigmoid
-    class. This layer calcluate the hardsigmoid of input x.
-param: null

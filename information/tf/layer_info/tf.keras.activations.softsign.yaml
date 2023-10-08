@@ -1,0 +1,9 @@
+api: tf.keras.activations.softsign(x)
+constraints:
+  x:
+    descp: Input tensor.
+descp: Softsign activation function, softsign(x) = x / (abs(x) + 1).
+inputs:
+  optional: []
+  required:
+  - x

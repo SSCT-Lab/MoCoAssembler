@@ -1,5 +1,0 @@
-function:
-  torch: torch.nn.utils.remove_weight_norm
-descp:
-  torch: Removes the weight normalization reparameterization from a module.
-param: null

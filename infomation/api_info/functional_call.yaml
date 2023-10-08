@@ -1,6 +1,0 @@
-function:
-  torch: torch.nn.utils.stateless.functional_call
-descp:
-  torch: Performs a functional call on the module by replacing the module parameters
-    and buffers with the provided ones.
-param: null

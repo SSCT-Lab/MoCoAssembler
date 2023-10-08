@@ -1,5 +1,0 @@
-function:
-  jittor: jittor.nn.LayerNorm3d
-descp:
-  jittor: no description
-param: null

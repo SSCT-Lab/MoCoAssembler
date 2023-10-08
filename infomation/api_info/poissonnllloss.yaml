@@ -1,7 +1,0 @@
-function:
-  torch: torch.nn.PoissonNLLLoss
-  ms: mindspore.nn.PoissonNLLLoss
-descp:
-  torch: Negative log likelihood loss with Poisson distribution of target.
-  ms: Poisson negative log likelihood loss.
-param: null

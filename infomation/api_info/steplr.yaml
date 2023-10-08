@@ -1,5 +1,0 @@
-function:
-  ms: mindspore.nn.StepLR
-descp:
-  ms: Decays the learning rate of each parameter group by gamma every step_size epochs.
-param: null

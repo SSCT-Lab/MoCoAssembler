@@ -1,5 +1,0 @@
-function:
-  jittor: jittor.nn.Resize
-descp:
-  jittor: no description
-param: null

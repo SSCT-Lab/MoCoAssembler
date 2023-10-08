@@ -1,5 +1,0 @@
-function:
-  tf: tf.keras.layers.Bidirectional
-descp:
-  tf: Bidirectional wrapper for RNNs.
-param: null

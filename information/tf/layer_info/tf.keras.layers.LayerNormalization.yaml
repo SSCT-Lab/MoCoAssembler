@@ -1,0 +1,65 @@
+api: tf.keras.layers.LayerNormalization(axis=-1, epsilon=0.001, center=True, scale=True,
+  beta_initializer='zeros', gamma_initializer='ones', beta_regularizer=None, gamma_regularizer=None,
+  beta_constraint=None, gamma_constraint=None, **kwargs)
+constraints:
+  axis:
+    default: -1
+    descp: Integer or List/Tuple. The axis or axes to normalize across. Typically
+      this is the features axis/axes. The left-out axes are typically the batch axis/axes.
+      This argument defaults to -1, the last dimension in the input.
+    dtype: int
+    range:
+    - -3
+    - 3
+    shape: 1
+    structure:
+    - integer
+    - list
+    - tuple
+  beta_constraint:
+    default: None
+    descp: Optional constraint for the beta weight. None by default.
+    dtype: tf.string
+  beta_initializer:
+    default: zeros
+    descp: Initializer for the beta weight. Defaults to zeros.
+    dtype: tf.string
+  beta_regularizer:
+    default: None
+    descp: Optional regularizer for the beta weight. None by default.
+    dtype: tf.string
+  center:
+    default: true
+    descp: If True, add offset of beta to normalized tensor. If False, beta is ignored.
+      Defaults to True.
+    dtype: tf.bool
+  epsilon:
+    default: 0.001
+    descp: Small float added to variance to avoid dividing by zero. Defaults to 1e-3
+    dtype: float
+  gamma_constraint:
+    default: None
+    descp: Optional constraint for the gamma weight. None by default.
+    dtype: tf.string
+  gamma_initializer:
+    default: ones
+    descp: Initializer for the gamma weight. Defaults to ones.
+    dtype: tf.string
+  gamma_regularizer:
+    default: None
+    descp: Optional regularizer for the gamma weight. None by default.
+    dtype: tf.string
+  name:
+    default: None
+    dtype: tf.string
+  scale:
+    default: true
+    descp: If True, multiply by gamma. If False, gamma is not used. Defaults to True.
+      When the next layer is linear (also e.g. nn.relu), this can be disabled since
+      the scaling will be done by the next layer.
+    dtype: tf.bool
+  trainable:
+    default: true
+    dtype: tf.bool
+descp: Layer normalization layer (Ba et al., 2016).
+required: []

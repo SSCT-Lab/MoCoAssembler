@@ -1,6 +1,0 @@
-function:
-  ms: mindspore.nn.HSigmoid
-descp:
-  ms: Hard sigmoid activation function. Calculates the output according to the input
-    elements.
-param: null

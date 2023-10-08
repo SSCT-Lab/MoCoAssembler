@@ -1,6 +1,0 @@
-function:
-  torch: torch.nn.EmbeddingBag
-descp:
-  torch: "Computes sums or means of \u2018bags\u2019 of embeddings, without instantiating\
-    \ the intermediate embeddings."
-param: null

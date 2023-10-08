@@ -1,5 +1,0 @@
-function:
-  ms: mindspore.nn.InverseDecayLR
-descp:
-  ms: Calculates learning rate base on inverse-time decay function.
-param: null

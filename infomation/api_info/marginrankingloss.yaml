@@ -1,9 +1,0 @@
-function:
-  torch: torch.nn.MarginRankingLoss
-  ms: mindspore.nn.MarginRankingLoss
-descp:
-  torch: Creates a criterion that measures the loss given inputs x1x1x1, x2x2x2, two
-    1D mini-batch or 0D Tensors, and a label 1D mini-batch or 0D Tensor yyy (containing
-    1 or -1).
-  ms: MarginRankingLoss creates a criterion that measures the loss.
-param: null

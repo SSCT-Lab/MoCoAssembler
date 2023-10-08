@@ -1,0 +1,22 @@
+api: tf.keras.layers.DenseFeatures(feature_columns, trainable=True, name=None, **kwargs)
+constraints:
+  feature_columns:
+    default: None
+    descp: An iterable containing the FeatureColumns to use as inputs to your model.
+      All items should be instances of classes derived from DenseColumn such as numeric_column,
+      embedding_column, bucketized_column, indicator_column. If you have categorical
+      features, you can wrap them with an embedding_column or indicator_column.
+    structure:
+    - list
+  name:
+    default: None
+    descp: Name to give to the DenseFeatures.
+    dtype: tf.string
+  trainable:
+    default: true
+    descp: Boolean, whether the layer's variables will be updated via gradient descent
+      during training.
+    dtype: tf.bool
+descp: A layer that produces a dense Tensor based on given feature_columns.
+required:
+- feature_columns

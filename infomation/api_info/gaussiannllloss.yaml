@@ -1,7 +1,0 @@
-function:
-  torch: torch.nn.GaussianNLLLoss
-  ms: mindspore.nn.GaussianNLLLoss
-descp:
-  torch: Gaussian negative log likelihood loss.
-  ms: Gaussian negative log likelihood loss.
-param: null

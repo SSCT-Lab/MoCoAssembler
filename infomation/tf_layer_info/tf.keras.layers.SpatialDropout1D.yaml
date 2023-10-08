@@ -1,8 +1,0 @@
-constraints:
-  rate:
-    default: 0.0
-    descp: Float between 0 and 1. Fraction of the input units to drop.
-    dtype: float
-descp: Spatial 1D version of Dropout.
-required:
-- rate

@@ -1,0 +1,592 @@
+tf.keras.layers.Activation:
+- activation
+tf.keras.layers.ActivityRegularization:
+- l1
+- l2
+tf.keras.layers.AdditiveAttention:
+- use_scale
+tf.keras.layers.AlphaDropout:
+- noise_shape
+- rate
+- seed
+tf.keras.layers.Attention:
+- score_mode
+- use_scale
+tf.keras.layers.AveragePooling1D:
+- data_format
+- padding
+- pool_size
+- strides
+tf.keras.layers.AveragePooling2D:
+- data_format
+- padding
+- pool_size
+- strides
+tf.keras.layers.AveragePooling3D:
+- data_format
+- padding
+- pool_size
+- strides
+tf.keras.layers.BatchNormalization:
+- axis
+- beta_constraint
+- beta_initializer
+- beta_regularizer
+- center
+- epsilon
+- gamma_constraint
+- gamma_initializer
+- gamma_regularizer
+- momentum
+- moving_mean_initializer
+- moving_variance_initializer
+- scale
+- synchronized
+tf.keras.layers.Bidirectional:
+- backward_layer
+- layer
+- merge_mode
+- weights
+tf.keras.layers.Concatenate:
+- axis
+tf.keras.layers.Conv1D:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- data_format
+- dilation_rate
+- filters
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- kernel_size
+- padding
+- strides
+- use_bias
+tf.keras.layers.Conv1DTranspose:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- data_format
+- dilation_rate
+- filters
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- kernel_size
+- output_padding
+- padding
+- strides
+- use_bias
+tf.keras.layers.Conv2D:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- data_format
+- dilation_rate
+- filters
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- kernel_size
+- padding
+- strides
+- use_bias
+tf.keras.layers.Conv2DTranspose:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- data_format
+- dilation_rate
+- filters
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- kernel_size
+- output_padding
+- padding
+- strides
+- use_bias
+tf.keras.layers.Conv3D:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- data_format
+- dilation_rate
+- filters
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- kernel_size
+- padding
+- strides
+- use_bias
+tf.keras.layers.Conv3DTranspose:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- data_format
+- dilation_rate
+- filters
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- kernel_size
+- output_padding
+- padding
+- strides
+- use_bias
+tf.keras.layers.ConvLSTM1D:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- data_format
+- dilation_rate
+- dropout
+- filters
+- go_backwards
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- kernel_size
+- padding
+- recurrent_activation
+- recurrent_constraint
+- recurrent_dropout
+- recurrent_initializer
+- recurrent_regularizer
+- return_sequences
+- return_state
+- stateful
+- strides
+- unit_forget_bias
+- use_bias
+tf.keras.layers.ConvLSTM2D:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- data_format
+- dilation_rate
+- dropout
+- filters
+- go_backwards
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- kernel_size
+- padding
+- recurrent_activation
+- recurrent_constraint
+- recurrent_dropout
+- recurrent_initializer
+- recurrent_regularizer
+- return_sequences
+- return_state
+- stateful
+- strides
+- unit_forget_bias
+- use_bias
+tf.keras.layers.ConvLSTM3D:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- data_format
+- dilation_rate
+- dropout
+- filters
+- go_backwards
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- kernel_size
+- padding
+- recurrent_activation
+- recurrent_constraint
+- recurrent_dropout
+- recurrent_initializer
+- recurrent_regularizer
+- return_sequences
+- return_state
+- stateful
+- strides
+- unit_forget_bias
+- use_bias
+tf.keras.layers.Cropping1D:
+- cropping
+tf.keras.layers.Cropping2D:
+- cropping
+- data_format
+tf.keras.layers.Cropping3D:
+- cropping
+- data_format
+tf.keras.layers.Dense:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- units
+- use_bias
+tf.keras.layers.DenseFeatures:
+- feature_columns
+- name
+- trainable
+tf.keras.layers.DepthwiseConv1D:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- data_format
+- depth_multiplier
+- depthwise_constraint
+- depthwise_initializer
+- depthwise_regularizer
+- kernel_size
+- padding
+- strides
+- use_bias
+tf.keras.layers.DepthwiseConv2D:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- data_format
+- depth_multiplier
+- depthwise_constraint
+- depthwise_initializer
+- depthwise_regularizer
+- kernel_size
+- padding
+- strides
+- use_bias
+tf.keras.layers.Dot:
+- axes
+- normalize
+tf.keras.layers.Dropout:
+- noise_shape
+- rate
+tf.keras.layers.ELU:
+- alpha
+tf.keras.layers.Embedding:
+- activity_regularizer
+- embeddings_constraint
+- embeddings_initializer
+- embeddings_regularizer
+- input_dim
+- input_length
+- mask_zero
+- output_dim
+tf.keras.layers.Flatten:
+- data_format
+tf.keras.layers.GRU:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- dropout
+- go_backwards
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- recurrent_activation
+- recurrent_constraint
+- recurrent_dropout
+- recurrent_initializer
+- recurrent_regularizer
+- reset_after
+- return_sequences
+- return_state
+- stateful
+- time_major
+- units
+- unroll
+- use_bias
+tf.keras.layers.GRUCell:
+- activation
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- dropout
+- implementation
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- recurrent_activation
+- recurrent_constraint
+- recurrent_dropout
+- recurrent_initializer
+- recurrent_regularizer
+- reset_after
+- units
+- use_bias
+tf.keras.layers.GlobalAveragePooling1D:
+- data_format
+tf.keras.layers.GlobalAveragePooling2D:
+- data_format
+- keepdims
+tf.keras.layers.GlobalAveragePooling3D:
+- data_format
+- keepdims
+tf.keras.layers.GlobalMaxPooling1D:
+- data_format
+tf.keras.layers.GlobalMaxPooling2D:
+- data_format
+- keepdims
+tf.keras.layers.GlobalMaxPooling3D:
+- data_format
+- keepdims
+tf.keras.layers.LSTM:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- dropout
+- go_backwards
+- implementation
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- recurrent_activation
+- recurrent_constraint
+- recurrent_dropout
+- recurrent_initializer
+- recurrent_regularizer
+- return_sequences
+- return_state
+- stateful
+- time_major
+- unit_forget_bias
+- units
+- unroll
+- use_bias
+tf.keras.layers.LSTMCell:
+- activation
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- dropout
+- implementation
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- recurrent_activation
+- recurrent_constraint
+- recurrent_dropout
+- recurrent_initializer
+- recurrent_regularizer
+- unit_forget_bias
+- units
+- use_bias
+tf.keras.layers.Lambda:
+- arguments
+- function
+- mask
+- output_shape
+tf.keras.layers.Layer:
+- dtype
+- dynamic
+- name
+- trainable
+tf.keras.layers.LayerNormalization:
+- axis
+- beta_constraint
+- beta_initializer
+- beta_regularizer
+- center
+- epsilon
+- gamma_constraint
+- gamma_initializer
+- gamma_regularizer
+- name
+- scale
+- trainable
+tf.keras.layers.LeakyReLU:
+- alpha
+tf.keras.layers.LocallyConnected1D:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- data_format
+- filters
+- implementation
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- kernel_size
+- padding
+- strides
+- use_bias
+tf.keras.layers.LocallyConnected2D:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- data_format
+- filters
+- implementation
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- kernel_size
+- padding
+- strides
+- use_bias
+tf.keras.layers.MaxPooling1D:
+- data_format
+- padding
+- pool_size
+- strides
+tf.keras.layers.MaxPooling2D:
+- data_format
+- padding
+- pool_size
+- strides
+tf.keras.layers.MaxPooling3D:
+- data_format
+- padding
+- pool_size
+- strides
+tf.keras.layers.PReLU:
+- alpha_constraint
+- alpha_initializer
+- alpha_regularizer
+- shared_axes
+tf.keras.layers.ReLU:
+- max_value
+- negative_slope
+- threshold
+tf.keras.layers.SeparableConv1D:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- data_format
+- depth_multiplier
+- depthwise_constraint
+- depthwise_initializer
+- depthwise_regularizer
+- dilation_rate
+- filters
+- kernel_size
+- name
+- padding
+- pointwise_constraint
+- pointwise_initializer
+- pointwise_regularizer
+- strides
+- trainable
+- use_bias
+tf.keras.layers.SeparableConv2D:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- data_format
+- depth_multiplier
+- depthwise_constraint
+- depthwise_initializer
+- depthwise_regularizer
+- dilation_rate
+- filters
+- kernel_size
+- padding
+- pointwise_constraint
+- pointwise_initializer
+- pointwise_regularizer
+- strides
+- use_bias
+tf.keras.layers.SimpleRNN:
+- activation
+- activity_regularizer
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- dropout
+- go_backwards
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- recurrent_constraint
+- recurrent_dropout
+- recurrent_initializer
+- recurrent_regularizer
+- return_sequences
+- return_state
+- stateful
+- units
+- unroll
+- use_bias
+tf.keras.layers.SimpleRNNCell:
+- activation
+- bias_constraint
+- bias_initializer
+- bias_regularizer
+- dropout
+- kernel_constraint
+- kernel_initializer
+- kernel_regularizer
+- recurrent_constraint
+- recurrent_dropout
+- recurrent_initializer
+- recurrent_regularizer
+- units
+- use_bias
+tf.keras.layers.Softmax:
+- axis
+tf.keras.layers.SpatialDropout1D:
+- rate
+tf.keras.layers.SpatialDropout2D:
+- data_format
+- rate
+tf.keras.layers.SpatialDropout3D:
+- data_format
+- rate
+tf.keras.layers.ThresholdedReLU:
+- theta
+tf.keras.layers.UpSampling1D:
+- size
+tf.keras.layers.UpSampling2D:
+- data_format
+- interpolation
+- size
+tf.keras.layers.UpSampling3D:
+- data_format
+- size
+tf.keras.layers.ZeroPadding1D:
+- padding
+tf.keras.layers.ZeroPadding2D:
+- data_format
+- padding
+tf.keras.layers.ZeroPadding3D:
+- data_format
+- padding

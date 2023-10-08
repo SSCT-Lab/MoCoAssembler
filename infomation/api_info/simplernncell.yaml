@@ -1,5 +1,0 @@
-function:
-  tf: tf.keras.layers.SimpleRNNCell
-descp:
-  tf: Cell class for SimpleRNN.
-param: null

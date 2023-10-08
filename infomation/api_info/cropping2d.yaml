@@ -1,5 +1,0 @@
-function:
-  tf: tf.keras.layers.Cropping2D
-descp:
-  tf: Cropping layer for 2D input (e.g. picture).
-param: null

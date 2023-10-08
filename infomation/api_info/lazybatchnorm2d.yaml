@@ -1,7 +1,0 @@
-function:
-  torch: torch.nn.LazyBatchNorm2d
-descp:
-  torch: A torch.nn.BatchNorm2d module with lazy initialization of the num_features
-    argument of the BatchNorm2d that is inferred from the input.size(1). The attributes
-    that will be lazily initialized are weight, bias, running_mean and running_var.
-param: null

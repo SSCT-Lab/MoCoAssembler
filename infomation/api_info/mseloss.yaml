@@ -1,9 +1,0 @@
-function:
-  torch: torch.nn.MSELoss
-  ms: mindspore.nn.MSELoss
-descp:
-  torch: Creates a criterion that measures the mean squared error (squared L2 norm)
-    between each element in the input xxx and target yyy.
-  ms: Calculates the mean squared error between the predicted value and the label
-    value.
-param: null

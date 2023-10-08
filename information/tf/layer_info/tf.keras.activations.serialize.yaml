@@ -1,0 +1,14 @@
+api: tf.keras.activations.serialize(activation, use_legacy_format=False)
+constraints:
+  activation:
+    descp: Function object.
+  use_legacy_format:
+    default: False
+    descp: Boolean, whether to use the legacy format for serialization.
+    dtype: tf.bool
+descp: Returns the string identifier of an activation function.
+inputs:
+  optional:
+  - use_legacy_format
+  required:
+  - activation

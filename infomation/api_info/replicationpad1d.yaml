@@ -1,7 +1,0 @@
-function:
-  torch: torch.nn.ReplicationPad1d
-  ms: mindspore.nn.ReplicationPad1d
-descp:
-  torch: Pads the input tensor using replication of the input boundary.
-  ms: Pad on W dimension of input x according to padding.
-param: null

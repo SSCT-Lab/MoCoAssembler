@@ -1,5 +1,0 @@
-function:
-  ms: mindspore.nn.Momentum
-descp:
-  ms: Implements the Momentum algorithm.
-param: null

@@ -1,6 +1,0 @@
-function:
-  torch: torch.nn.utils.prune.global_unstructured
-descp:
-  torch: 'Globally prunes tensors corresponding to all parameters in parameters by
-    applying the specified pruning_method. Modifies modules in place by:'
-param: null

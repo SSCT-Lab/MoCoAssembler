@@ -1,5 +1,0 @@
-function:
-  torch: torch.nn.utils.vector_to_parameters
-descp:
-  torch: Convert one vector to the parameters
-param: null

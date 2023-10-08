@@ -1,5 +1,0 @@
-function:
-  torch: torch.nn.utils.prune.LnStructured
-descp:
-  torch: Prune entire (currently unpruned) channels in a tensor based on their Ln-norm.
-param: null

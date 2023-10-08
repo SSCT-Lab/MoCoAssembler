@@ -1,0 +1,17 @@
+api: tf.keras.layers.ReLU(max_value=None, negative_slope=0.0, threshold=0.0, **kwargs)
+constraints:
+  max_value:
+    default: None
+    descp: Float >= 0. Maximum activation value. None means unlimited. Defaults to
+      None.
+    dtype: float
+  negative_slope:
+    default: 0.0
+    descp: Float >= 0. Negative slope coefficient. Defaults to 0..
+    dtype: float
+  threshold:
+    default: 0.0
+    descp: Float >= 0. Threshold value for thresholded activation. Defaults to 0..
+    dtype: float
+descp: Rectified Linear Unit activation function.
+required: []

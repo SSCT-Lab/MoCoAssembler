@@ -1,9 +1,0 @@
-function:
-  jittor: jittor.nn.DropPath
-descp:
-  jittor: '    ''''''Drop paths (Stochastic Depth) per sample  (when applied in main
-    path of residual blocks).
-
-
-    '''''''
-param: null

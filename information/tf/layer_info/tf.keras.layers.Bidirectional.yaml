@@ -1,0 +1,34 @@
+api: tf.keras.layers.Bidirectional(layer, merge_mode='concat', weights=None, backward_layer=None,
+  **kwargs)
+constraints:
+  backward_layer:
+    default: None
+    descp: Optional keras.layers.RNN, or keras.layers.Layer instance to be used to
+      handle backwards input processing. If backward_layer is not provided, the layer
+      instance passed as the layer argument will be used to generate the backward
+      layer automatically. Note that the provided backward_layer layer should have
+      properties matching those of the layer argument, in particular it should have
+      the same values for stateful, return_states, return_sequences, etc. In addition,
+      backward_layer and layer should have different go_backwards argument values.
+      A ValueError will be raised if these requirements are not met.
+  layer:
+    default: None
+    descp: 'keras.layers.RNN instance, such as keras.layers.LSTM or keras.layers.GRU.
+      It could also be a keras.layers.Layer instance that meets the following criteria:'
+  merge_mode:
+    default: concat
+    descp: Mode by which outputs of the forward and backward RNNs will be combined.
+      One of {'sum', 'mul', 'concat', 'ave', None}. If None, the outputs will not
+      be combined, they will be returned as a list. Default value is 'concat'.
+    dtype: tf.string
+    enum:
+    - ave
+    - concat
+    - mul
+    - sum
+    structure: list
+  weights:
+    default: None
+descp: Bidirectional wrapper for RNNs.
+required:
+- layer

@@ -1,5 +1,0 @@
-function:
-  ms: mindspore.nn.LazyAdam
-descp:
-  ms: Implements the Adaptive Moment Estimation (Adam) algorithm.
-param: null

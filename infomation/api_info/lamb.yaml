@@ -1,6 +1,0 @@
-function:
-  ms: mindspore.nn.Lamb
-descp:
-  ms: Implements the Lamb(Layer-wise Adaptive Moments optimizer for Batching training)
-    algorithm.
-param: null

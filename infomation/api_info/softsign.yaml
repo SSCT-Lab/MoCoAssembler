@@ -1,9 +1,0 @@
-function:
-  torch: torch.nn.Softsign
-  ms: mindspore.nn.Softsign
-  paddle: paddle.nn.Softsign
-descp:
-  torch: 'Applies the element-wise function:'
-  ms: Softsign activation function.
-  paddle: Softsign Activation
-param: null

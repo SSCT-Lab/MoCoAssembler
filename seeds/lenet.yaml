@@ -1,0 +1,40 @@
+- layer: conv2d
+  params:
+    in_channels: 1
+    kernel_size: 5
+    out_channels: 6
+- layer: relu
+  params: {}
+- layer: maxpool2d
+  params:
+    kernel_size: 2
+    stride: 2
+- layer: conv2d
+  params:
+    in_channels: 6
+    kernel_size: 5
+    out_channels: 16
+- layer: relu
+  params: {}
+- layer: maxpool2d
+  params:
+    kernel_size: 2
+    stride: 2
+- layer: flatten
+  params: {}
+- layer: linear
+  params:
+    in_features: 256
+    out_features: 120
+- layer: relu
+  params: {}
+- layer: linear
+  params:
+    in_features: 120
+    out_features: 84
+- layer: relu
+  params: {}
+- layer: linear
+  params:
+    in_features: 84
+    out_features: 10

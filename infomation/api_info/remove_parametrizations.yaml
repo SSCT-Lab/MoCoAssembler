@@ -1,5 +1,0 @@
-function:
-  torch: torch.nn.utils.parametrize.remove_parametrizations
-descp:
-  torch: Removes the parametrizations on a tensor in a module.
-param: null

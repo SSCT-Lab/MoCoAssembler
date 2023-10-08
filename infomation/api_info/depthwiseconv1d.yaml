@@ -1,5 +1,0 @@
-function:
-  tf: tf.keras.layers.DepthwiseConv1D
-descp:
-  tf: Depthwise 1D convolution.
-param: null

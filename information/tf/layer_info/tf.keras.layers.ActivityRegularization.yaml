@@ -1,0 +1,12 @@
+api: tf.keras.layers.ActivityRegularization(l1=0.0, l2=0.0, **kwargs)
+constraints:
+  l1:
+    default: 0.0
+    descp: L1 regularization factor (positive float).
+    dtype: float
+  l2:
+    default: 0.0
+    descp: L2 regularization factor (positive float).
+    dtype: float
+descp: Layer that applies an update to the cost function based input activity.
+required: []

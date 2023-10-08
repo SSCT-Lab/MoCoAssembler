@@ -1,8 +1,0 @@
-function:
-  torch: torch.nn.ReflectionPad3d
-  ms: mindspore.nn.ReflectionPad3d
-descp:
-  torch: Pads the input tensor using the reflection of the input boundary.
-  ms: Pad the given tensor in a reflecting way using the input boundaries as the axis
-    of symmetry.
-param: null

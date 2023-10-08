@@ -1,8 +1,0 @@
-function:
-  torch: torch.nn.utils.skip_init
-descp:
-  torch: 'Given a module class object and args / kwargs, instantiates the module without
-    initializing parameters / buffers.  This can be useful if initialization is slow
-    or if custom initialization will be performed, making the default initialization
-    unnecessary. There are some caveats to this, due to the way this function is implemented:'
-param: null

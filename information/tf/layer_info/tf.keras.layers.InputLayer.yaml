@@ -1,0 +1,44 @@
+api: tf.keras.layers.InputLayer(input_shape=None, batch_size=None, dtype=None, input_tensor=None,
+  sparse=None, name=None, ragged=None, type_spec=None, **kwargs)
+constraints:
+  batch_size:
+    default: None
+    descp: Optional input batch size (integer or None).
+  dtype:
+    default: None
+    descp: Datatype of the input.
+  input_shape:
+    default: None
+    descp: Shape tuple (not including the batch axis), or `TensorShape`instance (not
+      including the batch axis).
+  input_tensor:
+    default: None
+    descp: Optional tensor to use as layer input instead of creating a placeholder.
+  name:
+    default: None
+    descp: Name of the layer (string).
+    dtype:
+    - tf.string
+  ragged:
+    default: 'False'
+    descp: Boolean, whether the placeholder created is meant to be ragged. In this
+      case, values of 'None' in the 'shape' argument represent ragged dimensions.
+      For more information about RaggedTensors, seehttps://www.tensorflow.org/guide/ragged_tensors
+    dtype:
+    - tf.bool
+  sparse:
+    default: 'False'
+    descp: Boolean, whether the placeholder created is meant to be sparse.
+    dtype:
+    - tf.bool
+descp: Layer to be used as an entry point into a Network (a graph of layers).
+inputs:
+  optional:
+  - input_shape
+  - batch_size
+  - dtype
+  - input_tensor
+  - sparse
+  - name
+  - ragged
+  required: []

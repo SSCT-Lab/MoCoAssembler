@@ -1,5 +1,0 @@
-function:
-  tf: tf.keras.layers.ActivityRegularization
-descp:
-  tf: Layer that applies an update to the cost function based input activity.
-param: null

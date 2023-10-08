@@ -1,7 +1,0 @@
-function:
-  ms: mindspore.nn.AdaSumByGradWrapCell
-descp:
-  ms: "Enable the adasum in \u201Cauto_parallel/semi_auto_parallel\u201D mode. The\
-    \ implementation of the Adaptive Summation (AdaSum) algorithm is calculated by\
-    \ gradients."
-param: null

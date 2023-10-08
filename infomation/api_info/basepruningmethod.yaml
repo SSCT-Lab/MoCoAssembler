@@ -1,5 +1,0 @@
-function:
-  torch: torch.nn.utils.prune.BasePruningMethod
-descp:
-  torch: Abstract base class for creation of new pruning techniques.
-param: null

@@ -1,5 +1,0 @@
-function:
-  ms: mindspore.nn.EmbeddingLookup
-descp:
-  ms: EmbeddingLookup layer.
-param: null

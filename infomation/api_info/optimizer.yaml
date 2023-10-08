@@ -1,5 +1,0 @@
-function:
-  ms: mindspore.nn.optim_ex.Optimizer
-descp:
-  ms: Base class for all optimizers.
-param: null

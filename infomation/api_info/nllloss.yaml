@@ -1,8 +1,0 @@
-function:
-  torch: torch.nn.NLLLoss
-  ms: mindspore.nn.NLLLoss
-descp:
-  torch: The negative log likelihood loss. It is useful to train a classification
-    problem with C classes.
-  ms: Gets the negative log likelihood loss between logits and labels.
-param: null

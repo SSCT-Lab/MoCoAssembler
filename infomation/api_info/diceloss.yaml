@@ -1,6 +1,0 @@
-function:
-  ms: mindspore.nn.DiceLoss
-descp:
-  ms: The Dice coefficient is a set similarity loss, which is used to calculate the
-    similarity between two samples.
-param: null

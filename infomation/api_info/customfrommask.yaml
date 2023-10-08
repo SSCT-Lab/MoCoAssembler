@@ -1,6 +1,0 @@
-function:
-  torch: torch.nn.utils.prune.CustomFromMask
-descp:
-  torch: Adds the forward pre-hook that enables pruning on the fly and the reparametrization
-    of a tensor in terms of the original tensor and the pruning mask.
-param: null

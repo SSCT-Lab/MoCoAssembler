@@ -1,7 +1,0 @@
-function:
-  paddle: paddle.nn.BeamSearchDecoder
-descp:
-  paddle: Decoder with beam search decoding strategy. It wraps a cell to get probabilities,
-    and follows a beam search step to calculate scores and select candidate token
-    ids for each decoding step.
-param: null

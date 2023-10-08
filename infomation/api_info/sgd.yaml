@@ -1,5 +1,0 @@
-function:
-  ms: mindspore.nn.SGD
-descp:
-  ms: Implements stochastic gradient descent.
-param: null

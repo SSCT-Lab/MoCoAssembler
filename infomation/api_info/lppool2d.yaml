@@ -1,9 +1,0 @@
-function:
-  torch: torch.nn.LPPool2d
-  ms: mindspore.nn.LPPool2d
-descp:
-  torch: Applies a 2D power-average pooling over an input signal composed of several
-    input planes.
-  ms: Applying 2D LPPooling operation on an input Tensor can be regarded as forming
-    a 1D input plane.
-param: null

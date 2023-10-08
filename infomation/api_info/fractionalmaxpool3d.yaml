@@ -1,8 +1,0 @@
-function:
-  torch: torch.nn.FractionalMaxPool3d
-  ms: mindspore.nn.FractionalMaxPool3d
-descp:
-  torch: Applies a 3D fractional max pooling over an input signal composed of several
-    input planes.
-  ms: Applies the 3D FractionalMaxPool operatin over input.
-param: null

@@ -1,0 +1,9 @@
+api: tf.keras.layers.Multiply(**kwargs)
+constraints:
+  '**kwargs':
+    descp: Standard layer keyword arguments.
+descp: Layer that multiplies (element-wise) a list of inputs.
+inputs:
+  optional: []
+  required:
+  - '**kwargs'

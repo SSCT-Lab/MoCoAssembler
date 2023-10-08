@@ -1,0 +1,16 @@
+api: tf.keras.layers.Flatten(data_format=None, **kwargs)
+constraints:
+  data_format:
+    default: None
+    descp: A string, one of channels_last (default) or channels_first. The ordering
+      of the dimensions in the inputs. channels_last corresponds to inputs with shape
+      (batch, ..., channels) while channels_first corresponds to inputs with shape
+      (batch, channels, ...). When unspecified, uses image_data_format value found
+      in your Keras config file at  ~/.keras/keras.json (if exists) else 'channels_last'.
+      Defaults to 'channels_last'.
+    dtype: tf.string
+    enum:
+    - channels_first
+    - channels_last
+descp: Flattens the input. Does not affect the batch size.
+required: []

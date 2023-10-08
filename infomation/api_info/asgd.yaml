@@ -1,5 +1,0 @@
-function:
-  ms: mindspore.nn.ASGD
-descp:
-  ms: Implements Average Stochastic Gradient Descent.
-param: null

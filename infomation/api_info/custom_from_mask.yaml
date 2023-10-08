@@ -1,7 +1,0 @@
-function:
-  torch: torch.nn.utils.prune.custom_from_mask
-descp:
-  torch: 'Prunes tensor corresponding to parameter called name in module by applying
-    the pre-computed mask in mask. Modifies module in place (and also return the modified
-    module) by:'
-param: null

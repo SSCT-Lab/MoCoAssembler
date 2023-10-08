@@ -1,8 +1,0 @@
-function:
-  paddle: paddle.nn.BiRNN
-descp:
-  paddle: Wrapper for bidirectional RNN, which builds a bidiretional RNN given the
-    forward rnn cell and backward rnn cell. A BiRNN applies forward RNN and backward
-    RNN with coresponding cells separately and concats the outputs along the last
-    axis.
-param: null

@@ -1,6 +1,0 @@
-function:
-  ms: mindspore.nn.FocalLoss
-descp:
-  ms: It is a loss function to solve the imbalance of categories and the difference
-    of classification difficulty.
-param: null

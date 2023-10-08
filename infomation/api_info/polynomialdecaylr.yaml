@@ -1,5 +1,0 @@
-function:
-  ms: mindspore.nn.PolynomialDecayLR
-descp:
-  ms: Calculates learning rate base on polynomial decay function.
-param: null

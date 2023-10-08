@@ -1,6 +1,0 @@
-function:
-  torch: torch.nn.utils.prune.L1Unstructured
-descp:
-  torch: Prune (currently unpruned) units in a tensor by zeroing out the ones with
-    the lowest L1-norm.
-param: null

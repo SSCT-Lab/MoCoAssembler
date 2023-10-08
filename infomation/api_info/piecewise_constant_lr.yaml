@@ -1,5 +1,0 @@
-function:
-  ms: mindspore.nn.piecewise_constant_lr
-descp:
-  ms: Get piecewise constant learning rate.
-param: null

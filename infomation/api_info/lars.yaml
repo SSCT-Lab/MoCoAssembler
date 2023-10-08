@@ -1,5 +1,0 @@
-function:
-  ms: mindspore.nn.LARS
-descp:
-  ms: Implements the LARS algorithm.
-param: null

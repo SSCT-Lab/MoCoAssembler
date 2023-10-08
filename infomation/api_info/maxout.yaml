@@ -1,5 +1,0 @@
-function:
-  paddle: paddle.nn.Maxout
-descp:
-  paddle: Maxout Activation. Create a callable object of Maxout.
-param: null

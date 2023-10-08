@@ -1,5 +1,0 @@
-function:
-  ms: mindspore.nn.optim_ex.Adam
-descp:
-  ms: Implements Adam algorithm.
-param: null

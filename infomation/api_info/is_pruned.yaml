@@ -1,6 +1,0 @@
-function:
-  torch: torch.nn.utils.prune.is_pruned
-descp:
-  torch: Check whether module is pruned by looking for forward_pre_hooks in its modules
-    that inherit from the BasePruningMethod.
-param: null

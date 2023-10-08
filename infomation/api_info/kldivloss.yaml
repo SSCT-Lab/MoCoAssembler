@@ -1,7 +1,0 @@
-function:
-  torch: torch.nn.KLDivLoss
-  ms: mindspore.nn.KLDivLoss
-descp:
-  torch: The Kullback-Leibler divergence loss.
-  ms: Computes the Kullback-Leibler divergence between the logits and the labels.
-param: null

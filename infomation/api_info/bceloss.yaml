@@ -1,9 +1,0 @@
-function:
-  torch: torch.nn.BCELoss
-  ms: mindspore.nn.BCELoss
-descp:
-  torch: 'Creates a criterion that measures the Binary Cross Entropy between the target
-    and the input probabilities:'
-  ms: BCELoss creates a criterion to measure the binary cross entropy between the
-    true labels and predicted labels.
-param: null

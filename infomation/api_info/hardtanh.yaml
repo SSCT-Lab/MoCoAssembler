@@ -1,9 +1,0 @@
-function:
-  torch: torch.nn.Hardtanh
-  ms: mindspore.nn.Hardtanh
-  paddle: paddle.nn.Hardtanh
-descp:
-  torch: Applies the HardTanh function element-wise.
-  ms: Applies the Hardtanh function element-wise.
-  paddle: Hardtanh Activation. Create a callable object of Hardtanh.
-param: null

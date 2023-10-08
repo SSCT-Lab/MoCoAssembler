@@ -1,5 +1,0 @@
-function:
-  ms: mindspore.nn.SampledSoftmaxLoss
-descp:
-  ms: Computes the sampled softmax training loss.
-param: null

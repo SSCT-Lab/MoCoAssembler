@@ -1,8 +1,0 @@
-function:
-  torch: torch.nn.TransformerDecoder
-  ms: mindspore.nn.TransformerDecoder
-descp:
-  torch: TransformerDecoder is a stack of N decoder layers
-  ms: Transformer Decoder module with multi-layer stacked of TransformerDecoderLayer,
-    including multihead self attention, cross attention and feedforward layer.
-param: null

@@ -1,5 +1,0 @@
-function:
-  torch: torch.nn.utils.parametrize.register_parametrization
-descp:
-  torch: Adds a parametrization to a tensor in a module.
-param: null

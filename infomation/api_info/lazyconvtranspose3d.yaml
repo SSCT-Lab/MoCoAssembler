@@ -1,7 +1,0 @@
-function:
-  torch: torch.nn.LazyConvTranspose3d
-descp:
-  torch: A torch.nn.ConvTranspose3d module with lazy initialization of the in_channels
-    argument of the ConvTranspose3d that is inferred from the input.size(1). The attributes
-    that will be lazily initialized are weight and bias.
-param: null

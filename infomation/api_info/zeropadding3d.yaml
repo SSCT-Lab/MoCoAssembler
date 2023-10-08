@@ -1,5 +1,0 @@
-function:
-  tf: tf.keras.layers.ZeroPadding3D
-descp:
-  tf: Zero-padding layer for 3D data (spatial or spatio-temporal).
-param: null

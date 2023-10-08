@@ -1,5 +1,0 @@
-function:
-  ms: mindspore.nn.ProximalAdagrad
-descp:
-  ms: Implements the ProximalAdagrad algorithm.
-param: null

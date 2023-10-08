@@ -1,0 +1,16 @@
+api: tf.keras.layers.Softmax(axis=-1, **kwargs)
+constraints:
+  axis:
+    default: -1
+    descp: Integer, or list of Integers, axis along which the softmax normalization
+      is applied.
+    dtype: int
+    range:
+    - -2
+    - 12
+    shape: 1
+    structure:
+    - integer
+    - list
+descp: Softmax activation function.
+required: []

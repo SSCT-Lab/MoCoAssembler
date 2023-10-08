@@ -1,9 +1,0 @@
-function:
-  torch: torch.nn.MaxUnpool1d
-  ms: mindspore.nn.MaxUnpool1d
-  paddle: paddle.nn.MaxUnPool1D
-descp:
-  torch: Computes a partial inverse of MaxPool1d.
-  ms: Computes the inverse of mindspore.nn.MaxPool1d.
-  paddle: This API implements max unpooling 1d opereation.
-param: null

@@ -1,5 +1,0 @@
-function:
-  torch: torch.nn.DataParallel
-descp:
-  torch: Implements data parallelism at the module level.
-param: null

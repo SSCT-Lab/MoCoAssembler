@@ -1,7 +1,0 @@
-function:
-  torch: torch.nn.ReflectionPad1d
-  ms: mindspore.nn.ReflectionPad1d
-descp:
-  torch: Pads the input tensor using the reflection of the input boundary.
-  ms: Using a given padding to do reflection pad on the given tensor.
-param: null

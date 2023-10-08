@@ -1,7 +1,0 @@
-function:
-  torch: torch.nn.utils.prune.PruningContainer
-descp:
-  torch: Container holding a sequence of pruning methods for iterative pruning. Keeps
-    track of the order in which pruning methods are applied and handles combining
-    successive pruning calls.
-param: null

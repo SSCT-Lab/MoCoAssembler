@@ -1,5 +1,0 @@
-function:
-  jittor: jittor.nn.InstanceNorm
-descp:
-  jittor: no description
-param: null

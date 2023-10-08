@@ -1,0 +1,8 @@
+api: tf.keras.layers.LeakyReLU(alpha=0.3, **kwargs)
+constraints:
+  alpha:
+    default: 0.3
+    descp: Float >= 0.. Negative slope coefficient. Defaults to 0.3.
+    dtype: float
+descp: Leaky version of a Rectified Linear Unit.
+required: []
