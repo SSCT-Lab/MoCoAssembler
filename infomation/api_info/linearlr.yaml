@@ -1,0 +1,7 @@
+function:
+  ms: mindspore.nn.LinearLR
+descp:
+  ms: 'Decays the learning rate of each parameter group by linearly changing small
+    multiplicative factor until the number of epoch reaches a pre-defined milestone:
+    total_iters.'
+param: null

@@ -1,0 +1,5 @@
+function:
+  ms: mindspore.nn.FastGelu
+descp:
+  ms: Fast Gaussian error linear unit activation function.
+param: null

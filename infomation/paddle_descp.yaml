@@ -1,0 +1,327 @@
+paddle.nn.AdaptiveAvgPool1D: A 1D adaptive average pooling over an input signal composed
+  of several input planes, based on output_size. Input and output are in NCL format,
+  where N is batch size, C is the number of channels and L is the length of the feature.
+  The shape of output will be \([N, C, output\_size]\).
+paddle.nn.AdaptiveAvgPool2D: This operation applies 2D adaptive avg pooling on input
+  tensor. The h and w dimensions of the output tensor are determined by the parameter
+  output_size.
+paddle.nn.AdaptiveAvgPool3D: This operation applies 3D adaptive avg pooling on input
+  tensor. The h and w dimensions of the output tensor are determined by the parameter
+  output_size.
+paddle.nn.AdaptiveMaxPool1D: This operation applies a 1D adaptive max pooling over
+  an input signal composed of several input planes, based on the input, output_size,
+  return_mask parameters. Input(X) and output(Out) are in NCL format, where N is batch
+  size, C is the number of channels, L is the length of the feature. The output tensor
+  shape will be [N, C, output_size].
+paddle.nn.AdaptiveMaxPool2D: This operation applies 2D adaptive max pooling on input
+  tensor. The h and w dimensions of the output tensor are determined by the parameter
+  output_size. The difference between adaptive pooling and pooling is adaptive one
+  focus on the output size.
+paddle.nn.AdaptiveMaxPool3D: This operation applies 3D adaptive max pooling on input
+  tensor. The h and w dimensions of the output tensor are determined by the parameter
+  output_size. The difference between adaptive pooling and pooling is adaptive one
+  focus on the output size.
+paddle.nn.AlphaDropout: Alpha Dropout is a type of Dropout that maintains the self-normalizing
+  property. For an input with zero mean and unit standard deviation, the output of
+  Alpha Dropout maintains the original mean and standard deviation of the input. Alpha
+  Dropout fits well to SELU activate function by randomly setting activations to the
+  negative saturation value.
+paddle.nn.AvgPool1D: This operation applies a 1D average pooling over an input signal
+  composed of several input planes, based on the input, output_size, return_mask parameters.
+  Input(X) and output(Out) are in NCL format, where N is batch size, C is the number
+  of channels, L is the length of the feature. The output tensor shape will be [N,
+  C, output_size].
+paddle.nn.AvgPool2D: This operation applies 2D average pooling over input features
+  based on the input, and kernel_size, stride, padding parameters. Input(X) and Output(Out)
+  are in NCHW format, where N is batch size, C is the number of channels, H is the
+  height of the feature, and W is the width of the feature.
+paddle.nn.AvgPool3D: This operation applies 3D max pooling over input features based
+  on the input, and kernel_size, stride, padding parameters. Input(X) and Output(Out)
+  are in NCDHW format, where N is batch size, C is the number of channels, H is the
+  height of the feature, D is the depth of the feature, and W is the width of the
+  feature.
+paddle.nn.BatchNorm: 'This interface is used to construct a callable object of the
+  BatchNorm class. For more details, refer to code examples. It implements the function
+  of the Batch Normalization Layer and can be used as a normalizer function for conv2d
+  and fully connected operations. The data is normalized by the mean and variance
+  of the channel based on the current batch data. Refer to Batch Normalization: Accelerating
+  Deep Network Training by Reducing Internal Covariate Shift for more details.'
+paddle.nn.BatchNorm1D: 'Applies Batch Normalization over a 2D or 3D input (a mini-batch
+  of 1D inputswith additional channel dimension) as described in the paper Batch Normalization:
+  Accelerating Deep Network Training by Reducing Internal Covariate Shift .'
+paddle.nn.BatchNorm2D: 'Applies Batch Normalization over a 4D input (a mini-batch
+  of 2D inputswith additional channel dimension) as described in the paper Batch Normalization:
+  Accelerating Deep Network Training by Reducing Internal Covariate Shift .'
+paddle.nn.BatchNorm3D: 'Applies Batch Normalization over a 5D input (a mini-batch
+  of 3D inputswith additional channel dimension) as described in the paper Batch Normalization:
+  Accelerating Deep Network Training by Reducing Internal Covariate Shift .'
+paddle.nn.BeamSearchDecoder: Decoder with beam search decoding strategy. It wraps
+  a cell to get probabilities, and follows a beam search step to calculate scores
+  and select candidate token ids for each decoding step.
+paddle.nn.BiRNN: Wrapper for bidirectional RNN, which builds a bidiretional RNN given
+  the forward rnn cell and backward rnn cell. A BiRNN applies forward RNN and backward
+  RNN with coresponding cells separately and concats the outputs along the last axis.
+paddle.nn.Bilinear: This layer performs bilinear on two inputs.
+paddle.nn.CELU: CELU Activation.
+paddle.nn.ChannelShuffle: 'Can divide channels in a tensor of shape [N, C, H, W] or
+  [N, H, W, C] into g groups, getting a tensor with the shape of [N, g, C/g, H, W]
+  or [N, H, W, g, C/g], and transposes them as [N, C/g, g, H, W] or [N, H, W, g, C/g],
+  then rearranges them to original tensor shape. This operation can improve the interaction
+  between channels, using features efficiently. Please refer to the paper: ShuffleNet:
+  An Extremely Efficient Convolutional Neural Network for Mobile Devices . by Zhang
+  et. al (2017) for more details.'
+paddle.nn.ClipGradByGlobalNorm: Given a list of Tensor \(t\_list\) , calculate the
+  global norm for the elements of all tensors in \(t\_list\) , and limit it to clip_norm
+  .
+paddle.nn.ClipGradByNorm: Limit the l2 norm of multi-dimensional Tensor \(X\) to clip_norm
+  .
+paddle.nn.ClipGradByValue: Limit the value of multi-dimensional Tensor \(X\) to the
+  range [min, max].
+paddle.nn.Conv1D: This interface is used to construct a callable object of the Conv1D
+  class. For more details, refer to code examples. The convolution1D layer calculates
+  the output based on the input, filter and stride, padding, dilation, groups parameters.
+  Input and Output are in NCL format or NLC format, where N is batch size, C is the
+  number of the feature map, L is the length of the feature map. Filter’s shape is
+  [MCK] , where M is the number of output feature map, C is the number of input feature
+  map, K is the size of the kernel. If the groups is greater than 1, C will equal
+  the number of input feature map divided by the groups. If bias attribution and activation
+  type are provided, bias is added to the output of the convolution, and the corresponding
+  activation function is applied to the final result.
+paddle.nn.Conv1DTranspose: This interface is used to construct a callable object of
+  the Conv1DTranspose class. For more details, refer to code examples. The 1-D convolution
+  transpose layer calculates the output based on the input, filter, and dilation,
+  stride, padding. Input(Input) and output(Output) are in ‘NCL’ format or ‘NLC’ where
+  N is batch size, C is the number of channels, L is the length of the feature. The
+  details of convolution transpose layer, please refer to the following explanation
+  and references therein. If bias attribution and activation type are provided, bias
+  is added to the output of the convolution, and the corresponding activation function
+  is applied to the final result.
+paddle.nn.Conv2D: 'This interface is used to construct a callable object of the Conv2D
+  class. For more details, refer to code examples. The convolution2D layer calculates
+  the output based on the input, filter and strides, paddings, dilations, groups parameters.
+  Input and Output are in NCHW format, where N is batch size, C is the number of the
+  feature map, H is the height of the feature map, and W is the width of the feature
+  map. Filter’s shape is [MCHW] , where M is the number of output feature map, C is
+  the number of input feature map, H is the height of the filter, and W is the width
+  of the filter. If the groups is greater than 1, C will equal the number of input
+  feature map divided by the groups. Please refer to UFLDL’s convolution for more
+  details. If bias attribution and activation type are provided, bias is added to
+  the output of the convolution, and the corresponding activation function is applied
+  to the final result. For each input \(X\), the equation is:'
+paddle.nn.Conv2DTranspose: 'This interface is used to construct a callable object
+  of the Conv2DTranspose class. For more details, refer to code examples. The convolution2D
+  transpose layer calculates the output based on the input, filter, and dilations,
+  strides, paddings. Input and output are in NCHW format. Where N is batch size, C
+  is the number of feature map, H is the height of the feature map, and W is the width
+  of the feature map. Filter’s shape is [CMHW] , where C is the number of input feature
+  map, M is the number of output feature map, H is the height of the filter, and W
+  is the width of the filter. If the groups is greater than 1, C will equal the number
+  of input feature map divided by the groups. If bias attribution and activation type
+  are provided, bias is added to the output of the convolution, and the corresponding
+  activation function is applied to the final result. The details of convolution transpose
+  layer, please refer to the following explanation and references conv2dtranspose
+  . For each input \(X\), the equation is:'
+paddle.nn.Conv3D: 'Convlution3d Layer The convolution3d layer calculates the output
+  based on the input, filter and strides, paddings, dilations, groups parameters.
+  Input(Input) and Output(Output) are multidimensional tensors with a shape of \([N,
+  C, D, H, W]\) . Where N is batch size, C is the number of channels, D is the depth
+  of the feature, H is the height of the feature, and W is the width of the feature.
+  Convlution3D is similar with Convlution2D but adds one dimension(depth). If bias
+  attribution and activation type are provided, bias is added to the output of the
+  convolution, and the corresponding activation function is applied to the final result.
+  For each input \(X\), the equation is:'
+paddle.nn.Conv3DTranspose: 'Convlution3D transpose layer The convolution3D transpose
+  layer calculates the output based on the input, filter, and dilations, strides,
+  paddings. Input(Input) and output(Output) are in NCDHW format. Where N is batch
+  size, C is the number of channels, D is the depth of the feature, H is the height
+  of the feature, and W is the width of the feature. Parameters(dilations, strides,
+  paddings) are two elements. These two elements represent height and width, respectively.
+  The details of convolution transpose layer, please refer to the following explanation
+  and references therein. If bias attribution and activation type are provided, bias
+  is added to the output of the convolution, and the corresponding activation function
+  is applied to the final result. For each input \(X\), the equation is:'
+paddle.nn.CosineSimilarity: This interface is used to compute cosine similarity between
+  x1 and x2 along axis.
+paddle.nn.Dropout: 'Dropout is a regularization technique for reducing overfitting
+  by preventing neuron co-adaption during training as described in the paper: Improving
+  neural networks by preventing co-adaptation of feature detectors The dropout operator
+  randomly sets the outputs of some units to zero, while upscale others according
+  to the given dropout probability.'
+paddle.nn.Dropout2D: 'Randomly zero out entire channels (in the batched input 4d tensor
+  with the shape NCHW , a channel is a 2D feature map with the shape HW). Each channel
+  will be zeroed out independently on every forward call with probability p using
+  samples from a Bernoulli distribution. Dropout2D will help promote independence
+  between feature maps as described in the paper: Efficient Object Localization Using
+  Convolutional Networks'
+paddle.nn.Dropout3D: 'Randomly zero out entire channels (in the batched input 5d tensor
+  with the shape NCDHW , a channel is a 3D feature map with the shape DHW ). Each
+  channel will be zeroed out independently on every forward call with probability
+  p using samples from a Bernoulli distribution. Dropout3D will help promote independence
+  between feature maps as described in the paper: Efficient Object Localization Using
+  Convolutional Networks'
+paddle.nn.ELU: ELU Activation.
+paddle.nn.Embedding: Embedding Layer, used to construct a callable object of the Embedding
+  class. For specific usage, refer to code examples. It implements the function of
+  the Embedding Layer. This layer is used to lookup embeddings vector of ids provided
+  by x . It automatically constructs a 2D embedding matrix based on the input num_embeddings
+  and embedding_dim.
+paddle.nn.Flatten: This interface is used to construct a callable object of the FLatten
+  class. For more details, refer to code examples. It implements flatten a contiguous
+  range of dims into a tensor.
+paddle.nn.Fold: Combines an array of sliding local blocks into a large containing
+  tensor. also known as col2im when operated on batched 2D image tensor. Fold calculates
+  each combined value in the resulting large tensor by summing all values from all
+  containing blocks.
+paddle.nn.GELU: GELU Activation.
+paddle.nn.GRU: Multilayer GRU. It takes input sequencse and initial states as inputs,
+  and returns the output sequences and the final states.
+paddle.nn.GRUCell: Gated Recurrent Unit (GRU) RNN cell. Given the inputs and previous
+  states, it computes the outputs and updates states.
+paddle.nn.GroupNorm: This interface is used to construct a callable object of the
+  GroupNorm class. For more details, refer to code examples. It implements the function
+  of the Group Normalization Layer. Refer to Group Normalization .
+paddle.nn.Hardshrink: Hardshrink Activation
+paddle.nn.Hardsigmoid: Hardsigmoid Activiation Layers, Construct a callable object
+  of the Hardsigmoid class. This layer calcluate the hardsigmoid of input x.
+paddle.nn.Hardswish: 'Hardswish activation. Create a callable object of Hardswish.
+  Hardswish is proposed in MobileNetV3, and performs better in computational stability
+  and efficiency compared to swish function. For more details please refer to: https://arxiv.org/pdf/1905.02244.pdf'
+paddle.nn.Hardtanh: Hardtanh Activation. Create a callable object of Hardtanh.
+paddle.nn.InstanceNorm1D: 'Create a callable object of InstanceNorm1D. Applies Instance
+  Normalization over a 3D input (a mini-batch of 1D inputs with additional channel
+  dimension) as described in the paper Instance Normalization: The Missing Ingredient
+  for Fast Stylization .'
+paddle.nn.InstanceNorm2D: 'Create a callable object of InstanceNorm2D. Applies Instance
+  Normalization over a 4D input (a mini-batch of 2D inputs with additional channel
+  dimension) as described in the paper Instance Normalization: The Missing Ingredient
+  for Fast Stylization .'
+paddle.nn.InstanceNorm3D: 'Create a callable object of InstanceNorm3D. Applies Instance
+  Normalization over a 5D input (a mini-batch of 3D inputs with additional channel
+  dimension) as described in the paper Instance Normalization: The Missing Ingredient
+  for Fast Stylization .'
+paddle.nn.LSTM: Multilayer LSTM. It takes a sequence and an initial state as inputs,
+  and returns the output sequences and the final states.
+paddle.nn.LSTMCell: Long-Short Term Memory(LSTM) RNN cell. Given the inputs and previous
+  states, it computes the outputs and updates states.
+paddle.nn.LayerNorm: Construct a callable object of the LayerNorm class. For more
+  details, refer to code examples. It implements the function of the Layer Normalization
+  Layer and can be applied to mini-batch input data. Refer to Layer Normalization
+paddle.nn.LeakyReLU: Leaky ReLU Activation. Create a callable object of LeakyReLU
+  to calculate the LeakyReLU of input x.
+paddle.nn.Linear: 'Fully-connected linear transformation layer. For each input \(X\)
+  , the equation is:'
+paddle.nn.LocalResponseNorm: Local Response Normalization performs a type of “lateral
+  inhibition” by normalizing over local input regions. For more information, please
+  refer to ImageNet Classification with Deep Convolutional Neural Networks
+paddle.nn.LogSigmoid: LogSigmoid Activation.
+paddle.nn.LogSoftmax: 'This operator implements the log_softmax layer. The calculation
+  process is as follows:'
+paddle.nn.MaxPool1D: This operation applies 1D max pooling over input signal composed
+  of several input planes based on the input, and kernel_size, stride, padding parameters.
+  Input(X) and Output(Out) are in NCL format, where N is batch size, C is the number
+  of channels, L is the length of the feature.
+paddle.nn.MaxPool2D: This operation applies 2D max pooling over input feature based
+  on the input, and kernel_size, stride, padding parameters. Input(X) and Output(Out)
+  are in NCHW format, where N is batch size, C is the number of channels, H is the
+  height of the feature, and W is the width of the feature.
+paddle.nn.MaxPool3D: This operation applies 3D max pooling over input features based
+  on the input, and kernel_size, stride, padding parameters. Input(X) and Output(Out)
+  are in NCDHW format, where N is batch size, C is the number of channels, H is the
+  height of the feature, D is the depth of the feature, and W is the width of the
+  feature.
+paddle.nn.MaxUnPool1D: This API implements max unpooling 1d opereation.
+paddle.nn.MaxUnPool2D: This API implements max unpooling 2d opereation.
+paddle.nn.MaxUnPool3D: This API implements max unpooling 3d opereation.
+paddle.nn.Maxout: Maxout Activation. Create a callable object of Maxout.
+paddle.nn.Mish: Mish Activation.
+paddle.nn.MultiHeadAttention: Attention mapps queries and a set of key-value pairs
+  to outputs, and Multi-Head Attention performs multiple parallel attention to jointly
+  attending to information from different representation subspaces.
+paddle.nn.PReLU: 'PReLU Activation. The calculation formula is follows:'
+paddle.nn.Pad1D: This interface is used to construct a callable object of the Pad1D
+  class. Pad tensor according to pad, mode and value. If mode is reflect, pad[0] and
+  pad[1] must be no greater than width-1.
+paddle.nn.Pad2D: This interface is used to construct a callable object of the Pad2D
+  class. Pad tensor according to pad, mode and value. If mode is 'reflect', pad[0]
+  and pad[1] must be no greater than width-1. The height dimension has the same condition.
+paddle.nn.Pad3D: This interface is used to construct a callable object of the Pad3D
+  class. Pad tensor according to 'pad', 'mode' and 'value'. If mode is 'reflect',
+  pad[0] and pad[1] must be no greater than width-1. The height and depth dimension
+  has the same condition.
+paddle.nn.PairwiseDistance: 'It computes the pairwise distance between two vectors.
+  The distance is calculated by p-oreder norm:'
+paddle.nn.PixelShuffle: 'Rearranges elements in a tensor of shape \([N, C, H, W]\)
+  to a tensor of shape \([N, C/upscale_factor^2, H*upscale_factor, W*upscale_factor]\),
+  or from shape \([N, H, W, C]\) to \([N, H*upscale_factor, W*upscale_factor, C/upscale_factor^2]\).
+  This is useful for implementing efficient sub-pixel convolution with a stride of
+  1/upscale_factor. Please refer to the paper: Real-Time Single Image and Video Super-Resolution
+  Using an Efficient Sub-Pixel Convolutional Neural Network . by Shi et. al (2016)
+  for more details.'
+paddle.nn.PixelUnshuffle: 'Rearranges elements in a tensor of shape \([N, C, H, W]\)
+  to a tensor of shape \([N, r^2C, H/r, W/r]\), or from shape \([N, H, W, C]\) to
+  \([N, H/r, W/r, r^2C]\), where \(r\) is the downscale factor. This operation is
+  the reversion of PixelShuffle operation. Please refer to the paper: Real-Time Single
+  Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural
+  Network . by Shi et. al (2016) for more details.'
+paddle.nn.RNN: Wrapper for RNN, which creates a recurrent neural network with an RNN
+  cell. It performs cell.forward() repeatedly until reaches to the maximum length
+  of inputs.
+paddle.nn.RNNCellBase: RNNCellBase is the base class for abstraction representing
+  the calculations mapping the input and state to the output and new state. It is
+  suitable to and mostly used in RNN.
+paddle.nn.RReLU: RReLU activation layer.
+paddle.nn.ReLU: 'ReLU Activation. The calculation formula is follows:'
+paddle.nn.ReLU6: ReLU6 Activation
+paddle.nn.SELU: SELU Activation
+paddle.nn.Sigmoid: this interface is used to construct a callable object of the Sigmoid
+  class. This layer calcluate the sigmoid of input x.
+paddle.nn.Silu: Silu Activation
+paddle.nn.SimpleRNN: Multilayer Elman network(SimpleRNN). It takes input sequences
+  and initial states as inputs, and returns the output sequences and the final states.
+paddle.nn.SimpleRNNCell: Elman RNN (SimpleRNN) cell. Given the inputs and previous
+  states, it computes the outputs and updates states.
+paddle.nn.Softmax: Softmax Activation.
+paddle.nn.Softmax2D: Softmax2D Activation. Given a Tensor with shape (B, C, H, W)
+  or (C, H, W), it will apply Softmax to each location (C, h_i, w_j). The sum of result
+  in each location (C, H_i, W_j) will be one.
+paddle.nn.Softplus: Softplus Activation
+paddle.nn.Softshrink: Softshrink Activation
+paddle.nn.Softsign: Softsign Activation
+paddle.nn.SpectralNorm: This interface is used to construct a callable object of the
+  SpectralNorm class. For more details, refer to code examples. It implements the
+  function of the Spectral Normalization Layer. This layer calculates the spectral
+  normalization value of weight parameters of fc, conv1d, conv2d, conv3d layers which
+  should be 2-D, 3-D, 4-D, 5-D Parameters. Calculations are showed as follows.
+paddle.nn.Swish: Swish Activation.
+paddle.nn.SyncBatchNorm: 'This interface is used to construct a callable object of
+  the SyncBatchNorm class. It implements the function of the Cross-GPU Synchronized
+  Batch Normalization Layer, and can be used as a normalizer function for other operations,
+  such as conv2d and fully connected operations. The data is normalized by the mean
+  and variance of the channel based on whole mini-batch , which including data in
+  all gpus. Refer to Batch Normalization: Accelerating Deep Network Training by Reducing
+  Internal Covariate Shift for more details.'
+paddle.nn.Tanh: Tanh Activation.
+paddle.nn.Tanhshrink: Tanhshrink Activation
+paddle.nn.ThresholdedReLU: Thresholded ReLU Activation
+paddle.nn.Unfold: Returns a col buffer of sliding local blocks of input x, also known
+  as im2col for batched 2D image tensors. For each block under the convolution filter,
+  all element will be rearranged as a column. While the convolution filter sliding
+  over the input feature map, a series of such columns will be formed.
+paddle.nn.Upsample: This op resizes a batch of images.
+paddle.nn.UpsamplingBilinear2D: This op upsamples a batch of images, using bilinear’
+  pixel values. The input must be a 4-D Tensor of the shape (num_batches, channels,
+  in_h, in_w), where in_w is width of the input tensor, in_h is the height of the
+  input tensor. And the upsampling only applies on the two dimensions(height and width).
+  Bilinear interpolation is an extension of linear interpolation for interpolating
+  functions of two variables (e.g. H-direction and W-direction in this op) on a rectilinear
+  2D grid. The key idea is to perform linear interpolation first in one direction,
+  and then again in the other direction.
+paddle.nn.UpsamplingNearest2D: This op upsamples a batch of images, using nearest
+  neighbours’ pixel values. The input must be a 4-D Tensor of the shape (num_batches,
+  channels, in_h, in_w), where in_w is width of the input tensor, in_h is the height
+  of the input tensor. And the upsampling only applies on the two dimensions(height
+  and width). Nearest neighbor interpolation is to perform nearest neighbor interpolation
+  in both the 3rd dimension(in height direction) and the 4th dimension(in width direction)
+  on input tensor.
+paddle.nn.ZeroPad2D: This interface is used to construct a callable object of the
+  ZeroPad2D class. Pads the input tensor boundaries with zero.

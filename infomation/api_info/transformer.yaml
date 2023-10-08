@@ -1,0 +1,11 @@
+function:
+  torch: torch.nn.Transformer
+  ms: mindspore.nn.Transformer
+descp:
+  torch: "A transformer model. User is able to modify the attributes as needed. The\
+    \ architecture is based on the paper \u201CAttention Is All You Need\u201D. Ashish\
+    \ Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez,\
+    \ Lukasz Kaiser, and Illia Polosukhin. 2017. Attention is all you need. In Advances\
+    \ in Neural Information Processing Systems, pages 6000-6010."
+  ms: Transformer module including encoder and decoder.
+param: null

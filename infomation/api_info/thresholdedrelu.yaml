@@ -1,0 +1,5 @@
+function:
+  paddle: paddle.nn.ThresholdedReLU
+descp:
+  paddle: Thresholded ReLU Activation
+param: null

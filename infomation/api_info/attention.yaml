@@ -1,0 +1,5 @@
+function:
+  tf: tf.keras.layers.Attention
+descp:
+  tf: Dot-product attention layer, a.k.a. Luong-style attention.
+param: null

@@ -1,0 +1,5 @@
+function:
+  jittor: jittor.nn.ConvTranspose
+descp:
+  jittor: no description
+param: null

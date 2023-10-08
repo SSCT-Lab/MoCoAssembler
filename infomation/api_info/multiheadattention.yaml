@@ -1,0 +1,15 @@
+function:
+  torch: torch.nn.MultiheadAttention
+  ms: mindspore.nn.MultiheadAttention
+  paddle: paddle.nn.MultiHeadAttention
+  tf: tf.keras.layers.AdditiveAttention
+descp:
+  torch: 'Allows the model to jointly attend to information from different representation
+    subspaces as described in the paper: Attention Is All You Need.'
+  ms: This is an implementation of multihead attention in the paper Attention is all
+    you need.
+  paddle: Attention mapps queries and a set of key-value pairs to outputs, and Multi-Head
+    Attention performs multiple parallel attention to jointly attending to information
+    from different representation subspaces.
+  tf: Additive attention layer, a.k.a. Bahdanau-style attention.
+param: null

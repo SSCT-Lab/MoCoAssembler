@@ -1,0 +1,6 @@
+function:
+  torch: torch.nn.FractionalMaxPool2d
+descp:
+  torch: Applies a 2D fractional max pooling over an input signal composed of several
+    input planes.
+param: null

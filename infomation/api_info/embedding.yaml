@@ -1,0 +1,20 @@
+function:
+  torch: torch.nn.Embedding
+  ms: mindspore.nn.Embedding
+  paddle: paddle.nn.Embedding
+  jittor: jittor.nn.Embedding
+  tf: tf.keras.layers.Embedding
+descp:
+  torch: A simple lookup table that stores embeddings of a fixed dictionary and size.
+  ms: A simple lookup table that stores embeddings of a fixed dictionary and size.
+  paddle: Embedding Layer, used to construct a callable object of the Embedding class.
+    For specific usage, refer to code examples. It implements the function of the
+    Embedding Layer. This layer is used to lookup embeddings vector of ids provided
+    by x . It automatically constructs a 2D embedding matrix based on the input num_embeddings
+    and embedding_dim.
+  jittor: "    ''' A simple lookup table that stores embeddings of a fixed dictionary\
+    \ and size.\n\n        :param num: size of the dictionary of embeddings\n    \
+    \    :type num: int\n\n        :param dim: the size of each embedding vector\n\
+    \        :type dim: int\n\n        \n'''"
+  tf: Turns positive integers (indexes) into dense vectors of fixed size.
+param: null

@@ -1,0 +1,5 @@
+function:
+  tf: tf.keras.layers.SeparableConv2D
+descp:
+  tf: Depthwise separable 2D convolution.
+param: null

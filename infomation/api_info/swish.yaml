@@ -1,0 +1,5 @@
+function:
+  paddle: paddle.nn.Swish
+descp:
+  paddle: Swish Activation.
+param: null

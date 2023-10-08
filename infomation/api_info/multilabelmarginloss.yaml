@@ -1,0 +1,10 @@
+function:
+  torch: torch.nn.MultiLabelMarginLoss
+  ms: mindspore.nn.MultilabelMarginLoss
+descp:
+  torch: 'Creates a criterion that optimizes a multi-class multi-classification hinge
+    loss (margin-based loss) between input xxx (a 2D mini-batch Tensor) and output
+    yyy (which is a 2D Tensor of target class indices). For each sample in the mini-batch:'
+  ms: Creates a loss criterion that minimizes the hinge loss for multi-class classification
+    tasks.
+param: null

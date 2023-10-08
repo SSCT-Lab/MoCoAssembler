@@ -1,0 +1,5 @@
+function:
+  ms: mindspore.nn.BiDense
+descp:
+  ms: The bilinear dense connected layer.
+param: null

@@ -1,0 +1,5 @@
+function:
+  ms: mindspore.nn.WarmUpLR
+descp:
+  ms: Gets learning rate warming up.
+param: null

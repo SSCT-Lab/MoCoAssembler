@@ -1,0 +1,10 @@
+function:
+  torch: torch.nn.RReLU
+  ms: mindspore.nn.RReLU
+  paddle: paddle.nn.RReLU
+descp:
+  torch: 'Applies the randomized leaky rectified liner unit function, element-wise,
+    as described in the paper:'
+  ms: Randomized Leaky ReLU activation function.
+  paddle: RReLU activation layer.
+param: null

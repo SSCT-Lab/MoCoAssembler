@@ -1,0 +1,5 @@
+function:
+  jittor: jittor.nn.LayerNorm2d
+descp:
+  jittor: no description
+param: null

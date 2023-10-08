@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.LazyInstanceNorm3d
+descp:
+  torch: A torch.nn.InstanceNorm3d module with lazy initialization of the num_features
+    argument of the InstanceNorm3d that is inferred from the input.size(1). The attributes
+    that will be lazily initialized are weight, bias, running_mean and running_var.
+param: null

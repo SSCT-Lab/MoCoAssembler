@@ -1,0 +1,16 @@
+function:
+  torch: torch.nn.BatchNorm1d
+  ms: mindspore.nn.BatchNorm1d
+  paddle: paddle.nn.BatchNorm1D
+  jittor: jittor.nn.BatchNorm1d
+descp:
+  torch: 'Applies Batch Normalization over a 2D or 3D input as described in the paper
+    Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate
+    Shift .'
+  ms: This layer applies Batch Normalization over a 2D or 3D input (a mini-batch of
+    1D or 2D inputs) to reduce internal covariate shift.
+  paddle: 'Applies Batch Normalization over a 2D or 3D input (a mini-batch of 1D inputswith
+    additional channel dimension) as described in the paper Batch Normalization: Accelerating
+    Deep Network Training by Reducing Internal Covariate Shift .'
+  jittor: no description
+param: null

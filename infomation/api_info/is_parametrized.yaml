@@ -1,0 +1,5 @@
+function:
+  torch: torch.nn.utils.parametrize.is_parametrized
+descp:
+  torch: Returns True if module has an active parametrization.
+param: null

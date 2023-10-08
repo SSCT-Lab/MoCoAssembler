@@ -1,0 +1,11 @@
+function:
+  torch: torch.nn.utils.parametrizations.spectral_norm
+  paddle: paddle.nn.SpectralNorm
+descp:
+  torch: Applies spectral normalization to a parameter in the given module.
+  paddle: This interface is used to construct a callable object of the SpectralNorm
+    class. For more details, refer to code examples. It implements the function of
+    the Spectral Normalization Layer. This layer calculates the spectral normalization
+    value of weight parameters of fc, conv1d, conv2d, conv3d layers which should be
+    2-D, 3-D, 4-D, 5-D Parameters. Calculations are showed as follows.
+param: null

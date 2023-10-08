@@ -1,0 +1,267 @@
+mindspore.nn.ASGD: Implements Average Stochastic Gradient Descent.
+mindspore.nn.AdaMax: Implements the AdaMax algorithm, a variant of Adaptive Movement
+  Estimation (Adam) based on the infinity norm.
+mindspore.nn.AdaSumByDeltaWeightWrapCell: Enable the adasum in “auto_parallel/semi_auto_parallel”
+  mode. The implementation of the Adaptive Summation (AdaSum) algorithm is calculated
+  based on the difference of weights before and after the updating of optimizer.
+mindspore.nn.AdaSumByGradWrapCell: Enable the adasum in “auto_parallel/semi_auto_parallel”
+  mode. The implementation of the Adaptive Summation (AdaSum) algorithm is calculated
+  by gradients.
+mindspore.nn.Adadelta: Implements the Adadelta algorithm. Adadelta is an online Learning
+  and Stochastic Optimization.
+mindspore.nn.Adagrad: Implements the Adagrad algorithm. Adagrad is an online Learning
+  and Stochastic Optimization.
+mindspore.nn.AdamOffload: This optimizer will offload Adam optimizer to host CPU and
+  keep parameters being updated on the device, to minimize the memory cost.
+mindspore.nn.AdamWeightDecay: Implements the Adam algorithm with weight decay.
+mindspore.nn.AdaptiveAvgPool1d: Applies a 1D adaptive average pooling over an input
+  Tensor which can be regarded as a composition of 1D input planes.
+mindspore.nn.AdaptiveAvgPool2d: This operator applies a 2D adaptive average pooling
+  to an input signal composed of multiple input planes.
+mindspore.nn.AdaptiveAvgPool3d: This operator applies a 3D adaptive average pooling
+  to an input signal composed of multiple input planes.
+mindspore.nn.AdaptiveMaxPool1d: Applies a 1D adaptive maximum pooling over an input
+  Tensor which can be regarded as a composition of 1D input planes.
+mindspore.nn.AdaptiveMaxPool2d: This operator applies a 2D adaptive max pooling to
+  an input signal composed of multiple input planes.
+mindspore.nn.AdaptiveMaxPool3d: Calculates the 3D adaptive max pooling for an input
+  Tensor.
+mindspore.nn.AvgPool1d: Applies a 1D average pooling over an input Tensor which can
+  be regarded as a composition of 1D input planes.
+mindspore.nn.AvgPool2d: Applies a 2D average pooling over an input Tensor which can
+  be regarded as a composition of 2D input planes.
+mindspore.nn.AvgPool3d: Applies a 3D average pooling over an input Tensor which can
+  be regarded as a composition of 3D input planes.
+mindspore.nn.BCELoss: BCELoss creates a criterion to measure the binary cross entropy
+  between the true labels and predicted labels.
+mindspore.nn.BCEWithLogitsLoss: Adds sigmoid activation function to input logits,
+  and uses the given logits to compute binary cross entropy between the logits and
+  the labels.
+mindspore.nn.BatchNorm1d: This layer applies Batch Normalization over a 2D or 3D input
+  (a mini-batch of 1D or 2D inputs) to reduce internal covariate shift.
+mindspore.nn.BatchNorm2d: Batch Normalization is widely used in convolutional networks.
+  This layer applies Batch Normalization over a 4D input (a mini-batch of 2D inputs
+  with additional channel dimension) to avoid internal covariate shift.
+mindspore.nn.BatchNorm3d: Batch Normalization is widely used in convolutional networks.
+  This layer applies Batch Normalization over a 5D input (a mini-batch of 3D inputs
+  with additional channel dimension) to avoid internal covariate shift.
+mindspore.nn.BiDense: The bilinear dense connected layer.
+mindspore.nn.CELU: Continuously differentiable exponential linear units activation
+  function.
+mindspore.nn.CTCLoss: Calculates the CTC (Connectionist Temporal Classification) loss.
+mindspore.nn.ChannelShuffle: Divide the channels of Tensor whose shape is \((*, C,
+  H, W)\) into \(g\) groups to obtain a Tensor with shape \((*, C \frac g, g, H, W)\),
+  and transpose along the corresponding axis of \(C\), \(\frac{g}{}\) and \(g\) to
+  restore Tensor to the original shape.
+mindspore.nn.ConstantPad1d: Using a given constant value to pads the last dimensions
+  of input tensor.
+mindspore.nn.ConstantPad2d: Using a given constant value to pads the last two dimensions
+  of input tensor.
+mindspore.nn.ConstantPad3d: Using a given constant value to pads the last three dimensions
+  of input tensor.
+mindspore.nn.Conv1d: Calculates the 1D convolution on the input tensor.
+mindspore.nn.Conv1dTranspose: Calculates a 1D transposed convolution, which can be
+  regarded as Conv1d for the gradient of the input, also called deconvolution (although
+  it is not an actual deconvolution).
+mindspore.nn.Conv2d: Calculates the 2D convolution on the input tensor.
+mindspore.nn.Conv2dTranspose: Calculates a 2D transposed convolution, which can be
+  regarded as Conv2d for the gradient of the input, also called deconvolution (although
+  it is not an actual deconvolution).
+mindspore.nn.Conv3d: Calculates the 3D convolution on the input tensor.
+mindspore.nn.Conv3dTranspose: Calculates a 3D transposed convolution, which can be
+  regarded as Conv3d for the gradient of the input.
+mindspore.nn.CosineDecayLR: Calculates learning rate based on cosine decay function.
+mindspore.nn.CosineEmbeddingLoss: CosineEmbeddingLoss creates a criterion to measure
+  the similarity between two tensors using cosine distance.
+mindspore.nn.CrossEntropyLoss: The cross entropy loss between input and target.
+mindspore.nn.Dense: The dense connected layer.
+mindspore.nn.DiceLoss: The Dice coefficient is a set similarity loss, which is used
+  to calculate the similarity between two samples.
+mindspore.nn.Dropout: Dropout layer for the input.
+mindspore.nn.Dropout1d: During training, randomly zeroes entire channels of the input
+  tensor with probability p from a Bernoulli distribution (For a 3-dimensional tensor
+  with a shape of \((N, C, L)\), the channel feature map refers to a 1-dimensional
+  feature map with the shape of \(L\)).
+mindspore.nn.Dropout2d: During training, randomly zeroes some channels of the input
+  tensor with probability p from a Bernoulli distribution (For a 4-dimensional tensor
+  with a shape of NCHW, the channel feature map refers to a 2-dimensional feature
+  map with the shape of HW).
+mindspore.nn.Dropout3d: During training, randomly zeroes some channels of the input
+  tensor with probability p from a Bernoulli distribution (For a 5-dimensional tensor
+  with a shape of NCDHW, the channel feature map refers to a 3-dimensional feature
+  map with a shape of DHW).
+mindspore.nn.ELU: Exponential Linear Unit activation function.
+mindspore.nn.Embedding: A simple lookup table that stores embeddings of a fixed dictionary
+  and size.
+mindspore.nn.EmbeddingLookup: EmbeddingLookup layer.
+mindspore.nn.ExponentialDecayLR: Calculates learning rate based on exponential decay
+  function.
+mindspore.nn.FTRL: Implements the FTRL algorithm.
+mindspore.nn.FastGelu: Fast Gaussian error linear unit activation function.
+mindspore.nn.Flatten: Flatten the input Tensor along dimensions from start_dim to
+  end_dim.
+mindspore.nn.FocalLoss: It is a loss function to solve the imbalance of categories
+  and the difference of classification difficulty.
+mindspore.nn.FractionalMaxPool3d: Applies the 3D FractionalMaxPool operatin over input.
+mindspore.nn.GELU: Gaussian error linear unit activation function.
+mindspore.nn.GLU: The gated linear unit function.
+mindspore.nn.GRU: Stacked GRU (Gated Recurrent Unit) layers.
+mindspore.nn.GRUCell: A GRU(Gated Recurrent Unit) cell.
+mindspore.nn.GaussianNLLLoss: Gaussian negative log likelihood loss.
+mindspore.nn.GroupNorm: Group Normalization over a mini-batch of inputs.
+mindspore.nn.HShrink: Hard Shrink activation function.
+mindspore.nn.HSigmoid: Hard sigmoid activation function. Calculates the output according
+  to the input elements.
+mindspore.nn.HSwish: Applies hswish-type activation element-wise.
+mindspore.nn.Hardtanh: Applies the Hardtanh function element-wise.
+mindspore.nn.HingeEmbeddingLoss: Calculate the Hinge Embedding Loss value based on
+  the input ‘logits’ and’ labels’ (only including 1 or -1).
+mindspore.nn.HuberLoss: HuberLoss calculate the error between the predicted value
+  and the target value.
+mindspore.nn.InstanceNorm1d: This layer applies Instance Normalization over a 3D input
+  (a mini-batch of 1D inputs with additional channel dimension).
+mindspore.nn.InstanceNorm2d: This layer applies Instance Normalization over a 4D input
+  (a mini-batch of 2D inputs with additional channel dimension).
+mindspore.nn.InstanceNorm3d: This layer applies Instance Normalization over a 5D input
+  (a mini-batch of 3D inputs with additional channel dimension).
+mindspore.nn.InverseDecayLR: Calculates learning rate base on inverse-time decay function.
+mindspore.nn.KLDivLoss: Computes the Kullback-Leibler divergence between the logits
+  and the labels.
+mindspore.nn.L1Loss: L1Loss is used to calculate the mean absolute error between the
+  predicted value and the target value.
+mindspore.nn.LARS: Implements the LARS algorithm.
+mindspore.nn.LPPool1d: Applying 1D LPPooling operation on an input Tensor can be regarded
+  as forming a 1D input plane.
+mindspore.nn.LPPool2d: Applying 2D LPPooling operation on an input Tensor can be regarded
+  as forming a 1D input plane.
+mindspore.nn.LRN: Local Response Normalization.
+mindspore.nn.LRScheduler: Basic class of learning rate schedule.
+mindspore.nn.LSTM: Stacked LSTM (Long Short-Term Memory) layers.
+mindspore.nn.LSTMCell: A LSTM (Long Short-Term Memory) cell.
+mindspore.nn.Lamb: Implements the Lamb(Layer-wise Adaptive Moments optimizer for Batching
+  training) algorithm.
+mindspore.nn.LayerNorm: Applies Layer Normalization over a mini-batch of inputs.
+mindspore.nn.LazyAdam: Implements the Adaptive Moment Estimation (Adam) algorithm.
+mindspore.nn.LeakyReLU: Leaky ReLU activation function.
+mindspore.nn.LinearLR: 'Decays the learning rate of each parameter group by linearly
+  changing small multiplicative factor until the number of epoch reaches a pre-defined
+  milestone: total_iters.'
+mindspore.nn.LogSigmoid: Applies logsigmoid activation element-wise.
+mindspore.nn.LogSoftmax: Applies the LogSoftmax function to n-dimensional input tensor.
+mindspore.nn.MSELoss: Calculates the mean squared error between the predicted value
+  and the label value.
+mindspore.nn.MarginRankingLoss: MarginRankingLoss creates a criterion that measures
+  the loss.
+mindspore.nn.MaxPool1d: Applies a 1D max pooling over an input Tensor which can be
+  regarded as a composition of 1D planes.
+mindspore.nn.MaxPool2d: Applies a 2D max pooling over an input Tensor which can be
+  regarded as a composition of 2D planes.
+mindspore.nn.MaxPool3d: 3D max pooling operation. Applies a 3D max pooling over an
+  input Tensor which can be regarded as a composition of 3D planes.
+mindspore.nn.MaxUnpool1d: Computes the inverse of mindspore.nn.MaxPool1d.
+mindspore.nn.MaxUnpool2d: Computes the inverse of mindspore.
+mindspore.nn.MaxUnpool3d: Computes the inverse of mindspore.
+mindspore.nn.MicroBatchInterleaved: This function splits the input at the 0th into
+  interleave_num pieces and then performs the computation of the wrapped cell.
+mindspore.nn.Mish: Computes MISH(A Self Regularized Non-Monotonic Neural Activation
+  Function) of input tensors element-wise.
+mindspore.nn.Momentum: Implements the Momentum algorithm.
+mindspore.nn.MultiClassDiceLoss: When there are multiple classifications, label is
+  transformed into multiple binary classifications by one hot.
+mindspore.nn.MultiFieldEmbeddingLookup: Returns a slice of input tensor based on the
+  specified indices and the field ids.
+mindspore.nn.MultiLabelSoftMarginLoss: Calculates the MultiLabelSoftMarginLoss.
+mindspore.nn.MultiMarginLoss: Creates a criterion that optimizes a multi-class classification
+  hinge loss (margin-based loss) between input \(x\) (a 2D mini-batch Tensor) and
+  output \(y\) (which is a 1D tensor of target class indices, \(0 \leq y \leq \text{x.
+mindspore.nn.MultiheadAttention: This is an implementation of multihead attention
+  in the paper Attention is all you need.
+mindspore.nn.MultilabelMarginLoss: Creates a loss criterion that minimizes the hinge
+  loss for multi-class classification tasks.
+mindspore.nn.NLLLoss: Gets the negative log likelihood loss between logits and labels.
+mindspore.nn.NaturalExpDecayLR: Calculates learning rate base on natural exponential
+  decay function.
+mindspore.nn.PReLU: PReLU activation function.
+mindspore.nn.Pad: Pads the input tensor according to the paddings and mode.
+mindspore.nn.PixelShuffle: Applies the PixelShuffle operation over input which implements
+  sub-pixel convolutions with stride \(1/r\) .
+mindspore.nn.PixelUnshuffle: Applies the PixelUnshuffle operation over input which
+  is the inverse of PixelShuffle.
+mindspore.nn.PoissonNLLLoss: Poisson negative log likelihood loss.
+mindspore.nn.PolynomialDecayLR: Calculates learning rate base on polynomial decay
+  function.
+mindspore.nn.ProximalAdagrad: Implements the ProximalAdagrad algorithm.
+mindspore.nn.RMSELoss: RMSELoss creates a criterion to measure the root mean square
+  error between x and y element-wise, where x is the input and y is the labels.
+mindspore.nn.RMSProp: Implements Root Mean Squared Propagation (RMSProp) algorithm.
+mindspore.nn.RNN: Stacked Elman RNN layers.
+mindspore.nn.RNNCell: An Elman RNN cell with tanh or ReLU non-linearity.
+mindspore.nn.RReLU: Randomized Leaky ReLU activation function.
+mindspore.nn.ReLU: Rectified Linear Unit activation function.
+mindspore.nn.ReLU6: Compute ReLU6 activation function.
+mindspore.nn.ReflectionPad1d: Using a given padding to do reflection pad on the given
+  tensor.
+mindspore.nn.ReflectionPad2d: Using a given padding to do reflection pad the given
+  tensor.
+mindspore.nn.ReflectionPad3d: Pad the given tensor in a reflecting way using the input
+  boundaries as the axis of symmetry.
+mindspore.nn.ReplicationPad1d: Pad on W dimension of input x according to padding.
+mindspore.nn.ReplicationPad2d: Pad on HW dimension of input x according to padding.
+mindspore.nn.ReplicationPad3d: Pad on DHW dimension of input x according to padding.
+mindspore.nn.Rprop: Implements Resilient backpropagation.
+mindspore.nn.SGD: Implements stochastic gradient descent.
+mindspore.nn.SampledSoftmaxLoss: Computes the sampled softmax training loss.
+mindspore.nn.SeLU: Activation function SeLU (Scaled exponential Linear Unit).
+mindspore.nn.SiLU: Sigmoid Linear Unit activation function.
+mindspore.nn.Sigmoid: Sigmoid activation function.
+mindspore.nn.SmoothL1Loss: SmoothL1 loss function, if the absolute error element-wise
+  between the predicted value and the target value is less than the set threshold
+  beta, the square term is used, otherwise the absolute error term is used.
+mindspore.nn.SoftMarginLoss: A loss class for two-class classification problems.
+mindspore.nn.SoftShrink: Applies the SoftShrink function element-wise.
+mindspore.nn.Softmax: Softmax activation function, which is a two-category function
+  mindspore.
+mindspore.nn.Softmax2d: Softmax function applied to 2D features data.
+mindspore.nn.SoftmaxCrossEntropyWithLogits: Computes softmax cross entropy between
+  logits and labels.
+mindspore.nn.Softmin: Softmin activation function, which is a two-category function
+  mindspore.
+mindspore.nn.Softsign: Softsign activation function.
+mindspore.nn.StepLR: Decays the learning rate of each parameter group by gamma every
+  step_size epochs.
+mindspore.nn.SyncBatchNorm: Sync Batch Normalization layer over a N-dimension input.
+mindspore.nn.Tanh: Applies the Tanh function element-wise,
+mindspore.nn.Tanhshrink: Tanhshrink activation function.
+mindspore.nn.Threshold: Thresholds each element of the input Tensor.
+mindspore.nn.Transformer: Transformer module including encoder and decoder.
+mindspore.nn.TransformerDecoder: Transformer Decoder module with multi-layer stacked
+  of TransformerDecoderLayer, including multihead self attention, cross attention
+  and feedforward layer.
+mindspore.nn.TransformerDecoderLayer: Transformer Decoder Layer.
+mindspore.nn.TransformerEncoder: Transformer Encoder module with multi-layer stacked
+  of TransformerEncoderLayer, including multihead self attention and feedforward layer.
+mindspore.nn.TransformerEncoderLayer: Transformer Encoder Layer.
+mindspore.nn.TripletMarginLoss: TripletMarginLoss operation.
+mindspore.nn.Unflatten: Unflattens a Tensor dim according to axis and unflattened_size.
+mindspore.nn.Unfold: Extracts patches from images.
+mindspore.nn.Upsample: Samples the input Tensor to the given size or scale_factor
+  by using one of the interpolate algorithms.
+mindspore.nn.WarmUpLR: Gets learning rate warming up.
+mindspore.nn.ZeroPad2d: Pads the last two dimensions of input tensor with zero.
+mindspore.nn.cosine_decay_lr: Calculates learning rate base on cosine decay function.
+mindspore.nn.exponential_decay_lr: Calculates learning rate base on exponential decay
+  function.
+mindspore.nn.get_activation: Gets the activation function.
+mindspore.nn.inverse_decay_lr: Calculates learning rate base on inverse-time decay
+  function.
+mindspore.nn.natural_exp_decay_lr: Calculates learning rate base on natural exponential
+  decay function.
+mindspore.nn.optim_ex.Adam: Implements Adam algorithm.
+mindspore.nn.optim_ex.AdamW: Implements Adam Weight Decay algorithm.
+mindspore.nn.optim_ex.Optimizer: Base class for all optimizers.
+mindspore.nn.optim_ex.SGD: Stochastic Gradient Descent optimizer.
+mindspore.nn.piecewise_constant_lr: Get piecewise constant learning rate.
+mindspore.nn.polynomial_decay_lr: Calculates learning rate base on polynomial decay
+  function.
+mindspore.nn.thor: Updates gradients by second-order algorithm–THOR.
+mindspore.nn.warmup_lr: Gets learning rate warming up.

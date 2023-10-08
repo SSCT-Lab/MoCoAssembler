@@ -1,0 +1,5 @@
+function:
+  torch: torch.nn.utils.remove_spectral_norm
+descp:
+  torch: Removes the spectral normalization reparameterization from a module.
+param: null

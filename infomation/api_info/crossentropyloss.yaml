@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.CrossEntropyLoss
+  ms: mindspore.nn.CrossEntropyLoss
+descp:
+  torch: This criterion computes the cross entropy loss between input logits and target.
+  ms: The cross entropy loss between input and target.
+param: null

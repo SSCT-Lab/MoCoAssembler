@@ -1,0 +1,6 @@
+function:
+  ms: mindspore.nn.Adagrad
+descp:
+  ms: Implements the Adagrad algorithm. Adagrad is an online Learning and Stochastic
+    Optimization.
+param: null

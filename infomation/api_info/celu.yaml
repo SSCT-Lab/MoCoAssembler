@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.CELU
+  ms: mindspore.nn.CELU
+  paddle: paddle.nn.CELU
+descp:
+  torch: 'Applies the element-wise function:'
+  ms: Continuously differentiable exponential linear units activation function.
+  paddle: CELU Activation.
+param: null

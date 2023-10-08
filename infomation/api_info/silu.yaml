@@ -1,0 +1,10 @@
+function:
+  torch: torch.nn.SiLU
+  ms: mindspore.nn.SiLU
+  paddle: paddle.nn.Silu
+descp:
+  torch: Applies the Sigmoid Linear Unit (SiLU) function, element-wise. The SiLU function
+    is also known as the swish function.
+  ms: Sigmoid Linear Unit activation function.
+  paddle: Silu Activation
+param: null

@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.CTCLoss
+  ms: mindspore.nn.CTCLoss
+descp:
+  torch: The Connectionist Temporal Classification loss.
+  ms: Calculates the CTC (Connectionist Temporal Classification) loss.
+param: null

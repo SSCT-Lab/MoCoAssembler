@@ -1,0 +1,5 @@
+function:
+  ms: mindspore.nn.FTRL
+descp:
+  ms: Implements the FTRL algorithm.
+param: null

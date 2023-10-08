@@ -1,0 +1,6 @@
+function:
+  ms: mindspore.nn.Adadelta
+descp:
+  ms: Implements the Adadelta algorithm. Adadelta is an online Learning and Stochastic
+    Optimization.
+param: null

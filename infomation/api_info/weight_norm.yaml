@@ -1,0 +1,5 @@
+function:
+  torch: torch.nn.utils.weight_norm
+descp:
+  torch: Applies weight normalization to a parameter in the given module.
+param: null

@@ -1,0 +1,6 @@
+function:
+  ms: mindspore.nn.MultiClassDiceLoss
+descp:
+  ms: When there are multiple classifications, label is transformed into multiple
+    binary classifications by one hot.
+param: null

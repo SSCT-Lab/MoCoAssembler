@@ -1,0 +1,17 @@
+function:
+  torch: torch.nn.InstanceNorm3d
+  ms: mindspore.nn.InstanceNorm3d
+  paddle: paddle.nn.InstanceNorm3D
+  jittor: jittor.nn.InstanceNorm3d
+descp:
+  torch: 'Applies Instance Normalization over a 5D input (a mini-batch of 3D inputs
+    with additional channel dimension) as described in the paper Instance Normalization:
+    The Missing Ingredient for Fast Stylization.'
+  ms: This layer applies Instance Normalization over a 5D input (a mini-batch of 3D
+    inputs with additional channel dimension).
+  paddle: 'Create a callable object of InstanceNorm3D. Applies Instance Normalization
+    over a 5D input (a mini-batch of 3D inputs with additional channel dimension)
+    as described in the paper Instance Normalization: The Missing Ingredient for Fast
+    Stylization .'
+  jittor: no description
+param: null

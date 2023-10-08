@@ -25,7 +25,7 @@ constraints:
     dtype:
     - float
   norm_region:
-    descp: 'norm_region (str) – Specifies normalization region. Options: '"'ACROSS_CHANNELS'"' . Default: '"'ACROSS_CHANNELS'"' .'
+    descp: 'norm_region (str) – Specifies normalization region. Options: ACROSS_CHANNELS . Default: ACROSS_CHANNELS.'
     default: ACROSS_CHANNELS
     dtype:
     - str

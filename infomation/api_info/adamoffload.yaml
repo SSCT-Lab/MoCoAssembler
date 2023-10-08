@@ -1,0 +1,6 @@
+function:
+  ms: mindspore.nn.AdamOffload
+descp:
+  ms: This optimizer will offload Adam optimizer to host CPU and keep parameters being
+    updated on the device, to minimize the memory cost.
+param: null

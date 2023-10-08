@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.Unflatten
+  ms: mindspore.nn.Unflatten
+descp:
+  torch: Unflattens a tensor dim expanding it to a desired shape. For use with Sequential.
+  ms: Unflattens a Tensor dim according to axis and unflattened_size.
+param: null

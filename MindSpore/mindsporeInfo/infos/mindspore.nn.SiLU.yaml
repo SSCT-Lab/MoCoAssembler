@@ -1,6 +1,0 @@
-api: mindspore.nn.SiLU
-descp: Sigmoid Linear Unit activation function.
-constraints: []
-inputs:
-  optional: []
-  required: []

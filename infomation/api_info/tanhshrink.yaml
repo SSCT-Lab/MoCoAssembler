@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.Tanhshrink
+  ms: mindspore.nn.Tanhshrink
+  paddle: paddle.nn.Tanhshrink
+descp:
+  torch: 'Applies the element-wise function:'
+  ms: Tanhshrink activation function.
+  paddle: Tanhshrink Activation
+param: null

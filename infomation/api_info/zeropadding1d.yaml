@@ -1,0 +1,5 @@
+function:
+  tf: tf.keras.layers.ZeroPadding1D
+descp:
+  tf: Zero-padding layer for 1D input (e.g. temporal sequence).
+param: null

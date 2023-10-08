@@ -1,0 +1,5 @@
+function:
+  ms: mindspore.nn.RMSProp
+descp:
+  ms: Implements Root Mean Squared Propagation (RMSProp) algorithm.
+param: null

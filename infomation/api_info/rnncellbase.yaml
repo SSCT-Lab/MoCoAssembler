@@ -1,0 +1,7 @@
+function:
+  paddle: paddle.nn.RNNCellBase
+descp:
+  paddle: RNNCellBase is the base class for abstraction representing the calculations
+    mapping the input and state to the output and new state. It is suitable to and
+    mostly used in RNN.
+param: null

@@ -1,0 +1,5 @@
+function:
+  tf: tf.keras.layers.Cropping1D
+descp:
+  tf: Cropping layer for 1D input (e.g. temporal sequence).
+param: null

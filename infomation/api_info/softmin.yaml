@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.Softmin
+  ms: mindspore.nn.Softmin
+descp:
+  torch: Applies the Softmin function to an n-dimensional input Tensor rescaling them
+    so that the elements of the n-dimensional output Tensor lie in the range [0, 1]
+    and sum to 1.
+  ms: Softmin activation function, which is a two-category function mindspore.
+param: null

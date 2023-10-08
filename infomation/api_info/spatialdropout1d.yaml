@@ -1,0 +1,5 @@
+function:
+  tf: tf.keras.layers.SpatialDropout1D
+descp:
+  tf: Spatial 1D version of Dropout.
+param: null

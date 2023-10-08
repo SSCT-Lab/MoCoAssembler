@@ -1,0 +1,5 @@
+function:
+  ms: mindspore.nn.cosine_decay_lr
+descp:
+  ms: Calculates learning rate base on cosine decay function.
+param: null

@@ -1,0 +1,6 @@
+function:
+  ms: mindspore.nn.RMSELoss
+descp:
+  ms: RMSELoss creates a criterion to measure the root mean square error between x
+    and y element-wise, where x is the input and y is the labels.
+param: null

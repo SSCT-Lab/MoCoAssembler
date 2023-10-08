@@ -1,0 +1,5 @@
+function:
+  tf: tf.keras.layers.GlobalAveragePooling1D
+descp:
+  tf: Global average pooling operation for temporal data.
+param: null

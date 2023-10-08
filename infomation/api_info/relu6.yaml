@@ -1,0 +1,13 @@
+function:
+  torch: torch.nn.ReLU6
+  ms: mindspore.nn.ReLU6
+  paddle: paddle.nn.ReLU6
+  jittor: jittor.nn.ReLU6
+descp:
+  torch: 'Applies the element-wise function:'
+  ms: Compute ReLU6 activation function.
+  paddle: ReLU6 Activation
+  jittor: "    r''' Applies the element-wise function:\n\n    .. math::\n        \\\
+    text{ReLU6}(x) = \\min(\\max(0,x), 6)\n\n    :param x: the input var\n    :type\
+    \ x: jt.Var\n\n    \n'''"
+param: null

@@ -1,0 +1,17 @@
+function:
+  torch: torch.nn.MaxPool3d
+  ms: mindspore.nn.MaxPool3d
+  paddle: paddle.nn.MaxPool3D
+  jittor: jittor.nn.MaxPool3d
+  tf: tf.keras.layers.GlobalMaxPooling3D
+descp:
+  torch: Applies a 3D max pooling over an input signal composed of several input planes.
+  ms: 3D max pooling operation. Applies a 3D max pooling over an input Tensor which
+    can be regarded as a composition of 3D planes.
+  paddle: This operation applies 3D max pooling over input features based on the input,
+    and kernel_size, stride, padding parameters. Input(X) and Output(Out) are in NCDHW
+    format, where N is batch size, C is the number of channels, H is the height of
+    the feature, D is the depth of the feature, and W is the width of the feature.
+  jittor: no description
+  tf: Global Max pooling operation for 3D data.
+param: null

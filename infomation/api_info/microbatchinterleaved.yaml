@@ -1,0 +1,6 @@
+function:
+  ms: mindspore.nn.MicroBatchInterleaved
+descp:
+  ms: This function splits the input at the 0th into interleave_num pieces and then
+    performs the computation of the wrapped cell.
+param: null
