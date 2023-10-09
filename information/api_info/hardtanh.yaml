@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.Hardtanh
+  ms: mindspore.nn.Hardtanh
+descp:
+  torch: Applies the HardTanh function element-wise.
+  ms: Applies the Hardtanh function element-wise.
+param: null

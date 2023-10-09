@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.Upsample
+  ms: mindspore.nn.Upsample
+descp:
+  torch: Upsamples a given multi-channel 1D (temporal), 2D (spatial) or 3D (volumetric)
+    data.
+  ms: Samples the input Tensor to the given size or scale_factor by using one of the
+    interpolate algorithms.
+param: null

@@ -1,0 +1,6 @@
+function:
+  torch: torch.nn.Hardswish
+descp:
+  torch: 'Applies the Hardswish function, element-wise, as described in the paper:
+    Searching for MobileNetV3.'
+param: null

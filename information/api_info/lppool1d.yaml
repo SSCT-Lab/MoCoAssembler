@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.LPPool1d
+  ms: mindspore.nn.LPPool1d
+descp:
+  torch: Applies a 1D power-average pooling over an input signal composed of several
+    input planes.
+  ms: Applying 1D LPPooling operation on an input Tensor can be regarded as forming
+    a 1D input plane.
+param: null

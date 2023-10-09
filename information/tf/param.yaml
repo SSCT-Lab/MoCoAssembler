@@ -1,8 +1,53 @@
+tf.keras.activations.deserialize:
+- name
+- custom_objects
+- use_legacy_format
+tf.keras.activations.elu:
+- alpha
+- x
+tf.keras.activations.exponential:
+- x
+tf.keras.activations.gelu:
+- x
+- approximate
+tf.keras.activations.get:
+- identifier
+tf.keras.activations.hard_sigmoid:
+- x
+tf.keras.activations.linear:
+- x
+tf.keras.activations.mish:
+- x
+tf.keras.activations.relu:
+- alpha
+- max_value
+- threshold
+- x
+tf.keras.activations.selu:
+- x
+tf.keras.activations.serialize:
+- activation
+- use_legacy_format
+tf.keras.activations.sigmoid:
+- x
+tf.keras.activations.softmax:
+- axis
+- x
+tf.keras.activations.softplus:
+- x
+tf.keras.activations.softsign:
+- x
+tf.keras.activations.swish:
+- x
+tf.keras.activations.tanh:
+- x
 tf.keras.layers.Activation:
 - activation
 tf.keras.layers.ActivityRegularization:
 - l1
 - l2
+tf.keras.layers.Add:
+- '**kwargs'
 tf.keras.layers.AdditiveAttention:
 - use_scale
 tf.keras.layers.AlphaDropout:
@@ -12,6 +57,8 @@ tf.keras.layers.AlphaDropout:
 tf.keras.layers.Attention:
 - score_mode
 - use_scale
+tf.keras.layers.Average:
+- '**kwargs'
 tf.keras.layers.AveragePooling1D:
 - data_format
 - padding
@@ -359,6 +406,21 @@ tf.keras.layers.GlobalMaxPooling2D:
 tf.keras.layers.GlobalMaxPooling3D:
 - data_format
 - keepdims
+tf.keras.layers.InputLayer:
+- batch_size
+- dtype
+- input_shape
+- input_tensor
+- name
+- ragged
+- sparse
+tf.keras.layers.InputSpec:
+- axes
+- dtype
+- max_ndim
+- min_ndim
+- ndim
+- shape
 tf.keras.layers.LSTM:
 - activation
 - activity_regularizer
@@ -474,15 +536,26 @@ tf.keras.layers.MaxPooling3D:
 - padding
 - pool_size
 - strides
+tf.keras.layers.Maximum:
+- '**kwargs'
+tf.keras.layers.Minimum:
+- '**kwargs'
+tf.keras.layers.Multiply:
+- '**kwargs'
 tf.keras.layers.PReLU:
 - alpha_constraint
 - alpha_initializer
 - alpha_regularizer
 - shared_axes
+tf.keras.layers.Permute:
+- dims
 tf.keras.layers.ReLU:
 - max_value
 - negative_slope
 - threshold
+tf.keras.layers.Reshape:
+- '**kwargs'
+- target_shape
 tf.keras.layers.SeparableConv1D:
 - activation
 - activity_regularizer
@@ -571,6 +644,8 @@ tf.keras.layers.SpatialDropout2D:
 tf.keras.layers.SpatialDropout3D:
 - data_format
 - rate
+tf.keras.layers.Subtract:
+- '**kwargs'
 tf.keras.layers.ThresholdedReLU:
 - theta
 tf.keras.layers.UpSampling1D:

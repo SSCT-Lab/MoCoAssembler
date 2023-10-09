@@ -1,0 +1,5 @@
+function:
+  torch: torch.nn.utils.parametrizations.spectral_norm
+descp:
+  torch: Applies spectral normalization to a parameter in the given module.
+param: null

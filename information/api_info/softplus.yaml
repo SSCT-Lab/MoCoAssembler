@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.Softplus
+descp:
+  torch: "Applies the Softplus function Softplus(x)=1\u03B2\u2217log\u2061(1+exp\u2061\
+    (\u03B2\u2217x))\\text{Softplus}(x) = \\frac{1}{\\beta} * \\log(1 + \\exp(\\beta\
+    \ * x))Softplus(x)=\u03B21\u200B\u2217log(1+exp(\u03B2\u2217x)) element-wise."
+param: null

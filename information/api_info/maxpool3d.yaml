@@ -1,0 +1,8 @@
+function:
+  torch: torch.nn.MaxPool3d
+  ms: mindspore.nn.MaxPool3d
+descp:
+  torch: Applies a 3D max pooling over an input signal composed of several input planes.
+  ms: 3D max pooling operation. Applies a 3D max pooling over an input Tensor which
+    can be regarded as a composition of 3D planes.
+param: null

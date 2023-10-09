@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.Sigmoid
+  ms: mindspore.nn.Sigmoid
+descp:
+  torch: 'Applies the element-wise function:'
+  ms: Sigmoid activation function.
+param: null

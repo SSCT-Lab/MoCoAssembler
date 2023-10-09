@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.AvgPool2d
+  ms: mindspore.nn.AvgPool2d
+descp:
+  torch: Applies a 2D average pooling over an input signal composed of several input
+    planes.
+  ms: Applies a 2D average pooling over an input Tensor which can be regarded as a
+    composition of 2D input planes.
+param: null

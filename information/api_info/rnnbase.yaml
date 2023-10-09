@@ -1,0 +1,5 @@
+function:
+  torch: torch.nn.RNNBase
+descp:
+  torch: Resets parameter data pointer so that they can use faster code paths.
+param: null

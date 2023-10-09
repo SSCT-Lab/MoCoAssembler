@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.MultiLabelSoftMarginLoss
+  ms: mindspore.nn.MultiLabelSoftMarginLoss
+descp:
+  torch: 'Creates a criterion that optimizes a multi-label one-versus-all loss based
+    on max-entropy, between input xxx and target yyy of size (N,C)(N, C)(N,C). For
+    each sample in the minibatch:'
+  ms: Calculates the MultiLabelSoftMarginLoss.
+param: null

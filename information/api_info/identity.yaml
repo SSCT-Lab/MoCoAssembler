@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.utils.prune.Identity
+descp:
+  torch: 'Applies pruning reparametrization to the tensor corresponding to the parameter
+    called name in module without actually pruning any units. Modifies module in place
+    (and also return the modified module) by:'
+param: null

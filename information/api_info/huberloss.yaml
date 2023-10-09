@@ -1,0 +1,11 @@
+function:
+  torch: torch.nn.HuberLoss
+  ms: mindspore.nn.HuberLoss
+descp:
+  torch: Creates a criterion that uses a squared term if the absolute element-wise
+    error falls below delta and a delta-scaled L1 term otherwise. This loss combines
+    advantages of both L1Loss and MSELoss; the delta-scaled L1 region makes the loss
+    less sensitive to outliers than MSELoss, while the L2 region provides smoothness
+    over L1Loss near 0. See Huber loss for more information.
+  ms: HuberLoss calculate the error between the predicted value and the target value.
+param: null

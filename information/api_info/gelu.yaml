@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.GELU
+  ms: mindspore.nn.GELU
+descp:
+  torch: 'Applies the Gaussian Error Linear Units function:'
+  ms: Gaussian error linear unit activation function.
+param: null

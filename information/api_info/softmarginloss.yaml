@@ -1,0 +1,8 @@
+function:
+  torch: torch.nn.SoftMarginLoss
+  ms: mindspore.nn.SoftMarginLoss
+descp:
+  torch: Creates a criterion that optimizes a two-class classification logistic loss
+    between input tensor xxx and target tensor yyy (containing 1 or -1).
+  ms: A loss class for two-class classification problems.
+param: null

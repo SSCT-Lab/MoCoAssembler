@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.GRU
+  ms: mindspore.nn.GRU
+descp:
+  torch: Applies a multi-layer gated recurrent unit (GRU) RNN to an input sequence.
+  ms: Stacked GRU (Gated Recurrent Unit) layers.
+param: null

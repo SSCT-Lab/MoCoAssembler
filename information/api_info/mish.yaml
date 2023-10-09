@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.Mish
+  ms: mindspore.nn.Mish
+descp:
+  torch: 'Applies the Mish function, element-wise. Mish: A Self Regularized Non-Monotonic
+    Neural Activation Function.'
+  ms: Computes MISH(A Self Regularized Non-Monotonic Neural Activation Function) of
+    input tensors element-wise.
+param: null

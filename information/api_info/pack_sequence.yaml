@@ -1,0 +1,5 @@
+function:
+  torch: torch.nn.utils.rnn.pack_sequence
+descp:
+  torch: Packs a list of variable length Tensors
+param: null

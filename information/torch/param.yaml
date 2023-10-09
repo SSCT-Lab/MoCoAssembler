@@ -1,0 +1,833 @@
+torch.nn.AdaptiveAvgPool1d:
+- output_size
+torch.nn.AdaptiveAvgPool2d:
+- output_size
+torch.nn.AdaptiveAvgPool3d:
+- output_size
+torch.nn.AdaptiveLogSoftmaxWithLoss:
+- in_features
+- n_classes
+- cutoffs
+- div_value
+- head_bias
+torch.nn.AdaptiveMaxPool1d:
+- output_size
+- return_indices
+torch.nn.AdaptiveMaxPool2d:
+- output_size
+- return_indices
+torch.nn.AdaptiveMaxPool3d:
+- output_size
+- return_indices
+torch.nn.AlphaDropout:
+- inplace
+- p
+torch.nn.AvgPool1d:
+- ceil_mode
+- count_include_pad
+- kernel_size
+- padding
+- stride
+torch.nn.AvgPool2d:
+- ceil_mode
+- count_include_pad
+- kernel_size
+- padding
+- stride
+torch.nn.AvgPool3d:
+- ceil_mode
+- count_include_pad
+- kernel_size
+- padding
+- stride
+torch.nn.BCELoss:
+- weight
+- size_average
+- reduce
+- reduction
+torch.nn.BCEWithLogitsLoss:
+- weight
+- size_average
+- reduce
+- reduction
+- pos_weight
+torch.nn.BatchNorm1d:
+- affine
+- eps
+- momentum
+- num_features
+- track_running_stats
+torch.nn.BatchNorm2d:
+- affine
+- eps
+- momentum
+- num_features
+- track_running_stats
+torch.nn.BatchNorm3d:
+- affine
+- eps
+- momentum
+- num_features
+- track_running_stats
+torch.nn.Bilinear:
+- bias
+- in1_features
+- in2_features
+- out_features
+torch.nn.CELU:
+- alpha
+- inplace
+torch.nn.CTCLoss:
+- blank
+- reduction
+- zero_infinity
+torch.nn.ChannelShuffle:
+- groups
+torch.nn.ConstantPad1d:
+- padding
+torch.nn.ConstantPad2d:
+- padding
+torch.nn.ConstantPad3d:
+- padding
+torch.nn.Conv1d:
+- bias
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- padding
+- padding_mode
+- stride
+torch.nn.Conv2d:
+- bias
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- padding
+- padding_mode
+- stride
+torch.nn.Conv3d:
+- bias
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- padding
+- padding_mode
+- stride
+torch.nn.ConvTranspose1d:
+- bias
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- output_padding
+- padding
+- stride
+torch.nn.ConvTranspose2d:
+- bias
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- output_padding
+- padding
+- stride
+torch.nn.ConvTranspose3d:
+- bias
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- output_padding
+- padding
+- stride
+torch.nn.CosineEmbeddingLoss:
+- margin
+- size_average
+- reduce
+- reduction
+torch.nn.CosineSimilarity:
+- dim
+- eps
+torch.nn.CrossEntropyLoss:
+- weight
+- size_average
+- ignore_index
+- reduce
+- reduction
+- label_smoothing
+torch.nn.DataParallel:
+- module
+- device_ids
+- output_device
+torch.nn.Dropout:
+- inplace
+- p
+torch.nn.Dropout1d:
+- p
+- inplace
+torch.nn.Dropout2d:
+- inplace
+- p
+torch.nn.Dropout3d:
+- inplace
+- p
+torch.nn.ELU:
+- alpha
+- inplace
+torch.nn.Embedding:
+- embedding_dim
+- max_norm
+- norm_type
+- num_embeddings
+- padding_idx
+- scale_grad_by_freq
+- sparse
+torch.nn.EmbeddingBag:
+- embedding_dim
+- include_last_offset
+- max_norm
+- mode
+- norm_type
+- num_embeddings
+- scale_grad_by_freq
+- sparse
+torch.nn.FeatureAlphaDropout:
+- p
+- inplace
+torch.nn.Flatten:
+- start_dim
+- end_dim
+torch.nn.Fold:
+- dilation
+- kernel_size
+- output_size
+- padding
+- stride
+torch.nn.FractionalMaxPool2d:
+- kernel_size
+- output_ratio
+- output_size
+- return_indices
+torch.nn.FractionalMaxPool3d:
+- kernel_size
+- output_size
+- output_ratio
+- return_indices
+torch.nn.GELU:
+- approximate
+torch.nn.GLU:
+- dim
+torch.nn.GRU:
+- input_size
+- hidden_size
+- num_layers
+- bias
+- batch_first
+- dropout
+- bidirectional
+torch.nn.GRUCell:
+- bias
+- hidden_size
+- input_size
+torch.nn.GaussianNLLLoss:
+- full
+- eps
+- reduction
+torch.nn.GroupNorm:
+- affine
+- eps
+- num_channels
+- num_groups
+torch.nn.Hardshrink:
+- lambd
+torch.nn.Hardsigmoid:
+- inplace
+torch.nn.Hardswish:
+- inplace
+torch.nn.Hardtanh:
+- inplace
+- max_val
+- min_val
+torch.nn.HingeEmbeddingLoss:
+- margin
+- size_average
+- reduce
+- reduction
+torch.nn.HuberLoss:
+- reduction
+- delta
+torch.nn.Identity:
+- args
+- kwargs
+torch.nn.InstanceNorm1d:
+- affine
+- eps
+- momentum
+- num_features
+- track_running_stats
+torch.nn.InstanceNorm2d:
+- affine
+- eps
+- momentum
+- num_features
+- track_running_stats
+torch.nn.InstanceNorm3d:
+- affine
+- eps
+- momentum
+- num_features
+- track_running_stats
+torch.nn.KLDivLoss:
+- size_average
+- reduce
+- reduction
+- log_target
+torch.nn.L1Loss:
+- size_average
+- reduce
+- reduction
+torch.nn.LPPool1d:
+- ceil_mode
+- kernel_size
+- norm_type
+- stride
+torch.nn.LPPool2d:
+- ceil_mode
+- kernel_size
+- norm_type
+- stride
+torch.nn.LSTM:
+- input_size
+- hidden_size
+- num_layers
+- bias
+- batch_first
+- dropout
+- bidirectional
+- proj_size
+torch.nn.LSTMCell:
+- bias
+- hidden_size
+- input_size
+torch.nn.LayerNorm:
+- elementwise_affine
+- eps
+- normalized_shape
+torch.nn.LazyBatchNorm1d:
+- eps
+- momentum
+- affine
+- track_running_stats
+torch.nn.LazyBatchNorm2d:
+- eps
+- momentum
+- affine
+- track_running_stats
+torch.nn.LazyBatchNorm3d:
+- eps
+- momentum
+- affine
+- track_running_stats
+torch.nn.LazyConv1d:
+- out_channels
+- kernel_size
+- stride
+- padding
+- padding_mode
+- dilation
+- groups
+- bias
+torch.nn.LazyConv2d:
+- out_channels
+- kernel_size
+- stride
+- padding
+- padding_mode
+- dilation
+- groups
+- bias
+torch.nn.LazyConv3d:
+- out_channels
+- kernel_size
+- stride
+- padding
+- padding_mode
+- dilation
+- groups
+- bias
+torch.nn.LazyConvTranspose1d:
+- out_channels
+- kernel_size
+- stride
+- padding
+- output_padding
+- groups
+- bias
+- dilation
+torch.nn.LazyConvTranspose2d:
+- out_channels
+- kernel_size
+- stride
+- padding
+- output_padding
+- groups
+- bias
+- dilation
+torch.nn.LazyConvTranspose3d:
+- out_channels
+- kernel_size
+- stride
+- padding
+- output_padding
+- groups
+- bias
+- dilation
+torch.nn.LazyInstanceNorm1d:
+- num_features
+- eps
+- momentum
+- affine
+- track_running_stats
+torch.nn.LazyInstanceNorm2d:
+- num_features
+- eps
+- momentum
+- affine
+- track_running_stats
+torch.nn.LazyInstanceNorm3d:
+- num_features
+- eps
+- momentum
+- affine
+- track_running_stats
+torch.nn.LazyLinear:
+- out_features
+- bias
+torch.nn.LeakyReLU:
+- inplace
+- negative_slope
+torch.nn.Linear:
+- bias
+- in_features
+- out_features
+torch.nn.LocalResponseNorm:
+- alpha
+- beta
+- k
+- size
+torch.nn.LogSigmoid: []
+torch.nn.LogSoftmax:
+- dim
+torch.nn.MSELoss:
+- size_average
+- reduce
+- reduction
+torch.nn.MarginRankingLoss:
+- margin
+- size_average
+- reduce
+- reduction
+torch.nn.MaxPool1d:
+- ceil_mode
+- dilation
+- kernel_size
+- padding
+- return_indices
+- stride
+torch.nn.MaxPool2d:
+- ceil_mode
+- dilation
+- kernel_size
+- padding
+- return_indices
+- stride
+torch.nn.MaxPool3d:
+- ceil_mode
+- dilation
+- kernel_size
+- padding
+- return_indices
+- stride
+torch.nn.MaxUnpool1d:
+- kernel_size
+- padding
+- stride
+torch.nn.MaxUnpool2d:
+- kernel_size
+- padding
+- stride
+torch.nn.MaxUnpool3d:
+- kernel_size
+- padding
+- stride
+torch.nn.Mish: []
+torch.nn.MultiLabelMarginLoss:
+- size_average
+- reduce
+- reduction
+torch.nn.MultiLabelSoftMarginLoss:
+- weight
+- size_average
+- reduce
+- reduction
+torch.nn.MultiMarginLoss:
+- p
+- margin
+- weight
+- size_average
+- reduce
+- reduction
+torch.nn.MultiheadAttention:
+- embed_dim
+- num_heads
+- dropout
+- bias
+- add_bias_kv
+- add_zero_attn
+- kdim
+- vdim
+- batch_first
+torch.nn.NLLLoss:
+- weight
+- size_average
+- ignore_index
+- reduce
+- reduction
+torch.nn.PReLU:
+- init
+- num_parameters
+torch.nn.PairwiseDistance:
+- p
+- eps
+- keepdim
+torch.nn.PixelShuffle:
+- upscale_factor
+torch.nn.PixelUnshuffle:
+- downscale_factor
+torch.nn.PoissonNLLLoss:
+- log_input
+- full
+- size_average
+- eps
+- reduce
+- reduction
+torch.nn.RNN:
+- input_size
+- hidden_size
+- num_layers
+- nonlinearity
+- bias
+- batch_first
+- dropout
+- bidirectional
+torch.nn.RNNBase: []
+torch.nn.RNNCell:
+- bias
+- hidden_size
+- input_size
+- nonlinearity
+torch.nn.RReLU:
+- inplace
+- lower
+- upper
+torch.nn.ReLU:
+- inplace
+torch.nn.ReLU6:
+- inplace
+torch.nn.ReflectionPad1d:
+- padding
+torch.nn.ReflectionPad2d:
+- padding
+torch.nn.ReflectionPad3d:
+- padding
+torch.nn.ReplicationPad1d:
+- padding
+torch.nn.ReplicationPad2d:
+- padding
+torch.nn.ReplicationPad3d:
+- padding
+torch.nn.SELU:
+- inplace
+torch.nn.SiLU: []
+torch.nn.Sigmoid: []
+torch.nn.SmoothL1Loss:
+- size_average
+- reduce
+- reduction
+- beta
+torch.nn.SoftMarginLoss:
+- size_average
+- reduce
+- reduction
+torch.nn.Softmax:
+- dim
+torch.nn.Softmax2d: []
+torch.nn.Softmin:
+- dim
+torch.nn.Softplus:
+- beta
+- threshold
+torch.nn.Softshrink:
+- lambd
+torch.nn.Softsign: []
+torch.nn.SyncBatchNorm:
+- affine
+- eps
+- momentum
+- num_features
+- process_group
+- track_running_stats
+torch.nn.Tanh: []
+torch.nn.Tanhshrink: []
+torch.nn.Threshold:
+- inplace
+- threshold
+- value
+torch.nn.Transformer:
+- d_model
+- nhead
+- num_encoder_layers
+- num_decoder_layers
+- dim_feedforward
+- dropout
+- activation
+- custom_encoder
+- custom_decoder
+- layer_norm_eps
+- batch_first
+- norm_first
+torch.nn.TransformerDecoder:
+- decoder_layer
+- num_layers
+- norm
+torch.nn.TransformerDecoderLayer:
+- d_model
+- nhead
+- dim_feedforward
+- dropout
+- activation
+- layer_norm_eps
+- batch_first
+- norm_first
+torch.nn.TransformerEncoder:
+- encoder_layer
+- num_layers
+- norm
+- enable_nested_tensor
+torch.nn.TransformerEncoderLayer:
+- d_model
+- nhead
+- dim_feedforward
+- dropout
+- activation
+- layer_norm_eps
+- batch_first
+- norm_first
+torch.nn.TripletMarginLoss:
+- margin
+- p
+- swap
+- size_average
+- reduce
+- reduction
+torch.nn.TripletMarginWithDistanceLoss:
+- distance_function
+- margin
+- swap
+- reduction
+torch.nn.Unflatten:
+- dim
+- unflattened_size
+torch.nn.Unfold:
+- dilation
+- kernel_size
+- padding
+- stride
+torch.nn.Upsample:
+- align_corners
+- mode
+- scale_factor
+- size
+torch.nn.UpsamplingBilinear2d:
+- scale_factor
+- size
+torch.nn.UpsamplingNearest2d:
+- scale_factor
+- size
+torch.nn.ZeroPad2d:
+- padding
+torch.nn.modules.lazy.LazyModuleMixin: []
+torch.nn.parallel.DistributedDataParallel:
+- module
+- device_ids
+- output_device
+- broadcast_buffers
+- process_group
+- bucket_cap_mb
+- find_unused_parameters
+- check_reduction
+- gradient_as_bucket_view
+- static_graph
+torch.nn.utils.clip_grad_norm_:
+- parameters
+- max_norm
+- norm_type
+- error_if_nonfinite
+- foreach
+torch.nn.utils.clip_grad_value_:
+- parameters
+- clip_value
+- foreach
+torch.nn.utils.parameters_to_vector:
+- parameters
+torch.nn.utils.parametrizations.orthogonal:
+- module
+- name
+- orthogonal_map
+- use_trivialization
+torch.nn.utils.parametrizations.spectral_norm:
+- module
+- name
+- n_power_iterations
+- eps
+- dim
+torch.nn.utils.parametrize.ParametrizationList:
+- modules
+- original
+- unsafe
+torch.nn.utils.parametrize.cached: []
+torch.nn.utils.parametrize.is_parametrized:
+- module
+- tensor_name
+torch.nn.utils.parametrize.register_parametrization:
+- module
+- tensor_name
+- parametrization
+torch.nn.utils.parametrize.remove_parametrizations:
+- module
+- tensor_name
+- leave_parametrized
+torch.nn.utils.prune.BasePruningMethod:
+- module
+- name
+- args
+- importance_scores
+- kwargs
+torch.nn.utils.prune.CustomFromMask:
+- module
+- name
+torch.nn.utils.prune.Identity:
+- module
+- name
+torch.nn.utils.prune.L1Unstructured:
+- amount
+torch.nn.utils.prune.LnStructured:
+- amount
+- n
+- dim
+torch.nn.utils.prune.PruningContainer:
+- method
+torch.nn.utils.prune.RandomStructured:
+- amount
+- dim
+torch.nn.utils.prune.RandomUnstructured:
+- name
+- amount
+torch.nn.utils.prune.custom_from_mask:
+- module
+- name
+- mask
+torch.nn.utils.prune.global_unstructured:
+- parameters
+- pruning_method
+- importance_scores
+- kwargs
+torch.nn.utils.prune.is_pruned:
+- module
+torch.nn.utils.prune.l1_unstructured:
+- module
+- name
+- amount
+- importance_scores
+torch.nn.utils.prune.ln_structured:
+- module
+- name
+- amount
+- n
+- dim
+- importance_scores
+torch.nn.utils.prune.random_structured:
+- module
+- name
+- amount
+- dim
+torch.nn.utils.prune.random_unstructured:
+- module
+- name
+- amount
+torch.nn.utils.prune.remove:
+- module
+- name
+torch.nn.utils.remove_spectral_norm:
+- module
+- name
+torch.nn.utils.remove_weight_norm:
+- module
+- name
+torch.nn.utils.rnn.PackedSequence: []
+torch.nn.utils.rnn.pack_padded_sequence:
+- input
+- lengths
+- batch_first
+- enforce_sorted
+torch.nn.utils.rnn.pack_sequence:
+- sequences
+- enforce_sorted
+torch.nn.utils.rnn.pad_packed_sequence:
+- sequence
+- batch_first
+- padding_value
+- total_length
+torch.nn.utils.rnn.pad_sequence:
+- sequences
+- batch_first
+- padding_value
+torch.nn.utils.rnn.unpack_sequence:
+- packed_sequences
+torch.nn.utils.rnn.unpad_sequence:
+- padded_sequences
+- lengths
+- batch_first
+torch.nn.utils.skip_init:
+- module_cls
+- args
+- kwargs
+torch.nn.utils.spectral_norm:
+- module
+- name
+- n_power_iterations
+- eps
+- dim
+torch.nn.utils.stateless.functional_call:
+- module
+- parameters_and_buffers
+- args
+- kwargs
+- tie_weights
+- strict
+torch.nn.utils.vector_to_parameters:
+- vec
+- parameters
+torch.nn.utils.weight_norm:
+- module
+- name
+- dim

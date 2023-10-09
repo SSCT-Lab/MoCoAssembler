@@ -1,0 +1,11 @@
+function:
+  torch: torch.nn.ConvTranspose3d
+  ms: mindspore.nn.Conv3dTranspose
+descp:
+  torch: Applies a 3D transposed convolution operator over an input image composed
+    of several input planes. The transposed convolution operator multiplies each input
+    value element-wise by a learnable kernel, and sums over the outputs from all input
+    feature planes.
+  ms: Calculates a 3D transposed convolution, which can be regarded as Conv3d for
+    the gradient of the input.
+param: null

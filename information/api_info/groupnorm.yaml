@@ -1,0 +1,8 @@
+function:
+  torch: torch.nn.GroupNorm
+  ms: mindspore.nn.GroupNorm
+descp:
+  torch: Applies Group Normalization over a mini-batch of inputs as described in the
+    paper Group Normalization
+  ms: Group Normalization over a mini-batch of inputs.
+param: null

@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.ConstantPad2d
+  ms: mindspore.nn.ConstantPad2d
+descp:
+  torch: Pads the input tensor boundaries with a constant value.
+  ms: Using a given constant value to pads the last two dimensions of input tensor.
+param: null

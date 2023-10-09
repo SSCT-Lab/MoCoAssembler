@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.GRUCell
+  ms: mindspore.nn.GRUCell
+descp:
+  torch: A gated recurrent unit (GRU) cell
+  ms: A GRU(Gated Recurrent Unit) cell.
+param: null

@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.ReLU
+  ms: mindspore.nn.ReLU
+descp:
+  torch: 'Applies the rectified linear unit function element-wise:'
+  ms: Rectified Linear Unit activation function.
+param: null

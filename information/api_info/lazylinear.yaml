@@ -1,0 +1,5 @@
+function:
+  torch: torch.nn.LazyLinear
+descp:
+  torch: A torch.nn.Linear module where in_features is inferred.
+param: null

@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.Tanh
+  ms: mindspore.nn.Tanh
+descp:
+  torch: Applies the Hyperbolic Tangent (Tanh) function element-wise.
+  ms: Applies the Tanh function element-wise,
+param: null

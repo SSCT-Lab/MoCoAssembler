@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.ReLU6
+  ms: mindspore.nn.ReLU6
+descp:
+  torch: 'Applies the element-wise function:'
+  ms: Compute ReLU6 activation function.
+param: null

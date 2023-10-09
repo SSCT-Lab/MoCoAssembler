@@ -1,0 +1,6 @@
+function:
+  torch: torch.nn.UpsamplingNearest2d
+descp:
+  torch: Applies a 2D nearest neighbor upsampling to an input signal composed of several
+    input channels.
+param: null

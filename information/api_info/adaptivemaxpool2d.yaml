@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.AdaptiveMaxPool2d
+  ms: mindspore.nn.AdaptiveMaxPool2d
+descp:
+  torch: Applies a 2D adaptive max pooling over an input signal composed of several
+    input planes.
+  ms: This operator applies a 2D adaptive max pooling to an input signal composed
+    of multiple input planes.
+param: null

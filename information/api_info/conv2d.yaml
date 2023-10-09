@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.Conv2d
+  ms: mindspore.nn.Conv2d
+descp:
+  torch: Applies a 2D convolution over an input signal composed of several input planes.
+  ms: Calculates the 2D convolution on the input tensor.
+param: null

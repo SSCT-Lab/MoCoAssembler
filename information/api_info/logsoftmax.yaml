@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.LogSoftmax
+  ms: mindspore.nn.LogSoftmax
+descp:
+  torch: "Applies the log\u2061(Softmax(x))\\log(\\text{Softmax}(x))log(Softmax(x))\
+    \ function to an n-dimensional input Tensor. The LogSoftmax formulation can be\
+    \ simplified as:"
+  ms: Applies the LogSoftmax function to n-dimensional input tensor.
+param: null

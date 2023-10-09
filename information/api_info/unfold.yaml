@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.Unfold
+  ms: mindspore.nn.Unfold
+descp:
+  torch: Extracts sliding local blocks from a batched input tensor.
+  ms: Extracts patches from images.
+param: null

@@ -1,0 +1,10 @@
+function:
+  torch: torch.nn.SyncBatchNorm
+  ms: mindspore.nn.SyncBatchNorm
+descp:
+  torch: 'Applies Batch Normalization over a N-Dimensional input (a mini-batch of
+    [N-2]D inputs with additional channel dimension) as described in the paper Batch
+    Normalization: Accelerating Deep Network Training by Reducing Internal Covariate
+    Shift .'
+  ms: Sync Batch Normalization layer over a N-dimension input.
+param: null

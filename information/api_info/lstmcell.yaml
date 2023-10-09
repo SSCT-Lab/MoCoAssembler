@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.LSTMCell
+  ms: mindspore.nn.LSTMCell
+descp:
+  torch: A long short-term memory (LSTM) cell.
+  ms: A LSTM (Long Short-Term Memory) cell.
+param: null

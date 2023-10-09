@@ -1,0 +1,8 @@
+function:
+  torch: torch.nn.LayerNorm
+  ms: mindspore.nn.LayerNorm
+descp:
+  torch: Applies Layer Normalization over a mini-batch of inputs as described in the
+    paper Layer Normalization
+  ms: Applies Layer Normalization over a mini-batch of inputs.
+param: null

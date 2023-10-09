@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.LogSigmoid
+  ms: mindspore.nn.LogSigmoid
+descp:
+  torch: 'Applies the element-wise function:'
+  ms: Applies logsigmoid activation element-wise.
+param: null

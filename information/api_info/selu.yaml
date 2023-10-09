@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.SELU
+  ms: mindspore.nn.SeLU
+descp:
+  torch: 'Applied element-wise, as:'
+  ms: Activation function SeLU (Scaled exponential Linear Unit).
+param: null

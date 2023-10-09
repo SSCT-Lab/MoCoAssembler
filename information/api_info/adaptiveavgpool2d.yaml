@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.AdaptiveAvgPool2d
+  ms: mindspore.nn.AdaptiveAvgPool2d
+descp:
+  torch: Applies a 2D adaptive average pooling over an input signal composed of several
+    input planes.
+  ms: This operator applies a 2D adaptive average pooling to an input signal composed
+    of multiple input planes.
+param: null

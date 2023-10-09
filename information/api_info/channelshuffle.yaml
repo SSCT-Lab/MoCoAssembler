@@ -1,0 +1,12 @@
+function:
+  torch: torch.nn.ChannelShuffle
+  ms: mindspore.nn.ChannelShuffle
+descp:
+  torch: "Divide the channels in a tensor of shape (\u2217,C,H,W)(*, C , H, W)(\u2217\
+    ,C,H,W) into g groups and rearrange them as (\u2217,Cg,g,H,W)(*, C \\frac g, g,\
+    \ H, W)(\u2217,C,g\u200Bg,H,W), while keeping the original tensor shape."
+  ms: Divide the channels of Tensor whose shape is \((*, C, H, W)\) into \(g\) groups
+    to obtain a Tensor with shape \((*, C \frac g, g, H, W)\), and transpose along
+    the corresponding axis of \(C\), \(\frac{g}{}\) and \(g\) to restore Tensor to
+    the original shape.
+param: null

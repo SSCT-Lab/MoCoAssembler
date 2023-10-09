@@ -1,0 +1,6 @@
+function:
+  torch: torch.nn.utils.parametrize.cached
+descp:
+  torch: Context manager that enables the caching system within parametrizations registered
+    with register_parametrization().
+param: null

@@ -1,0 +1,10 @@
+function:
+  torch: torch.nn.ConvTranspose1d
+  ms: mindspore.nn.Conv1dTranspose
+descp:
+  torch: Applies a 1D transposed convolution operator over an input image composed
+    of several input planes.
+  ms: Calculates a 1D transposed convolution, which can be regarded as Conv1d for
+    the gradient of the input, also called deconvolution (although it is not an actual
+    deconvolution).
+param: null

@@ -1,0 +1,5 @@
+function:
+  torch: torch.nn.AlphaDropout
+descp:
+  torch: Applies Alpha Dropout over the input.
+param: null

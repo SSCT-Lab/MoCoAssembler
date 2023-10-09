@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.AdaptiveAvgPool1d
+  ms: mindspore.nn.AdaptiveAvgPool1d
+descp:
+  torch: Applies a 1D adaptive average pooling over an input signal composed of several
+    input planes.
+  ms: Applies a 1D adaptive average pooling over an input Tensor which can be regarded
+    as a composition of 1D input planes.
+param: null

@@ -1,0 +1,5 @@
+function:
+  torch: torch.nn.Hardsigmoid
+descp:
+  torch: Applies the Hardsigmoid function element-wise.
+param: null

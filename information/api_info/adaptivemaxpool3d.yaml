@@ -1,0 +1,8 @@
+function:
+  torch: torch.nn.AdaptiveMaxPool3d
+  ms: mindspore.nn.AdaptiveMaxPool3d
+descp:
+  torch: Applies a 3D adaptive max pooling over an input signal composed of several
+    input planes.
+  ms: Calculates the 3D adaptive max pooling for an input Tensor.
+param: null

@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.Embedding
+  ms: mindspore.nn.Embedding
+descp:
+  torch: A simple lookup table that stores embeddings of a fixed dictionary and size.
+  ms: A simple lookup table that stores embeddings of a fixed dictionary and size.
+param: null

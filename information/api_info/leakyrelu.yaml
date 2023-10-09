@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.LeakyReLU
+  ms: mindspore.nn.LeakyReLU
+descp:
+  torch: 'Applies the element-wise function:'
+  ms: Leaky ReLU activation function.
+param: null

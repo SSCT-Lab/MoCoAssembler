@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.AvgPool3d
+  ms: mindspore.nn.AvgPool3d
+descp:
+  torch: Applies a 3D average pooling over an input signal composed of several input
+    planes.
+  ms: Applies a 3D average pooling over an input Tensor which can be regarded as a
+    composition of 3D input planes.
+param: null

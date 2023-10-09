@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.Flatten
+  ms: mindspore.nn.Flatten
+descp:
+  torch: Flattens a contiguous range of dims into a tensor. For use with Sequential.
+  ms: Flatten the input Tensor along dimensions from start_dim to end_dim.
+param: null

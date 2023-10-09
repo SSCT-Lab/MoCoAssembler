@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.PReLU
+  ms: mindspore.nn.PReLU
+descp:
+  torch: 'Applies the element-wise function:'
+  ms: PReLU activation function.
+param: null

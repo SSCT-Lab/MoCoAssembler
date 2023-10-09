@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.Softmax2d
+  ms: mindspore.nn.Softmax2d
+descp:
+  torch: Applies SoftMax over features to each spatial location.
+  ms: Softmax function applied to 2D features data.
+param: null

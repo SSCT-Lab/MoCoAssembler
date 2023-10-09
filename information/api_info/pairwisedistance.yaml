@@ -1,0 +1,6 @@
+function:
+  torch: torch.nn.PairwiseDistance
+descp:
+  torch: Computes the pairwise distance between input vectors, or between columns
+    of input matrices.
+param: null

@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.MultiheadAttention
+  ms: mindspore.nn.MultiheadAttention
+descp:
+  torch: 'Allows the model to jointly attend to information from different representation
+    subspaces as described in the paper: Attention Is All You Need.'
+  ms: This is an implementation of multihead attention in the paper Attention is all
+    you need.
+param: null

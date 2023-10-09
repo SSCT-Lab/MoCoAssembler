@@ -1,0 +1,6 @@
+function:
+  torch: torch.nn.Bilinear
+descp:
+  torch: "Applies a bilinear transformation to the incoming data: y=x1TAx2+by = x_1^T\
+    \ A x_2 + by=x1T\u200BAx2\u200B+b"
+param: null

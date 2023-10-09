@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.MaxUnpool2d
+  ms: mindspore.nn.MaxUnpool2d
+descp:
+  torch: Computes a partial inverse of MaxPool2d.
+  ms: Computes the inverse of mindspore.
+param: null

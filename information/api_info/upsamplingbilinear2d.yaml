@@ -1,0 +1,6 @@
+function:
+  torch: torch.nn.UpsamplingBilinear2d
+descp:
+  torch: Applies a 2D bilinear upsampling to an input signal composed of several input
+    channels.
+param: null

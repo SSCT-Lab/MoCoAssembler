@@ -1,0 +1,6 @@
+function:
+  torch: torch.nn.CosineSimilarity
+descp:
+  torch: "Returns cosine similarity between x1x_1x1\u200B and x2x_2x2\u200B, computed\
+    \ along dim."
+param: null

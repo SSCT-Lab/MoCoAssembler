@@ -1,0 +1,5 @@
+function:
+  torch: torch.nn.utils.rnn.PackedSequence
+descp:
+  torch: Holds the data and list of batch_sizes of a packed sequence.
+param: null

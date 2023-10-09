@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.Conv3d
+  ms: mindspore.nn.Conv3d
+descp:
+  torch: Applies a 3D convolution over an input signal composed of several input planes.
+  ms: Calculates the 3D convolution on the input tensor.
+param: null

@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.AdaptiveLogSoftmaxWithLoss
+descp:
+  torch: "Efficient softmax approximation as described in Efficient softmax approximation\
+    \ for GPUs by Edouard Grave, Armand Joulin, Moustapha Ciss\xE9, David Grangier,\
+    \ and Herv\xE9 J\xE9gou."
+param: null

@@ -1,0 +1,8 @@
+function:
+  torch: torch.nn.RNN
+  ms: mindspore.nn.RNN
+descp:
+  torch: "Applies a multi-layer Elman RNN with tanh\u2061\\tanhtanh or ReLU\\text{ReLU}ReLU\
+    \ non-linearity to an input sequence."
+  ms: Stacked Elman RNN layers.
+param: null

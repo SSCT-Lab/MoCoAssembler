@@ -1,0 +1,6 @@
+function:
+  torch: torch.nn.utils.parametrize.ParametrizationList
+descp:
+  torch: "A sequential container that holds and manages the original or original0,\
+    \ original1, \u2026 parameters or buffers of a parametrized torch.nn.Module."
+param: null

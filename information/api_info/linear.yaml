@@ -1,0 +1,6 @@
+function:
+  torch: torch.nn.Linear
+descp:
+  torch: 'Applies a linear transformation to the incoming data: y=xAT+by = xA^T +
+    by=xAT+b'
+param: null

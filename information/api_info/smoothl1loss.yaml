@@ -1,0 +1,12 @@
+function:
+  torch: torch.nn.SmoothL1Loss
+  ms: mindspore.nn.SmoothL1Loss
+descp:
+  torch: Creates a criterion that uses a squared term if the absolute element-wise
+    error falls below beta and an L1 term otherwise. It is less sensitive to outliers
+    than torch.nn.MSELoss and in some cases prevents exploding gradients (e.g. see
+    the paper Fast R-CNN by Ross Girshick).
+  ms: SmoothL1 loss function, if the absolute error element-wise between the predicted
+    value and the target value is less than the set threshold beta, the square term
+    is used, otherwise the absolute error term is used.
+param: null

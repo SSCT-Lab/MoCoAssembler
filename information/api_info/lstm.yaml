@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.LSTM
+  ms: mindspore.nn.LSTM
+descp:
+  torch: Applies a multi-layer long short-term memory (LSTM) RNN to an input sequence.
+  ms: Stacked LSTM (Long Short-Term Memory) layers.
+param: null

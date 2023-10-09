@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.Threshold
+  ms: mindspore.nn.Threshold
+descp:
+  torch: Thresholds each element of the input Tensor.
+  ms: Thresholds each element of the input Tensor.
+param: null

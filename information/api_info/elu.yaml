@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.ELU
+  ms: mindspore.nn.ELU
+descp:
+  torch: 'Applies the Exponential Linear Unit (ELU) function, element-wise, as described
+    in the paper: Fast and Accurate Deep Network Learning by Exponential Linear Units
+    (ELUs).'
+  ms: Exponential Linear Unit activation function.
+param: null

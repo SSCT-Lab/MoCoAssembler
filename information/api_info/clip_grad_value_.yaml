@@ -1,0 +1,5 @@
+function:
+  torch: torch.nn.utils.clip_grad_value_
+descp:
+  torch: Clips gradient of an iterable of parameters at specified value.
+param: null

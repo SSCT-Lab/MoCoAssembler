@@ -1,0 +1,8 @@
+function:
+  torch: torch.nn.utils.prune.random_structured
+descp:
+  torch: 'Prunes tensor corresponding to parameter called name in module by removing
+    the specified amount of (currently unpruned) channels along the specified dim
+    selected at random. Modifies module in place (and also return the modified module)
+    by:'
+param: null

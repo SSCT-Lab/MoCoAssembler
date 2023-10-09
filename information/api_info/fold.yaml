@@ -1,0 +1,5 @@
+function:
+  torch: torch.nn.Fold
+descp:
+  torch: Combines an array of sliding local blocks into a large containing tensor.
+param: null

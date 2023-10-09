@@ -1,0 +1,9 @@
+function:
+  torch: torch.nn.LocalResponseNorm
+  ms: mindspore.nn.LRN
+descp:
+  torch: Applies local response normalization over an input signal composed of several
+    input planes, where channels occupy the second dimension. Applies normalization
+    across channels.
+  ms: Local Response Normalization.
+param: null

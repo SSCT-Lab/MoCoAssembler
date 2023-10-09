@@ -1,0 +1,7 @@
+function:
+  torch: torch.nn.RNNCell
+  ms: mindspore.nn.RNNCell
+descp:
+  torch: An Elman RNN cell with tanh or ReLU non-linearity.
+  ms: An Elman RNN cell with tanh or ReLU non-linearity.
+param: null

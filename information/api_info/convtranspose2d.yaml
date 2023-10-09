@@ -1,0 +1,10 @@
+function:
+  torch: torch.nn.ConvTranspose2d
+  ms: mindspore.nn.Conv2dTranspose
+descp:
+  torch: Applies a 2D transposed convolution operator over an input image composed
+    of several input planes.
+  ms: Calculates a 2D transposed convolution, which can be regarded as Conv2d for
+    the gradient of the input, also called deconvolution (although it is not an actual
+    deconvolution).
+param: null

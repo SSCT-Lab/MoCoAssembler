@@ -1,0 +1,5 @@
+function:
+  torch: torch.nn.utils.rnn.pad_packed_sequence
+descp:
+  torch: Pads a packed batch of variable length sequences.
+param: null

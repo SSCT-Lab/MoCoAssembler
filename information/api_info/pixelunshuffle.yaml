@@ -1,0 +1,10 @@
+function:
+  torch: torch.nn.PixelUnshuffle
+  ms: mindspore.nn.PixelUnshuffle
+descp:
+  torch: "Reverses the PixelShuffle operation by rearranging elements in a tensor\
+    \ of shape (\u2217,C,H\xD7r,W\xD7r)(*, C, H \\times r, W \\times r)(\u2217,C,H\xD7\
+    r,W\xD7r) to a tensor of shape (\u2217,C\xD7r2,H,W)(*, C \\times r^2, H, W)(\u2217\
+    ,C\xD7r2,H,W), where r is a downscale factor."
+  ms: Applies the PixelUnshuffle operation over input which is the inverse of PixelShuffle.
+param: null

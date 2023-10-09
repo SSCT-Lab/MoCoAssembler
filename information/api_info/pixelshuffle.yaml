@@ -1,0 +1,11 @@
+function:
+  torch: torch.nn.PixelShuffle
+  ms: mindspore.nn.PixelShuffle
+descp:
+  torch: "Rearranges elements in a tensor of shape (\u2217,C\xD7r2,H,W)(*, C \\times\
+    \ r^2, H, W)(\u2217,C\xD7r2,H,W) to a tensor of shape (\u2217,C,H\xD7r,W\xD7r)(*,\
+    \ C, H \\times r, W \\times r)(\u2217,C,H\xD7r,W\xD7r), where r is an upscale\
+    \ factor."
+  ms: Applies the PixelShuffle operation over input which implements sub-pixel convolutions
+    with stride \(1/r\) .
+param: null

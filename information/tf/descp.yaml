@@ -1,10 +1,33 @@
+tf.keras.activations.deserialize: Returns activation function given a string identifier.
+tf.keras.activations.elu: Exponential Linear Unit.
+tf.keras.activations.exponential: Exponential activation function.
+tf.keras.activations.gelu: Applies the Gaussian error linear unit (GELU) activation
+  function.
+tf.keras.activations.get: Returns function.
+tf.keras.activations.hard_sigmoid: Hard sigmoid activation function.
+tf.keras.activations.linear: Linear activation function (pass-through).
+tf.keras.activations.mish: Mish activation function.
+tf.keras.activations.relu: Applies the rectified linear unit activation function.
+tf.keras.activations.selu: Scaled Exponential Linear Unit (SELU).
+tf.keras.activations.serialize: Returns the string identifier of an activation function.
+tf.keras.activations.sigmoid: Sigmoid activation function, sigmoid(x) = 1 / (1 + exp(-x)).
+tf.keras.activations.softmax: Softmax converts a vector of values to a probability
+  distribution.
+tf.keras.activations.softplus: Softplus activation function, softplus(x) = log(exp(x)
+  + 1).
+tf.keras.activations.softsign: Softsign activation function, softsign(x) = x / (abs(x)
+  + 1).
+tf.keras.activations.swish: Swish activation function, swish(x) = x * sigmoid(x).
+tf.keras.activations.tanh: Hyperbolic tangent activation function.
 tf.keras.layers.Activation: Applies an activation function to an output.
 tf.keras.layers.ActivityRegularization: Layer that applies an update to the cost function
   based input activity.
+tf.keras.layers.Add: Layer that adds a list of inputs.
 tf.keras.layers.AdditiveAttention: Additive attention layer, a.k.a. Bahdanau-style
   attention.
 tf.keras.layers.AlphaDropout: Applies Alpha Dropout to the input.
 tf.keras.layers.Attention: Dot-product attention layer, a.k.a. Luong-style attention.
+tf.keras.layers.Average: Layer that averages a list of inputs element-wise.
 tf.keras.layers.AveragePooling1D: Average pooling for temporal data.
 tf.keras.layers.AveragePooling2D: Average pooling operation for spatial data.
 tf.keras.layers.AveragePooling3D: Average pooling operation for 3D data (spatial or
@@ -45,6 +68,10 @@ tf.keras.layers.GlobalAveragePooling3D: Global Average pooling operation for 3D 
 tf.keras.layers.GlobalMaxPooling1D: Global max pooling operation for 1D temporal data.
 tf.keras.layers.GlobalMaxPooling2D: Global max pooling operation for spatial data.
 tf.keras.layers.GlobalMaxPooling3D: Global Max pooling operation for 3D data.
+tf.keras.layers.InputLayer: Layer to be used as an entry point into a Network (a graph
+  of layers).
+tf.keras.layers.InputSpec: Specifies the rank, dtype and shape of every input to a
+  layer.
 tf.keras.layers.LSTM: Long Short-Term Memory layer - Hochreiter 1997.
 tf.keras.layers.LSTMCell: Cell class for the LSTM layer.
 tf.keras.layers.Lambda: Wraps arbitrary expressions as a Layer object.
@@ -56,8 +83,16 @@ tf.keras.layers.LocallyConnected2D: Locally-connected layer for 2D inputs.
 tf.keras.layers.MaxPooling1D: Max pooling operation for 1D temporal data.
 tf.keras.layers.MaxPooling2D: Max pooling operation for 2D spatial data.
 tf.keras.layers.MaxPooling3D: Max pooling operation for 3D data (spatial or spatio-temporal).
+tf.keras.layers.Maximum: Layer that computes the maximum (element-wise) a list of
+  inputs.
+tf.keras.layers.Minimum: Layer that computes the minimum (element-wise) a list of
+  inputs.
+tf.keras.layers.Multiply: Layer that multiplies (element-wise) a list of inputs.
 tf.keras.layers.PReLU: Parametric Rectified Linear Unit.
+tf.keras.layers.Permute: Permutes the dimensions of the input according to a given
+  pattern.
 tf.keras.layers.ReLU: Rectified Linear Unit activation function.
+tf.keras.layers.Reshape: Layer that reshapes inputs into the given shape.
 tf.keras.layers.SeparableConv1D: Depthwise separable 1D convolution.
 tf.keras.layers.SeparableConv2D: Depthwise separable 2D convolution.
 tf.keras.layers.SimpleRNN: Fully-connected RNN where the output is to be fed back
@@ -67,6 +102,7 @@ tf.keras.layers.Softmax: Softmax activation function.
 tf.keras.layers.SpatialDropout1D: Spatial 1D version of Dropout.
 tf.keras.layers.SpatialDropout2D: Spatial 2D version of Dropout.
 tf.keras.layers.SpatialDropout3D: Spatial 3D version of Dropout.
+tf.keras.layers.Subtract: Layer that subtracts two inputs.
 tf.keras.layers.ThresholdedReLU: Thresholded Rectified Linear Unit.
 tf.keras.layers.UpSampling1D: Upsampling layer for 1D inputs.
 tf.keras.layers.UpSampling2D: Upsampling layer for 2D inputs.

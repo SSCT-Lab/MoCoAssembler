@@ -1,0 +1,8 @@
+function:
+  torch: torch.nn.MaxPool2d
+  ms: mindspore.nn.MaxPool2d
+descp:
+  torch: Applies a 2D max pooling over an input signal composed of several input planes.
+  ms: Applies a 2D max pooling over an input Tensor which can be regarded as a composition
+    of 2D planes.
+param: null
