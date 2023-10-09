@@ -169,6 +169,10 @@ googlenet:
       output_size: 1
     in: x
     out: x
+  - layer: flatten
+    params: { }
+    in: x
+    out: x
   - layer: dropout
     param:
       p: 0.4
