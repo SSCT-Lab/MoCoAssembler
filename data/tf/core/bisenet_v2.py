@@ -381,8 +381,6 @@ class BiseNetV2:
 
         return l2_reg_loss
 
-
-
     def build_net(self):
         input_layer = tf.keras.layers.Input(self.input_size)
 

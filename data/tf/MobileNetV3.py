@@ -78,4 +78,5 @@ def MobileNetv3_large(num_classes=1000,input_shape=(224,224,3)):
     model.summary()
     keras.utils.plot_model(model, 'small_resnet_model.png', show_shapes=True)
     return model
+
 model=MobileNetv3_large(num_classes=1000,input_shape=(224,224,3))
