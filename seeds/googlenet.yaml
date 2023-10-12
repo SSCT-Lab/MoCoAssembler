@@ -266,7 +266,6 @@ inception:
     in: branch4
     out: branch4
   - layer: cat
-    params:
-      dims: 1
-    in: [branch1, branch2, branch3, branch4]
+    params: { }
+    in: [branch1, branch2, branch3, branch4], 1
     out: x

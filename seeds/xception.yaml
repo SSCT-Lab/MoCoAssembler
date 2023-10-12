@@ -1,0 +1,576 @@
+xception:
+  - layer: conv2d
+    params:
+      in_channels: 3
+      out_channels: 32
+      kernel_size: 3
+      stride: 2
+    in: x
+    out: x
+  - layer: batchnorm2d
+    params:
+      num_features: 32
+    in: x
+    out: x
+  - layer: relu
+    params: {}
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 32
+      out_channels: b4
+      kernel_size: 3
+      stride: 2
+    in: x
+    out: x
+  - layer: batchnorm2d
+    params:
+      num_features: 64
+    in: x
+    out: x
+  - layer: inceptiona
+    params:
+      in_filters: 64
+      out_filters: 128
+      strides: 2
+    in: x
+    out: x
+  - layer: relu
+    params: {}
+    in: x
+    out: x
+  - layer: inceptionb
+    params:
+      in_filters: 128
+      out_filters: 256
+      strides: 2
+    in: x
+    out: x
+  - layer: inceptionb
+    params:
+      in_filters: 256
+      out_filters: 728
+      strides: 2
+    in: x
+    out: x
+  - layer: inceptionc
+    params:
+      in_filters: 728
+      out_filters: 728
+      strides: 1
+    in: x
+    out: x
+  - layer: inceptionc
+    params:
+      in_filters: 728
+      out_filters: 728
+      strides: 1
+    in: x
+    out: x
+  - layer: inceptionc
+    params:
+      in_filters: 728
+      out_filters: 728
+      strides: 1
+    in: x
+    out: x
+  - layer: inceptionc
+    params:
+      in_filters: 728
+      out_filters: 728
+      strides: 1
+    in: x
+    out: x
+  - layer: inceptionc
+    params:
+      in_filters: 728
+      out_filters: 728
+      strides: 1
+    in: x
+    out: x
+  - layer: inceptionc
+    params:
+      in_filters: 728
+      out_filters: 728
+      strides: 1
+    in: x
+    out: x
+  - layer: inceptionc
+    params:
+      in_filters: 728
+      out_filters: 728
+      strides: 1
+    in: x
+    out: x
+  - layer: inceptionc
+    params:
+      in_filters: 728
+      out_filters: 728
+      strides: 1
+    in: x
+    out: x
+  - layer: inceptiond
+    params:
+      in_filters: 728
+      out_filters: 1024
+      strides: 2
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 1024
+      out_channels: 1024
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      dilation: 1
+      groups: 1024
+      bias: False
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 1024
+      out_channels: 1536
+      kernel_size: 1
+      stride: 1
+      padding: 0
+      dilation: 1
+      groups: 1
+      bias: False
+    in: x
+    out: x
+  - layer: batchnorm2d
+    params:
+      num_features: 1536
+    in: x
+    out: x
+  - layer: relu
+    params: {}
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 1536
+      out_channels: 1536
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      dilation: 1
+      groups: 1536
+      bias: False
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 1536
+      out_channels: 2048
+      kernel_size: 1
+      stride: 1
+      padding: 0
+      dilation: 1
+      groups: 1
+      bias: False
+    in: x
+    out: x
+  - layer: batchnorm2d
+    params:
+      num_features: 2048
+    in: x
+    out: x
+  - layer: relu
+    params: {}
+    in: x
+    out: x
+  - layer: adaptiveavgpool2d
+    params:
+      output_size: 1
+    in: x
+    out: x
+  - layer: flatten
+    params: {}
+    in: x
+    out: x
+  - layer: linear
+    params:
+      in_features: 2048
+      out_features: 1000
+    in: x
+    out: x
+inceptiona:
+  - layer: conv2d
+    params:
+      in_channels: in_filters
+      out_channels: in_filters
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      dilation: 1
+      groups: in_filters
+      bias: False
+    in: x
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: in_filters
+      out_channels: out_filters
+      kernel_size: 1
+      stride: 1
+      padding: 0
+      dilation: 1
+      groups: 1
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: batchnorm2d
+    params:
+      num_features: out_filters
+    in: branch1
+    out: branch1
+  - layer: relu
+    params: {}
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: out_filters
+      out_channels: out_filters
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      dilation: 1
+      groups: out_filters
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: out_filters
+      out_channels: out_filters
+      kernel_size: 1
+      stride: 1
+      padding: 0
+      dilation: 1
+      groups: 1
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: batchnorm2d
+    params:
+      num_features: out_filters
+    in: branch1
+    out: branch1
+  - layer: maxpool2d
+    params:
+      kernel_size: 3
+      stride: strides
+      padding: 1
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: in_filters
+      out_channels: out_filters
+      kernel_size: 1
+      stride: strides
+      bias: False
+    in: x
+    out: branch2
+  - layer: batchnorm2d
+    params:
+      num_features: out_filters
+    in: branch2
+    out: branch2
+  - layer: add
+    params: {}
+    in: branch1, branch2
+    out: x
+inceptionb:
+  - layer: relu
+    params: {}
+    in: x
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: in_filters
+      out_channels: in_filters
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      dilation: 1
+      groups: in_filters
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: in_filters
+      out_channels: out_filters
+      kernel_size: 1
+      stride: 1
+      padding: 0
+      dilation: 1
+      groups: 1
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: batchnorm2d
+    params:
+      num_features: out_filters
+    in: branch1
+    out: branch1
+  - layer: relu
+    params: {}
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: out_filters
+      out_channels: out_filters
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      dilation: 1
+      groups: out_filters
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: out_filters
+      out_channels: out_filters
+      kernel_size: 1
+      stride: 1
+      padding: 0
+      dilation: 1
+      groups: 1
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: batchnorm2d
+    params:
+      num_features: out_filters
+    in: branch1
+    out: branch1
+  - layer: maxpool2d
+    params:
+      kernel_size: 3
+      stride: strides
+      padding: 1
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: in_filters
+      out_channels: out_filters
+      kernel_size: 1
+      stride: strides
+      bias: False
+    in: x
+    out: branch2
+  - layer: batchnorm2d
+    params:
+      num_features: out_filters
+    in: branch2
+    out: branch2
+  - layer: add
+    params: {}
+    in: branch1, branch2
+    out: x
+inceptionc:
+  - layer: relu
+    params: { }
+    in: x
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: in_filters
+      out_channels: in_filters
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      dilation: 1
+      groups: in_filters
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: in_filters
+      out_channels: out_filters
+      kernel_size: 1
+      stride: 1
+      padding: 0
+      dilation: 1
+      groups: 1
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: batchnorm2d
+    params:
+      num_features: out_filters
+    in: branch1
+    out: branch1
+  - layer: relu
+    params: {}
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: out_filters
+      out_channels: out_filters
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      dilation: 1
+      groups: out_filters
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: out_filters
+      out_channels: out_filters
+      kernel_size: 1
+      stride: 1
+      padding: 0
+      dilation: 1
+      groups: 1
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: batchnorm2d
+    params:
+      num_features: out_filters
+    in: branch1
+    out: branch1
+  - layer: relu
+    params: {}
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: out_filters
+      out_channels: out_filters
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      dilation: 1
+      groups: out_filters
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: out_filters
+      out_channels: out_filters
+      kernel_size: 1
+      stride: 1
+      padding: 0
+      dilation: 1
+      groups: 1
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: batchnorm2d
+    params:
+      num_features: out_filters
+    in: branch1
+    out: branch1
+  - layer: add
+    params: {}
+    in: x, branch1
+    out: x
+inceptiond:
+  - layer: relu
+    params: {}
+    in: x
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: in_filters
+      out_channels: in_filters
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      dilation: 1
+      groups: in_filters
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: in_filters
+      out_channels: in_filters
+      kernel_size: 1
+      stride: 1
+      padding: 0
+      dilation: 1
+      groups: 1
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: batchnorm2d
+    params:
+      num_features: in_filters
+    in: branch1
+    out: branch1
+  - layer: relu
+    params: {}
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: in_filters
+      out_channels: in_filters
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      dilation: 1
+      groups: in_filters
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: in_filters
+      out_channels: out_filters
+      kernel_size: 1
+      stride: 1
+      padding: 0
+      dilation: 1
+      groups: 1
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: batchnorm2d
+    params:
+      num_features: out_filters
+    in: branch1
+    out: branch1
+  - layer: maxpool2d
+    params:
+      kernel_size: 3
+      stride: strides
+      padding: 1
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: in_filters
+      out_channels: out_filters
+      kernel_size: 1
+      stride: strides
+      bias: False
+    in: x
+    out: branch2
+  - layer: batchnorm2d
+    params:
+      num_features: out_filters
+    in: branch2
+    out: branch2
+  - layer: add
+    params: {}
+    in: branch1, branch2
+    out: x
