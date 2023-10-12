@@ -1,47 +1,47 @@
 api: mindspore.nn.TripletMarginLoss(p=2, swap=False, eps=1e-06, reduction='mean',
   margin=1.0)
-descp: TripletMarginLoss operation.
 constraints:
-  p:
-    descp: 'p (int, optional) – The degree of norm for pairwise distance. Default:
-      2 .'
-    default: 2
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
   eps:
-    descp: 'eps (float, optional) – Add small value to avoid division by zero. Default:
-      1e-06 .'
     default: 1e-06
+    descp: "eps (float, optional) \u2013 Add small value to avoid division by zero.\
+      \ Default: 1e-06 ."
     dtype:
     - float
-  swap:
-    descp: 'swap (bool, optional) – The distance swap change the negative distance
-      to the distance between positive sample and negative sample. Default: False
-      .'
-    default: False
+  margin:
+    default: 1.0
+    descp: "margin (Union[Tensor, float]) \u2013 Default: 1.0 ."
     dtype:
-    - bool
+    - float
+    shape: null
+    structure:
+    - single
+  p:
+    default: 2
+    descp: "p (int, optional) \u2013 The degree of norm for pairwise distance. Default:\
+      \ 2 ."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
   reduction:
-    descp: 'reduction (str, optional) – Apply specific reduction method to the output:
-      ''none'' , ''mean'' , ''sum'' . Default: "mean" .'
     default: mean
+    descp: "reduction (str, optional) \u2013 Apply specific reduction method to the\
+      \ output: 'none' , 'mean' , 'sum' . Default: \"mean\" ."
     dtype:
     - str
     enum:
     - none
     - mean
     - sum
-  margin:
-    descp: 'margin (Union[Tensor, float]) – Default: 1.0 .'
-    default: 1.0
+  swap:
+    default: false
+    descp: "swap (bool, optional) \u2013 The distance swap change the negative distance\
+      \ to the distance between positive sample and negative sample. Default: False\
+      \ ."
     dtype:
-    - float
-    structure:
-    - single
-    shape: null
+    - bool
+descp: TripletMarginLoss operation.
 inputs:
   optional:
   - p

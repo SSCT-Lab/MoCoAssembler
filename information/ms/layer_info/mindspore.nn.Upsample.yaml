@@ -1,29 +1,19 @@
-api: mindspore.nn.Upsample(size=None, scale_factor=None, mode='nearest', align_corners=None, recompute_scale_factor=None)
-descp: Samples the input Tensor to the given size or scale_factor by using one of the interpolate algorithms.
+api: mindspore.nn.Upsample(size=None, scale_factor=None, mode='nearest', align_corners=None,
+  recompute_scale_factor=None)
 constraints:
-  size:
-    descp: 'size (Union[int, tuple[int], list[int]], optional) – The target size. If size is a tuple or list, its length should be the same as the number of dimensions in input after removing the first two dimensions N, C. One and only one of size and scale_factor can be set to None. Default: None .'
+  align_corners:
     default: None
+    descp: "If True, rescale input by (new_height\u22121)/(height\u22121), which exactly\
+      \ aligns the corners of data and resized data. If False, rescale by new_height/height.\
+      \ Default: None ."
     dtype:
-    - int
-    structure:
-    - single
-    - tuple
-    - list
-    range: null
-  scale_factor:
-    descp: 'scale_factor (Union[float, tuple[float], list[float]], optional) – The scale factor of new size of the tensor. If scale_factor is a tuple or list, its length should be the same as the number of dimensions in input after removing the first two dimensions N, C. One and only one of size and scale_factor can be set to None. Default: None .'
-    default: None
-    dtype:
-    - float
-    structure:
-    - single
-    - tuple
-    - list
-    range: null
+    - bool
   mode:
-    descp: 'mode (str) – The sampling algorithm. One of ‘nearest’, ‘linear’ (3D only), ‘bilinear’ (4D only), ‘trilinear’ (5D only), ‘bicubic’ (4D only), ‘area’, ‘nearest-exact’(3D and 4D). Default: "nearest" .'
     default: nearest
+    descp: "mode (str) \u2013 The sampling algorithm. One of \u2018nearest\u2019,\
+      \ \u2018linear\u2019 (3D only), \u2018bilinear\u2019 (4D only), \u2018trilinear\u2019\
+      \ (5D only), \u2018bicubic\u2019 (4D only), \u2018area\u2019, \u2018nearest-exact\u2019\
+      (3D and 4D). Default: \"nearest\" ."
     dtype:
     - str
     enum:
@@ -34,16 +24,43 @@ constraints:
     - bicubic
     - area
     - nearest-exact
-  align_corners:
-    descp: 'If True, rescale input by (new_height−1)/(height−1), which exactly aligns the corners of data and resized data. If False, rescale by new_height/height. Default: None .'
-    default: None
-    dtype:
-    - bool
   recompute_scale_factor:
-    descp: 'recompute_scale_factor (bool, optional) – Recalculate scale_factor. If True, the parameter size will be calculated using the value of the scale_factor, and finally scaled using the value of size. If False, the value of size or scale_factor will be used for direct interpolation. Default: None .'
     default: None
+    descp: "recompute_scale_factor (bool, optional) \u2013 Recalculate scale_factor.\
+      \ If True, the parameter size will be calculated using the value of the scale_factor,\
+      \ and finally scaled using the value of size. If False, the value of size or\
+      \ scale_factor will be used for direct interpolation. Default: None ."
     dtype:
     - bool
+  scale_factor:
+    default: None
+    descp: "scale_factor (Union[float, tuple[float], list[float]], optional) \u2013\
+      \ The scale factor of new size of the tensor. If scale_factor is a tuple or\
+      \ list, its length should be the same as the number of dimensions in input after\
+      \ removing the first two dimensions N, C. One and only one of size and scale_factor\
+      \ can be set to None. Default: None ."
+    dtype:
+    - float
+    range: null
+    structure:
+    - single
+    - tuple
+    - list
+  size:
+    default: None
+    descp: "size (Union[int, tuple[int], list[int]], optional) \u2013 The target size.\
+      \ If size is a tuple or list, its length should be the same as the number of\
+      \ dimensions in input after removing the first two dimensions N, C. One and\
+      \ only one of size and scale_factor can be set to None. Default: None ."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+    - tuple
+    - list
+descp: Samples the input Tensor to the given size or scale_factor by using one of
+  the interpolate algorithms.
 inputs:
   optional:
   - size

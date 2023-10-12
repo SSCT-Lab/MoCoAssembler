@@ -1,7 +1,14 @@
 function:
   torch: torch.nn.Sigmoid
   ms: mindspore.nn.Sigmoid
+  paddle: paddle.nn.Sigmoid
+  jittor: jittor.nn.Sigmoid
+  tf: tf.keras.activations.sigmoid
 descp:
   torch: 'Applies the element-wise function:'
   ms: Sigmoid activation function.
+  paddle: this interface is used to construct a callable object of the Sigmoid class.
+    This layer calcluate the sigmoid of input x.
+  jittor: no description
+  tf: Sigmoid activation function, sigmoid(x) = 1 / (1 + exp(-x)).
 param: null

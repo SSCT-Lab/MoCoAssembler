@@ -1,28 +1,33 @@
 api: mindspore.nn.Dropout(keep_prob=0.5, p=None, dtype=mstype.float32)
-descp: Dropout layer for the input.
 constraints:
+  dtype:
+    default: mstype
+    descp: "dtype (mindspore.dtype) \u2013 Data type of input. Default: mstype.float32\
+      \ ."
+    dtype:
+    - mindspore.dtype
   keep_prob:
-    descp: 'keep_prob (float) – Deprecated. The keep rate, greater than 0 and less equal than 1. E.g. rate=0.9, dropping out 10% of input neurons. Default: 0.5 .'
     default: 0.5
+    descp: "keep_prob (float) \u2013 Deprecated. The keep rate, greater than 0 and\
+      \ less equal than 1. E.g. rate=0.9, dropping out 10% of input neurons. Default:\
+      \ 0.5 ."
     dtype:
     - float
   p:
-    descp: 'p (Union[float, int, None]) – The dropout rate, greater than or equal to 0 and less than 1. E.g. rate=0.9, dropping out 90% of input neurons. Default: None .'
     default: None
+    descp: "p (Union[float, int, None]) \u2013 The dropout rate, greater than or equal\
+      \ to 0 and less than 1. E.g. rate=0.9, dropping out 90% of input neurons. Default:\
+      \ None ."
     dtype:
     - int
     - float
     - str
-    structure:
-    - single
-    range: null
     enum:
     - None
-  dtype:
-    descp: 'dtype (mindspore.dtype) – Data type of input. Default: mstype.float32 .'
-    default: mstype
-    dtype:
-    - mindspore.dtype
+    range: null
+    structure:
+    - single
+descp: Dropout layer for the input.
 inputs:
   optional:
   - keep_prob

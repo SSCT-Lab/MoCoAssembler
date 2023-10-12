@@ -1,6 +1,13 @@
 function:
   torch: torch.nn.Linear
+  paddle: paddle.nn.Linear
+  jittor: jittor.nn.Linear
+  tf: tf.keras.activations.linear
 descp:
   torch: 'Applies a linear transformation to the incoming data: y=xAT+by = xA^T +
     by=xAT+b'
+  paddle: 'Fully-connected linear transformation layer. For each input \(X\) , the
+    equation is:'
+  jittor: no description
+  tf: Linear activation function (pass-through).
 param: null

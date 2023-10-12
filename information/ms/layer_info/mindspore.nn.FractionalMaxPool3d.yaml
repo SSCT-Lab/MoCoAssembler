@@ -1,62 +1,62 @@
 api: mindspore.nn.FractionalMaxPool3d(kernel_size, output_size=None, output_ratio=None,
   return_indices=False, _random_samples=None)
-descp: Applies the 3D FractionalMaxPool operatin over input.
 constraints:
-  kernel_size:
-    descp: kernel_size (Union[int, tuple[int]]) – The size of kernel used to take
-      the maximum value, is a positive int that represents depth, height and width
-      of the kernel, or a tuple of three positive integers that represent depth, height
-      and width respectively.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    - tuple
-    shape: 3
-    range: null
-  output_size:
-    descp: 'output_size (Union[int, tuple[int]], optional) – The shape of the target
-      output_size, is an int number that represents depth, height and width, or a
-      tuple of three positive integers that represents depth, height and width respectively.
-      If None , the shape of the target will be determined by output_ratio. Default:
-      None .'
-    default: None
-    dtype:
-    - int
-    structure:
-    - single
-    - tuple
-    shape: 3
-    range: null
-  output_ratio:
-    descp: 'output_ratio (Union[float, tuple[float]], optional) – The ratio of target
-      output shape to input shape. Specifying the size of the output tensor by using
-      a ratio of the input size. Data type : float16, float32, float64, and value
-      is between (0, 1). If None , the shape of the target will be determined by output_size.Default:
-      None .'
-    default: None
-    dtype:
-    - float
-    structure:
-    - single
-    - tuple
-    shape: 3
-  return_indices:
-    descp: 'return_indices (bool, optional) – Whether to return the indices of max
-      value. Default: False .'
-    default: False
-    dtype:
-    - bool
   _random_samples:
-    descp: '_random_samples (Tensor, optional) – The random step of FractionalMaxPool3d,
-      which is a 3D tensor. Tensor of data type: float16, float32, double, and value
-      is between [0, 1). Supported shape ((N, C, 3)) or ((1, C, 3)) . Default: None,
-      the values of _random_samples will be randomly distributed using uniform distribution
-      over an interval [0,1).'
     default: None
+    descp: "_random_samples (Tensor, optional) \u2013 The random step of FractionalMaxPool3d,\
+      \ which is a 3D tensor. Tensor of data type: float16, float32, double, and value\
+      \ is between [0, 1). Supported shape ((N, C, 3)) or ((1, C, 3)) . Default: None,\
+      \ the values of _random_samples will be randomly distributed using uniform distribution\
+      \ over an interval [0,1)."
     dtype:
     - tensor
+  kernel_size:
+    default: null
+    descp: "kernel_size (Union[int, tuple[int]]) \u2013 The size of kernel used to\
+      \ take the maximum value, is a positive int that represents depth, height and\
+      \ width of the kernel, or a tuple of three positive integers that represent\
+      \ depth, height and width respectively."
+    dtype:
+    - int
+    range: null
+    shape: 3
+    structure:
+    - single
+    - tuple
+  output_ratio:
+    default: None
+    descp: "output_ratio (Union[float, tuple[float]], optional) \u2013 The ratio of\
+      \ target output shape to input shape. Specifying the size of the output tensor\
+      \ by using a ratio of the input size. Data type : float16, float32, float64,\
+      \ and value is between (0, 1). If None , the shape of the target will be determined\
+      \ by output_size.Default: None ."
+    dtype:
+    - float
+    shape: 3
+    structure:
+    - single
+    - tuple
+  output_size:
+    default: None
+    descp: "output_size (Union[int, tuple[int]], optional) \u2013 The shape of the\
+      \ target output_size, is an int number that represents depth, height and width,\
+      \ or a tuple of three positive integers that represents depth, height and width\
+      \ respectively. If None , the shape of the target will be determined by output_ratio.\
+      \ Default: None ."
+    dtype:
+    - int
+    range: null
+    shape: 3
+    structure:
+    - single
+    - tuple
+  return_indices:
+    default: false
+    descp: "return_indices (bool, optional) \u2013 Whether to return the indices of\
+      \ max value. Default: False ."
+    dtype:
+    - bool
+descp: Applies the 3D FractionalMaxPool operatin over input.
 inputs:
   optional:
   - output_size

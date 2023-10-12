@@ -1,49 +1,51 @@
 api: mindspore.nn.optim_ex.Adam(params, lr=0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0,
   amsgrad=False, *, maximize=False)
-descp: Implements Adam algorithm.
 constraints:
-  params:
-    descp: params (Union[list(Parameter), list(dict)]) – list of parameters to optimize
-      or dicts defining parameter groups
-    default: null
+  amsgrad:
+    default: false
+    descp: "amsgrad (bool, optional) \u2013 whether to use the AMSGrad algorithm.\
+      \ Default: False."
     dtype:
-    - union[list(parameter), list(dict)]
-    structure:
-    - list
-  lr:
-    descp: 'lr (Union[int, float, Tensor], optional) – learning rate. Default: 1e-3.'
-    default: 1e-3
-    dtype:
-    - int
-    - float
-    structure:
-    - single
-    range: null
+    - bool
   betas:
-    descp: 'betas (Tuple[float, float], optional) – The exponential decay rate for
-      the moment estimations. Default: (0.9, 0.999).'
     default: (0.9, 0.999)
+    descp: "betas (Tuple[float, float], optional) \u2013 The exponential decay rate\
+      \ for the moment estimations. Default: (0.9, 0.999)."
     dtype:
     - float
     structure:
     - tuple
   eps:
-    descp: 'eps (float, optional) – term added to the denominator to improve numerical
-      stability. Default: 1e-8.'
     default: 1e-8
+    descp: "eps (float, optional) \u2013 term added to the denominator to improve\
+      \ numerical stability. Default: 1e-8."
     dtype:
     - float
+  lr:
+    default: 1e-3
+    descp: "lr (Union[int, float, Tensor], optional) \u2013 learning rate. Default:\
+      \ 1e-3."
+    dtype:
+    - int
+    - float
+    range: null
+    structure:
+    - single
+  params:
+    default: null
+    descp: "params (Union[list(Parameter), list(dict)]) \u2013 list of parameters\
+      \ to optimize or dicts defining parameter groups"
+    dtype:
+    - union[list(parameter), list(dict)]
+    structure:
+    - list
   weight_decay:
-    descp: 'weight_decay (float, optional) – weight decay (L2 penalty). Default: 0.'
     default: 0
+    descp: "weight_decay (float, optional) \u2013 weight decay (L2 penalty). Default:\
+      \ 0."
     dtype:
     - float
-  amsgrad:
-    descp: 'amsgrad (bool, optional) – whether to use the AMSGrad algorithm. Default:
-      False.'
-    default: False
-    dtype:
-    - bool
+descp: Implements Adam algorithm.
 inputs:
   optional:
   - lr

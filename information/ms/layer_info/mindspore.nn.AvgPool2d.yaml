@@ -1,43 +1,59 @@
 api: mindspore.nn.AvgPool2d(kernel_size=1, stride=1, pad_mode='valid', padding=0,
   ceil_mode=False, count_include_pad=True, divisor_override=None, data_format='NCHW')
-descp: Applies a 2D average pooling over an input Tensor which can be regarded as
-  a composition of 2D input planes.
 constraints:
+  ceil_mode:
+    default: false
+    descp: "ceil_mode (bool) \u2013 If True , use ceil to compute the output shape\
+      \ instead of floor. Default: False ."
+    dtype:
+    - bool
+  count_include_pad:
+    default: true
+    descp: "count_include_pad (bool) \u2013 If True , averaging calculation will include\
+      \ the zero-padding. Default: True ."
+    dtype:
+    - bool
+  data_format:
+    default: NCHW
+    descp: "data_format (str) \u2013 The optional value for data format, is 'NHWC'\
+      \ or 'NCHW' . Default: 'NCHW' ."
+    dtype:
+    - str
+    enum:
+    - NCHW
+    - NHWC
+  divisor_override:
+    default: None
+    descp: "divisor_override (int) \u2013 If it is specified as a non-zero parameter,\
+      \ this parameter will be used as the divisor in the average calculation. Otherwise,\
+      \ kernel_size will be used as the divisor. Default: None ."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
   kernel_size:
-    descp: 'kernel_size (Union[int, tuple[int]]) – The size of kernel used to take
-      the average value. The data type of kernel_size must be int or a single element
-      tuple and the value represents the height and width, or a tuple of two int numbers
-      that represent height and width respectively. Default: 1 .'
     default: 1
+    descp: "kernel_size (Union[int, tuple[int]]) \u2013 The size of kernel used to\
+      \ take the average value. The data type of kernel_size must be int or a single\
+      \ element tuple and the value represents the height and width, or a tuple of\
+      \ two int numbers that represent height and width respectively. Default: 1 ."
     dtype:
     - int
+    range: null
+    shape: 2
     structure:
     - single
     - tuple
-    shape: 2
-    range: null
-  stride:
-    descp: 'stride (Union[int, tuple[int]]) – The distance of kernel moving, an int
-      number or a single element tuple that represents the height and width of movement
-      are both strides, or a tuple of two int numbers that represent height and width
-      of movement respectively. Default: 1 .'
-    default: 1
-    dtype:
-    - int
-    structure:
-    - single
-    - tuple
-    shape: 2
-    range: null
   pad_mode:
-    descp: 'pad_mode (str) – "pad" , case insensitive. Default: "valid" .  "same":
-      The height and width of the output is the same as the value after the input
-      is divided by stride. "valid": Returns the output obtained by effective calculation
-      without padding. The excess pixels that do not meet the calculation will be
-      discarded. "pad": pads the input. Pads the top, bottom, left, and right sides
-      of the input with padding number of zeros. If this mode is set, padding must
-      be greater than or equal to 0.  '
     default: valid
+    descp: "pad_mode (str) \u2013 \"pad\" , case insensitive. Default: \"valid\" .\
+      \  \"same\": The height and width of the output is the same as the value after\
+      \ the input is divided by stride. \"valid\": Returns the output obtained by\
+      \ effective calculation without padding. The excess pixels that do not meet\
+      \ the calculation will be discarded. \"pad\": pads the input. Pads the top,\
+      \ bottom, left, and right sides of the input with padding number of zeros. If\
+      \ this mode is set, padding must be greater than or equal to 0.  "
     dtype:
     - str
     enum:
@@ -45,55 +61,39 @@ constraints:
     - valid
     - pad
   padding:
-    descp: 'padding (Union(int, tuple[int], list[int])) – Pooling padding value, only
-      ‘pad’ mode can be set to non-zero. Default: 0 . padding can only be an integer
-      or a tuple/list containing one or two integers. If padding is an integer or
-      a tuple/list containing one integer, it will be padded padding times in the
-      four directions of the input. If padding is a tuple/list containing two integers,
-      it will be padded padding[0] times in the up-down direction of the input and
-      padding[1] times in the left-right direction of the input.'
     default: 0
+    descp: "padding (Union(int, tuple[int], list[int])) \u2013 Pooling padding value,\
+      \ only \u2018pad\u2019 mode can be set to non-zero. Default: 0 . padding can\
+      \ only be an integer or a tuple/list containing one or two integers. If padding\
+      \ is an integer or a tuple/list containing one integer, it will be padded padding\
+      \ times in the four directions of the input. If padding is a tuple/list containing\
+      \ two integers, it will be padded padding[0] times in the up-down direction\
+      \ of the input and padding[1] times in the left-right direction of the input."
     dtype:
     - int
+    range: null
+    shape:
+    - 1
+    - 2
     structure:
     - list
     - single
     - tuple
-    shape:
-    - 1
-    - 2
-    range: null
-  ceil_mode:
-    descp: 'ceil_mode (bool) – If True , use ceil to compute the output shape instead
-      of floor. Default: False .'
-    default: False
-    dtype:
-    - bool
-  count_include_pad:
-    descp: 'count_include_pad (bool) – If True , averaging calculation will include
-      the zero-padding. Default: True .'
-    default: True
-    dtype:
-    - bool
-  divisor_override:
-    descp: 'divisor_override (int) – If it is specified as a non-zero parameter, this
-      parameter will be used as the divisor in the average calculation. Otherwise,
-      kernel_size will be used as the divisor. Default: None .'
-    default: None
+  stride:
+    default: 1
+    descp: "stride (Union[int, tuple[int]]) \u2013 The distance of kernel moving,\
+      \ an int number or a single element tuple that represents the height and width\
+      \ of movement are both strides, or a tuple of two int numbers that represent\
+      \ height and width of movement respectively. Default: 1 ."
     dtype:
     - int
+    range: null
+    shape: 2
     structure:
     - single
-    range: null
-  data_format:
-    descp: 'data_format (str) – The optional value for data format, is ''NHWC'' or
-      ''NCHW'' . Default: ''NCHW'' .'
-    default: NCHW
-    dtype:
-    - str
-    enum:
-    - NCHW
-    - NHWC
+    - tuple
+descp: Applies a 2D average pooling over an input Tensor which can be regarded as
+  a composition of 2D input planes.
 inputs:
   optional:
   - kernel_size

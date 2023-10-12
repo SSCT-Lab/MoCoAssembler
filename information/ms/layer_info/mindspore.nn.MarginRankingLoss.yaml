@@ -1,26 +1,27 @@
 api: mindspore.nn.MarginRankingLoss(margin=0.0, reduction='mean')
-descp: MarginRankingLoss creates a criterion that measures the loss.
 constraints:
   margin:
-    descp: 'margin (float, optional) – Specify the adjustment factor of the operation.
-      Default: 0.0 .'
     default: 0.0
+    descp: "margin (float, optional) \u2013 Specify the adjustment factor of the operation.\
+      \ Default: 0.0 ."
     dtype:
     - float
+    shape: null
     structure:
     - single
-    shape: null
   reduction:
-    descp: 'reduction (str, optional) – Specifies which reduction to be applied to
-      the output. It must be one of "none" , "mean" , and "sum" , meaning no reduction,
-      reduce mean and sum on output, respectively. Default: "mean" .'
     default: mean
+    descp: "reduction (str, optional) \u2013 Specifies which reduction to be applied\
+      \ to the output. It must be one of \"none\" , \"mean\" , and \"sum\" , meaning\
+      \ no reduction, reduce mean and sum on output, respectively. Default: \"mean\"\
+      \ ."
     dtype:
     - str
     enum:
     - none
     - mean
     - sum
+descp: MarginRankingLoss creates a criterion that measures the loss.
 inputs:
   optional:
   - margin

@@ -1,21 +1,24 @@
 api: mindspore.nn.BCELoss(weight=None, reduction='mean')
-descp: BCELoss creates a criterion to measure the binary cross entropy between the
-  true labels and predicted labels.
 constraints:
-  weight:
-    descp: 'weight (Tensor, optional) – A rescaling weight applied to the loss of each batch element. And it must have the same shape and data type as inputs. Default: None .'
-    default: None
-    dtype:
-    - tensor
   reduction:
-    descp: 'reduction (str) – Specifies the reduction to be applied to the output. Its value must be one of ''none'' , ''mean'' , ''sum'' . Default: ''mean'' .'
     default: mean
+    descp: "reduction (str) \u2013 Specifies the reduction to be applied to the output.\
+      \ Its value must be one of 'none' , 'mean' , 'sum' . Default: 'mean' ."
     dtype:
     - str
     enum:
     - none
     - mean
     - sum
+  weight:
+    default: None
+    descp: "weight (Tensor, optional) \u2013 A rescaling weight applied to the loss\
+      \ of each batch element. And it must have the same shape and data type as inputs.\
+      \ Default: None ."
+    dtype:
+    - tensor
+descp: BCELoss creates a criterion to measure the binary cross entropy between the
+  true labels and predicted labels.
 inputs:
   optional:
   - weight

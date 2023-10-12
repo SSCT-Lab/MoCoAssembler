@@ -1,15 +1,15 @@
 api: mindspore.nn.get_activation(name, prim_name=None)
-descp: Gets the activation function.
 constraints:
   name:
-    descp: name (str) – The name of the activation function.
     default: null
+    descp: "name (str) \u2013 The name of the activation function."
     dtype:
     - str
     enum: null
   prim_name:
-    descp: 'prim_name (Union[str, None]) – The name of primitive. Default: None .'
     default: None
+    descp: "prim_name (Union[str, None]) \u2013 The name of primitive. Default: None\
+      \ ."
     dtype:
     - str
     enum:
@@ -38,6 +38,7 @@ constraints:
     - hshrink
     - threshold
     - mish
+descp: Gets the activation function.
 inputs:
   optional:
   - prim_name

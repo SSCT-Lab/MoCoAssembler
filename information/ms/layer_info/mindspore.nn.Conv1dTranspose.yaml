@@ -1,55 +1,90 @@
 api: mindspore.nn.Conv1dTranspose(in_channels, out_channels, kernel_size, stride=1,
   pad_mode='same', padding=0, dilation=1, group=1, has_bias=False, weight_init=None,
   bias_init=None)
-descp: Calculates a 1D transposed convolution, which can be regarded as Conv1d for
-  the gradient of the input, also called deconvolution (although it is not an actual
-  deconvolution).
 constraints:
-  in_channels:
-    descp: in_channels (int) – The channel number of the input tensor of the Conv1dTranspose
-      layer.
-    default: null
+  bias_init:
+    default: None
+    descp: "bias_init (Union[Tensor, str, Initializer, numbers.Number]) \u2013 Initialization\
+      \ method of bias parameter. Available initialization methods are the same as\
+      \ \u2018weight_init\u2019. Refer to the values of Initializer for more details.\
+      \ Default: None , bias will be initialized using Uniform."
     dtype:
-    - int
-    structure:
-    - single
-    range: null
-  out_channels:
-    descp: out_channels (int) – The channel number of the output tensor of the Conv1dTranspose
-      layer.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  kernel_size:
-    descp: kernel_size (int) – Specifies the width of the 1D convolution kernel.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  stride:
-    descp: 'stride (int) – The movement stride of the 1D convolution kernel. Default:
-      1 .'
+    - str
+    enum:
+    - None
+    - truncatedNormal
+    - normal
+    - uniform
+    - HeUniform
+    - XavierUniform
+    - xavier_uniform
+    - he_uniform
+    - ones
+    - zeros
+  dilation:
     default: 1
+    descp: "dilation (int) \u2013 Dilation size of 1D convolution kernel. If (k >\
+      \ 1), the kernel is sampled every k elements. The value of k is in range of\
+      \ [1, L]. Default: 1 ."
     dtype:
     - int
+    range:
+    - 1
     structure:
     - single
+  group:
+    default: 1
+    descp: "group (int) \u2013 Splits filter into groups, in_channels and out_channels\
+      \ must be divisible by group. When group > 1, the Ascend platform is not supported\
+      \ yet. Default: 1 ."
+    dtype:
+    - int
     range: null
+    structure:
+    - single
+  has_bias:
+    default: false
+    descp: "has_bias (bool) \u2013 Whether the Conv1dTranspose layer has a bias parameter.\
+      \ Default: False."
+    dtype:
+    - bool
+  in_channels:
+    default: null
+    descp: "in_channels (int) \u2013 The channel number of the input tensor of the\
+      \ Conv1dTranspose layer."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+  kernel_size:
+    default: null
+    descp: "kernel_size (int) \u2013 Specifies the width of the 1D convolution kernel."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+  out_channels:
+    default: null
+    descp: "out_channels (int) \u2013 The channel number of the output tensor of the\
+      \ Conv1dTranspose layer."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
   pad_mode:
-    descp: 'pad_mode (str) – Specifies padding mode. The optional values are "same"
-      , "valid" , "pad" . Default: "same" .  "same": The width of the output is the
-      same as the value of the input divided by stride. If this mode is set, the value
-      of padding must be 0. "valid": Returns a valid calculated output without padding.
-      Excess pixels that do not satisfy the calculation will be discarded. If this
-      mode is set, the value of padding must be 0. "pad": Pads the input. Padding
-      padding size of zero on both sides of the input. If this mode is set, the value
-      of padding must be greater than or equal to 0.  '
     default: same
+    descp: "pad_mode (str) \u2013 Specifies padding mode. The optional values are\
+      \ \"same\" , \"valid\" , \"pad\" . Default: \"same\" .  \"same\": The width\
+      \ of the output is the same as the value of the input divided by stride. If\
+      \ this mode is set, the value of padding must be 0. \"valid\": Returns a valid\
+      \ calculated output without padding. Excess pixels that do not satisfy the calculation\
+      \ will be discarded. If this mode is set, the value of padding must be 0. \"\
+      pad\": Pads the input. Padding padding size of zero on both sides of the input.\
+      \ If this mode is set, the value of padding must be greater than or equal to\
+      \ 0.  "
     dtype:
     - str
     enum:
@@ -57,50 +92,33 @@ constraints:
     - valid
     - pad
   padding:
-    descp: 'padding (int) – The number of padding on both sides of input. The value
-      should be greater than or equal to 0. Default: 0 .'
     default: 0
+    descp: "padding (int) \u2013 The number of padding on both sides of input. The\
+      \ value should be greater than or equal to 0. Default: 0 ."
     dtype:
     - int
-    structure:
-    - single
     range: null
-  dilation:
-    descp: 'dilation (int) – Dilation size of 1D convolution kernel. If (k > 1), the
-      kernel is sampled every k elements. The value of k is in range of [1, L]. Default:
-      1 .'
-    default: 1
-    dtype:
-    - int
     structure:
     - single
-    range: [1, ]
-  group:
-    descp: 'group (int) – Splits filter into groups, in_channels and out_channels
-      must be divisible by group. When group > 1, the Ascend platform is not supported
-      yet. Default: 1 .'
+  stride:
     default: 1
+    descp: "stride (int) \u2013 The movement stride of the 1D convolution kernel.\
+      \ Default: 1 ."
     dtype:
     - int
-    structure:
-    - single
     range: null
-  has_bias:
-    descp: 'has_bias (bool) – Whether the Conv1dTranspose layer has a bias parameter.
-      Default: False.'
-    default: False
-    dtype:
-    - bool
+    structure:
+    - single
   weight_init:
-    descp: 'weight_init (Union[Tensor, str, Initializer, numbers.Number]) – Initialization
-      method of weight parameter. It can be a Tensor, a string, an Initializer or
-      a numbers.Number. When a string is specified, values from ''TruncatedNormal''
-      , ''Normal'' , ''Uniform'' , ''HeUniform'' and ''XavierUniform'' distributions
-      as well as constant ''One'' and ''Zero'' distributions are possible. Alias ''xavier_uniform''
-      , ''he_uniform'', ''ones'' and ''zeros'' are acceptable. Uppercase and lowercase
-      are both acceptable. Refer to the values of Initializer for more details. Default:
-      None , weight will be initialized using HeUniform.'
     default: None
+    descp: "weight_init (Union[Tensor, str, Initializer, numbers.Number]) \u2013 Initialization\
+      \ method of weight parameter. It can be a Tensor, a string, an Initializer or\
+      \ a numbers.Number. When a string is specified, values from 'TruncatedNormal'\
+      \ , 'Normal' , 'Uniform' , 'HeUniform' and 'XavierUniform' distributions as\
+      \ well as constant 'One' and 'Zero' distributions are possible. Alias 'xavier_uniform'\
+      \ , 'he_uniform', 'ones' and 'zeros' are acceptable. Uppercase and lowercase\
+      \ are both acceptable. Refer to the values of Initializer for more details.\
+      \ Default: None , weight will be initialized using HeUniform."
     dtype:
     - str
     enum:
@@ -114,25 +132,9 @@ constraints:
     - he_uniform
     - ones
     - zeros
-  bias_init:
-    descp: 'bias_init (Union[Tensor, str, Initializer, numbers.Number]) – Initialization
-      method of bias parameter. Available initialization methods are the same as ‘weight_init’.
-      Refer to the values of Initializer for more details. Default: None , bias will
-      be initialized using Uniform.'
-    default: None
-    dtype:
-    - str
-    enum:
-    - None
-    - truncatedNormal
-    - normal
-    - uniform
-    - HeUniform
-    - XavierUniform
-    - xavier_uniform
-    - he_uniform
-    - ones
-    - zeros
+descp: Calculates a 1D transposed convolution, which can be regarded as Conv1d for
+  the gradient of the input, also called deconvolution (although it is not an actual
+  deconvolution).
 inputs:
   optional:
   - stride

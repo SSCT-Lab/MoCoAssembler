@@ -1,7 +1,12 @@
 function:
   torch: torch.nn.ZeroPad2d
   ms: mindspore.nn.ZeroPad2d
+  paddle: paddle.nn.ZeroPad2D
+  jittor: jittor.nn.ZeroPad2d
 descp:
   torch: Pads the input tensor boundaries with zero.
   ms: Pads the last two dimensions of input tensor with zero.
+  paddle: This interface is used to construct a callable object of the ZeroPad2D class.
+    Pads the input tensor boundaries with zero.
+  jittor: no description
 param: null

@@ -1,16 +1,18 @@
 api: mindspore.nn.optim_ex.Optimizer(params, defaults)
-descp: Base class for all optimizers.
 constraints:
-  params:
-    descp: params (Union[list(Parameter), list(dict)]) – an iterable of mindspore.Parameter or dict. Specifies what Tensors should be optimized.
-    default: null
-    dtype:
-    - union[list(parameter), list(dict)]
   default:
-    descp: 'defaults – (dict): a dict containing default values of optimization options (used when a parameter group doesn’t specify them).'
     default: null
+    descp: "defaults \u2013 (dict): a dict containing default values of optimization\
+      \ options (used when a parameter group doesn\u2019t specify them)."
     dtype:
     - dict
+  params:
+    default: null
+    descp: "params (Union[list(Parameter), list(dict)]) \u2013 an iterable of mindspore.Parameter\
+      \ or dict. Specifies what Tensors should be optimized."
+    dtype:
+    - union[list(parameter), list(dict)]
+descp: Base class for all optimizers.
 inputs:
   optional: []
   required:

@@ -1,9 +1,15 @@
 function:
   torch: torch.nn.AvgPool1d
   ms: mindspore.nn.AvgPool1d
+  paddle: paddle.nn.AvgPool1D
 descp:
   torch: Applies a 1D average pooling over an input signal composed of several input
     planes.
   ms: Applies a 1D average pooling over an input Tensor which can be regarded as a
     composition of 1D input planes.
+  paddle: This operation applies a 1D average pooling over an input signal composed
+    of several input planes, based on the input, output_size, return_mask parameters.
+    Input(X) and output(Out) are in NCL format, where N is batch size, C is the number
+    of channels, L is the length of the feature. The output tensor shape will be [N,
+    C, output_size].
 param: null

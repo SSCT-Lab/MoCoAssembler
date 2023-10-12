@@ -1,15 +1,15 @@
 api: mindspore.nn.ELU(alpha=1.0)
-descp: Exponential Linear Unit activation function.
 constraints:
   alpha:
-    descp: 'alpha (float) – The alpha value of ELU, the data type is float. Default:
-      1.0 .'
     default: 1.0
+    descp: "alpha (float) \u2013 The alpha value of ELU, the data type is float. Default:\
+      \ 1.0 ."
     dtype:
     - float
+    shape: null
     structure:
     - single
-    shape: null
+descp: Exponential Linear Unit activation function.
 inputs:
   optional:
   - alpha

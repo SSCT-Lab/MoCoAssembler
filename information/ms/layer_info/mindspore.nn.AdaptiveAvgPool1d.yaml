@@ -1,15 +1,15 @@
 api: mindspore.nn.AdaptiveAvgPool1d(output_size)
-descp: Applies a 1D adaptive average pooling over an input Tensor which can be regarded
-  as a composition of 1D input planes.
 constraints:
   output_size:
-    descp: output_size (int) – the target output size (L_{out}).
     default: null
+    descp: "output_size (int) \u2013 the target output size (L_{out})."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
+descp: Applies a 1D adaptive average pooling over an input Tensor which can be regarded
+  as a composition of 1D input planes.
 inputs:
   optional: []
   required:

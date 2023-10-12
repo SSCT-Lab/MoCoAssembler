@@ -1,52 +1,52 @@
 mindspore.nn.ASGD:
-- params
-- learning_rate
-- lambd
 - alpha
+- lambd
+- learning_rate
+- params
 - t0
 - weight_decay
 mindspore.nn.AdaMax:
-- params
-- learning_rate
 - beta1
 - beta2
 - eps
-- weight_decay
+- learning_rate
 - loss_scale
+- params
+- weight_decay
 mindspore.nn.AdaSumByDeltaWeightWrapCell:
 - optimizer
 mindspore.nn.AdaSumByGradWrapCell:
 - optimizer
 mindspore.nn.Adadelta:
-- params
-- learning_rate
-- rho
 - epsilon
+- learning_rate
 - loss_scale
+- params
+- rho
 - weight_decay
 mindspore.nn.Adagrad:
-- params
 - accum
 - learning_rate
-- update_slots
 - loss_scale
+- params
+- update_slots
 - weight_decay
 mindspore.nn.AdamOffload:
-- params
-- learning_rate
 - beta1
 - beta2
 - eps
+- learning_rate
+- loss_scale
+- params
 - use_locking
 - use_nesterov
 - weight_decay
-- loss_scale
 mindspore.nn.AdamWeightDecay:
-- params
-- learning_rate
 - beta1
 - beta2
 - eps
+- learning_rate
+- params
 - weight_decay
 mindspore.nn.AdaptiveAvgPool1d:
 - output_size
@@ -63,75 +63,75 @@ mindspore.nn.AdaptiveMaxPool3d:
 - output_size
 - return_indices
 mindspore.nn.AvgPool1d:
-- kernel_size
-- stride
-- pad_mode
-- padding
 - ceil_mode
 - count_include_pad
+- kernel_size
+- pad_mode
+- padding
+- stride
 mindspore.nn.AvgPool2d:
-- kernel_size
-- stride
-- pad_mode
-- padding
 - ceil_mode
 - count_include_pad
-- divisor_override
 - data_format
+- divisor_override
+- kernel_size
+- pad_mode
+- padding
+- stride
 mindspore.nn.AvgPool3d:
-- kernel_size
-- stride
-- pad_mode
-- padding
 - ceil_mode
 - count_include_pad
 - divisor_override
+- kernel_size
+- pad_mode
+- padding
+- stride
 mindspore.nn.BCELoss:
-- weight
 - reduction
+- weight
 mindspore.nn.BCEWithLogitsLoss:
+- pos_weight
 - reduction
 - weight
-- pos_weight
 mindspore.nn.BatchNorm1d:
-- num_features
-- eps
-- momentum
 - affine
-- gamma_init
 - beta_init
+- data_format
+- eps
+- gamma_init
+- momentum
 - moving_mean_init
 - moving_var_init
+- num_features
 - use_batch_statistics
-- data_format
 mindspore.nn.BatchNorm2d:
-- num_features
-- eps
-- momentum
 - affine
-- gamma_init
 - beta_init
-- moving_mean_init
-- moving_var_init
-- use_batch_statistics
 - data_format
-mindspore.nn.BatchNorm3d:
-- num_features
 - eps
-- momentum
-- affine
 - gamma_init
-- beta_init
+- momentum
 - moving_mean_init
 - moving_var_init
+- num_features
+- use_batch_statistics
+mindspore.nn.BatchNorm3d:
+- affine
+- beta_init
+- eps
+- gamma_init
+- momentum
+- moving_mean_init
+- moving_var_init
+- num_features
 - use_batch_statistics
 mindspore.nn.BiDense:
+- bias_init
+- has_bias
 - in1_channels
 - in2_channels
 - out_channels
 - weight_init
-- bias_init
-- has_bias
 mindspore.nn.CELU:
 - alpha
 mindspore.nn.CTCLoss:
@@ -150,107 +150,107 @@ mindspore.nn.ConstantPad3d:
 - padding
 - value
 mindspore.nn.Conv1d:
-- in_channels
-- out_channels
-- kernel_size
-- stride
-- pad_mode
-- padding
+- bias_init
 - dilation
 - group
 - has_bias
+- in_channels
+- kernel_size
+- out_channels
+- pad_mode
+- padding
+- stride
 - weight_init
-- bias_init
 mindspore.nn.Conv1dTranspose:
-- in_channels
-- out_channels
-- kernel_size
-- stride
-- pad_mode
-- padding
+- bias_init
 - dilation
 - group
 - has_bias
+- in_channels
+- kernel_size
+- out_channels
+- pad_mode
+- padding
+- stride
 - weight_init
-- bias_init
 mindspore.nn.Conv2d:
-- in_channels
-- out_channels
-- kernel_size
-- stride
-- pad_mode
-- padding
+- bias_init
+- data_format
 - dilation
 - group
 - has_bias
+- in_channels
+- kernel_size
+- out_channels
+- pad_mode
+- padding
+- stride
 - weight_init
-- bias_init
-- data_format
 mindspore.nn.Conv2dTranspose:
-- in_channels
-- out_channels
-- kernel_size
-- stride
-- pad_mode
-- padding
-- output_padding
+- bias_init
 - dilation
 - group
 - has_bias
+- in_channels
+- kernel_size
+- out_channels
+- output_padding
+- pad_mode
+- padding
+- stride
 - weight_init
-- bias_init
 mindspore.nn.Conv3d:
-- in_channels
-- out_channels
-- kernel_size
-- stride
-- pad_mode
-- padding
+- bias_init
+- data_format
 - dilation
 - group
 - has_bias
+- in_channels
+- kernel_size
+- out_channels
+- pad_mode
+- padding
+- stride
 - weight_init
-- bias_init
-- data_format
 mindspore.nn.Conv3dTranspose:
-- in_channels
-- out_channels
-- kernel_size
-- stride
-- pad_mode
-- padding
-- dilation
-- group
-- output_padding
-- has_bias
-- weight_init
 - bias_init
 - data_format
+- dilation
+- group
+- has_bias
+- in_channels
+- kernel_size
+- out_channels
+- output_padding
+- pad_mode
+- padding
+- stride
+- weight_init
 mindspore.nn.CosineDecayLR:
-- min_lr
-- max_lr
 - decay_steps
+- max_lr
+- min_lr
 mindspore.nn.CosineEmbeddingLoss:
 - margin
 - reduction
 mindspore.nn.CrossEntropyLoss:
-- weight
 - ignore_index
-- reduction
 - label_smoothing
+- reduction
+- weight
 mindspore.nn.Dense:
+- activation
+- bias_init
+- has_bias
 - in_channels
 - out_channels
 - weight_init
-- bias_init
-- has_bias
-- activation
 mindspore.nn.DiceLoss:
 - smooth
 mindspore.nn.Dropout:
+- dtype
 - keep_prob
 - p
-- dtype
 mindspore.nn.Dropout1d:
 - p
 mindspore.nn.Dropout2d:
@@ -260,189 +260,193 @@ mindspore.nn.Dropout3d:
 mindspore.nn.ELU:
 - alpha
 mindspore.nn.Embedding:
-- vocab_size
-- embedding_size
-- use_one_hot
-- embedding_table
 - dtype
-- padding_idx
-mindspore.nn.EmbeddingLookup:
-- vocab_size
 - embedding_size
-- param_init
-- target
-- slice_mode
+- embedding_table
+- padding_idx
+- use_one_hot
+- vocab_size
+mindspore.nn.EmbeddingLookup:
+- embedding_size
 - manual_shapes
 - max_norm
+- param_init
+- slice_mode
 - sparse
+- target
 - vocab_cache_size
+- vocab_size
 mindspore.nn.ExponentialDecayLR:
-- learning_rate
 - decay_rate
 - decay_steps
 - is_stair
-mindspore.nn.FTRL:
-- params
-- initial_accum
 - learning_rate
-- lr_power
+mindspore.nn.FTRL:
+- initial_accum
 - l1
 - l2
-- use_locking
+- learning_rate
 - loss_scale
+- lr_power
+- params
+- use_locking
 - weight_decay
+mindspore.nn.FastGelu: []
 mindspore.nn.Flatten:
-- start_dim
 - end_dim
+- start_dim
 mindspore.nn.FocalLoss:
 - gamma
-- weight
 - reduction
+- weight
 mindspore.nn.FractionalMaxPool3d:
-- kernel_size
-- output_size
-- output_ratio
-- return_indices
 - _random_samples
+- kernel_size
+- output_ratio
+- output_size
+- return_indices
 mindspore.nn.GELU:
 - approximate
 mindspore.nn.GLU:
 - axis
 mindspore.nn.GRU:
-- input_size
-- hidden_size
-- num_layers
-- has_bias
 - batch_first
-- dropout
 - bidirectional
-mindspore.nn.GRUCell:
-- input_size
-- hidden_size
+- dropout
 - has_bias
+- hidden_size
+- input_size
+- num_layers
+mindspore.nn.GRUCell:
+- has_bias
+- hidden_size
+- input_size
 mindspore.nn.GaussianNLLLoss:
-- full
 - eps
+- full
 - reduction
 mindspore.nn.GroupNorm:
-- num_groups
-- num_channels
-- eps
 - affine
-- gamma_init
 - beta_init
+- eps
+- gamma_init
+- num_channels
+- num_groups
 mindspore.nn.HShrink:
 - lambd
+mindspore.nn.HSigmoid: []
+mindspore.nn.HSwish: []
 mindspore.nn.Hardtanh:
-- min_val
 - max_val
+- min_val
 mindspore.nn.HingeEmbeddingLoss:
 - margin
 - reduction
 mindspore.nn.HuberLoss:
-- reduction
 - delta
+- reduction
 mindspore.nn.InstanceNorm1d:
-- num_features
-- eps
-- momentum
 - affine
-- gamma_init
 - beta_init
+- eps
+- gamma_init
+- momentum
+- num_features
 mindspore.nn.InstanceNorm2d:
-- num_features
-- eps
-- momentum
 - affine
-- gamma_init
 - beta_init
+- eps
+- gamma_init
+- momentum
+- num_features
 mindspore.nn.InstanceNorm3d:
-- num_features
-- eps
-- momentum
 - affine
-- gamma_init
 - beta_init
+- eps
+- gamma_init
+- momentum
+- num_features
 mindspore.nn.InverseDecayLR:
-- learning_rate
 - decay_rate
 - decay_steps
 - is_stair
+- learning_rate
 mindspore.nn.KLDivLoss:
 - reduction
 mindspore.nn.L1Loss:
 - reduction
 mindspore.nn.LARS:
-- optimizer
-- epsilon
 - coefficient
-- use_clip
+- epsilon
 - lars_filter
+- optimizer
+- use_clip
 mindspore.nn.LPPool1d:
-- norm_type
-- kernel_size
-- stride
 - ceil_mode
+- kernel_size
+- norm_type
+- stride
 mindspore.nn.LPPool2d:
-- norm_type
-- kernel_size
-- stride
 - ceil_mode
+- kernel_size
+- norm_type
+- stride
 mindspore.nn.LRN:
-- depth_radius
-- bias
 - alpha
 - beta
+- bias
+- depth_radius
 - norm_region
 mindspore.nn.LRScheduler:
-- optimizer
 - last_epoch
+- optimizer
 - verbose
 mindspore.nn.LSTM:
-- input_size
-- hidden_size
-- num_layers
-- has_bias
 - batch_first
-- dropout
 - bidirectional
-mindspore.nn.LSTMCell:
-- input_size
-- hidden_size
+- dropout
 - has_bias
+- hidden_size
+- input_size
+- num_layers
+mindspore.nn.LSTMCell:
+- has_bias
+- hidden_size
+- input_size
 mindspore.nn.Lamb:
-- params
-- learning_rate
 - beta1
 - beta2
 - eps
+- learning_rate
+- params
 - weight_decay
 mindspore.nn.LayerNorm:
-- normalized_shape
 - begin_norm_axis
 - begin_params_axis
-- gamma_init
 - beta_init
 - epsilon
+- gamma_init
+- normalized_shape
 mindspore.nn.LazyAdam:
-- params
-- learning_rate
 - beta1
 - beta2
 - eps
+- learning_rate
+- loss_scale
+- params
 - use_locking
 - use_nesterov
 - weight_decay
-- loss_scale
 mindspore.nn.LeakyReLU:
 - alpha
 mindspore.nn.LinearLR:
+- end_factor
+- last_epoch
 - optimizer
 - start_factor
-- end_factor
 - total_iters
-- last_epoch
 - verbose
+mindspore.nn.LogSigmoid: []
 mindspore.nn.LogSoftmax:
 - axis
 mindspore.nn.MSELoss:
@@ -451,153 +455,157 @@ mindspore.nn.MarginRankingLoss:
 - margin
 - reduction
 mindspore.nn.MaxPool1d:
-- kernel_size
-- stride
-- pad_mode
-- padding
-- dilation
-- return_indices
 - ceil_mode
-mindspore.nn.MaxPool2d:
+- dilation
 - kernel_size
-- stride
 - pad_mode
 - padding
-- dilation
 - return_indices
+- stride
+mindspore.nn.MaxPool2d:
 - ceil_mode
 - data_format
-mindspore.nn.MaxPool3d:
+- dilation
 - kernel_size
-- stride
 - pad_mode
 - padding
-- dilation
 - return_indices
+- stride
+mindspore.nn.MaxPool3d:
 - ceil_mode
+- dilation
+- kernel_size
+- pad_mode
+- padding
+- return_indices
+- stride
 mindspore.nn.MaxUnpool1d:
 - kernel_size
-- stride
 - padding
+- stride
 mindspore.nn.MaxUnpool2d:
 - kernel_size
-- stride
 - padding
+- stride
 mindspore.nn.MaxUnpool3d:
 - kernel_size
-- stride
 - padding
+- stride
 mindspore.nn.MicroBatchInterleaved:
-- network
 - interleave_num
+- network
+mindspore.nn.Mish: []
 mindspore.nn.Momentum:
-- params
 - learning_rate
-- momentum
-- weight_decay
 - loss_scale
+- momentum
+- params
 - use_nesterov
+- weight_decay
 mindspore.nn.MultiClassDiceLoss:
-- weights
-- ignore_indiex
 - activation
+- ignore_indiex
+- weights
 mindspore.nn.MultiFieldEmbeddingLookup:
-- vocab_size
 - embedding_size
-- field_size
-- param_init
-- target
-- slice_mode
 - feature_num_list
+- field_size
 - max_norm
-- sparse
 - operator
+- param_init
+- slice_mode
+- sparse
+- target
+- vocab_size
 mindspore.nn.MultiLabelSoftMarginLoss:
-- weight
 - reduction
+- weight
 mindspore.nn.MultiMarginLoss:
-- p
 - margin
+- p
 - reduction
 - weight
 mindspore.nn.MultiheadAttention:
-- embed_dim
-- num_heads
-- dropout
-- has_bias
 - add_bias_kv
 - add_zero_attn
-- kdim
-- vdim
 - batch_first
+- dropout
+- embed_dim
+- has_bias
+- kdim
+- num_heads
+- vdim
 mindspore.nn.MultilabelMarginLoss:
 - reduction
 mindspore.nn.NLLLoss:
-- weight
 - ignore_index
 - reduction
+- weight
 mindspore.nn.NaturalExpDecayLR:
-- learning_rate
 - decay_rate
 - decay_steps
 - is_stair
+- learning_rate
 mindspore.nn.PReLU:
 - channel
 - w
 mindspore.nn.Pad:
-- paddings
 - mode
+- paddings
 mindspore.nn.PixelShuffle:
 - upscale_factor
 mindspore.nn.PixelUnshuffle:
 - downscale_factor
 mindspore.nn.PoissonNLLLoss:
-- log_input
-- full
 - eps
+- full
+- log_input
 - reduction
 mindspore.nn.PolynomialDecayLR:
-- learning_rate
-- end_learning_rate
 - decay_steps
+- end_learning_rate
+- learning_rate
 - power
 - update_decay_steps
 mindspore.nn.ProximalAdagrad:
-- params
 - accum
-- learning_rate
 - l1
 - l2
-- use_locking
-- loss_scale
-- weight_decay
-mindspore.nn.RMSProp:
-- params
 - learning_rate
-- decay
-- momentum
-- epsilon
-- use_locking
-- centered
 - loss_scale
+- params
+- use_locking
+- weight_decay
+mindspore.nn.RMSELoss: []
+mindspore.nn.RMSProp:
+- centered
+- decay
+- epsilon
+- learning_rate
+- loss_scale
+- momentum
+- params
+- use_locking
 - weight_decay
 mindspore.nn.RNN:
-- input_size
-- hidden_size
-- num_layers
-- nonlinearity
-- has_bias
 - batch_first
-- dropout
 - bidirectional
-mindspore.nn.RNNCell:
-- input_size
-- hidden_size
+- dropout
 - has_bias
+- hidden_size
+- input_size
+- nonlinearity
+- num_layers
+mindspore.nn.RNNCell:
+- has_bias
+- hidden_size
+- input_size
 - nonlinearity
 mindspore.nn.RReLU:
 - lower
 - upper
+mindspore.nn.ReLU: []
+mindspore.nn.ReLU6: []
 mindspore.nn.ReflectionPad1d:
 - padding
 mindspore.nn.ReflectionPad2d:
@@ -611,27 +619,30 @@ mindspore.nn.ReplicationPad2d:
 mindspore.nn.ReplicationPad3d:
 - padding
 mindspore.nn.Rprop:
-- params
-- learning_rate
 - etas
+- learning_rate
+- params
 - step_sizes
 - weight_decay
 mindspore.nn.SGD:
-- params
-- learning_rate
-- momentum
 - dampening
-- weight_decay
-- nesterov
+- learning_rate
 - loss_scale
+- momentum
+- nesterov
+- params
+- weight_decay
 mindspore.nn.SampledSoftmaxLoss:
-- num_sampled
 - num_classes
+- num_sampled
 - num_true
-- sampled_values
-- remove_accidental_hits
-- seed
 - reduction
+- remove_accidental_hits
+- sampled_values
+- seed
+mindspore.nn.SeLU: []
+mindspore.nn.SiLU: []
+mindspore.nn.Sigmoid: []
 mindspore.nn.SmoothL1Loss:
 - beta
 - reduction
@@ -641,175 +652,179 @@ mindspore.nn.SoftShrink:
 - lambd
 mindspore.nn.Softmax:
 - axis
+mindspore.nn.Softmax2d: []
 mindspore.nn.SoftmaxCrossEntropyWithLogits:
-- sparse
 - reduction
+- sparse
 mindspore.nn.Softmin:
 - axis
+mindspore.nn.Softsign: []
 mindspore.nn.StepLR:
-- optimizer
-- step_size
 - gamma
 - last_epoch
+- optimizer
+- step_size
 - verbose
 mindspore.nn.SyncBatchNorm:
-- num_features
-- eps
-- momentum
 - affine
-- gamma_init
 - beta_init
+- eps
+- gamma_init
+- momentum
 - moving_mean_init
 - moving_var_init
-- use_batch_statistics
+- num_features
 - process_groups
+- use_batch_statistics
+mindspore.nn.Tanh: []
+mindspore.nn.Tanhshrink: []
 mindspore.nn.Threshold:
 - threshold
 - value
 mindspore.nn.Transformer:
+- activation
+- batch_first
+- custom_decoder
+- custom_encoder
 - d_model
-- nhead
-- num_encoder_layers
-- num_decoder_layers
 - dim_feedforward
 - dropout
-- activation
-- custom_encoder
-- custom_decoder
 - layer_norm_eps
-- batch_first
+- nhead
 - norm_first
+- num_decoder_layers
+- num_encoder_layers
 mindspore.nn.TransformerDecoder:
 - decoder_layer
-- num_layers
 - norm
+- num_layers
 mindspore.nn.TransformerDecoderLayer:
+- activation
+- batch_first
 - d_model
-- nhead
 - dim_feedforward
 - dropout
-- activation
 - layer_norm_eps
-- batch_first
+- nhead
 - norm_first
 mindspore.nn.TransformerEncoder:
 - encoder_layer
-- num_layers
 - norm
+- num_layers
 mindspore.nn.TransformerEncoderLayer:
+- activation
+- batch_first
 - d_model
-- nhead
 - dim_feedforward
 - dropout
-- activation
 - layer_norm_eps
-- batch_first
+- nhead
 - norm_first
 mindspore.nn.TripletMarginLoss:
-- p
 - eps
-- swap
-- reduction
 - margin
+- p
+- reduction
+- swap
 mindspore.nn.Unflatten:
 - axis
 - unflattened_size
 mindspore.nn.Unfold:
 - ksizes
-- strides
-- rates
 - padding
+- rates
+- strides
 mindspore.nn.Upsample:
-- size
-- scale_factor
-- mode
 - align_corners
+- mode
 - recompute_scale_factor
+- scale_factor
+- size
 mindspore.nn.WarmUpLR:
 - learning_rate
 - warmup_steps
 mindspore.nn.ZeroPad2d:
 - padding
 mindspore.nn.cosine_decay_lr:
-- min_lr
+- decay_epoch
 - max_lr
-- total_step
+- min_lr
 - step_per_epoch
-- decay_epoch
+- total_step
 mindspore.nn.exponential_decay_lr:
-- learning_rate
-- decay_rate
-- total_step
-- step_per_epoch
 - decay_epoch
+- decay_rate
 - is_stair
+- learning_rate
+- step_per_epoch
+- total_step
 mindspore.nn.get_activation:
 - name
 - prim_name
 mindspore.nn.inverse_decay_lr:
-- learning_rate
-- decay_rate
-- total_step
-- step_per_epoch
 - decay_epoch
+- decay_rate
 - is_stair
+- learning_rate
+- step_per_epoch
+- total_step
 mindspore.nn.natural_exp_decay_lr:
-- learning_rate
-- decay_rate
-- total_step
-- step_per_epoch
 - decay_epoch
+- decay_rate
 - is_stair
+- learning_rate
+- step_per_epoch
+- total_step
 mindspore.nn.optim_ex.Adam:
-- params
-- lr
+- amsgrad
 - betas
 - eps
+- lr
+- params
 - weight_decay
-- amsgrad
 mindspore.nn.optim_ex.AdamW:
-- params
-- lr
+- amsgrad
 - betas
 - eps
+- lr
+- params
 - weight_decay
-- amsgrad
 mindspore.nn.optim_ex.Optimizer:
-- params
 - default
-mindspore.nn.optim_ex.SGD:
 - params
+mindspore.nn.optim_ex.SGD:
+- dampening
 - lr
 - momentum
-- weight_decay
-- dampening
 - nesterov
+- params
+- weight_decay
 mindspore.nn.piecewise_constant_lr:
-- milestone
 - learning_rates
+- milestone
 mindspore.nn.polynomial_decay_lr:
-- learning_rate
-- end_learning_rate
-- total_step
-- step_per_epoch
 - decay_epoch
+- end_learning_rate
+- learning_rate
 - power
+- step_per_epoch
+- total_step
 - update_decay_epoch
 mindspore.nn.thor:
-- net
-- learning_rate
-- damping
-- momentum
-- weight_decay
-- loss_scale
 - batch_size
-- use_nesterov
+- damping
 - decay_filter
-- split_indices
 - enable_clip_grad
 - frequency
+- learning_rate
+- loss_scale
+- momentum
+- net
+- split_indices
+- use_nesterov
+- weight_decay
 mindspore.nn.warmup_lr:
 - learning_rate
-- total_step
 - step_per_epoch
+- total_step
 - warmup_epoch

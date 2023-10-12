@@ -1,67 +1,69 @@
 api: mindspore.nn.SampledSoftmaxLoss(num_sampled, num_classes, num_true=1, sampled_values=None,
   remove_accidental_hits=True, seed=0, reduction='none')
-descp: Computes the sampled softmax training loss.
 constraints:
-  num_sampled:
-    descp: num_sampled (int) – The number of classes to randomly sample per batch.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
   num_classes:
-    descp: num_classes (int) – The number of possible classes.
     default: null
+    descp: "num_classes (int) \u2013 The number of possible classes."
     dtype:
     - int
+    range: null
     structure:
     - single
+  num_sampled:
+    default: null
+    descp: "num_sampled (int) \u2013 The number of classes to randomly sample per\
+      \ batch."
+    dtype:
+    - int
     range: null
+    structure:
+    - single
   num_true:
-    descp: 'num_true (int) – The number of labels classes per training example. Default:
-      1 .'
     default: 1
+    descp: "num_true (int) \u2013 The number of labels classes per training example.\
+      \ Default: 1 ."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
-  sampled_values:
-    descp: 'sampled_values (Union[list, tuple]) – List or tuple of (sampled_candidates,
-      true_expected_count, sampled_expected_count) returned by a *CandidateSampler
-      function. Default to None, UniformCandidateSampler is applied. Default: None
-      .'
-    default: None
-    dtype: null
-    structure:
-    - list
-    - tuple
-  remove_accidental_hits:
-    descp: 'remove_accidental_hits (bool) – Whether to remove “accidental hits” where
-      a sampled class equals to one of the labels classes. Default: True .'
-    default: True
-    dtype:
-    - bool
-  seed:
-    descp: 'seed (int) – Random seed for candidate sampling. Default: 0'
-    default: 0
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
   reduction:
-    descp: 'reduction (str) – Type of reduction to be applied to loss. The optional
-      values are "mean" , "sum" , and "none" . If "none" , do not perform reduction.
-      Default: "none" .'
     default: none
+    descp: "reduction (str) \u2013 Type of reduction to be applied to loss. The optional\
+      \ values are \"mean\" , \"sum\" , and \"none\" . If \"none\" , do not perform\
+      \ reduction. Default: \"none\" ."
     dtype:
     - str
     enum:
     - none
     - mean
     - sum
+  remove_accidental_hits:
+    default: true
+    descp: "remove_accidental_hits (bool) \u2013 Whether to remove \u201Caccidental\
+      \ hits\u201D where a sampled class equals to one of the labels classes. Default:\
+      \ True ."
+    dtype:
+    - bool
+  sampled_values:
+    default: None
+    descp: "sampled_values (Union[list, tuple]) \u2013 List or tuple of (sampled_candidates,\
+      \ true_expected_count, sampled_expected_count) returned by a *CandidateSampler\
+      \ function. Default to None, UniformCandidateSampler is applied. Default: None\
+      \ ."
+    dtype: null
+    structure:
+    - list
+    - tuple
+  seed:
+    default: 0
+    descp: "seed (int) \u2013 Random seed for candidate sampling. Default: 0"
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+descp: Computes the sampled softmax training loss.
 inputs:
   optional:
   - num_true

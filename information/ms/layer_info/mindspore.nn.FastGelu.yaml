@@ -1,6 +1,6 @@
 api: mindspore.nn.FastGelu(alpha=1.0)
+constraints: {}
 descp: Fast Gaussian error linear unit activation function.
-constraints: []
 inputs:
   optional: []
   required: []

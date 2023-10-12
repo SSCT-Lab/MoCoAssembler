@@ -1,47 +1,47 @@
 api: mindspore.nn.exponential_decay_lr(learning_rate, decay_rate, total_step, step_per_epoch,
   decay_epoch, is_stair=False)
-descp: Calculates learning rate base on exponential decay function.
 constraints:
-  learning_rate:
-    descp: learning_rate (float) – The initial value of learning rate.
-    default: null
-    dtype:
-    - float
-  decay_rate:
-    descp: decay_rate (float) – The decay rate.
-    default: null
-    dtype:
-    - float
-  total_step:
-    descp: total_step (int) – The total number of steps.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  step_per_epoch:
-    descp: step_per_epoch (int) – The number of steps in per epoch.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
   decay_epoch:
-    descp: decay_epoch (int) – Number of epochs to decay over.
     default: null
+    descp: "decay_epoch (int) \u2013 Number of epochs to decay over."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
+  decay_rate:
+    default: null
+    descp: "decay_rate (float) \u2013 The decay rate."
+    dtype:
+    - float
   is_stair:
-    descp: 'is_stair (bool) – If true, learning rate is decayed once every decay_epoch
-      times. Default: False .'
-    default: False
+    default: false
+    descp: "is_stair (bool) \u2013 If true, learning rate is decayed once every decay_epoch\
+      \ times. Default: False ."
     dtype:
     - bool
+  learning_rate:
+    default: null
+    descp: "learning_rate (float) \u2013 The initial value of learning rate."
+    dtype:
+    - float
+  step_per_epoch:
+    default: null
+    descp: "step_per_epoch (int) \u2013 The number of steps in per epoch."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+  total_step:
+    default: null
+    descp: "total_step (int) \u2013 The total number of steps."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+descp: Calculates learning rate base on exponential decay function.
 inputs:
   optional:
   - is_stair

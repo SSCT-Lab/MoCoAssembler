@@ -1,27 +1,27 @@
 api: mindspore.nn.AdaptiveMaxPool3d(output_size, return_indices=False)
-descp: Calculates the 3D adaptive max pooling for an input Tensor.
 constraints:
   output_size:
-    descp: output_size (Union[int, tuple]) – The specified output size, which is a
-      positive integer that represents depth, height and width, or a tuple of three
-      positive integers that represent depth, height and width respectively. If it
-      is None, the output size and input size of the corresponding dimension are the
-      same.
     default: null
+    descp: "output_size (Union[int, tuple]) \u2013 The specified output size, which\
+      \ is a positive integer that represents depth, height and width, or a tuple\
+      \ of three positive integers that represent depth, height and width respectively.\
+      \ If it is None, the output size and input size of the corresponding dimension\
+      \ are the same."
     dtype:
     - int
+    range: null
+    shape: 3
     structure:
     - single
     - tuple
-    shape: 3
-    range: null
   return_indices:
-    descp: 'return_indices (bool, optional) – If return_indices is True , the indices
-      of max value would be output. Otherwise, the indices will not be returned. Default:
-      False .'
-    default: False
+    default: false
+    descp: "return_indices (bool, optional) \u2013 If return_indices is True , the\
+      \ indices of max value would be output. Otherwise, the indices will not be returned.\
+      \ Default: False ."
     dtype:
     - bool
+descp: Calculates the 3D adaptive max pooling for an input Tensor.
 inputs:
   optional:
   - return_indices

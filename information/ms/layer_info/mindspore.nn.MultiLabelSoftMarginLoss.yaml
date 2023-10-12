@@ -1,27 +1,27 @@
 api: mindspore.nn.MultiLabelSoftMarginLoss(weight=None, reduction='mean')
-descp: Calculates the MultiLabelSoftMarginLoss.
 constraints:
-  weight:
-    descp: 'weight (Union[Tensor, int, float]) – The manual rescaling weight given
-      to each class. Default: None .'
-    default: None
-    dtype:
-    - int
-    - float
-    structure:
-    - single
-    range: null
   reduction:
-    descp: 'reduction (str) – Specifies which reduction to be applied to the output.
-      It must be one of ''none'' , ''mean'' , and ''sum'' , meaning no reduction,
-      reduce mean and sum on output, respectively. Default: ''mean'' .'
     default: mean
+    descp: "reduction (str) \u2013 Specifies which reduction to be applied to the\
+      \ output. It must be one of 'none' , 'mean' , and 'sum' , meaning no reduction,\
+      \ reduce mean and sum on output, respectively. Default: 'mean' ."
     dtype:
     - str
     enum:
     - none
     - mean
     - sum
+  weight:
+    default: None
+    descp: "weight (Union[Tensor, int, float]) \u2013 The manual rescaling weight\
+      \ given to each class. Default: None ."
+    dtype:
+    - int
+    - float
+    range: null
+    structure:
+    - single
+descp: Calculates the MultiLabelSoftMarginLoss.
 inputs:
   optional:
   - reduction

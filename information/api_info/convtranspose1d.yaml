@@ -1,10 +1,22 @@
 function:
   torch: torch.nn.ConvTranspose1d
   ms: mindspore.nn.Conv1dTranspose
+  paddle: paddle.nn.Conv1DTranspose
+  tf: tf.keras.layers.Conv1DTranspose
 descp:
   torch: Applies a 1D transposed convolution operator over an input image composed
     of several input planes.
   ms: Calculates a 1D transposed convolution, which can be regarded as Conv1d for
     the gradient of the input, also called deconvolution (although it is not an actual
     deconvolution).
+  paddle: "This interface is used to construct a callable object of the Conv1DTranspose\
+    \ class. For more details, refer to code examples. The 1-D convolution transpose\
+    \ layer calculates the output based on the input, filter, and dilation, stride,\
+    \ padding. Input(Input) and output(Output) are in \u2018NCL\u2019 format or \u2018\
+    NLC\u2019 where N is batch size, C is the number of channels, L is the length\
+    \ of the feature. The details of convolution transpose layer, please refer to\
+    \ the following explanation and references therein. If bias attribution and activation\
+    \ type are provided, bias is added to the output of the convolution, and the corresponding\
+    \ activation function is applied to the final result."
+  tf: Transposed convolution layer (sometimes called Deconvolution).
 param: null

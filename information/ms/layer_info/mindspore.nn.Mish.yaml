@@ -1,6 +1,7 @@
 api: mindspore.nn.Mish
-descp: Computes MISH(A Self Regularized Non-Monotonic Neural Activation Function) of input tensors element-wise.
-constraints: []
+constraints: {}
+descp: Computes MISH(A Self Regularized Non-Monotonic Neural Activation Function)
+  of input tensors element-wise.
 inputs:
   optional: []
   required: []

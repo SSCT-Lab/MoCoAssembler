@@ -1,6 +1,6 @@
 api: mindspore.nn.Sigmoid
+constraints: {}
 descp: Sigmoid activation function.
-constraints: []
 inputs:
   optional: []
   required: []

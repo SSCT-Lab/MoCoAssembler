@@ -1,6 +1,6 @@
 api: mindspore.nn.LogSigmoid
+constraints: {}
 descp: Applies logsigmoid activation element-wise.
-constraints: []
 inputs:
   optional: []
   required: []

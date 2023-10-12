@@ -1,7 +1,9 @@
 function:
   torch: torch.nn.utils.prune.Identity
+  jittor: jittor.nn.Identity
 descp:
   torch: 'Applies pruning reparametrization to the tensor corresponding to the parameter
     called name in module without actually pruning any units. Modifies module in place
     (and also return the modified module) by:'
+  jittor: no description
 param: null

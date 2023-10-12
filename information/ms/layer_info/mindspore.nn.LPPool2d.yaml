@@ -1,50 +1,51 @@
 api: mindspore.nn.LPPool2d(norm_type, kernel_size, stride=None, ceil_mode=False)
-descp: Applying 2D LPPooling operation on an input Tensor can be regarded as forming
-  a 1D input plane.
 constraints:
-  norm_type:
-    descp: 'norm_type (Union[int, float]) –  if p = 1, the result is the sum of the
-      elements within the pooling kernel(proportional to average pooling). if p =
-      (infty), the result is the result of maximum pooling.  '
+  ceil_mode:
+    default: false
+    descp: "ceil_mode (bool) \u2013 Whether to use ceil or floor to calculate output\
+      \ shape. Default: False ."
+    dtype:
+    - bool
+  kernel_size:
     default: null
+    descp: "kernel_size (Union[int, tuple[int]]) \u2013 The size of kernel window.\
+      \ The data type of kernel_size must be int and the value represents the height\
+      \ and width, or a tuple of two int numbers that represent height and width respectively."
+    dtype:
+    - int
+    range: null
+    shape: 2
+    structure:
+    - single
+    - tuple
+  norm_type:
+    default: null
+    descp: "norm_type (Union[int, float]) \u2013  if p = 1, the result is the sum\
+      \ of the elements within the pooling kernel(proportional to average pooling).\
+      \ if p = (infty), the result is the result of maximum pooling.  "
     dtype:
     - int
     - float
+    range: null
+    shape: 2
     structure:
     - single
-    shape: 2
-    range: null
-  kernel_size:
-    descp: kernel_size (Union[int, tuple[int]]) – The size of kernel window. The data
-      type of kernel_size must be int and the value represents the height and width,
-      or a tuple of two int numbers that represent height and width respectively.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    - tuple
-    shape: 2
-    range: null
   stride:
-    descp: 'stride (Union[int, tuple[int]]) – The distance of kernel moving, an int
-      number that represents the height and width of movement are both stride, or
-      a tuple of two int numbers that represent height and width of movement respectively,
-      if the value is None, the default value kernel_size is used. Default: None .'
     default: None
+    descp: "stride (Union[int, tuple[int]]) \u2013 The distance of kernel moving,\
+      \ an int number that represents the height and width of movement are both stride,\
+      \ or a tuple of two int numbers that represent height and width of movement\
+      \ respectively, if the value is None, the default value kernel_size is used.\
+      \ Default: None ."
     dtype:
     - int
+    range: null
+    shape: 2
     structure:
     - single
     - tuple
-    shape: 2
-    range: null
-  ceil_mode:
-    descp: 'ceil_mode (bool) – Whether to use ceil or floor to calculate output shape.
-      Default: False .'
-    default: False
-    dtype:
-    - bool
+descp: Applying 2D LPPooling operation on an input Tensor can be regarded as forming
+  a 1D input plane.
 inputs:
   optional:
   - stride

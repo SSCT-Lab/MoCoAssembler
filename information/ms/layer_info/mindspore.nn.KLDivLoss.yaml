@@ -1,19 +1,19 @@
 api: mindspore.nn.KLDivLoss(reduction='mean')
-descp: Computes the Kullback-Leibler divergence between the logits and the labels.
 constraints:
   reduction:
-    descp: 'reduction (str) – Specifies the reduction to be applied to the output.
-      Default: ''mean'' .  On Ascend, the value of reduction must be one of ''batchmean''
-      , ''none'' or ''sum'' . On GPU, the value of reduction must be one of ''mean''
-      , ''none'' or ''sum'' . On CPU, the value of reduction must be one of ''mean''
-      , ''batchmean'' , ''none'' or ''sum'' .  '
     default: mean
+    descp: "reduction (str) \u2013 Specifies the reduction to be applied to the output.\
+      \ Default: 'mean' .  On Ascend, the value of reduction must be one of 'batchmean'\
+      \ , 'none' or 'sum' . On GPU, the value of reduction must be one of 'mean' ,\
+      \ 'none' or 'sum' . On CPU, the value of reduction must be one of 'mean' , 'batchmean'\
+      \ , 'none' or 'sum' .  "
     dtype:
     - str
     enum:
     - none
     - mean
     - sum
+descp: Computes the Kullback-Leibler divergence between the logits and the labels.
 inputs:
   optional:
   - reduction

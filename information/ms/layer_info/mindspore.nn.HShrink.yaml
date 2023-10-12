@@ -1,15 +1,15 @@
 api: mindspore.nn.HShrink(lambd=0.5)
-descp: Hard Shrink activation function.
 constraints:
   lambd:
-    descp: 'lambd (float) – The threshold (lambda) defined by the Hard Shrink formula.
-      Default: 0.5 .'
     default: 0.5
+    descp: "lambd (float) \u2013 The threshold (lambda) defined by the Hard Shrink\
+      \ formula. Default: 0.5 ."
     dtype:
     - float
+    shape: null
     structure:
     - single
-    shape: null
+descp: Hard Shrink activation function.
 inputs:
   optional:
   - lambd

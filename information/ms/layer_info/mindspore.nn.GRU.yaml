@@ -1,55 +1,55 @@
 api: mindspore.nn.GRU(*args, **kwargs)
-descp: Stacked GRU (Gated Recurrent Unit) layers.
 constraints:
-  input_size:
-    descp: input_size (int) – Number of features of input.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  hidden_size:
-    descp: hidden_size (int) – Number of features of hidden layer.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  num_layers:
-    descp: 'num_layers (int) – Number of layers of stacked GRU. Default: 1 .'
-    default: 1
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  has_bias:
-    descp: 'has_bias (bool) – Whether the cell has bias b_in and b_hn. Default: True
-      .'
-    default: True
+  batch_first:
+    default: false
+    descp: "batch_first (bool) \u2013 Specifies whether the first dimension of input\
+      \ x is batch_size. Default: False ."
     dtype:
     - bool
-  batch_first:
-    descp: 'batch_first (bool) – Specifies whether the first dimension of input x
-      is batch_size. Default: False .'
-    default: False
+  bidirectional:
+    default: false
+    descp: "bidirectional (bool) \u2013 Specifies whether it is a bidirectional GRU,\
+      \ num_directions=2 if bidirectional=True otherwise 1. Default: False ."
     dtype:
     - bool
   dropout:
-    descp: dropout (float) – If not 0.0, append Dropout layer on the outputs of each
-      GRU layer except the last layer. Default 0.0 . The range of dropout is [0.0,
-      1.0).
     default: 0.0
+    descp: "dropout (float) \u2013 If not 0.0, append Dropout layer on the outputs\
+      \ of each GRU layer except the last layer. Default 0.0 . The range of dropout\
+      \ is [0.0, 1.0)."
     dtype:
     - float
-  bidirectional:
-    descp: 'bidirectional (bool) – Specifies whether it is a bidirectional GRU, num_directions=2
-      if bidirectional=True otherwise 1. Default: False .'
-    default: False
+  has_bias:
+    default: true
+    descp: "has_bias (bool) \u2013 Whether the cell has bias b_in and b_hn. Default:\
+      \ True ."
     dtype:
     - bool
+  hidden_size:
+    default: null
+    descp: "hidden_size (int) \u2013 Number of features of hidden layer."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+  input_size:
+    default: null
+    descp: "input_size (int) \u2013 Number of features of input."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+  num_layers:
+    default: 1
+    descp: "num_layers (int) \u2013 Number of layers of stacked GRU. Default: 1 ."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+descp: Stacked GRU (Gated Recurrent Unit) layers.
 inputs:
   optional:
   - num_layers

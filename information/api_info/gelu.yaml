@@ -1,7 +1,16 @@
 function:
   torch: torch.nn.GELU
   ms: mindspore.nn.GELU
+  paddle: paddle.nn.GELU
+  jittor: jittor.nn.GELU
+  tf: tf.keras.activations.gelu
 descp:
   torch: 'Applies the Gaussian Error Linear Units function:'
   ms: Gaussian error linear unit activation function.
+  paddle: GELU Activation.
+  jittor: "    r''' Applies the element-wise function:\n\n    .. math::\n        \\\
+    text{GELU}(x) = x * \\Phi(x)\n\n    where :math:`\\Phi(x)` is the Cumulative Distribution\
+    \ Function for Gaussian Distribution.\n\n    :param x: the input var\n    :type\
+    \ x: jt.Var\n\n    \n'''"
+  tf: Applies the Gaussian error linear unit (GELU) activation function.
 param: null

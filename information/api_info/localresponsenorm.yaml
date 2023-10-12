@@ -1,9 +1,11 @@
 function:
   torch: torch.nn.LocalResponseNorm
-  ms: mindspore.nn.LRN
+  paddle: paddle.nn.LocalResponseNorm
 descp:
   torch: Applies local response normalization over an input signal composed of several
     input planes, where channels occupy the second dimension. Applies normalization
     across channels.
-  ms: Local Response Normalization.
+  paddle: "Local Response Normalization performs a type of \u201Clateral inhibition\u201D\
+    \ by normalizing over local input regions. For more information, please refer\
+    \ to ImageNet Classification with Deep Convolutional Neural Networks"
 param: null

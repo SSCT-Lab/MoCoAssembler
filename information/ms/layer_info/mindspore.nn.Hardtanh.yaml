@@ -1,27 +1,28 @@
 api: mindspore.nn.Hardtanh(min_val=- 1.0, max_val=1.0)
-descp: Applies the Hardtanh function element-wise.
 constraints:
-  min_val:
-    descp: 'min_val (Union[int, float]) – Minimum value of the linear region range. Default: -1.0 .'
-    default: -1.0
-    dtype:
-    - int
-    - float
-    structure:
-    - single
-    shape: null
-    range: null
   max_val:
-    descp: 'max_val (Union[int, float]) – Maximum value of the linear region range.
-      Default: 1.0 .'
     default: 1.0
+    descp: "max_val (Union[int, float]) \u2013 Maximum value of the linear region\
+      \ range. Default: 1.0 ."
     dtype:
     - int
     - float
+    range: null
+    shape: null
     structure:
     - single
-    shape: null
+  min_val:
+    default: -1.0
+    descp: "min_val (Union[int, float]) \u2013 Minimum value of the linear region\
+      \ range. Default: -1.0 ."
+    dtype:
+    - int
+    - float
     range: null
+    shape: null
+    structure:
+    - single
+descp: Applies the Hardtanh function element-wise.
 inputs:
   optional:
   - min_val

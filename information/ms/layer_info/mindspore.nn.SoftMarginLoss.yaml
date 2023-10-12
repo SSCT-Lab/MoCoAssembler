@@ -1,16 +1,16 @@
 api: mindspore.nn.SoftMarginLoss(reduction='mean')
-descp: A loss class for two-class classification problems.
 constraints:
   reduction:
-    descp: 'reduction (str) – Apply specific reduction method to the output: ''none''
-      , ''mean'' , ''sum'' . Default: "mean" .'
     default: mean
+    descp: "reduction (str) \u2013 Apply specific reduction method to the output:\
+      \ 'none' , 'mean' , 'sum' . Default: \"mean\" ."
     dtype:
     - str
     enum:
     - none
     - mean
     - sum
+descp: A loss class for two-class classification problems.
 inputs:
   optional:
   - reduction

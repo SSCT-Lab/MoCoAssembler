@@ -1,20 +1,20 @@
 api: mindspore.nn.ReflectionPad3d(padding)
-descp: Pad the given tensor in a reflecting way using the input boundaries as the
-  axis of symmetry.
 constraints:
   padding:
-    descp: 'padding (union[int, tuple]) – The padding size to pad the input tensor.
-      If padding is an integer: all directions will be padded with the same size.
-      If padding is a tuple: uses ((pad_left, pad_right, pad_up, pad_down, pad_front,
-      pad_back)) to pad.'
     default: null
+    descp: "padding (union[int, tuple]) \u2013 The padding size to pad the input tensor.\
+      \ If padding is an integer: all directions will be padded with the same size.\
+      \ If padding is a tuple: uses ((pad_left, pad_right, pad_up, pad_down, pad_front,\
+      \ pad_back)) to pad."
     dtype:
     - int
+    range: null
+    shape: 6
     structure:
     - single
     - tuple
-    shape: 6
-    range: null
+descp: Pad the given tensor in a reflecting way using the input boundaries as the
+  axis of symmetry.
 inputs:
   optional: []
   required:

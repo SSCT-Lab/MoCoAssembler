@@ -1,8 +1,14 @@
 function:
   torch: torch.nn.LayerNorm
   ms: mindspore.nn.LayerNorm
+  paddle: paddle.nn.LayerNorm
+  jittor: jittor.nn.LayerNorm
 descp:
   torch: Applies Layer Normalization over a mini-batch of inputs as described in the
     paper Layer Normalization
   ms: Applies Layer Normalization over a mini-batch of inputs.
+  paddle: Construct a callable object of the LayerNorm class. For more details, refer
+    to code examples. It implements the function of the Layer Normalization Layer
+    and can be applied to mini-batch input data. Refer to Layer Normalization
+  jittor: no description
 param: null

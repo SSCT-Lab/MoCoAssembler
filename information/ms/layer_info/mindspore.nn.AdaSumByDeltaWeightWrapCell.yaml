@@ -1,12 +1,14 @@
 api: mindspore.nn.AdaSumByDeltaWeightWrapCell(optimizer)
-descp: Enable the adasum in “auto_parallel/semi_auto_parallel” mode. The implementation of the Adaptive Summation (AdaSum) algorithm is calculated based on the difference of weights before and after the updating of optimizer.
 constraints:
   optimizer:
-    descp: optimizer (Union[Cell]) – Optimizer for updating the weights. The construct
-      function of the optimizer requires only one input.
     default: null
+    descp: "optimizer (Union[Cell]) \u2013 Optimizer for updating the weights. The\
+      \ construct function of the optimizer requires only one input."
     dtype:
     - union[cell]
+descp: "Enable the adasum in \u201Cauto_parallel/semi_auto_parallel\u201D mode. The\
+  \ implementation of the Adaptive Summation (AdaSum) algorithm is calculated based\
+  \ on the difference of weights before and after the updating of optimizer."
 inputs:
   optional: []
   required: []

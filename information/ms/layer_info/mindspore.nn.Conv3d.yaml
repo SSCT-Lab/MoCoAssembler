@@ -1,143 +1,13 @@
 api: mindspore.nn.Conv3d(in_channels, out_channels, kernel_size, stride=1, pad_mode='same',
   padding=0, dilation=1, group=1, has_bias=False, weight_init=None, bias_init=None,
   data_format='NCDHW')
-descp: Calculates the 3D convolution on the input tensor.
 constraints:
-  in_channels:
-    descp: in_channels (int) – The channel number of the input tensor of the Conv3d
-      layer.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  out_channels:
-    descp: out_channels (int) – The channel number of the output tensor of the Conv3d
-      layer.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  kernel_size:
-    descp: kernel_size (Union[int, tuple[int]]) – Specifies the depth, height and
-      width of the 3D convolution kernel. The data type is an integer or a tuple of
-      three integers. An integer represents the depth, height and width of the convolution
-      kernel. A tuple of three integers represents the depth, height and width of
-      the convolution kernel respectively.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    - tuple
-    shape: 3
-    range: null
-  stride:
-    descp: 'stride (Union[int, tuple[int]]) – The movement stride of the 3D convolution
-      kernel. The data type is an integer or a tuple of three integers. An integer
-      represents the movement step size in depth, height and width directions. A tuple
-      of three integers represents the movement step size in the depth, height and
-      width directions respectively. Default: 1 .'
-    default: 1
-    dtype:
-    - int
-    structure:
-    - single
-    - tuple
-    shape: 3
-    range: null
-  pad_mode:
-    descp: 'pad_mode (str) – Specifies padding mode. The optional values are "same"
-      , "valid" , "pad" . Default: "same" .  "same": The width of the output is the
-      same as the value of the input divided by stride. If this mode is set, the value
-      of padding must be 0. "valid": Returns a valid calculated output without padding.
-      Excess pixels that do not satisfy the calculation will be discarded. If this
-      mode is set, the value of padding must be 0. "pad": Pads the input. Padding
-      padding size of zero on both sides of the input. If this mode is set, the value
-      of padding must be greater than or equal to 0.  '
-    default: same
-    dtype:
-    - str
-    enum:
-    - same
-    - valid
-    - pad
-  padding:
-    descp: 'padding (Union(int, tuple[int])) – The number of padding on the depth,
-      height and width directions of the input. The data type is an integer or a tuple
-      of six integers. If padding is an integer, then the head, tail, top, bottom,
-      left, and right padding are all equal to padding. If padding is a tuple of six
-      integers, then the head, tail, top, bottom, left, and right padding is equal
-      to padding[0], padding[1], padding[2], padding[3], padding[4] and padding[5]
-      respectively. The value should be greater than or equal to 0. Default: 0 .'
-    default: 0
-    dtype:
-    - int
-    structure:
-    - single
-    - tuple
-    shape: 6
-    range: null
-  dilation:
-    descp: 'dilation (Union[int, tuple[int]]) – Dilation size of 3D convolution kernel.
-      The data type is an integer or a tuple of three integers. If (k > 1), the kernel
-      is sampled every k elements. The value of k on the depth, height and width directions
-      is in range of [1, D], [1, H] and [1, W] respectively. Default: 1 .'
-    default: 1
-    dtype:
-    - int
-    structure:
-    - single
-    - tuple
-    shape: 3
-    range: [1, ]
-  group:
-    descp: 'group (int) – Splits filter into groups, in_channels and out_channels
-      must be divisible by group. Default: 1 .'
-    default: 1
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  has_bias:
-    descp: 'has_bias (bool) – Whether the Conv3d layer has a bias parameter. Default:
-      False .'
-    default: False
-    dtype:
-    - bool
-  weight_init:
-    descp: 'weight_init (Union[Tensor, str, Initializer, numbers.Number]) – Initialization
-      method of weight parameter. It can be a Tensor, a string, an Initializer or
-      a numbers.Number. When a string is specified, values from ''TruncatedNormal''
-      , ''Normal'' , ''Uniform'' , ''HeUniform'' and ''XavierUniform'' distributions
-      as well as constant ''One'' and ''Zero'' distributions are possible. Alias ''xavier_uniform''
-      , ''he_uniform'' , ''ones'' and ''zeros'' are acceptable. Uppercase and lowercase
-      are both acceptable. Refer to the values of Initializer for more details. Default:
-      None , weight will be initialized using HeUniform.'
-    default: None
-    dtype:
-    - str
-    enum:
-    - None
-    - truncatedNormal
-    - normal
-    - uniform
-    - HeUniform
-    - XavierUniform
-    - xavier_uniform
-    - he_uniform
-    - ones
-    - zeros
   bias_init:
-    descp: 'bias_init (Union[Tensor, str, Initializer, numbers.Number]) – Initialization
-      method of bias parameter. Available initialization methods are the same as ‘weight_init’.
-      Refer to the values of Initializer for more details. Default: None , bias will
-      be initialized using Uniform.'
     default: None
+    descp: "bias_init (Union[Tensor, str, Initializer, numbers.Number]) \u2013 Initialization\
+      \ method of bias parameter. Available initialization methods are the same as\
+      \ \u2018weight_init\u2019. Refer to the values of Initializer for more details.\
+      \ Default: None , bias will be initialized using Uniform."
     dtype:
     - str
     enum:
@@ -152,13 +22,147 @@ constraints:
     - ones
     - zeros
   data_format:
-    descp: data_format (str) – The optional value for data format. Currently only
-      support 'NCDHW'.
     default: null
+    descp: "data_format (str) \u2013 The optional value for data format. Currently\
+      \ only support 'NCDHW'."
     dtype:
     - str
     enum:
     - NCDHW
+  dilation:
+    default: 1
+    descp: "dilation (Union[int, tuple[int]]) \u2013 Dilation size of 3D convolution\
+      \ kernel. The data type is an integer or a tuple of three integers. If (k >\
+      \ 1), the kernel is sampled every k elements. The value of k on the depth, height\
+      \ and width directions is in range of [1, D], [1, H] and [1, W] respectively.\
+      \ Default: 1 ."
+    dtype:
+    - int
+    range:
+    - 1
+    shape: 3
+    structure:
+    - single
+    - tuple
+  group:
+    default: 1
+    descp: "group (int) \u2013 Splits filter into groups, in_channels and out_channels\
+      \ must be divisible by group. Default: 1 ."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+  has_bias:
+    default: false
+    descp: "has_bias (bool) \u2013 Whether the Conv3d layer has a bias parameter.\
+      \ Default: False ."
+    dtype:
+    - bool
+  in_channels:
+    default: null
+    descp: "in_channels (int) \u2013 The channel number of the input tensor of the\
+      \ Conv3d layer."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+  kernel_size:
+    default: null
+    descp: "kernel_size (Union[int, tuple[int]]) \u2013 Specifies the depth, height\
+      \ and width of the 3D convolution kernel. The data type is an integer or a tuple\
+      \ of three integers. An integer represents the depth, height and width of the\
+      \ convolution kernel. A tuple of three integers represents the depth, height\
+      \ and width of the convolution kernel respectively."
+    dtype:
+    - int
+    range: null
+    shape: 3
+    structure:
+    - single
+    - tuple
+  out_channels:
+    default: null
+    descp: "out_channels (int) \u2013 The channel number of the output tensor of the\
+      \ Conv3d layer."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+  pad_mode:
+    default: same
+    descp: "pad_mode (str) \u2013 Specifies padding mode. The optional values are\
+      \ \"same\" , \"valid\" , \"pad\" . Default: \"same\" .  \"same\": The width\
+      \ of the output is the same as the value of the input divided by stride. If\
+      \ this mode is set, the value of padding must be 0. \"valid\": Returns a valid\
+      \ calculated output without padding. Excess pixels that do not satisfy the calculation\
+      \ will be discarded. If this mode is set, the value of padding must be 0. \"\
+      pad\": Pads the input. Padding padding size of zero on both sides of the input.\
+      \ If this mode is set, the value of padding must be greater than or equal to\
+      \ 0.  "
+    dtype:
+    - str
+    enum:
+    - same
+    - valid
+    - pad
+  padding:
+    default: 0
+    descp: "padding (Union(int, tuple[int])) \u2013 The number of padding on the depth,\
+      \ height and width directions of the input. The data type is an integer or a\
+      \ tuple of six integers. If padding is an integer, then the head, tail, top,\
+      \ bottom, left, and right padding are all equal to padding. If padding is a\
+      \ tuple of six integers, then the head, tail, top, bottom, left, and right padding\
+      \ is equal to padding[0], padding[1], padding[2], padding[3], padding[4] and\
+      \ padding[5] respectively. The value should be greater than or equal to 0. Default:\
+      \ 0 ."
+    dtype:
+    - int
+    range: null
+    shape: 6
+    structure:
+    - single
+    - tuple
+  stride:
+    default: 1
+    descp: "stride (Union[int, tuple[int]]) \u2013 The movement stride of the 3D convolution\
+      \ kernel. The data type is an integer or a tuple of three integers. An integer\
+      \ represents the movement step size in depth, height and width directions. A\
+      \ tuple of three integers represents the movement step size in the depth, height\
+      \ and width directions respectively. Default: 1 ."
+    dtype:
+    - int
+    range: null
+    shape: 3
+    structure:
+    - single
+    - tuple
+  weight_init:
+    default: None
+    descp: "weight_init (Union[Tensor, str, Initializer, numbers.Number]) \u2013 Initialization\
+      \ method of weight parameter. It can be a Tensor, a string, an Initializer or\
+      \ a numbers.Number. When a string is specified, values from 'TruncatedNormal'\
+      \ , 'Normal' , 'Uniform' , 'HeUniform' and 'XavierUniform' distributions as\
+      \ well as constant 'One' and 'Zero' distributions are possible. Alias 'xavier_uniform'\
+      \ , 'he_uniform' , 'ones' and 'zeros' are acceptable. Uppercase and lowercase\
+      \ are both acceptable. Refer to the values of Initializer for more details.\
+      \ Default: None , weight will be initialized using HeUniform."
+    dtype:
+    - str
+    enum:
+    - None
+    - truncatedNormal
+    - normal
+    - uniform
+    - HeUniform
+    - XavierUniform
+    - xavier_uniform
+    - he_uniform
+    - ones
+    - zeros
+descp: Calculates the 3D convolution on the input tensor.
 inputs:
   optional:
   - stride

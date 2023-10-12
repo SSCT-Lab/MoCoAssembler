@@ -1,15 +1,15 @@
 api: mindspore.nn.PixelUnshuffle(downscale_factor)
-descp: Applies the PixelUnshuffle operation over input which is the inverse of PixelShuffle.
 constraints:
   downscale_factor:
-    descp: downscale_factor (int) – factor to unshuffle the input, and is a positive
-      integer. downscale_factor is the above-mentioned (r).
     default: null
+    descp: "downscale_factor (int) \u2013 factor to unshuffle the input, and is a\
+      \ positive integer. downscale_factor is the above-mentioned (r)."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
+descp: Applies the PixelUnshuffle operation over input which is the inverse of PixelShuffle.
 inputs:
   optional: []
   required:

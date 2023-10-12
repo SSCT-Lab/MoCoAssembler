@@ -1,24 +1,24 @@
 api: mindspore.nn.CosineDecayLR(min_lr, max_lr, decay_steps)
-descp: Calculates learning rate based on cosine decay function.
 constraints:
-  min_lr:
-    descp: min_lr (float) – The minimum value of learning rate.
-    default: null
-    dtype:
-    - float
-  max_lr:
-    descp: max_lr (float) – The maximum value of learning rate.
-    default: null
-    dtype:
-    - float
   decay_steps:
-    descp: decay_steps (int) – Number of steps to decay over.
     default: null
+    descp: "decay_steps (int) \u2013 Number of steps to decay over."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
+  max_lr:
+    default: null
+    descp: "max_lr (float) \u2013 The maximum value of learning rate."
+    dtype:
+    - float
+  min_lr:
+    default: null
+    descp: "min_lr (float) \u2013 The minimum value of learning rate."
+    dtype:
+    - float
+descp: Calculates learning rate based on cosine decay function.
 inputs:
   optional: []
   required:

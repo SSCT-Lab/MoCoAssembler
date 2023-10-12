@@ -1,54 +1,54 @@
 api: mindspore.nn.Unfold(ksizes, strides, rates, padding='valid')
-descp: Extracts patches from images.
 constraints:
   ksizes:
-    descp: ksizes (Union[tuple[int], list[int]]) – The size of sliding window, must
-      be a tuple or a list of integers, and the format is [1, ksize_row, ksize_col,
-      1].
     default: null
+    descp: "ksizes (Union[tuple[int], list[int]]) \u2013 The size of sliding window,\
+      \ must be a tuple or a list of integers, and the format is [1, ksize_row, ksize_col,\
+      \ 1]."
     dtype:
     - int
+    range: null
+    shape: null
     structure:
     - list
     - tuple
-    shape: null
-    range: null
-  strides:
-    descp: strides (Union[tuple[int], list[int]]) – Distance between the centers of
-      the two consecutive patches, must be a tuple or list of int, and the format
-      is [1, stride_row, stride_col, 1].
-    default: null
-    dtype:
-    - int
-    structure:
-    - list
-    - tuple
-    shape: null
-    range: null
-  rates:
-    descp: rates (Union[tuple[int], list[int]]) – In each extracted patch, the gap
-      between the corresponding dimension pixel positions, must be a tuple or a list
-      of integers, and the format is [1, rate_row, rate_col, 1].
-    default: null
-    dtype:
-    - int
-    structure:
-    - list
-    - tuple
-    shape: null
-    range: null
   padding:
-    descp: 'padding (str) – The type of padding algorithm, is a string whose value
-      is "same" or "valid" , not case sensitive. Default: "valid" .  "same": Means
-      that the patch can take the part beyond the original image, and this part is
-      filled with 0. "valid": Means that the taken patch area must be completely covered
-      in the original image.  '
     default: valid
+    descp: "padding (str) \u2013 The type of padding algorithm, is a string whose\
+      \ value is \"same\" or \"valid\" , not case sensitive. Default: \"valid\" .\
+      \  \"same\": Means that the patch can take the part beyond the original image,\
+      \ and this part is filled with 0. \"valid\": Means that the taken patch area\
+      \ must be completely covered in the original image.  "
     dtype:
     - str
     enum:
     - same
     - valid
+  rates:
+    default: null
+    descp: "rates (Union[tuple[int], list[int]]) \u2013 In each extracted patch, the\
+      \ gap between the corresponding dimension pixel positions, must be a tuple or\
+      \ a list of integers, and the format is [1, rate_row, rate_col, 1]."
+    dtype:
+    - int
+    range: null
+    shape: null
+    structure:
+    - list
+    - tuple
+  strides:
+    default: null
+    descp: "strides (Union[tuple[int], list[int]]) \u2013 Distance between the centers\
+      \ of the two consecutive patches, must be a tuple or list of int, and the format\
+      \ is [1, stride_row, stride_col, 1]."
+    dtype:
+    - int
+    range: null
+    shape: null
+    structure:
+    - list
+    - tuple
+descp: Extracts patches from images.
 inputs:
   optional:
   - padding

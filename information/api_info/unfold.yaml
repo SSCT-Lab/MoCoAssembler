@@ -1,7 +1,12 @@
 function:
   torch: torch.nn.Unfold
   ms: mindspore.nn.Unfold
+  paddle: paddle.nn.Unfold
 descp:
   torch: Extracts sliding local blocks from a batched input tensor.
   ms: Extracts patches from images.
+  paddle: Returns a col buffer of sliding local blocks of input x, also known as im2col
+    for batched 2D image tensors. For each block under the convolution filter, all
+    element will be rearranged as a column. While the convolution filter sliding over
+    the input feature map, a series of such columns will be formed.
 param: null

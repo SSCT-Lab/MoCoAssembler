@@ -1,6 +1,7 @@
 api: mindspore.nn.HSigmoid
-descp: Hard sigmoid activation function. Calculates the output according to the input elements.
-constraints: []
+constraints: {}
+descp: Hard sigmoid activation function. Calculates the output according to the input
+  elements.
 inputs:
   optional: []
   required: []

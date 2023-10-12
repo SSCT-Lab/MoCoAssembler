@@ -1,6 +1,9 @@
 function:
   torch: torch.nn.PairwiseDistance
+  paddle: paddle.nn.PairwiseDistance
 descp:
   torch: Computes the pairwise distance between input vectors, or between columns
     of input matrices.
+  paddle: 'It computes the pairwise distance between two vectors. The distance is
+    calculated by p-oreder norm:'
 param: null

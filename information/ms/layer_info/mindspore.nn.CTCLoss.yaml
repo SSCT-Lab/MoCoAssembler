@@ -1,18 +1,17 @@
 api: mindspore.nn.CTCLoss(blank=0, reduction='mean', zero_infinity=False)
-descp: Calculates the CTC (Connectionist Temporal Classification) loss.
 constraints:
   blank:
-    descp: 'blank (int, optional) – The blank label. Default: 0.'
     default: 0
+    descp: "blank (int, optional) \u2013 The blank label. Default: 0."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
   reduction:
-    descp: 'reduction (str, optional) – Implements the reduction method to the output
-      with ''none'' , ''mean'' , or ''sum'' . Default: ''mean'' .'
     default: mean
+    descp: "reduction (str, optional) \u2013 Implements the reduction method to the\
+      \ output with 'none' , 'mean' , or 'sum' . Default: 'mean' ."
     dtype:
     - str
     enum:
@@ -20,12 +19,13 @@ constraints:
     - mean
     - sum
   zero_infinity:
-    descp: 'zero_infinity (bool, optional) – If loss is infinite, this parameter determines
-      whether to set that loss and its correlated gradient to zero. Default: False
-      .'
-    default: False
+    default: false
+    descp: "zero_infinity (bool, optional) \u2013 If loss is infinite, this parameter\
+      \ determines whether to set that loss and its correlated gradient to zero. Default:\
+      \ False ."
     dtype:
     - bool
+descp: Calculates the CTC (Connectionist Temporal Classification) loss.
 inputs:
   optional:
   - blank

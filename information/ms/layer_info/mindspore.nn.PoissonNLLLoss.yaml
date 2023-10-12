@@ -1,33 +1,34 @@
 api: mindspore.nn.PoissonNLLLoss(log_input=True, full=False, eps=1e-08, reduction='mean')
-descp: Poisson negative log likelihood loss.
 constraints:
-  log_input:
-    descp: 'log_input (bool, optional) – Whether use log input. Default: True .'
-    default: True
-    dtype:
-    - bool
-  full:
-    descp: 'full (bool, optional) – Whether include the Stirling approximation term
-      in the loss calculation. Default: False .'
-    default: False
-    dtype:
-    - bool
   eps:
-    descp: 'eps (float, optional) – Lower bound of input when calculating logarithms.
-      Default: 1e-08 .'
     default: 1e-08
+    descp: "eps (float, optional) \u2013 Lower bound of input when calculating logarithms.\
+      \ Default: 1e-08 ."
     dtype:
     - float
+  full:
+    default: false
+    descp: "full (bool, optional) \u2013 Whether include the Stirling approximation\
+      \ term in the loss calculation. Default: False ."
+    dtype:
+    - bool
+  log_input:
+    default: true
+    descp: "log_input (bool, optional) \u2013 Whether use log input. Default: True\
+      \ ."
+    dtype:
+    - bool
   reduction:
-    descp: 'reduction (str, optional) – Apply specific reduction method to the output:
-      ''none'' , ''mean'' , ''sum'' . Default: ''mean'' .'
     default: mean
+    descp: "reduction (str, optional) \u2013 Apply specific reduction method to the\
+      \ output: 'none' , 'mean' , 'sum' . Default: 'mean' ."
     dtype:
     - str
     enum:
     - none
     - mean
     - sum
+descp: Poisson negative log likelihood loss.
 inputs:
   optional:
   - log_input

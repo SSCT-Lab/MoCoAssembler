@@ -1,20 +1,21 @@
 api: mindspore.nn.MicroBatchInterleaved(network, interleave_num=2)
-descp: This function splits the input at the 0th into interleave_num pieces and then
-  performs the computation of the wrapped cell.
 constraints:
-  network:
-    descp: network (Cell) – The target network to wrap.
-    default: null
-    dtype:
-    - cell
   interleave_num:
-    descp: 'interleave_num (int, optional) – split num of batch size. Default: 2 .'
     default: 2
+    descp: "interleave_num (int, optional) \u2013 split num of batch size. Default:\
+      \ 2 ."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
+  network:
+    default: null
+    descp: "network (Cell) \u2013 The target network to wrap."
+    dtype:
+    - cell
+descp: This function splits the input at the 0th into interleave_num pieces and then
+  performs the computation of the wrapped cell.
 inputs:
   optional:
   - interleave_num

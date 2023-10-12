@@ -1,7 +1,11 @@
 function:
   torch: torch.nn.SELU
   ms: mindspore.nn.SeLU
+  paddle: paddle.nn.SELU
+  tf: tf.keras.activations.selu
 descp:
   torch: 'Applied element-wise, as:'
   ms: Activation function SeLU (Scaled exponential Linear Unit).
+  paddle: SELU Activation
+  tf: Scaled Exponential Linear Unit (SELU).
 param: null

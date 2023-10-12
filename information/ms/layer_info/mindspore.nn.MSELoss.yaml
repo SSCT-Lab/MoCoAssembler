@@ -1,17 +1,17 @@
 api: mindspore.nn.MSELoss(reduction='mean')
-descp: Calculates the mean squared error between the predicted value and the label
-  value.
 constraints:
   reduction:
-    descp: 'reduction (str) – Type of reduction to be applied to loss. The optional
-      values are "mean" , "sum" , and "none" . Default: ''mean'' .'
     default: mean
+    descp: "reduction (str) \u2013 Type of reduction to be applied to loss. The optional\
+      \ values are \"mean\" , \"sum\" , and \"none\" . Default: 'mean' ."
     dtype:
     - str
     enum:
     - none
     - mean
     - sum
+descp: Calculates the mean squared error between the predicted value and the label
+  value.
 inputs:
   optional:
   - reduction

@@ -1,5 +1,7 @@
 function:
   torch: torch.nn.RNNBase
+  jittor: jittor.nn.RNNBase
 descp:
   torch: Resets parameter data pointer so that they can use faster code paths.
+  jittor: no description
 param: null

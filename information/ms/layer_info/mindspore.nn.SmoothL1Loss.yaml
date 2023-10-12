@@ -1,24 +1,24 @@
 api: mindspore.nn.SmoothL1Loss(beta=1.0, reduction='none')
-descp: SmoothL1 loss function, if the absolute error element-wise between the predicted
-  value and the target value is less than the set threshold beta, the square term
-  is used, otherwise the absolute error term is used.
 constraints:
   beta:
-    descp: 'beta (float) – The loss function calculates the threshold of the transformation
-      between L1Loss and L2Loss. Default: 1.0 .'
     default: 1.0
+    descp: "beta (float) \u2013 The loss function calculates the threshold of the\
+      \ transformation between L1Loss and L2Loss. Default: 1.0 ."
     dtype:
     - float
   reduction:
-    descp: 'reduction (str) – Type of reduction to be applied to loss. The optional
-      values are "mean" , "sum" , and "none" . Default: "none" .'
     default: none
+    descp: "reduction (str) \u2013 Type of reduction to be applied to loss. The optional\
+      \ values are \"mean\" , \"sum\" , and \"none\" . Default: \"none\" ."
     dtype:
     - str
     enum:
     - none
     - mean
     - sum
+descp: SmoothL1 loss function, if the absolute error element-wise between the predicted
+  value and the target value is less than the set threshold beta, the square term
+  is used, otherwise the absolute error term is used.
 inputs:
   optional:
   - beta

@@ -1,0 +1,539 @@
+paddle.nn.AdaptiveAvgPool1D:
+- name
+- output_size
+paddle.nn.AdaptiveAvgPool2D:
+- data_format
+- name
+- output_size
+paddle.nn.AdaptiveAvgPool3D:
+- data_format
+- name
+- output_size
+paddle.nn.AdaptiveMaxPool1D:
+- name
+- output_size
+- return_mask
+paddle.nn.AdaptiveMaxPool2D:
+- name
+- output_size
+- return_mask
+paddle.nn.AdaptiveMaxPool3D:
+- name
+- output_size
+- return_mask
+paddle.nn.AlphaDropout:
+- p
+- name
+paddle.nn.AvgPool1D:
+- ceil_mode
+- exclusive
+- kernel_size
+- name
+- padding
+- stride
+paddle.nn.AvgPool2D:
+- ceil_mode
+- data_format
+- divisor_override
+- exclusive
+- kernel_size
+- name
+- padding
+- stride
+paddle.nn.AvgPool3D:
+- ceil_mode
+- data_format
+- divisor_override
+- kernel_size
+- name
+- padding
+- stride
+- exclusive
+paddle.nn.BatchNorm:
+- act
+- bias_attr
+- data_layout
+- do_model_average_for_mean_and_var
+- dtype
+- epsilon
+- in_place
+- is_test
+- momentum
+- moving_mean_name
+- moving_variance_name
+- num_channels
+- param_attr
+- trainable_statistics
+- use_global_stats
+paddle.nn.BatchNorm1D:
+- bias_attr
+- data_format
+- epsilon
+- momentum
+- name
+- num_features
+- use_global_stats
+- weight_attr
+paddle.nn.BatchNorm2D:
+- bias_attr
+- data_format
+- epsilon
+- momentum
+- name
+- num_features
+- use_global_stats
+- weight_attr
+paddle.nn.BatchNorm3D:
+- bias_attr
+- data_format
+- epsilon
+- momentum
+- name
+- num_features
+- use_global_stats
+- weight_attr
+paddle.nn.BeamSearchDecoder:
+- beam_size
+- cell
+- embedding_fn
+- end_token
+- output_fn
+- start_token
+paddle.nn.BiRNN:
+- cell_bw
+- cell_fw
+- time_major
+paddle.nn.Bilinear:
+- in1_features
+- in2_features
+- name
+- out_features
+- weight_attr
+paddle.nn.CELU:
+- alpha
+- name
+paddle.nn.ChannelShuffle:
+- data_format
+- groups
+- name
+paddle.nn.ClipGradByGlobalNorm:
+- auto_skip_clip
+- clip_norm
+- group_name
+paddle.nn.ClipGradByNorm:
+- clip_norm
+paddle.nn.ClipGradByValue:
+- max
+- min
+paddle.nn.Conv1D:
+- bias_attr
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- padding
+- padding_mode
+- stride
+- weight_attr
+paddle.nn.Conv1DTranspose:
+- bias_attr
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- output_padding
+- padding
+- stride
+- weight_attr
+paddle.nn.Conv2D:
+- bias_attr
+- data_format
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- padding
+- padding_mode
+- stride
+- weight_attr
+paddle.nn.Conv2DTranspose:
+- bias_attr
+- data_format
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- output_padding
+- padding
+- stride
+- weight_attr
+paddle.nn.Conv3D:
+- bias_attr
+- data_format
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- padding
+- padding_mode
+- stride
+- weight_attr
+paddle.nn.Conv3DTranspose:
+- bias_attr
+- data_format
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- output_padding
+- padding
+- stride
+- weight_attr
+paddle.nn.CosineSimilarity:
+- axis
+- eps
+paddle.nn.Dropout:
+- mode
+- p
+- axis
+- name
+paddle.nn.Dropout2D:
+- data_format
+- name
+- p
+paddle.nn.Dropout3D:
+- data_format
+- name
+- p
+paddle.nn.ELU:
+- alpha
+- name
+paddle.nn.Embedding:
+- embedding_dim
+- name
+- num_embeddings
+- padding_idx
+- sparse
+- weight_attr
+paddle.nn.Flatten:
+- start_axis
+- stop_axis
+paddle.nn.Fold:
+- kernel_sizes
+- name
+- output_sizes
+- paddings
+- strides
+- dilations
+paddle.nn.GELU:
+- approximate
+- name
+paddle.nn.GRU:
+- bias_hh_attr
+- bias_ih_attr
+- direction
+- dropout
+- hidden_size
+- input_size
+- name
+- num_layers
+- time_major
+- weight_hh_attr
+- weight_ih_attr
+paddle.nn.GRUCell:
+- bias_hh_attr
+- bias_ih_attr
+- hidden_size
+- input_size
+- name
+- weight_hh_attr
+- weight_ih_attr
+paddle.nn.GroupNorm:
+- bias_attr
+- data_format
+- epsilon
+- name
+- num_channels
+- num_groups
+- weight_attr
+paddle.nn.Hardshrink:
+- threshold
+paddle.nn.Hardsigmoid:
+- name
+paddle.nn.Hardswish:
+- name
+paddle.nn.Hardtanh:
+- max
+- min
+- name
+paddle.nn.InstanceNorm1D:
+- bias_attr
+- data_format
+- epsilon
+- momentum
+- name
+- num_features
+- weight_attr
+paddle.nn.InstanceNorm2D:
+- bias_attr
+- data_format
+- epsilon
+- momentum
+- name
+- num_features
+- weight_attr
+paddle.nn.InstanceNorm3D:
+- bias_attr
+- data_format
+- epsilon
+- momentum
+- name
+- num_features
+- weight_attr
+paddle.nn.LSTM:
+- bias_hh_attr
+- bias_ih_attr
+- direction
+- dropout
+- hidden_size
+- input_size
+- name
+- num_layers
+- time_major
+- weight_hh_attr
+- weight_ih_attr
+paddle.nn.LSTMCell:
+- bias_hh_attr
+- bias_ih_attr
+- hidden_size
+- input_size
+- name
+- weight_hh_attr
+- weight_ih_attr
+paddle.nn.LayerNorm:
+- bias_attr
+- epsilon
+- name
+- normalized_shape
+- weight_attr
+paddle.nn.LeakyReLU:
+- name
+- negative_slope
+paddle.nn.Linear:
+- bias_attr
+- in_features
+- name
+- out_features
+- weight_attr
+paddle.nn.LocalResponseNorm:
+- alpha
+- beta
+- k
+- name
+- size
+- data_format
+paddle.nn.LogSigmoid:
+- name
+paddle.nn.LogSoftmax:
+- axis
+- name
+paddle.nn.MaxPool1D:
+- ceil_mode
+- kernel_size
+- name
+- padding
+- return_mask
+- stride
+paddle.nn.MaxPool2D:
+- ceil_mode
+- data_format
+- kernel_size
+- name
+- padding
+- stride
+paddle.nn.MaxPool3D:
+- ceil_mode
+- data_format
+- kernel_size
+- name
+- padding
+- stride
+paddle.nn.MaxUnPool1D:
+- data_format
+- kernel_size
+- name
+- output_size
+- padding
+- stride
+paddle.nn.MaxUnPool2D:
+- kernel_size
+- name
+- output_size
+- padding
+- stride
+paddle.nn.MaxUnPool3D:
+- data_format
+- kernel_size
+- name
+- output_size
+- padding
+- stride
+paddle.nn.Maxout:
+- axis
+- groups
+- name
+paddle.nn.Mish:
+- name
+paddle.nn.MultiHeadAttention:
+- bias_attr
+- dropout
+- embed_dim
+- need_weights
+- num_heads
+- vdim
+- weight_attr
+paddle.nn.PReLU:
+- data_format
+- init
+- name
+- num_parameters
+- weight_attr
+paddle.nn.Pad1D:
+- data_format
+- mode
+- name
+- padding
+- value
+paddle.nn.Pad2D:
+- data_format
+- mode
+- name
+- padding
+- value
+paddle.nn.Pad3D:
+- data_format
+- mode
+- padding
+- name
+- value
+paddle.nn.PairwiseDistance:
+- epsilon
+- keepdim
+- name
+- p
+paddle.nn.PixelShuffle:
+- data_format
+- name
+- upscale_factor
+paddle.nn.PixelUnshuffle:
+- data_format
+- downscale_factor
+- name
+paddle.nn.RNN:
+- cell
+- is_reverse
+- time_major
+paddle.nn.RNNCellBase:
+- dtype
+paddle.nn.RReLU:
+- lower
+- name
+- upper
+paddle.nn.ReLU:
+- name
+paddle.nn.ReLU6:
+- name
+paddle.nn.SELU:
+- alpha
+- name
+- scale
+paddle.nn.Sigmoid:
+- name
+paddle.nn.Silu:
+- name
+paddle.nn.SimpleRNN:
+- activation
+- bias_hh_attr
+- bias_ih_attr
+- direction
+- dropout
+- hidden_size
+- input_size
+- name
+- num_layers
+- time_major
+- weight_hh_attr
+- weight_ih_attr
+paddle.nn.SimpleRNNCell:
+- activation
+- bias_hh_attr
+- bias_ih_attr
+- hidden_size
+- input_size
+- name
+- weight_hh_attr
+- weight_ih_attr
+paddle.nn.Softmax:
+- axis
+- name
+paddle.nn.Softmax2D: []
+paddle.nn.Softplus:
+- beta
+- threshold
+paddle.nn.Softshrink:
+- threshold
+paddle.nn.Softsign:
+- name
+paddle.nn.SpectralNorm:
+- dim
+- dtype
+- eps
+- power_iters
+- weight_shape
+paddle.nn.Swish:
+- name
+paddle.nn.SyncBatchNorm:
+- bias_attr
+- epsilon
+- momentum
+- num_features
+- weight_attr
+paddle.nn.Tanh:
+- name
+paddle.nn.Tanhshrink:
+- name
+paddle.nn.ThresholdedReLU:
+- threshold
+paddle.nn.Unfold:
+- kernel_sizes
+- name
+- paddings
+- strides
+- dilations
+paddle.nn.Upsample:
+- data_format
+- mode
+- name
+- scale_factor
+- size
+- align_corners
+- align_mode
+paddle.nn.UpsamplingBilinear2D:
+- data_format
+- name
+- scale_factor
+- size
+paddle.nn.UpsamplingNearest2D:
+- data_format
+- name
+- scale_factor
+- size
+paddle.nn.ZeroPad2D:
+- data_format
+- padding

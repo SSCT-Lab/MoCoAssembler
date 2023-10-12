@@ -1,24 +1,25 @@
 api: mindspore.nn.LRScheduler(optimizer, last_epoch=- 1, verbose=False)
-descp: Basic class of learning rate schedule.
 constraints:
-  optimizer:
-    descp: optimizer (mindspore.nn.optim_ex.Optimizer) – The optimizer instance.
-    default: null
-    dtype:
-    - mindspore.nn.optim_ex.optimizer
   last_epoch:
-    descp: 'last_epoch (int, optional) – The epoch/step number. Default: -1.'
     default: -1
+    descp: "last_epoch (int, optional) \u2013 The epoch/step number. Default: -1."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
+  optimizer:
+    default: null
+    descp: "optimizer (mindspore.nn.optim_ex.Optimizer) \u2013 The optimizer instance."
+    dtype:
+    - mindspore.nn.optim_ex.optimizer
   verbose:
-    descp: 'verbose (bool, optional) – Whether to print lr information. Default: False.'
-    default: False
+    default: false
+    descp: "verbose (bool, optional) \u2013 Whether to print lr information. Default:\
+      \ False."
     dtype:
     - bool
+descp: Basic class of learning rate schedule.
 inputs:
   optional:
   - last_epoch

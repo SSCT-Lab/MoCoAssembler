@@ -1,32 +1,36 @@
 api: mindspore.nn.AvgPool1d(kernel_size=1, stride=1, pad_mode='valid', padding=0,
   ceil_mode=False, count_include_pad=True)
-descp: Applies a 1D average pooling over an input Tensor which can be regarded as
-  a composition of 1D input planes.
 constraints:
+  ceil_mode:
+    default: false
+    descp: "ceil_mode (bool) \u2013 If True , use ceil to compute the output shape\
+      \ instead of floor. Default: False ."
+    dtype:
+    - bool
+  count_include_pad:
+    default: true
+    descp: "count_include_pad (bool) \u2013 If True , averaging calculation will include\
+      \ the zero-padding. Default: True ."
+    dtype:
+    - bool
   kernel_size:
-    descp: 'kernel_size (int) – The size of kernel window used to take the average value, Default: 1 .'
     default: 1
+    descp: "kernel_size (int) \u2013 The size of kernel window used to take the average\
+      \ value, Default: 1 ."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
-  stride:
-    descp: 'stride (int) – The distance of kernel moving, an int number that represents the width of movement is strides, Default: 1 .'
-    default: 1
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
   pad_mode:
-    descp: 'pad_mode (str) – "pad" , case insensitive. Default: "valid" .  same: The
-      width of the output is the same as the value after the input is divided by stride.
-      valid: Returns the output obtained by effective calculation without padding.
-      The excess pixels that do not meet the calculation will be discarded. pad: Performs
-      padding on the input. Adds padding size of zeros to both ends of the input.
-      If this mode is set, padding must be greater than or equal to 0 .  '
     default: valid
+    descp: "pad_mode (str) \u2013 \"pad\" , case insensitive. Default: \"valid\" .\
+      \  same: The width of the output is the same as the value after the input is\
+      \ divided by stride. valid: Returns the output obtained by effective calculation\
+      \ without padding. The excess pixels that do not meet the calculation will be\
+      \ discarded. pad: Performs padding on the input. Adds padding size of zeros\
+      \ to both ends of the input. If this mode is set, padding must be greater than\
+      \ or equal to 0 .  "
     dtype:
     - str
     enum:
@@ -34,31 +38,30 @@ constraints:
     - valid
     - pad
   padding:
-    descp: 'padding (Union(int, tuple[int], list[int])) – Pooling padding value, only
-      ‘pad’ mode can be set to non-zero. Default: 0 . padding can only be an integer
-      or a tuple/list containing a single integer, in which case padding times or
-      padding[0] times are padded on both sides of the input.'
     default: 0
+    descp: "padding (Union(int, tuple[int], list[int])) \u2013 Pooling padding value,\
+      \ only \u2018pad\u2019 mode can be set to non-zero. Default: 0 . padding can\
+      \ only be an integer or a tuple/list containing a single integer, in which case\
+      \ padding times or padding[0] times are padded on both sides of the input."
     dtype:
     - int
+    range: null
+    shape: 1
     structure:
     - list
     - single
     - tuple
-    shape: 1
+  stride:
+    default: 1
+    descp: "stride (int) \u2013 The distance of kernel moving, an int number that\
+      \ represents the width of movement is strides, Default: 1 ."
+    dtype:
+    - int
     range: null
-  ceil_mode:
-    descp: 'ceil_mode (bool) – If True , use ceil to compute the output shape instead
-      of floor. Default: False .'
-    default: False
-    dtype:
-    - bool
-  count_include_pad:
-    descp: 'count_include_pad (bool) – If True , averaging calculation will include
-      the zero-padding. Default: True .'
-    default: True
-    dtype:
-    - bool
+    structure:
+    - single
+descp: Applies a 1D average pooling over an input Tensor which can be regarded as
+  a composition of 1D input planes.
 inputs:
   optional:
   - kernel_size

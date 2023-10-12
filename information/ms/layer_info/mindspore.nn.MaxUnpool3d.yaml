@@ -1,46 +1,47 @@
 api: mindspore.nn.MaxUnpool3d(kernel_size, stride=None, padding=0)
-descp: Computes the inverse of mindspore.
 constraints:
   kernel_size:
-    descp: kernel_size (Union[int, tuple[int]]) – The size of kernel used to take
-      the maximum value, an int number that represents depth, height and width of
-      the kernel, or a tuple of three int numbers that represent depth, height and
-      width respectively.
     default: null
+    descp: "kernel_size (Union[int, tuple[int]]) \u2013 The size of kernel used to\
+      \ take the maximum value, an int number that represents depth, height and width\
+      \ of the kernel, or a tuple of three int numbers that represent depth, height\
+      \ and width respectively."
     dtype:
     - int
+    range: null
+    shape: 3
     structure:
     - single
     - tuple
-    shape: 3
-    range: null
-  stride:
-    descp: 'stride (Union[int, tuple[int]]) – The distance of kernel moving, an int
-      number that represents the depth, height and width of movement are both stride,
-      or a tuple of three int numbers that represent depth, height and width of movement
-      respectively. If stride is None, then stride equal to kernel_size. Default:
-      None .'
-    default: None
-    dtype:
-    - int
-    structure:
-    - single
-    - tuple
-    shape: 3
-    range: null
   padding:
-    descp: 'padding (Union[int, tuple[int]]) – The pad value to be filled. Default:
-      0 . If padding is an integer, the paddings of depth, height and width are the
-      same, equal to padding. If padding is a tuple of three integers, the padding
-      of depth, height and width equal to padding[0], padding[1] and padding[2] correspondingly.'
     default: 0
+    descp: "padding (Union[int, tuple[int]]) \u2013 The pad value to be filled. Default:\
+      \ 0 . If padding is an integer, the paddings of depth, height and width are\
+      \ the same, equal to padding. If padding is a tuple of three integers, the padding\
+      \ of depth, height and width equal to padding[0], padding[1] and padding[2]\
+      \ correspondingly."
     dtype:
     - int
+    range: null
+    shape: 3
     structure:
     - single
     - tuple
-    shape: 3
+  stride:
+    default: None
+    descp: "stride (Union[int, tuple[int]]) \u2013 The distance of kernel moving,\
+      \ an int number that represents the depth, height and width of movement are\
+      \ both stride, or a tuple of three int numbers that represent depth, height\
+      \ and width of movement respectively. If stride is None, then stride equal to\
+      \ kernel_size. Default: None ."
+    dtype:
+    - int
     range: null
+    shape: 3
+    structure:
+    - single
+    - tuple
+descp: Computes the inverse of mindspore.
 inputs:
   optional:
   - stride

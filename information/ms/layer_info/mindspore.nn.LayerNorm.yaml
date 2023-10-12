@@ -1,58 +1,33 @@
 api: mindspore.nn.LayerNorm(normalized_shape, begin_norm_axis=- 1, begin_params_axis=-
   1, gamma_init='ones', beta_init='zeros', epsilon=1e-07)
-descp: Applies Layer Normalization over a mini-batch of inputs.
 constraints:
-  normalized_shape:
-    descp: normalized_shape (Union(tuple[int], list[int])) – The normalization is
-      performed over axis begin_norm_axis … R - 1.
-    default: null
-    dtype:
-    - int
-    structure:
-    - list
-    - tuple
-    shape: null
-    range: null
   begin_norm_axis:
-    descp: 'begin_norm_axis (int) – The first normalization dimension: normalization
-      will be performed along dimensions begin_norm_axis: rank(inputs), the value
-      should be in [-1, rank(input)). Default: -1 .'
     default: -1
+    descp: "begin_norm_axis (int) \u2013 The first normalization dimension: normalization\
+      \ will be performed along dimensions begin_norm_axis: rank(inputs), the value\
+      \ should be in [-1, rank(input)). Default: -1 ."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
   begin_params_axis:
-    descp: 'begin_params_axis (int) – The first parameter(beta, gamma)dimension: scale
-      and centering parameters will have dimensions begin_params_axis: rank(inputs)
-      and will be broadcast with the normalized inputs accordingly, the value should
-      be in [-1, rank(input)). Default: -1 .'
     default: -1
+    descp: "begin_params_axis (int) \u2013 The first parameter(beta, gamma)dimension:\
+      \ scale and centering parameters will have dimensions begin_params_axis: rank(inputs)\
+      \ and will be broadcast with the normalized inputs accordingly, the value should\
+      \ be in [-1, rank(input)). Default: -1 ."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
-  gamma_init:
-    descp: 'gamma_init (Union[Tensor, str, Initializer, numbers.Number]) – Initializer
-      for the (gamma) weight. The values of str refer to the function initializer
-      including ''zeros'' , ''ones'' , ''xavier_uniform'' , ''he_uniform'' , etc.
-      Default: ''ones'' .'
-    default: ones
-    dtype:
-    - str
-    enum:
-    - zeros
-    - ones
-    - xavier_uniform
-    - he_uniform
   beta_init:
-    descp: 'beta_init (Union[Tensor, str, Initializer, numbers.Number]) – Initializer
-      for the (beta) weight. The values of str refer to the function initializer including
-      ''zeros'' , ''ones'' , ''xavier_uniform'' , ''he_uniform'' , etc. Default: ''zeros''
-      .'
     default: zeros
+    descp: "beta_init (Union[Tensor, str, Initializer, numbers.Number]) \u2013 Initializer\
+      \ for the (beta) weight. The values of str refer to the function initializer\
+      \ including 'zeros' , 'ones' , 'xavier_uniform' , 'he_uniform' , etc. Default:\
+      \ 'zeros' ."
     dtype:
     - str
     enum:
@@ -61,11 +36,36 @@ constraints:
     - xavier_uniform
     - he_uniform
   epsilon:
-    descp: 'epsilon (float) – (epsilon) added to the denominator for numerical stability.
-      Default: 1e-7 .'
     default: 1e-7
+    descp: "epsilon (float) \u2013 (epsilon) added to the denominator for numerical\
+      \ stability. Default: 1e-7 ."
     dtype:
     - float
+  gamma_init:
+    default: ones
+    descp: "gamma_init (Union[Tensor, str, Initializer, numbers.Number]) \u2013 Initializer\
+      \ for the (gamma) weight. The values of str refer to the function initializer\
+      \ including 'zeros' , 'ones' , 'xavier_uniform' , 'he_uniform' , etc. Default:\
+      \ 'ones' ."
+    dtype:
+    - str
+    enum:
+    - zeros
+    - ones
+    - xavier_uniform
+    - he_uniform
+  normalized_shape:
+    default: null
+    descp: "normalized_shape (Union(tuple[int], list[int])) \u2013 The normalization\
+      \ is performed over axis begin_norm_axis \u2026 R - 1."
+    dtype:
+    - int
+    range: null
+    shape: null
+    structure:
+    - list
+    - tuple
+descp: Applies Layer Normalization over a mini-batch of inputs.
 inputs:
   optional:
   - begin_norm_axis

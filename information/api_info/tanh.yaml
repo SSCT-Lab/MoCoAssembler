@@ -1,7 +1,13 @@
 function:
   torch: torch.nn.Tanh
   ms: mindspore.nn.Tanh
+  paddle: paddle.nn.Tanh
+  jittor: jittor.nn.Tanh
+  tf: tf.keras.activations.tanh
 descp:
   torch: Applies the Hyperbolic Tangent (Tanh) function element-wise.
   ms: Applies the Tanh function element-wise,
+  paddle: Tanh Activation.
+  jittor: no description
+  tf: Hyperbolic tangent activation function.
 param: null

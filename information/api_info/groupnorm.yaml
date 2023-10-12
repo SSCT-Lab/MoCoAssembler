@@ -1,8 +1,14 @@
 function:
   torch: torch.nn.GroupNorm
   ms: mindspore.nn.GroupNorm
+  paddle: paddle.nn.GroupNorm
+  jittor: jittor.nn.GroupNorm
 descp:
   torch: Applies Group Normalization over a mini-batch of inputs as described in the
     paper Group Normalization
   ms: Group Normalization over a mini-batch of inputs.
+  paddle: This interface is used to construct a callable object of the GroupNorm class.
+    For more details, refer to code examples. It implements the function of the Group
+    Normalization Layer. Refer to Group Normalization .
+  jittor: no description
 param: null

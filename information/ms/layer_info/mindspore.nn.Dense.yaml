@@ -1,53 +1,12 @@
 api: mindspore.nn.Dense(in_channels, out_channels, weight_init=None, bias_init=None,
   has_bias=True, activation=None)
-descp: The dense connected layer.
 constraints:
-  in_channels:
-    descp: in_channels (int) – The number of channels in the input space.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  out_channels:
-    descp: out_channels (int) – The number of channels in the output space.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  weight_init:
-    descp: 'weight_init (Union[Tensor, str, Initializer, numbers.Number]) – The trainable
-      weight_init parameter. The dtype is same as x. The values of str refer to the
-      function initializer. Default: None , weight will be initialized using HeUniform.'
-    default: None
-    dtype:
-    - str
-    enum:
-    - None
-  bias_init:
-    descp: 'bias_init (Union[Tensor, str, Initializer, numbers.Number]) – The trainable
-      bias_init parameter. The dtype is same as x. The values of str refer to the
-      function initializer. Default: None , bias will be initialized using Uniform.'
-    default: None
-    dtype:
-    - str
-    enum:
-    - None
-  has_bias:
-    descp: 'has_bias (bool) – Specifies whether the layer uses a bias vector (text{bias}).
-      Default: True.'
-    default: True
-    dtype:
-    - bool
   activation:
-    descp: 'activation (Union[str, Cell, Primitive, None]) – activate function applied
-      to the output of the fully connected layer. Both activation name, e.g. ‘relu’,
-      and mindspore activation function, e.g. mindspore.ops.ReLU(), are supported.
-      Default: None .'
     default: None
+    descp: "activation (Union[str, Cell, Primitive, None]) \u2013 activate function\
+      \ applied to the output of the fully connected layer. Both activation name,\
+      \ e.g. \u2018relu\u2019, and mindspore activation function, e.g. mindspore.ops.ReLU(),\
+      \ are supported. Default: None ."
     dtype:
     - str
     enum:
@@ -77,6 +36,49 @@ constraints:
     - hshrink
     - threshold
     - mish
+  bias_init:
+    default: None
+    descp: "bias_init (Union[Tensor, str, Initializer, numbers.Number]) \u2013 The\
+      \ trainable bias_init parameter. The dtype is same as x. The values of str refer\
+      \ to the function initializer. Default: None , bias will be initialized using\
+      \ Uniform."
+    dtype:
+    - str
+    enum:
+    - None
+  has_bias:
+    default: true
+    descp: "has_bias (bool) \u2013 Specifies whether the layer uses a bias vector\
+      \ (text{bias}). Default: True."
+    dtype:
+    - bool
+  in_channels:
+    default: null
+    descp: "in_channels (int) \u2013 The number of channels in the input space."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+  out_channels:
+    default: null
+    descp: "out_channels (int) \u2013 The number of channels in the output space."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+  weight_init:
+    default: None
+    descp: "weight_init (Union[Tensor, str, Initializer, numbers.Number]) \u2013 The\
+      \ trainable weight_init parameter. The dtype is same as x. The values of str\
+      \ refer to the function initializer. Default: None , weight will be initialized\
+      \ using HeUniform."
+    dtype:
+    - str
+    enum:
+    - None
+descp: The dense connected layer.
 inputs:
   optional: []
   required: []

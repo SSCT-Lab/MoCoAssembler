@@ -1,91 +1,91 @@
 api: mindspore.nn.MultiFieldEmbeddingLookup(vocab_size, embedding_size, field_size,
   param_init='normal', target='CPU', slice_mode='batch_slice', feature_num_list=None,
   max_norm=None, sparse=True, operator='SUM')
-descp: Returns a slice of input tensor based on the specified indices and the field
-  ids.
 constraints:
-  vocab_size:
-    descp: vocab_size (int) – The size of the dictionary of embeddings.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
   embedding_size:
-    descp: embedding_size (int) – The size of each embedding vector.
     default: null
+    descp: "embedding_size (int) \u2013 The size of each embedding vector."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
-  field_size:
-    descp: field_size (int) – The field size of the final outputs.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  param_init:
-    descp: 'param_init (Union[Tensor, str, Initializer, numbers.Number]) – Initializer
-      for the embedding_table. Refer to class initializer for the values of string
-      when a string is specified. Default: ''normal'' .'
-    default: normal
-    dtype:
-    - str
-    enum:
-    - normal
-  target:
-    descp: 'target (str) – Specifies the target where the op is executed. The value
-      must in [ ''DEVICE'' , ''CPU'' ]. Default: ''CPU'' .'
-    default: CPU
-    dtype:
-    - str
-    enum:
-    - CPU
-    - DEVICE
-  slice_mode:
-    descp: 'slice_mode (str) – The slicing way in semi_auto_parallel/auto_parallel.
-      The value must get through mindspore.nn.EmbeddingLookup. Default: ''batch_slice''.'
-    default: batch_slice
-    dtype:
-    - str
-    enum:
-    - batch_slice
   feature_num_list:
-    descp: 'feature_num_list (tuple) – The accompaniment array in field slice mode.
-      This is unused currently. Default:  None .'
     default: None
+    descp: "feature_num_list (tuple) \u2013 The accompaniment array in field slice\
+      \ mode. This is unused currently. Default:  None ."
     dtype: null
     structure:
     - tuple
+  field_size:
+    default: null
+    descp: "field_size (int) \u2013 The field size of the final outputs."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
   max_norm:
-    descp: 'max_norm (Union[float, None]) – A maximum clipping value. The data type
-      must be float16, float32 or None. Default: None .'
     default: None
+    descp: "max_norm (Union[float, None]) \u2013 A maximum clipping value. The data\
+      \ type must be float16, float32 or None. Default: None ."
     dtype:
     - float
     - str
     enum:
     - None
-  sparse:
-    descp: 'sparse (bool) – Using sparse mode. When ‘target’ is set to ''CPU'' , ‘sparse’
-      has to be true. Default: True .'
-    default: True
-    dtype:
-    - bool
   operator:
-    descp: 'operator (str) – The pooling method for the features in one field. Support
-      ''SUM'' , ''MEAN'' and ''MAX'' . Default: ''SUM'' .'
     default: SUM
+    descp: "operator (str) \u2013 The pooling method for the features in one field.\
+      \ Support 'SUM' , 'MEAN' and 'MAX' . Default: 'SUM' ."
     dtype:
     - str
     enum:
     - SUM
     - MEAN
     - MAX
+  param_init:
+    default: normal
+    descp: "param_init (Union[Tensor, str, Initializer, numbers.Number]) \u2013 Initializer\
+      \ for the embedding_table. Refer to class initializer for the values of string\
+      \ when a string is specified. Default: 'normal' ."
+    dtype:
+    - str
+    enum:
+    - normal
+  slice_mode:
+    default: batch_slice
+    descp: "slice_mode (str) \u2013 The slicing way in semi_auto_parallel/auto_parallel.\
+      \ The value must get through mindspore.nn.EmbeddingLookup. Default: 'batch_slice'."
+    dtype:
+    - str
+    enum:
+    - batch_slice
+  sparse:
+    default: true
+    descp: "sparse (bool) \u2013 Using sparse mode. When \u2018target\u2019 is set\
+      \ to 'CPU' , \u2018sparse\u2019 has to be true. Default: True ."
+    dtype:
+    - bool
+  target:
+    default: CPU
+    descp: "target (str) \u2013 Specifies the target where the op is executed. The\
+      \ value must in [ 'DEVICE' , 'CPU' ]. Default: 'CPU' ."
+    dtype:
+    - str
+    enum:
+    - CPU
+    - DEVICE
+  vocab_size:
+    default: null
+    descp: "vocab_size (int) \u2013 The size of the dictionary of embeddings."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+descp: Returns a slice of input tensor based on the specified indices and the field
+  ids.
 inputs:
   optional:
   - param_init

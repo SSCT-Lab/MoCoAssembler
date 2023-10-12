@@ -1,28 +1,29 @@
 api: mindspore.nn.piecewise_constant_lr(milestone, learning_rates)
-descp: Get piecewise constant learning rate.
 constraints:
-  milestone:
-    descp: milestone (Union[list[int], tuple[int]]) – A list of milestone. When the
-      specified step is reached, use the corresponding learning_rates. This list is
-      a monotone increasing list. Every element in the list must be greater than 0.
-    default: null
-    dtype:
-    - int
-    structure:
-    - list
-    - tuple
-    shape: null
-    range: null
   learning_rates:
-    descp: learning_rates (Union[list[float], tuple[float]]) – A list of learning
-      rates.
     default: null
+    descp: "learning_rates (Union[list[float], tuple[float]]) \u2013 A list of learning\
+      \ rates."
     dtype:
     - float
+    shape: null
     structure:
     - list
     - tuple
+  milestone:
+    default: null
+    descp: "milestone (Union[list[int], tuple[int]]) \u2013 A list of milestone. When\
+      \ the specified step is reached, use the corresponding learning_rates. This\
+      \ list is a monotone increasing list. Every element in the list must be greater\
+      \ than 0."
+    dtype:
+    - int
+    range: null
     shape: null
+    structure:
+    - list
+    - tuple
+descp: Get piecewise constant learning rate.
 inputs:
   optional: []
   required:

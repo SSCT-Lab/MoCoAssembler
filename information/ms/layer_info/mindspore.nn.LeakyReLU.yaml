@@ -1,17 +1,17 @@
 api: mindspore.nn.LeakyReLU(alpha=0.2)
-descp: Leaky ReLU activation function.
 constraints:
   alpha:
-    descp: 'alpha (Union[int, float]) – Slope of the activation function at x < 0.
-      Default: 0.2 .'
     default: 0.2
+    descp: "alpha (Union[int, float]) \u2013 Slope of the activation function at x\
+      \ < 0. Default: 0.2 ."
     dtype:
     - int
     - float
+    range: null
+    shape: null
     structure:
     - single
-    shape: null
-    range: null
+descp: Leaky ReLU activation function.
 inputs:
   optional:
   - alpha

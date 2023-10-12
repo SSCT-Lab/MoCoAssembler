@@ -1,7 +1,7 @@
 function:
   torch: torch.nn.Hardshrink
-  ms: mindspore.nn.HShrink
+  paddle: paddle.nn.Hardshrink
 descp:
   torch: Applies the Hard Shrinkage (Hardshrink) function element-wise.
-  ms: Hard Shrink activation function.
+  paddle: Hardshrink Activation
 param: null

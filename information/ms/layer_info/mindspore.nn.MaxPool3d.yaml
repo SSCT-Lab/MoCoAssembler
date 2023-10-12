@@ -1,45 +1,48 @@
 api: mindspore.nn.MaxPool3d(kernel_size=1, stride=1, pad_mode='valid', padding=0,
   dilation=1, return_indices=False, ceil_mode=False)
-descp: 3D max pooling operation. Applies a 3D max pooling over an input Tensor which can be regarded as a composition of 3D planes.
 constraints:
+  ceil_mode:
+    default: false
+    descp: "ceil_mode (bool) \u2013 Whether to use ceil or floor to calculate output\
+      \ shape. Default: False ."
+    dtype:
+    - bool
+  dilation:
+    default: 1
+    descp: "dilation (Union(int, tuple[int])) \u2013 The spacing between the elements\
+      \ of the kernel in convolution, used to increase the receptive field of the\
+      \ pooling operation. If it is a tuple, it must contain one or three integers.\
+      \ Default: 1 ."
+    dtype:
+    - int
+    range: null
+    shape: 3
+    structure:
+    - single
+    - tuple
   kernel_size:
-    descp: 'kernel_size (Union[int, tuple[int]]) – The size of kernel used to take
-      the maximum value, is an int number or a single element tuple that represents
-      depth, height and width of the kernel, or a tuple of three int numbers that
-      represent depth, height and width respectively. The value must be a positive
-      integer. Default: 1 .'
     default: 1
+    descp: "kernel_size (Union[int, tuple[int]]) \u2013 The size of kernel used to\
+      \ take the maximum value, is an int number or a single element tuple that represents\
+      \ depth, height and width of the kernel, or a tuple of three int numbers that\
+      \ represent depth, height and width respectively. The value must be a positive\
+      \ integer. Default: 1 ."
     dtype:
     - int
+    range: null
+    shape: 3
     structure:
     - single
     - tuple
-    shape: 3
-    range: null
-  stride:
-    descp: 'stride (Union[int, tuple[int]]) – The moving stride of pooling operation,
-      an int number or a single element tuple that represents the moving stride of
-      pooling kernel in the directions of depth, height and the width, or a tuple
-      of three int numbers that represent depth, height and width of movement respectively.
-      The value must be a positive integer. If the value is None, the default value
-      kernel_size is used. Default: 1 .'
-    default: 1
-    dtype:
-    - int
-    structure:
-    - single
-    - tuple
-    shape: 3
-    range: null
   pad_mode:
-    descp: 'pad_mode (str) – The optional value for pad mode, is "same" , "valid"
-      or "pad" , not case sensitive. Default: "valid" .  "same": The output shape
-      is the same as the input shape evenly divided by stride. "valid": The possible
-      largest height and width of output will be returned without padding. Extra pixels
-      will be discarded. "pad": pads the input. Pads the top, bottom, left, and right
-      sides of the input with padding number of zeros. If this mode is set, padding
-      must be greater than or equal to 0.  '
     default: valid
+    descp: "pad_mode (str) \u2013 The optional value for pad mode, is \"same\" , \"\
+      valid\" or \"pad\" , not case sensitive. Default: \"valid\" .  \"same\": The\
+      \ output shape is the same as the input shape evenly divided by stride. \"valid\"\
+      : The possible largest height and width of output will be returned without padding.\
+      \ Extra pixels will be discarded. \"pad\": pads the input. Pads the top, bottom,\
+      \ left, and right sides of the input with padding number of zeros. If this mode\
+      \ is set, padding must be greater than or equal to 0.  "
     dtype:
     - str
     enum:
@@ -47,48 +50,46 @@ constraints:
     - valis
     - pad
   padding:
-    descp: 'padding (Union(int, tuple[int], list[int])) – Pooling padding value. Default:
-      0 . padding can only be an integer or a tuple/list containing one or three integers.
-      If padding is an integer or a tuple/list containing one integer, it will be
-      padded in six directions of front, back, top, bottom, left and right of the
-      input. If padding is a tuple/list containing three integers, it will be padded
-      in front and back of the input padding[0] times, up and down padding[1] times,
-      and left and right of the input padding[2] times.'
     default: 0
+    descp: "padding (Union(int, tuple[int], list[int])) \u2013 Pooling padding value.\
+      \ Default: 0 . padding can only be an integer or a tuple/list containing one\
+      \ or three integers. If padding is an integer or a tuple/list containing one\
+      \ integer, it will be padded in six directions of front, back, top, bottom,\
+      \ left and right of the input. If padding is a tuple/list containing three integers,\
+      \ it will be padded in front and back of the input padding[0] times, up and\
+      \ down padding[1] times, and left and right of the input padding[2] times."
     dtype:
     - int
+    range: null
+    shape: 3
     structure:
     - list
     - single
     - tuple
-    shape: 3
-    range: null
-  dilation:
-    descp: 'dilation (Union(int, tuple[int])) – The spacing between the elements of
-      the kernel in convolution, used to increase the receptive field of the pooling
-      operation. If it is a tuple, it must contain one or three integers. Default:
-      1 .'
+  return_indices:
+    default: false
+    descp: "return_indices (bool) \u2013 If True , output is a Tuple of 2 Tensors,\
+      \ representing the maxpool result and where the max values are generated. Otherwise,\
+      \ only the maxpool result is returned. Default: False ."
+    dtype:
+    - bool
+  stride:
     default: 1
+    descp: "stride (Union[int, tuple[int]]) \u2013 The moving stride of pooling operation,\
+      \ an int number or a single element tuple that represents the moving stride\
+      \ of pooling kernel in the directions of depth, height and the width, or a tuple\
+      \ of three int numbers that represent depth, height and width of movement respectively.\
+      \ The value must be a positive integer. If the value is None, the default value\
+      \ kernel_size is used. Default: 1 ."
     dtype:
     - int
+    range: null
+    shape: 3
     structure:
     - single
     - tuple
-    shape: 3
-    range: null
-  return_indices:
-    descp: 'return_indices (bool) – If True , output is a Tuple of 2 Tensors, representing
-      the maxpool result and where the max values are generated. Otherwise, only the
-      maxpool result is returned. Default: False .'
-    default: False
-    dtype:
-    - bool
-  ceil_mode:
-    descp: 'ceil_mode (bool) – Whether to use ceil or floor to calculate output shape.
-      Default: False .'
-    default: False
-    dtype:
-    - bool
+descp: 3D max pooling operation. Applies a 3D max pooling over an input Tensor which
+  can be regarded as a composition of 3D planes.
 inputs:
   optional:
   - kernel_size

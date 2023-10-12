@@ -1,67 +1,68 @@
 api: 'mindspore.nn.TransformerDecoderLayer(d_model: int, nhead: int, dim_feedforward:
   int = 2048, dropout: float = 0.1, activation: Union[str, Cell, callable] = ''relu'',
   layer_norm_eps: float = 1e-05, batch_first: bool = False, norm_first: bool = False)'
-descp: Transformer Decoder Layer.
 constraints:
-  d_model:
-    descp: d_model (int) – The number of expected features in the input tensor.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  nhead:
-    descp: nhead (int) – The number of heads in the MultiheadAttention modules.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  dim_feedforward:
-    descp: 'dim_feedforward (int) – The dimension of the feedforward layer. Default:
-      2048.'
-    default: 2048
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  dropout:
-    descp: 'dropout (float) – The dropout value. Default: 0.1.'
-    default: 0.1
-    dtype:
-    - float
   activation:
-    descp: 'activation (Union[str, callable, Cell]) – The activation function of the
-      intermediate layer, can be a string (“relu” or “gelu”), Cell instance (nn.ReLU()
-      or nn.GELU()) or a callable (ops.relu or ops.gelu). Default: "relu"'
     default: relu
+    descp: "activation (Union[str, callable, Cell]) \u2013 The activation function\
+      \ of the intermediate layer, can be a string (\u201Crelu\u201D or \u201Cgelu\u201D\
+      ), Cell instance (nn.ReLU() or nn.GELU()) or a callable (ops.relu or ops.gelu).\
+      \ Default: \"relu\""
     dtype:
     - str
     enum:
     - relu
     - gelu
-  layer_norm_eps:
-    descp: 'layer_norm_eps (float) – The epsilon value in LayerNorm modules. Default:
-      1e-5.'
-    default: 1e-5
+  batch_first:
+    default: false
+    descp: "batch_first (bool) \u2013 If batch_first = True, then the shape of input\
+      \ and output tensors is ((batch, seq, feature)) , otherwise the shape is ((seq,\
+      \ batch, feature)). Default: False."
+    dtype:
+    - bool
+  d_model:
+    default: null
+    descp: "d_model (int) \u2013 The number of expected features in the input tensor."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+  dim_feedforward:
+    default: 2048
+    descp: "dim_feedforward (int) \u2013 The dimension of the feedforward layer. Default:\
+      \ 2048."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+  dropout:
+    default: 0.1
+    descp: "dropout (float) \u2013 The dropout value. Default: 0.1."
     dtype:
     - float
-  batch_first:
-    descp: 'batch_first (bool) – If batch_first = True, then the shape of input and
-      output tensors is ((batch, seq, feature)) , otherwise the shape is ((seq, batch,
-      feature)). Default: False.'
-    default: False
+  layer_norm_eps:
+    default: 1e-5
+    descp: "layer_norm_eps (float) \u2013 The epsilon value in LayerNorm modules.\
+      \ Default: 1e-5."
     dtype:
-    - bool
+    - float
+  nhead:
+    default: null
+    descp: "nhead (int) \u2013 The number of heads in the MultiheadAttention modules."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
   norm_first:
-    descp: 'norm_first (bool) – If norm_first = True, layer norm is done prior to
-      attention and feedforward operations, respectively. Default: False.'
-    default: False
+    default: false
+    descp: "norm_first (bool) \u2013 If norm_first = True, layer norm is done prior\
+      \ to attention and feedforward operations, respectively. Default: False."
     dtype:
     - bool
+descp: Transformer Decoder Layer.
 inputs:
   optional:
   - dim_feedforward

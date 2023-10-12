@@ -1,26 +1,26 @@
 api: mindspore.nn.RReLU(lower=1 / 8, upper=1 / 3)
-descp: Randomized Leaky ReLU activation function.
 constraints:
   lower:
-    descp: 'lower (Union[int, float]) – Slope of the activation function at x < 0.
-      Default: 1 / 8 .'
     default: 1/8
+    descp: "lower (Union[int, float]) \u2013 Slope of the activation function at x\
+      \ < 0. Default: 1 / 8 ."
     dtype:
     - int
     - float
+    range: null
     structure:
     - single
-    range: null
   upper:
-    descp: 'upper (Union[int, float]) – Slope of the activation function at x < 0.
-      Default: 1 / 3 .'
     default: 1/3
+    descp: "upper (Union[int, float]) \u2013 Slope of the activation function at x\
+      \ < 0. Default: 1 / 3 ."
     dtype:
     - int
     - float
+    range: null
     structure:
     - single
-    range: null
+descp: Randomized Leaky ReLU activation function.
 inputs:
   optional:
   - lower

@@ -1,6 +1,7 @@
 function:
   torch: torch.nn.Dropout3d
   ms: mindspore.nn.Dropout3d
+  paddle: paddle.nn.Dropout3D
 descp:
   torch: Randomly zero out entire channels (a channel is a 3D feature map, e.g., the
     jjj-th channel of the iii-th sample in the batched input is a 3D tensor input[i,j]\text{input}[i,
@@ -10,4 +11,10 @@ descp:
     p from a Bernoulli distribution (For a 5-dimensional tensor with a shape of NCDHW,
     the channel feature map refers to a 3-dimensional feature map with a shape of
     DHW).
+  paddle: 'Randomly zero out entire channels (in the batched input 5d tensor with
+    the shape NCDHW , a channel is a 3D feature map with the shape DHW ). Each channel
+    will be zeroed out independently on every forward call with probability p using
+    samples from a Bernoulli distribution. Dropout3D will help promote independence
+    between feature maps as described in the paper: Efficient Object Localization
+    Using Convolutional Networks'
 param: null

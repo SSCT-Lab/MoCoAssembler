@@ -1,18 +1,18 @@
 api: mindspore.nn.ReflectionPad1d(padding)
-descp: Using a given padding to do reflection pad on the given tensor.
 constraints:
   padding:
-    descp: 'padding (union[int, tuple]) – The padding size to pad the last dimension
-      of input tensor. If padding is an integer: all directions will be padded with
-      the same size. If padding is a tuple: uses ((pad_left, pad_right)) to pad.'
     default: null
+    descp: "padding (union[int, tuple]) \u2013 The padding size to pad the last dimension\
+      \ of input tensor. If padding is an integer: all directions will be padded with\
+      \ the same size. If padding is a tuple: uses ((pad_left, pad_right)) to pad."
     dtype:
     - int
+    range: null
+    shape: 2
     structure:
     - single
     - tuple
-    shape: 2
-    range: null
+descp: Using a given padding to do reflection pad on the given tensor.
 inputs:
   optional: []
   required:

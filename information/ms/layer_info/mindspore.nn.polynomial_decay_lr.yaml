@@ -1,52 +1,53 @@
 api: mindspore.nn.polynomial_decay_lr(learning_rate, end_learning_rate, total_step,
   step_per_epoch, decay_epoch, power, update_decay_epoch=False)
-descp: Calculates learning rate base on polynomial decay function.
 constraints:
-  learning_rate:
-    descp: learning_rate (float) – The initial value of learning rate.
-    default: null
-    dtype:
-    - float
-  end_learning_rate:
-    descp: end_learning_rate (float) – The end value of learning rate.
-    default: null
-    dtype:
-    - float
-  total_step:
-    descp: total_step (int) – The total number of steps.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  step_per_epoch:
-    descp: step_per_epoch (int) – The number of steps in per epoch.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
   decay_epoch:
-    descp: decay_epoch (int) – Number of epochs to decay over.
     default: null
+    descp: "decay_epoch (int) \u2013 Number of epochs to decay over."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
-  power:
-    descp: power (float) – The power of polynomial. It must be greater than 0.
+  end_learning_rate:
     default: null
+    descp: "end_learning_rate (float) \u2013 The end value of learning rate."
     dtype:
     - float
+  learning_rate:
+    default: null
+    descp: "learning_rate (float) \u2013 The initial value of learning rate."
+    dtype:
+    - float
+  power:
+    default: null
+    descp: "power (float) \u2013 The power of polynomial. It must be greater than\
+      \ 0."
+    dtype:
+    - float
+  step_per_epoch:
+    default: null
+    descp: "step_per_epoch (int) \u2013 The number of steps in per epoch."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+  total_step:
+    default: null
+    descp: "total_step (int) \u2013 The total number of steps."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
   update_decay_epoch:
-    descp: 'update_decay_epoch (bool) – If true, update decay_epoch. Default: False
-      .'
-    default: False
+    default: false
+    descp: "update_decay_epoch (bool) \u2013 If true, update decay_epoch. Default:\
+      \ False ."
     dtype:
     - bool
+descp: Calculates learning rate base on polynomial decay function.
 inputs:
   optional:
   - update_decay_epoch

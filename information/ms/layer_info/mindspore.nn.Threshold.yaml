@@ -1,24 +1,25 @@
 api: mindspore.nn.Threshold(threshold, value)
-descp: Thresholds each element of the input Tensor.
 constraints:
   threshold:
-    descp: threshold (Union[int, float]) – The value to threshold at.
     default: null
+    descp: "threshold (Union[int, float]) \u2013 The value to threshold at."
     dtype:
     - int
     - float
+    range: null
     structure:
     - single
-    range: null
   value:
-    descp: value (Union[int, float]) – The value to replace with when element is less than threshold.
     default: null
+    descp: "value (Union[int, float]) \u2013 The value to replace with when element\
+      \ is less than threshold."
     dtype:
     - int
     - float
+    range: null
     structure:
     - single
-    range: null
+descp: Thresholds each element of the input Tensor.
 inputs:
   optional: []
   required:

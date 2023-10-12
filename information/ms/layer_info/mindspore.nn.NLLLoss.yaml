@@ -1,32 +1,33 @@
 api: mindspore.nn.NLLLoss(weight=None, ignore_index=- 100, reduction='mean')
-descp: Gets the negative log likelihood loss between logits and labels.
 constraints:
-  weight:
-    descp: 'weight (Tensor) – The rescaling weight to each class. If the value is
-      not None, the shape is ((C,)). The data type only supports float32 or float16.
-      Default: None .'
-    default: None
-    dtype:
-    - tensor
   ignore_index:
-    descp: 'ignore_index (int) – Specifies a target value that is ignored (typically
-      for padding value) and does not contribute to the gradient. Default: -100 .'
     default: -100
+    descp: "ignore_index (int) \u2013 Specifies a target value that is ignored (typically\
+      \ for padding value) and does not contribute to the gradient. Default: -100\
+      \ ."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
   reduction:
-    descp: 'reduction (str) – Apply specific reduction method to the output: ''none''
-      , ''mean'' , or ''sum'' . Default: ''mean'' .'
     default: mean
+    descp: "reduction (str) \u2013 Apply specific reduction method to the output:\
+      \ 'none' , 'mean' , or 'sum' . Default: 'mean' ."
     dtype:
     - str
     enum:
     - none
     - mean
     - sum
+  weight:
+    default: None
+    descp: "weight (Tensor) \u2013 The rescaling weight to each class. If the value\
+      \ is not None, the shape is ((C,)). The data type only supports float32 or float16.\
+      \ Default: None ."
+    dtype:
+    - tensor
+descp: Gets the negative log likelihood loss between logits and labels.
 inputs:
   optional:
   - weight

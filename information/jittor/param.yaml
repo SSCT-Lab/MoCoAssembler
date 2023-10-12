@@ -1,0 +1,302 @@
+jittor.nn.AdaptiveAvgPool2d:
+- output_size
+jittor.nn.AdaptiveAvgPool3d:
+- output_size
+jittor.nn.AdaptiveMaxPool2d:
+- output_size
+- return_indices
+jittor.nn.AdaptiveMaxPool3d:
+- output_size
+- return_indices
+jittor.nn.AvgPool2d:
+- ceil_mode
+- count_include_pad
+- kernel_size
+- padding
+- stride
+jittor.nn.AvgPool3d:
+- ceil_mode
+- count_include_pad
+- kernel_size
+- padding
+- stride
+jittor.nn.BatchNorm:
+- affine
+- eps
+- is_train
+- momentum
+- num_features
+- sync
+jittor.nn.BatchNorm1d:
+- affine
+- eps
+- is_train
+- momentum
+- num_features
+- sync
+jittor.nn.BatchNorm2d:
+- affine
+- eps
+- is_train
+- momentum
+- num_features
+- sync
+jittor.nn.BatchNorm3d:
+- affine
+- eps
+- is_train
+- momentum
+- num_features
+- sync
+jittor.nn.Bilinear:
+- bias
+- dtype
+- in1_features
+- in2_features
+- out_features
+jittor.nn.ConstantPad2d:
+- padding
+- value
+jittor.nn.Conv:
+- bias
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- padding
+- stride
+jittor.nn.Conv1d:
+- bias
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- padding
+- stride
+jittor.nn.Conv1d_sp:
+- bias
+- inchannels
+- kernel_size
+- outchannels
+jittor.nn.Conv2d:
+- bias
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- padding
+- stride
+jittor.nn.Conv3d:
+- bias
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- padding
+- stride
+jittor.nn.ConvTranspose:
+- bias
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- output_padding
+- padding
+- stride
+jittor.nn.ConvTranspose2d:
+- bias
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- output_padding
+- padding
+- stride
+jittor.nn.ConvTranspose3d:
+- bias
+- dilation
+- groups
+- in_channels
+- kernel_size
+- out_channels
+- output_padding
+- padding
+- stride
+jittor.nn.DropPath:
+- is_train
+- p
+jittor.nn.Dropout:
+- is_train
+- p
+jittor.nn.Dropout2d:
+- is_train
+- p
+jittor.nn.ELU:
+- alpha
+jittor.nn.Embedding:
+- dtype
+- embedding_dim
+- num_embeddings
+jittor.nn.Flatten:
+- end_dim
+- start_dim
+jittor.nn.GELU: []
+jittor.nn.GRUCell:
+- bias
+- hidden_size
+- input_size
+jittor.nn.GroupNorm:
+- affine
+- eps
+- is_train
+- num_channels
+- num_groups
+jittor.nn.Identity:
+- '**kwargs'
+- '*args'
+jittor.nn.InstanceNorm:
+- affine
+- eps
+- is_train
+- momentum
+- num_features
+- sync
+jittor.nn.InstanceNorm1d:
+- affine
+- eps
+- is_train
+- momentum
+- num_features
+- sync
+jittor.nn.InstanceNorm2d:
+- affine
+- eps
+- is_train
+- momentum
+- num_features
+- sync
+jittor.nn.InstanceNorm3d:
+- affine
+- eps
+- is_train
+- momentum
+- num_features
+- sync
+jittor.nn.LSTMCell:
+- bias
+- hidden_size
+- input_size
+jittor.nn.LayerNorm:
+- elementwise_affine
+- eps
+- normalized_shape
+jittor.nn.LayerNorm1d:
+- elementwise_affine
+- eps
+- normalized_shape
+jittor.nn.LayerNorm2d:
+- elementwise_affine
+- eps
+- normalized_shape
+jittor.nn.LayerNorm3d:
+- elementwise_affine
+- eps
+- normalized_shape
+jittor.nn.LeakyReLU: []
+jittor.nn.Leaky_relu: []
+jittor.nn.Linear:
+- bias
+- in_features
+- out_features
+jittor.nn.MaxPool2d:
+- ceil_mode
+- dilation
+- kernel_size
+- padding
+- return_indices
+- stride
+jittor.nn.MaxPool3d:
+- ceil_mode
+- dilation
+- kernel_size
+- padding
+- return_indices
+- stride
+jittor.nn.MaxUnpool2d:
+- kernel_size
+- stride
+jittor.nn.MaxUnpool3d:
+- kernel_size
+- stride
+jittor.nn.Mish:
+- inplace
+jittor.nn.PReLU:
+- init_
+- num_parameters
+jittor.nn.PixelShuffle:
+- upscale_factor
+jittor.nn.Pool:
+- ceil_mode
+- count_include_pad
+- dilation
+- kernel_size
+- op
+- padding
+- return_indices
+- stride
+jittor.nn.Pool3d:
+- ceil_mode
+- count_include_pad
+- dilation
+- kernel_size
+- op
+- padding
+- return_indices
+- stride
+jittor.nn.RNNBase:
+- batch_first
+- bias
+- bidirectional
+- dropout
+- hidden_size
+- input_size
+- mode
+- nonlinearity
+- num_layers
+- proj_size
+jittor.nn.RNNCell:
+- bias
+- hidden_size
+- input_size
+- nonlinearity
+jittor.nn.ReLU: []
+jittor.nn.ReLU6: []
+jittor.nn.ReflectionPad2d:
+- padding
+jittor.nn.ReplicationPad2d:
+- padding
+jittor.nn.Resize:
+- align_corners
+- mode
+- size
+jittor.nn.Sigmoid: []
+jittor.nn.Softmax: []
+jittor.nn.Softplus:
+- beta
+- threshold
+jittor.nn.Tanh: []
+jittor.nn.Upsample:
+- mode
+- scale_factor
+jittor.nn.UpsamplingBilinear2d:
+- scale_factor
+jittor.nn.UpsamplingNearest2d:
+- scale_factor
+jittor.nn.ZeroPad2d:
+- padding

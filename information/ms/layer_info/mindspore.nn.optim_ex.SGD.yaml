@@ -1,53 +1,55 @@
 api: mindspore.nn.optim_ex.SGD(params, lr, momentum=0, dampening=0, weight_decay=0,
   nesterov=False, *, maximize=False)
-descp: Stochastic Gradient Descent optimizer.
 constraints:
-  params:
-    descp: params (Union[list(Parameter), list(dict)]) – list of parameters to optimize
-      or dicts defining parameter groups.
+  dampening:
+    default: 0
+    descp: "dampening (Union[int, float], optional) \u2013 dampening for momentum.\
+      \ Default: 0."
+    dtype:
+    - int
+    - float
+    range: null
+    structure:
+    - single
+  lr:
     default: null
+    descp: "lr (Union[int, float, Tensor]) \u2013 learning rate."
+    dtype:
+    - int
+    - float
+    range: null
+    structure:
+    - single
+  momentum:
+    default: 0
+    descp: "momentum (Union[int, float], optional) \u2013 momentum factor. Default:\
+      \ 0."
+    dtype:
+    - int
+    - float
+    range: null
+    structure:
+    - single
+  nesterov:
+    default: false
+    descp: "nesterov (bool, optional) \u2013 enables Nesterov momentum. Default: False."
+    dtype:
+    - bool
+  params:
+    default: null
+    descp: "params (Union[list(Parameter), list(dict)]) \u2013 list of parameters\
+      \ to optimize or dicts defining parameter groups."
     dtype:
     - union[list(parameter), list(dict)]
     structure:
     - list
-  lr:
-    descp: lr (Union[int, float, Tensor]) – learning rate.
-    default: null
-    dtype:
-    - int
-    - float
-    structure:
-    - single
-    range: null
-  momentum:
-    descp: 'momentum (Union[int, float], optional) – momentum factor. Default: 0.'
-    default: 0
-    dtype:
-    - int
-    - float
-    structure:
-    - single
-    range: null
   weight_decay:
-    descp: 'weight_decay (float, optional) – weight decay (L2 penalty). Default: 0.'
     default: 0
+    descp: "weight_decay (float, optional) \u2013 weight decay (L2 penalty). Default:\
+      \ 0."
     dtype:
     - float
-  dampening:
-    descp: 'dampening (Union[int, float], optional) – dampening for momentum. Default:
-      0.'
-    default: 0
-    dtype:
-    - int
-    - float
-    structure:
-    - single
-    range: null
-  nesterov:
-    descp: 'nesterov (bool, optional) – enables Nesterov momentum. Default: False.'
-    default: False
-    dtype:
-    - bool
+descp: Stochastic Gradient Descent optimizer.
 inputs:
   optional:
   - momentum

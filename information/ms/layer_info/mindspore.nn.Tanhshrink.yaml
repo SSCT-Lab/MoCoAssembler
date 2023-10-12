@@ -1,6 +1,6 @@
 api: mindspore.nn.Tanhshrink
+constraints: {}
 descp: Tanhshrink activation function.
-constraints: []
 inputs:
   optional: []
   required: []

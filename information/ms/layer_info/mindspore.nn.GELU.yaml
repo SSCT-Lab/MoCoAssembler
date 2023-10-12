@@ -1,14 +1,14 @@
 api: mindspore.nn.GELU(approximate=True)
-descp: Gaussian error linear unit activation function.
 constraints:
   approximate:
-    descp: 'approximate (bool) – Whether to enable approximation. Default: True .
-      If approximate is True, The gaussian error linear activation is: (0.5 * x *
-      (1 + tanh(sqrt(2 / pi) * (x + 0.044715 * x^3)))) else, it is: (x * P(X <= x)
-      = 0.5 * x * (1 + erf(x / sqrt(2)))), where P(X) ~ N(0, 1). '
-    default: True
+    default: true
+    descp: "approximate (bool) \u2013 Whether to enable approximation. Default: True\
+      \ . If approximate is True, The gaussian error linear activation is: (0.5 *\
+      \ x * (1 + tanh(sqrt(2 / pi) * (x + 0.044715 * x^3)))) else, it is: (x * P(X\
+      \ <= x) = 0.5 * x * (1 + erf(x / sqrt(2)))), where P(X) ~ N(0, 1). "
     dtype:
     - bool
+descp: Gaussian error linear unit activation function.
 inputs:
   optional:
   - approximate

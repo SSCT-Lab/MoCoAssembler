@@ -1,6 +1,6 @@
 api: mindspore.nn.ReLU
+constraints: {}
 descp: Rectified Linear Unit activation function.
-constraints: []
 inputs:
   optional: []
   required: []

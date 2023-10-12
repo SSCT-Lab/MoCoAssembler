@@ -1,6 +1,8 @@
 function:
   torch: torch.nn.BatchNorm2d
   ms: mindspore.nn.BatchNorm2d
+  paddle: paddle.nn.BatchNorm2D
+  jittor: jittor.nn.BatchNorm2d
 descp:
   torch: 'Applies Batch Normalization over a 4D input (a mini-batch of 2D inputs with
     additional channel dimension) as described in the paper Batch Normalization: Accelerating
@@ -8,4 +10,8 @@ descp:
   ms: Batch Normalization is widely used in convolutional networks. This layer applies
     Batch Normalization over a 4D input (a mini-batch of 2D inputs with additional
     channel dimension) to avoid internal covariate shift.
+  paddle: 'Applies Batch Normalization over a 4D input (a mini-batch of 2D inputswith
+    additional channel dimension) as described in the paper Batch Normalization: Accelerating
+    Deep Network Training by Reducing Internal Covariate Shift .'
+  jittor: no description
 param: null

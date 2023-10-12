@@ -1,45 +1,51 @@
 api: mindspore.nn.AvgPool3d(kernel_size=1, stride=1, pad_mode='valid', padding=0,
   ceil_mode=False, count_include_pad=True, divisor_override=None)
-descp: Applies a 3D average pooling over an input Tensor which can be regarded as
-  a composition of 3D input planes.
 constraints:
+  ceil_mode:
+    default: false
+    descp: "ceil_mode (bool, optional) \u2013 If True , use ceil to compute the output\
+      \ shape instead of floor. Default: False ."
+    dtype:
+    - bool
+  count_include_pad:
+    default: true
+    descp: "count_include_pad (bool, optional) \u2013 If True , averaging calculation\
+      \ will include the zero-padding. Default: True ."
+    dtype:
+    - bool
+  divisor_override:
+    default: None
+    descp: "divisor_override (int, optional) \u2013 If it is specified as a non-zero\
+      \ parameter, this parameter will be used as the divisor in the average calculation.\
+      \ Otherwise, kernel_size will be used as the divisor. Default: None ."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
   kernel_size:
-    descp: 'kernel_size (Union[int, tuple[int]], optional) – The size of kernel used
-      to take the average value, can be an int number or a single element tuple that
-      represents depth, height and width, or a tuple of three positive integers that
-      represent depth, height and width respectively. Default: 1 .'
     default: 1
+    descp: "kernel_size (Union[int, tuple[int]], optional) \u2013 The size of kernel\
+      \ used to take the average value, can be an int number or a single element tuple\
+      \ that represents depth, height and width, or a tuple of three positive integers\
+      \ that represent depth, height and width respectively. Default: 1 ."
     dtype:
     - int
+    range: null
+    shape: 3
     structure:
     - single
     - tuple
-    shape: 3
-    range: null
-  stride:
-    descp: 'stride (Union[int, tuple[int]], optional) – The distance of kernel moving,
-      can be a positive int or a single element tuple that represents the depth, height
-      and width of movement, or a tuple of three positive integers that represents
-      depth, height and width of movement respectively. If the value is None, the
-      default value kernel_size is used. Default: 1 .'
-    default: 1
-    dtype:
-    - int
-    structure:
-    - single
-    - tuple
-    shape: 3
-    range: null
   pad_mode:
-    descp: 'pad_mode (str, optional) – Specifies the padding method of pooling, optional
-      values are "same", "valid" or "pad" , case insensitive. Default: "valid" .  same:
-      The depth, height and width of the output is the same as the value after the
-      input is divided by stride. valid: Returns the output obtained by effective
-      calculation without padding. The excess pixels that do not meet the calculation
-      will be discarded. pad: Pads the input. Fill the front, back, top, and bottom
-      of the input with 0s of size padding. If this mode is set, padding must be greater
-      than or equal to 0.  '
     default: valid
+    descp: "pad_mode (str, optional) \u2013 Specifies the padding method of pooling,\
+      \ optional values are \"same\", \"valid\" or \"pad\" , case insensitive. Default:\
+      \ \"valid\" .  same: The depth, height and width of the output is the same as\
+      \ the value after the input is divided by stride. valid: Returns the output\
+      \ obtained by effective calculation without padding. The excess pixels that\
+      \ do not meet the calculation will be discarded. pad: Pads the input. Fill the\
+      \ front, back, top, and bottom of the input with 0s of size padding. If this\
+      \ mode is set, padding must be greater than or equal to 0.  "
     dtype:
     - str
     enum:
@@ -47,46 +53,41 @@ constraints:
     - valid
     - pad
   padding:
-    descp: 'padding (Union(int, tuple[int], list[int]), optional) – Pooling padding
-      value, only ‘pad’ mode can be set to non-zero. Default: 0 . Only the following
-      paddings are supported:  padding is an integer or a tuple/list containing one
-      integer, it will be padded in six directions of front, back, top, bottom, left
-      and right of the input. padding is a tuple/list containing three integers, it
-      will be padded in front and back of the input padding[0] times, up and down
-      padding[1] times, and left and right of the input padding[2] times.  '
     default: 0
+    descp: "padding (Union(int, tuple[int], list[int]), optional) \u2013 Pooling padding\
+      \ value, only \u2018pad\u2019 mode can be set to non-zero. Default: 0 . Only\
+      \ the following paddings are supported:  padding is an integer or a tuple/list\
+      \ containing one integer, it will be padded in six directions of front, back,\
+      \ top, bottom, left and right of the input. padding is a tuple/list containing\
+      \ three integers, it will be padded in front and back of the input padding[0]\
+      \ times, up and down padding[1] times, and left and right of the input padding[2]\
+      \ times.  "
     dtype:
     - int
+    range: null
+    shape:
+    - 1
+    - 3
     structure:
     - list
     - single
     - tuple
-    shape:
-    - 1
-    - 3
-    range: null
-  ceil_mode:
-    descp: 'ceil_mode (bool, optional) – If True , use ceil to compute the output
-      shape instead of floor. Default: False .'
-    default: False
-    dtype:
-    - bool
-  count_include_pad:
-    descp: 'count_include_pad (bool, optional) – If True , averaging calculation will
-      include the zero-padding. Default: True .'
-    default: True
-    dtype:
-    - bool
-  divisor_override:
-    descp: 'divisor_override (int, optional) – If it is specified as a non-zero parameter,
-      this parameter will be used as the divisor in the average calculation. Otherwise,
-      kernel_size will be used as the divisor. Default: None .'
-    default: None
+  stride:
+    default: 1
+    descp: "stride (Union[int, tuple[int]], optional) \u2013 The distance of kernel\
+      \ moving, can be a positive int or a single element tuple that represents the\
+      \ depth, height and width of movement, or a tuple of three positive integers\
+      \ that represents depth, height and width of movement respectively. If the value\
+      \ is None, the default value kernel_size is used. Default: 1 ."
     dtype:
     - int
+    range: null
+    shape: 3
     structure:
     - single
-    range: null
+    - tuple
+descp: Applies a 3D average pooling over an input Tensor which can be regarded as
+  a composition of 3D input planes.
 inputs:
   optional:
   - kernel_size

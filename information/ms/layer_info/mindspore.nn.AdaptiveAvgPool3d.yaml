@@ -1,19 +1,20 @@
 api: mindspore.nn.AdaptiveAvgPool3d(output_size)
-descp: This operator applies a 3D adaptive average pooling to an input signal composed
-  of multiple input planes.
 constraints:
   output_size:
-    descp: output_size (Union[int, tuple]) – The target output size. output_size can
-      be a tuple ((D, H, W)), or an int D for ((D, D, D)). (D), (H) and (W) can be
-      int or None which means the output size is the same as that of the input.
     default: null
+    descp: "output_size (Union[int, tuple]) \u2013 The target output size. output_size\
+      \ can be a tuple ((D, H, W)), or an int D for ((D, D, D)). (D), (H) and (W)\
+      \ can be int or None which means the output size is the same as that of the\
+      \ input."
     dtype:
     - int
+    range: null
+    shape: 3
     structure:
     - single
     - tuple
-    shape: 3
-    range: null
+descp: This operator applies a 3D adaptive average pooling to an input signal composed
+  of multiple input planes.
 inputs:
   optional: []
   required:

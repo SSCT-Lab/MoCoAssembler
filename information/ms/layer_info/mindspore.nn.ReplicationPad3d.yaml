@@ -1,21 +1,20 @@
 api: mindspore.nn.ReplicationPad3d(padding)
-descp: Pad on DHW dimension of input x according to padding.
 constraints:
   padding:
-    descp: 'padding (union[int, tuple]) – The padding size to pad the last three dimension
-      of x .  If padding is an integer, all directions will be padded with the same
-      size. If padding is a tuple, uses ((pad_{left}, pad_{right}, pad_{up}, pad_{down},
-      pad_{front}, pad_{back})) to pad.  '
     default: null
+    descp: "padding (union[int, tuple]) \u2013 The padding size to pad the last three\
+      \ dimension of x .  If padding is an integer, all directions will be padded\
+      \ with the same size. If padding is a tuple, uses ((pad_{left}, pad_{right},\
+      \ pad_{up}, pad_{down}, pad_{front}, pad_{back})) to pad.  "
     dtype:
     - int
+    range: null
+    shape: 6
     structure:
     - single
     - tuple
-    shape: 6
-    range: null
+descp: Pad on DHW dimension of input x according to padding.
 inputs:
   optional: []
   required:
   - padding
-

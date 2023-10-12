@@ -1,55 +1,55 @@
 api: mindspore.nn.BiDense(in1_channels, in2_channels, out_channels, weight_init=None,
   bias_init=None, has_bias=True)
-descp: The bilinear dense connected layer.
 constraints:
-  in1_channels:
-    descp: in1_channels (int) – The number of channels in the input1 space.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  in2_channels:
-    descp: in2_channels (int) – The number of channels in the input2 space.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  out_channels:
-    descp: out_channels (int) – The number of channels in the output space.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
-  weight_init:
-    descp: 'weight_init (Union[Tensor, str, Initializer, numbers.Number]) – The trainable
-      weight_init parameter. The values of str refer to the function initializer.
-      Default: None .'
-    default: None
-    dtype:
-    - str
-    enum:
-    - None
   bias_init:
-    descp: 'bias_init (Union[Tensor, str, Initializer, numbers.Number]) – The trainable
-      bias_init parameter. The values of str refer to the function initializer. Default:
-      None .'
     default: None
+    descp: "bias_init (Union[Tensor, str, Initializer, numbers.Number]) \u2013 The\
+      \ trainable bias_init parameter. The values of str refer to the function initializer.\
+      \ Default: None ."
     dtype:
     - str
     enum:
     - None
   has_bias:
-    descp: 'has_bias (bool) – Specifies whether the layer uses (text{bias}) vector.
-      Default: True .'
-    default: True
+    default: true
+    descp: "has_bias (bool) \u2013 Specifies whether the layer uses (text{bias}) vector.\
+      \ Default: True ."
     dtype:
     - bool
+  in1_channels:
+    default: null
+    descp: "in1_channels (int) \u2013 The number of channels in the input1 space."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+  in2_channels:
+    default: null
+    descp: "in2_channels (int) \u2013 The number of channels in the input2 space."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+  out_channels:
+    default: null
+    descp: "out_channels (int) \u2013 The number of channels in the output space."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+  weight_init:
+    default: None
+    descp: "weight_init (Union[Tensor, str, Initializer, numbers.Number]) \u2013 The\
+      \ trainable weight_init parameter. The values of str refer to the function initializer.\
+      \ Default: None ."
+    dtype:
+    - str
+    enum:
+    - None
+descp: The bilinear dense connected layer.
 inputs:
   optional:
   - weight_init

@@ -1,31 +1,32 @@
 api: mindspore.nn.ConstantPad2d(padding, value)
-descp: Using a given constant value to pads the last two dimensions of input tensor.
 constraints:
   padding:
-    descp: padding (Union[int, tuple]) – The padding size to pad the last two dimensions
-      of input tensor. If is int, uses the same padding in boundaries of input’s last
-      two dimensions. If is tuple and length of padding is 4 uses (padding_0, padding_1,
-      padding_2, padding_3) to pad. If the input is x, the size of last dimension
-      of output is (padding_0 + x.shape[-1] + padding_1). The size of penultimate
-      dimension of output is (padding_2 + x.shape[-2] + padding_3). The remaining
-      dimensions of the output are consistent with those of the input.
     default: null
+    descp: "padding (Union[int, tuple]) \u2013 The padding size to pad the last two\
+      \ dimensions of input tensor. If is int, uses the same padding in boundaries\
+      \ of input\u2019s last two dimensions. If is tuple and length of padding is\
+      \ 4 uses (padding_0, padding_1, padding_2, padding_3) to pad. If the input is\
+      \ x, the size of last dimension of output is (padding_0 + x.shape[-1] + padding_1).\
+      \ The size of penultimate dimension of output is (padding_2 + x.shape[-2] +\
+      \ padding_3). The remaining dimensions of the output are consistent with those\
+      \ of the input."
     dtype:
     - int
+    range: null
+    shape: 4
     structure:
     - single
     - tuple
-    shape: 4
-    range: null
   value:
-    descp: value (Union[int, float]) – Padding value.
     default: null
+    descp: "value (Union[int, float]) \u2013 Padding value."
     dtype:
     - int
     - float
+    range: null
     structure:
     - single
-    range: null
+descp: Using a given constant value to pads the last two dimensions of input tensor.
 inputs:
   optional: []
   required:

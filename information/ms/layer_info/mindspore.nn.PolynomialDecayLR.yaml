@@ -1,36 +1,37 @@
 api: mindspore.nn.PolynomialDecayLR(learning_rate, end_learning_rate, decay_steps,
   power, update_decay_steps=False)
-descp: Calculates learning rate base on polynomial decay function.
 constraints:
-  learning_rate:
-    descp: learning_rate (float) – The initial value of learning rate.
-    default: null
-    dtype:
-    - float
-  end_learning_rate:
-    descp: end_learning_rate (float) – The end value of learning rate.
-    default: null
-    dtype:
-    - float
   decay_steps:
-    descp: decay_steps (int) – Number of steps to decay over.
     default: null
+    descp: "decay_steps (int) \u2013 Number of steps to decay over."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
-  power:
-    descp: power (float) – The power of polynomial. It must be greater than 0.
+  end_learning_rate:
     default: null
+    descp: "end_learning_rate (float) \u2013 The end value of learning rate."
+    dtype:
+    - float
+  learning_rate:
+    default: null
+    descp: "learning_rate (float) \u2013 The initial value of learning rate."
+    dtype:
+    - float
+  power:
+    default: null
+    descp: "power (float) \u2013 The power of polynomial. It must be greater than\
+      \ 0."
     dtype:
     - float
   update_decay_steps:
-    descp: 'update_decay_steps (bool) – If true , learning rate is decayed once every
-      decay_steps time. Default: False .'
-    default: False
+    default: false
+    descp: "update_decay_steps (bool) \u2013 If true , learning rate is decayed once\
+      \ every decay_steps time. Default: False ."
     dtype:
     - bool
+descp: Calculates learning rate base on polynomial decay function.
 inputs:
   optional:
   - update_decay_steps

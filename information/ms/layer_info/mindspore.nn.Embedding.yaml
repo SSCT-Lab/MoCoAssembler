@@ -1,56 +1,57 @@
 api: mindspore.nn.Embedding(vocab_size, embedding_size, use_one_hot=False, embedding_table='normal',
   dtype=mstype.float32, padding_idx=None)
-descp: A simple lookup table that stores embeddings of a fixed dictionary and size.
 constraints:
-  vocab_size:
-    descp: vocab_size (int) – Size of the dictionary of embeddings.
-    default: null
+  dtype:
+    default: mstype.float32
+    descp: "dtype (mindspore.dtype) \u2013 Data type of x. Default: mstype.float32\
+      \ ."
     dtype:
-    - int
-    structure:
-    - single
-    range: null
+    - mindspore.dtype
   embedding_size:
-    descp: embedding_size (int) – The size of each embedding vector.
     default: null
+    descp: "embedding_size (int) \u2013 The size of each embedding vector."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
-  use_one_hot:
-    descp: 'use_one_hot (bool) – Specifies whether to apply one_hot encoding form.
-      Default: False .'
-    default: False
-    dtype:
-    - bool
   embedding_table:
-    descp: 'embedding_table (Union[Tensor, str, Initializer, numbers.Number]) – Initializer
-      for the embedding_table. Refer to class initializer for the values of string
-      when a string is specified. Default: ''normal'' .'
     default: normal
+    descp: "embedding_table (Union[Tensor, str, Initializer, numbers.Number]) \u2013\
+      \ Initializer for the embedding_table. Refer to class initializer for the values\
+      \ of string when a string is specified. Default: 'normal' ."
     dtype:
     - str
     enum:
     - normal
-  dtype:
-    descp: 'dtype (mindspore.dtype) – Data type of x. Default: mstype.float32 .'
-    default: mstype.float32
-    dtype:
-    - mindspore.dtype
   padding_idx:
-    descp: 'padding_idx (int, None) – When the padding_idx encounters index, the output
-      embedding vector of this index will be initialized to zero. Default: None .
-      The feature is inactivated.'
     default: None
+    descp: "padding_idx (int, None) \u2013 When the padding_idx encounters index,\
+      \ the output embedding vector of this index will be initialized to zero. Default:\
+      \ None . The feature is inactivated."
     dtype:
     - int
     - str
-    structure:
-    - single
-    range: null
     enum:
     - None
+    range: null
+    structure:
+    - single
+  use_one_hot:
+    default: false
+    descp: "use_one_hot (bool) \u2013 Specifies whether to apply one_hot encoding\
+      \ form. Default: False ."
+    dtype:
+    - bool
+  vocab_size:
+    default: null
+    descp: "vocab_size (int) \u2013 Size of the dictionary of embeddings."
+    dtype:
+    - int
+    range: null
+    structure:
+    - single
+descp: A simple lookup table that stores embeddings of a fixed dictionary and size.
 inputs:
   optional:
   - use_one_hot

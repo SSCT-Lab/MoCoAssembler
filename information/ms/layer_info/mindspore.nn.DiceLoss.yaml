@@ -1,13 +1,13 @@
 api: mindspore.nn.DiceLoss(smooth=1e-05)
-descp: The Dice coefficient is a set similarity loss, which is used to calculate the
-  similarity between two samples.
 constraints:
   smooth:
-    descp: 'smooth (float) – A term added to the denominator to improve numerical
-      stability. Should be greater than 0. Default: 1e-5 .'
     default: 1e-5
+    descp: "smooth (float) \u2013 A term added to the denominator to improve numerical\
+      \ stability. Should be greater than 0. Default: 1e-5 ."
     dtype:
     - float
+descp: The Dice coefficient is a set similarity loss, which is used to calculate the
+  similarity between two samples.
 inputs:
   optional:
   - smooth

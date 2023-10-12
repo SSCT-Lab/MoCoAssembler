@@ -1,106 +1,108 @@
 api: mindspore.nn.RMSProp(params, learning_rate=0.1, decay=0.9, momentum=0.0, epsilon=1e-10,
   use_locking=False, centered=False, loss_scale=1.0, weight_decay=0.0)
-descp: Implements Root Mean Squared Propagation (RMSProp) algorithm.
 constraints:
+  centered:
+    default: false
+    descp: "centered (bool) \u2013 If True, gradients are normalized by the estimated\
+      \ variance of the gradient. Default: False ."
+    dtype:
+    - bool
+  decay:
+    default: 0.9
+    descp: "decay (float) \u2013 Decay rate. Should be equal to or greater than 0.\
+      \ Default: 0.9 ."
+    dtype:
+    - float
+  epsilon:
+    default: 1e-10
+    descp: "epsilon (float) \u2013 Term added to the denominator to improve numerical\
+      \ stability. Should be greater than 0. Default: 1e-10 ."
+    dtype:
+    - float
+  learning_rate:
+    default: 0.1
+    descp: "learning_rate (Union[float, int, Tensor, Iterable, LearningRateSchedule])\
+      \ \u2013 Default: 0.1 .  float: The fixed learning rate value. Must be equal\
+      \ to or greater than 0. int: The fixed learning rate value. Must be equal to\
+      \ or greater than 0. It will be converted to float. Tensor: Its value should\
+      \ be a scalar or a 1-D vector. For scalar, fixed learning rate will be applied.\
+      \ For vector, learning rate is dynamic, then the i-th step will take the i-th\
+      \ value as the learning rate. Iterable: Learning rate is dynamic. The i-th step\
+      \ will take the i-th value as the learning rate. LearningRateSchedule: Learning\
+      \ rate is dynamic. During training, the optimizer calls the instance of LearningRateSchedule\
+      \ with step as the input to get the learning rate of the current step.  "
+    dtype:
+    - int
+    - float
+    range: null
+    structure:
+    - single
+  loss_scale:
+    default: 1.0
+    descp: "loss_scale (float) \u2013 A floating point value for the loss scale. Should\
+      \ be greater than 0. In general, use the default value. Only when FixedLossScaleManager\
+      \ is used for training and the drop_overflow_update in FixedLossScaleManager\
+      \ is set to False , then this value needs to be the same as the loss_scale in\
+      \ FixedLossScaleManager. Refer to class mindspore.amp.FixedLossScaleManager\
+      \ for more details. Default: 1.0 ."
+    dtype:
+    - float
+  momentum:
+    default: 0.0
+    descp: "momentum (float) \u2013 Hyperparameter of type float, means momentum for\
+      \ the moving average. Should be equal to or greater than 0. Default: 0.0 ."
+    dtype:
+    - float
   params:
-    descp: 'params (Union[list[Parameter], list[dict]]) – Must be list of Parameter
-      or list of dict. When the params is a list of dict, the string “params”, “lr”,
-      “weight_decay”, “grad_centralization” and “order_params” are the keys can be
-      parsed.  params: Required. Parameters in current group. The value must be a
-      list of Parameter. lr: Optional. If “lr” in the keys, the value of corresponding
-      learning rate will be used. If not, the learning_rate in optimizer will be used.
-      Fixed and dynamic learning rate are supported. weight_decay: Optional. If “weight_decay”
-      in the keys, the value of corresponding weight decay will be used. If not, the
-      weight_decay in the optimizer will be used. It should be noted that weight decay
-      can be a constant value or a Cell. It is a Cell only when dynamic weight decay
-      is applied. Dynamic weight decay is similar to dynamic learning rate, users
-      need to customize a weight decay schedule only with global step as input, and
-      during training, the optimizer calls the instance of WeightDecaySchedule to
-      get the weight decay value of current step. grad_centralization: Optional. Must
-      be Boolean. If “grad_centralization” is in the keys, the set value will be used.
-      If not, the grad_centralization is False by default. This configuration only
-      works on the convolution layer. order_params: Optional. When parameters are
-      grouped, this usually is used to maintain the order of parameters that appeared
-      in the network to improve performance. The value should be parameters whose
-      order will be followed in optimizer. If order_params in the keys, other keys
-      will be ignored and the element of ‘order_params’ must be in one group of params.  '
     default: null
+    descp: "params (Union[list[Parameter], list[dict]]) \u2013 Must be list of Parameter\
+      \ or list of dict. When the params is a list of dict, the string \u201Cparams\u201D\
+      , \u201Clr\u201D, \u201Cweight_decay\u201D, \u201Cgrad_centralization\u201D\
+      \ and \u201Corder_params\u201D are the keys can be parsed.  params: Required.\
+      \ Parameters in current group. The value must be a list of Parameter. lr: Optional.\
+      \ If \u201Clr\u201D in the keys, the value of corresponding learning rate will\
+      \ be used. If not, the learning_rate in optimizer will be used. Fixed and dynamic\
+      \ learning rate are supported. weight_decay: Optional. If \u201Cweight_decay\u201D\
+      \ in the keys, the value of corresponding weight decay will be used. If not,\
+      \ the weight_decay in the optimizer will be used. It should be noted that weight\
+      \ decay can be a constant value or a Cell. It is a Cell only when dynamic weight\
+      \ decay is applied. Dynamic weight decay is similar to dynamic learning rate,\
+      \ users need to customize a weight decay schedule only with global step as input,\
+      \ and during training, the optimizer calls the instance of WeightDecaySchedule\
+      \ to get the weight decay value of current step. grad_centralization: Optional.\
+      \ Must be Boolean. If \u201Cgrad_centralization\u201D is in the keys, the set\
+      \ value will be used. If not, the grad_centralization is False by default. This\
+      \ configuration only works on the convolution layer. order_params: Optional.\
+      \ When parameters are grouped, this usually is used to maintain the order of\
+      \ parameters that appeared in the network to improve performance. The value\
+      \ should be parameters whose order will be followed in optimizer. If order_params\
+      \ in the keys, other keys will be ignored and the element of \u2018order_params\u2019\
+      \ must be in one group of params.  "
     dtype:
     - union[list[parameter], list[dict]]
     structure:
     - list
-  learning_rate:
-    descp: 'learning_rate (Union[float, int, Tensor, Iterable, LearningRateSchedule])
-      – Default: 0.1 .  float: The fixed learning rate value. Must be equal to or
-      greater than 0. int: The fixed learning rate value. Must be equal to or greater
-      than 0. It will be converted to float. Tensor: Its value should be a scalar
-      or a 1-D vector. For scalar, fixed learning rate will be applied. For vector,
-      learning rate is dynamic, then the i-th step will take the i-th value as the
-      learning rate. Iterable: Learning rate is dynamic. The i-th step will take the
-      i-th value as the learning rate. LearningRateSchedule: Learning rate is dynamic.
-      During training, the optimizer calls the instance of LearningRateSchedule with
-      step as the input to get the learning rate of the current step.  '
-    default: 0.1
-    dtype:
-    - int
-    - float
-    structure:
-    - single
-    range: null
-  decay:
-    descp: 'decay (float) – Decay rate. Should be equal to or greater than 0. Default:
-      0.9 .'
-    default: 0.9
-    dtype:
-    - float
-  momentum:
-    descp: 'momentum (float) – Hyperparameter of type float, means momentum for the
-      moving average. Should be equal to or greater than 0. Default: 0.0 .'
-    default: 0.0
-    dtype:
-    - float
-  epsilon:
-    descp: 'epsilon (float) – Term added to the denominator to improve numerical stability.
-      Should be greater than 0. Default: 1e-10 .'
-    default: 1e-10
-    dtype:
-    - float
   use_locking:
-    descp: 'use_locking (bool) – Whether to enable a lock to protect the updating
-      process of variable tensors. Default: False .'
-    default: False
+    default: false
+    descp: "use_locking (bool) \u2013 Whether to enable a lock to protect the updating\
+      \ process of variable tensors. Default: False ."
     dtype:
     - bool
-  centered:
-    descp: 'centered (bool) – If True, gradients are normalized by the estimated variance
-      of the gradient. Default: False .'
-    default: False
-    dtype:
-    - bool
-  loss_scale:
-    descp: 'loss_scale (float) – A floating point value for the loss scale. Should
-      be greater than 0. In general, use the default value. Only when FixedLossScaleManager
-      is used for training and the drop_overflow_update in FixedLossScaleManager is
-      set to False , then this value needs to be the same as the loss_scale in FixedLossScaleManager.
-      Refer to class mindspore.amp.FixedLossScaleManager for more details. Default:
-      1.0 .'
-    default: 1.0
-    dtype:
-    - float
   weight_decay:
-    descp: 'weight_decay (Union[float, int, Cell]) – Weight decay (L2 penalty). Default:
-      0.0 .  float: The fixed weight decay value. Must be equal to or greater than
-      0. int: The fixed weight decay value. Must be equal to or greater than 0. It
-      will be converted to float. Cell: Weight decay is dynamic. During training,
-      the optimizer calls the instance of the Cell with step as the input to get the
-      weight decay value of current step.  '
     default: 0.0
+    descp: "weight_decay (Union[float, int, Cell]) \u2013 Weight decay (L2 penalty).\
+      \ Default: 0.0 .  float: The fixed weight decay value. Must be equal to or greater\
+      \ than 0. int: The fixed weight decay value. Must be equal to or greater than\
+      \ 0. It will be converted to float. Cell: Weight decay is dynamic. During training,\
+      \ the optimizer calls the instance of the Cell with step as the input to get\
+      \ the weight decay value of current step.  "
     dtype:
     - int
     - float
+    range: null
     structure:
     - single
-    range: null
+descp: Implements Root Mean Squared Propagation (RMSProp) algorithm.
 inputs:
   optional:
   - learning_rate

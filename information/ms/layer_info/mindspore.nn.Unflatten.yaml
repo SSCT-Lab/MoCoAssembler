@@ -1,26 +1,26 @@
 api: mindspore.nn.Unflatten(axis, unflattened_size)
-descp: Unflattens a Tensor dim according to axis and unflattened_size.
 constraints:
   axis:
-    descp: axis (int) – specifies the dimension of the input Tensor to be unflattened.
     default: null
+    descp: "axis (int) \u2013 specifies the dimension of the input Tensor to be unflattened."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
   unflattened_size:
-    descp: unflattened_size (Union(tuple[int], list[int])) – the new shape of the
-      unflattened dimension of the Tensor and it can be a tuple of ints or a list
-      of ints. The product of unflattened_size must equal to input_shape[axis].
     default: null
+    descp: "unflattened_size (Union(tuple[int], list[int])) \u2013 the new shape of\
+      \ the unflattened dimension of the Tensor and it can be a tuple of ints or a\
+      \ list of ints. The product of unflattened_size must equal to input_shape[axis]."
     dtype:
     - int
+    range: null
+    shape: null
     structure:
     - list
     - tuple
-    shape: null
-    range: null
+descp: Unflattens a Tensor dim according to axis and unflattened_size.
 inputs:
   optional: []
   required:

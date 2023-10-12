@@ -1,6 +1,6 @@
 api: mindspore.nn.Tanh
+constraints: {}
 descp: Applies the Tanh function element-wise,
-constraints: []
 inputs:
   optional: []
   required: []

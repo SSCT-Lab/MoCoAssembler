@@ -1,7 +1,9 @@
 function:
   torch: torch.nn.Softshrink
   ms: mindspore.nn.SoftShrink
+  paddle: paddle.nn.Softshrink
 descp:
   torch: 'Applies the soft shrinkage function elementwise:'
   ms: Applies the SoftShrink function element-wise.
+  paddle: Softshrink Activation
 param: null

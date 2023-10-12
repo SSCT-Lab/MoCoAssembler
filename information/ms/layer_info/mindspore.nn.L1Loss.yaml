@@ -1,19 +1,19 @@
 api: mindspore.nn.L1Loss(reduction='mean')
-descp: L1Loss is used to calculate the mean absolute error between the predicted value
-  and the target value.
 constraints:
   reduction:
-    descp: 'reduction (str) – Type of reduction to be applied to loss. The optional
-      values are "mean" , "sum" , and "none" . Default: "mean" . If reduction is "mean"
-      or "sum" , then output a scalar Tensor, if reduction is "none" , the shape of
-      the output Tensor is the broadcasted shape.'
     default: mean
+    descp: "reduction (str) \u2013 Type of reduction to be applied to loss. The optional\
+      \ values are \"mean\" , \"sum\" , and \"none\" . Default: \"mean\" . If reduction\
+      \ is \"mean\" or \"sum\" , then output a scalar Tensor, if reduction is \"none\"\
+      \ , the shape of the output Tensor is the broadcasted shape."
     dtype:
     - str
     enum:
     - none
     - mean
     - sum
+descp: L1Loss is used to calculate the mean absolute error between the predicted value
+  and the target value.
 inputs:
   optional:
   - reduction

@@ -1,8 +1,13 @@
 function:
   torch: torch.nn.MaxPool1d
   ms: mindspore.nn.MaxPool1d
+  paddle: paddle.nn.MaxPool1D
 descp:
   torch: Applies a 1D max pooling over an input signal composed of several input planes.
   ms: Applies a 1D max pooling over an input Tensor which can be regarded as a composition
     of 1D planes.
+  paddle: This operation applies 1D max pooling over input signal composed of several
+    input planes based on the input, and kernel_size, stride, padding parameters.
+    Input(X) and Output(Out) are in NCL format, where N is batch size, C is the number
+    of channels, L is the length of the feature.
 param: null

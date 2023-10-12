@@ -1,85 +1,86 @@
 api: mindspore.nn.EmbeddingLookup(vocab_size, embedding_size, param_init='normal',
   target='CPU', slice_mode='batch_slice', manual_shapes=None, max_norm=None, sparse=True,
   vocab_cache_size=0)
-descp: EmbeddingLookup layer.
 constraints:
-  vocab_size:
-    descp: vocab_size (int) – Size of the dictionary of embeddings.
-    default: null
-    dtype:
-    - int
-    structure:
-    - single
-    range: null
   embedding_size:
-    descp: embedding_size (int) – The size of each embedding vector.
     default: null
+    descp: "embedding_size (int) \u2013 The size of each embedding vector."
     dtype:
     - int
+    range: null
     structure:
     - single
-    range: null
-  param_init:
-    descp: 'param_init (Union[Tensor, str, Initializer, numbers.Number]) – Initializer
-      for the embedding_table. Refer to class initializer for the values of string
-      when a string is specified. Default: ''normal'' .'
-    default: normal
-    dtype:
-    - str
-    enum:
-    - normal
-  target:
-    descp: 'target (str) – Specifies the target where the op is executed. The value
-      must in [ ''DEVICE'' , ''CPU'' ]. Default: ''CPU'' .'
-    default: CPU
-    dtype:
-    - str
-    enum:
-    - CPU
-    - DEVICE
-  slice_mode:
-    descp: 'slice_mode (str) – The slicing way in semi_auto_parallel/auto_parallel.
-      The value must get through mindspore.nn.EmbeddingLookup. Default: ''batch_slice''
-      .'
-    default: batch_slice
-    dtype:
-    - str
-    enum:
-    - batch_slice
   manual_shapes:
-    descp: 'manual_shapes (tuple) – The accompaniment array in field slice mode. Default:
-      None .'
     default: None
+    descp: "manual_shapes (tuple) \u2013 The accompaniment array in field slice mode.\
+      \ Default: None ."
     dtype: null
     structure:
     - tuple
   max_norm:
-    descp: 'max_norm (Union[float, None]) – A maximum clipping value. The data type
-      must be float16, float32 or None. Default: None .'
     default: None
+    descp: "max_norm (Union[float, None]) \u2013 A maximum clipping value. The data\
+      \ type must be float16, float32 or None. Default: None ."
     dtype:
     - float
     - str
     enum:
     - None
+  param_init:
+    default: normal
+    descp: "param_init (Union[Tensor, str, Initializer, numbers.Number]) \u2013 Initializer\
+      \ for the embedding_table. Refer to class initializer for the values of string\
+      \ when a string is specified. Default: 'normal' ."
+    dtype:
+    - str
+    enum:
+    - normal
+  slice_mode:
+    default: batch_slice
+    descp: "slice_mode (str) \u2013 The slicing way in semi_auto_parallel/auto_parallel.\
+      \ The value must get through mindspore.nn.EmbeddingLookup. Default: 'batch_slice'\
+      \ ."
+    dtype:
+    - str
+    enum:
+    - batch_slice
   sparse:
-    descp: 'sparse (bool) – Using sparse mode. When ‘target’ is set to ‘CPU’, ‘sparse’
-      has to be true. Default: True .'
-    default: True
+    default: true
+    descp: "sparse (bool) \u2013 Using sparse mode. When \u2018target\u2019 is set\
+      \ to \u2018CPU\u2019, \u2018sparse\u2019 has to be true. Default: True ."
     dtype:
     - bool
+  target:
+    default: CPU
+    descp: "target (str) \u2013 Specifies the target where the op is executed. The\
+      \ value must in [ 'DEVICE' , 'CPU' ]. Default: 'CPU' ."
+    dtype:
+    - str
+    enum:
+    - CPU
+    - DEVICE
   vocab_cache_size:
-    descp: 'vocab_cache_size (int) – Cache size of the dictionary of embeddings. Default:
-      0 . It is valid only in parameter server trainning mode and ‘DEVICE’ target.
-      And the moment parameter of corresponding optimizer will also be set to the
-      cache size. In addition, it should be noted that it will cost the ‘DEVICE’ memory,
-      so suggests setting a reasonable value to avoid insufficient memory.'
     default: 0
+    descp: "vocab_cache_size (int) \u2013 Cache size of the dictionary of embeddings.\
+      \ Default: 0 . It is valid only in parameter server trainning mode and \u2018\
+      DEVICE\u2019 target. And the moment parameter of corresponding optimizer will\
+      \ also be set to the cache size. In addition, it should be noted that it will\
+      \ cost the \u2018DEVICE\u2019 memory, so suggests setting a reasonable value\
+      \ to avoid insufficient memory."
     dtype:
     - int
+    range: null
     structure:
     - single
+  vocab_size:
+    default: null
+    descp: "vocab_size (int) \u2013 Size of the dictionary of embeddings."
+    dtype:
+    - int
     range: null
+    structure:
+    - single
+descp: EmbeddingLookup layer.
 inputs:
   optional:
   - param_init
