@@ -7,9 +7,9 @@ id,abs_function,torch,ms,paddle,jittor,tf
 6,adaptivemaxpool2d,torch.nn.AdaptiveMaxPool2d,mindspore.nn.AdaptiveMaxPool2d,paddle.nn.AdaptiveMaxPool2D,jittor.nn.AdaptiveMaxPool2d,
 7,adaptivemaxpool3d,torch.nn.AdaptiveMaxPool3d,mindspore.nn.AdaptiveMaxPool3d,paddle.nn.AdaptiveMaxPool3D,jittor.nn.AdaptiveMaxPool3d,
 8,alphadropout,torch.nn.AlphaDropout,,paddle.nn.AlphaDropout,,tf.keras.layers.AlphaDropout
-9,avgpool1d,torch.nn.AvgPool1d,mindspore.nn.AvgPool1d,paddle.nn.AvgPool1D,,
-10,avgpool2d,torch.nn.AvgPool2d,mindspore.nn.AvgPool2d,paddle.nn.AvgPool2D,jittor.nn.AvgPool2d,
-11,avgpool3d,torch.nn.AvgPool3d,mindspore.nn.AvgPool3d,paddle.nn.AvgPool3D,jittor.nn.AvgPool3d,
+9,avgpool1d,torch.nn.AvgPool1d,mindspore.nn.AvgPool1d,paddle.nn.AvgPool1D,,tf.keras.layers.AveragePooling1D
+10,avgpool2d,torch.nn.AvgPool2d,mindspore.nn.AvgPool2d,paddle.nn.AvgPool2D,jittor.nn.AvgPool2d,tf.keras.layers.AveragePooling2D
+11,avgpool3d,torch.nn.AvgPool3d,mindspore.nn.AvgPool3d,paddle.nn.AvgPool3D,jittor.nn.AvgPool3d,tf.keras.layers.AveragePooling3D
 12,basepruningmethod,torch.nn.utils.prune.BasePruningMethod,,,,
 13,batchnorm1d,torch.nn.BatchNorm1d,mindspore.nn.BatchNorm1d,paddle.nn.BatchNorm1D,jittor.nn.BatchNorm1d,
 14,batchnorm2d,torch.nn.BatchNorm2d,mindspore.nn.BatchNorm2d,paddle.nn.BatchNorm2D,jittor.nn.BatchNorm2d,
@@ -102,9 +102,9 @@ id,abs_function,torch,ms,paddle,jittor,tf
 101,lstm,torch.nn.LSTM,mindspore.nn.LSTM,paddle.nn.LSTM,,tf.keras.layers.LSTM
 102,lstmcell,torch.nn.LSTMCell,mindspore.nn.LSTMCell,paddle.nn.LSTMCell,jittor.nn.LSTMCell,tf.keras.layers.LSTMCell
 103,marginrankingloss,torch.nn.MarginRankingLoss,mindspore.nn.MarginRankingLoss,,,
-104,maxpool1d,torch.nn.MaxPool1d,mindspore.nn.MaxPool1d,paddle.nn.MaxPool1D,,
-105,maxpool2d,torch.nn.MaxPool2d,mindspore.nn.MaxPool2d,paddle.nn.MaxPool2D,jittor.nn.MaxPool2d,
-106,maxpool3d,torch.nn.MaxPool3d,mindspore.nn.MaxPool3d,paddle.nn.MaxPool3D,jittor.nn.MaxPool3d,
+104,maxpool1d,torch.nn.MaxPool1d,mindspore.nn.MaxPool1d,paddle.nn.MaxPool1D,,tf.keras.layers.MaxPooling1D
+105,maxpool2d,torch.nn.MaxPool2d,mindspore.nn.MaxPool2d,paddle.nn.MaxPool2D,jittor.nn.MaxPool2d,tf.keras.layers.MaxPooling2D
+106,maxpool3d,torch.nn.MaxPool3d,mindspore.nn.MaxPool3d,paddle.nn.MaxPool3D,jittor.nn.MaxPool3d,tf.keras.layers.MaxPooling3D
 107,maxunpool1d,torch.nn.MaxUnpool1d,mindspore.nn.MaxUnpool1d,paddle.nn.MaxUnPool1D,,
 108,maxunpool2d,torch.nn.MaxUnpool2d,mindspore.nn.MaxUnpool2d,paddle.nn.MaxUnPool2D,jittor.nn.MaxUnpool2d,
 109,maxunpool3d,torch.nn.MaxUnpool3d,mindspore.nn.MaxUnpool3d,paddle.nn.MaxUnPool3D,jittor.nn.MaxUnpool3d,
@@ -183,4 +183,4 @@ id,abs_function,torch,ms,paddle,jittor,tf
 182,upsamplingnearest2d,torch.nn.UpsamplingNearest2d,,paddle.nn.UpsamplingNearest2D,jittor.nn.UpsamplingNearest2d,
 183,vector_to_parameters,torch.nn.utils.vector_to_parameters,,,,
 184,weight_norm,torch.nn.utils.weight_norm,,,,
-185,zeropad2d,torch.nn.ZeroPad2d,mindspore.nn.ZeroPad2d,paddle.nn.ZeroPad2D,jittor.nn.ZeroPad2d,
+185,zeropad2d,torch.nn.ZeroPad2d,mindspore.nn.ZeroPad2d,paddle.nn.ZeroPad2D,jittor.nn.ZeroPad2d,tf.keras.layers.ZeroPadding2D
