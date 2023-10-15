@@ -1,26 +1,18 @@
 import math
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
-from torch.autograd import Variable
 from .channel_selection import channel_selection
-
 
 __all__ = ['densenet']
 
-"""
-densenet with basic block.
-"""
 
-class BasicBlock(nn.Module):
+class BasicBlock(torch.nn.Module):
     def __init__(self, inplanes, cfg, expansion=1, growthRate=12, dropRate=0):
         super(BasicBlock, self).__init__()
         planes = expansion * growthRate
-        self.bn1 = nn.BatchNorm2d(inplanes)
+        self.bn1 = torch.nn.BatchNorm2d(inplanes)
         self.select = channel_selection(inplanes)
-        self.conv1 = nn.Conv2d(cfg, growthRate, kernel_size=3, 
-                               padding=1, bias=False)
-        self.relu = nn.ReLU(inplace=True)
+        self.conv1 = torch.nn.Conv2d(cfg, growthRate, kernel_size=3, padding=1, bias=False)
+        self.relu = torch.nn.ReLU(inplace=True)
         self.dropRate = dropRate
 
     def forward(self, x):
@@ -29,33 +21,33 @@ class BasicBlock(nn.Module):
         out = self.relu(out)
         out = self.conv1(out)
         if self.dropRate > 0:
-            out = F.dropout(out, p=self.dropRate, training=self.training)
+            out = torch.nn.functional.dropout(out, p=self.dropRate, training=self.training)
 
         out = torch.cat((x, out), 1)
 
         return out
 
-class Transition(nn.Module):
+
+class Transition(torch.nn.Module):
     def __init__(self, inplanes, outplanes, cfg):
         super(Transition, self).__init__()
-        self.bn1 = nn.BatchNorm2d(inplanes)
+        self.bn1 = torch.nn.BatchNorm2d(inplanes)
         self.select = channel_selection(inplanes)
-        self.conv1 = nn.Conv2d(cfg, outplanes, kernel_size=1,
-                               bias=False)
-        self.relu = nn.ReLU(inplace=True)
+        self.conv1 = torch.nn.Conv2d(cfg, outplanes, kernel_size=1, bias=False)
+        self.relu = torch.nn.ReLU(inplace=True)
 
     def forward(self, x):
         out = self.bn1(x)
         out = self.select(out)
         out = self.relu(out)
         out = self.conv1(out)
-        out = F.avg_pool2d(out, 2)
+        out = torch.nn.functional.avg_pool2d(out, 2)
         return out
 
-class densenet(nn.Module):
 
-    def __init__(self, depth=40, 
-        dropRate=0, dataset='cifar10', growthRate=12, compressionRate=1, cfg = None):
+class densenet(torch.nn.Module):
+    def __init__(self, depth=40,
+                 dropRate=0, dataset='cifar10', growthRate=12, compressionRate=1, cfg=None):
         super(densenet, self).__init__()
 
         assert (depth - 4) % 3 == 0, 'depth should be 3n+4'
@@ -67,40 +59,38 @@ class densenet(nn.Module):
 
         if cfg == None:
             cfg = []
-            start = growthRate*2
+            start = growthRate * 2
             for _ in range(3):
-                cfg.append([start + growthRate*i for i in range(n+1)])
-                start += growthRate*n
+                cfg.append([start + growthRate * i for i in range(n + 1)])
+                start += growthRate * n
             cfg = [item for sub_list in cfg for item in sub_list]
 
-        assert len(cfg) == 3*n+3, 'length of config variable cfg should be 3n+3'
+        assert len(cfg) == 3 * n + 3, 'length of config variable cfg should be 3n+3'
 
-        # self.inplanes is a global variable used across multiple
-        # helper functions
         self.inplanes = growthRate * 2
-        self.conv1 = nn.Conv2d(3, self.inplanes, kernel_size=3, padding=1,
+        self.conv1 = torch.nn.Conv2d(3, self.inplanes, kernel_size=3, padding=1,
                                bias=False)
         self.dense1 = self._make_denseblock(block, n, cfg[0:n])
         self.trans1 = self._make_transition(compressionRate, cfg[n])
-        self.dense2 = self._make_denseblock(block, n, cfg[n+1:2*n+1])
-        self.trans2 = self._make_transition(compressionRate, cfg[2*n+1])
-        self.dense3 = self._make_denseblock(block, n, cfg[2*n+2:3*n+2])
-        self.bn = nn.BatchNorm2d(self.inplanes)
+        self.dense2 = self._make_denseblock(block, n, cfg[n + 1:2 * n + 1])
+        self.trans2 = self._make_transition(compressionRate, cfg[2 * n + 1])
+        self.dense3 = self._make_denseblock(block, n, cfg[2 * n + 2:3 * n + 2])
+        self.bn = torch.nn.BatchNorm2d(self.inplanes)
         self.select = channel_selection(self.inplanes)
-        self.relu = nn.ReLU(inplace=True)
-        self.avgpool = nn.AvgPool2d(8)
+        self.relu = torch.nn.ReLU(inplace=True)
+        self.avgpool = torch.nn.AvgPool2d(8)
 
         if dataset == 'cifar10':
-            self.fc = nn.Linear(cfg[-1], 10)
+            self.fc = torch.nn.Linear(cfg[-1], 10)
         elif dataset == 'cifar100':
-            self.fc = nn.Linear(cfg[-1], 100)
+            self.fc = torch.nn.Linear(cfg[-1], 100)
 
         # Weight initialization
         for m in self.modules():
-            if isinstance(m, nn.Conv2d):
+            if isinstance(m, torch.nn.Conv2d):
                 n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
                 m.weight.data.normal_(0, math.sqrt(2. / n))
-            elif isinstance(m, nn.BatchNorm2d):
+            elif isinstance(m, torch.nn.BatchNorm2d):
                 m.weight.data.fill_(0.5)
                 m.bias.data.zero_()
 
@@ -109,10 +99,10 @@ class densenet(nn.Module):
         assert blocks == len(cfg), 'Length of the cfg parameter is not right.'
         for i in range(blocks):
             # Currently we fix the expansion ratio as the default value
-            layers.append(block(self.inplanes, cfg = cfg[i], growthRate=self.growthRate, dropRate=self.dropRate))
+            layers.append(block(self.inplanes, cfg=cfg[i], growthRate=self.growthRate, dropRate=self.dropRate))
             self.inplanes += self.growthRate
 
-        return nn.Sequential(*layers)
+        return torch.nn.Sequential(*layers)
 
     def _make_transition(self, compressionRate, cfg):
         # cfg is a number in this case.

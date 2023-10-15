@@ -1,8 +1,6 @@
 import logging
 import torch
-import torch.nn as nn
 import math
-import torch.nn.functional as F
 from .modules.se import SESwishBlock
 from .modules.activations import Swish, HardSwish
 
@@ -11,10 +9,10 @@ __all__ = ['efficientnet']
 
 def init_model(model):
     for m in model.modules():
-        if isinstance(m, nn.Conv2d):
+        if isinstance(m, torch.nn.Conv2d):
             n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
             m.weight.data.normal_(0, math.sqrt(2. / n))
-        elif isinstance(m, nn.BatchNorm2d):
+        elif isinstance(m, torch.nn.BatchNorm2d):
             m.weight.data.fill_(1)
             m.bias.data.zero_()
 
@@ -30,9 +28,9 @@ def modify_drop_connect_rate(model, value, log=True):
 
 def weight_decay_config(value=1e-4, log=False):
     def regularize_layer(m):
-        non_depthwise_conv = isinstance(m, nn.Conv2d) \
+        non_depthwise_conv = isinstance(m, torch.nn.Conv2d) \
             and m.groups != m.in_channels
-        return not isinstance(m, nn.BatchNorm2d)
+        return not isinstance(m, torch.nn.BatchNorm2d)
 
     return {'name': 'WeightDecay',
             'value': value,
@@ -42,14 +40,14 @@ def weight_decay_config(value=1e-4, log=False):
             }
 
 
-class ConvBNAct(nn.Sequential):
+class ConvBNAct(torch.nn.Sequential):
     def __init__(self, in_channels, out_channels, *kargs, **kwargs):
         hard_act = kwargs.pop('hard_act', False)
         kwargs.setdefault('bias', False)
 
         super(ConvBNAct, self).__init__(
-            nn.Conv2d(in_channels, out_channels, *kargs, **kwargs),
-            nn.BatchNorm2d(out_channels),
+            torch.nn.Conv2d(in_channels, out_channels, *kargs, **kwargs),
+            torch.nn.BatchNorm2d(out_channels),
             HardSwish() if hard_act else Swish()
         )
 
@@ -63,21 +61,21 @@ def drop_connect(x, drop_prob):
     return x
 
 
-class MBConv(nn.Module):
+class MBConv(torch.nn.Module):
     def __init__(self, in_channels, out_channels, expansion=1, kernel_size=3,
                  stride=1, padding=1, se_ratio=0.25, hard_act=False):
         expanded = in_channels * expansion
         super(MBConv, self).__init__()
         self.add_res = stride == 1 and in_channels == out_channels
-        self.block = nn.Sequential(
+        self.block = torch.nn.Sequential(
             ConvBNAct(in_channels, expanded, 1,
-                      hard_act=hard_act) if expanded != in_channels else nn.Identity(),
+                      hard_act=hard_act) if expanded != in_channels else torch.nn.Identity(),
             ConvBNAct(expanded, expanded, kernel_size,
                       stride=stride, padding=padding, groups=expanded, hard_act=hard_act),
             SESwishBlock(expanded, expanded, int(in_channels*se_ratio),
-                         hard_act=hard_act) if se_ratio > 0 else nn.Identity(),
-            nn.Conv2d(expanded, out_channels, 1, bias=False),
-            nn.BatchNorm2d(out_channels)
+                         hard_act=hard_act) if se_ratio > 0 else torch.nn.Identity(),
+            torch.nn.Conv2d(expanded, out_channels, 1, bias=False),
+            torch.nn.BatchNorm2d(out_channels)
         )
         self.drop_prob = 0
 
@@ -90,7 +88,7 @@ class MBConv(nn.Module):
         return out
 
 
-class MBConvBlock(nn.Sequential):
+class MBConvBlock(torch.nn.Sequential):
     def __init__(self, in_channels, out_channels, num, expansion=1, kernel_size=3,
                  stride=1, padding=1, se_ratio=0.25, hard_act=False):
         kwargs = dict(expansion=expansion, kernel_size=kernel_size,
@@ -102,8 +100,7 @@ class MBConvBlock(nn.Sequential):
                                           )
 
 
-class EfficientNet(nn.Module):
-
+class EfficientNet(torch.nn.Module):
     def __init__(self, width_coeff=1, depth_coeff=1, resolution=224, se_ratio=0.25, regime='cosine', num_classes=1000,
                  scale_lr=1, dropout_rate=0.2, drop_connect_rate=0.2, num_epochs=200, hard_act=False):
         super(EfficientNet, self).__init__()
@@ -145,14 +142,14 @@ class EfficientNet(nn.Module):
                 else stages[i-1]['out_channels']
             layers.append(MBConvBlock(in_channel, **stages[i]))
 
-        self.features = nn.Sequential(
+        self.features = torch.nn.Sequential(
             ConvBNAct(3, channels(32), 3, 2, 1, hard_act=hard_act),
             *layers,
             ConvBNAct(channels(320), channels(1280), 1),
-            nn.AdaptiveAvgPool2d(1),
-            nn.Dropout(dropout_rate, True)
+            torch.nn.AdaptiveAvgPool2d(1),
+            torch.nn.Dropout(dropout_rate, True)
         )
-        self.classifier = nn.Linear(channels(1280), num_classes)
+        self.classifier = torch.nn.Linear(channels(1280), num_classes)
 
         init_model(self)
 
@@ -164,10 +161,6 @@ class EfficientNet(nn.Module):
                 return {'lr': scale_lr * 0.016 * (0.97 ** round(epoch/2.4)),
                         'execute': increase_drop_connect(epoch)}
 
-            """RMSProp optimizer with
-            decay 0.9 and momentum 0.9;
-            weight decay 1e-5; initial learning rate 0.256 that decays
-            by 0.97 every 2.4 epochs"""
             self.regime = [{'optimizer': 'RMSprop', 'alpha': 0.9, 'momentum': 0.9, 'lr': scale_lr * 0.016,
                             'regularizer': weight_decay_config(1e-5),
                             'epoch_lambda': config_by_epoch}]
@@ -192,25 +185,3 @@ class EfficientNet(nn.Module):
         x = self.features(x)
         x = self.classifier(x.flatten(1, -1))
         return x
-
-
-def efficientnet(**config):
-    dataset = config.pop('dataset', 'imagenet')
-    assert dataset == 'imagenet'
-
-    scale = config.pop('scale', 'b0')
-
-    params_dict = {
-        # (width_coefficient, depth_coefficient, resolution, dropout_rate)
-        'b0': (1.0, 1.0, 224, 0.2),
-        'b1': (1.0, 1.1, 240, 0.2),
-        'b2': (1.1, 1.2, 260, 0.3),
-        'b3': (1.2, 1.4, 300, 0.3),
-        'b4': (1.4, 1.8, 380, 0.4),
-        'b5': (1.6, 2.2, 456, 0.4),
-        'b6': (1.8, 2.6, 528, 0.5),
-        'b7': (2.0, 3.1, 600, 0.5),
-    }
-    assert scale in params_dict.keys()
-    config['width_coeff'], config['depth_coeff'], config['resolution'], config['dropout_rate'] = params_dict[scale]
-    return EfficientNet(**config)

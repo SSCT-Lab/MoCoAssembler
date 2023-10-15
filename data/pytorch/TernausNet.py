@@ -1,19 +1,17 @@
 import torch
 import torchvision
-from torch import nn
-from torch.nn import functional as F
 from torchvision import models
 
 
-def conv3x3(in_: int, out: int) -> nn.Module:
-    return nn.Conv2d(in_, out, 3, padding=1)
+def conv3x3(in_: int, out: int) -> torch.nn.Module:
+    return torch.nn.Conv2d(in_, out, 3, padding=1)
 
 
-class ConvRelu(nn.Module):
+class ConvRelu(torch.nn.Module):
     def __init__(self, in_: int, out: int) -> None:
         super().__init__()
         self.conv = conv3x3(in_, out)
-        self.activation = nn.ReLU(inplace=True)
+        self.activation = torch.nn.ReLU(inplace=True)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = self.conv(x)
@@ -21,15 +19,15 @@ class ConvRelu(nn.Module):
         return x
 
 
-class DecoderBlock(nn.Module):
+class DecoderBlock(torch.nn.Module):
     def __init__(
         self, in_channels: int, middle_channels: int, out_channels: int
     ) -> None:
         super().__init__()
 
-        self.block = nn.Sequential(
+        self.block = torch.nn.Sequential(
             ConvRelu(in_channels, middle_channels),
-            nn.ConvTranspose2d(
+            torch.nn.ConvTranspose2d(
                 middle_channels,
                 out_channels,
                 kernel_size=3,
@@ -37,25 +35,17 @@ class DecoderBlock(nn.Module):
                 padding=1,
                 output_padding=1,
             ),
-            nn.ReLU(inplace=True),
+            torch.nn.ReLU(inplace=True),
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.block(x)
 
 
-class UNet11(nn.Module):
+class UNet11(torch.nn.Module):
     def __init__(self, num_filters: int = 32, pretrained: bool = False) -> None:
-        """
-
-        Args:
-            num_filters:
-            pretrained:
-                False - no pre-trained network is used
-                True  - encoder is pre-trained with VGG11
-        """
         super().__init__()
-        self.pool = nn.MaxPool2d(2, 2)
+        self.pool = torch.nn.MaxPool2d(2, 2)
 
         self.encoder = models.vgg11(pretrained=pretrained).features
 
@@ -86,7 +76,7 @@ class UNet11(nn.Module):
         )
         self.dec1 = ConvRelu(num_filters * (2 + 1), num_filters)
 
-        self.final = nn.Conv2d(num_filters, 1, kernel_size=1)
+        self.final = torch.nn.Conv2d(num_filters, 1, kernel_size=1)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         conv1 = self.relu(self.conv1(x))
@@ -108,7 +98,7 @@ class UNet11(nn.Module):
         return self.final(dec1)
 
 
-class Interpolate(nn.Module):
+class Interpolate(torch.nn.Module):
     def __init__(
         self,
         size: int = None,
@@ -117,7 +107,7 @@ class Interpolate(nn.Module):
         align_corners: bool = False,
     ):
         super().__init__()
-        self.interp = nn.functional.interpolate
+        self.interp = torch.nn.functional.interpolate
         self.size = size
         self.mode = mode
         self.scale_factor = scale_factor
@@ -134,7 +124,7 @@ class Interpolate(nn.Module):
         return x
 
 
-class DecoderBlockV2(nn.Module):
+class DecoderBlockV2(torch.nn.Module):
     def __init__(
         self,
         in_channels: int,
@@ -146,20 +136,15 @@ class DecoderBlockV2(nn.Module):
         self.in_channels = in_channels
 
         if is_deconv:
-            """
-                Paramaters for Deconvolution were chosen to avoid artifacts, following
-                link https://distill.pub/2016/deconv-checkerboard/
-            """
-
-            self.block = nn.Sequential(
+            self.block = torch.nn.Sequential(
                 ConvRelu(in_channels, middle_channels),
-                nn.ConvTranspose2d(
+                torch.nn.ConvTranspose2d(
                     middle_channels, out_channels, kernel_size=4, stride=2, padding=1
                 ),
-                nn.ReLU(inplace=True),
+                torch.nn.ReLU(inplace=True),
             )
         else:
-            self.block = nn.Sequential(
+            self.block = torch.nn.Sequential(
                 Interpolate(scale_factor=2, mode="bilinear"),
                 ConvRelu(in_channels, middle_channels),
                 ConvRelu(middle_channels, out_channels),
@@ -169,7 +154,7 @@ class DecoderBlockV2(nn.Module):
         return self.block(x)
 
 
-class UNet16(nn.Module):
+class UNet16(torch.nn.Module):
     def __init__(
         self,
         num_classes: int = 1,
@@ -177,36 +162,24 @@ class UNet16(nn.Module):
         pretrained: bool = False,
         is_deconv: bool = False,
     ):
-        """
-
-        Args:
-            num_classes:
-            num_filters:
-            pretrained:
-                False - no pre-trained network used
-                True - encoder pre-trained with VGG16
-            is_deconv:
-                False: bilinear interpolation is used in decoder
-                True: deconvolution is used in decoder
-        """
         super().__init__()
         self.num_classes = num_classes
 
-        self.pool = nn.MaxPool2d(2, 2)
+        self.pool = torch.nn.MaxPool2d(2, 2)
 
         self.encoder = torchvision.models.vgg16(pretrained=pretrained).features
 
-        self.relu = nn.ReLU(inplace=True)
+        self.relu = torch.nn.ReLU(inplace=True)
 
-        self.conv1 = nn.Sequential(
+        self.conv1 = torch.nn.Sequential(
             self.encoder[0], self.relu, self.encoder[2], self.relu
         )
 
-        self.conv2 = nn.Sequential(
+        self.conv2 = torch.nn.Sequential(
             self.encoder[5], self.relu, self.encoder[7], self.relu
         )
 
-        self.conv3 = nn.Sequential(
+        self.conv3 = torch.nn.Sequential(
             self.encoder[10],
             self.relu,
             self.encoder[12],
@@ -215,7 +188,7 @@ class UNet16(nn.Module):
             self.relu,
         )
 
-        self.conv4 = nn.Sequential(
+        self.conv4 = torch.nn.Sequential(
             self.encoder[17],
             self.relu,
             self.encoder[19],
@@ -224,7 +197,7 @@ class UNet16(nn.Module):
             self.relu,
         )
 
-        self.conv5 = nn.Sequential(
+        self.conv5 = torch.nn.Sequential(
             self.encoder[24],
             self.relu,
             self.encoder[26],
@@ -250,7 +223,7 @@ class UNet16(nn.Module):
             128 + num_filters * 2, num_filters * 2 * 2, num_filters, is_deconv
         )
         self.dec1 = ConvRelu(64 + num_filters, num_filters)
-        self.final = nn.Conv2d(num_filters, num_classes, kernel_size=1)
+        self.final = torch.nn.Conv2d(num_filters, num_classes, kernel_size=1)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         conv1 = self.conv1(x)

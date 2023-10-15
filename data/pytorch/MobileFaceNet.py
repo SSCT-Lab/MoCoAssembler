@@ -1,32 +1,28 @@
-from torch import nn
 import torch
-import torch.nn.functional as F
 from torch.autograd import Variable
-
 import math
-from torch.nn import Parameter
 
-class Bottleneck(nn.Module):
+
+class Bottleneck(torch.nn.Module):
     def __init__(self, inp, oup, stride, expansion):
         super(Bottleneck, self).__init__()
         self.connect = stride == 1 and inp == oup
-        #
-        self.conv = nn.Sequential(
-            #pw
-            nn.Conv2d(inp, inp * expansion, 1, 1, 0, bias=False),
-            nn.BatchNorm2d(inp * expansion),
-            nn.PReLU(inp * expansion),
-            # nn.ReLU(inplace=True),
+        self.conv = torch.nn.Sequential(
+            # pw
+            torch.nn.Conv2d(inp, inp * expansion, 1, 1, 0, bias=False),
+            torch.nn.BatchNorm2d(inp * expansion),
+            torch.nn.PReLU(inp * expansion),
+            # torch.nn.ReLU(inplace=True),
 
-            #dw
-            nn.Conv2d(inp * expansion, inp * expansion, 3, stride, 1, groups=inp * expansion, bias=False),
-            nn.BatchNorm2d(inp * expansion),
-            nn.PReLU(inp * expansion),
-            # nn.ReLU(inplace=True),
+            # dw
+            torch.nn.Conv2d(inp * expansion, inp * expansion, 3, stride, 1, groups=inp * expansion, bias=False),
+            torch.nn.BatchNorm2d(inp * expansion),
+            torch.nn.PReLU(inp * expansion),
+            # torch.nn.ReLU(inplace=True),
 
-            #pw-linear
-            nn.Conv2d(inp * expansion, oup, 1, 1, 0, bias=False),
-            nn.BatchNorm2d(oup),
+            # pw-linear
+            torch.nn.Conv2d(inp * expansion, oup, 1, 1, 0, bias=False),
+            torch.nn.BatchNorm2d(oup),
         )
 
     def forward(self, x):
@@ -35,17 +31,19 @@ class Bottleneck(nn.Module):
         else:
             return self.conv(x)
 
-class ConvBlock(nn.Module):
+
+class ConvBlock(torch.nn.Module):
     def __init__(self, inp, oup, k, s, p, dw=False, linear=False):
         super(ConvBlock, self).__init__()
         self.linear = linear
         if dw:
-            self.conv = nn.Conv2d(inp, oup, k, s, p, groups=inp, bias=False)
+            self.conv = torch.nn.Conv2d(inp, oup, k, s, p, groups=inp, bias=False)
         else:
-            self.conv = nn.Conv2d(inp, oup, k, s, p, bias=False)
-        self.bn = nn.BatchNorm2d(oup)
+            self.conv = torch.nn.Conv2d(inp, oup, k, s, p, bias=False)
+        self.bn = torch.nn.BatchNorm2d(oup)
         if not linear:
-            self.prelu = nn.PReLU(oup)
+            self.prelu = torch.nn.PReLU(oup)
+
     def forward(self, x):
         x = self.conv(x)
         x = self.bn(x)
@@ -53,6 +51,7 @@ class ConvBlock(nn.Module):
             return x
         else:
             return self.prelu(x)
+
 
 Mobilefacenet_bottleneck_setting = [
     # t, c , n ,s
@@ -74,7 +73,8 @@ Mobilenetv2_bottleneck_setting = [
     [6, 320, 1, 1],
 ]
 
-class MobileFacenet(nn.Module):
+
+class MobileFacenet(torch.nn.Module):
     def __init__(self, bottleneck_setting=Mobilefacenet_bottleneck_setting):
         super(MobileFacenet, self).__init__()
 
@@ -93,10 +93,10 @@ class MobileFacenet(nn.Module):
         self.linear1 = ConvBlock(512, 128, 1, 1, 0, linear=True)
 
         for m in self.modules():
-            if isinstance(m, nn.Conv2d):
+            if isinstance(m, torch.nn.Conv2d):
                 n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
                 m.weight.data.normal_(0, math.sqrt(2. / n))
-            elif isinstance(m, nn.BatchNorm2d):
+            elif isinstance(m, torch.nn.BatchNorm2d):
                 m.weight.data.fill_(1)
                 m.bias.data.zero_()
 
@@ -110,7 +110,7 @@ class MobileFacenet(nn.Module):
                     layers.append(block(self.inplanes, c, 1, t))
                 self.inplanes = c
 
-        return nn.Sequential(*layers)
+        return torch.nn.Sequential(*layers)
 
     def forward(self, x):
         x = self.conv1(x)
@@ -124,15 +124,15 @@ class MobileFacenet(nn.Module):
         return x
 
 
-class ArcMarginProduct(nn.Module):
+class ArcMarginProduct(torch.nn.Module):
     def __init__(self, in_features=128, out_features=200, s=32.0, m=0.50, easy_margin=False):
         super(ArcMarginProduct, self).__init__()
         self.in_features = in_features
         self.out_features = out_features
         self.s = s
         self.m = m
-        self.weight = Parameter(torch.Tensor(out_features, in_features))
-        nn.init.xavier_uniform_(self.weight)
+        self.weight = torch.nn.Parameter(torch.Tensor(out_features, in_features))
+        torch.nn.init.xavier_uniform_(self.weight)
         # init.kaiming_uniform_()
         # self.weight.data.normal_(std=0.001)
 
@@ -144,7 +144,7 @@ class ArcMarginProduct(nn.Module):
         self.mm = math.sin(math.pi - m) * m
 
     def forward(self, x, label):
-        cosine = F.linear(F.normalize(x), F.normalize(self.weight))
+        cosine = torch.nn.functional.linear(torch.nn.functional.normalize(x), torch.nn.functional.normalize(self.weight))
         sine = torch.sqrt(1.0 - torch.pow(cosine, 2))
         phi = cosine * self.cos_m - sine * self.sin_m
         if self.easy_margin:

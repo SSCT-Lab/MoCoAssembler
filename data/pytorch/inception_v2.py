@@ -1,21 +1,18 @@
 import torch
-import torch.nn as nn
-import torchvision.transforms as transforms
-import math
 
 __all__ = ['inception_v2']
 
+
 def conv_bn(in_planes, out_planes, kernel_size, stride=1, padding=0):
-    "convolution with batchnorm, relu"
-    return nn.Sequential(
-        nn.Conv2d(in_planes, out_planes, kernel_size, stride=stride,
+    return torch.nn.Sequential(
+        torch.nn.Conv2d(in_planes, out_planes, kernel_size, stride=stride,
                   padding=padding, bias=False),
-        nn.BatchNorm2d(out_planes),
-        nn.ReLU()
+        torch.nn.BatchNorm2d(out_planes),
+        torch.nn.ReLU()
     )
 
 
-class InceptionModule(nn.Module):
+class InceptionModule(torch.nn.Module):
 
     def __init__(self, in_channels, n1x1_channels, n3x3r_channels,
                  n3x3_channels, dn3x3r_channels, dn3x3_channels,
@@ -31,23 +28,23 @@ class InceptionModule(nn.Module):
         else:
             self.conv_1x1 = None
 
-        self.conv_3x3 = nn.Sequential(
+        self.conv_3x3 = torch.nn.Sequential(
             conv_bn(in_channels, n3x3r_channels, 1),
             conv_bn(n3x3r_channels, n3x3_channels, 3, stride, padding=1)
         )
-        self.conv_d3x3 = nn.Sequential(
+        self.conv_d3x3 = torch.nn.Sequential(
             conv_bn(in_channels, dn3x3r_channels, 1),
             conv_bn(dn3x3r_channels, dn3x3_channels, 3, padding=1),
             conv_bn(dn3x3_channels, dn3x3_channels, 3, stride, padding=1)
         )
 
         if type_pool == 'avg':
-            self.pool = nn.AvgPool2d(3, stride, padding=1)
+            self.pool = torch.nn.AvgPool2d(3, stride, padding=1)
         elif type_pool == 'max':
-            self.pool = nn.MaxPool2d(3, stride, padding=1)
+            self.pool = torch.nn.MaxPool2d(3, stride, padding=1)
 
         if pool_proj_channels > 0:  # Add pool projection
-            self.pool = nn.Sequential(
+            self.pool = torch.nn.Sequential(
                 self.pool,
                 conv_bn(in_channels, pool_proj_channels, 1))
 
@@ -65,56 +62,55 @@ class InceptionModule(nn.Module):
         return output
 
 
-class Inception_v2(nn.Module):
-
+class Inception_v2(torch.nn.Module):
     def __init__(self, num_classes=1000, aux_classifiers=True):
         super(inception_v2, self).__init__()
         self.num_classes = num_classes
-        self.part1 = nn.Sequential(
-            nn.Conv2d(3, 64, 7, 2, 3, bias=False),
-            nn.MaxPool2d(3, 2),
-            nn.BatchNorm2d(64),
-            nn.ReLU(),
-            nn.Conv2d(64, 192, 3, 1, 1, bias=False),
-            nn.MaxPool2d(3, 2),
-            nn.BatchNorm2d(192),
-            nn.ReLU(),
+        self.part1 = torch.nn.Sequential(
+            torch.nn.Conv2d(3, 64, 7, 2, 3, bias=False),
+            torch.nn.MaxPool2d(3, 2),
+            torch.nn.BatchNorm2d(64),
+            torch.nn.ReLU(),
+            torch.nn.Conv2d(64, 192, 3, 1, 1, bias=False),
+            torch.nn.MaxPool2d(3, 2),
+            torch.nn.BatchNorm2d(192),
+            torch.nn.ReLU(),
             InceptionModule(192, 64, 64, 64, 64, 96, 32, 'avg'),
             InceptionModule(256, 64, 64, 96, 64, 96, 64, 'avg'),
             InceptionModule(320, 0, 128, 160, 64, 96, 0, 'max', 2)
         )
 
-        self.part2 = nn.Sequential(
+        self.part2 = torch.nn.Sequential(
             InceptionModule(576, 224, 64, 96, 96, 128, 128, 'avg'),
             InceptionModule(576, 192, 96, 128, 96, 128, 128, 'avg'),
             InceptionModule(576, 160, 128, 160, 128, 160, 96, 'avg')
         )
-        self.part3 = nn.Sequential(
+        self.part3 = torch.nn.Sequential(
             InceptionModule(576, 96, 128, 192, 160, 192, 96, 'avg'),
             InceptionModule(576, 0, 128, 192, 192, 256, 0, 'max', 2),
             InceptionModule(1024, 352, 192, 320, 160, 224, 128, 'avg'),
             InceptionModule(1024, 352, 192, 320, 192, 224, 128, 'max')
         )
 
-        self.main_classifier = nn.Sequential(
-            nn.AvgPool2d(7, 1),
-            nn.Dropout(0.2),
-            nn.Conv2d(1024, self.num_classes, 1)
+        self.main_classifier = torch.nn.Sequential(
+            torch.nn.AvgPool2d(7, 1),
+            torch.nn.Dropout(0.2),
+            torch.nn.Conv2d(1024, self.num_classes, 1)
         )
         if aux_classifiers:
-            self.aux_classifier1 = nn.Sequential(
-                nn.AvgPool2d(5, 3),
+            self.aux_classifier1 = torch.nn.Sequential(
+                torch.nn.AvgPool2d(5, 3),
                 conv_bn(576, 128, 1),
                 conv_bn(128, 768, 4),
-                nn.Dropout(0.2),
-                nn.Conv2d(768, self.num_classes, 1),
+                torch.nn.Dropout(0.2),
+                torch.nn.Conv2d(768, self.num_classes, 1),
             )
-            self.aux_classifier2 = nn.Sequential(
-                nn.AvgPool2d(5, 3),
+            self.aux_classifier2 = torch.nn.Sequential(
+                torch.nn.AvgPool2d(5, 3),
                 conv_bn(576, 128, 1),
                 conv_bn(128, 768, 4),
-                nn.Dropout(0.2),
-                nn.Conv2d(768, self.num_classes, 1),
+                torch.nn.Dropout(0.2),
+                torch.nn.Conv2d(768, self.num_classes, 1),
             )
 
         self.regime = [
@@ -125,14 +121,15 @@ class Inception_v2(nn.Module):
             {'epoch': 90, 'lr': 1e-4}
         ]
 
-        class aux_loss(nn.Module):
+        class aux_loss(torch.nn.Module):
             def __init__(self):
-                super(aux_loss,self).__init__()
-                self.loss = nn.CrossEntropyLoss()
+                super(aux_loss, self).__init__()
+                self.loss = torch.nn.CrossEntropyLoss()
 
             def forward(self, outputs, target):
-                return self.loss(outputs[0], target) +\
-                    0.4 * (self.loss(outputs[1], target) + self.loss(outputs[2], target))
+                return self.loss(outputs[0], target) + \
+                       0.4 * (self.loss(outputs[1], target) + self.loss(outputs[2], target))
+
         self.criterion = aux_loss
 
     def forward(self, inputs):

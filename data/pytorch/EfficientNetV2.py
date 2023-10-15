@@ -1,37 +1,23 @@
-# model.py定义模型
 from collections import OrderedDict
 from functools import partial
 from typing import Callable, Optional
 
-import torch.nn as nn
 import torch
 from torch import Tensor
 
 
 def drop_path(x, drop_prob: float = 0., training: bool = False):
-    """
-    Drop paths (Stochastic Depth) per sample (when applied in main path of residual blocks).
-    "Deep Networks with Stochastic Depth", https://arxiv.org/pdf/1603.09382.pdf
-
-    This function is taken from the rwightman.
-    It can be seen here:
-    https://github.com/rwightman/pytorch-image-models/blob/master/timm/models/layers/drop.py#L140
-    """
     if drop_prob == 0. or not training:
         return x
     keep_prob = 1 - drop_prob
-    shape = (x.shape[0],) + (1,) * (x.ndim - 1)  # work with diff dim tensors, not just 2D ConvNets
+    shape = (x.shape[0],) + (1,) * (x.ndim - 1)
     random_tensor = keep_prob + torch.rand(shape, dtype=x.dtype, device=x.device)
-    random_tensor.floor_()  # binarize
+    random_tensor.floor_()
     output = x.div(keep_prob) * random_tensor
     return output
 
 
-class DropPath(nn.Module):
-    """
-    Drop paths (Stochastic Depth) per sample  (when applied in main path of residual blocks).
-    "Deep Networks with Stochastic Depth", https://arxiv.org/pdf/1603.09382.pdf
-    """
+class DropPath(torch.nn.Module):
     def __init__(self, drop_prob=None):
         super(DropPath, self).__init__()
         self.drop_prob = drop_prob
@@ -40,24 +26,24 @@ class DropPath(nn.Module):
         return drop_path(x, self.drop_prob, self.training)
 
 
-class ConvBNAct(nn.Module):
+class ConvBNAct(torch.nn.Module):
     def __init__(self,
                  in_planes: int,
                  out_planes: int,
                  kernel_size: int = 3,
                  stride: int = 1,
                  groups: int = 1,
-                 norm_layer: Optional[Callable[..., nn.Module]] = None,
-                 activation_layer: Optional[Callable[..., nn.Module]] = None):
+                 norm_layer: Optional[Callable[..., torch.nn.Module]] = None,
+                 activation_layer: Optional[Callable[..., torch.nn.Module]] = None):
         super(ConvBNAct, self).__init__()
 
         padding = (kernel_size - 1) // 2
         if norm_layer is None:
-            norm_layer = nn.BatchNorm2d
+            norm_layer = torch.nn.BatchNorm2d
         if activation_layer is None:
-            activation_layer = nn.SiLU  # alias Swish  (torch>=1.7)
+            activation_layer = torch.nn.SiLU  # alias Swish  (torch>=1.7)
 
-        self.conv = nn.Conv2d(in_channels=in_planes,
+        self.conv = torch.nn.Conv2d(in_channels=in_planes,
                               out_channels=out_planes,
                               kernel_size=kernel_size,
                               stride=stride,
@@ -76,17 +62,17 @@ class ConvBNAct(nn.Module):
         return result
 
 
-class SqueezeExcite(nn.Module):
+class SqueezeExcite(torch.nn.Module):
     def __init__(self,
-                 input_c: int,   # 输入到MBConv特征矩阵的channel
-                 expand_c: int,  # 输入到SE模块的特征矩阵的channel
-                 se_ratio: float = 0.25): # 表示第一个全连接层的channel数是MBConvchannel的1/se_ratio倍
+                 input_c: int,
+                 expand_c: int,
+                 se_ratio: float = 0.25):
         super(SqueezeExcite, self).__init__()
-        squeeze_c = int(input_c * se_ratio) # 第一个全连接层的输入特征矩阵channel数量
-        self.conv_reduce = nn.Conv2d(expand_c, squeeze_c, 1) # 可能是底层对卷积做了更多的优化，速度会快一些。 等价于全连接层
-        self.act1 = nn.SiLU()  # alias Swish
-        self.conv_expand = nn.Conv2d(squeeze_c, expand_c, 1)
-        self.act2 = nn.Sigmoid()
+        squeeze_c = int(input_c * se_ratio)
+        self.conv_reduce = torch.nn.Conv2d(expand_c, squeeze_c, 1)
+        self.act1 = torch.nn.SiLU()  # alias Swish
+        self.conv_expand = torch.nn.Conv2d(squeeze_c, expand_c, 1)
+        self.act2 = torch.nn.Sigmoid()
 
     def forward(self, x: Tensor) -> Tensor:
         scale = x.mean((2, 3), keepdim=True)
@@ -94,10 +80,10 @@ class SqueezeExcite(nn.Module):
         scale = self.act1(scale)
         scale = self.conv_expand(scale)
         scale = self.act2(scale)
-        return scale * x # se模块最后 输出特征矩阵 * 开始的输入特征矩阵
+        return scale * x
 
 
-class MBConv(nn.Module):
+class MBConv(torch.nn.Module):
     def __init__(self,
                  kernel_size: int,
                  input_c: int,
@@ -106,29 +92,24 @@ class MBConv(nn.Module):
                  stride: int,
                  se_ratio: float,
                  drop_rate: float,
-                 norm_layer: Callable[..., nn.Module]):
+                 norm_layer: Callable[..., torch.nn.Module]):
         super(MBConv, self).__init__()
 
-        # stride！= 1|2 直接报错
         if stride not in [1, 2]:
             raise ValueError("illegal stride value.")
 
-        # stride=1 && 输入特证矩阵的channel == 输出特征矩阵的channel 才会有shortcut连接
         self.has_shortcut = (stride == 1 and input_c == out_c)
 
-        activation_layer = nn.SiLU  # alias Swish
+        activation_layer = torch.nn.SiLU  # alias Swish
         expanded_c = input_c * expand_ratio
 
-        # 在EfficientNetV2中，MBConv中不存在expansion=1的情况所以conv_pw肯定存在
         assert expand_ratio != 1
-        # Point-wise expansion
         self.expand_conv = ConvBNAct(input_c,
                                      expanded_c,
                                      kernel_size=1,
                                      norm_layer=norm_layer,
                                      activation_layer=activation_layer)
 
-        # Depth-wise convolution
         self.dwconv = ConvBNAct(expanded_c,
                                 expanded_c,
                                 kernel_size=kernel_size,
@@ -137,14 +118,14 @@ class MBConv(nn.Module):
                                 norm_layer=norm_layer,
                                 activation_layer=activation_layer)
 
-        self.se = SqueezeExcite(input_c, expanded_c, se_ratio) if se_ratio > 0 else nn.Identity()
+        self.se = SqueezeExcite(input_c, expanded_c, se_ratio) if se_ratio > 0 else torch.nn.Identity()
 
         # Point-wise linear projection
         self.project_conv = ConvBNAct(expanded_c,
                                       out_planes=out_c,
                                       kernel_size=1,
                                       norm_layer=norm_layer,
-                                      activation_layer=nn.Identity)  # 注意这里没有激活函数，所有传入Identity
+                                      activation_layer=torch.nn.Identity)
 
         self.out_channels = out_c
 
@@ -167,7 +148,7 @@ class MBConv(nn.Module):
         return result
 
 
-class FusedMBConv(nn.Module):
+class FusedMBConv(torch.nn.Module):
     def __init__(self,
                  kernel_size: int,
                  input_c: int,
@@ -176,7 +157,7 @@ class FusedMBConv(nn.Module):
                  stride: int,
                  se_ratio: float,
                  drop_rate: float,
-                 norm_layer: Callable[..., nn.Module]):
+                 norm_layer: Callable[..., torch.nn.Module]):
         super(FusedMBConv, self).__init__()
 
         assert stride in [1, 2]
@@ -187,7 +168,7 @@ class FusedMBConv(nn.Module):
 
         self.has_expansion = expand_ratio != 1
 
-        activation_layer = nn.SiLU  # alias Swish
+        activation_layer = torch.nn.SiLU  # alias Swish
         expanded_c = input_c * expand_ratio
 
         # 只有当expand ratio不等于1时才有expand conv
@@ -204,7 +185,7 @@ class FusedMBConv(nn.Module):
                                           out_c,
                                           kernel_size=1,
                                           norm_layer=norm_layer,
-                                          activation_layer=nn.Identity)  # 注意没有激活函数
+                                          activation_layer=torch.nn.Identity)  # 注意没有激活函数
         else:
             # 当只有project_conv时的情况
             self.project_conv = ConvBNAct(input_c,
@@ -237,7 +218,7 @@ class FusedMBConv(nn.Module):
         return result
 
 
-class EfficientNetV2(nn.Module):
+class EfficientNetV2(torch.nn.Module):
     def __init__(self,
                  model_cnf: list,
                  num_classes: int = 1000,
@@ -249,9 +230,8 @@ class EfficientNetV2(nn.Module):
         for cnf in model_cnf:
             assert len(cnf) == 8
 
-        norm_layer = partial(nn.BatchNorm2d, eps=1e-3, momentum=0.1)
+        norm_layer = partial(torch.nn.BatchNorm2d, eps=1e-3, momentum=0.1)
 
-        #input_channel
         stem_filter_num = model_cnf[0][4]
 
         self.stem = ConvBNAct(3,
@@ -277,7 +257,7 @@ class EfficientNetV2(nn.Module):
                                  drop_rate=drop_connect_rate * block_id / total_blocks,
                                  norm_layer=norm_layer))
                 block_id += 1
-        self.blocks = nn.Sequential(*blocks)
+        self.blocks = torch.nn.Sequential(*blocks)
 
         head_input_c = model_cnf[-1][-3]
         head = OrderedDict()
@@ -287,27 +267,27 @@ class EfficientNetV2(nn.Module):
                                                kernel_size=1,
                                                norm_layer=norm_layer)})  # 激活函数默认是SiLU
 
-        head.update({"avgpool": nn.AdaptiveAvgPool2d(1)})
-        head.update({"flatten": nn.Flatten()})
+        head.update({"avgpool": torch.nn.AdaptiveAvgPool2d(1)})
+        head.update({"flatten": torch.nn.Flatten()})
 
         if dropout_rate > 0:
-            head.update({"dropout": nn.Dropout(p=dropout_rate, inplace=True)})
-        head.update({"classifier": nn.Linear(num_features, num_classes)})
+            head.update({"dropout": torch.nn.Dropout(p=dropout_rate, inplace=True)})
+        head.update({"classifier": torch.nn.Linear(num_features, num_classes)})
 
-        self.head = nn.Sequential(head)
+        self.head = torch.nn.Sequential(head)
 
         # initial weights
         for m in self.modules():
-            if isinstance(m, nn.Conv2d):
-                nn.init.kaiming_normal_(m.weight, mode="fan_out")
+            if isinstance(m, torch.nn.Conv2d):
+                torch.nn.init.kaiming_normal_(m.weight, mode="fan_out")
                 if m.bias is not None:
-                    nn.init.zeros_(m.bias)
-            elif isinstance(m, nn.BatchNorm2d):
-                nn.init.ones_(m.weight)
-                nn.init.zeros_(m.bias)
-            elif isinstance(m, nn.Linear):
-                nn.init.normal_(m.weight, 0, 0.01)
-                nn.init.zeros_(m.bias)
+                    torch.nn.init.zeros_(m.bias)
+            elif isinstance(m, torch.nn.BatchNorm2d):
+                torch.nn.init.ones_(m.weight)
+                torch.nn.init.zeros_(m.bias)
+            elif isinstance(m, torch.nn.Linear):
+                torch.nn.init.normal_(m.weight, 0, 0.01)
+                torch.nn.init.zeros_(m.bias)
 
     def forward(self, x: Tensor) -> Tensor:
         x = self.stem(x)
@@ -315,68 +295,3 @@ class EfficientNetV2(nn.Module):
         x = self.head(x)
 
         return x
-
-
-def efficientnetv2_s(num_classes: int = 1000):
-    """
-    EfficientNetV2
-    https://arxiv.org/abs/2104.00298
-    """
-    # train_size: 300, eval_size: 384
-
-    # repeat, kernel, stride, expansion, in_c, out_c, operator, se_ratio
-    model_config = [[2, 3, 1, 1, 24, 24, 0, 0],
-                    [4, 3, 2, 4, 24, 48, 0, 0],
-                    [4, 3, 2, 4, 48, 64, 0, 0],
-                    [6, 3, 2, 4, 64, 128, 1, 0.25],
-                    [9, 3, 1, 6, 128, 160, 1, 0.25],
-                    [15, 3, 2, 6, 160, 256, 1, 0.25]]
-
-    model = EfficientNetV2(model_cnf=model_config,
-                           num_classes=num_classes,
-                           dropout_rate=0.2)
-    return model
-
-
-def efficientnetv2_m(num_classes: int = 1000):
-    """
-    EfficientNetV2
-    https://arxiv.org/abs/2104.00298
-    """
-    # train_size: 384, eval_size: 480
-
-    # repeat, kernel, stride, expansion, in_c, out_c, operator, se_ratio
-    model_config = [[3, 3, 1, 1, 24, 24, 0, 0],
-                    [5, 3, 2, 4, 24, 48, 0, 0],
-                    [5, 3, 2, 4, 48, 80, 0, 0],
-                    [7, 3, 2, 4, 80, 160, 1, 0.25],
-                    [14, 3, 1, 6, 160, 176, 1, 0.25],
-                    [18, 3, 2, 6, 176, 304, 1, 0.25],
-                    [5, 3, 1, 6, 304, 512, 1, 0.25]]
-
-    model = EfficientNetV2(model_cnf=model_config,
-                           num_classes=num_classes,
-                           dropout_rate=0.3)
-    return model
-
-
-def efficientnetv2_l(num_classes: int = 1000):
-    """
-    EfficientNetV2
-    https://arxiv.org/abs/2104.00298
-    """
-    # train_size: 384, eval_size: 480
-
-    # repeat, kernel, stride, expansion, in_c, out_c, operator, se_ratio
-    model_config = [[4, 3, 1, 1, 32, 32, 0, 0],
-                    [7, 3, 2, 4, 32, 64, 0, 0],
-                    [7, 3, 2, 4, 64, 96, 0, 0],
-                    [10, 3, 2, 4, 96, 192, 1, 0.25],
-                    [19, 3, 1, 6, 192, 224, 1, 0.25],
-                    [25, 3, 2, 6, 224, 384, 1, 0.25],
-                    [7, 3, 1, 6, 384, 640, 1, 0.25]]
-
-    model = EfficientNetV2(model_cnf=model_config,
-                           num_classes=num_classes,
-                           dropout_rate=0.4)
-    return model

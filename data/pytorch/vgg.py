@@ -1,9 +1,7 @@
-from torchvision.models.vgg import vgg11, vgg11_bn, vgg13, vgg13_bn, vgg16, vgg16_bn, vgg19, vgg19_bn
-import torch.nn as nn
+import torch
 
 __all__ = ['vgg']
 
-model_name = {11: 'VGG11', 13: 'VGG13', 16: 'VGG16', 19: 'VGG19'}
 
 cfg = {
     'VGG11': [64, 'M', 128, 'M', 256, 256, 'M', 512, 512, 'M', 512, 512, 'M'],
@@ -13,18 +11,18 @@ cfg = {
 }
 
 
-class VGG(nn.Module):
+class VGG(torch.nn.Module):
     def __init__(self, vgg_name, num_classes=10, batch_norm=False):
         super(VGG, self).__init__()
         self.features = self._make_layers(cfg[vgg_name], batch_norm)
-        self.classifier = self.classifier = nn.Sequential(
-            nn.Linear(512, 4096),
-            nn.ReLU(True),
-            nn.Dropout(),
-            nn.Linear(4096, 4096),
-            nn.ReLU(True),
-            nn.Dropout(),
-            nn.Linear(4096, num_classes),
+        self.classifier = self.classifier = torch.nn.Sequential(
+            torch.nn.Linear(512, 4096),
+            torch.nn.ReLU(True),
+            torch.nn.Dropout(),
+            torch.nn.Linear(4096, 4096),
+            torch.nn.ReLU(True),
+            torch.nn.Dropout(),
+            torch.nn.Linear(4096, num_classes),
         )
 
         self.regime = [
@@ -46,48 +44,13 @@ class VGG(nn.Module):
         in_channels = 3
         for x in cfg:
             if x == 'M':
-                layers += [nn.MaxPool2d(kernel_size=2, stride=2)]
+                layers += [torch.nn.MaxPool2d(kernel_size=2, stride=2)]
             else:
-                conv2d = nn.Conv2d(in_channels, x, kernel_size=3, padding=1)
+                conv2d = torch.nn.Conv2d(in_channels, x, kernel_size=3, padding=1)
                 if batch_norm:
-                    layers += [conv2d, nn.BatchNorm2d(x), nn.ReLU(inplace=True)]
+                    layers += [conv2d, torch.nn.BatchNorm2d(x), torch.nn.ReLU(inplace=True)]
                 else:
-                    layers += [conv2d, nn.ReLU(inplace=True)]
+                    layers += [conv2d, torch.nn.ReLU(inplace=True)]
                 in_channels = x
-        layers += [nn.AvgPool2d(kernel_size=1, stride=1)]
-        return nn.Sequential(*layers)
-
-
-def vgg(**config):
-    dataset = config.pop('dataset', 'imagenet')
-    depth = config.pop('depth', 16)
-    bn = config.pop('bn', True)
-
-    if dataset == 'imagenet':
-        config.setdefault('num_classes', 1000)
-        if depth == 11:
-            if bn is False:
-                return vgg11(pretrained=False, **config)
-            else:
-                return vgg11_bn(pretrained=False, **config)
-        if depth == 13:
-            if bn is False:
-                return vgg13(pretrained=False, **config)
-            else:
-                return vgg13_bn(pretrained=False, **config)
-        if depth == 16:
-            if bn is False:
-                return vgg16(pretrained=False, **config)
-            else:
-                return vgg16_bn(pretrained=False, **config)
-        if depth == 19:
-            if bn is False:
-                return vgg19(pretrained=False, **config)
-            else:
-                return vgg19_bn(pretrained=False, **config)
-    elif dataset == 'cifar10':
-        config.setdefault('num_classes', 10)
-    elif dataset == 'cifar100':
-        config.setdefault('num_classes', 100)
-    config.setdefault('batch_norm', bn)
-    return VGG(model_name[depth], **config)
+        layers += [torch.nn.AvgPool2d(kernel_size=1, stride=1)]
+        return torch.nn.Sequential(*layers)
