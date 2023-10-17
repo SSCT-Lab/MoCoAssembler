@@ -1,23 +1,19 @@
 import tensorflow as tf
-from tensorflow import keras
-from keras.activations import relu
-from tensorflow.keras.layers import *
 from tensorflow.keras import Model
-from tensorflow.keras import layers as Layers
 
 
 class ResBlock(Model):
     def __init__(self, channels, stride=1):
         super(ResBlock, self).__init__(name='ResBlock')
         self.flag = (stride != 1)
-        self.conv1 = Conv2D(channels, 3, stride, padding='same')
-        self.bn1 = BatchNormalization()
-        self.conv2 = Conv2D(channels, 3, padding='same')
-        self.bn2 = BatchNormalization()
-        self.relu = ReLU()
+        self.conv1 = tf.keras.layers.Conv2D(channels, 3, stride, padding='same')
+        self.bn1 = tf.keras.layers.BatchNormalization()
+        self.conv2 = tf.keras.layers.Conv2D(channels, 3, padding='same')
+        self.bn2 = tf.keras.layers.BatchNormalization()
+        self.relu = tf.keras.layers.ReLU()
         if self.flag:
-            self.bn3 = BatchNormalization()
-            self.conv3 = Conv2D(channels, 1, stride)
+            self.bn3 = tf.keras.layers.BatchNormalization()
+            self.conv3 = tf.keras.layers.Conv2D(channels, 1, stride)
 
     def call(self, x):
         x1 = self.conv1(x)
@@ -28,7 +24,7 @@ class ResBlock(Model):
         if self.flag:
             x = self.conv3(x)
             x = self.bn3(x)
-        x1 = Layers.add([x, x1])
+        x1 = tf.keras.layers.add([x, x1])
         x1 = self.relu(x1)
         return x1
 
@@ -36,10 +32,10 @@ class ResBlock(Model):
 class ResNet34(Model):
     def __init__(self):
         super(ResNet34, self).__init__(name='ResNet34')
-        self.conv1 = Conv2D(64, 7, 2, padding='same')
-        self.bn = BatchNormalization()
-        self.relu = ReLU()
-        self.mp1 = MaxPooling2D(3, 2)
+        self.conv1 = tf.keras.layers.Conv2D(64, 7, 2, padding='same')
+        self.bn = tf.keras.layers.BatchNormalization()
+        self.relu = tf.keras.layers.ReLU()
+        self.mp1 = tf.keras.layers.MaxPooling2D(3, 2)
 
         self.conv2_1 = ResBlock(64)
         self.conv2_2 = ResBlock(64)
@@ -61,12 +57,12 @@ class ResNet34(Model):
         self.conv5_2 = ResBlock(512)
         self.conv5_3 = ResBlock(512)
 
-        self.pool = GlobalAveragePooling2D()
-        self.fc1 = Dense(512, activation='relu')
-        self.dp1 = Dropout(0.5)
-        self.fc2 = Dense(512, activation='relu')
-        self.dp2 = Dropout(0.5)
-        self.fc3 = Dense(64)
+        self.pool = tf.keras.layers.GlobalAveragePooling2D()
+        self.fc1 = tf.keras.layers.Dense(512, activation='relu')
+        self.dp1 = tf.keras.layers.Dropout(0.5)
+        self.fc2 = tf.keras.layers.Dense(512, activation='relu')
+        self.dp2 = tf.keras.layers.Dropout(0.5)
+        self.fc3 = tf.keras.layers.Dense(64)
 
     def call(self, x):
         x = self.conv1(x)

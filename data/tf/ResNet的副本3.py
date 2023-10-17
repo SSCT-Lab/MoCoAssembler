@@ -1,19 +1,20 @@
 import config as c
 import tensorflow as tf
-from tensorflow.keras.layers import Conv2D, GlobalAvgPool2D, BatchNormalization, Dense
 
 
 class BasicBlock(tf.keras.layers.Layer):
     def __init__(self, filters, strides=(1, 1), **kwargs):
         self.strides = strides
         if self.strides != (1, 1):
-            self.shortcut_projection = Conv2D(filters, (1, 1), name='projection', padding='same', use_bias=False)
-            self.shortcut_bn = BatchNormalization(name='shortcut_bn', momentum=0.9, epsilon=1e-5)
+            self.shortcut_projection = tf.keras.layers.Conv2D(filters, (1, 1), name='projection', padding='same',
+                                                              use_bias=False)
+            self.shortcut_bn = tf.keras.layers.BatchNormalization(name='shortcut_bn', momentum=0.9, epsilon=1e-5)
 
-        self.conv_0 = Conv2D(filters, (3, 3), name='conv_0', strides=self.strides, padding='same', use_bias=False)
-        self.conv_1 = Conv2D(filters, (3, 3), name='conv_1', padding='same', use_bias=False)
-        self.bn_0 = BatchNormalization(name='bn_0', momentum=0.9, epsilon=1e-5)
-        self.bn_1 = BatchNormalization(name='bn_1', momentum=0.9, epsilon=1e-5)
+        self.conv_0 = tf.keras.layers.Conv2D(filters, (3, 3), name='conv_0', strides=self.strides, padding='same',
+                                             use_bias=False)
+        self.conv_1 = tf.keras.layers.Conv2D(filters, (3, 3), name='conv_1', padding='same', use_bias=False)
+        self.bn_0 = tf.keras.layers.BatchNormalization(name='bn_0', momentum=0.9, epsilon=1e-5)
+        self.bn_1 = tf.keras.layers.BatchNormalization(name='bn_1', momentum=0.9, epsilon=1e-5)
 
         super(BasicBlock, self).__init__(**kwargs)
 
@@ -36,20 +37,23 @@ class BasicBlock(tf.keras.layers.Layer):
         net = tf.nn.relu(net)
         return net
 
+
 class BottleneckBlock(tf.keras.layers.Layer):
     def __init__(self, filters, strides=(1, 1), projection=False, **kwargs):
         self.strides = strides
         self.projection = projection
         if self.strides != (1, 1) or self.projection:
-            self.shortcut_projection = Conv2D(filters * 4, (1, 1), name='projection', padding='same', use_bias=False)
-            self.shortcut_bn = BatchNormalization(name='shortcut_bn', momentum=0.9, epsilon=1e-5)
+            self.shortcut_projection = tf.keras.layers.Conv2D(filters * 4, (1, 1), name='projection', padding='same',
+                                                              use_bias=False)
+            self.shortcut_bn = tf.keras.layers.BatchNormalization(name='shortcut_bn', momentum=0.9, epsilon=1e-5)
 
-        self.conv_0 = Conv2D(filters, (1, 1), name='conv_0', padding='same', use_bias=False)
-        self.conv_1 = Conv2D(filters, (3, 3), name='conv_1', strides=strides, padding='same', use_bias=False)
-        self.conv_2 = Conv2D(filters * 4, (1, 1), name='conv_2', padding='same', use_bias=False)
-        self.bn_0 = BatchNormalization(name='bn_0', momentum=0.9, epsilon=1e-5)
-        self.bn_1 = BatchNormalization(name='bn_1', momentum=0.9, epsilon=1e-5)
-        self.bn_2 = BatchNormalization(name='bn_2', momentum=0.9, epsilon=1e-5)
+        self.conv_0 = tf.keras.layers.Conv2D(filters, (1, 1), name='conv_0', padding='same', use_bias=False)
+        self.conv_1 = tf.keras.layers.Conv2D(filters, (3, 3), name='conv_1', strides=strides, padding='same',
+                                             use_bias=False)
+        self.conv_2 = tf.keras.layers.Conv2D(filters * 4, (1, 1), name='conv_2', padding='same', use_bias=False)
+        self.bn_0 = tf.keras.layers.BatchNormalization(name='bn_0', momentum=0.9, epsilon=1e-5)
+        self.bn_1 = tf.keras.layers.BatchNormalization(name='bn_1', momentum=0.9, epsilon=1e-5)
+        self.bn_2 = tf.keras.layers.BatchNormalization(name='bn_2', momentum=0.9, epsilon=1e-5)
 
         super(BottleneckBlock, self).__init__(**kwargs)
 
@@ -88,8 +92,8 @@ class ResNet(tf.keras.models.Model):
         else:
             self.block = BottleneckBlock
 
-        self.conv0 = Conv2D(64, (7, 7), strides=(2, 2), name='conv0', padding='same', use_bias=False)
-        self.bn = BatchNormalization(name='bn', momentum=0.9, epsilon=1e-5)
+        self.conv0 = tf.keras.layers.Conv2D(64, (7, 7), strides=(2, 2), name='conv0', padding='same', use_bias=False)
+        self.bn = tf.keras.layers.BatchNormalization(name='bn', momentum=0.9, epsilon=1e-5)
 
         self.block_collector = []
         for layer_index, (b, f) in enumerate(zip(c.block_num[layer_num], c.filter_num), start=1):
@@ -104,8 +108,8 @@ class ResNet(tf.keras.models.Model):
             for block_index in range(1, b):
                 self.block_collector.append(self.block(f, name='conv{}_{}'.format(layer_index, block_index)))
 
-        self.global_average_pooling = GlobalAvgPool2D()
-        self.fc = Dense(c.category_num, name='fully_connected', activation='softmax', use_bias=False)
+        self.global_average_pooling = tf.keras.layers.GlobalAvgPool2D()
+        self.fc = tf.keras.layers.Dense(c.category_num, name='fully_connected', activation='softmax', use_bias=False)
 
     def call(self, inputs, training):
         net = self.conv0(inputs)
@@ -125,6 +129,7 @@ class ResNet(tf.keras.models.Model):
         net = self.fc(net)
         print('fully connected', net.shape)
         return net
+
 
 if __name__ == '__main__':
     model = ResNet(18)

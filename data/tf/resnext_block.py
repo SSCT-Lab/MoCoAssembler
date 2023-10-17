@@ -1,5 +1,4 @@
 import tensorflow as tf
-
 from models.group_convolution import get_group_conv
 
 
@@ -11,11 +10,6 @@ class ResNeXt_BottleNeck(tf.keras.layers.Layer):
                                             strides=1,
                                             padding="same")
         self.bn1 = tf.keras.layers.BatchNormalization()
-        # self.group_conv = tf.keras.layers.Conv2D(filters=filters,
-        #                                          kernel_size=(3, 3),
-        #                                          strides=strides,
-        #                                          padding="same",
-        #                                          groups=groups)
         self.group_conv = get_group_conv(in_channels=filters,
                                          out_channels=filters,
                                          kernel_size=(3, 3),

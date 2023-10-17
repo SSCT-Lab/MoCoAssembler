@@ -3,7 +3,6 @@ from tensorflow.keras.layers import GRU
 
 
 class MultiBiGRU(object):
-
     def __init__(self, hidden, layer, keep_prob, is_train, is_cat=True):
         self._hidden = hidden
         self._layer = layer
@@ -84,7 +83,7 @@ class CudaBiGRU(object):
                 init = tf.compat.v1.get_variable('init', shape=[2, 1, self._hidden], dtype=tf.float32)
                 init = tf.tile(init, [1, batch_size, 1])
                 gru = self.gru[layer]
-                output, output_state = gru(outputs[-1], (init, ))
+                output, output_state = gru(outputs[-1], (init,))
             outputs.append(output)
             output_states.append(output_state[0])
         if self._is_cat:
@@ -99,7 +98,6 @@ class CudaBiGRU(object):
 
 
 class FSNet(object):
-
     def __init__(self, config, batch_data, trainable=True):
         self.config = config
         self.batch_size = config.batch_size
@@ -108,7 +106,7 @@ class FSNet(object):
         self.train_true = tf.compat.v1.assign(self.is_train, tf.constant(True, dtype=tf.bool))
         self.train_false = tf.compat.v1.assign(self.is_train, tf.constant(False, dtype=tf.bool))
         self.global_step = tf.compat.v1.get_variable('global_step', shape=[], dtype=tf.int32,
-                                           initializer=tf.compat.v1.constant_initializer(0), trainable=False)
+                                                     initializer=tf.compat.v1.constant_initializer(0), trainable=False)
         self.ids, self.label, self.flow = batch_data.get_next()
         self._gru = CudaBiGRU if config.is_cudnn else MultiBiGRU
         # get best batch shape
@@ -125,7 +123,8 @@ class FSNet(object):
         if trainable:
             self.lr = tf.compat.v1.get_variable("lr", shape=[], dtype=tf.float32, trainable=False)
             self.clr = tf.compat.v1.train.exponential_decay(self.lr, self.global_step,
-                                                  self.config.decay_step, self.config.decay_rate, staircase=True)
+                                                            self.config.decay_step, self.config.decay_rate,
+                                                            staircase=True)
             self.opt = tf.keras.optimizers.Adam(learning_rate=self.lr, epsilon=1e-8)
             grads = self.opt.compute_gradients(self.loss)
             gradients, variables = zip(*grads)
@@ -169,7 +168,8 @@ class FSNet(object):
 
     def _compress(self, feature, scope='compress'):
         with tf.keras.layers.Layer(scope):
-            ff_ = tf.compat.v1.layers.dense(feature, 2 * self.config.hidden, use_bias=True, activation=tf.nn.selu, name='W1')
+            ff_ = tf.compat.v1.layers.dense(feature, 2 * self.config.hidden, use_bias=True, activation=tf.nn.selu,
+                                            name='W1')
             if self.is_train and self.config.keep_prob < 1:
                 ff_ = tf.nn.dropout(ff_, rate=1 - (self.config.keep_prob))
         return ff_

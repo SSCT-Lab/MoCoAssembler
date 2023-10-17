@@ -1,24 +1,23 @@
 import tensorflow as tf
-from tensorflow.keras import layers, Sequential, Model
+from tensorflow.keras import Sequential, Model
 
 
-class BasicBlock(layers.Layer):
+class BasicBlock(tf.keras.layers.Layer):
     def __init__(self, kernels, stride=1):
         super(BasicBlock, self).__init__()
 
         self.features = Sequential([
-            layers.Conv2D(kernels, (3, 3), strides=stride, padding='same'),
-            layers.BatchNormalization(),
-            layers.ReLU(),
-            layers.Conv2D(kernels, (3, 3), strides=1, padding='same'),
-            layers.BatchNormalization()
+            tf.keras.layers.Conv2D(kernels, (3, 3), strides=stride, padding='same'),
+            tf.keras.layers.BatchNormalization(),
+            tf.keras.layers.ReLU(),
+            tf.keras.layers.Conv2D(kernels, (3, 3), strides=1, padding='same'),
+            tf.keras.layers.BatchNormalization()
         ])
 
-        
         if stride != 1:
             shortcut = [
-                layers.Conv2D(kernels, (1, 1), strides=stride),
-                layers.BatchNormalization()
+                tf.keras.layers.Conv2D(kernels, (1, 1), strides=stride),
+                tf.keras.layers.BatchNormalization()
             ]
         else:
             shortcut = []
@@ -27,26 +26,26 @@ class BasicBlock(layers.Layer):
     def call(self, inputs, training=False):
         residual = self.shorcut(inputs, training=training)
         x = self.features(inputs, training=training)
-        x = tf.nn.relu(layers.add([residual, x]))
+        x = tf.nn.relu(tf.keras.layers.add([residual, x]))
         return x
 
 
-class BottleNeckBlock(layers.Layer):
+class BottleNeckBlock(tf.keras.layers.Layer):
     def __init__(self, kernels, stride=1):
         super(BottleNeckBlock, self).__init__()
 
         self.features = Sequential([
-            layers.Conv2D(kernels, (1, 1), strides=1, padding='same'),
-            layers.BatchNormalization(),
-            layers.Conv2D(kernels, (3, 3), strides=stride, padding='same'),
-            layers.BatchNormalization(),
-            layers.Conv2D(kernels * 4, (1, 1), strides=1, padding='same'),
-            layers.BatchNormalization(),
+            tf.keras.layers.Conv2D(kernels, (1, 1), strides=1, padding='same'),
+            tf.keras.layers.BatchNormalization(),
+            tf.keras.layers.Conv2D(kernels, (3, 3), strides=stride, padding='same'),
+            tf.keras.layers.BatchNormalization(),
+            tf.keras.layers.Conv2D(kernels * 4, (1, 1), strides=1, padding='same'),
+            tf.keras.layers.BatchNormalization(),
         ])
 
         self.shorcut = Sequential([
-            layers.Conv2D(kernels * 4, (1, 1), strides=stride),
-            layers.BatchNormalization()
+            tf.keras.layers.Conv2D(kernels * 4, (1, 1), strides=stride),
+            tf.keras.layers.BatchNormalization()
         ])
 
     def call(self, inputs, training=False):
@@ -60,17 +59,17 @@ class ResNet(Model):
     def __init__(self, block, num_blocks, num_classes, input_shape=(32, 32, 3)):
         super(ResNet, self).__init__()
         self.conv1 = Sequential([
-            layers.Input(input_shape),
-            layers.Conv2D(64, (3, 3), padding='same', use_bias=False),
-            layers.BatchNormalization(),
-            layers.ReLU()
+            tf.keras.layers.Input(input_shape),
+            tf.keras.layers.Conv2D(64, (3, 3), padding='same', use_bias=False),
+            tf.keras.layers.BatchNormalization(),
+            tf.keras.layers.ReLU()
         ])
         self.conv2_x = self._make_layer(block, 64, num_blocks[0], 1)
         self.conv3_x = self._make_layer(block, 128, num_blocks[1], 2)
         self.conv4_x = self._make_layer(block, 256, num_blocks[2], 2)
         self.conv5_x = self._make_layer(block, 512, num_blocks[3], 2)
-        self.gap = layers.GlobalAveragePooling2D()
-        self.fc = layers.Dense(num_classes, activation='softmax')
+        self.gap = tf.keras.layers.GlobalAveragePooling2D()
+        self.fc = tf.keras.layers.Dense(num_classes, activation='softmax')
 
     def _make_layer(self, block, kernels, num_blocks, stride):
         strides = [stride] + [1] * (num_blocks - 1)

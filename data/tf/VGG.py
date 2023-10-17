@@ -1,5 +1,5 @@
 import tensorflow as tf
-from tensorflow.keras import layers, Sequential, Model
+from tensorflow.keras import Sequential, Model
 
 cfg = {
     'A': [64,     'M', 128,      'M', 256, 256,           'M', 512, 512,           'M', 512, 512,           'M'],
@@ -14,16 +14,16 @@ class VGG(Model):
         super(VGG, self).__init__()
         
         self.features = Sequential([
-            layers.Input(input_shape),
+            tf.keras.layers.Input(input_shape),
             features
         ])
 
         self.classifier = Sequential([
-            layers.Dense(4096, activation='relu'),
-            layers.Dropout(0.5),
-            layers.Dense(4096, activation='relu'),
-            layers.Dropout(0.5),
-            layers.Dense(num_classes, activation='softmax'),
+            tf.keras.layers.Dense(4096, activation='relu'),
+            tf.keras.layers.Dropout(0.5),
+            tf.keras.layers.Dense(4096, activation='relu'),
+            tf.keras.layers.Dropout(0.5),
+            tf.keras.layers.Dense(num_classes, activation='softmax'),
         ])
 
     def call(self, inputs, training=False):
@@ -37,12 +37,12 @@ def make_layers(cfg):
 
     for l in cfg:
         if l == 'M':
-            nets += [layers.MaxPool2D()]
+            nets += [tf.keras.layers.MaxPool2D()]
             continue
 
-        nets += [layers.Conv2D(l, (3, 3), padding='same')]
-        nets += [layers.BatchNormalization()]
-        nets += [layers.ReLU()]
+        nets += [tf.keras.layers.Conv2D(l, (3, 3), padding='same')]
+        nets += [tf.keras.layers.BatchNormalization()]
+        nets += [tf.keras.layers.ReLU()]
     return Sequential(nets)
 
 

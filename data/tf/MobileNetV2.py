@@ -1,12 +1,12 @@
 import tensorflow as tf
-from tensorflow.keras import layers, Sequential, Model
+from tensorflow.keras import Sequential, Model
 
 
 def ReLU6():
-    return layers.Lambda(lambda x: tf.nn.relu6(x))
+    return tf.keras.layers.Lambda(lambda x: tf.nn.relu6(x))
 
 
-class LinearBottleNeck(layers.Layer):
+class LinearBottleNeck(tf.keras.layers.Layer):
     def __init__(self, in_channels, out_channels, strides=1, t=6):
         super(LinearBottleNeck, self).__init__()
         self.in_channels = in_channels
@@ -14,22 +14,22 @@ class LinearBottleNeck(layers.Layer):
         self.strides = strides
 
         self.residual = Sequential([
-            layers.Conv2D(in_channels * t,
-                          (1, 1),
-                          strides=1,
-                          padding='same'),
-            layers.BatchNormalization(),
-            ReLU6(),
-            layers.DepthwiseConv2D((3, 3),
-                                   strides=strides,
+            tf.keras.layers.Conv2D(in_channels * t,
+                                   (1, 1),
+                                   strides=1,
                                    padding='same'),
-            layers.BatchNormalization(),
+            tf.keras.layers.BatchNormalization(),
             ReLU6(),
-            layers.Conv2D(out_channels,
-                          (1, 1),
-                          strides=1,
-                          padding='same'),
-            layers.BatchNormalization(),
+            tf.keras.layers.DepthwiseConv2D((3, 3),
+                                            strides=strides,
+                                            padding='same'),
+            tf.keras.layers.BatchNormalization(),
+            ReLU6(),
+            tf.keras.layers.Conv2D(out_channels,
+                                   (1, 1),
+                                   strides=1,
+                                   padding='same'),
+            tf.keras.layers.BatchNormalization(),
         ])
 
     def call(self, x, training=False):
@@ -46,8 +46,8 @@ class MobileNetV2(Model):
         super(MobileNetV2, self).__init__()
 
         self.front = Sequential([
-            layers.Input(input_shape),
-            layers.BatchNormalization(),
+            tf.keras.layers.Input(input_shape),
+            tf.keras.layers.BatchNormalization(),
             ReLU6()
         ])
         self.stage1 = LinearBottleNeck(32, 16, 1, 1)
@@ -58,12 +58,13 @@ class MobileNetV2(Model):
         self.stage6 = self._make_stage(3, 96, 160, 1, 6)
         self.stage7 = LinearBottleNeck(160, 320, 1, 6)
 
-        self.conv1 = layers.Conv2D(filters=1280,
-                                   kernel_size=(1, 1),
-                                   strides=1,
-                                   padding="same")
-        self.ap = layers.AveragePooling2D((7, 7))
-        self.fc = layers.Dense(num_classes, activation='softmax')
+        self.conv1 = tf.keras.layers.Conv2D(filters=1280,
+                                            kernel_size=(1, 1),
+                                            strides=1,
+                                            padding="same")
+        self.ap = tf.keras.layers.AveragePooling2D((7, 7))
+        self.fc = tf.keras.layers.Dense(num_classes, activation='softmax')
+
     def _make_stage(self, repeat, in_channels, out_channels, strides, t):
         nets = Sequential()
         nets.add(LinearBottleNeck(in_channels, out_channels, strides, t))

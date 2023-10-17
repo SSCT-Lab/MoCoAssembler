@@ -1,18 +1,16 @@
 import tensorflow as tf
 from configuration import NUM_CLASSES
 
-import tensorflow.keras as nn
 
-
-class SeparableConv2D(nn.layers.Layer):
+class SeparableConv2D(tf.keras.layers.Layer):
     def __init__(self, filters, kernel_size, strides=1, padding="same"):
         super(SeparableConv2D, self).__init__()
-        self.x1 = nn.layers.SeparableConv2D(filters=filters,
-                                            kernel_size=kernel_size,
-                                            strides=strides,
-                                            padding=padding)
-        self.x2 = nn.layers.BatchNormalization()
-        self.x3 = nn.layers.ReLU()
+        self.x1 = tf.keras.layers.SeparableConv2D(filters=filters,
+                                                  kernel_size=kernel_size,
+                                                  strides=strides,
+                                                  padding=padding)
+        self.x2 = tf.keras.layers.BatchNormalization()
+        self.x3 = tf.keras.layers.ReLU()
 
     def call(self, inputs, training=None, *args, **kwargs):
         x = self.x1(inputs)

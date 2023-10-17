@@ -1,5 +1,6 @@
 import tensorflow as tf
 
+
 class BasicBlock(tf.keras.Model):
     expansion = 1
 
@@ -18,12 +19,12 @@ class BasicBlock(tf.keras.Model):
         """
         if strides != 1 or in_channels != self.expansion * out_channels:
             self.shortcut = tf.keras.Sequential([
-                    tf.keras.layers.Conv2D(self.expansion*out_channels, kernel_size=1,
-                                           strides=strides, use_bias=False),
-                    tf.keras.layers.BatchNormalization()]
-                    )
+                tf.keras.layers.Conv2D(self.expansion * out_channels, kernel_size=1,
+                                       strides=strides, use_bias=False),
+                tf.keras.layers.BatchNormalization()]
+            )
         else:
-            self.shortcut = lambda x,_: x
+            self.shortcut = lambda x, _: x
 
     def call(self, x, training=False):
         # if training: print("=> training network ... ")
@@ -31,8 +32,6 @@ class BasicBlock(tf.keras.Model):
         out = self.bn2(self.conv2(out), training=training)
         out += self.shortcut(x, training)
         return tf.nn.relu(out)
-
-
 
 
 class Bottleneck(tf.keras.Model):
@@ -45,17 +44,17 @@ class Bottleneck(tf.keras.Model):
         self.bn1 = tf.keras.layers.BatchNormalization()
         self.conv2 = tf.keras.layers.Conv2D(out_channels, 3, strides, padding="same", use_bias=False)
         self.bn2 = tf.keras.layers.BatchNormalization()
-        self.conv3 = tf.keras.layers.Conv2D(out_channels*self.expansion, 1, 1, use_bias=False)
+        self.conv3 = tf.keras.layers.Conv2D(out_channels * self.expansion, 1, 1, use_bias=False)
         self.bn3 = tf.keras.layers.BatchNormalization()
 
         if strides != 1 or in_channels != self.expansion * out_channels:
             self.shortcut = tf.keras.Sequential([
-                    tf.keras.layers.Conv2D(self.expansion*out_channels, kernel_size=1,
-                                           strides=strides, use_bias=False),
-                    tf.keras.layers.BatchNormalization()]
-                    )
+                tf.keras.layers.Conv2D(self.expansion * out_channels, kernel_size=1,
+                                       strides=strides, use_bias=False),
+                tf.keras.layers.BatchNormalization()]
+            )
         else:
-            self.shortcut = lambda x,_: x
+            self.shortcut = lambda x, _: x
 
     def call(self, x, training=False):
         out = tf.nn.relu(self.bn1(self.conv1(x), training))
@@ -73,7 +72,7 @@ class ResNet(tf.keras.Model):
         self.conv1 = tf.keras.layers.Conv2D(64, 3, 1, padding="same", use_bias=False)
         self.bn1 = tf.keras.layers.BatchNormalization()
 
-        self.layer1 = self._make_layer(block,  64, num_blocks[0], stride=1)
+        self.layer1 = self._make_layer(block, 64, num_blocks[0], stride=1)
         self.layer2 = self._make_layer(block, 128, num_blocks[1], stride=2)
         self.layer3 = self._make_layer(block, 256, num_blocks[2], stride=2)
         self.layer4 = self._make_layer(block, 512, num_blocks[3], stride=2)
@@ -105,16 +104,20 @@ class ResNet(tf.keras.Model):
 
 
 def ResNet18():
-    return ResNet(BasicBlock, [2,2,2,2])
+    return ResNet(BasicBlock, [2, 2, 2, 2])
+
 
 def ResNet34():
-    return ResNet(BasicBlock, [3,4,6,3])
+    return ResNet(BasicBlock, [3, 4, 6, 3])
+
 
 def ResNet50():
-    return ResNet(Bottleneck, [3,4,14,3])
+    return ResNet(Bottleneck, [3, 4, 14, 3])
+
 
 def ResNet101():
-    return ResNet(Bottleneck, [3,4,23,3])
+    return ResNet(Bottleneck, [3, 4, 23, 3])
+
 
 def ResNet152():
-    return ResNet(Bottleneck, [3,8,36,3])
+    return ResNet(Bottleneck, [3, 8, 36, 3])

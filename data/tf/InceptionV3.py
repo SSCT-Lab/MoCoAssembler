@@ -1,17 +1,17 @@
 import tensorflow as tf
-from tensorflow.keras import layers, Sequential, Model
+from tensorflow.keras import Sequential, Model
 
 
-class BasicConv2D(layers.Layer):
+class BasicConv2D(tf.keras.layers.Layer):
     def __init__(self, kernels, kernel_size=(3, 3), strides=1, padding='valid'):
         super(BasicConv2D, self).__init__(self)
-        self.conv = layers.Conv2D(kernels,
-                                  kernel_size,
-                                  strides=strides,
-                                  padding=padding,
-                                  use_bias=False)
-        self.bn = layers.BatchNormalization()
-        self.relu = layers.ReLU()
+        self.conv = tf.keras.layers.Conv2D(kernels,
+                                           kernel_size,
+                                           strides=strides,
+                                           padding=padding,
+                                           use_bias=False)
+        self.bn = tf.keras.layers.BatchNormalization()
+        self.relu = tf.keras.layers.ReLU()
 
     def call(self, x, training=False):
         x = self.conv(x)
@@ -20,7 +20,7 @@ class BasicConv2D(layers.Layer):
         return x
 
 
-class InceptionA(layers.Layer):
+class InceptionA(tf.keras.layers.Layer):
     def __init__(self, pool_features):
         super(InceptionA, self).__init__()
         self.branch1x1 = BasicConv2D(64, (1, 1))
@@ -34,7 +34,7 @@ class InceptionA(layers.Layer):
             BasicConv2D(96, (3, 3), padding='same')
         ])
         self.branchpool = Sequential([
-            layers.AveragePooling2D((3, 3), strides=1, padding='same'),
+            tf.keras.layers.AveragePooling2D((3, 3), strides=1, padding='same'),
             BasicConv2D(pool_features, (3, 3), padding='same')
         ])
 
@@ -47,7 +47,7 @@ class InceptionA(layers.Layer):
         return tf.concat(outputs, axis=-1)  # TODO CHECK AXIS
 
 
-class InceptionB(layers.Layer):
+class InceptionB(tf.keras.layers.Layer):
     def __init__(self):
         super(InceptionB, self).__init__()
         self.branch3x3 = BasicConv2D(384, (3, 3), strides=2)
@@ -56,7 +56,7 @@ class InceptionB(layers.Layer):
             BasicConv2D(96, (3, 3), padding='same'),
             BasicConv2D(96, (3, 3), strides=2)
         ])
-        self.branchpool = layers.MaxPooling2D((3, 3), strides=2)
+        self.branchpool = tf.keras.layers.MaxPooling2D((3, 3), strides=2)
 
     def call(self, x, training=False):
         branch3x3 = self.branch3x3(x, training=training)
@@ -66,31 +66,31 @@ class InceptionB(layers.Layer):
         return tf.concat(outputs, axis=-1)
 
 
-class InceptionC(layers.Layer):
+class InceptionC(tf.keras.layers.Layer):
     def __init__(self, channels_7x7):
         super(InceptionC, self).__init__()
         self.branch1x1 = BasicConv2D(192, (1, 1))
         c7 = channels_7x7
         self.branch7x7 = Sequential([
             BasicConv2D(c7, (1, 1)),
-            layers.ZeroPadding2D((3, 0)),
+            tf.keras.layers.ZeroPadding2D((3, 0)),
             BasicConv2D(c7, (7, 1)),
-            layers.ZeroPadding2D((0, 3)),
+            tf.keras.layers.ZeroPadding2D((0, 3)),
             BasicConv2D(192, (1, 7))
         ])
         self.branch7x7stack = Sequential([
             BasicConv2D(c7, (1, 1)),
-            layers.ZeroPadding2D((3, 0)),
+            tf.keras.layers.ZeroPadding2D((3, 0)),
             BasicConv2D(c7, (7, 1)),
-            layers.ZeroPadding2D((0, 3)),
+            tf.keras.layers.ZeroPadding2D((0, 3)),
             BasicConv2D(c7, (1, 7)),
-            layers.ZeroPadding2D((3, 0)),
+            tf.keras.layers.ZeroPadding2D((3, 0)),
             BasicConv2D(c7, (7, 1)),
-            layers.ZeroPadding2D((0, 3)),
+            tf.keras.layers.ZeroPadding2D((0, 3)),
             BasicConv2D(192, (1, 7)),
         ])
         self.branchpool = Sequential([
-            layers.AveragePooling2D((3, 3), strides=1, padding='same'),
+            tf.keras.layers.AveragePooling2D((3, 3), strides=1, padding='same'),
             BasicConv2D(192, (1, 1))
         ])
 
@@ -103,7 +103,7 @@ class InceptionC(layers.Layer):
         return tf.concat(outputs, 3)
 
 
-class InceptionD(layers.Layer):
+class InceptionD(tf.keras.layers.Layer):
     def __init__(self):
         super(InceptionD, self).__init__()
         self.branch3x3 = Sequential([
@@ -112,13 +112,13 @@ class InceptionD(layers.Layer):
         ])
         self.branch7x7 = Sequential([
             BasicConv2D(192, (1, 1)),
-            layers.ZeroPadding2D((0, 3)),
+            tf.keras.layers.ZeroPadding2D((0, 3)),
             BasicConv2D(192, (1, 7)),
-            layers.ZeroPadding2D((3, 0)),
+            tf.keras.layers.ZeroPadding2D((3, 0)),
             BasicConv2D(192, (7, 1)),
             BasicConv2D(192, (3, 3), strides=2)
         ])
-        self.branchpool = layers.AveragePooling2D((3, 3), strides=2)
+        self.branchpool = tf.keras.layers.AveragePooling2D((3, 3), strides=2)
 
     def call(self, x, training=False):
         branch3x3 = self.branch3x3(x, training=training)
@@ -128,33 +128,33 @@ class InceptionD(layers.Layer):
         return tf.concat(outputs, axis=-1)
 
 
-class InceptionE(layers.Layer):
+class InceptionE(tf.keras.layers.Layer):
     def __init__(self):
         super(InceptionE, self).__init__()
         self.branch1x1 = BasicConv2D(320, (1, 1))
 
         self.branch3x3_1 = BasicConv2D(384, (1, 1))
         self.branch3x3_2a = Sequential([
-            layers.ZeroPadding2D((0, 1)),
+            tf.keras.layers.ZeroPadding2D((0, 1)),
             BasicConv2D(384, (1, 3))
         ])
         self.branch3x3_2b = Sequential([
-            layers.ZeroPadding2D((1, 0)),
+            tf.keras.layers.ZeroPadding2D((1, 0)),
             BasicConv2D(384, (3, 1))
         ])
         self.branch3x3stack_1 = BasicConv2D(448, (1, 1))
         self.branch3x3stack_2 = BasicConv2D(384, (3, 3), padding='same')
         self.branch3x3stack_3a = Sequential([
-            layers.ZeroPadding2D((0, 1)),
+            tf.keras.layers.ZeroPadding2D((0, 1)),
             BasicConv2D(384, (1, 3))
         ])
         self.branch3x3stack_3b = Sequential([
-            layers.ZeroPadding2D((1, 0)),
+            tf.keras.layers.ZeroPadding2D((1, 0)),
             BasicConv2D(384, (3, 1))
         ])
 
         self.branchpool = Sequential([
-            layers.AveragePooling2D((3, 3), strides=1, padding='same'),
+            tf.keras.layers.AveragePooling2D((3, 3), strides=1, padding='same'),
             BasicConv2D(192, (1, 1))
         ])
 
@@ -187,7 +187,7 @@ class InceptionV3(Model):
         super(InceptionV3, self).__init__()
 
         self.conv1 = Sequential([
-            layers.Input(input_shape),
+            tf.keras.layers.Input(input_shape),
             BasicConv2D(32, (3, 3), padding='same'),
             BasicConv2D(32, (3, 3), padding='same'),
             BasicConv2D(64, (3, 3), padding='same'),
@@ -211,9 +211,9 @@ class InceptionV3(Model):
             InceptionE(),
             InceptionE()
         ])
-        self.avgpool = layers.GlobalAveragePooling2D()
-        self.dropout = layers.Dropout(0.5)
-        self.fc = layers.Dense(num_classes, activation='softmax')
+        self.avgpool = tf.keras.layers.GlobalAveragePooling2D()
+        self.dropout = tf.keras.layers.Dropout(0.5)
+        self.fc = tf.keras.layers.Dense(num_classes, activation='softmax')
 
     def call(self, inputs, training=False):
         x = self.conv1(inputs, training=training)

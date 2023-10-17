@@ -1,8 +1,5 @@
 import tensorflow as tf
-
-
 from tensorflow.keras import initializers, regularizers, constraints
-from tensorflow.keras import activations
 from configuration import DEVICE
 
 
@@ -84,7 +81,7 @@ class GroupConv2D(tf.keras.layers.Layer):
                                                          padding=padding,
                                                          data_format=data_format,
                                                          dilation_rate=dilation_rate,
-                                                         activation=activations.get(activation),
+                                                         activation=tf.keras.activations.get(activation),
                                                          use_bias=use_bias,
                                                          kernel_initializer=initializers.get(kernel_initializer),
                                                          bias_initializer=initializers.get(bias_initializer),
@@ -112,7 +109,7 @@ class GroupConv2D(tf.keras.layers.Layer):
             "padding": self.padding,
             "data_format": self.data_format,
             "dilation_rate": self.dilation_rate,
-            "activation": activations.serialize(self.activation),
+            "activation": tf.keras.activations.serialize(self.activation),
             "groups": self.groups,
             "use_bias": self.use_bias,
             "kernel_initializer": initializers.serialize(self.kernel_initializer),
@@ -186,7 +183,7 @@ class GroupConv2DTranspose(tf.keras.layers.Layer):
                                                                   output_padding=output_padding,
                                                                   data_format=data_format,
                                                                   dilation_rate=dilation_rate,
-                                                                  activation=activations.get(activation),
+                                                                  activation=tf.keras.activations.get(activation),
                                                                   use_bias=use_bias,
                                                                   kernel_initializer=initializers.get(kernel_initializer),
                                                                   bias_initializer=initializers.get(bias_initializer),
@@ -215,7 +212,7 @@ class GroupConv2DTranspose(tf.keras.layers.Layer):
             "output_padding": self.output_padding,
             "data_format": self.data_format,
             "dilation_rate": self.dilation_rate,
-            "activation": activations.serialize(self.activation),
+            "activation": tf.keras.activations.serialize(self.activation),
             "groups": self.groups,
             "use_bias": self.use_bias,
             "kernel_initializer": initializers.serialize(self.kernel_initializer),

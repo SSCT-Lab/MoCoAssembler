@@ -1,5 +1,6 @@
 import tensorflow as tf
 
+
 class BlockSet(tf.keras.layers.Layer):
     def __init__(self, filters, strides=1):
         super(BlockSet, self).__init__()
@@ -12,7 +13,7 @@ class BlockSet(tf.keras.layers.Layer):
             self.downsample = tf.keras.Sequential()
             self.downsample.add(tf.keras.layers.Conv2D(filters, (1, 1), strides=strides))  # 这里不选择池化可能是希望下采样后更接近原来
         else:
-            self.downsample = lambda x:x
+            self.downsample = lambda x: x
 
     def call(self, inputs, training=False):
         out = self.conv1(inputs)
@@ -33,7 +34,7 @@ class ResNet(tf.keras.Model):
         self.stem = tf.keras.Sequential([tf.keras.layers.Conv2D(64, (3, 3), strides=1, padding='same'),
                                          tf.keras.layers.BatchNormalization(),
                                          tf.keras.layers.ReLU(),
-                                         tf.keras.layers.MaxPool2D(pool_size=(2,2),strides=(1, 1), padding='same')])
+                                         tf.keras.layers.MaxPool2D(pool_size=(2, 2), strides=(1, 1), padding='same')])
         self.block1 = self.BuildBlock(64, layer_dims[0], 1)
         self.block2 = self.BuildBlock(128, layer_dims[1], 2)
         self.block3 = self.BuildBlock(256, layer_dims[2], 2)
@@ -58,6 +59,3 @@ class ResNet(tf.keras.Model):
         out = self.classier(out)
         out = tf.keras.layers.Flatten()(out)
         return out
-
-
-

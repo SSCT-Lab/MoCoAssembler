@@ -1,5 +1,5 @@
 import tensorflow as tf
-from models.mobilenet_v3_block import BottleNeck, h_swish
+from mobilenet_v3_block import BottleNeck, h_swish
 from configuration import NUM_CLASSES
 
 

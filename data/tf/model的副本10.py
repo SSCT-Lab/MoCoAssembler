@@ -1,16 +1,9 @@
-"""
-"""
-
 from typing import Tuple, Union, Optional, Callable
 from collections.abc import Iterable
-
 import tensorflow as tf
 
 
 class StereoNet(tf.keras.models.Model):
-    """ Lifted heavily from https://github.com/zhixuanli/StereoNet
-    """
-
     def __init__(self, k: int = 4, candidate_disparities: int = 192):
         super().__init__(name='')
 
@@ -36,7 +29,7 @@ class StereoNet(tf.keras.models.Model):
         cost = self.cost_volume(cost, training=training)
         cost = tf.squeeze(cost, axis=-1)
 
-        # b, d, h, w = tf.shape(cost)
+
         disp_initial_l = tf.squeeze(tf.image.resize(tf.reshape(cost, (-1, tf.shape(cost)[2], tf.shape(cost)[3]))[..., tf.newaxis], size=left.shape[1:3]), axis=-1)
 
         pred_initial_l = tf.reshape(disp_initial_l, (tf.shape(cost)[0], tf.shape(cost)[1], tf.shape(left)[1], tf.shape(left)[2]))
@@ -60,9 +53,6 @@ def soft_argmin(cost_volume, grid_size):
 
 
 class ResBlock(tf.keras.models.Model):
-    """ https://www.tensorflow.org/tutorials/customization/custom_layers#models_composing_layers
-    """
-
     def __init__(self,
                  filters: int,
                  kernel_size: Union[int, Tuple[int, int]],
@@ -155,12 +145,6 @@ class EdgeAwareRefinement(tf.keras.models.Model):
                                                       ])
 
     def call(self, disp, colour):
-        # _, _, original_disp_h = tf.shape(disp)
-        # disp = tf.image.resize(disp[..., tf.newaxis], size=tf.shape(colour)[1:3])
-
-        # if tf.shape(colour)[2] / original_disp_h >= 1.5:
-        # disp *= 8
-
         output = tf.concat([disp, colour], axis=-1)
         output = self.feature_conv(output)
         output = self.residual_atrous_net(output)
@@ -169,7 +153,6 @@ class EdgeAwareRefinement(tf.keras.models.Model):
         output += disp
 
         output = tf.keras.activations.relu(output)
-        # output = tf.squeeze(output, axis=-1)
 
         return output
 

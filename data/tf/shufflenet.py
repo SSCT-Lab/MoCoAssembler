@@ -1,23 +1,12 @@
-# -*- coding:utf-8 -*-
-# author:平手友梨奈ii
-# e-mail:1353593259@qq.com
-# datetime:1993/12/01
-# filename:shufflenet.py
-# software: PyCharm
-
-
 import tensorflow as tf
-import tensorflow.keras as keras
-import tensorflow.keras.layers as layers
 
 
-class ConvBNRelu(keras.Model):
-
+class ConvBNRelu(tf.keras.Model):
     def __init__(self, channels, kernel_size, strides):
         super(ConvBNRelu, self).__init__()
-        self.conv = layers.Conv2D(channels, kernel_size, strides, padding='same', use_bias=False)
-        self.bn = layers.BatchNormalization()
-        self.relu = layers.ReLU()
+        self.conv = tf.keras.layers.Conv2D(channels, kernel_size, strides, padding='same', use_bias=False)
+        self.bn = tf.keras.layers.BatchNormalization()
+        self.relu = tf.keras.layers.ReLU()
 
     def __call__(self, inputs, training=True):
         x = self.conv(inputs)
@@ -27,12 +16,11 @@ class ConvBNRelu(keras.Model):
         return x
 
 
-class DepthwiseConvBNRelu(keras.Model):
-
+class DepthwiseConvBNRelu(tf.keras.Model):
     def __init__(self, kernel_size, strides):
         super(DepthwiseConvBNRelu, self).__init__()
-        self.depth_wise = layers.DepthwiseConv2D(kernel_size, strides, padding='same', use_bias=False)
-        self.bn = layers.BatchNormalization()
+        self.depth_wise = tf.keras.layers.DepthwiseConv2D(kernel_size, strides, padding='same', use_bias=False)
+        self.bn = tf.keras.layers.BatchNormalization()
 
     def __call__(self, inputs, training=True):
         x = self.depth_wise(inputs)
@@ -41,8 +29,7 @@ class DepthwiseConvBNRelu(keras.Model):
         return x
 
 
-class ChannelShuffle(keras.Model):
-
+class ChannelShuffle(tf.keras.Model):
     def __init__(self, group):
         super(ChannelShuffle, self).__init__()
         self.group = group
@@ -54,7 +41,6 @@ class ChannelShuffle(keras.Model):
         h = shape[1]
         w = shape[2]
         c = shape[3]
-        # assert c % self.group == 0, 'c % group needs to be zero!'
 
         inputs = tf.reshape(inputs, shape=[-1, h, w, c // self.group, self.group])
         inputs = tf.transpose(inputs, [0, 1, 2, 4, 3])
@@ -63,8 +49,7 @@ class ChannelShuffle(keras.Model):
         return inputs
 
 
-class ShuffleBlock(keras.Model):
-
+class ShuffleBlock(tf.keras.Model):
     def __init__(self, channels, strides, split_ratio=0.5):
         super(ShuffleBlock, self).__init__()
         self.split_ratio = split_ratio
@@ -74,22 +59,16 @@ class ShuffleBlock(keras.Model):
         self.shuffle = ChannelShuffle(group=2)
 
     def __call__(self, inputs, training):
-        # 1.channels split
         x1, x2 = tf.split(inputs, num_or_size_splits=int(1 / self.split_ratio), axis=-1)
-        # 2.conv_1X1, depthwise_3X3, conv_1X1
         x2 = self.conv1(x2, training)
         x2 = self.depth_wise(x2, training)
         x2 = self.conv2(x2, training)
-        # 3.concatenate x1 and x2 to make information communicate
-        feature = layers.Concatenate()([x1, x2])
-        # 4.channel shuffle
+        feature = tf.keras.layers.Concatenate()([x1, x2])
         res = self.shuffle(feature)
-
         return res
 
 
-class ShuffleConvBlock(keras.Model):
-
+class ShuffleConvBlock(tf.keras.Model):
     def __init__(self, in_channels, out_channels, strides):
         super(ShuffleConvBlock, self).__init__()
         self.conv1 = ConvBNRelu(out_channels - in_channels, 1, 1)
@@ -108,35 +87,21 @@ class ShuffleConvBlock(keras.Model):
         x1 = self.depth_wise_lateral(x1, training)
         x1 = self.conv_lateral(x1, training)
 
-        feature = layers.Concatenate()([x1, x2])
+        feature = tf.keras.layers.Concatenate()([x1, x2])
         res = self.shuffle(feature)
 
         return res
 
 
-class ShuffleNetV2(keras.Model):
-    """ShuffleNetV2
-    How to reduce MAC:
-    1.make channels_in == channels_out
-    2.don't use group convolution
-    3.change add to concatenate
-    4.don't make model fragmented
-    So, use:
-    1.conv_1X1
-    2.depthwise and pointwise
-    3.concatenate rather than add
-    4.maybe shuffle block can promote accuracy
-
-    """
-
+class ShuffleNetV2(tf.keras.Model):
     def __init__(self, channels=[24, 116, 232, 464, 1024]):
         super(ShuffleNetV2, self).__init__()
-        self.conv1 = layers.Conv2D(channels[0], 3, 2, padding='same')
-        self.pool = layers.MaxPool2D(3, strides=2, padding='same')
+        self.conv1 = tf.keras.layers.Conv2D(channels[0], 3, 2, padding='same')
+        self.pool = tf.keras.layers.MaxPool2D(3, strides=2, padding='same')
         self.stage1 = ShuffleNetStage(repeat=3, in_channels=channels[0], out_channels=channels[1])
         self.stage2 = ShuffleNetStage(repeat=7, in_channels=channels[1], out_channels=channels[2])
         self.stage3 = ShuffleNetStage(repeat=3, in_channels=channels[2], out_channels=channels[3])
-        self.conv2 = layers.Conv2D(channels[4], kernel_size=1, padding='same')
+        self.conv2 = tf.keras.layers.Conv2D(channels[4], kernel_size=1, padding='same')
 
     def __call__(self, inputs, training):
         x = self.conv1(inputs)
@@ -149,7 +114,7 @@ class ShuffleNetV2(keras.Model):
         return x
 
 
-class ShuffleNetStage(keras.Model):
+class ShuffleNetStage(tf.keras.Model):
 
     def __init__(self, repeat, in_channels, out_channels):
         super(ShuffleNetStage, self).__init__()
@@ -171,7 +136,7 @@ class ShuffleNetStage(keras.Model):
 
 if __name__ == '__main__':
     shufflenet_v2 = ShuffleNetV2()
-    inputs_ = keras.Input(shape=(224, 224, 3))
+    inputs_ = tf.keras.Input(shape=(224, 224, 3))
     res = shufflenet_v2(inputs_, training=True)
-    model = keras.Model(inputs_, res)
+    model = tf.keras.Model(inputs_, res)
     model.summary()

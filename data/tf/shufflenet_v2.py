@@ -1,5 +1,4 @@
 import tensorflow as tf
-
 from configuration import NUM_CLASSES
 
 

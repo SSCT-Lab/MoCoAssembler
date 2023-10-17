@@ -1,5 +1,5 @@
 import tensorflow as tf
-from tensorflow.keras import layers, Sequential, Model
+from tensorflow.keras import Sequential, Model
 
 
 class MobileNet(Model):
@@ -7,13 +7,13 @@ class MobileNet(Model):
         super(MobileNet, self).__init__()
 
         self.conv1 = Sequential([
-            layers.Input(input_shape),
-            layers.Conv2D(32,
+            tf.keras.layers.Input(input_shape),
+            tf.keras.layers.Conv2D(32,
                           (3, 3),
                           strides=2,
                           padding='same',
                           activation='relu'),
-            layers.SeparableConv2D(64,
+            tf.keras.layers.SeparableConv2D(64,
                                    (3, 3),
                                    strides=1,
                                    padding="same",
@@ -21,13 +21,13 @@ class MobileNet(Model):
                                    activation='relu'),
         ])
         self.conv2 = Sequential([
-            layers.SeparableConv2D(128,
+            tf.keras.layers.SeparableConv2D(128,
                                    (3, 3),
                                    strides=1,
                                    padding="same",
                                    depth_multiplier=alpha,
                                    activation='relu'),
-            layers.SeparableConv2D(128,
+            tf.keras.layers.SeparableConv2D(128,
                                    (3, 3),
                                    strides=1,
                                    padding="same",
@@ -35,13 +35,13 @@ class MobileNet(Model):
                                    activation='relu'),
         ])
         self.conv3 = Sequential([
-            layers.SeparableConv2D(1256,
+            tf.keras.layers.SeparableConv2D(1256,
                                    (3, 3),
                                    strides=1,
                                    padding="same",
                                    depth_multiplier=alpha,
                                    activation='relu'),
-            layers.SeparableConv2D(256,
+            tf.keras.layers.SeparableConv2D(256,
                                    (3, 3),
                                    strides=1,
                                    padding="same",
@@ -49,37 +49,37 @@ class MobileNet(Model):
                                    activation='relu'),
         ])
         self.conv4 = Sequential([
-            layers.SeparableConv2D(512,
+            tf.keras.layers.SeparableConv2D(512,
                                    (3, 3),
                                    strides=1,
                                    padding="same",
                                    depth_multiplier=alpha,
                                    activation='relu'),
-            layers.SeparableConv2D(512,
+            tf.keras.layers.SeparableConv2D(512,
                                    (3, 3),
                                    strides=1,
                                    padding="same",
                                    depth_multiplier=alpha,
                                    activation='relu'),
-            layers.SeparableConv2D(512,
+            tf.keras.layers.SeparableConv2D(512,
                                    (3, 3),
                                    strides=1,
                                    padding="same",
                                    depth_multiplier=alpha,
                                    activation='relu'),
-            layers.SeparableConv2D(512,
+            tf.keras.layers.SeparableConv2D(512,
                                    (3, 3),
                                    strides=1,
                                    padding="same",
                                    depth_multiplier=alpha,
                                    activation='relu'),
-            layers.SeparableConv2D(512,
+            tf.keras.layers.SeparableConv2D(512,
                                    (3, 3),
                                    strides=1,
                                    padding="same",
                                    depth_multiplier=alpha,
                                    activation='relu'),
-            layers.SeparableConv2D(512,
+            tf.keras.layers.SeparableConv2D(512,
                                    (3, 3),
                                    strides=1,
                                    padding="same",
@@ -87,22 +87,22 @@ class MobileNet(Model):
                                    activation='relu'),
         ])
         self.conv5 = Sequential([
-            layers.SeparableConv2D(1024,
+            tf.keras.layers.SeparableConv2D(1024,
                                    (3, 3),
                                    strides=1,
                                    padding="same",
                                    depth_multiplier=alpha,
                                    activation='relu'),
-            layers.SeparableConv2D(1024,
+            tf.keras.layers.SeparableConv2D(1024,
                                    (3, 3),
                                    strides=1,
                                    padding="same",
                                    depth_multiplier=alpha,
                                    activation='relu'),
         ])
-        self.ap = layers.AveragePooling2D((7, 7), strides=1)
-        self.flat = layers.Flatten()
-        self.fc = layers.Dense(num_classes, activation='softmax')
+        self.ap = tf.keras.layers.AveragePooling2D((7, 7), strides=1)
+        self.flat = tf.keras.layers.Flatten()
+        self.fc = tf.keras.layers.Dense(num_classes, activation='softmax')
 
     def call(self, inputs, training=False):
         x = self.conv1(inputs)

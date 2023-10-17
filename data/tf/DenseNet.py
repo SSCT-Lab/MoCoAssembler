@@ -1,33 +1,33 @@
 import tensorflow as tf
-from tensorflow.keras import layers, Sequential, Model
+from tensorflow.keras import Sequential, Model
 
 
-class BottleNeck(layers.Layer):
+class BottleNeck(tf.keras.layers.Layer):
     def __init__(self, growth_rate):
         super(BottleNeck, self).__init__()
         inner_channel = 4 * growth_rate
 
         self.bottle_neck = Sequential([
-            layers.BatchNormalization(),
-            layers.ReLU(),
-            layers.Conv2D(inner_channel, (1, 1), use_bias=False),
-            layers.BatchNormalization(),
-            layers.ReLU(),
-            layers.Conv2D(growth_rate, (3, 3), padding='same', use_bias=False)
+            tf.keras.layers.BatchNormalization(),
+            tf.keras.layers.ReLU(),
+            tf.keras.layers.Conv2D(inner_channel, (1, 1), use_bias=False),
+            tf.keras.layers.BatchNormalization(),
+            tf.keras.layers.ReLU(),
+            tf.keras.layers.Conv2D(growth_rate, (3, 3), padding='same', use_bias=False)
         ])
 
     def call(self, x, training=False):
         return tf.concat([x, self.bottle_neck(x, training=training)], axis=-1)
 
 
-class Transition(layers.Layer):
+class Transition(tf.keras.layers.Layer):
     def __init__(self, out_channels):
         super(Transition, self).__init__()
 
         self.down_sample = Sequential([
-            layers.BatchNormalization(),
-            layers.Conv2D(out_channels, (1, 1), use_bias=False),
-            layers.AveragePooling2D((2, 2), strides=2)
+            tf.keras.layers.BatchNormalization(),
+            tf.keras.layers.Conv2D(out_channels, (1, 1), use_bias=False),
+            tf.keras.layers.AveragePooling2D((2, 2), strides=2)
         ])
 
     def call(self, x, training=False):
@@ -47,8 +47,8 @@ class DenseNet(Model):
         inner_channels = 2 * growth_rate
 
         self.conv1 = Sequential([
-            layers.Input(input_shape),
-            layers.Conv2D(inner_channels, (3, 3),
+            tf.keras.layers.Input(input_shape),
+            tf.keras.layers.Conv2D(inner_channels, (3, 3),
                           padding='same', use_bias=False)
         ])
 
@@ -65,11 +65,11 @@ class DenseNet(Model):
         self.features.add(self._make_dense_layers(
             block, nblocks[len(nblocks)-1]))
         inner_channels += growth_rate * nblocks[len(nblocks) - 1]
-        self.features.add(layers.BatchNormalization())
-        self.features.add(layers.ReLU())
+        self.features.add(tf.keras.layers.BatchNormalization())
+        self.features.add(tf.keras.layers.ReLU())
 
-        self.gap = layers.GlobalAveragePooling2D()
-        self.fc = layers.Dense(num_classes, activation='softmax')
+        self.gap = tf.keras.layers.GlobalAveragePooling2D()
+        self.fc = tf.keras.layers.Dense(num_classes, activation='softmax')
 
     def _make_dense_layers(self, block, nblocks):
         dense_block = Sequential()
