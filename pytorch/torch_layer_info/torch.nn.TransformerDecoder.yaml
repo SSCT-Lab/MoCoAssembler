@@ -1,11 +1,11 @@
-api: torch.nn.TransformerDecoder(class , decoder_layer, num_layers, norm=None)
+api: torch.nn.TransformerDecoder(decoder_layer, num_layers, norm=None)
 constraints:
   decoder_layer:
     descp: an instance of the TransformerDecoderLayer() class (required).
-  num_layers:
-    descp: the number of sub-decoder-layers in the decoder (required).
   norm:
     descp: the layer normalization component (optional).
+  num_layers:
+    descp: the number of sub-decoder-layers in the decoder (required).
 descp: TransformerDecoder is a stack of N decoder layers
 inputs:
   optional: []

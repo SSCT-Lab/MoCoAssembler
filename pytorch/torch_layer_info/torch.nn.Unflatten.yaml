@@ -1,15 +1,15 @@
-api: torch.nn.Unflatten(class , dim, unflattened_size)
+api: torch.nn.Unflatten(dim, unflattened_size)
 constraints:
   dim:
     descp: Dimension to be unflattened
     dtype:
     - int
     - str
+    enum: null
+    range: null
+    shape: null
     structure:
     - single
-    shape: null
-    range: null
-    enum: null
   unflattened_size:
     descp: New shape of the unflattened dimension
     dtype:
