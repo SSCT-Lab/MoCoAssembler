@@ -1,4 +1,4 @@
-api: torch.nn.Softsign(class , *args, **kwargs)
+api: torch.nn.Softsign(*args, **kwargs)
 constraints: {}
 descp: 'Applies the element-wise function:'
 inputs:

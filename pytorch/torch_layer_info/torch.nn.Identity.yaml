@@ -1,4 +1,4 @@
-api: torch.nn.Identity(class , *args, **kwargs)
+api: torch.nn.Identity(*args, **kwargs)
 constraints:
   args:
     descp: any argument (unused)

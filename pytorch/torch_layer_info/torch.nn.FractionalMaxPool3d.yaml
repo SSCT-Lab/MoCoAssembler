@@ -1,4 +1,4 @@
-api: torch.nn.FractionalMaxPool3d(class , kernel_size, output_size=None, output_ratio=None,
+api: torch.nn.FractionalMaxPool3d(kernel_size, output_size=None, output_ratio=None,
   return_indices=False, _random_samples=None)
 constraints:
   kernel_size:
@@ -9,26 +9,12 @@ constraints:
     - union[int, tuple[int, int, int]]
     - int
     - union[int, tuple[int, int, int]]
+    range: null
+    shape: null
     structure:
     - single
     - tuple
     - single
-    shape: null
-    range: null
-  output_size:
-    descp: the target output size of the image of the form oT x oH x oW. Can be a
-      tuple (oT, oH, oW) or a single number oH for a square image oH x oH x oH
-    dtype:
-    - int
-    - union[int, tuple[int, int, int]]
-    - int
-    - union[int, tuple[int, int, int]]
-    structure:
-    - single
-    - tuple
-    - single
-    shape: null
-    range: null
   output_ratio:
     descp: If one wants to have an output size as a ratio of the input size, this
       option can be given. This has to be a number or tuple in the range (0, 1)
@@ -37,15 +23,29 @@ constraints:
     - union[float, tuple[float, float, float]]
     - float
     - union[float, tuple[float, float, float]]
+    shape: null
     structure:
     - single
     - tuple
     - single
+  output_size:
+    descp: the target output size of the image of the form oT x oH x oW. Can be a
+      tuple (oT, oH, oW) or a single number oH for a square image oH x oH x oH
+    dtype:
+    - int
+    - union[int, tuple[int, int, int]]
+    - int
+    - union[int, tuple[int, int, int]]
+    range: null
     shape: null
+    structure:
+    - single
+    - tuple
+    - single
   return_indices:
+    default: 'False'
     descp: if True, will return the indices along with the outputs. Useful to pass
       to nn.MaxUnpool3d().
-    default: 'False'
     dtype:
     - bool
 descp: Applies a 3D fractional max pooling over an input signal composed of several

@@ -1,4 +1,4 @@
-api: torch.nn.AdaptiveAvgPool1d(class , output_size)
+api: torch.nn.AdaptiveAvgPool1d(output_size)
 constraints:
   output_size:
     descp: "the target output size LoutL_{out}Lout\u200B."

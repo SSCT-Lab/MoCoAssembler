@@ -1,8 +1,8 @@
-api: torch.nn.Hardsigmoid(class , inplace=False)
+api: torch.nn.Hardsigmoid(inplace=False)
 constraints:
   inplace:
-    descp: can optionally do the operation in-place.
     default: 'False'
+    descp: can optionally do the operation in-place.
 descp: Applies the Hardsigmoid function element-wise.
 inputs:
   optional: []

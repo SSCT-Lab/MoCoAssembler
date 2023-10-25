@@ -1,11 +1,19 @@
-api: torch.nn.parallel.DistributedDataParallel(class , module, device_ids=None, output_device=None,
+api: torch.nn.parallel.DistributedDataParallel(module, device_ids=None, output_device=None,
   dim=0, broadcast_buffers=True, process_group=None, bucket_cap_mb=25, find_unused_parameters=False,
   check_reduction=False, gradient_as_bucket_view=False, static_graph=False)
 constraints:
-  module:
-    descp: module to be parallelized
+  broadcast_buffers:
+    descp: 'Flag that enables syncing (broadcasting) buffers of the module at beginning
+      of the forward function. (default: True)'
     dtype:
-    - module
+    - bool
+  bucket_cap_mb:
+    descp: 'DistributedDataParallel will bucket parameters into multiple buckets so
+      that gradient reduction of each bucket can potentially overlap with backward
+      computation. bucket_cap_mb controls the bucket size in MegaBytes (MB). (default:
+      25)'
+  check_reduction:
+    descp: This argument is deprecated.
   device_ids:
     descp: 'CUDA devices. 1) For single-device modules, device_ids can contain exactly
       one device id, which represents the only CUDA device where the input module
@@ -25,31 +33,6 @@ constraints:
     - list of python:int or torch.device
     structure:
     - list
-  output_device:
-    descp: 'Device location of output for single-device CUDA modules. For multi-device
-      modules and CPU modules, it must be None, and the module itself dictates the
-      output location. (default: device_ids[0] for single-device modules)'
-    dtype:
-    - int
-    - int or torch.device
-    structure:
-    - single
-    shape: null
-    range: null
-  broadcast_buffers:
-    descp: 'Flag that enables syncing (broadcasting) buffers of the module at beginning
-      of the forward function. (default: True)'
-    dtype:
-    - bool
-  process_group:
-    descp: 'The process group to be used for distributed data all-reduction. If None,
-      the default process group, which is created by torch.distributed.init_process_group(),
-      will be used. (default: None)'
-  bucket_cap_mb:
-    descp: 'DistributedDataParallel will bucket parameters into multiple buckets so
-      that gradient reduction of each bucket can potentially overlap with backward
-      computation. bucket_cap_mb controls the bucket size in MegaBytes (MB). (default:
-      25)'
   find_unused_parameters:
     descp: "Traverse the autograd graph from all tensors contained in the return value\
       \ of the wrapped module\u2019s forward function. Parameters that don\u2019t\
@@ -60,8 +43,6 @@ constraints:
       \ (default: False)"
     dtype:
     - bool
-  check_reduction:
-    descp: This argument is deprecated.
   gradient_as_bucket_view:
     descp: When set to True, gradients will be views pointing to different offsets
       of allreduce communication buckets. This can reduce peak memory usage, where
@@ -74,6 +55,25 @@ constraints:
       iteration.
     dtype:
     - bool
+  module:
+    descp: module to be parallelized
+    dtype:
+    - module
+  output_device:
+    descp: 'Device location of output for single-device CUDA modules. For multi-device
+      modules and CPU modules, it must be None, and the module itself dictates the
+      output location. (default: device_ids[0] for single-device modules)'
+    dtype:
+    - int
+    - int or torch.device
+    range: null
+    shape: null
+    structure:
+    - single
+  process_group:
+    descp: 'The process group to be used for distributed data all-reduction. If None,
+      the default process group, which is created by torch.distributed.init_process_group(),
+      will be used. (default: None)'
   static_graph:
     descp: 'When set to True, DDP knows the trained graph is static. Static graph
       means 1) The set of used and unused parameters will not change during the whole
