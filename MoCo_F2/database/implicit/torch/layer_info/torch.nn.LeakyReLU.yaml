@@ -1,0 +1,17 @@
+api: torch.nn.LeakyReLU(negative_slope=0.01, inplace=False)
+constraints:
+  inplace:
+    descp: can optionally do the operation in-place.
+    default: false
+    dtype: torch.bool
+  negative_slope:
+    descp: Controls the angle of the negative slope (which is used for negative input
+      values).
+    default: 0.01
+    dtype: torch.float
+descp: 'Applies the element-wise function:'
+inputs:
+  optional:
+  - negative_slope
+  - inplace
+  required: []

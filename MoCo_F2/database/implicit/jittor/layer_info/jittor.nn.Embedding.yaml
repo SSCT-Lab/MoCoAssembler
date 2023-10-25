@@ -1,0 +1,28 @@
+api: jittor.nn.Embedding(self, num_embeddings, embedding_dim, dtype="float32")
+constraints:
+  dtype:
+    default: '"float32"'
+    dtype:
+    - str
+    range:
+    - '"float32"'
+  embedding_dim:
+    default: no default
+    dtype:
+    - int
+  num_embeddings:
+    default: no default
+    dtype:
+    - int
+descp: "    ''' A simple lookup table that stores embeddings of a fixed dictionary\
+  \ and size.\n\n        :param num: size of the dictionary of embeddings\n      \
+  \  :type num: int\n\n        :param dim: the size of each embedding vector\n   \
+  \     :type dim: int\n\n        \n'''"
+extra_para: 0
+inputs:
+  optional:
+  - dtype
+  required:
+  - num_embeddings
+  - embedding_dim
+kind: layer

@@ -1,0 +1,10 @@
+api: torch.nn.Hardshrink(lambd=0.5)
+constraints:
+  lambd:
+    default: 0.5
+    dtype: torch.float
+descp: Applies the Hard Shrinkage (Hardshrink) function element-wise.
+inputs:
+  optional:
+  - lambd
+  required: []

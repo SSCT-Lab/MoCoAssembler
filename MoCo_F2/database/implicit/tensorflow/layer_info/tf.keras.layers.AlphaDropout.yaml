@@ -1,0 +1,16 @@
+api: tf.keras.layers.AlphaDropout(rate, noise_shape=None, seed=None, **kwargs)
+constraints:
+  noise_shape:
+    default: None
+  rate:
+    default: 0.0
+    descp: float, drop probability (as with Dropout). The multiplicative noise will
+      have standard deviation sqrt(rate / (1 - rate)).
+    dtype: float
+  seed:
+    default: None
+    descp: Integer, optional random seed to enable deterministic behavior.
+    dtype: int
+descp: Applies Alpha Dropout to the input.
+required:
+- rate

@@ -1,0 +1,20 @@
+api: tf.keras.activations.deserialize(name, custom_objects=None, use_legacy_format=False)
+constraints:
+  name:
+    descp: The name of the activation function.
+  custom_objects:
+    default: None
+    descp: "Optional {function_name: function_obj} dictionary listing user-provided activation functions."
+    structure:
+    - dict
+  use_legacy_format:
+    default: False
+    descp: Boolean, whether to use the legacy format for deserialization.
+    dtype: tf.bool
+descp: Returns activation function given a string identifier.
+inputs:
+  optional:
+  - custom_objects
+  - use_legacy_format
+  required:
+  - name

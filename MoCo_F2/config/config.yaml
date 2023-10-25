@@ -1,0 +1,6 @@
+LIBRARY_LIST:
+  0: torch
+LIBRARY_NUM: 3
+N: 2
+THRESHOLD: 0.5
+MODE: 1

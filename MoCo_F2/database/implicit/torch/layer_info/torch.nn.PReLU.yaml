@@ -1,0 +1,16 @@
+api: torch.nn.PReLU(num_parameters=1, init=0.25, device=None, dtype=None)
+constraints:
+  init:
+    descp: the initial value of
+    default: 0.25
+    dtype: torch.float
+  num_parameters:
+    descp: number of
+    default: 1
+    dtype: int
+descp: 'Applies the element-wise function:'
+inputs:
+  optional:
+  - num_parameters
+  - init
+  required: []

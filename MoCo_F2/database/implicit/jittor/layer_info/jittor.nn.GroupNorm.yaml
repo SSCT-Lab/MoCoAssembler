@@ -1,0 +1,33 @@
+api: jittor.nn.GroupNorm(self, num_groups, num_channels, eps=1e-05, affine=True, is_train=True)
+constraints:
+  affine:
+    default: 'True'
+    dtype:
+    - bool
+  eps:
+    default: 1e-05
+    dtype:
+    - float
+  is_train:
+    default: 'True'
+    dtype:
+    - bool
+  num_channels:
+    default: no default
+    dtype:
+    - int
+  num_groups:
+    default: no default
+    dtype:
+    - int
+descp: no description
+extra_para: 0
+inputs:
+  optional:
+  - eps
+  - affine
+  - is_train
+  required:
+  - num_groups
+  - num_channels
+kind: layer

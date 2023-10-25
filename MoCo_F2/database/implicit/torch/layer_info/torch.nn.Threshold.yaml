@@ -1,0 +1,19 @@
+api: torch.nn.Threshold(threshold, value, inplace=False)
+constraints:
+  inplace:
+    descp: can optionally do the operation in-place.
+    default: false
+    dtype: torch.bool
+  threshold:
+    descp: The value to threshold at
+    dtype: torch.float
+  value:
+    descp: The value to replace with
+    dtype: torch.float
+descp: Thresholds each element of the input Tensor.
+inputs:
+  optional:
+  - inplace
+  required:
+  - threshold
+  - value

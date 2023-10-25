@@ -1,0 +1,42 @@
+api: torch.nn.RNN(class , *args, **kwargs)
+constraints:
+  input_size:
+    descp: The number of expected features in the input x
+  hidden_size:
+    descp: The number of features in the hidden state h
+  num_layers:
+    descp: Number of recurrent layers. E.g., setting num_layers=2 would mean stacking
+      two RNNs together to form a stacked RNN, with the second RNN taking in outputs
+      of the first RNN and computing the final results.
+    default: '1'
+  nonlinearity:
+    descp: The non-linearity to use. Can be either tanh or relu.
+    default: tanh
+  bias:
+    descp: If False, then the layer does not use bias weights b_ih and b_hh.
+    default: 'True'
+  batch_first:
+    descp: If True, then the input and output tensors are provided as (batch, seq,
+      feature) instead of (seq, batch, feature). Note that this does not apply to
+      hidden or cell states. See the Inputs/Outputs sections below for details.
+    default: 'False'
+  dropout:
+    descp: If non-zero, introduces a Dropout layer on the outputs of each RNN layer
+      except the last layer, with dropout probability equal to dropout.
+    default: '0'
+  bidirectional:
+    descp: If True, becomes a bidirectional RNN.
+    default: 'False'
+descp: "Applies a multi-layer Elman RNN with tanh\u2061\\tanhtanh or ReLU\\text{ReLU}ReLU\
+  \ non-linearity to an input sequence."
+inputs:
+  optional: []
+  required:
+  - input_size
+  - hidden_size
+  - num_layers
+  - nonlinearity
+  - bias
+  - batch_first
+  - dropout
+  - bidirectional

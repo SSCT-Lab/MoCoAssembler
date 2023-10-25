@@ -1,0 +1,65 @@
+LeNet:
+  - layer: conv2d
+    params:
+      in_channels: 1
+      kernel_size: 5
+      out_channels: 6
+    in: x
+    out: x
+  - layer: relu
+    params: {}
+    in: x
+    out: x
+  - layer: maxpool2d
+    params:
+      kernel_size: 2
+      stride: 2
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 6
+      kernel_size: 5
+      out_channels: 16
+    in: x
+    out: x
+  - layer: relu
+    params: {}
+    in: x
+    out: x
+  - layer: maxpool2d
+    params:
+      kernel_size: 2
+      stride: 2
+    in: x
+    out: x
+  - layer: flatten
+    params: {}
+    in: x
+    out: x
+  - layer: linear
+    params:
+      in_features: 256
+      out_features: 120
+    in: x
+    out: x
+  - layer: relu
+    params: {}
+    in: x
+    out: x
+  - layer: linear
+    params:
+      in_features: 120
+      out_features: 84
+    in: x
+    out: x
+  - layer: relu
+    params: {}
+    in: x
+    out: x
+  - layer: linear
+    params:
+      in_features: 84
+      out_features: 10
+    in: x
+    out: x

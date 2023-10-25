@@ -1,0 +1,39 @@
+api: tf.keras.layers.UpSampling2D(size=(2, 2), data_format=None, interpolation='nearest',
+  **kwargs)
+constraints:
+  data_format:
+    default: None
+    descp: A string, one of channels_last (default) or channels_first. The ordering
+      of the dimensions in the inputs. channels_last corresponds to inputs with shape
+      (batch_size, height, width, channels) while channels_first corresponds to inputs
+      with shape (batch_size, channels, height, width). When unspecified, uses image_data_format
+      value found in your Keras config file at  ~/.keras/keras.json (if exists) else
+      'channels_last'. Defaults to 'channels_last'.
+    dtype: tf.string
+    enum:
+    - channels_first
+    - channels_last
+  interpolation:
+    default: nearest
+    descp: A string, one of "area", "bicubic", "bilinear", "gaussian", "lanczos3",
+      "lanczos5", "mitchellcubic", "nearest".
+    dtype: tf.string
+    enum:
+    - area
+    - bicubic
+    - bilinear
+    - gaussian
+    - lanczos3
+    - lanczos5
+    - mitchellcubic
+    - nearest
+  size:
+    default: (2, 2)
+    descp: Int, or tuple of 2 integers. The upsampling factors for rows and columns.
+    dtype: int
+    shape: 2
+    structure:
+    - integer
+    - tuple
+descp: Upsampling layer for 2D inputs.
+required: []

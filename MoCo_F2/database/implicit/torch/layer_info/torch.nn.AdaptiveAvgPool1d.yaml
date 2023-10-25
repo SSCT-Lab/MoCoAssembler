@@ -1,0 +1,15 @@
+api: torch.nn.AdaptiveAvgPool1d(class , output_size)
+constraints:
+  output_size:
+    descp: "the target output size LoutL_{out}Lout\u200B."
+    structure:
+    - single
+    - tuple
+    shape: null
+    range: null
+descp: Applies a 1D adaptive average pooling over an input signal composed of several
+  input planes.
+inputs:
+  optional: []
+  required:
+  - output_size

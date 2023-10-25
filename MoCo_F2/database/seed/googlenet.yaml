@@ -1,0 +1,273 @@
+googlenet:
+  - layer: conv2d
+    params:
+      in_channels: 3
+      out_channels: 64
+      kernel_size: 7
+      stride: 2
+      padding: 3
+    in: x
+    out: x
+  - layer: relu
+    params: {}
+    in: x
+    out: x
+  - layer: maxpool2d
+    params:
+      kernel_size: 3
+      stride: 2
+      ceil_mode: True
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 64
+      out_channels: 64
+      kernel_size: 1
+      stride: 1
+    in: x
+    out: x
+  - layer: relu
+    params: {}
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 64
+      out_channels: 192
+      kernel_size: 3
+      stride: 1
+      padding: 1
+    in: x
+    out: x
+  - layer: relu
+    params: {}
+    in: x
+    out: x
+  - layer: maxpool2d
+    params:
+      kernel_size: 3
+      stride: 2
+      ceil_mode: True
+    in: x
+    out: x
+  - layer: inception
+    params:
+      in_channels: 192
+      ch1x1: 64
+      ch3x3red: 96
+      ch3x3: 128
+      ch5x5red: 16
+      ch5x5: 32
+      pool_proj: 32
+    in: x
+    out: x
+  - layer: inception
+    params:
+      in_channels: 256
+      ch1x1: 128
+      ch3x3red: 128
+      ch3x3: 192
+      ch5x5red: 32
+      ch5x5: 96
+      pool_proj: 64
+    in: x
+    out: x
+  - layer: maxpool2d
+    params:
+      kernel_size: 3
+      stride: 2
+      ceil_mode: True
+    in: x
+    out: x
+  - layer: inception
+    params:
+      in_channels: 480
+      ch1x1: 192
+      ch3x3red: 96
+      ch3x3: 208
+      ch5x5red: 16
+      ch5x5: 48
+      pool_proj: 64
+    in: x
+    out: x
+  - layer: inception
+    params:
+      in_channels: 512
+      ch1x1: 160
+      ch3x3red: 112
+      ch3x3: 224
+      ch5x5red: 24
+      ch5x5: 64
+      pool_proj: 64
+    in: x
+    out: x
+  - layer: inception
+    params:
+      in_channels: 512
+      ch1x1: 128
+      ch3x3red: 128
+      ch3x3: 256
+      ch5x5red: 24
+      ch5x5: 64
+      pool_proj: 64
+    in: x
+    out: x
+  - layer: inception
+    params:
+      in_channels: 512
+      ch1x1: 112
+      ch3x3red: 144
+      ch3x3: 288
+      ch5x5red: 32
+      ch5x5: 64
+      pool_proj: 64
+    in: x
+    out: x
+  - layer: inception
+    params:
+      in_channels: 528
+      ch1x1: 256
+      ch3x3red: 160
+      ch3x3: 320
+      ch5x5red: 32
+      ch5x5: 128
+      pool_proj: 128
+    in: x
+    out: x
+  - layer: maxpool2d
+    params:
+      kernel_size: 3
+      stride: 2
+      ceil_mode: True
+    in: x
+    out: x
+  - layer: inception
+    params:
+      in_channels: 832
+      ch1x1: 256
+      ch3x3red: 160
+      ch3x3: 320
+      ch5x5red: 32
+      ch5x5: 128
+      pool_proj: 128
+    in: x
+    out: x
+  - layer: inception
+    params:
+      in_channels: 832
+      ch1x1: 384
+      ch3x3red: 192
+      ch3x3: 384
+      ch5x5red: 48
+      ch5x5: 128
+      pool_proj: 128
+    in: x
+    out: x
+  - layer: adaptiveavgpool2d
+    params:
+      output_size: 1
+    in: x
+    out: x
+  - layer: flatten
+    params: { }
+    in: x
+    out: x
+  - layer: dropout
+    params:
+      p: 0.4
+    in: x
+    out: x
+  - layer: linear
+    params:
+      in_features: 1024
+      out_features: 1000
+    in: x
+    out: x
+inception:
+  - ["in_channels", "ch1x1", "ch3x3red", "ch3x3", "ch5x5red", "ch5x5", "pool_proj"]
+  - layer: conv2d
+    params:
+      in_channels: in_channels
+      out_channels: ch1x1
+      kernel_size: 1
+    in: x
+    out: branch1
+  - layer: relu
+    params: {}
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: in_channels
+      out_channels: ch3x3red
+      kernel_size: 1
+      stride: 1
+    in: x
+    out: branch2
+  - layer: relu
+    params: { }
+    in: branch2
+    out: branch2
+  - layer: conv2d
+    params:
+      in_channels: ch3x3red
+      out_channels: ch3x3
+      kernel_size: 3
+      stride: 1
+      padding: 1
+    in: x
+    out: branch2
+  - layer: relu
+    params: { }
+    in: branch2
+    out: branch2
+  - layer: conv2d
+    params:
+      in_channels: in_channels
+      out_channels: ch5x5red
+      kernel_size: 1
+      stride: 1
+    in: x
+    out: branch3
+  - layer: relu
+    params: { }
+    in: branch3
+    out: branch3
+  - layer: conv2d
+    params:
+      in_channels: ch5x5red
+      out_channels: ch5x5
+      kernel_size: 5
+      stride: 1
+      padding: 2
+    in: x
+    out: branch3
+  - layer: relu
+    params: { }
+    in: branch3
+    out: branch3
+  - layer: maxpool2d
+    params:
+      kernel_size: 3
+      stride: 1
+      padding: 1
+    in: x
+    out: branch4
+  - layer: conv2d
+    params:
+      in_channels: in_channels
+      out_channels: pool_proj
+      kernel_size: 1
+      stride: 1
+    in: branch4
+    out: branch4
+  - layer: relu
+    params: { }
+    in: branch4
+    out: branch4
+  - layer: cat
+    params:
+      dims: 1
+    in: [branch1, branch2, branch3, branch4]
+    out: x

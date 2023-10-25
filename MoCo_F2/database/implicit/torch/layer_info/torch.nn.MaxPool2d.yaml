@@ -1,0 +1,64 @@
+api: torch.nn.MaxPool2d(kernel_size, stride=None, padding=0, dilation=1, return_indices=False,
+  ceil_mode=False)
+constraints:
+  ceil_mode:
+    descp: when True, will use
+    default: false
+    dtype: torch.bool
+  dilation:
+    descp: a parameter that controls the stride of elements in the window
+    default: 1
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    - 1
+    - 6
+  kernel_size:
+    descp: the size of the window to take a max over
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    - 1
+    - 8
+  padding:
+    descp: Implicit negative infinity padding to be added on both sides
+    default: 0
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    - 1
+    - 8
+  return_indices:
+    descp: if True, will return the max indices along with the outputs. Useful for
+    default: false
+    dtype: torch.bool
+  stride:
+    descp: the stride of the window.
+    default: None
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 2
+    range:
+    - 1
+    - 4
+descp: Applies a 2D max pooling over an input signal composed of several input planes.
+inputs:
+  optional:
+  - stride
+  - padding
+  - dilation
+  - return_indices
+  - ceil_mode
+  required:
+  - kernel_size

@@ -1,0 +1,17 @@
+api: jittor.nn.ELU(self,alpha=1.0)
+constraints:
+  alpha:
+    default: '1.0'
+    dtype:
+    - float
+descp: "    r''' Applies the element-wise function:\n\n    .. math::\n        \\text{ELU}(x)\
+  \ = \\begin{cases}\n        x, & \\text{ if } x > 0\\\\\n        \\alpha * (\\exp(x)\
+  \ - 1), & \\text{ if } x \\leq 0\n        \\end{cases}\n\n    :param x: the input\
+  \ var\n    :type x: jt.Var\n\n    :param alpha: the :math:`\\alpha` value for the\
+  \ ELU formulation. Default: 1.0\n    :param alpha: float, optional\n\n    \n'''"
+extra_para: 0
+inputs:
+  optional:
+  - alpha
+  required: []
+kind: layer

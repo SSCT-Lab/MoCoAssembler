@@ -1,0 +1,10 @@
+api: tf.keras.activations.get(identifier)
+constraints:
+  identifier:
+    descp: Function or string
+    dtype: tf.string
+descp: Returns function.
+inputs:
+  optional: []
+  required:
+  - identifier

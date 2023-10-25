@@ -1,0 +1,36 @@
+api: jittor.nn.Bilinear(self, in1_features, in2_features, out_features, bias=True,
+  dtype="float32")
+constraints:
+  bias:
+    default: 'True'
+    dtype:
+    - bool
+  dtype:
+    default: '"float32"'
+    dtype:
+    - str
+    range:
+    - '"float32"'
+  in1_features:
+    default: no default
+    dtype:
+    - int
+  in2_features:
+    default: no default
+    dtype:
+    - int
+  out_features:
+    default: no default
+    dtype:
+    - int
+descp: "    ''' bilinear transformation $out = in1^T W in2 + bias$, \n'''"
+extra_para: 1
+inputs:
+  optional:
+  - bias
+  - dtype
+  required:
+  - in1_features
+  - in2_features
+  - out_features
+kind: layer

@@ -1,0 +1,42 @@
+api: torch.nn.MaxUnpool3d(kernel_size, stride=None, padding=0)
+check_nan: true
+constraints:
+  kernel_size:
+    descp: Size of the max pooling window.
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 3
+    range:
+    - 1
+    - 8
+  padding:
+    descp: Padding that was added to the input
+    default: 0
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 3
+    range:
+    - 1
+    - 8
+  stride:
+    descp: Stride of the max pooling window. It is set to
+    default: None
+    dtype: int
+    structure:
+    - integer
+    - tuple
+    shape: 3
+    range:
+    - 1
+    - 4
+descp: Computes a partial inverse of MaxPool3d.
+inputs:
+  optional:
+  - stride
+  - padding
+  required:
+  - kernel_size

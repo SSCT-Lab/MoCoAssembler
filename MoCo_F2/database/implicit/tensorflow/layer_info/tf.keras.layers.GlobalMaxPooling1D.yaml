@@ -1,0 +1,15 @@
+api: tf.keras.layers.GlobalMaxPooling1D(data_format='channels_last', keepdims=False,
+  **kwargs)
+constraints:
+  data_format:
+    default: channels_last
+    descp: A string, one of channels_last (default) or channels_first. The ordering
+      of the dimensions in the inputs. channels_last corresponds to inputs with shape
+      (batch, steps, features) while channels_first corresponds to inputs with shape
+      (batch, features, steps).
+    dtype: tf.string
+    enum:
+    - channels_first
+    - channels_last
+descp: Global max pooling operation for 1D temporal data.
+required: []

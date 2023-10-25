@@ -1,0 +1,8 @@
+api: tf.keras.layers.ThresholdedReLU(theta=1.0, **kwargs)
+constraints:
+  theta:
+    default: 1.0
+    descp: Float >= 0. Threshold location of activation.
+    dtype: float
+descp: Thresholded Rectified Linear Unit.
+required: []

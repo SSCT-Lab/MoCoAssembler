@@ -1,0 +1,16 @@
+api: tf.keras.layers.ZeroPadding1D(padding=1, **kwargs)
+constraints:
+  padding:
+    default: 1
+    descp: Int, or tuple of int (length 2), or dictionary.
+    dtype: int
+    range:
+    - 0
+    - 6
+    shape: 2
+    structure:
+    - integer
+    - tuple
+    - dict
+descp: Zero-padding layer for 1D input (e.g. temporal sequence).
+required: []

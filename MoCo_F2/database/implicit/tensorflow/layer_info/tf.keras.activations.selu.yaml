@@ -1,0 +1,11 @@
+api: tf.keras.activations.selu(x)
+constraints:
+  x:
+    descp: A tensor or variable to compute the activation function for.
+    tensor_t:
+    - tf.tensor
+descp: Scaled Exponential Linear Unit (SELU).
+inputs:
+  optional: []
+  required:
+  - x

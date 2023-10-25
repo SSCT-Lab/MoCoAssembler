@@ -1,0 +1,30 @@
+api: tf.keras.layers.Lambda(function, output_shape=None, mask=None, arguments=None,
+  **kwargs)
+constraints:
+  arguments:
+    default: None
+    descp: Optional dictionary of keyword arguments to be passed to the function.
+    structure:
+    - dict
+  function:
+    default: None
+    descp: The function to be evaluated. Takes input tensor as first argument.
+  mask:
+    default: None
+    descp: Either None (indicating no masking) or a callable with the same signature
+      as the compute_mask layer method, or a tensor that will be returned as output
+      mask regardless of what the input is.
+  output_shape:
+    default: None
+    descp: 'Expected output shape from function. This argument can be inferred if
+      not explicitly provided. Can be a tuple or function. If a tuple, it only specifies
+      the first dimension onward; sample dimension is assumed either the same as the
+      input: output_shape = (input_shape[0], ) + output_shape or, the input is None
+      and the sample dimension is also None: output_shape = (None, ) + output_shape
+      If a function, it specifies the entire shape as a function of the input shape:
+      output_shape = f(input_shape)'
+    structure:
+    - tuple
+descp: Wraps arbitrary expressions as a Layer object.
+required:
+- function

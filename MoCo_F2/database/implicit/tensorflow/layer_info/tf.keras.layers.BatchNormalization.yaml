@@ -1,0 +1,75 @@
+api: tf.keras.layers.BatchNormalization(axis=-1, momentum=0.99, epsilon=0.001, center=True,
+  scale=True, beta_initializer='zeros', gamma_initializer='ones', moving_mean_initializer='zeros',
+  moving_variance_initializer='ones', beta_regularizer=None, gamma_regularizer=None,
+  beta_constraint=None, gamma_constraint=None, synchronized=False, **kwargs)
+constraints:
+  axis:
+    default: -1
+    descp: Integer, the axis that should be normalized (typically the features axis).
+      For instance, after a Conv2D layer with data_format="channels_first", set axis=1
+      in BatchNormalization.
+    dtype: int
+    range:
+    - -1
+    - 3
+    shape: 1
+    structure: integer
+  beta_constraint:
+    default: None
+    descp: Optional constraint for the beta weight.
+    dtype: tf.string
+  beta_initializer:
+    default: zeros
+    descp: Initializer for the beta weight.
+    dtype: tf.string
+  beta_regularizer:
+    default: None
+    descp: Optional regularizer for the beta weight.
+    dtype: tf.string
+  center:
+    default: true
+    descp: If True, add offset of beta to normalized tensor. If False, beta is ignored.
+    dtype: tf.bool
+  epsilon:
+    default: 0.001
+    descp: Small float added to variance to avoid dividing by zero.
+    dtype: float
+  gamma_constraint:
+    default: None
+    descp: Optional constraint for the gamma weight.
+    dtype: tf.string
+  gamma_initializer:
+    default: ones
+    descp: Initializer for the gamma weight.
+    dtype: tf.string
+  gamma_regularizer:
+    default: None
+    descp: Optional regularizer for the gamma weight.
+    dtype: tf.string
+  momentum:
+    default: 0.99
+    descp: Momentum for the moving average.
+    dtype: float
+  moving_mean_initializer:
+    default: zeros
+    descp: Initializer for the moving mean.
+    dtype: tf.string
+  moving_variance_initializer:
+    default: ones
+    descp: Initializer for the moving variance.
+    dtype: tf.string
+  scale:
+    default: true
+    descp: If True, multiply by gamma. If False, gamma is not used. When the next
+      layer is linear (also e.g. nn.relu), this can be disabled since the scaling
+      will be done by the next layer.
+    dtype: tf.bool
+  synchronized:
+    default: false
+    descp: If True, synchronizes the global batch statistics (mean and variance) for
+      the layer across all devices at each training step in a distributed training
+      strategy. If False, each replica uses its own local batch statistics. Only relevant
+      when used inside a tf.distribute strategy.
+    dtype: tf.bool
+descp: Layer that normalizes its inputs.
+required: []

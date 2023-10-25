@@ -1,0 +1,9 @@
+api: tf.keras.activations.softplus(x)
+constraints:
+  x:
+    descp: Input tensor.
+descp: Softplus activation function, softplus(x) = log(exp(x) + 1).
+inputs:
+  optional: []
+  required:
+  - x

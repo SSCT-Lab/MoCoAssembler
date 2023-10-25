@@ -1,0 +1,9 @@
+api: tf.keras.activations.exponential(x)
+constraints:
+  x:
+    descp: Input tensor.
+descp: Exponential activation function.
+inputs:
+  optional: []
+  required:
+  - x

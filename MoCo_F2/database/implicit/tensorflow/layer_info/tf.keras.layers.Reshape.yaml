@@ -1,0 +1,18 @@
+api: tf.keras.layers.Reshape(target_shape, **kwargs)
+constraints:
+  '**kwargs':
+    default: null
+    descp: Any additional layer keyword arguments.
+  target_shape:
+    descp: Target shape. Tuple of integers, does not include the samples dimension
+      (batch size).
+    dtype:
+    - int
+    structure:
+    - tuple
+descp: Layer that reshapes inputs into the given shape.
+inputs:
+  optional:
+  - '**kwargs'
+  required:
+  - target_shape

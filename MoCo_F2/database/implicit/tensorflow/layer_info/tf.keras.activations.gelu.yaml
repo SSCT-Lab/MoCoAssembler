@@ -1,0 +1,14 @@
+api: tf.keras.activations.gelu(x, approximate=False)
+constraints:
+  x:
+    descp: Input tensor
+  approximate:
+    default: False
+    descp: A bool, whether to enable approximation.
+    dtype: tf.bool
+descp: Applies the Gaussian error linear unit (GELU) activation function.
+inputs:
+  optional:
+  - approximate
+  required:
+  - x
