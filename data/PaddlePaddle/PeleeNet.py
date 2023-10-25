@@ -102,19 +102,6 @@ class BasicConv2d(nn.Layer):
 
 
 class PeleeNet(nn.Layer):
-    r"""PeleeNet model class, based on
-    `"Densely Connected Convolutional Networks" <https://arxiv.org/pdf/1608.06993.pdf> and
-     "Pelee: A Real-Time Object Detection System on Mobile Devices" <https://arxiv.org/pdf/1608.06993.pdf>` 
-    Args:
-        growth_rate (int or list of 4 ints) - how many filters to add each layer (`k` in paper)
-        block_config (list of 4 ints) - how many layers in each pooling block
-        num_init_features (int) - the number of filters to learn in the first convolution layer
-        bottleneck_width (int or list of 4 ints) - multiplicative factor for number of bottle neck layers
-          (i.e. bn_size * k features in the bottleneck layer)
-        drop_rate (float) - dropout rate after each dense layer
-        num_classes (int) - number of classification classes
-    """
-
     def __init__(self, growth_rate=32, block_config=[3, 4, 8, 6],
                  num_init_features=32, bottleneck_width=[1, 2, 4, 4],
                  drop_rate=0.05, num_classes=1000):
@@ -186,6 +173,6 @@ class PeleeNet(nn.Layer):
             zeros_(m.bias)
 
 
-def peleenet(**kwargs):
+def peleenet():
     model = PeleeNet()
     return model

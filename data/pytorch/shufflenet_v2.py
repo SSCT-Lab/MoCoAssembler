@@ -1,19 +1,5 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-
 import torch
 import torch.nn as nn
-
-try:
-    import caffe
-    from caffe import layers as L
-    from caffe import params as P
-except ImportError:
-    pass
-
-import slim
-from slim import g_name
 
 
 class BasicBlock(nn.Module):

@@ -1,7 +1,72 @@
 import tensorflow as tf
-from models.inception_modules import BasicConv2D, Conv2DLinear, ReductionA
-from configuration import NUM_CLASSES
 
+
+class BasicConv2D(tf.keras.layers.Layer):
+    def __init__(self, filters, kernel_size, strides, padding):
+        super(BasicConv2D, self).__init__()
+        self.conv = tf.keras.layers.Conv2D(filters=filters,
+                                           kernel_size=kernel_size,
+                                           strides=strides,
+                                           padding=padding)
+        self.bn = tf.keras.layers.BatchNormalization()
+
+    def call(self, inputs, training=None, **kwargs):
+        x = self.conv(inputs)
+        x = self.bn(x, training=training)
+        x = tf.nn.relu(x)
+
+        return x
+
+
+class Conv2DLinear(tf.keras.layers.Layer):
+    def __init__(self, filters, kernel_size, strides, padding):
+        super(Conv2DLinear, self).__init__()
+        self.conv = tf.keras.layers.Conv2D(filters=filters,
+                                           kernel_size=kernel_size,
+                                           strides=strides,
+                                           padding=padding)
+        self.bn = tf.keras.layers.BatchNormalization()
+
+    def call(self, inputs, training=None, **kwargs):
+        x = self.conv(inputs)
+        x = self.bn(x, training=training)
+
+        return x
+
+
+class ReductionA(tf.keras.layers.Layer):
+    def __init__(self, k, l, m, n):
+        super(ReductionA, self).__init__()
+        self.b1_pool = tf.keras.layers.MaxPool2D(pool_size=(3, 3),
+                                                 strides=2,
+                                                 padding="valid")
+        self.b2_conv = BasicConv2D(filters=n,
+                                   kernel_size=(3, 3),
+                                   strides=2,
+                                   padding="valid")
+        self.b3_conv1 = BasicConv2D(filters=k,
+                                    kernel_size=(1, 1),
+                                    strides=1,
+                                    padding="same")
+        self.b3_conv2 = BasicConv2D(filters=l,
+                                    kernel_size=(3, 3),
+                                    strides=1,
+                                    padding="same")
+        self.b3_conv3 = BasicConv2D(filters=m,
+                                    kernel_size=(3, 3),
+                                    strides=2,
+                                    padding="valid")
+
+    def call(self, inputs, training=None, **kwargs):
+        b1 = self.b1_pool(inputs)
+
+        b2 = self.b2_conv(inputs, training=training)
+
+        b3 = self.b3_conv1(inputs, training=training)
+        b3 = self.b3_conv2(b3, training=training)
+        b3 = self.b3_conv3(b3, training=training)
+
+        return tf.concat(values=[b1, b2, b3], axis=-1)
 
 class Stem(tf.keras.layers.Layer):
     def __init__(self):
@@ -252,7 +317,7 @@ class InceptionResNetV1(tf.keras.Model):
         self.avgpool = tf.keras.layers.AveragePooling2D(pool_size=(8, 8))
         self.dropout = tf.keras.layers.Dropout(rate=0.2)
         self.flat = tf.keras.layers.Flatten()
-        self.fc = tf.keras.layers.Dense(units=NUM_CLASSES,
+        self.fc = tf.keras.layers.Dense(units=10,
                                         activation=tf.keras.activations.softmax)
 
     def call(self, inputs, training=None, mask=None):
@@ -269,5 +334,7 @@ class InceptionResNetV1(tf.keras.Model):
 
         return x
 
-    def __repr__(self):
-        return "InceptionResNetV1"
+
+def inception_resnet_v1():
+    return InceptionResNetV1()
+

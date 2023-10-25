@@ -1,147 +1,142 @@
 import tensorflow as tf
-from configuration import NUM_CLASSES
 
 
-def channel_shuffle(feature, group):
-    channel_num = feature.shape[-1]
-    if channel_num % group != 0:
-        raise ValueError("The group must be divisible by the shape of the last dimension of the feature.")
-    x = tf.reshape(feature, shape=(-1, feature.shape[1], feature.shape[2], group, channel_num // group))
-    x = tf.transpose(x, perm=[0, 1, 2, 4, 3])
-    x = tf.reshape(x, shape=(-1, feature.shape[1], feature.shape[2], channel_num))
-    return x
+class ConvBNRelu(tf.keras.Model):
+    def __init__(self, channels, kernel_size, strides):
+        super(ConvBNRelu, self).__init__()
+        self.conv = tf.keras.layers.Conv2D(channels, kernel_size, strides, padding='same', use_bias=False)
+        self.bn = tf.keras.layers.BatchNormalization()
+        self.relu = tf.keras.layers.ReLU()
+
+    def __call__(self, inputs, training=True):
+        x = self.conv(inputs)
+        x = self.bn(x, training)
+        x = self.relu(x)
+
+        return x
 
 
-class ShuffleBlockS1(tf.keras.layers.Layer):
-    def __init__(self, in_channels, out_channels):
-        super(ShuffleBlockS1, self).__init__()
-        self.conv1 = tf.keras.layers.Conv2D(filters=out_channels // 2,
-                                            kernel_size=(1, 1),
-                                            strides=1,
-                                            padding="same")
-        self.bn1 = tf.keras.layers.BatchNormalization()
-        self.dwconv = tf.keras.layers.DepthwiseConv2D(kernel_size=(3, 3), strides=1, padding="same")
-        self.dw_bn = tf.keras.layers.BatchNormalization()
-        self.conv2 = tf.keras.layers.Conv2D(filters=out_channels // 2,
-                                            kernel_size=(1, 1),
-                                            strides=1,
-                                            padding="same")
-        self.bn2 = tf.keras.layers.BatchNormalization()
+class DepthwiseConvBNRelu(tf.keras.Model):
+    def __init__(self, kernel_size, strides):
+        super(DepthwiseConvBNRelu, self).__init__()
+        self.depth_wise = tf.keras.layers.DepthwiseConv2D(kernel_size, strides, padding='same', use_bias=False)
+        self.bn = tf.keras.layers.BatchNormalization()
 
-    def call(self, inputs, training=None, **kwargs):
-        branch, x = tf.split(inputs, num_or_size_splits=2, axis=-1)
-        x = self.conv1(x)
-        x = self.bn1(x, training=training)
-        x = tf.nn.relu(x)
-        x = self.dwconv(x)
-        x = self.dw_bn(x, training=training)
-        x = self.conv2(x)
-        x = self.bn2(x, training=training)
-        x = tf.nn.relu(x)
+    def __call__(self, inputs, training=True):
+        x = self.depth_wise(inputs)
+        x = self.bn(x, training)
 
-        outputs = tf.concat(values=[branch, x], axis=-1)
-        outputs = channel_shuffle(feature=outputs, group=2)
-        return outputs
+        return x
 
 
-class ShuffleBlockS2(tf.keras.layers.Layer):
-    def __init__(self, in_channels, out_channels):
-        super(ShuffleBlockS2, self).__init__()
-        self.conv1 = tf.keras.layers.Conv2D(filters=out_channels // 2,
-                                            kernel_size=(1, 1),
-                                            strides=1,
-                                            padding="same")
-        self.bn1 = tf.keras.layers.BatchNormalization()
-        self.dwconv = tf.keras.layers.DepthwiseConv2D(kernel_size=(3, 3), strides=2, padding="same")
-        self.dw_bn = tf.keras.layers.BatchNormalization()
-        self.conv2 = tf.keras.layers.Conv2D(filters=out_channels - in_channels,
-                                            kernel_size=(1, 1),
-                                            strides=1,
-                                            padding="same")
-        self.bn2 = tf.keras.layers.BatchNormalization()
+class ChannelShuffle(tf.keras.Model):
+    def __init__(self, group):
+        super(ChannelShuffle, self).__init__()
+        self.group = group
 
-        self.branch_dwconv = tf.keras.layers.DepthwiseConv2D(kernel_size=(3, 3), strides=2, padding="same")
-        self.branch_dwbn = tf.keras.layers.BatchNormalization()
-        self.branch_conv = tf.keras.layers.Conv2D(filters=in_channels,
-                                                  kernel_size=(1, 1),
-                                                  strides=1,
-                                                  padding="same")
-        self.branch_bn = tf.keras.layers.BatchNormalization()
+    def __call__(self, inputs):
+        shape = inputs.shape
+        h = shape[1]
+        w = shape[2]
+        c = shape[3]
 
-    def call(self, inputs, training=None, **kwargs):
-        x = self.conv1(inputs)
-        x = self.bn1(x, training=training)
-        x = tf.nn.relu(x)
-        x = self.dwconv(x)
-        x = self.dw_bn(x, training=training)
-        x = self.conv2(x)
-        x = self.bn2(x, training=training)
-        x = tf.nn.relu(x)
+        inputs = tf.reshape(inputs, shape=[-1, h, w, c // self.group, self.group])
+        inputs = tf.transpose(inputs, [0, 1, 2, 4, 3])
+        inputs = tf.reshape(inputs, shape=(-1, h, w, c))
 
-        branch = self.branch_dwconv(inputs)
-        branch = self.branch_dwbn(branch, training=training)
-        branch = self.branch_conv(branch)
-        branch = self.branch_bn(branch, training=training)
-        branch = tf.nn.relu(branch)
+        return inputs
 
-        outputs = tf.concat(values=[x, branch], axis=-1)
-        outputs = channel_shuffle(feature=outputs, group=2)
-        return outputs
+
+class ShuffleBlock(tf.keras.Model):
+    def __init__(self, channels, strides, split_ratio=0.5):
+        super(ShuffleBlock, self).__init__()
+        self.split_ratio = split_ratio
+        self.conv1 = ConvBNRelu(channels // 2, 1, 1)
+        self.depth_wise = DepthwiseConvBNRelu(3, strides=strides)
+        self.conv2 = ConvBNRelu(channels // 2, 1, 1)
+        self.shuffle = ChannelShuffle(group=2)
+
+    def __call__(self, inputs, training):
+        x1, x2 = tf.split(inputs, num_or_size_splits=int(1 / self.split_ratio), axis=-1)
+        x2 = self.conv1(x2, training)
+        x2 = self.depth_wise(x2, training)
+        x2 = self.conv2(x2, training)
+        feature = tf.keras.layers.Concatenate()([x1, x2])
+        res = self.shuffle(feature)
+        return res
+
+
+class ShuffleConvBlock(tf.keras.Model):
+    def __init__(self, in_channels, out_channels, strides):
+        super(ShuffleConvBlock, self).__init__()
+        self.conv1 = ConvBNRelu(out_channels - in_channels, 1, 1)
+        self.depth_wise = DepthwiseConvBNRelu(3, strides=strides)
+        self.conv2 = ConvBNRelu(out_channels - in_channels, 1, 1)
+        self.depth_wise_lateral = DepthwiseConvBNRelu(3, strides=strides)
+        self.conv_lateral = ConvBNRelu(in_channels, 1, 1)
+        self.shuffle = ChannelShuffle(group=2)
+
+    def __call__(self, inputs, training):
+        x1, x2 = inputs, inputs
+        x2 = self.conv1(x2, training)
+        x2 = self.depth_wise(x2, training)
+        x2 = self.conv2(x2, training)
+
+        x1 = self.depth_wise_lateral(x1, training)
+        x1 = self.conv_lateral(x1, training)
+
+        feature = tf.keras.layers.Concatenate()([x1, x2])
+        res = self.shuffle(feature)
+
+        return res
 
 
 class ShuffleNetV2(tf.keras.Model):
-    def __init__(self, channel_scale, model_name):
+    def __init__(self, channels=None):
         super(ShuffleNetV2, self).__init__()
-        self.model_name = model_name
+        if channels is None:
+            channels = [24, 116, 232, 464, 1024]
+        self.conv1 = tf.keras.layers.Conv2D(channels[0], 3, 2, padding='same')
+        self.pool = tf.keras.layers.MaxPool2D(3, strides=2, padding='same')
+        self.stage1 = ShuffleNetStage(repeat=3, in_channels=channels[0], out_channels=channels[1])
+        self.stage2 = ShuffleNetStage(repeat=7, in_channels=channels[1], out_channels=channels[2])
+        self.stage3 = ShuffleNetStage(repeat=3, in_channels=channels[2], out_channels=channels[3])
+        self.conv2 = tf.keras.layers.Conv2D(channels[4], kernel_size=1, padding='same')
 
-        self.conv1 = tf.keras.layers.Conv2D(filters=24, kernel_size=(3, 3), strides=2, padding="same")
-        self.bn1 = tf.keras.layers.BatchNormalization()
-        self.maxpool = tf.keras.layers.MaxPool2D(pool_size=(3, 3), strides=2, padding="same")
-        self.stage1 = self._make_layer(repeat_num=4, in_channels=24, out_channels=channel_scale[0])
-        self.stage2 = self._make_layer(repeat_num=8, in_channels=channel_scale[0], out_channels=channel_scale[1])
-        self.stage3 = self._make_layer(repeat_num=4, in_channels=channel_scale[1], out_channels=channel_scale[2])
-        self.conv5 = tf.keras.layers.Conv2D(filters=channel_scale[3], kernel_size=(1, 1), strides=1, padding="same")
-        self.bn5 = tf.keras.layers.BatchNormalization()
-        self.avgpool = tf.keras.layers.GlobalAveragePooling2D()
-        self.fc = tf.keras.layers.Dense(units=NUM_CLASSES, activation=tf.keras.activations.softmax)
-
-    def _make_layer(self, repeat_num, in_channels, out_channels):
-        block = tf.keras.Sequential()
-        block.add(ShuffleBlockS2(in_channels=in_channels, out_channels=out_channels))
-        for i in range(1, repeat_num):
-            block.add(ShuffleBlockS1(in_channels=out_channels, out_channels=out_channels))
-        return block
-
-    def call(self, inputs, training=None, mask=None):
+    def __call__(self, inputs, training):
         x = self.conv1(inputs)
-        x = self.bn1(x, training=training)
-        x = tf.nn.relu(x)
-        x = self.maxpool(x)
-        x = self.stage1(x, training=training)
-        x = self.stage2(x, training=training)
-        x = self.stage3(x, training=training)
-        x = self.conv5(x)
-        x = self.bn5(x, training=training)
-        x = tf.nn.relu(x)
-        x = self.avgpool(x)
-        x = self.fc(x)
+        x = self.pool(x)
+        x = self.stage1(x, training)
+        x = self.stage2(x, training)
+        x = self.stage3(x, training)
+        x = self.conv2(x)
+
         return x
 
-    def __repr__(self):
-        return "ShuffleNetV2_{}".format(self.model_name)
+
+class ShuffleNetStage(tf.keras.Model):
+
+    def __init__(self, repeat, in_channels, out_channels):
+        super(ShuffleNetStage, self).__init__()
+        self.shuffle_conv_block = ShuffleConvBlock(in_channels=in_channels,
+                                                   out_channels=out_channels,
+                                                   strides=2)
+        self.convs = []
+        for i in range(repeat):
+            self.convs.append(ShuffleBlock(channels=out_channels,
+                                           strides=1))
+
+    def __call__(self, inputs, training):
+        x = self.shuffle_conv_block(inputs, training)
+        for conv in self.convs:
+            x = conv(x, training)
+
+        return x
 
 
-def shufflenet_0_5x():
-    return ShuffleNetV2(channel_scale=[48, 96, 192, 1024], model_name="0.5x")
-
-
-def shufflenet_1_0x():
-    return ShuffleNetV2(channel_scale=[116, 232, 464, 1024], model_name="1.0x")
-
-
-def shufflenet_1_5x():
-    return ShuffleNetV2(channel_scale=[176, 352, 704, 1024], model_name="1.5x")
-
-
-def shufflenet_2_0x():
-    return ShuffleNetV2(channel_scale=[244, 488, 976, 2048], model_name="2.0x")
+def shufflenet_v2():
+    shufflenet_v2 = ShuffleNetV2()
+    inputs_ = tf.keras.Input(shape=(224, 224, 3))
+    res = shufflenet_v2(inputs_, training=True)
+    model = tf.keras.Model(inputs_, res)
+    return model

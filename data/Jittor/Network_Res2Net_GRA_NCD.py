@@ -1,8 +1,6 @@
 import jittor as jt
 from jittor import nn
 
-from lib.Res2Net_v1b import res2net50_v1b_26w_4s
-
 
 class BasicConv2d(nn.Module):
     def __init__(self, in_planes, out_planes, kernel_size, stride=1, padding=0, dilation=1):
