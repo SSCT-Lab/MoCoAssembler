@@ -1,4 +1,4 @@
-api: torch.nn.AdaptiveAvgPool2d(class , output_size)
+api: torch.nn.AdaptiveAvgPool2d(output_size)
 constraints:
   output_size:
     descp: the target output size of the image of the form H x W. Can be a tuple (H,

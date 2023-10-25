@@ -2,21 +2,6 @@ from __future__ import print_function
 import torch
 
 
-class BinActive(torch.autograd.Function):
-    def forward(self, input):
-        self.save_for_backward(input)
-        size = input.size()
-        input = input.sign()
-        return input
-
-    def backward(self, grad_output):
-        input, = self.saved_tensors
-        grad_input = grad_output.clone()
-        grad_input[input.ge(1)] = 0
-        grad_input[input.le(-1)] = 0
-        return grad_input
-
-
 class BinConv2d(torch.nn.Module):
     def __init__(self, input_channels, output_channels,
                  kernel_size=-1, stride=-1, padding=-1, groups=1, dropout=0,
@@ -47,7 +32,6 @@ class BinConv2d(torch.nn.Module):
 
     def forward(self, x):
         x = self.bn(x)
-        x = BinActive()(x)
         if self.dropout_ratio != 0:
             x = self.dropout(x)
         if not self.Linear:

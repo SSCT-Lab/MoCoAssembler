@@ -31,6 +31,17 @@ constraints:
     range:
     - 1
     - 8
+  recompute_scale_factor:
+    descp: "recompute the scale_factor for use in the interpolation calculation. If 
+    recompute_scale_factor is True, then scale_factor must be passed in and scale_factor 
+    is used to compute the output size. The computed output size will be used to infer new 
+    scales for the interpolation. Note that when scale_factor is floating-point, it may 
+    differ from the recomputed scale_factor due to rounding and precision issues. 
+    If recompute_scale_factor is False, then size or scale_factor will be used directly 
+    for interpolation."
+    default: false
+    dtype: torch.bool
+
 descp: Upsamples a given multi-channel 1D (temporal), 2D (spatial) or 3D (volumetric)
   data.
 inputs:
@@ -39,4 +50,5 @@ inputs:
   - scale_factor
   - mode
   - align_corners
+  - recompute_scale_factor
   required: []

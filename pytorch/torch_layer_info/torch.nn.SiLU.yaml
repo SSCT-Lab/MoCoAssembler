@@ -1,4 +1,4 @@
-api: torch.nn.SiLU(class , inplace=False)
+api: torch.nn.SiLU(inplace=False)
 constraints: {}
 descp: Applies the Sigmoid Linear Unit (SiLU) function, element-wise. The SiLU function
   is also known as the swish function.

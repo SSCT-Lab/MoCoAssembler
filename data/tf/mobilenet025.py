@@ -8,7 +8,8 @@ def _conv_block(inputs, filters, kernel=(3, 3), strides=(1, 1)):
                                strides=strides,
                                name='conv1')(inputs)
     x = tf.keras.layers.BatchNormalization(name='conv1_bn')(x)
-    return tf.keras.layers.Activation(relu6, name='conv1_relu')(x)
+    x = tf.keras.layers.Activation(relu6, name='conv1_relu')(x)
+    return x
 
 
 def _depthwise_conv_block(inputs, pointwise_conv_filters,
@@ -29,16 +30,18 @@ def _depthwise_conv_block(inputs, pointwise_conv_filters,
                                strides=(1, 1),
                                name='conv_pw_%d' % block_id)(x)
     x = tf.keras.layers.BatchNormalization(name='conv_pw_%d_bn' % block_id)(x)
-    return tf.keras.layers.Activation(relu6, name='conv_pw_%d_relu' % block_id)(x)
+    x = tf.keras.layers.Activation(relu6, name='conv_pw_%d_relu' % block_id)(x)
+    return x
 
 
 def relu6(x):
     return tf.keras.backend.relu(x, max_value=6)
 
 
-def MobileNet(img_input, depth_multiplier=1):
+def MobileNet(depth_multiplier=1):
+    input_tensor = tf.keras.Input(shape=(640, 640, 3))
     # 640,640,3 -> 320,320,8
-    x = _conv_block(img_input, 8, strides=(2, 2))
+    x = _conv_block(input_tensor, filters=8, strides=(2, 2))
     # 320,320,8 -> 320,320,16
     x = _depthwise_conv_block(x, 16, depth_multiplier, block_id=1)
 
@@ -49,7 +52,6 @@ def MobileNet(img_input, depth_multiplier=1):
     # 160,160,32 -> 80,80,64
     x = _depthwise_conv_block(x, 64, depth_multiplier, strides=(2, 2), block_id=4)
     x = _depthwise_conv_block(x, 64, depth_multiplier, block_id=5)
-    feat1 = x
 
     # 80,80,64 -> 40,40,128
     x = _depthwise_conv_block(x, 128, depth_multiplier, strides=(2, 2), block_id=6)
@@ -58,11 +60,14 @@ def MobileNet(img_input, depth_multiplier=1):
     x = _depthwise_conv_block(x, 128, depth_multiplier, block_id=9)
     x = _depthwise_conv_block(x, 128, depth_multiplier, block_id=10)
     x = _depthwise_conv_block(x, 128, depth_multiplier, block_id=11)
-    feat2 = x
 
     # 40,40,128 -> 20,20,256
     x = _depthwise_conv_block(x, 256, depth_multiplier, strides=(2, 2), block_id=12)
     x = _depthwise_conv_block(x, 256, depth_multiplier, block_id=13)
-    feat3 = x
+    output_tensor = x
+    model = tf.keras.models.Model(inputs=input_tensor, outputs=output_tensor)
+    return model
 
-    return feat1, feat2, feat3
+
+def mobilenet025():
+    return MobileNet()

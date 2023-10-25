@@ -318,18 +318,6 @@ class ResNet(nn.Cell):
 
 
 def resnet50(class_num=10):
-    """
-    Get ResNet50 neural network.
-
-    Args:
-        class_num (int): Class number.
-
-    Returns:
-        Cell, cell instance of ResNet50 neural network.
-
-    Examples:
-        >>> net = resnet50(10)
-    """
     return ResNet(ResidualBlock,
                   [3, 4, 6, 3],
                   [64, 256, 512, 1024],
@@ -337,19 +325,8 @@ def resnet50(class_num=10):
                   [1, 2, 2, 2],
                   class_num)
 
+
 def se_resnet50(class_num=1001):
-    """
-    Get SE-ResNet50 neural network.
-
-    Args:
-        class_num (int): Class number.
-
-    Returns:
-        Cell, cell instance of SE-ResNet50 neural network.
-
-    Examples:
-        >>> net = se-resnet50(1001)
-    """
     return ResNet(ResidualBlock,
                   [3, 4, 6, 3],
                   [64, 256, 512, 1024],
@@ -358,22 +335,13 @@ def se_resnet50(class_num=1001):
                   class_num,
                   use_se=True)
 
+
 def resnet101(class_num=1001):
-    """
-    Get ResNet101 neural network.
-
-    Args:
-        class_num (int): Class number.
-
-    Returns:
-        Cell, cell instance of ResNet101 neural network.
-
-    Examples:
-        >>> net = resnet101(1001)
-    """
     return ResNet(ResidualBlock,
                   [3, 4, 23, 3],
                   [64, 256, 512, 1024],
                   [256, 512, 1024, 2048],
                   [1, 2, 2, 2],
                   class_num)
+
+print(resnet101())

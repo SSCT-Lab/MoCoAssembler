@@ -2,7 +2,6 @@ import mindspore
 import mindspore.nn as nn
 import numpy as np
 import random
-from hs_data import load_all_sr,load_camera
 class conv_block(nn.Cell):
     def __init__(self,ch_in,ch_out):
         super(conv_block,self).__init__()
@@ -29,36 +28,22 @@ class filter_block(nn.Cell):
         t = mindspore.Tensor(a)
         self.conv.weight = mindspore.Parameter(t)
         self.conv.weight.requires_grad = True
-        #at = np.random.normal(loc=0.5,size=(1, 1020, 1, 1)).astype(np.float32)
 
         at = np.zeros((1, 1020, 1, 1)).astype(np.float32)
         for i in range(100):
             n = random.randint(0, 1019)
             at[0, n, 0, 0] =random.randint(0,10)/1000
-        #print(at)
-        #at[0,454,0,0]=3.55e-03
-        #at[0, 262, 0, 0] = 2.52E-03
-        #at[0, 842, 0, 0] = 1.89E-03
-        # at[0, 609, 0, 0] = 1.61E-03
-        # at[0, 943, 0, 0] = 1.38E-03
 
 
         self.at = mindspore.Tensor(at)
 
-        #self.at = mindspore.Parameter(self.at)
         self.at.requires_grad=False
-        #self.Conv_1x1 = nn.Conv2d(1020, 3, kernel_size=1, stride=1, padding=0,has_bias=False)
-        #self.Conv_1x1.weight.data.zero_()
         self.conv2 = nn.Conv2d(1020, 64, 1, stride=1, padding=0)
     def construct(self,x):
         x = self.conv(x)
-        #self.at=mindspore.sigmoid(self.at)
-        at=self.at#*(self.at>0.0071)
-        #x=x[:,]
-        #x= (x*self.at)[:,idx[0:10]]
-        #x=self.Conv_1x1(x)
+        at=self.at
         x=self.conv2(x)
-        return x,at#self.Conv_1x1.weight
+        return x,at
 
 class up_conv(nn.Cell):
     def __init__(self,ch_in,ch_out):

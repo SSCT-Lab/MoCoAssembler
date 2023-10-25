@@ -1,7 +1,6 @@
 import numpy as np
 import mindspore
 import mindspore.nn as nn
-from mindspore import Tensor
 import mindspore.ops as ops
 ## 组合系数
 
@@ -227,5 +226,3 @@ class LatticeNet(nn.Cell):
         x = self.add_mean(out)
 
         return x
-
-

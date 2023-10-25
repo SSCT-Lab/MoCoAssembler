@@ -1,6 +1,5 @@
 import tensorflow as tf
 import math
-from configuration import NUM_CLASSES
 
 
 def round_filters(filters, multiplier):
@@ -165,7 +164,7 @@ class EfficientNet(tf.keras.Model):
         self.bn2 = tf.keras.layers.BatchNormalization()
         self.pool = tf.keras.layers.GlobalAveragePooling2D()
         self.dropout = tf.keras.layers.Dropout(rate=dropout_rate)
-        self.fc = tf.keras.layers.Dense(units=NUM_CLASSES,
+        self.fc = tf.keras.layers.Dense(units=1000,
                                         activation=tf.keras.activations.softmax)
 
     def call(self, inputs, training=None, mask=None):
@@ -203,33 +202,5 @@ def get_efficient_net(width_coefficient, depth_coefficient, resolution, dropout_
     return net
 
 
-def efficient_net_b0():
+def efficient():
     return get_efficient_net(1.0, 1.0, 224, 0.2, "B0")
-
-
-def efficient_net_b1():
-    return get_efficient_net(1.0, 1.1, 240, 0.2, "B1")
-
-
-def efficient_net_b2():
-    return get_efficient_net(1.1, 1.2, 260, 0.3, "B2")
-
-
-def efficient_net_b3():
-    return get_efficient_net(1.2, 1.4, 300, 0.3, "B3")
-
-
-def efficient_net_b4():
-    return get_efficient_net(1.4, 1.8, 380, 0.4, "B4")
-
-
-def efficient_net_b5():
-    return get_efficient_net(1.6, 2.2, 456, 0.4, "B5")
-
-
-def efficient_net_b6():
-    return get_efficient_net(1.8, 2.6, 528, 0.5, "B6")
-
-
-def efficient_net_b7():
-    return get_efficient_net(2.0, 3.1, 600, 0.5, "B7")

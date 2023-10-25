@@ -1,10 +1,5 @@
-from functools import partial
-
 import mindspore.nn as nn
-import mindspore.ops as ops
-
-from .layers.conv_norm_act import Conv2dNormActivation
-from .layers.pooling import GlobalAvgPooling
+from mindspore import ops
 
 
 class Inception(nn.Cell):
@@ -14,20 +9,19 @@ class Inception(nn.Cell):
 
     def __init__(self, in_channels, n1x1, n3x3red, n3x3, n5x5red, n5x5, pool_planes):
         super(Inception, self).__init__()
-        norm = partial(nn.BatchNorm2d, eps=0.001)
-        self.b1 = Conv2dNormActivation(in_channels, n1x1, kernel_size=1, norm=norm)
+        self.b1 = nn.Conv2d(in_channels, n1x1, kernel_size=1)
         self.b2 = nn.SequentialCell([
-            Conv2dNormActivation(in_channels, n3x3red, kernel_size=1, norm=norm),
-            Conv2dNormActivation(n3x3red, n3x3, kernel_size=3, pad_mode='same', norm=norm)
+            nn.Conv2d(in_channels, n3x3red, kernel_size=1),
+            nn.Conv2d(n3x3red, n3x3, kernel_size=3, pad_mode='same')
         ])
         self.b3 = nn.SequentialCell([
-            Conv2dNormActivation(in_channels, n5x5red, kernel_size=1, norm=norm),
-            Conv2dNormActivation(n5x5red, n5x5, kernel_size=3, pad_mode='same', norm=norm)
+            nn.Conv2d(in_channels, n5x5red, kernel_size=1),
+            nn.Conv2d(n5x5red, n5x5, kernel_size=3, pad_mode='same')
         ])
 
         self.b4 = nn.SequentialCell([
             nn.MaxPool2d(kernel_size=3, stride=1, pad_mode='same'),
-            Conv2dNormActivation(in_channels, pool_planes, kernel_size=1, norm=norm)
+            nn.Conv2d(in_channels, pool_planes, kernel_size=1)
         ])
 
         self.concat = ops.Concat(axis=1)
@@ -40,20 +34,15 @@ class Inception(nn.Cell):
         return self.concat((branch1, branch2, branch3, branch4))
 
 
-class GoogleNet(nn.Cell):
-    """
-    Googlenet architecture
-    """
-
-    # 添加了drop_out参数，去掉了include参数
-    def __init__(self, num_classes, dropout=0.2):
-        super(GoogleNet, self).__init__()
-        norm = partial(nn.BatchNorm2d, eps=0.001)
-        self.conv1 = Conv2dNormActivation(3, 64, kernel_size=7, stride=2, pad_mode='same', norm=norm)
+class GoogLeNet(nn.Cell):
+    def __init__(self, num_classes):
+        super(GoogLeNet, self).__init__()
+        self.conv1 = nn.Conv2d(3, 64, kernel_size=7, stride=2, pad_mode='same')
         self.maxpool1 = nn.MaxPool2d(kernel_size=3, stride=2, pad_mode="same")
+        self.relu = nn.ReLU()
 
-        self.conv2 = Conv2dNormActivation(64, 64, kernel_size=1, norm=norm)
-        self.conv3 = Conv2dNormActivation(64, 192, kernel_size=3, pad_mode='same', norm=norm)
+        self.conv2 = nn.Conv2d(64, 64, kernel_size=1)
+        self.conv3 = nn.Conv2d(64, 192, kernel_size=3, pad_mode='same')
         self.maxpool2 = nn.MaxPool2d(kernel_size=3, stride=2, pad_mode="same")
 
         self.block3a = Inception(192, 64, 96, 128, 16, 32, 32)
@@ -70,10 +59,10 @@ class GoogleNet(nn.Cell):
         self.block5a = Inception(832, 256, 160, 320, 32, 128, 128)
         self.block5b = Inception(832, 384, 192, 384, 48, 128, 128)
 
-        self.dropout = nn.Dropout(keep_prob=1 - dropout)
-        self.pool = GlobalAvgPooling()  # 这里使用公用的GlobalAvgPooling做全局部平均池化
+        self.dropout = nn.Dropout(0.5)
+        self.pool = nn.MaxPool2d(kernel_size=7, stride=1)
 
-        self.classifier = nn.Dense(1024, num_classes)
+        self.classifier = nn.Dense(1, num_classes)
 
     def construct(self, x):
         """construct"""
@@ -104,7 +93,5 @@ class GoogleNet(nn.Cell):
         return x
 
 
-def googlenet(num_classes: int = 10, num_channel: int = 1, pretrained: bool = False) -> GoogLeNet:
-    model = GoogLeNet(num_classes=num_classes, in_channels=num_channel)
-
-    return model
+def googlenet(num_classes=1000):
+    return GoogLeNet(num_classes=num_classes)
