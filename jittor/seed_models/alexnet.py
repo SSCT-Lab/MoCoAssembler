@@ -81,7 +81,4 @@ def go():
     model = AlexNet()
     x = jittor.randn((1, 3, 224, 224))
     y = model(x)
-    print(model)
     return model
-
-go()
