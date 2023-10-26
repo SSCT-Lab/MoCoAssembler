@@ -91,7 +91,7 @@ id,abstract,torch,mindspore,paddle,jittor,tensorflow
 90,lazylinear,torch.nn.LazyLinear,,,,
 91,lazymodulemixin,torch.nn.modules.lazy.LazyModuleMixin,,,,
 92,leakyrelu,torch.nn.LeakyReLU,mindspore.nn.LeakyReLU,paddle.nn.LeakyReLU,jittor.nn.LeakyReLU,tf.keras.layers.LeakyReLU
-93,linear,torch.nn.Linear,,paddle.nn.Linear,jittor.nn.Linear,tf.keras.activations.linear
+93,linear,torch.nn.Linear,,paddle.nn.Linear,jittor.nn.Linear,tf.keras.layers.Dense
 94,ln_structured,torch.nn.utils.prune.ln_structured,,,,
 95,lnstructured,torch.nn.utils.prune.LnStructured,,,,
 96,localresponsenorm,torch.nn.LocalResponseNorm,,paddle.nn.LocalResponseNorm,,
