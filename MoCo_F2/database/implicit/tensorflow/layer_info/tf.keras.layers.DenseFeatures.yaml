@@ -18,5 +18,9 @@ constraints:
       during training.
     dtype: tf.bool
 descp: A layer that produces a dense Tensor based on given feature_columns.
-required:
-- feature_columns
+inputs:
+  required:
+  - feature_columns
+  optional:
+  - name
+  - trainable

@@ -23,4 +23,8 @@ constraints:
     - integer
     - tuple
 descp: Upsampling layer for 3D inputs.
-required: []
+inputs:
+  required: []
+  optional:
+  - data_format
+  - size

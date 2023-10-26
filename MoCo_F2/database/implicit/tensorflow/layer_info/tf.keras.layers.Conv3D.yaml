@@ -135,6 +135,21 @@ constraints:
     descp: Boolean, whether the layer uses a bias vector.
     dtype: tf.bool
 descp: 3D convolution layer (e.g. spatial convolution over volumes).
-required:
-- filters
-- kernel_size
+inputs:
+  required:
+  - filters
+  - kernel_size
+  optional:
+  - activation
+  - activity_regularizer
+  - bias_constraint
+  - bias_initializer
+  - bias_regularizer
+  - data_format
+  - dilation_rate
+  - kernel_constraint
+  - kernel_initializer
+  - kernel_regularizer
+  - padding
+  - strides
+  - use_bias

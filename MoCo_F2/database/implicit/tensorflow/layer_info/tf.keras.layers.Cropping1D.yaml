@@ -14,4 +14,7 @@ constraints:
     - integer
     - tuple
 descp: Cropping layer for 1D input (e.g. temporal sequence).
-required: []
+inputs:
+  required: []
+  optional:
+  - cropping

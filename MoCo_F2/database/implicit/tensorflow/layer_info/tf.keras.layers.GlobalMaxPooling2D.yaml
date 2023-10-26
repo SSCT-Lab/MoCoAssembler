@@ -20,4 +20,8 @@ constraints:
       is the same as for tf.reduce_max or np.max.
     dtype: tf.bool
 descp: Global max pooling operation for spatial data.
-required: []
+inputs:
+  required: []
+  optional:
+  - data_format
+  - keepdims

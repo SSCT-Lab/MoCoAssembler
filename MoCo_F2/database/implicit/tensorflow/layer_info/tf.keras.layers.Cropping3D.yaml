@@ -27,4 +27,8 @@ constraints:
     - channels_first
     - channels_last
 descp: Cropping layer for 3D data (e.g. spatial or spatio-temporal).
-required: []
+inputs:
+  required: []
+  optional:
+  - cropping
+  - data_format

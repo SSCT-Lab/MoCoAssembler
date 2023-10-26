@@ -13,4 +13,7 @@ constraints:
     - integer
     - list
 descp: Softmax activation function.
-required: []
+inputs:
+  required: []
+  optional:
+  - axis

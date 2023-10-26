@@ -13,4 +13,7 @@ constraints:
     - tuple
     - dict
 descp: Zero-padding layer for 1D input (e.g. temporal sequence).
-required: []
+inputs:
+  required: []
+  optional:
+  - padding

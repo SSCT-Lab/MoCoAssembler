@@ -62,4 +62,18 @@ constraints:
     default: true
     dtype: tf.bool
 descp: Layer normalization layer (Ba et al., 2016).
-required: []
+inputs:
+  required: []
+  optional:
+  - axis
+  - beta_constraint
+  - beta_initializer
+  - beta_regularizer
+  - center
+  - epsilon
+  - gamma_constraint
+  - gamma_initializer
+  - gamma_regularizer
+  - name
+  - scale
+  - trainable

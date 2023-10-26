@@ -49,6 +49,14 @@ constraints:
     shape: 1
     structure: integer
 descp: Turns positive integers (indexes) into dense vectors of fixed size.
-required:
-- input_dim
-- output_dim
+inputs:
+  required:
+  - input_dim
+  - output_dim
+  optional:
+  - activity_regularizer
+  - embeddings_constraint
+  - embeddings_initializer
+  - embeddings_regularizer
+  - input_length
+  - mask_zero

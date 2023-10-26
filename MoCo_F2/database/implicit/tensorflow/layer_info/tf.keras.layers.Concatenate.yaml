@@ -5,4 +5,7 @@ constraints:
     descp: Axis along which to concatenate.
     dtype: int
 descp: Layer that concatenates a list of inputs.
-required: []
+inputs:
+  required: []
+  optional:
+  - axis

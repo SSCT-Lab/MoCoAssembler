@@ -132,6 +132,21 @@ constraints:
     descp: Boolean, whether the layer uses a bias vector.
     dtype: tf.bool
 descp: Locally-connected layer for 1D inputs.
-required:
-- filters
-- kernel_size
+inputs:
+  required:
+  - filters
+  - kernel_size
+  optional:
+  - activation
+  - activity_regularizer
+  - bias_constraint
+  - bias_initializer
+  - bias_regularizer
+  - data_format
+  - implementation
+  - kernel_constraint
+  - kernel_initializer
+  - kernel_regularizer
+  - padding
+  - strides
+  - use_bias

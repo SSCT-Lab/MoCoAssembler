@@ -138,5 +138,30 @@ constraints:
     descp: Boolean (default True), whether the layer uses a bias vector.
     dtype: tf.bool
 descp: Long Short-Term Memory layer - Hochreiter 1997.
-required:
-- units
+inputs:
+  required:
+  - units
+  optional:
+  - activation
+  - activity_regularizer
+  - bias_constraint
+  - bias_initializer
+  - bias_regularizer
+  - dropout
+  - go_backwards
+  - implementation
+  - kernel_constraint
+  - kernel_initializer
+  - kernel_regularizer
+  - recurrent_activation
+  - recurrent_constraint
+  - recurrent_dropout
+  - recurrent_initializer
+  - recurrent_regularizer
+  - return_sequences
+  - return_state
+  - stateful
+  - time_major
+  - unit_forget_bias
+  - unroll
+  - use_bias

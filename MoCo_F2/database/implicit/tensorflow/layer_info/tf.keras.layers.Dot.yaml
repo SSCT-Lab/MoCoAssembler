@@ -18,5 +18,8 @@ constraints:
       proximity between the two samples.
     dtype: tf.bool
 descp: Layer that computes a dot product between samples in two tensors.
-required:
-- axes
+inputs:
+  required:
+  - axes
+  optional:
+  - normalize

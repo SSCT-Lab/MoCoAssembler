@@ -26,4 +26,8 @@ constraints:
     - tuple
     - tuple_of_tuples
 descp: Zero-padding layer for 3D data (spatial or spatio-temporal).
-required: []
+inputs:
+  required: []
+  optional:
+  - data_format
+  - padding

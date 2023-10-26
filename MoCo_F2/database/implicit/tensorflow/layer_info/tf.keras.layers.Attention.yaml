@@ -11,4 +11,8 @@ constraints:
     descp: If True, will create a scalar variable to scale the attention scores.
     dtype: tf.bool
 descp: Dot-product attention layer, a.k.a. Luong-style attention.
-required: []
+inputs:
+  required: []
+  optional:
+  - score_mode
+  - use_scale

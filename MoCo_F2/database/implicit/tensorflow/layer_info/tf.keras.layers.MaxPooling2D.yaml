@@ -49,4 +49,10 @@ constraints:
     - integer
     - tuple
 descp: Max pooling operation for 2D spatial data.
-required: []
+inputs:
+  required: []
+  optional:
+  - data_format
+  - padding
+  - pool_size
+  - strides

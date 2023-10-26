@@ -14,4 +14,9 @@ constraints:
     descp: Float >= 0. Threshold value for thresholded activation. Defaults to 0..
     dtype: float
 descp: Rectified Linear Unit activation function.
-required: []
+inputs:
+  required: []
+  optional:
+  - max_value
+  - negative_slope
+  - threshold

@@ -5,4 +5,7 @@ constraints:
     descp: Float >= 0.. Negative slope coefficient. Defaults to 0.3.
     dtype: float
 descp: Leaky version of a Rectified Linear Unit.
-required: []
+inputs:
+  required: []
+  optional:
+  - alpha

@@ -12,4 +12,7 @@ constraints:
     - channels_first
     - channels_last
 descp: Global max pooling operation for 1D temporal data.
-required: []
+inputs:
+  required: []
+  optional:
+  - data_format

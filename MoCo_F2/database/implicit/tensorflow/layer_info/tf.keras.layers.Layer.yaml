@@ -24,4 +24,10 @@ constraints:
     descp: Boolean, whether the layer's variables should be trainable.
     dtype: tf.bool
 descp: This is the class from which all layers inherit.
-required: []
+inputs:
+  required: []
+  optional:
+  - dtype
+  - dynamic
+  - name
+  - trainable

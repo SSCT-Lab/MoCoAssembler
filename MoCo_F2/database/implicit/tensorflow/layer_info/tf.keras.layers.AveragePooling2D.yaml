@@ -48,4 +48,10 @@ constraints:
     - integer
     - tuple
 descp: Average pooling operation for spatial data.
-required: []
+inputs:
+  required: []
+  optional:
+  - data_format
+  - padding
+  - pool_size
+  - strides

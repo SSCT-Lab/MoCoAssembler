@@ -168,6 +168,32 @@ constraints:
     descp: Boolean, whether the layer uses a bias vector.
     dtype: tf.bool
 descp: 3D Convolutional LSTM.
-required:
-- filters
-- kernel_size
+inputs:
+  required:
+  - filters
+  - kernel_size
+  optional:
+  - activation
+  - activity_regularizer
+  - bias_constraint
+  - bias_initializer
+  - bias_regularizer
+  - data_format
+  - dilation_rate
+  - dropout
+  - go_backwards
+  - kernel_constraint
+  - kernel_initializer
+  - kernel_regularizer
+  - padding
+  - recurrent_activation
+  - recurrent_constraint
+  - recurrent_dropout
+  - recurrent_initializer
+  - recurrent_regularizer
+  - return_sequences
+  - return_state
+  - stateful
+  - strides
+  - unit_forget_bias
+  - use_bias

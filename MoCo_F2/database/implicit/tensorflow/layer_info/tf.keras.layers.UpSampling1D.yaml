@@ -10,4 +10,7 @@ constraints:
     shape: 1
     structure: integer
 descp: Upsampling layer for 1D inputs.
-required: []
+inputs:
+  required: []
+  optional:
+  - size

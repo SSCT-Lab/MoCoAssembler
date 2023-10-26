@@ -129,5 +129,29 @@ constraints:
     descp: Boolean, (default True), whether the layer uses a bias vector.
     dtype: tf.bool
 descp: Gated Recurrent Unit - Cho et al. 2014.
-required:
-- units
+inputs:
+  required:
+  - units
+  optional:
+  - activation
+  - activity_regularizer
+  - bias_constraint
+  - bias_initializer
+  - bias_regularizer
+  - dropout
+  - go_backwards
+  - kernel_constraint
+  - kernel_initializer
+  - kernel_regularizer
+  - recurrent_activation
+  - recurrent_constraint
+  - recurrent_dropout
+  - recurrent_initializer
+  - recurrent_regularizer
+  - reset_after
+  - return_sequences
+  - return_state
+  - stateful
+  - time_major
+  - unroll
+  - use_bias

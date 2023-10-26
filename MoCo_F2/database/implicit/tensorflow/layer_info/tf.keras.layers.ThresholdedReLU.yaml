@@ -5,4 +5,7 @@ constraints:
     descp: Float >= 0. Threshold location of activation.
     dtype: float
 descp: Thresholded Rectified Linear Unit.
-required: []
+inputs:
+  required: []
+  optional:
+  - theta

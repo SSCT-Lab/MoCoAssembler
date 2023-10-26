@@ -11,5 +11,8 @@ constraints:
     descp: Float between 0 and 1. Fraction of the input units to drop.
     dtype: float
 descp: Applies Dropout to the input.
-required:
-- rate
+inputs:
+  required:
+  - rate
+  optional:
+  - noise_shape

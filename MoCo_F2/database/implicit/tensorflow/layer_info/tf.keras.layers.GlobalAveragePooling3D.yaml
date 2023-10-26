@@ -20,4 +20,8 @@ constraints:
       is the same as for tf.reduce_mean or np.mean.
     dtype: tf.bool
 descp: Global Average pooling operation for 3D data.
-required: []
+inputs:
+  required: []
+  optional:
+  - data_format
+  - keepdims

@@ -46,4 +46,10 @@ constraints:
     - integer
     - tuple
 descp: Average pooling operation for 3D data (spatial or spatio-temporal).
-required: []
+inputs:
+  required: []
+  optional:
+  - data_format
+  - padding
+  - pool_size
+  - strides

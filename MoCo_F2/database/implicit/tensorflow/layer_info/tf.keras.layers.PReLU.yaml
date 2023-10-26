@@ -21,4 +21,10 @@ constraints:
       space so that each filter only has one set of parameters, set shared_axes=[1,
       2].
 descp: Parametric Rectified Linear Unit.
-required: []
+inputs:
+  required: []
+  optional:
+  - alpha_constraint
+  - alpha_initializer
+  - alpha_regularizer
+  - shared_axes

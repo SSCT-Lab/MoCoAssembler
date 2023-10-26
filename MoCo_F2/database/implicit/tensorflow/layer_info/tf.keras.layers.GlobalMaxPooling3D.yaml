@@ -21,4 +21,8 @@ constraints:
       is the same as for tf.reduce_max or np.max.
     dtype: tf.bool
 descp: Global Max pooling operation for 3D data.
-required: []
+inputs:
+  required: []
+  optional:
+  - data_format
+  - keepdims

@@ -26,5 +26,10 @@ constraints:
     structure:
     - tuple
 descp: Wraps arbitrary expressions as a Layer object.
-required:
-- function
+inputs:
+  required:
+  - function
+  optional:
+  - arguments
+  - mask
+  - output_shape

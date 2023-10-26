@@ -64,5 +64,16 @@ constraints:
     descp: Boolean, whether the layer uses a bias vector.
     dtype: tf.bool
 descp: Just your regular densely-connected NN layer.
-required:
-- units
+inputs:
+  required:
+  - units
+  optional:
+  - activation
+  - activity_regularizer
+  - bias_constraint
+  - bias_initializer
+  - bias_regularizer
+  - kernel_constraint
+  - kernel_initializer
+  - kernel_regularizer
+  - use_bias

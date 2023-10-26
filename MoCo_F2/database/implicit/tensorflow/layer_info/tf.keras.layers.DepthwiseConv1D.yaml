@@ -99,5 +99,20 @@ constraints:
     descp: Boolean, whether the layer uses a bias vector.
     dtype: tf.bool
 descp: Depthwise 1D convolution.
-required:
-- kernel_size
+inputs:
+  required:
+  - kernel_size
+  optional:
+  - activation
+  - activity_regularizer
+  - bias_constraint
+  - bias_initializer
+  - bias_regularizer
+  - data_format
+  - depth_multiplier
+  - depthwise_constraint
+  - depthwise_initializer
+  - depthwise_regularizer
+  - padding
+  - strides
+  - use_bias

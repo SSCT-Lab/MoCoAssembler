@@ -30,5 +30,10 @@ constraints:
   weights:
     default: None
 descp: Bidirectional wrapper for RNNs.
-required:
-- layer
+inputs:
+  required:
+  - layer
+  optional:
+  - backward_layer
+  - merge_mode
+  - weights

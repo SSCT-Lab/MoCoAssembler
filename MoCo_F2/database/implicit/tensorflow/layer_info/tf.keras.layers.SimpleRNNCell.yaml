@@ -75,5 +75,20 @@ constraints:
     descp: Boolean, (default True), whether the layer uses a bias vector.
     dtype: tf.bool
 descp: Cell class for SimpleRNN.
-required:
-- units
+inputs:
+  required:
+  - units
+  optional:
+  - activation
+  - bias_constraint
+  - bias_initializer
+  - bias_regularizer
+  - dropout
+  - kernel_constraint
+  - kernel_initializer
+  - kernel_regularizer
+  - recurrent_constraint
+  - recurrent_dropout
+  - recurrent_initializer
+  - recurrent_regularizer
+  - use_bias

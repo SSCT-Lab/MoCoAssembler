@@ -13,4 +13,7 @@ constraints:
     - channels_first
     - channels_last
 descp: Flattens the input. Does not affect the batch size.
-required: []
+inputs:
+  required: []
+  optional:
+  - data_format

@@ -146,6 +146,22 @@ constraints:
     dtype: tf.bool
     structure: list
 descp: Transposed convolution layer (sometimes called Deconvolution).
-required:
-- filters
-- kernel_size
+inputs:
+  required:
+  - filters
+  - kernel_size
+  optional:
+  - activation
+  - activity_regularizer
+  - bias_constraint
+  - bias_initializer
+  - bias_regularizer
+  - data_format
+  - dilation_rate
+  - kernel_constraint
+  - kernel_initializer
+  - kernel_regularizer
+  - output_padding
+  - padding
+  - strides
+  - use_bias

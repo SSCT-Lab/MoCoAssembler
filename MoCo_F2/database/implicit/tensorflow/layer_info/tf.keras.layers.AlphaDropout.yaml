@@ -12,5 +12,9 @@ constraints:
     descp: Integer, optional random seed to enable deterministic behavior.
     dtype: int
 descp: Applies Alpha Dropout to the input.
-required:
-- rate
+inputs:
+  required:
+  - rate
+  optional:
+  - noise_shape
+  - seed

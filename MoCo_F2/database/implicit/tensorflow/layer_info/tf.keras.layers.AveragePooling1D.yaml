@@ -40,4 +40,10 @@ constraints:
     shape: 1
     structure: integer
 descp: Average pooling for temporal data.
-required: []
+inputs:
+  required: []
+  optional:
+  - data_format
+  - padding
+  - pool_size
+  - strides

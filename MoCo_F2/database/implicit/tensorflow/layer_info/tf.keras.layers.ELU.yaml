@@ -5,4 +5,7 @@ constraints:
     descp: Scale for the negative factor.
     dtype: float
 descp: Exponential Linear Unit.
-required: []
+inputs:
+  required: []
+  optional:
+  - alpha

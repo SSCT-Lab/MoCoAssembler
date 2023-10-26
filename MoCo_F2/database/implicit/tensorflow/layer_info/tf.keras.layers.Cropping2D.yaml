@@ -25,4 +25,8 @@ constraints:
     - channels_first
     - channels_last
 descp: Cropping layer for 2D input (e.g. picture).
-required: []
+inputs:
+  required: []
+  optional:
+  - cropping
+  - data_format

@@ -11,4 +11,7 @@ constraints:
     - channels_first
     - channels_last
 descp: Global average pooling operation for temporal data.
-required: []
+inputs:
+  required: []
+  optional:
+  - data_format

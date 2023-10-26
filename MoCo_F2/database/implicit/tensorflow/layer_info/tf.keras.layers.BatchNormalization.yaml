@@ -72,4 +72,20 @@ constraints:
       when used inside a tf.distribute strategy.
     dtype: tf.bool
 descp: Layer that normalizes its inputs.
-required: []
+inputs:
+  required: []
+  optional:
+  - axis
+  - beta_constraint
+  - beta_initializer
+  - beta_regularizer
+  - center
+  - epsilon
+  - gamma_constraint
+  - gamma_initializer
+  - gamma_regularizer
+  - momentum
+  - moving_mean_initializer
+  - moving_variance_initializer
+  - scale
+  - synchronized

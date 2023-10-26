@@ -158,6 +158,25 @@ constraints:
     descp: Boolean, whether the layer uses a bias vector.
     dtype: tf.bool
 descp: Depthwise separable 2D convolution.
-required:
-- filters
-- kernel_size
+inputs:
+  required:
+  - filters
+  - kernel_size
+  optional:
+  - activation
+  - activity_regularizer
+  - bias_constraint
+  - bias_initializer
+  - bias_regularizer
+  - data_format
+  - depth_multiplier
+  - depthwise_constraint
+  - depthwise_initializer
+  - depthwise_regularizer
+  - dilation_rate
+  - padding
+  - pointwise_constraint
+  - pointwise_initializer
+  - pointwise_regularizer
+  - strides
+  - use_bias
