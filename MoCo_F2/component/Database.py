@@ -221,15 +221,20 @@ class Database:
         # TODO
         self.__api_para_map.clear()
         if self.__mode == 1:
-            for abstract_api_name in self.__all_api_list["abstract"]:
-                self.__api_para_map[abstract_api_name] = {}
-                implicit_api_name = self.get_implicit_api_name(self.__library_list[0], abstract_api_name)
-                implicit_layer_info = self.get_implicit_layer_info(self.__library_list[0], implicit_api_name)
-                paras = list(implicit_layer_info["constraints"].keys())
-                for para in paras:
-                    abstract_para_name = para
-                    self.__api_para_map[abstract_api_name][abstract_para_name] = {}
-                    self.__api_para_map[abstract_api_name][abstract_para_name][self.__library_list[0]] = para
+            abstract_para_name_path = p.join(database_path, "abstract", "abstract_para_name_new.yaml")
+            f = open(abstract_para_name_path, "r", encoding="utf-8")
+            data = yaml.full_load(f)
+            f.close()
+            self.__api_para_map = data
+            # for abstract_api_name in self.__all_api_list["abstract"]:
+            #     self.__api_para_map[abstract_api_name] = {}
+            #     implicit_api_name = self.get_implicit_api_name(self.__library_list[0], abstract_api_name)
+            #     implicit_layer_info = self.get_implicit_layer_info(self.__library_list[0], implicit_api_name)
+            #     paras = list(implicit_layer_info["constraints"].keys())
+            #     for para in paras:
+            #         abstract_para_name = para
+            #         self.__api_para_map[abstract_api_name][abstract_para_name] = {}
+            #         self.__api_para_map[abstract_api_name][abstract_para_name][self.__library_list[0]] = para
         else:
             pass
 
@@ -396,4 +401,4 @@ class Database:
         return
 
 
-# d = Database()
+d = Database()

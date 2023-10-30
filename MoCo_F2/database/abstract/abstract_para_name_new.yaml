@@ -1,0 +1,2095 @@
+adaptiveavgpool1d:
+  output_size:
+    jittor: None
+    tensorflow: None
+    torch: output_size
+adaptiveavgpool2d:
+  output_size:
+    jittor: output_size
+    tensorflow: None
+    torch: output_size
+adaptiveavgpool3d:
+  output_size:
+    jittor: output_size
+    tensorflow: None
+    torch: output_size
+adaptivemaxpool1d:
+  output_size:
+    jittor: None
+    tensorflow: None
+    torch: output_size
+  return_indices:
+    jittor: None
+    tensorflow: None
+    torch: return_indices
+adaptivemaxpool2d:
+  output_size:
+    jittor: output_size
+    tensorflow: None
+    torch: output_size
+  return_indices:
+    jittor: return_indices
+    tensorflow: None
+    torch: return_indices
+adaptivemaxpool3d:
+  output_size:
+    jittor: output_size
+    tensorflow: None
+    torch: output_size
+  return_indices:
+    jittor: return_indices
+    tensorflow: None
+    torch: return_indices
+alphadropout:
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+  p:
+    jittor: None
+    tensorflow: rate
+    torch: p
+avgpool1d:
+  ceil_mode:
+    jittor: None
+    tensorflow: None
+    torch: ceil_mode
+  count_include_pad:
+    jittor: None
+    tensorflow: None
+    torch: count_include_pad
+  kernel_size:
+    jittor: None
+    tensorflow: pool_size
+    torch: kernel_size
+  padding:
+    jittor: None
+    tensorflow: padding
+    torch: padding
+  stride:
+    jittor: None
+    tensorflow: strides
+    torch: stride
+avgpool2d:
+  ceil_mode:
+    jittor: ceil_mode
+    tensorflow: None
+    torch: ceil_mode
+  count_include_pad:
+    jittor: count_include_pad
+    tensorflow: None
+    torch: count_include_pad
+  kernel_size:
+    jittor: kernel_size
+    tensorflow: pool_size
+    torch: kernel_size
+  padding:
+    jittor: padding
+    tensorflow: padding
+    torch: padding
+  stride:
+    jittor: stride
+    tensorflow: strides
+    torch: stride
+avgpool3d:
+  ceil_mode:
+    jittor: ceil_mode
+    tensorflow: None
+    torch: ceil_mode
+  count_include_pad:
+    jittor: count_include_pad
+    tensorflow: None
+    torch: count_include_pad
+  kernel_size:
+    jittor: kernel_size
+    tensorflow: pool_size
+    torch: kernel_size
+  padding:
+    jittor: padding
+    tensorflow: padding
+    torch: padding
+  stride:
+    jittor: stride
+    tensorflow: strides
+    torch: stride
+batchnorm:
+  affine:
+    jittor: affine
+    tensorflow: None
+    torch: None
+  eps:
+    jittor: eps
+    tensorflow: None
+    torch: None
+  is_train:
+    jittor: is_train
+    tensorflow: None
+    torch: None
+  momentum:
+    jittor: momentum
+    tensorflow: None
+    torch: None
+  num_features:
+    jittor: num_features
+    tensorflow: None
+    torch: None
+  sync:
+    jittor: sync
+    tensorflow: None
+    torch: None
+batchnorm1d:
+  affine:
+    jittor: affine
+    tensorflow: None
+    torch: affine
+  eps:
+    jittor: eps
+    tensorflow: None
+    torch: eps
+  is_train:
+    jittor: is_train
+    tensorflow: None
+    torch: None
+  momentum:
+    jittor: momentum
+    tensorflow: None
+    torch: momentum
+  num_features:
+    jittor: num_features
+    tensorflow: None
+    torch: num_features
+  sync:
+    jittor: sync
+    tensorflow: None
+    torch: None
+  track_running_stats:
+    jittor: None
+    tensorflow: None
+    torch: track_running_stats
+batchnorm2d:
+  affine:
+    jittor: affine
+    tensorflow: None
+    torch: affine
+  eps:
+    jittor: eps
+    tensorflow: epsilon
+    torch: eps
+  is_train:
+    jittor: is_train
+    tensorflow: None
+    torch: None
+  momentum:
+    jittor: momentum
+    tensorflow: momentum
+    torch: momentum
+  num_features:
+    jittor: num_features
+    tensorflow: None
+    torch: num_features
+  sync:
+    jittor: sync
+    tensorflow: synchronized
+    torch: None
+  track_running_stats:
+    jittor: None
+    tensorflow: None
+    torch: track_running_stats
+batchnorm3d:
+  affine:
+    jittor: affine
+    tensorflow: None
+    torch: affine
+  eps:
+    jittor: eps
+    tensorflow: None
+    torch: eps
+  is_train:
+    jittor: is_train
+    tensorflow: None
+    torch: None
+  momentum:
+    jittor: momentum
+    tensorflow: None
+    torch: momentum
+  num_features:
+    jittor: num_features
+    tensorflow: None
+    torch: num_features
+  sync:
+    jittor: sync
+    tensorflow: None
+    torch: None
+  track_running_stats:
+    jittor: None
+    tensorflow: None
+    torch: track_running_stats
+bilinear:
+  bias:
+    jittor: bias
+    tensorflow: None
+    torch: bias
+  dtype:
+    jittor: dtype
+    tensorflow: None
+    torch: None
+  in1_features:
+    jittor: in1_features
+    tensorflow: None
+    torch: in1_features
+  in2_features:
+    jittor: in2_features
+    tensorflow: None
+    torch: in2_features
+  out_features:
+    jittor: out_features
+    tensorflow: None
+    torch: out_features
+celu:
+  alpha:
+    jittor: None
+    tensorflow: None
+    torch: alpha
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+channelshuffle:
+  groups:
+    jittor: None
+    tensorflow: None
+    torch: groups
+constantpad1d:
+  padding:
+    jittor: None
+    tensorflow: None
+    torch: padding
+constantpad2d:
+  padding:
+    jittor: padding
+    tensorflow: None
+    torch: padding
+  value:
+    jittor: value
+    tensorflow: None
+    torch: None
+constantpad3d:
+  padding:
+    jittor: None
+    tensorflow: None
+    torch: padding
+conv:
+  bias:
+    jittor: bias
+    tensorflow: None
+    torch: None
+  dilation:
+    jittor: dilation
+    tensorflow: None
+    torch: None
+  groups:
+    jittor: groups
+    tensorflow: None
+    torch: None
+  in_channels:
+    jittor: in_channels
+    tensorflow: None
+    torch: None
+  kernel_size:
+    jittor: kernel_size
+    tensorflow: None
+    torch: None
+  out_channels:
+    jittor: out_channels
+    tensorflow: None
+    torch: None
+  padding:
+    jittor: padding
+    tensorflow: None
+    torch: None
+  stride:
+    jittor: stride
+    tensorflow: None
+    torch: None
+conv1d:
+  bias:
+    jittor: bias
+    tensorflow: use_bias
+    torch: bias
+  dilation:
+    jittor: dilation
+    tensorflow: dilation_rate
+    torch: dilation
+  groups:
+    jittor: groups
+    tensorflow: groups
+    torch: groups
+  in_channels:
+    jittor: in_channels
+    tensorflow: None
+    torch: in_channels
+  kernel_size:
+    jittor: kernel_size
+    tensorflow: kernel_size
+    torch: kernel_size
+  out_channels:
+    jittor: out_channels
+    tensorflow: filters
+    torch: out_channels
+  padding:
+    jittor: padding
+    tensorflow: padding
+    torch: padding
+  padding_mode:
+    jittor: None
+    tensorflow: None
+    torch: padding_mode
+  stride:
+    jittor: stride
+    tensorflow: strides
+    torch: stride
+conv1d_sp:
+  bias:
+    jittor: bias
+    tensorflow: None
+    torch: None
+  inchannels:
+    jittor: inchannels
+    tensorflow: None
+    torch: None
+  kernel_size:
+    jittor: kernel_size
+    tensorflow: None
+    torch: None
+  outchannels:
+    jittor: outchannels
+    tensorflow: None
+    torch: None
+conv2d:
+  bias:
+    jittor: bias
+    tensorflow: use_bias
+    torch: bias
+  dilation:
+    jittor: dilation
+    tensorflow: dilation_rate
+    torch: dilation
+  groups:
+    jittor: groups
+    tensorflow: groups
+    torch: groups
+  in_channels:
+    jittor: in_channels
+    tensorflow: None
+    torch: in_channels
+  kernel_size:
+    jittor: kernel_size
+    tensorflow: kernel_size
+    torch: kernel_size
+  out_channels:
+    jittor: out_channels
+    tensorflow: filters
+    torch: out_channels
+  padding:
+    jittor: padding
+    tensorflow: padding
+    torch: padding
+  padding_mode:
+    jittor: None
+    tensorflow: None
+    torch: padding_mode
+  stride:
+    jittor: stride
+    tensorflow: strides
+    torch: stride
+conv3d:
+  bias:
+    jittor: bias
+    tensorflow: use_bias
+    torch: bias
+  dilation:
+    jittor: dilation
+    tensorflow: dilation_rate
+    torch: dilation
+  groups:
+    jittor: groups
+    tensorflow: groups
+    torch: groups
+  in_channels:
+    jittor: in_channels
+    tensorflow: None
+    torch: in_channels
+  kernel_size:
+    jittor: kernel_size
+    tensorflow: kernel_size
+    torch: kernel_size
+  out_channels:
+    jittor: out_channels
+    tensorflow: filters
+    torch: out_channels
+  padding:
+    jittor: padding
+    tensorflow: padding
+    torch: padding
+  padding_mode:
+    jittor: None
+    tensorflow: None
+    torch: padding_mode
+  stride:
+    jittor: stride
+    tensorflow: strides
+    torch: stride
+convtranspose:
+  bias:
+    jittor: bias
+    tensorflow: None
+    torch: None
+  dilation:
+    jittor: dilation
+    tensorflow: None
+    torch: None
+  groups:
+    jittor: groups
+    tensorflow: None
+    torch: None
+  in_channels:
+    jittor: in_channels
+    tensorflow: None
+    torch: None
+  kernel_size:
+    jittor: kernel_size
+    tensorflow: None
+    torch: None
+  out_channels:
+    jittor: out_channels
+    tensorflow: None
+    torch: None
+  output_padding:
+    jittor: output_padding
+    tensorflow: None
+    torch: None
+  padding:
+    jittor: padding
+    tensorflow: None
+    torch: None
+  stride:
+    jittor: stride
+    tensorflow: None
+    torch: None
+convtranspose1d:
+  bias:
+    jittor: None
+    tensorflow: use_bias
+    torch: bias
+  dilation:
+    jittor: None
+    tensorflow: dilation_rate
+    torch: dilation
+  groups:
+    jittor: None
+    tensorflow: groups
+    torch: groups
+  in_channels:
+    jittor: None
+    tensorflow: None
+    torch: in_channels
+  kernel_size:
+    jittor: None
+    tensorflow: kernel_size
+    torch: kernel_size
+  out_channels:
+    jittor: None
+    tensorflow: filters
+    torch: out_channels
+  output_padding:
+    jittor: None
+    tensorflow: output_padding
+    torch: output_padding
+  padding:
+    jittor: None
+    tensorflow: padding
+    torch: padding
+  stride:
+    jittor: None
+    tensorflow: strides
+    torch: stride
+convtranspose2d:
+  bias:
+    jittor: bias
+    tensorflow: use_bias
+    torch: bias
+  dilation:
+    jittor: dilation
+    tensorflow: dilation_rate
+    torch: dilation
+  groups:
+    jittor: groups
+    tensorflow: groups
+    torch: groups
+  in_channels:
+    jittor: in_channels
+    tensorflow: None
+    torch: in_channels
+  kernel_size:
+    jittor: kernel_size
+    tensorflow: kernel_size
+    torch: kernel_size
+  out_channels:
+    jittor: out_channels
+    tensorflow: filters
+    torch: out_channels
+  output_padding:
+    jittor: output_padding
+    tensorflow: output_padding
+    torch: output_padding
+  padding:
+    jittor: padding
+    tensorflow: padding
+    torch: padding
+  stride:
+    jittor: stride
+    tensorflow: strides
+    torch: stride
+convtranspose3d:
+  bias:
+    jittor: bias
+    tensorflow: use_bias
+    torch: bias
+  dilation:
+    jittor: dilation
+    tensorflow: dilation_rate
+    torch: dilation
+  groups:
+    jittor: groups
+    tensorflow: groups
+    torch: groups
+  in_channels:
+    jittor: in_channels
+    tensorflow: None
+    torch: in_channels
+  kernel_size:
+    jittor: kernel_size
+    tensorflow: kernel_size
+    torch: kernel_size
+  out_channels:
+    jittor: out_channels
+    tensorflow: filters
+    torch: out_channels
+  output_padding:
+    jittor: output_padding
+    tensorflow: output_padding
+    torch: output_padding
+  padding:
+    jittor: padding
+    tensorflow: padding
+    torch: padding
+  stride:
+    jittor: stride
+    tensorflow: strides
+    torch: stride
+dropout:
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+  is_train:
+    jittor: is_train
+    tensorflow: None
+    torch: None
+  p:
+    jittor: p
+    tensorflow: rate
+    torch: p
+  noise_shape:
+    jittor: None
+    tensorflow: noise_shape
+    torch: None
+dropout1d:
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+  p:
+    jittor: None
+    tensorflow: rate
+    torch: p
+dropout2d:
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+  is_train:
+    jittor: is_train
+    tensorflow: None
+    torch: None
+  p:
+    jittor: p
+    tensorflow: rate
+    torch: p
+dropout3d:
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+  p:
+    jittor: None
+    tensorflow: rate
+    torch: p
+droppath:
+  is_train:
+    jittor: is_train
+    tensorflow: None
+    torch: None
+  p:
+    jittor: p
+    tensorflow: None
+    torch: None
+elu:
+  alpha:
+    jittor: alpha
+    tensorflow: alpha
+    torch: alpha
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+embedding:
+  dtype:
+    jittor: dtype
+    tensorflow: None
+    torch: None
+  embedding_dim:
+    jittor: embedding_dim
+    tensorflow: output_dim
+    torch: embedding_dim
+  max_norm:
+    jittor: None
+    tensorflow: None
+    torch: max_norm
+  norm_type:
+    jittor: None
+    tensorflow: None
+    torch: norm_type
+  num_embeddings:
+    jittor: num_embeddings
+    tensorflow: input_dim
+    torch: num_embeddings
+  padding_idx:
+    jittor: None
+    tensorflow: None
+    torch: padding_idx
+  scale_grad_by_freq:
+    jittor: None
+    tensorflow: None
+    torch: scale_grad_by_freq
+  sparse:
+    jittor: None
+    tensorflow: None
+    torch: sparse
+embeddingbag:
+  embedding_dim:
+    jittor: None
+    tensorflow: None
+    torch: embedding_dim
+  include_last_offset:
+    jittor: None
+    tensorflow: None
+    torch: include_last_offset
+  max_norm:
+    jittor: None
+    tensorflow: None
+    torch: max_norm
+  mode:
+    jittor: None
+    tensorflow: None
+    torch: mode
+  norm_type:
+    jittor: None
+    tensorflow: None
+    torch: norm_type
+  num_embeddings:
+    jittor: None
+    tensorflow: None
+    torch: num_embeddings
+  scale_grad_by_freq:
+    jittor: None
+    tensorflow: None
+    torch: scale_grad_by_freq
+  sparse:
+    jittor: None
+    tensorflow: None
+    torch: sparse
+featurealphadropout:
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+  p:
+    jittor: None
+    tensorflow: None
+    torch: p
+flatten:
+  end_dim:
+    jittor: end_dim
+    tensorflow: None
+    torch: end_dim
+  start_dim:
+    jittor: start_dim
+    tensorflow: None
+    torch: start_dim
+fold:
+  dilation:
+    jittor: None
+    tensorflow: None
+    torch: dilation
+  kernel_size:
+    jittor: None
+    tensorflow: None
+    torch: kernel_size
+  output_size:
+    jittor: None
+    tensorflow: None
+    torch: output_size
+  padding:
+    jittor: None
+    tensorflow: padding
+    torch: padding
+  stride:
+    jittor: None
+    tensorflow: strides
+    torch: stride
+fractionalmaxpool2d:
+  kernel_size:
+    jittor: None
+    tensorflow: None
+    torch: kernel_size
+  output_ratio:
+    jittor: None
+    tensorflow: None
+    torch: output_ratio
+  output_size:
+    jittor: None
+    tensorflow: None
+    torch: output_size
+  return_indices:
+    jittor: None
+    tensorflow: None
+    torch: return_indices
+fractionalmaxpool3d:
+  kernel_size:
+    jittor: None
+    tensorflow: None
+    torch: kernel_size
+  output_ratio:
+    jittor: None
+    tensorflow: None
+    torch: output_ratio
+  output_size:
+    jittor: None
+    tensorflow: None
+    torch: output_size
+  return_indices:
+    jittor: None
+    tensorflow: None
+    torch: return_indices
+gelu:
+  approximate:
+    jittor: None
+    tensorflow: approximate
+    torch: approximate
+glu:
+  dim:
+    jittor: None
+    tensorflow: None
+    torch: dim
+groupnorm:
+  affine:
+    jittor: affine
+    tensorflow: None
+    torch: affine
+  eps:
+    jittor: eps
+    tensorflow: None
+    torch: eps
+  is_train:
+    jittor: is_train
+    tensorflow: None
+    torch: None
+  num_channels:
+    jittor: num_channels
+    tensorflow: None
+    torch: num_channels
+  num_groups:
+    jittor: num_groups
+    tensorflow: None
+    torch: num_groups
+gru:
+  batch_first:
+    jittor: None
+    tensorflow: None
+    torch: batch_first
+  bias:
+    jittor: None
+    tensorflow: use_bias
+    torch: bias
+  bidirectional:
+    jittor: None
+    tensorflow: None
+    torch: bidirectional
+  dropout:
+    jittor: None
+    tensorflow: dropout
+    torch: dropout
+  hidden_size:
+    jittor: None
+    tensorflow: units
+    torch: hidden_size
+  input_size:
+    jittor: None
+    tensorflow: None
+    torch: input_size
+  num_layers:
+    jittor: None
+    tensorflow: None
+    torch: num_layers
+grucell:
+  bias:
+    jittor: bias
+    tensorflow: use_bias
+    torch: bias
+  hidden_size:
+    jittor: hidden_size
+    tensorflow: units
+    torch: hidden_size
+  input_size:
+    jittor: input_size
+    tensorflow: None
+    torch: input_size
+hardshrink:
+  lambd:
+    jittor: None
+    tensorflow: None
+    torch: lambd
+hardsigmoid:
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+hardswish:
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+hardtanh:
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+  max_val:
+    jittor: None
+    tensorflow: None
+    torch: max_val
+  min_val:
+    jittor: None
+    tensorflow: None
+    torch: min_val
+huberloss:
+  delta:
+    jittor: None
+    tensorflow: None
+    torch: delta
+  reduction:
+    jittor: None
+    tensorflow: None
+    torch: reduction
+identity:
+  '**kwargs':
+    jittor: '**kwargs'
+    tensorflow: None
+    torch: None
+  '*args':
+    jittor: '*args'
+    tensorflow: None
+    torch: None
+instancenorm:
+  affine:
+    jittor: affine
+    tensorflow: None
+    torch: None
+  eps:
+    jittor: eps
+    tensorflow: None
+    torch: None
+  is_train:
+    jittor: is_train
+    tensorflow: None
+    torch: None
+  momentum:
+    jittor: momentum
+    tensorflow: None
+    torch: None
+  num_features:
+    jittor: num_features
+    tensorflow: None
+    torch: None
+  sync:
+    jittor: sync
+    tensorflow: None
+    torch: None
+instancenorm1d:
+  affine:
+    jittor: affine
+    tensorflow: None
+    torch: affine
+  eps:
+    jittor: eps
+    tensorflow: None
+    torch: eps
+  is_train:
+    jittor: is_train
+    tensorflow: None
+    torch: None
+  momentum:
+    jittor: momentum
+    tensorflow: None
+    torch: momentum
+  num_features:
+    jittor: num_features
+    tensorflow: None
+    torch: num_features
+  sync:
+    jittor: sync
+    tensorflow: None
+    torch: None
+  track_running_stats:
+    jittor: None
+    tensorflow: None
+    torch: track_running_stats
+instancenorm2d:
+  affine:
+    jittor: affine
+    tensorflow: None
+    torch: affine
+  eps:
+    jittor: eps
+    tensorflow: None
+    torch: eps
+  is_train:
+    jittor: is_train
+    tensorflow: None
+    torch: None
+  momentum:
+    jittor: momentum
+    tensorflow: None
+    torch: momentum
+  num_features:
+    jittor: num_features
+    tensorflow: None
+    torch: num_features
+  sync:
+    jittor: sync
+    tensorflow: None
+    torch: None
+  track_running_stats:
+    jittor: None
+    tensorflow: None
+    torch: track_running_stats
+instancenorm3d:
+  affine:
+    jittor: affine
+    tensorflow: None
+    torch: affine
+  eps:
+    jittor: eps
+    tensorflow: None
+    torch: eps
+  is_train:
+    jittor: is_train
+    tensorflow: None
+    torch: None
+  momentum:
+    jittor: momentum
+    tensorflow: None
+    torch: momentum
+  num_features:
+    jittor: num_features
+    tensorflow: None
+    torch: num_features
+  sync:
+    jittor: sync
+    tensorflow: None
+    torch: None
+  track_running_stats:
+    jittor: None
+    tensorflow: None
+    torch: track_running_stats
+layernorm:
+  elementwise_affine:
+    jittor: elementwise_affine
+    tensorflow: None
+    torch: elementwise_affine
+  eps:
+    jittor: eps
+    tensorflow: epsilon
+    torch: eps
+  normalized_shape:
+    jittor: normalized_shape
+    tensorflow: None
+    torch: normalized_shape
+layernorm1d:
+  elementwise_affine:
+    jittor: elementwise_affine
+    tensorflow: None
+    torch: None
+  eps:
+    jittor: eps
+    tensorflow: None
+    torch: None
+  normalized_shape:
+    jittor: normalized_shape
+    tensorflow: None
+    torch: None
+layernorm2d:
+  elementwise_affine:
+    jittor: elementwise_affine
+    tensorflow: None
+    torch: None
+  eps:
+    jittor: eps
+    tensorflow: epsilon
+    torch: None
+  normalized_shape:
+    jittor: normalized_shape
+    tensorflow: None
+    torch: None
+layernorm3d:
+  elementwise_affine:
+    jittor: elementwise_affine
+    tensorflow: None
+    torch: None
+  eps:
+    jittor: eps
+    tensorflow: None
+    torch: None
+  normalized_shape:
+    jittor: normalized_shape
+    tensorflow: None
+    torch: None
+lazybatchnorm1d:
+  affine:
+    jittor: None
+    tensorflow: None
+    torch: affine
+  eps:
+    jittor: None
+    tensorflow: None
+    torch: eps
+  momentum:
+    jittor: None
+    tensorflow: None
+    torch: momentum
+  track_running_stats:
+    jittor: None
+    tensorflow: None
+    torch: track_running_stats
+lazybatchnorm2d:
+  affine:
+    jittor: None
+    tensorflow: None
+    torch: affine
+  eps:
+    jittor: None
+    tensorflow: None
+    torch: eps
+  momentum:
+    jittor: None
+    tensorflow: None
+    torch: momentum
+  track_running_stats:
+    jittor: None
+    tensorflow: None
+    torch: track_running_stats
+lazybatchnorm3d:
+  affine:
+    jittor: None
+    tensorflow: None
+    torch: affine
+  eps:
+    jittor: None
+    tensorflow: None
+    torch: eps
+  momentum:
+    jittor: None
+    tensorflow: None
+    torch: momentum
+  track_running_stats:
+    jittor: None
+    tensorflow: None
+    torch: track_running_stats
+lazyconv1d:
+  bias:
+    jittor: None
+    tensorflow: None
+    torch: bias
+  dilation:
+    jittor: None
+    tensorflow: None
+    torch: dilation
+  groups:
+    jittor: None
+    tensorflow: None
+    torch: groups
+  kernel_size:
+    jittor: None
+    tensorflow: None
+    torch: kernel_size
+  out_channels:
+    jittor: None
+    tensorflow: None
+    torch: out_channels
+  padding:
+    jittor: None
+    tensorflow: None
+    torch: padding
+  padding_mode:
+    jittor: None
+    tensorflow: None
+    torch: padding_mode
+  stride:
+    jittor: None
+    tensorflow: None
+    torch: stride
+lazyconv2d:
+  bias:
+    jittor: None
+    tensorflow: None
+    torch: bias
+  dilation:
+    jittor: None
+    tensorflow: None
+    torch: dilation
+  groups:
+    jittor: None
+    tensorflow: None
+    torch: groups
+  kernel_size:
+    jittor: None
+    tensorflow: None
+    torch: kernel_size
+  out_channels:
+    jittor: None
+    tensorflow: None
+    torch: out_channels
+  padding:
+    jittor: None
+    tensorflow: None
+    torch: padding
+  padding_mode:
+    jittor: None
+    tensorflow: None
+    torch: padding_mode
+  stride:
+    jittor: None
+    tensorflow: None
+    torch: stride
+lazyconv3d:
+  bias:
+    jittor: None
+    tensorflow: None
+    torch: bias
+  dilation:
+    jittor: None
+    tensorflow: None
+    torch: dilation
+  groups:
+    jittor: None
+    tensorflow: None
+    torch: groups
+  kernel_size:
+    jittor: None
+    tensorflow: None
+    torch: kernel_size
+  out_channels:
+    jittor: None
+    tensorflow: None
+    torch: out_channels
+  padding:
+    jittor: None
+    tensorflow: None
+    torch: padding
+  padding_mode:
+    jittor: None
+    tensorflow: None
+    torch: padding_mode
+  stride:
+    jittor: None
+    tensorflow: None
+    torch: stride
+lazyconvtranspose1d:
+  bias:
+    jittor: None
+    tensorflow: None
+    torch: bias
+  dilation:
+    jittor: None
+    tensorflow: None
+    torch: dilation
+  groups:
+    jittor: None
+    tensorflow: None
+    torch: groups
+  kernel_size:
+    jittor: None
+    tensorflow: None
+    torch: kernel_size
+  out_channels:
+    jittor: None
+    tensorflow: None
+    torch: out_channels
+  output_padding:
+    jittor: None
+    tensorflow: None
+    torch: output_padding
+  padding:
+    jittor: None
+    tensorflow: None
+    torch: padding
+  stride:
+    jittor: None
+    tensorflow: None
+    torch: stride
+lazyconvtranspose2d:
+  bias:
+    jittor: None
+    tensorflow: None
+    torch: bias
+  dilation:
+    jittor: None
+    tensorflow: None
+    torch: dilation
+  groups:
+    jittor: None
+    tensorflow: None
+    torch: groups
+  kernel_size:
+    jittor: None
+    tensorflow: None
+    torch: kernel_size
+  out_channels:
+    jittor: None
+    tensorflow: None
+    torch: out_channels
+  output_padding:
+    jittor: None
+    tensorflow: None
+    torch: output_padding
+  padding:
+    jittor: None
+    tensorflow: None
+    torch: padding
+  stride:
+    jittor: None
+    tensorflow: None
+    torch: stride
+lazyconvtranspose3d:
+  bias:
+    jittor: None
+    tensorflow: None
+    torch: bias
+  dilation:
+    jittor: None
+    tensorflow: None
+    torch: dilation
+  groups:
+    jittor: None
+    tensorflow: None
+    torch: groups
+  kernel_size:
+    jittor: None
+    tensorflow: None
+    torch: kernel_size
+  out_channels:
+    jittor: None
+    tensorflow: None
+    torch: out_channels
+  output_padding:
+    jittor: None
+    tensorflow: None
+    torch: output_padding
+  padding:
+    jittor: None
+    tensorflow: None
+    torch: padding
+  stride:
+    jittor: None
+    tensorflow: None
+    torch: stride
+lazyinstancenorm1d:
+  affine:
+    jittor: None
+    tensorflow: None
+    torch: affine
+  eps:
+    jittor: None
+    tensorflow: None
+    torch: eps
+  momentum:
+    jittor: None
+    tensorflow: None
+    torch: momentum
+  num_features:
+    jittor: None
+    tensorflow: None
+    torch: num_features
+  track_running_stats:
+    jittor: None
+    tensorflow: None
+    torch: track_running_stats
+lazyinstancenorm2d:
+  affine:
+    jittor: None
+    tensorflow: None
+    torch: affine
+  eps:
+    jittor: None
+    tensorflow: None
+    torch: eps
+  momentum:
+    jittor: None
+    tensorflow: None
+    torch: momentum
+  num_features:
+    jittor: None
+    tensorflow: None
+    torch: num_features
+  track_running_stats:
+    jittor: None
+    tensorflow: None
+    torch: track_running_stats
+lazyinstancenorm3d:
+  affine:
+    jittor: None
+    tensorflow: None
+    torch: affine
+  eps:
+    jittor: None
+    tensorflow: None
+    torch: eps
+  momentum:
+    jittor: None
+    tensorflow: None
+    torch: momentum
+  num_features:
+    jittor: None
+    tensorflow: None
+    torch: num_features
+  track_running_stats:
+    jittor: None
+    tensorflow: None
+    torch: track_running_stats
+lazylinear:
+  bias:
+    jittor: None
+    tensorflow: None
+    torch: bias
+  out_features:
+    jittor: None
+    tensorflow: None
+    torch: out_features
+leaky_relu: {}
+leakyrelu:
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+  negative_slope:
+    jittor: None
+    tensorflow: alpha
+    torch: negative_slope
+linear:
+  bias:
+    jittor: bias
+    tensorflow: use_bias
+    torch: bias
+  in_features:
+    jittor: in_features
+    tensorflow: None
+    torch: in_features
+  out_features:
+    jittor: out_features
+    tensorflow: units
+    torch: out_features
+localresponsenorm:
+  alpha:
+    jittor: None
+    tensorflow: None
+    torch: alpha
+  beta:
+    jittor: None
+    tensorflow: None
+    torch: beta
+  k:
+    jittor: None
+    tensorflow: None
+    torch: k
+  size:
+    jittor: None
+    tensorflow: None
+    torch: size
+logsigmoid: {}
+logsoftmax:
+  dim:
+    jittor: None
+    tensorflow: None
+    torch: dim
+lppool1d:
+  ceil_mode:
+    jittor: None
+    tensorflow: None
+    torch: ceil_mode
+  kernel_size:
+    jittor: None
+    tensorflow: None
+    torch: kernel_size
+  norm_type:
+    jittor: None
+    tensorflow: None
+    torch: norm_type
+  stride:
+    jittor: None
+    tensorflow: None
+    torch: stride
+lppool2d:
+  ceil_mode:
+    jittor: None
+    tensorflow: None
+    torch: ceil_mode
+  kernel_size:
+    jittor: None
+    tensorflow: None
+    torch: kernel_size
+  norm_type:
+    jittor: None
+    tensorflow: None
+    torch: norm_type
+  stride:
+    jittor: None
+    tensorflow: None
+    torch: stride
+lstm:
+  batch_first:
+    jittor: None
+    tensorflow: None
+    torch: batch_first
+  bias:
+    jittor: None
+    tensorflow: use_bias
+    torch: bias
+  bidirectional:
+    jittor: None
+    tensorflow: None
+    torch: bidirectional
+  dropout:
+    jittor: None
+    tensorflow: dropout
+    torch: dropout
+  hidden_size:
+    jittor: None
+    tensorflow: units
+    torch: hidden_size
+  input_size:
+    jittor: None
+    tensorflow: None
+    torch: input_size
+  num_layers:
+    jittor: None
+    tensorflow: None
+    torch: num_layers
+  proj_size:
+    jittor: None
+    tensorflow: None
+    torch: proj_size
+lstmcell:
+  bias:
+    jittor: bias
+    tensorflow: use_bias
+    torch: bias
+  hidden_size:
+    jittor: hidden_size
+    tensorflow: units
+    torch: hidden_size
+  input_size:
+    jittor: input_size
+    tensorflow: None
+    torch: input_size
+marginrankingloss:
+  margin:
+    jittor: None
+    tensorflow: None
+    torch: margin
+  reduce:
+    jittor: None
+    tensorflow: None
+    torch: reduce
+  reduction:
+    jittor: None
+    tensorflow: None
+    torch: reduction
+  size_average:
+    jittor: None
+    tensorflow: None
+    torch: size_average
+maxpool1d:
+  ceil_mode:
+    jittor: None
+    tensorflow: None
+    torch: ceil_mode
+  dilation:
+    jittor: None
+    tensorflow: None
+    torch: dilation
+  kernel_size:
+    jittor: None
+    tensorflow: pool_size
+    torch: kernel_size
+  padding:
+    jittor: None
+    tensorflow: padding
+    torch: padding
+  return_indices:
+    jittor: None
+    tensorflow: None
+    torch: return_indices
+  stride:
+    jittor: None
+    tensorflow: strides
+    torch: stride
+maxpool2d:
+  ceil_mode:
+    jittor: ceil_mode
+    tensorflow: None
+    torch: ceil_mode
+  dilation:
+    jittor: dilation
+    tensorflow: pool_size
+    torch: dilation
+  kernel_size:
+    jittor: kernel_size
+    tensorflow: None
+    torch: kernel_size
+  padding:
+    jittor: padding
+    tensorflow: padding
+    torch: padding
+  return_indices:
+    jittor: return_indices
+    tensorflow: None
+    torch: return_indices
+  stride:
+    jittor: stride
+    tensorflow: strides
+    torch: stride
+maxpool3d:
+  ceil_mode:
+    jittor: ceil_mode
+    tensorflow: None
+    torch: ceil_mode
+  dilation:
+    jittor: dilation
+    tensorflow: None
+    torch: dilation
+  kernel_size:
+    jittor: kernel_size
+    tensorflow: pool_size
+    torch: kernel_size
+  padding:
+    jittor: padding
+    tensorflow: padding
+    torch: padding
+  return_indices:
+    jittor: return_indices
+    tensorflow: None
+    torch: return_indices
+  stride:
+    jittor: stride
+    tensorflow: strides
+    torch: stride
+maxunpool1d:
+  kernel_size:
+    jittor: None
+    tensorflow: None
+    torch: kernel_size
+  padding:
+    jittor: None
+    tensorflow: None
+    torch: padding
+  stride:
+    jittor: None
+    tensorflow: None
+    torch: stride
+maxunpool2d:
+  kernel_size:
+    jittor: kernel_size
+    tensorflow: None
+    torch: kernel_size
+  padding:
+    jittor: None
+    tensorflow: None
+    torch: padding
+  stride:
+    jittor: stride
+    tensorflow: None
+    torch: stride
+maxunpool3d:
+  kernel_size:
+    jittor: kernel_size
+    tensorflow: None
+    torch: kernel_size
+  padding:
+    jittor: None
+    tensorflow: None
+    torch: padding
+  stride:
+    jittor: stride
+    tensorflow: None
+    torch: stride
+mish:
+  inplace:
+    jittor: inplace
+    tensorflow: None
+    torch: None
+mseloss:
+  reduce:
+    jittor: None
+    tensorflow: None
+    torch: reduce
+  reduction:
+    jittor: None
+    tensorflow: None
+    torch: reduction
+  size_average:
+    jittor: None
+    tensorflow: None
+    torch: size_average
+multiheadattention:
+  add_bias_kv:
+    jittor: None
+    tensorflow: None
+    torch: add_bias_kv
+  add_zero_attn:
+    jittor: None
+    tensorflow: None
+    torch: add_zero_attn
+  batch_first:
+    jittor: None
+    tensorflow: None
+    torch: batch_first
+  bias:
+    jittor: None
+    tensorflow: None
+    torch: bias
+  dropout:
+    jittor: None
+    tensorflow: None
+    torch: dropout
+  embed_dim:
+    jittor: None
+    tensorflow: None
+    torch: embed_dim
+  kdim:
+    jittor: None
+    tensorflow: None
+    torch: kdim
+  num_heads:
+    jittor: None
+    tensorflow: None
+    torch: num_heads
+  vdim:
+    jittor: None
+    tensorflow: None
+    torch: vdim
+pixelshuffle:
+  upscale_factor:
+    jittor: upscale_factor
+    tensorflow: None
+    torch: upscale_factor
+pixelunshuffle:
+  downscale_factor:
+    jittor: None
+    tensorflow: None
+    torch: downscale_factor
+pool:
+  ceil_mode:
+    jittor: ceil_mode
+    tensorflow: None
+    torch: None
+  count_include_pad:
+    jittor: count_include_pad
+    tensorflow: None
+    torch: None
+  dilation:
+    jittor: dilation
+    tensorflow: None
+    torch: None
+  kernel_size:
+    jittor: kernel_size
+    tensorflow: None
+    torch: None
+  op:
+    jittor: op
+    tensorflow: None
+    torch: None
+  padding:
+    jittor: padding
+    tensorflow: None
+    torch: None
+  return_indices:
+    jittor: return_indices
+    tensorflow: None
+    torch: None
+  stride:
+    jittor: stride
+    tensorflow: None
+    torch: None
+pool3d:
+  ceil_mode:
+    jittor: ceil_mode
+    tensorflow: None
+    torch: None
+  count_include_pad:
+    jittor: count_include_pad
+    tensorflow: None
+    torch: None
+  dilation:
+    jittor: dilation
+    tensorflow: None
+    torch: None
+  kernel_size:
+    jittor: kernel_size
+    tensorflow: None
+    torch: None
+  op:
+    jittor: op
+    tensorflow: None
+    torch: None
+  padding:
+    jittor: padding
+    tensorflow: None
+    torch: None
+  return_indices:
+    jittor: return_indices
+    tensorflow: None
+    torch: None
+  stride:
+    jittor: stride
+    tensorflow: None
+    torch: None
+prelu:
+  init:
+    jittor: None
+    tensorflow: None
+    torch: init
+  init_:
+    jittor: init_
+    tensorflow: None
+    torch: None
+  num_parameters:
+    jittor: num_parameters
+    tensorflow: None
+    torch: num_parameters
+reflectionpad1d:
+  padding:
+    jittor: None
+    tensorflow: None
+    torch: padding
+reflectionpad2d:
+  padding:
+    jittor: padding
+    tensorflow: None
+    torch: padding
+reflectionpad3d:
+  padding:
+    jittor: None
+    tensorflow: None
+    torch: padding
+relu:
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+relu6:
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+replicationpad1d:
+  padding:
+    jittor: None
+    tensorflow: None
+    torch: padding
+replicationpad2d:
+  padding:
+    jittor: padding
+    tensorflow: None
+    torch: padding
+replicationpad3d:
+  padding:
+    jittor: None
+    tensorflow: None
+    torch: padding
+resize:
+  align_corners:
+    jittor: align_corners
+    tensorflow: None
+    torch: None
+  mode:
+    jittor: mode
+    tensorflow: None
+    torch: None
+  size:
+    jittor: size
+    tensorflow: None
+    torch: None
+rnn:
+  batch_first:
+    jittor: None
+    tensorflow: None
+    torch: batch_first
+  bias:
+    jittor: None
+    tensorflow: use_bias
+    torch: bias
+  bidirectional:
+    jittor: None
+    tensorflow: None
+    torch: bidirectional
+  dropout:
+    jittor: None
+    tensorflow: dropout
+    torch: dropout
+  hidden_size:
+    jittor: None
+    tensorflow: units
+    torch: hidden_size
+  input_size:
+    jittor: None
+    tensorflow: None
+    torch: input_size
+  nonlinearity:
+    jittor: None
+    tensorflow: None
+    torch: nonlinearity
+  num_layers:
+    jittor: None
+    tensorflow: None
+    torch: num_layers
+rnnbase:
+  batch_first:
+    jittor: batch_first
+    tensorflow: None
+    torch: None
+  bias:
+    jittor: bias
+    tensorflow: None
+    torch: None
+  bidirectional:
+    jittor: bidirectional
+    tensorflow: None
+    torch: None
+  dropout:
+    jittor: dropout
+    tensorflow: None
+    torch: None
+  hidden_size:
+    jittor: hidden_size
+    tensorflow: None
+    torch: None
+  input_size:
+    jittor: input_size
+    tensorflow: None
+    torch: None
+  mode:
+    jittor: mode
+    tensorflow: None
+    torch: None
+  nonlinearity:
+    jittor: nonlinearity
+    tensorflow: None
+    torch: None
+  num_layers:
+    jittor: num_layers
+    tensorflow: None
+    torch: None
+  proj_size:
+    jittor: proj_size
+    tensorflow: None
+    torch: None
+rnncell:
+  bias:
+    jittor: bias
+    tensorflow: use_bias
+    torch: bias
+  hidden_size:
+    jittor: hidden_size
+    tensorflow: units
+    torch: hidden_size
+  input_size:
+    jittor: input_size
+    tensorflow: None
+    torch: input_size
+  nonlinearity:
+    jittor: nonlinearity
+    tensorflow: None
+    torch: nonlinearity
+rrelu:
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+  lower:
+    jittor: None
+    tensorflow: None
+    torch: lower
+  upper:
+    jittor: None
+    tensorflow: None
+    torch: upper
+selu:
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+sigmoid: {}
+silu: {}
+softmax:
+  dim:
+    jittor: None
+    tensorflow: None
+    torch: dim
+softmax2d: {}
+softmin:
+  dim:
+    jittor: None
+    tensorflow: None
+    torch: dim
+softplus:
+  beta:
+    jittor: beta
+    tensorflow: None
+    torch: beta
+  threshold:
+    jittor: threshold
+    tensorflow: None
+    torch: threshold
+softshrink:
+  lambd:
+    jittor: None
+    tensorflow: None
+    torch: lambd
+softsign: {}
+syncbatchnorm:
+  affine:
+    jittor: None
+    tensorflow: None
+    torch: affine
+  eps:
+    jittor: None
+    tensorflow: None
+    torch: eps
+  momentum:
+    jittor: None
+    tensorflow: None
+    torch: momentum
+  num_features:
+    jittor: None
+    tensorflow: None
+    torch: num_features
+  process_group:
+    jittor: None
+    tensorflow: None
+    torch: process_group
+  track_running_stats:
+    jittor: None
+    tensorflow: None
+    torch: track_running_stats
+tanh: {}
+tanhshrink: {}
+threshold:
+  inplace:
+    jittor: None
+    tensorflow: None
+    torch: inplace
+  threshold:
+    jittor: None
+    tensorflow: None
+    torch: threshold
+  value:
+    jittor: None
+    tensorflow: None
+    torch: value
+unflatten:
+  dim:
+    jittor: None
+    tensorflow: None
+    torch: dim
+  unflattened_size:
+    jittor: None
+    tensorflow: None
+    torch: unflattened_size
+unfold:
+  dilation:
+    jittor: None
+    tensorflow: None
+    torch: dilation
+  kernel_size:
+    jittor: None
+    tensorflow: None
+    torch: kernel_size
+  padding:
+    jittor: None
+    tensorflow: None
+    torch: padding
+  stride:
+    jittor: None
+    tensorflow: None
+    torch: stride
+upsample:
+  align_corners:
+    jittor: None
+    tensorflow: None
+    torch: align_corners
+  mode:
+    jittor: mode
+    tensorflow: None
+    torch: mode
+  scale_factor:
+    jittor: scale_factor
+    tensorflow: None
+    torch: scale_factor
+  size:
+    jittor: None
+    tensorflow: None
+    torch: size
+upsamplingbilinear2d:
+  scale_factor:
+    jittor: scale_factor
+    tensorflow: None
+    torch: scale_factor
+  size:
+    jittor: None
+    tensorflow: None
+    torch: size
+upsamplingnearest2d:
+  scale_factor:
+    jittor: scale_factor
+    tensorflow: None
+    torch: scale_factor
+  size:
+    jittor: None
+    tensorflow: None
+    torch: size
+zeropad2d:
+  padding:
+    jittor: padding
+    tensorflow: padding
+    torch: padding
