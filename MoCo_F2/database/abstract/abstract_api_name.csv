@@ -12,7 +12,7 @@ id,abstract,torch,mindspore,paddle,jittor,tensorflow
 11,avgpool3d,torch.nn.AvgPool3d,mindspore.nn.AvgPool3d,paddle.nn.AvgPool3D,jittor.nn.AvgPool3d,tf.keras.layers.AveragePooling3D
 12,basepruningmethod,torch.nn.utils.prune.BasePruningMethod,,,,
 13,batchnorm1d,torch.nn.BatchNorm1d,mindspore.nn.BatchNorm1d,paddle.nn.BatchNorm1D,jittor.nn.BatchNorm1d,
-14,batchnorm2d,torch.nn.BatchNorm2d,mindspore.nn.BatchNorm2d,paddle.nn.BatchNorm2D,jittor.nn.BatchNorm2d,
+14,batchnorm2d,torch.nn.BatchNorm2d,mindspore.nn.BatchNorm2d,paddle.nn.BatchNorm2D,jittor.nn.BatchNorm2d,tf.keras.layers.BatchNormalization
 15,batchnorm3d,torch.nn.BatchNorm3d,mindspore.nn.BatchNorm3d,paddle.nn.BatchNorm3D,jittor.nn.BatchNorm3d,
 16,bceloss,torch.nn.BCELoss,mindspore.nn.BCELoss,,,
 17,bcewithlogitsloss,torch.nn.BCEWithLogitsLoss,mindspore.nn.BCEWithLogitsLoss,,,
@@ -40,9 +40,9 @@ id,abstract,torch,mindspore,paddle,jittor,tensorflow
 39,dataparallel,torch.nn.DataParallel,,,,
 40,distributeddataparallel,torch.nn.parallel.DistributedDataParallel,,,,
 41,dropout,torch.nn.Dropout,mindspore.nn.Dropout,paddle.nn.Dropout,jittor.nn.Dropout,tf.keras.layers.Dropout
-42,dropout1d,torch.nn.Dropout1d,mindspore.nn.Dropout1d,,,
-43,dropout2d,torch.nn.Dropout2d,mindspore.nn.Dropout2d,paddle.nn.Dropout2D,jittor.nn.Dropout2d,
-44,dropout3d,torch.nn.Dropout3d,mindspore.nn.Dropout3d,paddle.nn.Dropout3D,,
+42,dropout1d,torch.nn.Dropout1d,mindspore.nn.Dropout1d,,,tf.keras.layers.Dropout
+43,dropout2d,torch.nn.Dropout2d,mindspore.nn.Dropout2d,paddle.nn.Dropout2D,jittor.nn.Dropout2d,tf.keras.layers.Dropout
+44,dropout3d,torch.nn.Dropout3d,mindspore.nn.Dropout3d,paddle.nn.Dropout3D,,tf.keras.layers.Dropout
 45,elu,torch.nn.ELU,mindspore.nn.ELU,paddle.nn.ELU,jittor.nn.ELU,tf.keras.layers.ELU
 46,embedding,torch.nn.Embedding,mindspore.nn.Embedding,paddle.nn.Embedding,jittor.nn.Embedding,tf.keras.layers.Embedding
 47,embeddingbag,torch.nn.EmbeddingBag,,,,
@@ -60,7 +60,7 @@ id,abstract,torch,mindspore,paddle,jittor,tensorflow
 59,gru,torch.nn.GRU,mindspore.nn.GRU,paddle.nn.GRU,,tf.keras.layers.GRU
 60,grucell,torch.nn.GRUCell,mindspore.nn.GRUCell,paddle.nn.GRUCell,jittor.nn.GRUCell,tf.keras.layers.GRUCell
 61,hardshrink,torch.nn.Hardshrink,,paddle.nn.Hardshrink,,
-62,hardsigmoid,torch.nn.Hardsigmoid,,paddle.nn.Hardsigmoid,,
+62,hardsigmoid,torch.nn.Hardsigmoid,,paddle.nn.Hardsigmoid,,tf.keras.activations.hard_sigmoid
 63,hardswish,torch.nn.Hardswish,,paddle.nn.Hardswish,,
 64,hardtanh,torch.nn.Hardtanh,mindspore.nn.Hardtanh,paddle.nn.Hardtanh,,
 65,hingeembeddingloss,torch.nn.HingeEmbeddingLoss,mindspore.nn.HingeEmbeddingLoss,,,
@@ -75,10 +75,10 @@ id,abstract,torch,mindspore,paddle,jittor,tensorflow
 74,l1_unstructured,torch.nn.utils.prune.l1_unstructured,,,,
 75,l1loss,torch.nn.L1Loss,mindspore.nn.L1Loss,,,
 76,l1unstructured,torch.nn.utils.prune.L1Unstructured,,,,
-77,layernorm,torch.nn.LayerNorm,mindspore.nn.LayerNorm,paddle.nn.LayerNorm,jittor.nn.LayerNorm,
-78,lazybatchnorm1d,torch.nn.LazyBatchNorm1d,,,,
-79,lazybatchnorm2d,torch.nn.LazyBatchNorm2d,,,,
-80,lazybatchnorm3d,torch.nn.LazyBatchNorm3d,,,,
+77,layernorm,torch.nn.LayerNorm,mindspore.nn.LayerNorm,paddle.nn.LayerNorm,jittor.nn.LayerNorm,tf.keras.layers.LayerNormalization
+78,lazybatchnorm1d,torch.nn.LazyBatchNorm1d,,,,tf.keras.layers.LayerNormalization
+79,lazybatchnorm2d,torch.nn.LazyBatchNorm2d,,,,tf.keras.layers.LayerNormalization
+80,lazybatchnorm3d,torch.nn.LazyBatchNorm3d,,,,tf.keras.layers.LayerNormalization
 81,lazyconv1d,torch.nn.LazyConv1d,,,,
 82,lazyconv2d,torch.nn.LazyConv2d,,,,
 83,lazyconv3d,torch.nn.LazyConv3d,,,,
@@ -146,9 +146,9 @@ id,abstract,torch,mindspore,paddle,jittor,tensorflow
 145,replicationpad1d,torch.nn.ReplicationPad1d,mindspore.nn.ReplicationPad1d,,,
 146,replicationpad2d,torch.nn.ReplicationPad2d,mindspore.nn.ReplicationPad2d,,jittor.nn.ReplicationPad2d,
 147,replicationpad3d,torch.nn.ReplicationPad3d,mindspore.nn.ReplicationPad3d,,,
-148,rnn,torch.nn.RNN,mindspore.nn.RNN,paddle.nn.RNN,,
+148,rnn,torch.nn.RNN,mindspore.nn.RNN,paddle.nn.RNN,,tf.keras.layers.SimpleRNN
 149,rnnbase,torch.nn.RNNBase,,,jittor.nn.RNNBase,
-150,rnncell,torch.nn.RNNCell,mindspore.nn.RNNCell,,jittor.nn.RNNCell,
+150,rnncell,torch.nn.RNNCell,mindspore.nn.RNNCell,,jittor.nn.RNNCell,tf.keras.layers.SimpleRNNCell
 151,rrelu,torch.nn.RReLU,mindspore.nn.RReLU,paddle.nn.RReLU,,
 152,selu,torch.nn.SELU,mindspore.nn.SeLU,paddle.nn.SELU,,tf.keras.activations.selu
 153,sigmoid,torch.nn.Sigmoid,mindspore.nn.Sigmoid,paddle.nn.Sigmoid,jittor.nn.Sigmoid,tf.keras.activations.sigmoid
