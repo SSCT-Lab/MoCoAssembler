@@ -371,9 +371,8 @@ class TensorFlowPerformer(Performer):
     def __convert_to_tf(self, abstract_layer_name: str, para_dict: dict) -> dict:
         res_para_dict = {}
         for param in para_dict:
-            # TODO ： 接口返回值有误
-            # implicit_param_name = database.get_implicit_para_name(self.get_library_name(), abstract_layer_name, param)
-            implicit_param_name = self.__get_implicit_para_name(abstract_layer_name, param)
+            implicit_param_name = database.get_implicit_para_name(self.get_library_name(), abstract_layer_name, param)
+            # implicit_param_name = self.__get_implicit_para_name(abstract_layer_name, param)
             if implicit_param_name != "None":
                 res_para_dict[implicit_param_name] = para_dict[param]
             else:
@@ -383,12 +382,6 @@ class TensorFlowPerformer(Performer):
             res_para_dict["padding"] = '"valid"' if para_dict["padding"] == 0 else '"same"'
         return res_para_dict
 
-    def __get_implicit_para_name(self, abstract_layer_name: str, param: str) -> str:
-        abs_para_mapping_path = '/Users/wuduo/Documents/BioWork/DifferentialTestingofDLFrameworks/MoCoAssembler/MoCo_F2/database/abstract/abstract_para_name.yaml'
-        with open(abs_para_mapping_path, 'r', encoding='utf8') as file:
-            abs_para_dict = yaml.load(file, yaml.Loader)
-
-        return abs_para_dict[abstract_layer_name][param]['tensorflow']
     def __get_shape(self) -> tuple:
         if self.model_name == "LeNet":
             return 28, 28, 1
