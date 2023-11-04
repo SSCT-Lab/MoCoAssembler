@@ -246,11 +246,13 @@ class TensorFlowPerformer(Performer):
 
         go = f'def go():\n' \
              f'    model = {main_model_name}(input_shape={self.__get_shape().__str__()})\n' \
-             f'    return model'
+             f'    x = tf.random.normal(shape=(1,) + {self.__get_shape().__str__()})\n' \
+             f'    y = model(x)\n' \
+             f'    return model\n'
 
         code = f'{head}\n' \
                f'{body}\n' \
-               f'{go}\n'
+               f'{go}\n\n'
         return code
 
     def get_model_from_file(self, case_path: str, file_name: str):
@@ -265,8 +267,6 @@ class TensorFlowPerformer(Performer):
         return model
 
     def train(self, model) -> float:
-        # 先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管
-        # 先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管先不管
         return 1.0
 
     def run(self, model) -> (float, list[int], str):
@@ -289,15 +289,13 @@ class TensorFlowPerformer(Performer):
 
     def __dict_to_model_class(self, model_dict: list, model_name: str, model_name_list: list[str]) -> str:
         layer_index = 0
-        branchs = []
         input_layers = ''
         hidden_layers = '    # hidden layers\n'
         output_layers = '    # output layers\n'
-        reshape_layer = ''
         if isinstance(model_dict[0], list):
             # inception block defination
             def_params = 'x, '
-            def_params = f'{def_params}{", ".join(model_dict[0][1:])}'
+            def_params = f'{def_params}{", ".join(model_dict[0])}'
             input_layers = f'{input_layers}def {model_name} ({def_params}):\n'
 
             _model_dict = model_dict[1:]
@@ -311,50 +309,49 @@ class TensorFlowPerformer(Performer):
         for layer in _model_dict:
             layer_index += 1
             abstract_layer_name = layer['layer']
-            if abstract_layer_name == 'cat':
-                # inception block
+            if abstract_layer_name in ['cat', 'add']:
                 reshape_layer = f'    # reshape layer\n' \
                                 f'    target_height = x.shape[1]\n' \
                                 f'    target_width = x.shape[2]\n'
-                cat_params = ', '.join(branchs)
+                branchs = layer['in']
+                branchs = branchs if isinstance(branchs, list) else branchs.split(', ')
+                cat_add_params = ', '.join(branchs)
                 for branch in branchs:
                     reshape_layer = f'{reshape_layer}' \
                                     f'    {branch} = tf.keras.layers.Lambda(lambda _: tf.image.resize(_, (target_height, target_width)))({branch})\n'
-
-                reshape_layer = f'{reshape_layer}' \
-                                f'    outputs = tf.keras.layers.concatenate([{cat_params}])\n'
+                if abstract_layer_name == 'cat':
+                    hidden_layers = f'{hidden_layers}' \
+                                    f'{reshape_layer}' \
+                                    f'    {layer["out"]} = tf.keras.layers.concatenate([{cat_add_params}])\n'
+                else:
+                    hidden_layers = f'{hidden_layers}' \
+                                    f'{reshape_layer}' \
+                                    f'    {layer["out"]} = tf.keras.layers.add([{cat_add_params}])\n'
             elif abstract_layer_name in model_name_list:
                 implicit_layer_name = abstract_layer_name
                 implicit_params = dict([(layer['in'], layer['in'])])
                 abstract_params = layer['params']
                 for abstract_param_name in abstract_params:
-                    if abstract_param_name == 'in_channels':
-                        pass
-                    else:
-                        implicit_param_name = abstract_param_name
-                        implicit_params.update(dict([(implicit_param_name, abstract_params[abstract_param_name])]))
+                    implicit_param_name = abstract_param_name
+                    implicit_params.update(dict([(implicit_param_name, abstract_params[abstract_param_name])]))
                 output_ = layer['out']
                 hidden_layers = f'{hidden_layers}' \
                                 f'    {output_} = {generate_line(implicit_layer_name, implicit_params)}\n'
             else:
+                abstract_params = self.__convert_to_tf(abstract_layer_name, layer['params'])
                 implicit_layer_name = database.get_implicit_api_name(self.get_library_name(), abstract_layer_name)
                 implicit_params = {}
-
-                # 单元测试时 : abstract_params = self.__convert_to_tf(abstract_layer_name, layer['params'])
-                abstract_params = layer['params']
                 for abstract_param_name in abstract_params:
                     implicit_param_name = abstract_param_name
                     implicit_params[implicit_param_name] = abstract_params[abstract_param_name]
                 input_ = str(layer['in']).replace("'", "") if isinstance(layer['in'], list) else layer['in']
                 output_ = layer['out']
-                if output_ not in branchs:
-                    branchs.append(output_)
                 hidden_layers = f'{hidden_layers}' \
                                 f'    {output_} = {generate_line(implicit_layer_name, implicit_params)}({input_})\n'
 
         if isinstance(model_dict[0], list):
             output_layers = f'{output_layers}' \
-                            f'    return outputs\n'
+                            f'    return x\n'
         else:
             output_layers = f'{output_layers}' \
                             f'    output_tensor = x\n' \
@@ -363,16 +360,20 @@ class TensorFlowPerformer(Performer):
 
         code = f'{input_layers}\n' \
                f'{hidden_layers}\n' \
-               f'{reshape_layer}\n' \
                f'{output_layers}\n'
 
         return code
 
     def __convert_to_tf(self, abstract_layer_name: str, para_dict: dict) -> dict:
+        """
+        Convert an abstract parameter name to a corresponding parameter name
+        @param para_dict: Abstract argument list
+        @return: Transformed argument list
+        """
         res_para_dict = {}
+
         for param in para_dict:
             implicit_param_name = database.get_implicit_para_name(self.get_library_name(), abstract_layer_name, param)
-            # implicit_param_name = self.__get_implicit_para_name(abstract_layer_name, param)
             if implicit_param_name != "None":
                 res_para_dict[implicit_param_name] = para_dict[param]
             else:
@@ -385,18 +386,14 @@ class TensorFlowPerformer(Performer):
     def __get_shape(self) -> tuple:
         if self.model_name == "LeNet":
             return 28, 28, 1
-        elif self.model_name == "googlenet":
-            return 224, 224, 3
         else:
-            return ()
+            return 224, 224, 3
 
     def __get_test_tensor(self):
         if self.model_name == "LeNet":
             return np.random.rand(3, 28, 28, 1)
-        elif self.model_name == "googlenet":
-            return np.random.rand(3, 224, 224, 3)
         else:
-            return ""
+            return np.random.rand(3, 224, 224, 3)
 
 
 def translator_factory(library: str) -> Performer | None:
@@ -500,7 +497,7 @@ class Concrete:
         return case_path, file_name
 
 
-concrete = Concrete()
+# concrete = Concrete()
 # seed = database.get_seed("LeNet")
 # concrete.set_model_name("testLeNet")
 # result = concrete.perform(seed, 0, 1)

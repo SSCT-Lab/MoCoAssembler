@@ -1,7 +1,7 @@
-mobilenet:
+MobileNet:
   - layer: conv2d
     params:
-      in_channels: in_channels
+      in_channels: 3
       out_channels: 32
       kernel_size: 3
       stride: 2
@@ -19,7 +19,7 @@ mobilenet:
     in: x
     out: x
   - layer: relu
-    params: {}
+    params: { }
     in: x
     out: x
   - layer: conv2d
@@ -32,7 +32,7 @@ mobilenet:
     in: x
     out: x
   - layer: relu
-    params: {}
+    params: { }
     in: x
     out: x
   - layer: conv2d
@@ -46,7 +46,7 @@ mobilenet:
     in: x
     out: x
   - layer: relu
-    params: {}
+    params: { }
     in: x
     out: x
   - layer: conv2d
@@ -73,7 +73,7 @@ mobilenet:
     in: x
     out: x
   - layer: relu
-    params: {}
+    params: { }
     in: x
     out: x
   - layer: conv2d
@@ -86,7 +86,7 @@ mobilenet:
     in: x
     out: x
   - layer: relu
-    params: {}
+    params: { }
     in: x
     out: x
   - layer: conv2d
@@ -100,7 +100,7 @@ mobilenet:
     in: x
     out: x
   - layer: relu
-    params: {}
+    params: { }
     in: x
     out: x
   - layer: conv2d
@@ -113,7 +113,7 @@ mobilenet:
     in: x
     out: x
   - layer: relu
-    params: {}
+    params: { }
     in: x
     out: x
   - layer: conv2d
@@ -127,7 +127,7 @@ mobilenet:
     in: x
     out: x
   - layer: relu
-    params: {}
+    params: { }
     in: x
     out: x
   - layer: conv2d
@@ -140,7 +140,7 @@ mobilenet:
     in: x
     out: x
   - layer: relu
-    params: {}
+    params: { }
     in: x
     out: x
   - layer: conv2d
@@ -359,18 +359,18 @@ mobilenet:
     params: { }
     in: x
     out: x
-  - layer: adaptiveavgpool2d
+  - layer: avgpool2d
     params:
-      output_size: 1
+      kernel_size: 1
     in: x
     out: x
   - layer: flatten
-    params: {}
+    params: { }
     in: x
     out: x
   - layer: linear
     params:
-      in_features: 1024
+      in_features: 1024 * 7 * 7
       out_features: 1000
     in: x
     out: x

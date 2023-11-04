@@ -1,10 +1,11 @@
-inceptionv3:
+InceptionV3:
   - layer: conv2d
     params:
       in_channels: 3
       out_channels: 32
       kernel_size: 3
-      padding: 1
+      stride: 2
+      padding: 0
       bias: False
     in: x
     out: x
@@ -23,7 +24,8 @@ inceptionv3:
       in_channels: 32
       out_channels: 32
       kernel_size: 3
-      padding: 1
+      stride: 1
+      padding: 0
       bias: False
     in: x
     out: x
@@ -42,6 +44,7 @@ inceptionv3:
       in_channels: 32
       out_channels: 64
       kernel_size: 3
+      stride: 1
       padding: 1
       bias: False
     in: x
@@ -56,11 +59,19 @@ inceptionv3:
       inplace: True
     in: x
     out: x
+  - layer: maxpool2d
+    params:
+      kernel_size: 3
+      stride: 2
+    in: x
+    out: x
   - layer: conv2d
     params:
       in_channels: 64
       out_channels: 80
-      kernel_size: 1
+      kernel_size: 3
+      stride: 1
+      padding: 1
       bias: False
     in: x
     out: x
@@ -79,6 +90,8 @@ inceptionv3:
       in_channels: 80
       out_channels: 192
       kernel_size: 3
+      stride: 1
+      padding: 0
       bias: False
     in: x
     out: x
@@ -92,94 +105,104 @@ inceptionv3:
       inplace: True
     in: x
     out: x
-
-  - layer: inceptiona
+  - layer: maxpool2d
     params:
-      input_channels: 192
+      kernel_size: 3
+      stride: 2
+    in: x
+    out: x
+  - layer: InceptionA
+    params:
+      in_channels: 192
       pool_features: 32
     in: x
     out: x
-  - layer: inceptiona
+  - layer: InceptionA
     params:
-      input_channels: 256
+      in_channels: 256
       pool_features: 64
     in: x
     out: x
-  - layer: inceptiona
+  - layer: InceptionA
     params:
-      input_channels: 288
+      in_channels: 288
       pool_features: 64
     in: x
     out: x
-  - layer: inceptionb
+  - layer: InceptionB
     params:
-      input_channels: 288
+      in_channels: 288
     in: x
     out: x
-  - layer: inceptionc
+  - layer: InceptionC
     params:
-      input_channels: 768
+      in_channels: 768
       channels_7x7: 128
     in: x
     out: x
-  - layer: inceptionc
+  - layer: InceptionC
     params:
-      input_channels: 768
+      in_channels: 768
       channels_7x7: 160
     in: x
     out: x
-  - layer: inceptionc
+  - layer: InceptionC
     params:
-      input_channels: 768
+      in_channels: 768
       channels_7x7: 160
     in: x
     out: x
-  - layer: inceptionc
+  - layer: InceptionC
     params:
-      input_channels: 768
+      in_channels: 768
       channels_7x7: 192
     in: x
     out: x
-  - layer: inceptiond
+  - layer: InceptionD
     params:
-      input_channels: 768
+      in_channels: 768
     in: x
     out: x
-  - layer: inceptione
+  - layer: InceptionE
     params:
-      input_channels: 1280
+      in_channels: 1280
     in: x
     out: x
-  - layer: inceptione
+  - layer: InceptionE
     params:
-      input_channels: 2048
+      in_channels: 2048
     in: x
     out: x
-  - layer: adaptiveavgpool2d
+  - layer: maxpool2d
     params:
-      output_size: (1, 1)
+      kernel_size: 5
+      stride: 2
     in: x
     out: x
   - layer: dropout2d
-    params: {}
+    params:
+      p: 0.5
     in: x
     out: x
   - layer: flatten
-    params: {}
+    params: { }
     in: x
     out: x
   - layer: linear
     params:
       in_features: 2048
-      out_features: num_classes
+      out_features: 1000
     in: x
     out: x
-inceptiona:
+InceptionA:
+  - ['in_channels', 'pool_features']
   - layer: conv2d
     params:
-      in_channels: input_channels
+      in_channels: in_channels
       out_channels: 64
       kernel_size: 1
+      stride: 1
+      padding: 0
       bias: False
     in: x
     out: branch1
@@ -195,9 +218,11 @@ inceptiona:
     out: branch1
   - layer: conv2d
     params:
-      in_channels: input_channels
+      in_channels: in_channels
       out_channels: 48
       kernel_size: 1
+      stride: 1
+      padding: 0
       bias: False
     in: x
     out: branch2
@@ -216,6 +241,7 @@ inceptiona:
       in_channels: 48
       out_channels: 64
       kernel_size: 5
+      stride: 1
       padding: 2
       bias: False
     in: branch2
@@ -232,9 +258,11 @@ inceptiona:
     out: branch2
   - layer: conv2d
     params:
-      in_channels: input_channels
+      in_channels: in_channels
       out_channels: 64
       kernel_size: 1
+      stride: 1
+      padding: 0
       bias: False
     in: x
     out: branch3
@@ -253,6 +281,7 @@ inceptiona:
       in_channels: 64
       out_channels: 96
       kernel_size: 3
+      stride: 1
       padding: 1
       bias: False
     in: branch3
@@ -272,6 +301,7 @@ inceptiona:
       in_channels: 96
       out_channels: 96
       kernel_size: 3
+      stride: 1
       padding: 1
       bias: False
     in: branch3
@@ -286,7 +316,7 @@ inceptiona:
       inplace: True
     in: branch3
     out: branch3
-  - layer: avgpool2d
+  - layer: maxpool2d
     params:
       kernel_size: 3
       stride: 1
@@ -295,10 +325,11 @@ inceptiona:
     out: branch4
   - layer: conv2d
     params:
-      in_channels: input_channels
+      in_channels: in_channels
       out_channels: pool_features
-      kernel_size: 3
-      padding: 1
+      kernel_size: 1
+      stride: 1
+      padding: 0
       bias: False
     in: branch4
     out: branch4
@@ -313,16 +344,19 @@ inceptiona:
     in: branch4
     out: branch4
   - layer: cat
-    params: { }
-    in: [branch1, branch2, branch3, branch4], 1
+    params:
+      dims: 1
+    in: [branch1, branch2, branch3, branch4]
     out: x
-inceptionb:
+InceptionB:
+  - ['in_channels']
   - layer: conv2d
     params:
-      in_channels: input_channels
+      in_channels: in_channels
       out_channels: 384
-      kernel_size: 3
-      stride: 2
+      kernel_size: 1
+      stride: 1
+      padding: 0
       bias: False
     in: x
     out: branch1
@@ -338,9 +372,31 @@ inceptionb:
     out: branch1
   - layer: conv2d
     params:
-      in_channels: input_channels
+      in_channels: 384
+      out_channels: 384
+      kernel_size: 3
+      stride: 2
+      padding: 0
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: batchnorm2d
+    params:
+      num_features: 384
+    in: branch1
+    out: branch1
+  - layer: relu
+    params:
+      inplace: True
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: in_channels
       out_channels: 64
       kernel_size: 1
+      stride: 1
+      padding: 0
       bias: False
     in: x
     out: branch2
@@ -359,6 +415,7 @@ inceptionb:
       in_channels: 64
       out_channels: 96
       kernel_size: 3
+      stride: 1
       padding: 1
       bias: False
     in: branch2
@@ -379,6 +436,7 @@ inceptionb:
       out_channels: 96
       kernel_size: 3
       stride: 2
+      padding: 0
       bias: False
     in: branch2
     out: branch2
@@ -396,18 +454,22 @@ inceptionb:
     params:
       kernel_size: 3
       stride: 2
-    in: branch3
+    in: x
     out: branch3
   - layer: cat
-    params: { }
-    in: [branch1, branch2, branch3], 1
+    params:
+      dims: 1
+    in: [branch1, branch2, branch3]
     out: x
-inceptionc:
+InceptionC:
+  - ['in_channels', 'channels_7x7']
   - layer: conv2d
     params:
-      in_channels: input_channels
+      in_channels: in_channels
       out_channels: 192
       kernel_size: 1
+      stride: 1
+      padding: 0
       bias: False
     in: x
     out: branch1
@@ -423,9 +485,11 @@ inceptionc:
     out: branch1
   - layer: conv2d
     params:
-      in_channels: input_channels
+      in_channels: in_channels
       out_channels: channels_7x7
       kernel_size: 1
+      stride: 1
+      padding: 0
       bias: False
     in: x
     out: branch2
@@ -443,8 +507,9 @@ inceptionc:
     params:
       in_channels: channels_7x7
       out_channels: channels_7x7
-      kernel_size: (7, 1)
-      padding: (3, 0)
+      kernel_size: (1, 7)
+      stride: 1
+      padding: (0, 3)
       bias: False
     in: branch2
     out: branch2
@@ -462,8 +527,9 @@ inceptionc:
     params:
       in_channels: channels_7x7
       out_channels: 192
-      kernel_size: (1, 7)
-      padding: (0, 3)
+      kernel_size: (7, 1)
+      stride: 1
+      padding: (3, 0)
       bias: False
     in: branch2
     out: branch2
@@ -479,9 +545,11 @@ inceptionc:
     out: branch2
   - layer: conv2d
     params:
-      in_channels: input_channels
+      in_channels: in_channels
       out_channels: channels_7x7
       kernel_size: 1
+      stride: 1
+      padding: 0
       bias: False
     in: x
     out: branch3
@@ -499,26 +567,8 @@ inceptionc:
     params:
       in_channels: channels_7x7
       out_channels: channels_7x7
-      kernel_size: (7, 1)
-      padding: (3, 0)
-      bias: False
-    in: branch3
-    out: branch3
-  - layer: batchnorm2d
-    params:
-      num_features: channels_7x7
-    in: branch3
-    out: branch3
-  - layer: relu
-    params:
-      inplace: True
-    in: branch3
-    out: branch3
-  - layer: conv2d
-    params:
-      in_channels: channels_7x7
-      out_channels: channels_7x7
       kernel_size: (1, 7)
+      stride: 1
       padding: (0, 3)
       bias: False
     in: branch3
@@ -539,6 +589,27 @@ inceptionc:
       out_channels: channels_7x7
       kernel_size: (7, 1)
       padding: (3, 0)
+      stride: 1
+      bias: False
+    in: branch3
+    out: branch3
+  - layer: batchnorm2d
+    params:
+      num_features: channels_7x7
+    in: branch3
+    out: branch3
+  - layer: relu
+    params:
+      inplace: True
+    in: branch3
+    out: branch3
+  - layer: conv2d
+    params:
+      in_channels: channels_7x7
+      out_channels: channels_7x7
+      kernel_size: (1, 7)
+      stride: 1
+      padding: (0, 3)
       bias: False
     in: branch3
     out: branch3
@@ -556,8 +627,9 @@ inceptionc:
     params:
       in_channels: channels_7x7
       out_channels: 192
-      kernel_size: (1, 7)
-      padding: (0, 3)
+      kernel_size: (7, 1)
+      stride: 1
+      padding: (3, 0)
       bias: False
     in: branch3
     out: branch3
@@ -571,7 +643,7 @@ inceptionc:
       inplace: True
     in: branch3
     out: branch3
-  - layer: avgpool2d
+  - layer: maxpool2d
     params:
       kernel_size: 3
       stride: 1
@@ -580,9 +652,11 @@ inceptionc:
     out: branch4
   - layer: conv2d
     params:
-      in_channels: input_channels
+      in_channels: in_channels
       out_channels: 192
       kernel_size: 1
+      stride: 1
+      padding: 0
       bias: False
     in: branch4
     out: branch4
@@ -597,15 +671,19 @@ inceptionc:
     in: branch4
     out: branch4
   - layer: cat
-    params: { }
-    in: [ branch1, branch2, branch3, branch4 ], 1
+    params:
+      dims: 1
+    in: [branch1, branch2, branch3, branch4]
     out: x
-inceptiond:
+InceptionD:
+  - ['in_channels']
   - layer: conv2d
     params:
-      in_channels: input_channels
+      in_channels: in_channels
       out_channels: 192
       kernel_size: 1
+      stride: 1
+      padding: 0
       bias: False
     in: x
     out: branch1
@@ -625,6 +703,7 @@ inceptiond:
       out_channels: 320
       kernel_size: 3
       stride: 2
+      padding: 0
       bias: False
     in: branch1
     out: branch1
@@ -640,9 +719,11 @@ inceptiond:
     out: branch1
   - layer: conv2d
     params:
-      in_channels: input_channels
+      in_channels: in_channels
       out_channels: 192
       kernel_size: 1
+      stride: 1
+      padding: 0
       bias: False
     in: x
     out: branch2
@@ -661,6 +742,7 @@ inceptiond:
       in_channels: 192
       out_channels: 192
       kernel_size: (1, 7)
+      stride: 1
       padding: (0, 3)
       bias: False
     in: branch2
@@ -680,6 +762,7 @@ inceptiond:
       in_channels: 192
       out_channels: 192
       kernel_size: (7, 1)
+      stride: 1
       padding: (3, 0)
       bias: False
     in: branch2
@@ -700,6 +783,7 @@ inceptiond:
       out_channels: 192
       kernel_size: 3
       stride: 2
+      padding: 0
       bias: False
     in: branch2
     out: branch2
@@ -713,22 +797,26 @@ inceptiond:
       inplace: True
     in: branch2
     out: branch2
-  - layer: avgpool2d
+  - layer: maxpool2d
     params:
       kernel_size: 3
       stride: 2
     in: x
     out: branch3
   - layer: cat
-    params: { }
-    in: [ branch1, branch2, branch3 ], 1
+    params:
+      dims: 1
+    in: [branch1, branch2, branch3]
     out: x
-inceptione:
+InceptionE:
+  - ['in_channels']
   - layer: conv2d
     params:
-      in_channels: input_channels
+      in_channels: in_channels
       out_channels: 320
       kernel_size: 1
+      stride: 1
+      padding: 0
       bias: False
     in: x
     out: branch1
@@ -744,9 +832,11 @@ inceptione:
     out: branch1
   - layer: conv2d
     params:
-      in_channels: input_channels
+      in_channels: in_channels
       out_channels: 384
       kernel_size: 1
+      stride: 1
+      padding: 0
       bias: False
     in: x
     out: branch2
@@ -765,6 +855,7 @@ inceptione:
       in_channels: 384
       out_channels: 384
       kernel_size: (1, 3)
+      stride: 1
       padding: (0, 1)
       bias: False
     in: branch2
@@ -800,13 +891,16 @@ inceptione:
     out: branch2b
   - layer: cat
     params:
-    in: [branch2a, branch2b], 1
+      dims: 1
+    in: [branch2a, branch2b]
     out: branch2
   - layer: conv2d
     params:
-      in_channels: input_channels
+      in_channels: in_channels
       out_channels: 448
       kernel_size: 1
+      stride: 1
+      padding: 0
       bias: False
     in: x
     out: branch3
@@ -825,6 +919,7 @@ inceptione:
       in_channels: 448
       out_channels: 384
       kernel_size: 3
+      stride: 1
       padding: 1
       bias: False
     in: branch3
@@ -844,6 +939,7 @@ inceptione:
       in_channels: 384
       out_channels: 384
       kernel_size: (1, 3)
+      stride: 1
       padding: (0, 1)
       bias: False
     in: branch3
@@ -878,10 +974,11 @@ inceptione:
     in: branch3b
     out: branch3b
   - layer: cat
-    params: {}
-    in: [branch3a, branch3b], 1
+    params:
+      dims: 1
+    in: [branch3a, branch3b]
     out: branch3
-  - layer: avgpool2d
+  - layer: maxpool2d
     params:
       kernel_size: 3
       stride: 1
@@ -890,9 +987,11 @@ inceptione:
     out: branch4
   - layer: conv2d
     params:
-      in_channels: input_channels
+      in_channels: in_channels
       out_channels: 192
       kernel_size: 1
+      stride: 1
+      padding: 0
       bias: False
     in: branch4
     out: branch4
@@ -907,6 +1006,7 @@ inceptione:
     in: branch4
     out: branch4
   - layer: cat
-    params: {}
-    in: [branch1, branch2, branch3, branch4], 1
-    out: outputs
+    params:
+      dims: 1
+    in: [branch1, branch2, branch3, branch4]
+    out: x
