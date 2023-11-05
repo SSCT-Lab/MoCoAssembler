@@ -1,0 +1,125 @@
+AlexNet:
+  - layer: conv2d
+    params:
+      in_channels: 3
+      out_channels: 64
+      kernel_size: 11
+      stride: 4
+      padding: 2
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: maxpool2d
+    params:
+      kernel_size: 3
+      stride: 2
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 64
+      out_channels: 192
+      kernel_size: 5
+      padding: 2
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: maxpool2d
+    params:
+      kernel_size: 3
+      stride: 2
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 192
+      out_channels: 384
+      kernel_size: 3
+      padding: 1
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 384
+      out_channels: 256
+      kernel_size: 3
+      padding: 1
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 256
+      out_channels: 256
+      kernel_size: 3
+      padding: 1
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: maxpool2d
+    params:
+      kernel_size: 3
+      stride: 2
+    in: x
+    out: x
+  - layer: avgpool2d
+    params:
+      kernel_size: 1
+    in: x
+    out: x
+  - layer: flatten
+    params: { }
+    in: x
+    out: x
+  - layer: dropout
+    params:
+      p: 0.5
+    in: x
+    out: x
+  - layer: linear
+    params:
+      in_features: 256 * 6 * 6
+      out_features: 4096
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: dropout
+    params:
+      p: 0.5
+    in: x
+    out: x
+  - layer: linear
+    params:
+      in_features: 4096
+      out_features: 4096
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: linear
+    params:
+      in_features: 4096
+      out_features: 1000
+    in: x
+    out: x

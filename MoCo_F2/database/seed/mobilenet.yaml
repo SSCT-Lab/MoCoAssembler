@@ -1,0 +1,376 @@
+MobileNet:
+  - layer: conv2d
+    params:
+      in_channels: 3
+      out_channels: 32
+      kernel_size: 3
+      stride: 2
+      padding: 1
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 32
+      out_channels: 32
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      groups: 32
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 32
+      out_channels: 64
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 64
+      out_channels: 64
+      kernel_size: 3
+      stride: 2
+      padding: 1
+      groups: 64
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 64
+      out_channels: 128
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 128
+      out_channels: 128
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      groups: 128
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 128
+      out_channels: 128
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 128
+      out_channels: 128
+      kernel_size: 3
+      stride: 2
+      padding: 1
+      groups: 128
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 128
+      out_channels: 256
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 256
+      out_channels: 256
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      groups: 256
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 256
+      out_channels: 256
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 256
+      out_channels: 256
+      kernel_size: 3
+      stride: 2
+      padding: 1
+      groups: 256
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 256
+      out_channels: 512
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 512
+      out_channels: 512
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      groups: 512
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 512
+      out_channels: 512
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 512
+      out_channels: 512
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      groups: 512
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 512
+      out_channels: 512
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 512
+      out_channels: 512
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      groups: 512
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 512
+      out_channels: 512
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 512
+      out_channels: 512
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      groups: 512
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 512
+      out_channels: 512
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 512
+      out_channels: 512
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      groups: 512
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 512
+      out_channels: 512
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 512
+      out_channels: 512
+      kernel_size: 3
+      stride: 2
+      padding: 1
+      groups: 512
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 512
+      out_channels: 1024
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 1024
+      out_channels: 1024
+      kernel_size: 3
+      stride: 2
+      padding: 4
+      groups: 1024
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: conv2d
+    params:
+      in_channels: 1024
+      out_channels: 1024
+      kernel_size: 1
+      stride: 1
+      padding: 0
+    in: x
+    out: x
+  - layer: relu
+    params: { }
+    in: x
+    out: x
+  - layer: avgpool2d
+    params:
+      kernel_size: 1
+    in: x
+    out: x
+  - layer: flatten
+    params: { }
+    in: x
+    out: x
+  - layer: linear
+    params:
+      in_features: 1024 * 7 * 7
+      out_features: 1000
+    in: x
+    out: x

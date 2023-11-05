@@ -1,0 +1,518 @@
+DenseNet:
+- in: x
+  layer: conv2d
+  out: x
+  params:
+    in_channels: 3
+    kernel_size: 7
+    out_channels: 64
+    stride: 2
+- in: x
+  layer: batchnorm2d
+  out: x
+  params:
+    num_features: 64
+- in: x
+  layer: relu
+  out: x
+  params: { }
+- in: x
+  layer: maxpool2d
+  out: x
+  params:
+    kernel_size: 3
+    stride: 2
+- in: x
+  layer: batchnorm2d
+  out: x
+  params:
+    num_features: 64
+- in: x
+  layer: relu
+  out: x
+  params: { }
+- in: x
+  layer: conv2d
+  out: x
+  params:
+    in_channels: 64
+    kernel_size: 1
+    out_channels: 128
+    stride: 1
+- in: x
+  layer: batchnorm2d
+  out: x
+  params:
+    num_features: 128
+- in: x
+  layer: relu
+  out: x
+  params: { }
+- in: x
+  layer: conv2d
+  out: x
+  params:
+    in_channels: 128
+    kernel_size: 3
+    out_channels: 32
+    padding: 1
+    stride: 1
+- in: x
+  layer: dropout
+  out: x
+  params:
+    p: 0.5
+- in: x
+  layer: batchnorm2d
+  out: x
+  params:
+    num_features: 32
+- in: x
+  layer: relu
+  out: x
+  params: { }
+- in: x
+  layer: conv2d
+  out: x
+  params:
+    in_channels: 32
+    kernel_size: 1
+    out_channels: 128
+    stride: 1
+- in: x
+  layer: maxpool2d
+  out: x
+  params:
+    kernel_size: 2
+    stride: 2
+- in: x
+  layer: batchnorm2d
+  out: x
+  params:
+    num_features: 128
+- in: x
+  layer: relu
+  out: x
+  params: { }
+- in: x
+  layer: conv2d
+  out: x
+  params:
+    in_channels: 128
+    kernel_size: 3
+    out_channels: 32
+    padding: 1
+    stride: 1
+- in: x
+  layer: dropout
+  out: x
+  params:
+    p: 0.5
+- in: x
+  layer: batchnorm2d
+  out: y1
+  params:
+    num_features: 32
+- in: y1
+  layer: relu
+  out: y1
+  params: { }
+- in: y1
+  layer: conv2d
+  out: y1
+  params:
+    in_channels: 32
+    kernel_size: 1
+    out_channels: 128
+    stride: 1
+- in: y1
+  layer: batchnorm2d
+  out: y1
+  params:
+    num_features: 128
+- in: y1
+  layer: relu
+  out: y1
+  params: { }
+- in: y1
+  layer: conv2d
+  out: y1
+  params:
+    in_channels: 128
+    kernel_size: 3
+    out_channels: 32
+    padding: 1
+    stride: 1
+- in: y1
+  layer: dropout
+  out: y1
+  params:
+    p: 0.5
+- in: [x,y1]
+  layer: cat
+  out: x
+  params:
+    dims: -1
+- in: x
+  layer: batchnorm2d
+  out: x
+  params:
+    num_features: 32
+- in: x
+  layer: relu
+  out: x
+  params: { }
+- in: x
+  layer: conv2d
+  out: x
+  params:
+    in_channels: 32
+    kernel_size: 1
+    out_channels: 256
+    stride: 1
+- in: x
+  layer: maxpool2d
+  out: x
+  params:
+    kernel_size: 2
+    stride: 2
+- in: x
+  layer: batchnorm2d
+  out: x
+  params:
+    num_features: 256
+- in: x
+  layer: relu
+  out: x
+  params: { }
+- in: x
+  layer: conv2d
+  out: x
+  params:
+    in_channels: 256
+    kernel_size: 1
+    out_channels: 128
+    padding: 1
+    stride: 1
+- in: x
+  layer: batchnorm2d
+  out: x
+  params:
+    num_features: 128
+- in: x
+  layer: relu
+  out: x
+  params: { }
+- in: x
+  layer: conv2d
+  out: x
+  params:
+    in_channels: 128
+    kernel_size: 3
+    out_channels: 32
+    padding: 1
+    stride: 1
+- in: x
+  layer: dropout
+  out: x
+  params:
+    p: 0.5
+- in: x
+  layer: batchnorm2d
+  out: y1
+  params:
+    num_features: 32
+- in: y1
+  layer: relu
+  out: y1
+  params: { }
+- in: y1
+  layer: conv2d
+  out: y1
+  params:
+    in_channels: 32
+    kernel_size: 1
+    out_channels: 128
+    stride: 1
+- in: y1
+  layer: batchnorm2d
+  out: y1
+  params:
+    num_features: 128
+- in: y1
+  layer: relu
+  out: y1
+  params: { }
+- in: y1
+  layer: conv2d
+  out: y1
+  params:
+    in_channels: 128
+    kernel_size: 3
+    out_channels: 32
+    padding: 1
+    stride: 1
+- in: y1
+  layer: dropout
+  out: y1
+  params:
+    p: 0.5
+- in: [x,y1]
+  layer: cat
+  out: y2
+  params:
+    dims: -1
+- in: y2
+  layer: batchnorm2d
+  out: y2
+  params:
+    num_features: 32
+- in: y2
+  layer: relu
+  out: y2
+  params: { }
+- in: y2
+  layer: conv2d
+  out: y2
+  params:
+    in_channels: 32
+    kernel_size: 1
+    out_channels: 128
+    stride: 1
+- in: y2
+  layer: batchnorm2d
+  out: y2
+  params:
+    num_features: 128
+- in: y2
+  layer: relu
+  out: y2
+  params: { }
+- in: y2
+  layer: conv2d
+  out: y2
+  params:
+    in_channels: 128
+    kernel_size: 3
+    out_channels: 32
+    padding: 1
+    stride: 1
+- in: y2
+  layer: dropout
+  out: y2
+  params:
+    p: 0.5
+- in: [x,y1,y2]
+  layer: cat
+  out: y3
+  params:
+    dims: -1
+- in: y3
+  layer: batchnorm2d
+  out: y3
+  params:
+    num_features: 32
+- in: y3
+  layer: relu
+  out: y3
+  params: { }
+- in: y3
+  layer: conv2d
+  out: y3
+  params:
+    in_channels: 32
+    kernel_size: 1
+    out_channels: 128
+    stride: 1
+- in: y3
+  layer: batchnorm2d
+  out: y3
+  params:
+    num_features: 128
+- in: y3
+  layer: relu
+  out: y3
+  params: { }
+- in: y3
+  layer: conv2d
+  out: y3
+  params:
+    in_channels: 128
+    kernel_size: 3
+    out_channels: 32
+    padding: 1
+    stride: 1
+- in: y3
+  layer: dropout
+  out: y3
+  params:
+    p: 0.5
+- in: [x,y1,y2,y3]
+  layer: cat
+  out: x
+  params:
+    dims: -1
+- in: x
+  layer: batchnorm2d
+  out: x
+  params:
+    num_features: 32
+- in: x
+  layer: relu
+  out: x
+  params: { }
+- in: x
+  layer: conv2d
+  out: x
+  params:
+    in_channels: 32
+    kernel_size: 1
+    out_channels: 512
+    stride: 1
+- in: x
+  layer: maxpool2d
+  out: x
+  params:
+    kernel_size: 2
+    stride: 2
+- in: x
+  layer: batchnorm2d
+  out: x
+  params:
+    num_features: 512
+- in: x
+  layer: relu
+  out: x
+  params: { }
+- in: x
+  layer: conv2d
+  out: x
+  params:
+    in_channels: 512
+    kernel_size: 1
+    out_channels: 128
+    padding: 1
+    stride: 1
+- in: x
+  layer: batchnorm2d
+  out: x
+  params:
+    num_features: 128
+- in: x
+  layer: relu
+  out: x
+  params: { }
+- in: x
+  layer: conv2d
+  out: x
+  params:
+    in_channels: 128
+    kernel_size: 3
+    out_channels: 32
+    padding: 1
+    stride: 1
+- in: x
+  layer: dropout
+  out: x
+  params:
+    p: 0.5
+- in: x
+  layer: batchnorm2d
+  out: y1
+  params:
+    num_features: 32
+- in: y1
+  layer: relu
+  out: y1
+  params: { }
+- in: y1
+  layer: conv2d
+  out: y1
+  params:
+    in_channels: 32
+    kernel_size: 1
+    out_channels: 128
+    stride: 1
+- in: y1
+  layer: batchnorm2d
+  out: y1
+  params:
+    num_features: 128
+- in: y1
+  layer: relu
+  out: y1
+  params: { }
+- in: y1
+  layer: conv2d
+  out: y1
+  params:
+    in_channels: 128
+    kernel_size: 3
+    out_channels: 32
+    padding: 1
+    stride: 1
+- in: y1
+  layer: dropout
+  out: y1
+  params:
+    p: 0.5
+- in: [x,y1]
+  layer: cat
+  out: y2
+  params:
+    dims: -1
+- in: y2
+  layer: batchnorm2d
+  out: y2
+  params:
+    num_features: 32
+- in: y2
+  layer: relu
+  out: y2
+  params: { }
+- in: y2
+  layer: conv2d
+  out: y2
+  params:
+    in_channels: 32
+    kernel_size: 1
+    out_channels: 128
+    stride: 1
+- in: y2
+  layer: batchnorm2d
+  out: y2
+  params:
+    num_features: 128
+- in: y2
+  layer: relu
+  out: y2
+  params: { }
+- in: y2
+  layer: conv2d
+  out: y2
+  params:
+    in_channels: 128
+    kernel_size: 3
+    out_channels: 32
+    padding: 1
+    stride: 1
+- in: y2
+  layer: dropout
+  out: y2
+  params:
+    p: 0.5
+- in: [x,y1,y2]
+  layer: cat
+  out: x
+  params:
+    dims: -1
+- in: x
+  layer: avgpool2d
+  out: x
+  params:
+    kernel_size: 1
+- in: x
+  layer: softmax
+  out: x
+  params:
+    dim: 1

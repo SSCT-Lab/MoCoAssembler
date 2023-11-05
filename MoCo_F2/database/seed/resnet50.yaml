@@ -1,0 +1,291 @@
+ResNet50:
+  - layer: conv2d
+    params:
+      in_channels: 3
+      out_channels: 64
+      kernel_size: 7
+      stride: 2
+      padding: 3
+      bias: False
+    in: x
+    out: x
+  - layer: batchnorm2d
+    params:
+      num_features: 64
+    in: x
+    out: x
+  - layer: maxpool2d
+    params:
+      kernel_size: 3
+      stride: 2
+      padding: 1
+    in: x
+    out: x
+  - layer: InceptionA
+    params:
+      in_channels: 64
+      out_channels: 64
+      stride: 1
+    in: x
+    out: x
+  - layer: InceptionB
+    params:
+      in_channels: 256
+      out_channels: 64
+      stride: 1
+    in: x
+    out: x
+  - layer: InceptionB
+    params:
+      in_channels: 256
+      out_channels: 64
+      stride: 1
+    in: x
+    out: x
+  - layer: InceptionA
+    params:
+      in_channels: 256
+      out_channels: 128
+      stride: 2
+    in: x
+    out: x
+  - layer: InceptionB
+    params:
+      in_channels: 512
+      out_channels: 128
+      stride: 1
+    in: x
+    out: x
+  - layer: InceptionB
+    params:
+      in_channels: 512
+      out_channels: 128
+      stride: 1
+    in: x
+    out: x
+  - layer: InceptionB
+    params:
+      in_channels: 512
+      out_channels: 128
+      stride: 1
+    in: x
+    out: x
+  - layer: InceptionA
+    params:
+      in_channels: 512
+      out_channels: 256
+      stride: 2
+    in: x
+    out: x
+  - layer: InceptionB
+    params:
+      in_channels: 1024
+      out_channels: 256
+      stride: 1
+    in: x
+    out: x
+  - layer: InceptionB
+    params:
+      in_channels: 1024
+      out_channels: 256
+      stride: 1
+    in: x
+    out: x
+  - layer: InceptionB
+    params:
+      in_channels: 1024
+      out_channels: 256
+      stride: 1
+    in: x
+    out: x
+  - layer: InceptionB
+    params:
+      in_channels: 1024
+      out_channels: 256
+      stride: 1
+    in: x
+    out: x
+  - layer: InceptionB
+    params:
+      in_channels: 1024
+      out_channels: 256
+      stride: 1
+    in: x
+    out: x
+  - layer: InceptionA
+    params:
+      in_channels: 1024
+      out_channels: 512
+      stride: 2
+    in: x
+    out: x
+  - layer: InceptionB
+    params:
+      in_channels: 2048
+      out_channels: 512
+      stride: 1
+    in: x
+    out: x
+  - layer: InceptionB
+    params:
+      in_channels: 2048
+      out_channels: 512
+      stride: 1
+    in: x
+    out: x
+  - layer: avgpool2d
+    params:
+      kernel_size: 7
+    in: x
+    out: x
+  - layer: flatten
+    params: { }
+    in: x
+    out: x
+  - layer: linear
+    params:
+      in_features: 2048
+      out_features: 1000
+    in: x
+    out: x
+InceptionA:
+  - ['in_channels', 'out_channels', 'stride']
+  - layer: conv2d
+    params:
+      in_channels: in_channels
+      out_channels: out_channels
+      kernel_size: 1
+      stride: 1
+      padding: 0
+      bias: False
+    in: x
+    out: branch1
+  - layer: batchnorm2d
+    params:
+      num_features: out_channels
+    in: branch1
+    out: branch1
+  - layer: relu
+    params: { }
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: out_channels
+      out_channels: out_channels
+      kernel_size: 3
+      stride: stride
+      padding: 1
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: batchnorm2d
+    params:
+      num_features: out_channels
+    in: branch1
+    out: branch1
+  - layer: relu
+    params: { }
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: out_channels
+      out_channels: out_channels * 4
+      kernel_size: 1
+      stride: 1
+      padding: 0
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: batchnorm2d
+    params:
+      num_features: out_channels * 4
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: in_channels
+      out_channels: out_channels * 4
+      kernel_size: 1
+      stride: stride
+      bias: False
+    in: x
+    out: branch2
+  - layer: batchnorm2d
+    params:
+      num_features: out_channels * 4
+    in: branch2
+    out: branch2
+  - layer: add
+    params: { }
+    in: branch1, branch2
+    out: x
+  - layer: relu
+    params: { }
+    in : x
+    out : x
+InceptionB:
+  - ['in_channels', 'out_channels', 'stride']
+  - layer: conv2d
+    params:
+      in_channels: in_channels
+      out_channels: out_channels
+      kernel_size: 1
+      stride: 1
+      padding: 0
+      bias: False
+    in: x
+    out: branch1
+  - layer: batchnorm2d
+    params:
+      num_features: out_channels
+    in: branch1
+    out: branch1
+  - layer: relu
+    params: { }
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: out_channels
+      out_channels: out_channels
+      kernel_size: 3
+      stride: stride
+      padding: 1
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: batchnorm2d
+    params:
+      num_features: out_channels
+    in: branch1
+    out: branch1
+  - layer: relu
+    params: { }
+    in: branch1
+    out: branch1
+  - layer: conv2d
+    params:
+      in_channels: out_channels
+      out_channels: out_channels * 4
+      kernel_size: 1
+      stride: 1
+      padding: 0
+      bias: False
+    in: branch1
+    out: branch1
+  - layer: batchnorm2d
+    params:
+      num_features: out_channels * 4
+    in: branch1
+    out: branch1
+  - layer: add
+    params:
+      dims: 1
+    in: branch1, x
+    out: x
+  - layer: relu
+    params: { }
+    in : x
+    out : x
