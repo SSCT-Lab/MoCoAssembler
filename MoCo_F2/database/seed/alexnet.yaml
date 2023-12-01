@@ -1,4 +1,4 @@
-AlexNet:
+alexnet:
   - layer: conv2d
     params:
       in_channels: 3
@@ -78,9 +78,9 @@ AlexNet:
       stride: 2
     in: x
     out: x
-  - layer: avgpool2d
+  - layer: adaptiveavgpool2d
     params:
-      kernel_size: 1
+      output_size: 6
     in: x
     out: x
   - layer: flatten

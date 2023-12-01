@@ -1,0 +1,47 @@
+lstm:
+- in: x
+  layer: lstmcell
+  out: x, _
+  params:
+    hidden_size: 200
+    input_size: 1
+- in: x
+  layer: relu
+  out: x
+  params: {}
+- in: x
+  layer: lstmcell
+  out: x, _
+  params:
+    hidden_size: 200
+    input_size: 200
+- in: x
+  layer: relu
+  out: x
+  params: {}
+- in: x
+  layer: lstmcell
+  out: x, _
+  params:
+    hidden_size: 200
+    input_size: 200
+- in: x
+  layer: relu
+  out: x
+  params: {}
+- in: x
+  layer: lstmcell
+  out: x, _
+  params:
+    hidden_size: 200
+    input_size: 200
+- in: x
+  layer: relu
+  out: x
+  params: {}
+- in: x
+  layer: linear
+  out: x
+  params:
+    in_features: 200
+    out_features: 1

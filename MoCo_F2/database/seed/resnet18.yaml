@@ -1,4 +1,4 @@
-ResNet18:
+resnet18:
   - layer: conv2d
     params:
       in_channels: 3

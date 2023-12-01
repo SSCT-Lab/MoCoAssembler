@@ -1,4 +1,4 @@
-VGG16:
+vgg16:
   - layer: conv2d
     params:
       in_channels: 3
@@ -199,12 +199,12 @@ VGG16:
     in: x
     out: x
   - layer: flatten
-    params: { }
+    params: {}
     in: x
     out: x
   - layer: linear
     params:
-      in_features: 512 * 7 * 7
+      in_features: 25088
       out_features: 4096
     in: x
     out: x
@@ -229,7 +229,6 @@ VGG16:
     in: x
     out: x
   - layer: softmax
-    params:
-      dim: 1
+    params: {}
     in: x
     out: x

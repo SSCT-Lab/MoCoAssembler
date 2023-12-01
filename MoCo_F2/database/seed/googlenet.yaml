@@ -9,7 +9,7 @@ googlenet:
     in: x
     out: x
   - layer: relu
-    params: { }
+    params: {}
     in: x
     out: x
   - layer: maxpool2d
@@ -28,7 +28,7 @@ googlenet:
     in: x
     out: x
   - layer: relu
-    params: { }
+    params: {}
     in: x
     out: x
   - layer: conv2d
@@ -41,7 +41,7 @@ googlenet:
     in: x
     out: x
   - layer: relu
-    params: { }
+    params: {}
     in: x
     out: x
   - layer: maxpool2d
@@ -164,9 +164,9 @@ googlenet:
       pool_proj: 128
     in: x
     out: x
-  - layer: maxpool2d
+  - layer: adaptiveavgpool2d
     params:
-      kernel_size: 1
+      output_size: 1
     in: x
     out: x
   - layer: flatten
@@ -180,12 +180,12 @@ googlenet:
     out: x
   - layer: linear
     params:
-      in_features: 1024 * 7 * 7
+      in_features: 1024
       out_features: 1000
     in: x
     out: x
 inception:
-  - ['in_channels', 'ch1x1', 'ch3x3red', 'ch3x3', 'ch5x5red', 'ch5x5', 'pool_proj']
+  - ["in_channels", "ch1x1", "ch3x3red", "ch3x3", "ch5x5red", "ch5x5", "pool_proj"]
   - layer: conv2d
     params:
       in_channels: in_channels
@@ -194,7 +194,7 @@ inception:
     in: x
     out: branch1
   - layer: relu
-    params: { }
+    params: {}
     in: branch1
     out: branch1
   - layer: conv2d

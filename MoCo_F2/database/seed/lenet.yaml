@@ -7,7 +7,7 @@ LeNet:
     in: x
     out: x
   - layer: relu
-    params: { }
+    params: {}
     in: x
     out: x
   - layer: maxpool2d
@@ -24,7 +24,7 @@ LeNet:
     in: x
     out: x
   - layer: relu
-    params: { }
+    params: {}
     in: x
     out: x
   - layer: maxpool2d
@@ -34,7 +34,7 @@ LeNet:
     in: x
     out: x
   - layer: flatten
-    params: { }
+    params: {}
     in: x
     out: x
   - layer: linear
@@ -44,7 +44,7 @@ LeNet:
     in: x
     out: x
   - layer: relu
-    params: { }
+    params: {}
     in: x
     out: x
   - layer: linear
@@ -54,7 +54,7 @@ LeNet:
     in: x
     out: x
   - layer: relu
-    params: { }
+    params: {}
     in: x
     out: x
   - layer: linear

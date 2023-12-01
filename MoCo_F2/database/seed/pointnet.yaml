@@ -1,0 +1,79 @@
+pointnet:
+- in: x
+  layer: conv1d
+  out: x
+  params:
+    in_channels: 3
+    kernel_size: 1
+    out_channels: 64
+- in: x
+  layer: batchnorm1d
+  out: x
+  params:
+    num_features: 64
+- in: x
+  layer: relu
+  out: x
+  params: {}
+- in: x
+  layer: conv1d
+  out: x
+  params:
+    in_channels: 64
+    kernel_size: 1
+    out_channels: 128
+- in: x
+  layer: batchnorm1d
+  out: x
+  params:
+    num_features: 128
+- in: x
+  layer: relu
+  out: x
+  params: {}
+- in: x
+  layer: conv1d
+  out: x
+  params:
+    in_channels: 128
+    kernel_size: 1
+    out_channels: 1024
+- in: x
+  layer: batchnorm1d
+  out: x
+  params:
+    num_features: 1024
+- in: x
+  layer: relu
+  out: x
+  params: {}
+- in: x
+  layer: flatten
+  out: x
+  params: {}
+- in: x
+  layer: linear
+  out: x
+  params:
+    in_features: 5120
+    out_features: 512
+- in: x
+  layer: relu
+  out: x
+  params: {}
+- in: x
+  layer: linear
+  out: x
+  params:
+    in_features: 512
+    out_features: 256
+- in: x
+  layer: relu
+  out: x
+  params: {}
+- in: x
+  layer: linear
+  out: x
+  params:
+    in_features: 256
+    out_features: 10
