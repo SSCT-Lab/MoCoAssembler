@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import os.path as p
 import random
+import numpy as np
 import time
 
-import numpy as np
+
 import yaml
 import os
 from abc import ABC, abstractmethod
@@ -36,41 +37,28 @@ class Performer(ABC):
 
     @abstractmethod
     def translate(self, abstract_model: dict) -> str:
-        """
-        The abstract model is translated into a concrete model of the corresponding framework
-        @param abstract_model: (str)Dictionary of layers before translate
-        @return: model(str): Translated model code
-        """
+        # Given a dict of abstract model, translate it into a str which can be written into a .py file
+        # And then this .py file will be a whole model.
         pass
 
     @abstractmethod
     def get_model_from_file(self, case_path: str, file_name: str):
-        """
-        Given a file path of a .py file, turn the net in this file to a model in memory.
-        @param case_path: (str)The file path where the current mutation model is stored
-        @param file_name: (str)Current mutation model filename
-        @return: model(TensorFlow|PyTorch|Jittor)
-        """
+        # Given a file path of a .py file, turn the net in this file to a model in memory.
+        # Return this model.
         pass
 
     @abstractmethod
     def train(self, model) -> float:
-        """
-        Model training
-        @param model: (TensorFlow|PyTorch|Jittor)The model returned by the function get_model_from_file()
-        @return:
-        """
+        # Given a model, train it, and return time cost(if failed, return -1).
         pass
 
     @abstractmethod
     def run(self, model) -> (float, list[int], str):
-        """
-        Model Running
-        @param model: (TensorFlow|PyTorch|Jittor)The model returned by the function get_model_from_file()
-        @return: (time_cost(float):   (-1 if failed),
-                  shape(list[int]):   ([] if failed),
-                  error_message(str): ("" if succeeded))
-        """
+        # Given a model, give a tensor and run it, then
+        # 1. return time cost(-1 if failed).
+        # # # 2. return the calculate result(-1 if failed). (MODE 1 DONT RETURN)
+        # 3. return the shape([] if failed).
+        # 4. return the error info("" if succeeded).
         pass
 
 
@@ -82,26 +70,55 @@ class TorchPerformer(Performer):
         # import Trainers.TorchTrainer as Trainer
         self.LeNet_test_tensor = torch.randn(3, 1, 28, 28)
         self.s244_test_tensor = torch.randn(3, 3, 244, 244)
+        self.s224_test_tensor = torch.randn(3, 3, 224, 224)
+        self.s299_test_tensor = torch.randn(3, 3, 299, 299)
+        self.pointnet_test_tensor = torch.randn(3, 3, 5)
+        self.lstm_test_tensor = torch.randn(5, 1)
 
         self.LeNet_test_code = "    x = torch.randn(3, 1, 28, 28)\n    y = model(x)\n    return model\n"
         self.s244_test_code = "    x = torch.randn(3, 3, 244, 244)\n    y = model(x)\n    return model\n"
+        self.s224_test_code = "    x = torch.randn(3, 3, 224, 224)\n    y = model(x)\n    return model\n"
+        self.s299_test_code = "    x = torch.randn(3, 3, 299, 299)\n    y = model(x)\n    return model\n"
+        self.pointnet_test_code = "    x = torch.randn(3, 3, 5)\n    y = model(x)\n    return model\n"
+        self.lstm_test_code = "    x = torch.randn(5, 1)\n    y = model(x)\n    return model\n"
+
+        from TorchTrainer import torch_trainer
+        self.trainer = torch_trainer
         return
 
     def __get_test_code(self, model_name: str):
         if model_name == "LeNet":
             return self.LeNet_test_code
-        elif model_name == "googlenet":
+        elif model_name in ["googlenet", "resnet18", "resnet50", "alexnet", "densenet",
+                            "mobilenet", "vgg16", "vgg19", "xception"]:
+            return self.s224_test_code
+        elif model_name == "inceptionv3":
+            return self.s224_test_code
+        elif model_name == "squeezenet":
             return self.s244_test_code
+        elif model_name == "pointnet":
+            return self.pointnet_test_code
+        elif model_name == "lstm":
+            return self.lstm_test_code
         else:
-            return None
+            return self.s224_test_code
 
     def __get_test_tensor(self, model_name: str):
         if model_name == "LeNet":
             return self.LeNet_test_tensor
-        elif model_name == "googlenet":
+        elif model_name in ["googlenet", "resnet18", "resnet50", "alexnet", "densenet",
+                            "mobilenet", "vgg16", "vgg19", "xception"]:
+            return self.s224_test_tensor
+        elif model_name == "inceptionv3":
+            return self.s224_test_tensor
+        elif model_name == "squeezenet":
             return self.s244_test_tensor
+        elif model_name == "pointnet":
+            return self.pointnet_test_tensor
+        elif model_name == "lstm":
+            return self.lstm_test_tensor
         else:
-            return None
+            return self.s224_test_tensor
 
     def get_library_name(self) -> str:
         return "torch"
@@ -119,8 +136,8 @@ class TorchPerformer(Performer):
     def get_model_from_file(self, case_path: str, file_name: str):
         model_name = file_name.replace(".py", "")
         sys.path.append(case_path)
-        model = import_module(model_name)
         try:
+            model = import_module(model_name)
             model = model.go()
         except Exception:
             model = "error message: \n" + str(traceback.format_exc())
@@ -129,7 +146,21 @@ class TorchPerformer(Performer):
 
     def train(self, model) -> float:
         # fake train
-        return random.choice([random.uniform(3.0, 100.0), random.uniform(100.0, 200.0), random.uniform(1.0, 3.0)])
+        # return random.choice([random.uniform(3.0, 100.0), random.uniform(100.0, 200.0), random.uniform(1.0, 3.0)])
+        # True Train
+        if isinstance(model, str):
+            return -1.0
+        else:
+            start_time = time.time()
+            try:
+                self.trainer.train(model, str(model).split("(", 1)[0])
+                end_time = time.time()
+            except Exception:
+                end_time = start_time - 1.0
+        import torch.cuda
+        torch.cuda.empty_cache()
+        return end_time - start_time
+
 
     def run(self, model) -> (float, list[int], str):
         if isinstance(model, str):
@@ -154,7 +185,7 @@ class TorchPerformer(Performer):
 
         return time_cost, shape, error_message
 
-    def __dict_to_model_class(self, model_dict: dict, model_name: str, model_name_list: list[str]) -> str:
+    def __dict_to_model_class(self, model_dict: list, model_name: str, model_name_list: list[str]) -> str:
         def_part = "class " + model_name + "(nn.Module):\n    def __init__(self):\n        super("\
                    + model_name + ", self).__init__()\n"
         forward_part = "    def forward(self, x):\n"
@@ -164,7 +195,7 @@ class TorchPerformer(Performer):
             _model_dict = model_dict[1:]
             extra = ", ".join(model_dict[0])
             def_part = "class " + model_name + "(nn.Module):\n    def __init__(self, " + extra + ")" +\
-                       ":\n        super("+ model_name + ", self).__init__()\n"
+                       ":\n        super(" + model_name + ", self).__init__()\n"
         else:
             _model_dict = model_dict
         for layer_dict in _model_dict:
@@ -177,6 +208,10 @@ class TorchPerformer(Performer):
                 else:
                     forward_part_line += layer_dict["in"]
                 forward_part_line += ", dim=" + str(layer_dict["params"]["dims"]) + ")\n"
+                forward_part += forward_part_line
+            elif abstract_layer_name == "add":
+                forward_part_line =\
+                    ("        " + layer_dict["out"] + " = " + "+".join(layer_dict["in"].split(",")) + "\n")
                 forward_part += forward_part_line
             elif abstract_layer_name in model_name_list:
                 implicit_layer_name = abstract_layer_name
@@ -194,7 +229,8 @@ class TorchPerformer(Performer):
                 for abstract_param_name in abstract_params.keys():
                     implicit_param_name = database.get_implicit_para_name(self.get_library_name(),
                                                                           abstract_layer_name, abstract_param_name)
-                    implicit_params[implicit_param_name] = abstract_params[abstract_param_name]
+                    if implicit_param_name != "None":
+                        implicit_params[implicit_param_name] = abstract_params[abstract_param_name]
                 def_part_line = "        self." + "layer" + str(layer_index) + " = " +\
                                 generate_line(implicit_layer_name, implicit_params) + "\n"
                 forward_part_line = "        " + layer_dict["out"] + " = " + "self.layer" + str(layer_index) + "(" +\
@@ -207,22 +243,178 @@ class TorchPerformer(Performer):
 class JittorPerformer(Performer):
     def __init__(self):
         super().__init__()
+        import jittor
+        jittor.flags.use_cuda = 1
+        from JittorTrainer import jittor_trainer
+        self.trainer = jittor_trainer
+        # import Trainers.TorchTrainer as Trainer
+        self.LeNet_test_tensor = jittor.randn(3, 1, 28, 28)
+        self.s244_test_tensor = jittor.randn(3, 3, 244, 244)
+        self.s224_test_tensor = jittor.randn(3, 3, 224, 224)
+        self.s299_test_tensor = jittor.randn(3, 3, 299, 299)
+        self.pointnet_test_tensor = jittor.randn(3, 3, 5)
+        self.lstm_test_tensor = jittor.randn(5, 1)
+
+        self.LeNet_test_code = "    x = jittor.randn(3, 1, 28, 28)\n    y = model(x)\n    return model\n"
+        self.s244_test_code = "    x = jittor.randn(3, 3, 244, 244)\n    y = model(x)\n    return model\n"
+        self.s224_test_code = "    x = jittor.randn(3, 3, 224, 224)\n    y = model(x)\n    return model\n"
+        self.s299_test_code = "    x = jittor.randn(3, 3, 299, 299)\n    y = model(x)\n    return model\n"
+        self.pointnet_test_code = "    x = jittor.randn(3, 3, 5)\n    y = model(x)\n    return model\n"
+        self.lstm_test_code = "    x = jittor.randn(5, 1)\n    y = model(x)\n    return model\n"
         return
 
     def get_library_name(self) -> str:
         return "jittor"
 
+    def __get_test_code(self, model_name: str):
+        if model_name == "LeNet":
+            return self.LeNet_test_code
+        elif model_name in ["googlenet", "resnet18", "resnet50", "alexnet", "densenet",
+                            "mobilenet", "vgg16", "vgg19", "xception"]:
+            return self.s224_test_code
+        elif model_name == "inceptionv3":
+            return self.s224_test_code
+        elif model_name == "squeezenet":
+            return self.s244_test_code
+        elif model_name == "pointnet":
+            return self.pointnet_test_code
+        elif model_name == "lstm":
+            return self.lstm_test_code
+        else:
+            return None
+
+    def __get_test_tensor(self, model_name: str):
+        if model_name == "LeNet":
+            return self.LeNet_test_tensor
+        elif model_name in ["googlenet", "resnet18", "resnet50", "alexnet", "densenet",
+                            "mobilenet", "vgg16", "vgg19", "xception"]:
+            return self.s224_test_tensor
+        elif model_name == "inceptionv3":
+            return self.s224_test_tensor
+        elif model_name == "squeezenet":
+            return self.s244_test_tensor
+        elif model_name == "pointnet":
+            return self.pointnet_test_tensor
+        elif model_name == "lstm":
+            return self.lstm_test_tensor
+        else:
+            return self.s224_test_tensor
+
     def translate(self, abstract_model: dict) -> str:
-        return "jittor model code"
+        head = "import jittor\nimport jittor.nn as nn\n\n\n"
+        body = ""
+        model_name_list = list(abstract_model.keys())
+        main_model_name = model_name_list[0]
+        for model in abstract_model:
+            body += self.__dict_to_model_class(abstract_model[model], model, model_name_list)
+        return head + body + "def go():\n    model = " + main_model_name + "()\n" +\
+            self.__get_test_code(main_model_name)
 
     def get_model_from_file(self, case_path: str, file_name: str):
-        return "jittor model"
+        model_name = file_name.replace(".py", "")
+        sys.path.append(case_path)
+        try:
+            model = import_module(model_name)
+            model = model.go()
+        except Exception:
+            model = "error message: \n" + str(traceback.format_exc())
+        sys.path.remove(case_path)
+        return model
 
     def train(self, model) -> float:
-        return 1.0
+        # True Train
+        if isinstance(model, str):
+            return -1.0
+        else:
+            start_time = time.time()
+            try:
+                self.trainer.train(model, str(model).split("(", 1)[0])
+                end_time = time.time()
+            except Exception:
+                end_time = start_time - 1.0
+                report = "=====================\n"
+                report += traceback.format_exc()
+                report += "=====================\n"
+                with open("../report/train_error.txt", "a", encoding="utf-8") as fr:
+                    fr.write(report)
+        return end_time - start_time
 
     def run(self, model) -> (float, list[int], str):
-        return 1.0, ""
+        if isinstance(model, str):
+            return -1.0, [], model
+        start_time = time.time()
+        model_name = str(model).split("(", 1)[0]
+        test_tensor = self.__get_test_tensor(model_name)
+        flag = True
+        error_message = ""
+        try:
+            y = model(test_tensor)
+            shape = list(y.shape)
+        except Exception:
+            flag = False
+            shape = []
+            error_message = str(traceback.format_exc())
+        if flag:
+            end_time = time.time()
+            time_cost = end_time - start_time
+        else:
+            time_cost = -1.0
+
+        return time_cost, shape, error_message
+
+    def __dict_to_model_class(self, model_dict: list, model_name: str, model_name_list: list[str]) -> str:
+        def_part = "class " + model_name + "(nn.Module):\n    def __init__(self):\n        super("\
+                   + model_name + ", self).__init__()\n"
+        forward_part = "    def execute(self, x):\n"
+        # layer_name = "layer"
+        layer_index = 0
+        if isinstance(model_dict[0], list):
+            _model_dict = model_dict[1:]
+            extra = ", ".join(model_dict[0])
+            def_part = "class " + model_name + "(nn.Module):\n    def __init__(self, " + extra + ")" +\
+                       ":\n        super(" + model_name + ", self).__init__()\n"
+        else:
+            _model_dict = model_dict
+        for layer_dict in _model_dict:
+            layer_index += 1
+            abstract_layer_name = layer_dict["layer"]
+            if abstract_layer_name == "cat":
+                forward_part_line = "        " + layer_dict["out"] + " = jittor.cat("
+                if isinstance(layer_dict["in"], list):
+                    forward_part_line += str(layer_dict["in"]).replace("'", "")
+                else:
+                    forward_part_line += layer_dict["in"]
+                forward_part_line += ", dim=" + str(layer_dict["params"]["dims"]) + ")\n"
+                forward_part += forward_part_line
+            elif abstract_layer_name == "add":
+                forward_part_line =\
+                    ("        " + layer_dict["out"] + " = " + "+".join(layer_dict["in"].split(",")) + "\n")
+                forward_part += forward_part_line
+            elif abstract_layer_name in model_name_list:
+                implicit_layer_name = abstract_layer_name
+                implicit_params = layer_dict["params"]
+                def_part_line = "        self." + "layer" + str(layer_index) + " = " +\
+                                generate_line(implicit_layer_name, implicit_params) + "\n"
+                forward_part_line = "        " + layer_dict["out"] + " = " + "self.layer" + str(layer_index) + "(" +\
+                                    layer_dict["in"] + ")\n"
+                def_part += def_part_line
+                forward_part += forward_part_line
+            else:
+                implicit_layer_name = database.get_implicit_api_name(self.get_library_name(), abstract_layer_name)
+                implicit_params = {}
+                abstract_params = layer_dict["params"]
+                for abstract_param_name in abstract_params.keys():
+                    implicit_param_name = database.get_implicit_para_name(self.get_library_name(),
+                                                                          abstract_layer_name, abstract_param_name)
+                    if implicit_param_name != "None":
+                        implicit_params[implicit_param_name] = abstract_params[abstract_param_name]
+                def_part_line = "        self." + "layer" + str(layer_index) + " = " +\
+                                generate_line(implicit_layer_name, implicit_params) + "\n"
+                forward_part_line = "        " + layer_dict["out"] + " = " + "self.layer" + str(layer_index) + "(" +\
+                                    layer_dict["in"] + ")\n"
+                def_part += def_part_line
+                forward_part += forward_part_line
+        return def_part + "\n" + forward_part + "        return x\n\n\n"
 
 
 class TensorFlowPerformer(Performer):
@@ -230,6 +422,10 @@ class TensorFlowPerformer(Performer):
 
     def __init__(self):
         super().__init__()
+        import TFTrainer
+        self.mnist = TFTrainer.get_mnist()
+        self.cifar10 = TFTrainer.get_cifar10()
+        self.imagenet = TFTrainer.get_imagenet()
         return
 
     def get_library_name(self) -> str:
@@ -242,7 +438,14 @@ class TensorFlowPerformer(Performer):
         model_name_list = list(abstract_model.keys())
         main_model_name = model_name_list[0]
         for model in abstract_model:
-            body += self.__dict_to_model_class(abstract_model[model], model, model_name_list)
+            model_body = self.__dict_to_model_class(abstract_model[model], model, model_name_list)
+            if model in ["alexnet", "vgg16", "vgg19", "googlenet", "squeezenet", "mobilenet", "resnet18", "lstm", "pointnet"]:
+                model_body = model_body.replace('    output_tensor = x',
+                                                "    output_tensor = tf.keras.layers.Flatten()(tf.keras.layers.Dense(units=1000, activation='softmax')(x))")
+            elif model in ["LeNet"]:
+                model_body = model_body.replace('    output_tensor = x',
+                                                "    output_tensor = tf.keras.layers.Flatten()(tf.keras.layers.Dense(units=10, activation='softmax')(x))")
+            body += model_body
 
         go = f'def go():\n' \
              f'    model = {main_model_name}(input_shape={self.__get_shape().__str__()})\n' \
@@ -267,7 +470,32 @@ class TensorFlowPerformer(Performer):
         return model
 
     def train(self, model) -> float:
-        return 1.0
+        import tensorflow as tf
+        model_name = self.model_name
+        if model_name == "LeNet":
+            x_train, y_train, x_test, y_test = self.mnist
+        elif model_name in ["alexnet", "vgg16", "vgg19"]:
+            x_train, y_train, x_test, y_test = self.cifar10
+        elif model_name in ["pointnet", "lstm"]:
+            return 1.0
+        else:
+            x_train, y_train, x_test, y_test = self.imagenet
+        start_time = time.time()
+        try:
+            model.compile(optimizer=tf.keras.optimizers.legacy.SGD(learning_rate=0.3),
+                          loss="sparse_categorical_crossentropy",
+                          metrics=["accuracy"])
+            model.fit(x_train, y_train, batch_size=2, epochs=1, verbose=0)
+            model.evaluate(x_test, y_test, verbose=0)
+            end_time = time.time()
+        except Exception:
+            train_errors = self.get_library_name() + "  " + self.model_name + "\n"
+            train_errors += traceback.format_exc() + "\n============\n"
+            with open("../report/train_errors.txt", "a", encoding="utf-8") as fre:
+                fre.write(train_errors)
+            end_time = start_time - 1.0
+        cost = end_time - start_time
+        return cost
 
     def run(self, model) -> (float, list[int], str):
         if isinstance(model, str):
@@ -338,7 +566,8 @@ class TensorFlowPerformer(Performer):
                 hidden_layers = f'{hidden_layers}' \
                                 f'    {output_} = {generate_line(implicit_layer_name, implicit_params)}\n'
             else:
-                abstract_params = self.__convert_to_tf(abstract_layer_name, layer['params'])
+                # abstract_params = self.__convert_to_tf(abstract_layer_name, layer['params'])
+                abstract_params = layer["params"]
                 implicit_layer_name = database.get_implicit_api_name(self.get_library_name(), abstract_layer_name)
                 implicit_params = {}
                 for abstract_param_name in abstract_params:
@@ -467,7 +696,18 @@ class Concrete:
                 train_time_cost = -1
                 run_time_cost = -1
             else:
-                train_time_cost = performer.train(model)
+                if gen <= 3:
+                    train_time_cost = 1.0
+                else:
+                    try:
+                        train_time_cost = performer.train(model)
+                    except Exception:
+                        train_time_cost = -1
+                        report = "=====================\n" + "from: " + file_name + "\n"
+                        report += traceback.format_exc()
+                        report + "=====================\n"
+                        with open("../report/train_error.txt", "a", encoding="utf-8") as fr:
+                            fr.write(report)
                 train_test = False if train_time_cost < 0 else True
             result_dict = {"run test": run_test, "train test": train_test,
                            "train time cost": train_time_cost, "run time cost": run_time_cost,
@@ -497,7 +737,19 @@ class Concrete:
         return case_path, file_name
 
 
-# concrete = Concrete()
-# seed = database.get_seed("LeNet")
-# concrete.set_model_name("testLeNet")
-# result = concrete.perform(seed, 0, 1)
+concrete = Concrete()
+if __name__ == "__main__":
+    performer = TensorFlowPerformer()
+    # net_list = ["alexnet", "LeNet", "mobilenet", "squeezenet", "vgg16",
+    #             "vgg19", "googlenet", "resnet18", "pointnet", "lstm"]
+    #
+    #
+    # def test(net: str):
+    #     time.sleep(1.0)
+    #     concrete.new_experiment()
+    #     seed = database.get_seed(net)
+    #     concrete.set_model_name("test_" + net)
+    #     result = concrete.perform(seed, 0, 1)
+    #     if not result[0]["run test"]:
+    #         print(net + " has some questions")
+    #     return result[0]

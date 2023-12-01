@@ -34,7 +34,8 @@ class Analyser:
             report += dict_to_string(result_list[i])
             report += "\n\n"
         case_path = result_list[0]["case path"]
-        report_path = case_path.replace(case_path.split("\\")[-1], "report.txt")
+        case_path = case_path.replace("\\", "/")
+        report_path = p.join(case_path.replace(case_path.split("/")[-1], ""), "report.txt")
         generate_report(report, report_path)
         for result in result_list:
             if not result["run test"]:

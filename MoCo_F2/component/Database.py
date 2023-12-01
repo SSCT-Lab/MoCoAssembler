@@ -296,7 +296,10 @@ class Database:
             return " "
 
     def get_seed(self, seed_name: str) -> dict:
-        SEED_PATH = p.join(database_path, "seed", seed_name + ".yaml")
+        if self.__library_list[0] == "tensorflow":
+            SEED_PATH = p.join(database_path, "seed2", seed_name + ".yaml")
+        else:
+            SEED_PATH = p.join(database_path, "seed", seed_name + ".yaml")
         f = open(SEED_PATH, "r")
         seed = yaml.full_load(f)
         f.close()
@@ -401,4 +404,4 @@ class Database:
         return
 
 
-d = Database()
+# d = Database()
