@@ -1,6 +1,6 @@
 | DL Library |                                          issue                                          |                          url                          |  status   |
 |:----------:|:---------------------------------------------------------------------------------------:|:-----------------------------------------------------:|:---------:|
-| TensorFlow |        Crooping2D/3D does not have exception handling for the Crooping parameter        | https://github.com/tensorflow/tensorflow/issues/61255 | confirmed |
+| TensorFlow |        Croping2D/3D does not have exception handling for the Crooping parameter        | https://github.com/tensorflow/tensorflow/issues/61255 | confirmed |
 | TensorFlow |                   Documentation Bug about API ActivityRegularization                    | https://github.com/tensorflow/tensorflow/issues/61254 |   fixed   |
 | TensorFlow |                      Functions that limit video memory do not work                      | https://github.com/tensorflow/tensorflow/issues/61168 | confirmed |
 | TensorFlow |                               the description of padding                                | https://github.com/tensorflow/tensorflow/issues/60839 |   fixed   |
