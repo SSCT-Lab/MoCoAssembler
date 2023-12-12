@@ -20,7 +20,7 @@
 |  PyTorch   |              The document does not emphasize hidden range in nn.Embedding               |   https://github.com/pytorch/pytorch/issues/103424    | confirmed |
 |  PyTorch   |                  F.pad will accept 0 and negative values as parameter                   |   https://github.com/pytorch/pytorch/issues/105629    | confirmed |
 |  PyTorch   |                      Incomplete Documentation for torch.nn.RNNBase                      |   https://github.com/pytorch/pytorch/issues/105628    | fixed     |
-|  PyTorch   |              torch.nn.MultiheadAttention lacks parameter validation check               |   https://github.com/pytorch/pytorch/issues/105630    | confirmed |
+|  PyTorch   |              torch.nn.MultiheadAttention lacks parameter validation check               |   https://github.com/pytorch/pytorch/issues/105630    | fixed |
 |  PyTorch   |            torch.nn.TransformerDecoderLayer lacks parameter validation check            |   https://github.com/pytorch/pytorch/issues/105632    | confirmed |
 |   Jittor   |                            jittor.nn.Mish is unable to work                             |      https://github.com/Jittor/jittor/issues/447      |   fixed   |
 |   Jittor   |      jittor.nn.Flatten accepts the input tensor while cannot cover all dimensions       |      https://github.com/Jittor/jittor/issues/448      | confirmed |
