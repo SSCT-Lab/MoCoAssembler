@@ -31,21 +31,16 @@ Open your console under pytorch_/algorithms and type this to run MoCo FUZZING TE
 ```
 python go_Fuzzing.py --MODEL 'lenet' --N 5
 ```
-1. `MODEL` means the seed model used this time. Make sure that the model is in `'testnet'
+1. `MODEL` means the seed model used this time. Make sure that the model is in `
 'alexnet'
 'lenet'
 'ResNet18'
-'ResNet50'
-'InceptionV3'
-'xception'
 'mobilenet'
 'squeezenet'
-'vgg16'
 'vgg19'
-'densenet'
-'BiLSTM'
 'LSTM'
-'GRU'`
+'googlenet'
+'pointnet'`
 . And if you want to run with all seed models in a loop, set para MODEL to `LOOP`.
 2. `N` means times of mutation on every model in one generation. Set it to an int.
 
