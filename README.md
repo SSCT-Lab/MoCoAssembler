@@ -25,25 +25,20 @@ III. **Jittor**
 
 ### Datasets
 
-We used `15` deep learning models from `4` common datasets based on image and sequence data as the initial seed models for MoCo, and these models have been widely used in many existing studies.
+We used `9` deep learning models from `5` common datasets based on image and sequence data as the initial seed models for MoCo, and these models have been widely used in many existing studies.
 
 | Model       | Dataset     | Link                                                         |
 | ----------- | ----------- | ------------------------------------------------------------ |
 | AlexNet     | CIFAR-10    | [cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)      |
-| DenseNet    | ImageNet    | [Imagenet](https://www.image-net.org/)                       |
 | GoogLeNet   | ImageNet    | [Imagenet](https://www.image-net.org/)                       |
-| InceptionV3 | ImageNet    | [Imagenet](https://www.image-net.org/)                       |
 | LeNet       | MNIST       | [mnist](http://yann.lecun.com/exdb/mnist/)                   |
 | MobileNet   | CIFAR-10    | [cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)      |
 | ResNet18    | ImageNet    | [Imagenet](https://www.image-net.org/)                       |
-| ResNet50    | ImageNet    | [Imagenet](https://www.image-net.org/)                       |
 | SqueezeNet  | ImageNet    | [Imagenet](https://www.image-net.org/)                       |
-| VGG16       | CIFAR-10    | [cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)      |
 | VGG19       | CIFAR-10    | [cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)      |
-| Xception    | ImageNet    | [Imagenet](https://www.image-net.org/)                       |
 | LSTM        | Stock-Price | [StockPricesPredictionProject](https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo/tree/master/StockPricesPredictionProject) |
-| BiLSTM      | Stock-Price | [StockPricesPredictionProject](https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo/tree/master/StockPricesPredictionProject) |
-| GRU         | Stock-Price | [StockPricesPredictionProject](https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo/tree/master/StockPricesPredictionProject) |
+| PointNet | | |
+
 
 I. We have made special treatment for different data sets, which are stored in the form of `.npz` for training and validation of the network model. 
 
