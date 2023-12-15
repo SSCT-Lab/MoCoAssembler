@@ -5,7 +5,7 @@ The rapidly developing deep learning (DL) techniques have been applied in softwa
 ## Issue List
 [Issue List](https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_1.0/bug_list.md) for a summary of the issues we submitted. 
 ## Bug List
-[Bug List]([https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_1.0/bug_list.md](https://github.com/SSCT-Lab/MoCoAssembler/tree/MoCo_1.0/bugs)) for a summary of the bugs' files we found.
+[Bug List](https://github.com/SSCT-Lab/MoCoAssembler/tree/MoCo_1.0/bugs) for a summary of the bugs' files we found.
 ## Libraries
 I. **Tensorflow**
 
