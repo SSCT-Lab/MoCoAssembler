@@ -12,9 +12,9 @@ tensroflow==2.12.0
 
 ## Datesets
 
-All the datasets involved in tensorflow are stored in [MoCo_Datasets](https://1drv.ms/f/s!Ao0nBM4MEX_uiU442vGWhqV05hwV?e=VONAIO), unzipped to the `/ModelAssembler` root directory, named `datasets`.
+All the datasets involved in tensorflow are stored in [MoCo_Datasets](https://1drv.ms/f/s!Ao0nBM4MEX_uiU442vGWhqV05hwV?e=VONAIO), unzip to the `/ModelAssembler` root directory, named `datasets`.
 
-You can check out the web datasets at the following link: [cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html), [mnist](http://yann.lecun.com/exdb/mnist/), [Imagenet](https://www.image-net.org/), [StockPricesPredictionProject](https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo/tree/master/StockPricesPredictionProject).
+You can check out the web datasets at the following link: [Cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html), [Mnist](http://yann.lecun.com/exdb/mnist/), [Imagenet](https://www.image-net.org/), [StockPricesPredictionProject](https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo/tree/master/StockPricesPredictionProject) and [ShapeNet](https://web.stanford.edu/~ericyi/project_page/part_annotation/index.html).
 
 ## Reproducibility
 
@@ -30,33 +30,38 @@ pip install numpy
 pip install openpyxl
 ```
 
-### **STEP 1:** Running MoCo_TF with fuzzing test.
+### **STEP 1:** Running MoCo_TF with Fuzzing test.
 
 Researchers can simply run MoCo_TF with the following command.
 
 ```
-# Enter the tf/src environment
-cd /mnt/ModelAssembler/tf/src
+# Enter the moco_tf/src environment
+cd /mnt/ModelAssembler/moco_tf/src
 ```
 
-I. Running a single model with fuzzing test. 
+I. Running a demo test with Fuzzing. 
 
-**Note: Researchers can query `tf/config/model.py` for the names of all the network models which can run.**
+**Note: Researchers can query `moco_tf/config/model.py` for the names of all the network models which can run.**
 
 ```
-python mutate_tf.py --model_name "lenet" --mutate_times 3 
+python mutate_moco_tf.py --model_name "lenet" --mutate_times 2
 ```
 
 The initial value of `model_name` is `"lenet"`; The initial value of `mutate_time` is `3`, and the number of mutations we use in our formal experiments is `5`.  Also, It is possible to add the `--is_train` keyword to the command line to train the generated network model, The code is as follows:
 
 ```
-python mutate_tf.py --model_name "lenet" --mutate_times 3 --is_train
+python mutate_moco_tf.py --model_name "lenet" --mutate_times 2 --is_train
 ```
 
-II. Run all models with Fuzzing test. **(Not recommended)**
+II Run a simgle model with Fuzzing test.
+```
+python mutate_moco_tf.py --model_name "lenet" --mutate_times 3
+```
+
+III. Run all models with Fuzzing test. **(Not recommended)**
 
 ```
-python mutate_tf.py --run_all True
+python mutate_moco_tf.py --run_all True
 ```
 
 It is also possible to add the `--is_train` keyword.
@@ -66,28 +71,28 @@ It is also possible to add the `--is_train` keyword.
 **Note: Boundary testing does not support running all models.**
 
 ```
-# Enter the tf/src environment
-cd /mnt/ModelAssembler/tf/src
-python boundary_tf.py --model_name "lenet"
+# Enter the moco_tf/src environment
+cd /mnt/ModelAssembler/moco_tf/src
+python boundary_moco_tf.py --model_name "lenet"
 ```
 
-**Boundary tests can be run in isolation.** If the target model is not fuzzed, then when the boundary test is run, the fuzzing test is run with `mutate_time=3` and `is_train=False` before the boundary test
+**Boundary tests can be run in isolation.** If the target model is not fuzzed, then when the boundary test is run, the Fuzzing test is run with `mutate_time=3` and `is_train=False` before the boundary test
 
 ### **STEP 3:** Obtain the output.
 
-I. Obtain the output for fuzzing test.
+I. Obtain the output for Fuzzing test.
 
-`tf/result/mutate`: All models generated after fuzzing testing were performed. 
+`moco_tf/result/mutate`: All models generated after Fuzzing testing were performed. 
 
-`tf/log`: After fuzzing runs, a log of those models that run the error.
+`moco_tf/log`: After Fuzzing runs, a log of those models that run the error.
 
-`tf/log/model_name/log.csv`: All error logs. 
+`moco_tf/log/model_name/log.csv`: All error logs. 
 
 II. Obtain the output for boundary test.
 
-`tf/result/boundary`: All models generated after boundary testing were performed. 
+`moco_tf/result/boundary`: All models generated after boundary testing were performed. 
 
-`tf/result/model_name_boundary_output.xlsx`: Results of boundary tests.
+`moco_tf/result/model_name_boundary_output.xlsx`: Results of boundary tests.
 
 ### **Run the new generative model separately**
 
@@ -95,7 +100,7 @@ II. Obtain the output for boundary test.
 
 I. Open the new model you want to run.
 
-II. Remove the code that imports the dataset. `from tf.config.paths import DATASETS_PATH`.
+II. Remove the code that imports the dataset. `from moco_tf.config.paths import DATASETS_PATH`.
 
 III. Change the `DATASETS_PATH` in the `go()` function to a specific path to your dataset.
 

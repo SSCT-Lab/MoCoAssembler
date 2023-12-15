@@ -3,24 +3,26 @@
 ## Introduction
 The rapidly developing deep learning (DL) techniques have been applied in software systems with different application scenarios. However, they could also bring new safety threats with potentially serious consequences, especially in safety-critical domains. While researchers focus on how to test DL models or domain-specific DL applications, only a little attention has been paid to DL library testing. DL libraries serve as the underlying foundation for DL systems, and bugs in them can have unpredictable impacts that directly affect the behaviors of DL systems. Prior work on fuzzing DL libraries still has limitations in the diversity of test inputs, test oracle construction and precision. In this paper, we propose MoCo, a novel fuzzing testing method for DL libraries via code assembling. The seed tests used by MoCo are code files that implement DL models, including constructing, training, and evaluating DL models in the most common real-world user scenarios. MoCo first disassembles the seed code file to obtain the template and code blocks and then employs code block mutation operators (e.g., API replacement, random generation and boundary checking) to generate more new code blocks adapted to the template. By inserting context-appropriate code blocks into the template in steps, MoCo can generate a tree of code files with intergenerational relations. According to the derivation relations in this tree and applied mutation operators, we construct the test oracle based on the execution state consistency. Since the granularity of code assembly and mutation are controlled rather than random divergence, we can quickly pinpoint the lines of code where the bugs are located and the corresponding triggering conditions. We conduct a comprehensive experiment to evaluate the efficiency and effectiveness of MoCo with three widely-used DL libraries, i.e., TensorFlow, PyTorch and Jittor. During the experiment, MoCo detects 65 new bugs of four types in three DL libraries, where 52 bugs have been confirmed and 11 bugs have been fixed by developers. The experimental results demonstrate that MoCo is capable of generating high-quality tests and detecting different types of bugs to help developers improve the reliability of DL libraries.
 ## Issue List
-[Issue List](https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_1.0/issue_list.md) for a summary of the issues we submitted. 
+[Issue List](https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_1.0/issue_list.md) stores the bug issues we submitted. 
 ## Bug List
-[Bug List](https://github.com/SSCT-Lab/MoCoAssembler/blob/MoCo_1.0/bugs) for a summary of the bugs' files we found.
+[Bug List](https://github.com/SSCT-Lab/MoCoAssembler/blob/MoCo_1.0/bugs) stores the bugs we can find. 
 ## Directory structure
 
 We provide specific `directory structures` according to different frameworks.
 
-> ```/MoCoAssembler/moco_jt```  --  MoCo for jittor.
+> ```/MoCoAssembler/bugs``` -- Bug list for MoCo. 
+> 
+> ```/MoCoAssembler/moco_jt```  --  MoCo for jittor. 
 >
-> ```/MoCoAssembler/moco_torch```  --  MoCo for pytorch.
+> ```/MoCoAssembler/moco_torch```  --  MoCo for pytorch. 
 >
-> ```/MoCoAssembler/moco_tf```  --  MoCo for tensorflow.
+> ```/MoCoAssembler/moco_tf```  --  MoCo for tensorflow. 
+> 
+> ```/MoCoAssembler/datasets```  --  Datasets we used (Need to be added by the replicator). 
 >
-> ```/MoCoAssembler/datasets```  --  Datasets we used (Need to be added by the replicator).
->
-> ```/MoCoAssembler/utils```  --  MoCo utility class.
+> ```/MoCoAssembler/utils```  --  MoCo utility class. 
 ## Usage
-(修改!!) To use our tool, please download and unzip it first. We provide different ways to use different libraries. In addition, we have provided three detailed usage documents for your reference.
+In order to reproduce our tool, you first need to download and unzip `/MoCoAssembler`, and surface according to the corresponding `README.md`.
 
 | Library    | Link                                                                         |
 | ---------- |------------------------------------------------------------------------------|
