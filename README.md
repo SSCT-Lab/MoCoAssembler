@@ -55,7 +55,7 @@ We used `9` deep learning models from `5` common datasets based on image and seq
 | SqueezeNet  | ImageNet | [Imagenet](https://www.image-net.org/)                                                                                              |
 | VGG19       | CIFAR-10 | [cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)                                                                             |
 | LSTM        | Stock-Price | [StockPricesPredictionProject](https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo/tree/master/StockPricesPredictionProject) |
-| PointNet | ShapeNet| [ShapeNet](https://web.stanford.edu/~ericyi/project_page/part_annotation/index.html)]                                                                                                                               |
+| PointNet | ShapeNet| [ShapeNet](https://web.stanford.edu/~ericyi/project_page/part_annotation/index.html)                                                                                                                              |
 
 
 I. We have made special treatment for different data sets, which are stored in the form of `.npz` for training and validation of the network model. 
