@@ -10,7 +10,7 @@ The rapidly developing deep learning (DL) techniques have been applied in softwa
 > 
 > `Issue`: Description of Bugs.
 > 
-> `Url`: Issue link of Bugs. 
+> `URL`: Issue link of Bugs. 
 > 
 > `Status`: Issue Status of Bugs (`confirmed` or `fixed`). 
 ## Bug List
