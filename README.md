@@ -4,8 +4,25 @@
 The rapidly developing deep learning (DL) techniques have been applied in software systems with different application scenarios. However, they could also bring new safety threats with potentially serious consequences, especially in safety-critical domains. While researchers focus on how to test DL models or domain-specific DL applications, only a little attention has been paid to DL library testing. DL libraries serve as the underlying foundation for DL systems, and bugs in them can have unpredictable impacts that directly affect the behaviors of DL systems. Prior work on fuzzing DL libraries still has limitations in the diversity of test inputs, test oracle construction and precision. In this paper, we propose MoCo, a novel fuzzing testing method for DL libraries via code assembling. The seed tests used by MoCo are code files that implement DL models, including constructing, training, and evaluating DL models in the most common real-world user scenarios. MoCo first disassembles the seed code file to obtain the template and code blocks and then employs code block mutation operators (e.g., API replacement, random generation and boundary checking) to generate more new code blocks adapted to the template. By inserting context-appropriate code blocks into the template in steps, MoCo can generate a tree of code files with intergenerational relations. According to the derivation relations in this tree and applied mutation operators, we construct the test oracle based on the execution state consistency. Since the granularity of code assembly and mutation are controlled rather than random divergence, we can quickly pinpoint the lines of code where the bugs are located and the corresponding triggering conditions. We conduct a comprehensive experiment to evaluate the efficiency and effectiveness of MoCo with three widely-used DL libraries, i.e., TensorFlow, PyTorch and Jittor. During the experiment, MoCo detects 65 new bugs of four types in three DL libraries, where 52 bugs have been confirmed and 11 bugs have been fixed by developers. The experimental results demonstrate that MoCo is capable of generating high-quality tests and detecting different types of bugs to help developers improve the reliability of DL libraries.
 ## Issue List
 [Issue List](https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_1.0/issue_list.md) stores the bug issues we submitted. 
+
+### Description of README.md
+> `DL Library`: Library name (`TensorFlow`, `PyTorch`, `Jittor`).
+> 
+> `Issue`: Description of Bugs.
+> 
+> `Url`: Issue link of Bugs. 
+> 
+> `Status`: Issue Status of Bugs (`confirmed` or `fixed`). 
 ## Bug List
 [Bug List](https://github.com/SSCT-Lab/MoCoAssembler/blob/MoCo_1.0/bugs) stores the bugs we can find. 
+### Description of README.md
+> `Bug API`: The API name that triggered the bug.
+> 
+> `Bug Type`: The type of bug that was triggered (`ICBug`, `BonBug`, `PerBug`, `ImpBug`).
+> 
+> `File Path`: Test case paths that can trigger bugs.
+> 
+> `Error Message`: Error description or error report.
 ## Directory structure
 
 We provide specific `directory structures` according to different frameworks.
@@ -49,22 +66,22 @@ We used `9` deep learning models from `5` common datasets based on image and seq
 
 | Model       | Dataset | Link                                                                                                                                |
 | ----------- | ------- |-------------------------------------------------------------------------------------------------------------------------------------|
-| AlexNet     | CIFAR-10 | [cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)                                                                             |
-| GoogLeNet   | ImageNet | [Imagenet](https://www.image-net.org/)                                                                                              |
-| LeNet       | MNIST   | [mnist](http://yann.lecun.com/exdb/mnist/)                                                                                          |
-| MobileNet   | CIFAR-10 | [cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)                                                                             |
-| ResNet18    | ImageNet | [Imagenet](https://www.image-net.org/)                                                                                              |
-| SqueezeNet  | ImageNet | [Imagenet](https://www.image-net.org/)                                                                                              |
-| VGG19       | CIFAR-10 | [cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)                                                                             |
+| AlexNet     | CIFAR-10 | [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)                                                                             |
+| GoogLeNet   | ImageNet | [ImageNet](https://www.image-net.org/)                                                                                              |
+| LeNet       | MNIST   | [MNIST](http://yann.lecun.com/exdb/mnist/)                                                                                          |
+| MobileNet   | CIFAR-10 | [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)                                                                             |
+| ResNet18    | ImageNet | [ImageNet](https://www.image-net.org/)                                                                                              |
+| SqueezeNet  | ImageNet | [ImageNet](https://www.image-net.org/)                                                                                              |
+| VGG19       | CIFAR-10 | [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)                                                                             |
 | LSTM        | Stock-Price | [StockPricesPredictionProject](https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo/tree/master/StockPricesPredictionProject) |
-| PointNet | ShapeNet| [ShapeNet](https://web.stanford.edu/~ericyi/project_page/part_annotation/index.html)                                                                                                                              |
+| PointNet | ShapeNet| [ShapeNet](https://web.stanford.edu/~ericyi/project_page/part_annotation/index.html)                                                |
 
 
 I. We have made special treatment for different data sets, which are stored in the form of `.npz` for training and validation of the network model. 
 
 II. We provide the processed dataset file [MoCo_Datasets](https://1drv.ms/f/s!Ao0nBM4MEX_uiU442vGWhqV05hwV?e=VONAIO).
 
-**Note:** In datasets.zip, there are 4 files:
+**Note:** In datasets.zip, there are `4` files and `1` directory:
 
 > cifar10.npz: dataset for cifar10;
 >
@@ -73,3 +90,5 @@ II. We provide the processed dataset file [MoCo_Datasets](https://1drv.ms/f/s!Ao
 > mnist.npz: dataset for mnist;
 >
 > DIS.csv: dataset for DIS.
+> 
+> shapenet: dateset for shapenet.
