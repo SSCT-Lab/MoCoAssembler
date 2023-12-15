@@ -1,6 +1,5 @@
 | DL Library |                                          issue                                          |                          url                          |  status   |
 |:----------:|:---------------------------------------------------------------------------------------:|:-----------------------------------------------------:|:---------:|
-| TensorFlow |        Croping2D/3D does not have exception handling for the Croping parameter        | https://github.com/tensorflow/tensorflow/issues/61255 | confirmed |
 | TensorFlow |                   Documentation Bug about API ActivityRegularization                    | https://github.com/tensorflow/tensorflow/issues/61254 |   fixed   |
 | TensorFlow |                      Functions that limit video memory do not work                      | https://github.com/tensorflow/tensorflow/issues/61168 | confirmed |
 | TensorFlow |                               the description of padding                                | https://github.com/tensorflow/tensorflow/issues/60839 |   fixed   |
@@ -11,6 +10,7 @@
 | TensorFlow |                          The value range of parameters of LSTM                          | https://github.com/tensorflow/tensorflow/issues/61256 | confirmed |
 | TensorFlow |                   Could not interpret serialized activation function                    | https://github.com/tensorflow/tensorflow/issues/60840 | confirmed |
 | TensorFlow |                       The value range of parameters of SimpleRNN                        | https://github.com/tensorflow/tensorflow/issues/61256 | confirmed |
+| TensorFlow |        Croping2D/3D does not have exception handling for the Croping parameter        | https://github.com/tensorflow/tensorflow/issues/61255 | confirmed |
 |  PyTorch   |            torch.nn.Conv2d's padding mode circular cannot accept 3-dim input            |   https://github.com/pytorch/pytorch/issues/104860    |   fixed   |
 |  PyTorch   |              torch.nn.MultiheadAttention lacks parameter validation check               |   https://github.com/pytorch/pytorch/issues/105630    |   fixed   |
 |  PyTorch   |                           "padding" dimensions of Pad Layers                            |   https://github.com/pytorch/pytorch/issues/105627    |   fixed   |
