@@ -27,17 +27,17 @@ The rapidly developing deep learning (DL) techniques have been applied in softwa
 
 We provide specific `directory structures` according to different frameworks.
 
-> ```/MoCoAssembler/bugs``` -- Bug list for MoCo. 
+> `/MoCoAssembler/bugs` -- Bug list for MoCo. 
 > 
-> ```/MoCoAssembler/moco_jt```  --  MoCo for jittor. 
+> `/MoCoAssembler/moco_jt`  --  MoCo for jittor. 
 >
-> ```/MoCoAssembler/moco_torch```  --  MoCo for pytorch. 
+> `/MoCoAssembler/moco_torch`  --  MoCo for pytorch. 
 >
-> ```/MoCoAssembler/moco_tf```  --  MoCo for tensorflow. 
+> `/MoCoAssembler/moco_tf`  --  MoCo for tensorflow. 
 > 
-> ```/MoCoAssembler/datasets```  --  Datasets we used (Need to be added by the replicator). 
+> `/MoCoAssembler/datasets`  --  Datasets we used (Need to be added by the replicator). 
 >
-> ```/MoCoAssembler/utils```  --  MoCo utility class. 
+> `/MoCoAssembler/utils`  --  MoCo utility class. 
 ## Usage
 In order to reproduce our tool, you first need to download and unzip `/MoCoAssembler`, and surface according to the corresponding `README.md`.
 
