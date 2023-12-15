@@ -1,4 +1,4 @@
-| DL Library |                                  Issue                                  |                          Url                          |  Status   |
+| DL Library |                                  Issue                                  |                          URL                          |  Status   |
 |:----------:|:-----------------------------------------------------------------------:|:-----------------------------------------------------:|:---------:|
 | TensorFlow |           Documentation Bug about API ActivityRegularization            | https://github.com/tensorflow/tensorflow/issues/61254 |   fixed   |
 | TensorFlow |              Functions that limit video memory do not work              | https://github.com/tensorflow/tensorflow/issues/61168 | confirmed |
