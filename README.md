@@ -5,7 +5,28 @@ The rapidly developing deep learning (DL) techniques have been applied in softwa
 ## Issue List
 [Issue List](https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_1.0/issue_list.md) for a summary of the issues we submitted. 
 ## Bug List
-[Bug List](https://github.com/SSCT-Lab/MoCoAssembler/tree/MoCo_1.0/bugs) for a summary of the bugs' files we found.
+[Bug List](https://github.com/SSCT-Lab/MoCoAssembler/blob/MoCo_1.0/bugs) for a summary of the bugs' files we found.
+## Directory structure
+
+We provide specific `directory structures` according to different frameworks.
+
+> ```/MoCoAssembler/moco_jt```  --  MoCo for jittor.
+>
+> ```/MoCoAssembler/moco_torch```  --  MoCo for pytorch.
+>
+> ```/MoCoAssembler/moco_tf```  --  MoCo for tensorflow.
+>
+> ```/MoCoAssembler/datasets```  --  Datasets we used (Need to be added by the replicator).
+>
+> ```/MoCoAssembler/utils```  --  MoCo utility class.
+## Usage
+(修改!!) To use our tool, please download and unzip it first. We provide different ways to use different libraries. In addition, we have provided three detailed usage documents for your reference.
+
+| Library    | Link                                                                         |
+| ---------- |------------------------------------------------------------------------------|
+| Tensorflow | https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_1.0/moco_tf/README.md    |
+| Pytorch    | https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_1.0/moco_torch/README.md |
+| Jittor     | https://github.com/SSCT-Lab/MoCoAssembler/blob/MoCo_1.0/moco_jt/README.md    |
 ## Libraries
 I. **Tensorflow**
 
@@ -20,23 +41,21 @@ III. **Jittor**
 
 [Jittor](https://github.com/Jittor/jittor) is a high-performance deep learning framework based on JIT compiling and meta-operators. The whole framework and meta-operators are compiled just-in-time. A powerful op compiler and tuner are integrated into Jittor. It allowed us to generate high-performance code with specialized for your model. Jittor also contains a wealth of high-performance model libraries, including: image recognition, detection, segmentation, generation, differentiable rendering, geometric learning, reinforcement learning, etc. .
 
-## Dataset/directories
-
-### Datasets
+## Datasets
 
 We used `9` deep learning models from `5` common datasets based on image and sequence data as the initial seed models for MoCo, and these models have been widely used in many existing studies.
 
-| Model       | Dataset     | Link                                                         |
-| ----------- | ----------- | ------------------------------------------------------------ |
-| AlexNet     | CIFAR-10    | [cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)      |
-| GoogLeNet   | ImageNet    | [Imagenet](https://www.image-net.org/)                       |
-| LeNet       | MNIST       | [mnist](http://yann.lecun.com/exdb/mnist/)                   |
-| MobileNet   | CIFAR-10    | [cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)      |
-| ResNet18    | ImageNet    | [Imagenet](https://www.image-net.org/)                       |
-| SqueezeNet  | ImageNet    | [Imagenet](https://www.image-net.org/)                       |
-| VGG19       | CIFAR-10    | [cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)      |
+| Model       | Dataset | Link                                                                                                                                |
+| ----------- | ------- |-------------------------------------------------------------------------------------------------------------------------------------|
+| AlexNet     | CIFAR-10 | [cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)                                                                             |
+| GoogLeNet   | ImageNet | [Imagenet](https://www.image-net.org/)                                                                                              |
+| LeNet       | MNIST   | [mnist](http://yann.lecun.com/exdb/mnist/)                                                                                          |
+| MobileNet   | CIFAR-10 | [cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)                                                                             |
+| ResNet18    | ImageNet | [Imagenet](https://www.image-net.org/)                                                                                              |
+| SqueezeNet  | ImageNet | [Imagenet](https://www.image-net.org/)                                                                                              |
+| VGG19       | CIFAR-10 | [cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html)                                                                             |
 | LSTM        | Stock-Price | [StockPricesPredictionProject](https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo/tree/master/StockPricesPredictionProject) |
-| PointNet | 补充| 补充|
+| PointNet | ShapeNet| [ShapeNet](https://web.stanford.edu/~ericyi/project_page/part_annotation/index.html)]                                                                                                                               |
 
 
 I. We have made special treatment for different data sets, which are stored in the form of `.npz` for training and validation of the network model. 
@@ -52,29 +71,3 @@ II. We provide the processed dataset file [MoCo_Datasets](https://1drv.ms/f/s!Ao
 > mnist.npz: dataset for mnist;
 >
 > DIS.csv: dataset for DIS.
-
-### Directory structure
-
-We provide specific `directory structures` according to different frameworks.
-
-> ```/MoCoAssembler/jittor```  --  MoCo for jittor.
->
-> ```/MoCoAssembler/pytorch```  --  MoCo for pytorch.
->
-> ```/MoCoAssembler/tf```  --  MoCo for tensorflow.
->
-> ```/MoCoAssembler/examples```  --  Some models generated by MoCo as examples.
->
-> ```/MoCoAssembler/datasets```  --  Datasets we used.
->
-> ```/MoCoAssembler/utils```  --  MoCo utility class.
-
-## Usage
-
-To use our tool, please download and unzip it first. We provide different ways to use different libraries. In addition, we have provided three detailed usage documents for your reference.
-
-| Library    | Link                                                         |
-| ---------- | ------------------------------------------------------------ |
-| Tensorflow | https://github.com/SATE-Lab/MoCoAssembler/blob/main/tf/README.md |
-| Pytorch    | https://github.com/SATE-Lab/MoCoAssembler/blob/main/pytorch/README.md |
-| Jittor     | https://github.com/SATE-Lab/MoCoAssembler/blob/main/jittor/README.md |
