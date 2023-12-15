@@ -3,10 +3,10 @@ from pathlib import Path
 CUR_ROOT = str(Path.cwd())
 
 # 根目录
-PROJ_PATH = Path(CUR_ROOT[:CUR_ROOT.find("ModelAssembler")])
+PROJ_PATH = Path(CUR_ROOT[:CUR_ROOT.find("MoCoAssembler")])
 
 # tensorflow
-PATH = PROJ_PATH / "ModelAssembler"
+PATH = PROJ_PATH / "MoCoAssembler"
 
 # datasets
 DATASETS_PATH = PATH / "datasets"

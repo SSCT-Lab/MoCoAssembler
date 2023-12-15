@@ -62,7 +62,7 @@ III. **Jittor**
 
 ## Datasets
 
-We used `9` deep learning models from `5` common datasets based on image and sequence data as the initial seed models for MoCo, and these models have been widely used in many existing studies.
+We used `9` deep learning models from `4` common datasets based on image and sequence data as the initial seed models for MoCo, and these models have been widely used in many existing studies.
 
 | Model       | Dataset | Link                                                                                                                                |
 | ----------- | ------- |-------------------------------------------------------------------------------------------------------------------------------------|
@@ -74,14 +74,14 @@ We used `9` deep learning models from `5` common datasets based on image and seq
 | SqueezeNet  | ImageNet | [ImageNet](https://www.image-net.org/)                                                                                              |
 | VGG19       | CIFAR-10 | [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)                                                                             |
 | LSTM        | Stock-Price | [StockPricesPredictionProject](https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo/tree/master/StockPricesPredictionProject) |
-| PointNet | ShapeNet| [ShapeNet](https://web.stanford.edu/~ericyi/project_page/part_annotation/index.html)                                                |
+| PointNet | Stock-Price| [StockPricesPredictionProject](https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo/tree/master/StockPricesPredictionProject)                                                |
 
 
 I. We have made special treatment for different data sets, which are stored in the form of `.npz` for training and validation of the network model. 
 
 II. We provide the processed dataset file [MoCo_Datasets](https://1drv.ms/f/s!Ao0nBM4MEX_uiU442vGWhqV05hwV?e=VONAIO).
 
-**Note:** In datasets.zip, there are `4` files and `1` directory:
+**Note:** In datasets.zip, there are `4` files:
 
 > cifar10.npz: dataset for cifar10;
 >
@@ -90,5 +90,3 @@ II. We provide the processed dataset file [MoCo_Datasets](https://1drv.ms/f/s!Ao
 > mnist.npz: dataset for mnist;
 >
 > DIS.csv: dataset for DIS.
-> 
-> shapenet: dateset for shapenet.
