@@ -14,6 +14,7 @@ def log_process(model_name):
     model_file = log_file_path / model_name
     if is_dir_empty(model_file):
         print(model_file + " is empty.")
+        return 
 
     error_type = ""
     log_path = ""
