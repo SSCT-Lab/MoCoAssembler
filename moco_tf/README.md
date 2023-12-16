@@ -88,6 +88,12 @@ I. Obtain the output for Fuzzing test.
 
 `moco_tf/log/model_name/log.csv`: All error logs. 
 
+> Run `logger_process_tf.py`  to obtain the log information `log.csv` and the filtered logs. ~~You may need to modify some of our code to get the log information.~~
+
+```
+python logger_process_tf.py
+```
+
 II. Obtain the output for boundary test.
 
 `moco_tf/result/boundary`: All models generated after boundary testing were performed. 
