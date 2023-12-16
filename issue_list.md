@@ -1,4 +1,4 @@
-| DL Library |                                  Issue                                  |                          Url                          |  Status   |
+| DL Library |                                  Issue                                  |                          URL                          |  Status   |
 |:----------:|:-----------------------------------------------------------------------:|:-----------------------------------------------------:|:---------:|
 | TensorFlow |           Documentation Bug about API ActivityRegularization            | https://github.com/tensorflow/tensorflow/issues/61254 |   fixed   |
 | TensorFlow |              Functions that limit video memory do not work              | https://github.com/tensorflow/tensorflow/issues/61168 | confirmed |
@@ -23,5 +23,5 @@
 |  PyTorch   |      torch.nn.MultiheadAttention lacks parameter validation check       |   https://github.com/pytorch/pytorch/issues/105630    |   fixed   |
 |  PyTorch   |    torch.nn.TransformerDecoderLayer lacks parameter validation check    |   https://github.com/pytorch/pytorch/issues/105632    | confirmed |
 |  PyTorch   |    torch.nn.Conv1d's padding mode circular cannot accept 2-dim input    |   https://github.com/pytorch/pytorch/issues/104860    |   fixed   |
-|  PyTorch   |                  Hidden rule in nn.FractionalMaxPool2d                  |   https://github.com/pytorch/pytorch/issues/115531    | submitted |
+|  PyTorch   |                  Hidden rule in nn.FractionalMaxPool2d                  |   https://github.com/pytorch/pytorch/issues/115531    | confirmed |
 |  PyTorch   |         Hidden range of padding parameter in nn.ReflectionPad2d         |   https://github.com/pytorch/pytorch/issues/115532    | confirmed |

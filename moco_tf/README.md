@@ -1,4 +1,4 @@
-# MOCO for Tensorflow
+# MoCo for Tensorflow
 
 ## Requirements
 
@@ -14,7 +14,7 @@ tensroflow==2.12.0
 
 All the datasets involved in tensorflow are stored in [MoCo_Datasets](https://1drv.ms/f/s!Ao0nBM4MEX_uiU442vGWhqV05hwV?e=VONAIO), unzip to the `/ModelAssembler` root directory, named `datasets`.
 
-You can check out the web datasets at the following link: [Cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html), [Mnist](http://yann.lecun.com/exdb/mnist/), [Imagenet](https://www.image-net.org/), [StockPricesPredictionProject](https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo/tree/master/StockPricesPredictionProject) and [ShapeNet](https://web.stanford.edu/~ericyi/project_page/part_annotation/index.html).
+You can check out the web datasets at the following link: [Cifar 10](https://www.cs.toronto.edu/~kriz/cifar.html), [Mnist](http://yann.lecun.com/exdb/mnist/), [Imagenet](https://www.image-net.org/), and [StockPricesPredictionProject](https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo/tree/master/StockPricesPredictionProject)
 
 ## Reproducibility
 
