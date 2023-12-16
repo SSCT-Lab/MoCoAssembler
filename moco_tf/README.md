@@ -1,4 +1,4 @@
-# MOCO for Tensorflow
+# MoCo for Tensorflow
 
 ## Requirements
 
