@@ -1,38 +1,38 @@
-import moco_jt.nn as nn
-import moco_jt
+import jittor.nn as nn
+import jittor
 
 
 class googlenet(nn.Module):
     def __init__(self, class_num=1000):
         super(googlenet, self).__init__()
 
-        self.relu1 = moco_jt.nn.ReLU()
-        self.relu2 = moco_jt.nn.ReLU()
-        self.relu3 = moco_jt.nn.ReLU()
+        self.relu1 = jittor.nn.ReLU()
+        self.relu2 = jittor.nn.ReLU()
+        self.relu3 = jittor.nn.ReLU()
 
-        self.conv1 = moco_jt.nn.Conv2d(in_channels=3, out_channels=64, kernel_size=7, stride=2, padding=3)
-        self.maxpool1 = moco_jt.nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True)
+        self.conv1 = jittor.nn.Conv2d(in_channels=3, out_channels=64, kernel_size=7, stride=2, padding=3)
+        self.maxpool1 = jittor.nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True)
 
-        self.conv2 = moco_jt.nn.Conv2d(in_channels=64, out_channels=64, kernel_size=1, stride=1)
-        self.conv3 = moco_jt.nn.Conv2d(in_channels=64, out_channels=192, kernel_size=3, stride=1, padding=1)
-        self.maxpool2 = moco_jt.nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True)
+        self.conv2 = jittor.nn.Conv2d(in_channels=64, out_channels=64, kernel_size=1, stride=1)
+        self.conv3 = jittor.nn.Conv2d(in_channels=64, out_channels=192, kernel_size=3, stride=1, padding=1)
+        self.maxpool2 = jittor.nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True)
 
         self.inception3a = Inception(192, 64, 96, 128, 16, 32, 32)
         self.inception3b = Inception(256, 128, 128, 192, 32, 96, 64)
-        self.maxpool3 = moco_jt.nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True)
+        self.maxpool3 = jittor.nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True)
 
         self.inception4a = Inception(480, 192, 96, 208, 16, 48, 64)
         self.inception4b = Inception(512, 160, 112, 224, 24, 64, 64)
         self.inception4c = Inception(512, 128, 128, 256, 24, 64, 64)
         self.inception4d = Inception(512, 112, 144, 288, 32, 64, 64)
         self.inception4e = Inception(528, 256, 160, 320, 32, 128, 128)
-        self.maxpool4 = moco_jt.nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True)
+        self.maxpool4 = jittor.nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True)
 
         self.inception5a = Inception(832, 256, 160, 320, 32, 128, 128)
         self.inception5b = Inception(832, 384, 192, 384, 48, 128, 128)
 
-        self.avgpool1 = moco_jt.nn.AdaptiveAvgPool2d(output_size=(1, 1))
-        self.dropout = moco_jt.nn.Dropout(p=0.4)
+        self.avgpool1 = jittor.nn.AdaptiveAvgPool2d(output_size=(1, 1))
+        self.dropout = jittor.nn.Dropout(p=0.4)
         self.fc = nn.Linear(in_features=1024, out_features=1000)
 
     def execute(self, x):
@@ -61,7 +61,7 @@ class googlenet(nn.Module):
         x = self.inception5b(x)
         x = self.avgpool1(x)
 
-        x = moco_jt.flatten(x, 1)
+        x = jittor.flatten(x, 1)
         x = self.dropout(x)
         x = self.fc(x)
         return x
@@ -71,13 +71,13 @@ class Inception(nn.Module):
     def __init__(self, in_channels, ch1x1, ch3x3red, ch3x3, ch5x5red, ch5x5, pool_proj):
         super(Inception, self).__init__()
 
-        self.relu1 = moco_jt.nn.ReLU()
-        self.relu2a = moco_jt.nn.ReLU()
-        self.relu2b = moco_jt.nn.ReLU()
-        self.relu3a = moco_jt.nn.ReLU()
-        self.relu3b = moco_jt.nn.ReLU()
-        self.relu4 = moco_jt.nn.ReLU()
-        self.pool = moco_jt.nn.MaxPool2d(kernel_size=3, stride=1, padding=1)
+        self.relu1 = jittor.nn.ReLU()
+        self.relu2a = jittor.nn.ReLU()
+        self.relu2b = jittor.nn.ReLU()
+        self.relu3a = jittor.nn.ReLU()
+        self.relu3b = jittor.nn.ReLU()
+        self.relu4 = jittor.nn.ReLU()
+        self.pool = jittor.nn.MaxPool2d(kernel_size=3, stride=1, padding=1)
 
         self.conv1 = nn.Conv2d(in_channels=in_channels, out_channels=ch1x1, kernel_size=1)
 
@@ -108,13 +108,13 @@ class Inception(nn.Module):
         branch4 = self.relu4(branch4)
 
         outputs = [branch1, branch2, branch3, branch4]
-        x = moco_jt.cat(outputs, 1)
+        x = jittor.cat(outputs, 1)
 
         return x
 
 
 def go():
     net = googlenet()
-    x = moco_jt.randn((3, 3, 224, 224))
+    x = jittor.randn((3, 3, 224, 224))
     y = net(x)
     return net

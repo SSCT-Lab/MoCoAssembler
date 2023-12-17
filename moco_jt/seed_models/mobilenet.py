@@ -1,80 +1,80 @@
-import moco_jt
-import moco_jt.nn as nn
+import jittor
+import jittor.nn as nn
 
 class MobileNet(nn.Module):
     def __init__(self, in_channels):
         super(MobileNet, self).__init__()
 
-        self.fc = moco_jt.nn.Linear(in_features=1024, out_features=1000)
-        self.relu1a = moco_jt.nn.ReLU()
-        self.relu1b = moco_jt.nn.ReLU()
-        self.relu2a = moco_jt.nn.ReLU()
-        self.relu2b = moco_jt.nn.ReLU()
-        self.relu3a = moco_jt.nn.ReLU()
-        self.relu3b = moco_jt.nn.ReLU()
-        self.relu4a = moco_jt.nn.ReLU()
-        self.relu4b = moco_jt.nn.ReLU()
-        self.relu5a = moco_jt.nn.ReLU()
-        self.relu5b = moco_jt.nn.ReLU()
-        self.relu6a = moco_jt.nn.ReLU()
-        self.relu6b = moco_jt.nn.ReLU()
-        self.relu7a = moco_jt.nn.ReLU()
-        self.relu7b = moco_jt.nn.ReLU()
-        self.relu8a = moco_jt.nn.ReLU()
-        self.relu8b = moco_jt.nn.ReLU()
-        self.relu9a = moco_jt.nn.ReLU()
-        self.relu9b = moco_jt.nn.ReLU()
-        self.relu10a = moco_jt.nn.ReLU()
-        self.relu10b = moco_jt.nn.ReLU()
-        self.relu11a = moco_jt.nn.ReLU()
-        self.relu11b = moco_jt.nn.ReLU()
-        self.relu12a = moco_jt.nn.ReLU()
-        self.relu12b = moco_jt.nn.ReLU()
-        self.relu13a = moco_jt.nn.ReLU()
-        self.relu13b = moco_jt.nn.ReLU()
+        self.fc = jittor.nn.Linear(in_features=1024, out_features=1000)
+        self.relu1a = jittor.nn.ReLU()
+        self.relu1b = jittor.nn.ReLU()
+        self.relu2a = jittor.nn.ReLU()
+        self.relu2b = jittor.nn.ReLU()
+        self.relu3a = jittor.nn.ReLU()
+        self.relu3b = jittor.nn.ReLU()
+        self.relu4a = jittor.nn.ReLU()
+        self.relu4b = jittor.nn.ReLU()
+        self.relu5a = jittor.nn.ReLU()
+        self.relu5b = jittor.nn.ReLU()
+        self.relu6a = jittor.nn.ReLU()
+        self.relu6b = jittor.nn.ReLU()
+        self.relu7a = jittor.nn.ReLU()
+        self.relu7b = jittor.nn.ReLU()
+        self.relu8a = jittor.nn.ReLU()
+        self.relu8b = jittor.nn.ReLU()
+        self.relu9a = jittor.nn.ReLU()
+        self.relu9b = jittor.nn.ReLU()
+        self.relu10a = jittor.nn.ReLU()
+        self.relu10b = jittor.nn.ReLU()
+        self.relu11a = jittor.nn.ReLU()
+        self.relu11b = jittor.nn.ReLU()
+        self.relu12a = jittor.nn.ReLU()
+        self.relu12b = jittor.nn.ReLU()
+        self.relu13a = jittor.nn.ReLU()
+        self.relu13b = jittor.nn.ReLU()
 
-        self.conv0 = moco_jt.nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, stride=2, padding=1)
+        self.conv0 = jittor.nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, stride=2, padding=1)
 
-        self.conv1a = moco_jt.nn.Conv2d(in_channels=32, out_channels=32, kernel_size=3, stride=1, padding=1, groups=32)
-        self.conv1b = moco_jt.nn.Conv2d(in_channels=32, out_channels=64, kernel_size=1, stride=1, padding=0)
+        self.conv1a = jittor.nn.Conv2d(in_channels=32, out_channels=32, kernel_size=3, stride=1, padding=1, groups=32)
+        self.conv1b = jittor.nn.Conv2d(in_channels=32, out_channels=64, kernel_size=1, stride=1, padding=0)
 
-        self.conv2a = moco_jt.nn.Conv2d(in_channels=64, out_channels=64, kernel_size=3, stride=2, padding=1, groups=64)
-        self.conv2b = moco_jt.nn.Conv2d(in_channels=64, out_channels=128, kernel_size=1, stride=1, padding=0)
+        self.conv2a = jittor.nn.Conv2d(in_channels=64, out_channels=64, kernel_size=3, stride=2, padding=1, groups=64)
+        self.conv2b = jittor.nn.Conv2d(in_channels=64, out_channels=128, kernel_size=1, stride=1, padding=0)
 
-        self.conv3a = moco_jt.nn.Conv2d(in_channels=128, out_channels=128, kernel_size=3, stride=1, padding=1, groups=128)
-        self.conv3b = moco_jt.nn.Conv2d(in_channels=128, out_channels=128, kernel_size=1, stride=1, padding=0)
+        self.conv3a = jittor.nn.Conv2d(in_channels=128, out_channels=128, kernel_size=3, stride=1, padding=1, groups=128)
+        self.conv3b = jittor.nn.Conv2d(in_channels=128, out_channels=128, kernel_size=1, stride=1, padding=0)
 
-        self.conv4a = moco_jt.nn.Conv2d(in_channels=128, out_channels=128, kernel_size=3, stride=2, padding=1, groups=128)
-        self.conv4b = moco_jt.nn.Conv2d(in_channels=128, out_channels=256, kernel_size=1, stride=1, padding=0)
+        self.conv4a = jittor.nn.Conv2d(in_channels=128, out_channels=128, kernel_size=3, stride=2, padding=1, groups=128)
+        self.conv4b = jittor.nn.Conv2d(in_channels=128, out_channels=256, kernel_size=1, stride=1, padding=0)
 
-        self.conv5a = moco_jt.nn.Conv2d(in_channels=256, out_channels=256, kernel_size=3, stride=1, padding=1, groups=256)
-        self.conv5b = moco_jt.nn.Conv2d(in_channels=256, out_channels=256, kernel_size=1, stride=1, padding=0)
+        self.conv5a = jittor.nn.Conv2d(in_channels=256, out_channels=256, kernel_size=3, stride=1, padding=1, groups=256)
+        self.conv5b = jittor.nn.Conv2d(in_channels=256, out_channels=256, kernel_size=1, stride=1, padding=0)
 
-        self.conv6a = moco_jt.nn.Conv2d(in_channels=256, out_channels=256, kernel_size=3, stride=2, padding=1, groups=256)
-        self.conv6b = moco_jt.nn.Conv2d(in_channels=256, out_channels=512, kernel_size=1, stride=1, padding=0)
+        self.conv6a = jittor.nn.Conv2d(in_channels=256, out_channels=256, kernel_size=3, stride=2, padding=1, groups=256)
+        self.conv6b = jittor.nn.Conv2d(in_channels=256, out_channels=512, kernel_size=1, stride=1, padding=0)
 
-        self.conv7a = moco_jt.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, stride=1, padding=1, groups=512)
-        self.conv7b = moco_jt.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=1, stride=1, padding=0)
+        self.conv7a = jittor.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, stride=1, padding=1, groups=512)
+        self.conv7b = jittor.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=1, stride=1, padding=0)
 
-        self.conv8a = moco_jt.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, stride=1, padding=1, groups=512)
-        self.conv8b = moco_jt.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=1, stride=1, padding=0)
+        self.conv8a = jittor.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, stride=1, padding=1, groups=512)
+        self.conv8b = jittor.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=1, stride=1, padding=0)
 
-        self.conv9a = moco_jt.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, stride=1, padding=1, groups=512)
-        self.conv9b = moco_jt.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=1, stride=1, padding=0)
+        self.conv9a = jittor.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, stride=1, padding=1, groups=512)
+        self.conv9b = jittor.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=1, stride=1, padding=0)
 
-        self.conv10a = moco_jt.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, stride=1, padding=1, groups=512)
-        self.conv10b = moco_jt.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=1, stride=1, padding=0)
+        self.conv10a = jittor.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, stride=1, padding=1, groups=512)
+        self.conv10b = jittor.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=1, stride=1, padding=0)
 
-        self.conv11a = moco_jt.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, stride=1, padding=1, groups=512)
-        self.conv11b = moco_jt.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=1, stride=1, padding=0)
+        self.conv11a = jittor.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, stride=1, padding=1, groups=512)
+        self.conv11b = jittor.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=1, stride=1, padding=0)
 
-        self.conv12a = moco_jt.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, stride=2, padding=1, groups=512)
-        self.conv12b = moco_jt.nn.Conv2d(in_channels=512, out_channels=1024, kernel_size=1, stride=1, padding=0)
+        self.conv12a = jittor.nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, stride=2, padding=1, groups=512)
+        self.conv12b = jittor.nn.Conv2d(in_channels=512, out_channels=1024, kernel_size=1, stride=1, padding=0)
 
-        self.conv13a = moco_jt.nn.Conv2d(in_channels=1024, out_channels=1024, kernel_size=3, stride=2, padding=4, groups=1024)
-        self.conv13b = moco_jt.nn.Conv2d(in_channels=1024, out_channels=1024, kernel_size=1, stride=1, padding=0)
+        self.conv13a = jittor.nn.Conv2d(in_channels=1024, out_channels=1024, kernel_size=3, stride=2, padding=4, groups=1024)
+        self.conv13b = jittor.nn.Conv2d(in_channels=1024, out_channels=1024, kernel_size=1, stride=1, padding=0)
 
-        self.pool = moco_jt.nn.AdaptiveAvgPool2d(output_size=1)
+        self.pool = jittor.nn.AdaptiveAvgPool2d(output_size=1)
 
     def execute(self, x):
         # 1st block
@@ -168,6 +168,6 @@ class MobileNet(nn.Module):
 
 def go():
     model = MobileNet(3)
-    x = moco_jt.randn((1, 3, 224, 224))
+    x = jittor.randn((1, 3, 224, 224))
     y = model(x)
     return model

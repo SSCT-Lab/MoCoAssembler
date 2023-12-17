@@ -34,9 +34,9 @@ class Assembler_Complex:
         # self.shape_fixer = shape_fix.ShapeFixer()
         self.n = 2
 
-        MODEL_LIST = ['ResNet18', 'ResNet50', 'InceptionV3', 'xception', 'testnet',
-                      'alexnet', 'lenet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19',
-                      'densenet', 'BiLSTM', 'LSTM', 'GRU', 'googlenet']
+        MODEL_LIST = ['resnet18',
+                      'alexnet', 'LeNet', 'mobilenet', 'squeezenet', 'vgg19',
+                      'LSTM', 'googlenet', "pointnet"]
         # initialize:
         if not os.path.exists(file_paths.MUTATED_MODEL_PATH):
             os.makedirs(file_paths.MUTATED_MODEL_PATH)

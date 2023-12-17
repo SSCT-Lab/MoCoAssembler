@@ -1,6 +1,6 @@
 import random
 
-import moco_jt
+import jittor
 
 from assemble_complex_boundary import Assembler_Complex
 import argparse
@@ -8,9 +8,9 @@ import os
 import file_paths
 
 if __name__ == '__main__':
-    MODEL_LIST = ['ResNet18', 'ResNet50', 'InceptionV3', 'xception', 'testnet',
-                  'alexnet', 'lenet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19',
-                  'densenet', 'BiLSTM', 'LSTM', 'GRU', 'LOOP', 'googlenet']
+    MODEL_LIST = ['resnet18',
+                  'alexnet', 'LeNet', 'mobilenet', 'squeezenet', 'vgg19',
+                  'LSTM', 'googlenet', "pointnet"]
 
     # params: ========
     parser = argparse.ArgumentParser()
@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     assert MODEL in MODEL_LIST
     assert TSF in [0, 1]
-    moco_jt.flags.use_cuda = 1
+    jittor.flags.use_cuda = 1
     skip_list = ['LOOP', 'testnet']
 
     if MODEL == 'LOOP':

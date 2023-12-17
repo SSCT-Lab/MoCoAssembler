@@ -1,27 +1,27 @@
 import copy
 
-import moco_jt
-import moco_jt.nn as nn
+import jittor
+import jittor.nn as nn
 
 
 class LeNet(nn.Module):
     def __init__(self):
         super(LeNet, self).__init__()
-        self.conv_1 = moco_jt.nn.Conv(in_channels=1, out_channels=6, kernel_size=5)
-        self.conv_2 = moco_jt.nn.Sigmoid()
-        self.conv_3 = moco_jt.nn.MaxPool2d(kernel_size=2, stride=2)
+        self.conv_1 = jittor.nn.Conv(in_channels=1, out_channels=6, kernel_size=5)
+        self.conv_2 = jittor.nn.Sigmoid()
+        self.conv_3 = jittor.nn.MaxPool2d(kernel_size=2, stride=2)
 
-        self.conv_4 = moco_jt.nn.Conv(in_channels=6, out_channels=16, kernel_size=5)
-        self.conv_5 = moco_jt.nn.Sigmoid()
-        self.conv_6 = moco_jt.nn.MaxPool2d(kernel_size=2, stride=2)
+        self.conv_4 = jittor.nn.Conv(in_channels=6, out_channels=16, kernel_size=5)
+        self.conv_5 = jittor.nn.Sigmoid()
+        self.conv_6 = jittor.nn.MaxPool2d(kernel_size=2, stride=2)
 
-        self.fc_1 = moco_jt.nn.Linear(in_features=256, out_features=120)
-        self.fc_2 = moco_jt.nn.Sigmoid()
+        self.fc_1 = jittor.nn.Linear(in_features=256, out_features=120)
+        self.fc_2 = jittor.nn.Sigmoid()
 
-        self.fc_3 = moco_jt.nn.Linear(in_features=120, out_features=84)
-        self.fc_4 = moco_jt.nn.Sigmoid()
+        self.fc_3 = jittor.nn.Linear(in_features=120, out_features=84)
+        self.fc_4 = jittor.nn.Sigmoid()
 
-        self.fc_5 = moco_jt.nn.Linear(in_features=84, out_features=10)
+        self.fc_5 = jittor.nn.Linear(in_features=84, out_features=10)
 
     def execute(self, img):
         x = copy.deepcopy(img)
@@ -50,5 +50,5 @@ class LeNet(nn.Module):
 
 def go():
     net = LeNet()
-    y = net(moco_jt.randn((1, 1, 28, 28)))
+    y = net(jittor.randn((1, 1, 28, 28)))
     return net

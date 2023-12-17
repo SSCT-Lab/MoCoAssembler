@@ -73,6 +73,8 @@ def train_single_model(model_name: str, model_type: str) -> bool:
         module_name = model_name.replace('.py', '')
         module = import_module(module_name)
         net = module.go()
+        if "-1-" in model_name or "-2-" in model_name or "-3-" in model_name:
+            return True
         if ('BiLSTM' in model_name or 'LSTM' in model_name or 'GRU' in model_name) and '-1' in model_name:
             return True
         if '-0-1' not in model_name and t.dataloader_dict[net_name] is not None:

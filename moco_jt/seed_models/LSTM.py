@@ -1,5 +1,5 @@
-import moco_jt
-import moco_jt.nn as nn
+import jittor
+import jittor.nn as nn
 
 
 class LSTM(nn.Module):
@@ -9,10 +9,10 @@ class LSTM(nn.Module):
         self.hidden_size = 200
         self.num_layers = 4
 
-        self.lstm1 = moco_jt.nn.LSTMCell(input_size=1, hidden_size=200)
-        self.lstm2 = moco_jt.nn.LSTMCell(input_size=200, hidden_size=200)
-        self.lstm3 = moco_jt.nn.LSTMCell(input_size=200, hidden_size=200)
-        self.lstm4 = moco_jt.nn.LSTMCell(input_size=200, hidden_size=200)
+        self.lstm1 = jittor.nn.LSTMCell(input_size=1, hidden_size=200)
+        self.lstm2 = jittor.nn.LSTMCell(input_size=200, hidden_size=200)
+        self.lstm3 = jittor.nn.LSTMCell(input_size=200, hidden_size=200)
+        self.lstm4 = jittor.nn.LSTMCell(input_size=200, hidden_size=200)
 
         self.fc = nn.Linear(in_features=200, out_features=1)
 
@@ -21,8 +21,8 @@ class LSTM(nn.Module):
         seq_length = x.size(1)
 
         if True:
-            h0 = moco_jt.zeros((batch_size, self.hidden_size))
-            c0 = moco_jt.zeros((batch_size, self.hidden_size))
+            h0 = jittor.zeros((batch_size, self.hidden_size))
+            c0 = jittor.zeros((batch_size, self.hidden_size))
 
         hn1, cn1 = h0, c0
         hn2, cn2 = h0, c0
@@ -48,7 +48,7 @@ def go():
     HIDDEN_SIZE = 200
     NUM_LAYERS = 4
     OUTPUT_SIZE = 20
-    x = moco_jt.randn(5, 1, 1)
+    x = jittor.randn(5, 1, 1)
     net = LSTM()
     y = net(x)
     return net

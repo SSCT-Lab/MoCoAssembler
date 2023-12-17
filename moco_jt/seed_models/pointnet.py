@@ -1,25 +1,25 @@
-import moco_jt
-import moco_jt.nn as nn
+import jittor
+import jittor.nn as nn
 
 
 class pointnet(nn.Module):
     def __init__(self):
         super(pointnet, self).__init__()
-        self.layer1 = moco_jt.nn.Conv1d(in_channels=3, kernel_size=1, out_channels=64)
-        self.layer2 = moco_jt.nn.BatchNorm1d(num_features=64)
-        self.layer3 = moco_jt.nn.ReLU()
-        self.layer4 = moco_jt.nn.Conv1d(in_channels=64, kernel_size=1, out_channels=128)
-        self.layer5 = moco_jt.nn.BatchNorm1d(num_features=128)
-        self.layer6 = moco_jt.nn.ReLU()
-        self.layer7 = moco_jt.nn.Conv1d(in_channels=128, kernel_size=1, out_channels=1024)
-        self.layer8 = moco_jt.nn.BatchNorm1d(num_features=1024)
-        self.layer9 = moco_jt.nn.ReLU()
-        self.layer10 = moco_jt.nn.Flatten()
-        self.layer11 = moco_jt.nn.Linear(in_features=5120, out_features=512)
-        self.layer12 = moco_jt.nn.ReLU()
-        self.layer13 = moco_jt.nn.Linear(in_features=512, out_features=256)
-        self.layer14 = moco_jt.nn.ReLU()
-        self.layer15 = moco_jt.nn.Linear(in_features=256, out_features=10)
+        self.layer1 = jittor.nn.Conv1d(in_channels=3, kernel_size=1, out_channels=64)
+        self.layer2 = jittor.nn.BatchNorm1d(num_features=64)
+        self.layer3 = jittor.nn.ReLU()
+        self.layer4 = jittor.nn.Conv1d(in_channels=64, kernel_size=1, out_channels=128)
+        self.layer5 = jittor.nn.BatchNorm1d(num_features=128)
+        self.layer6 = jittor.nn.ReLU()
+        self.layer7 = jittor.nn.Conv1d(in_channels=128, kernel_size=1, out_channels=1024)
+        self.layer8 = jittor.nn.BatchNorm1d(num_features=1024)
+        self.layer9 = jittor.nn.ReLU()
+        self.layer10 = jittor.nn.Flatten()
+        self.layer11 = jittor.nn.Linear(in_features=5120, out_features=512)
+        self.layer12 = jittor.nn.ReLU()
+        self.layer13 = jittor.nn.Linear(in_features=512, out_features=256)
+        self.layer14 = jittor.nn.ReLU()
+        self.layer15 = jittor.nn.Linear(in_features=256, out_features=10)
 
     def execute(self, x):
         x = self.layer1(x)
@@ -42,6 +42,6 @@ class pointnet(nn.Module):
 
 def go():
     model = pointnet()
-    x = moco_jt.randn(3, 3, 5)
+    x = jittor.randn(3, 3, 5)
     y = model(x)
     return model

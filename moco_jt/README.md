@@ -11,34 +11,41 @@ pip install openpyxl
 ```
 
 ### DIRECTORY
-All files about MoCo_Jittor are in this directory(jittor), but the datasets used for training are in the main directory.
+All files about MoCo_Jittor are in this directory(moco_jt), but the datasets used for training are in the main directory.
 There are several directories in jittor:
 
-```jittor/algorithms``` -- algorithms.
+```moco_jt/algorithms``` -- algorithms.
 
-```jittor/jittor_layer_info``` -- layers info which is written in yaml files.
+```moco_jt/jittor_layer_info``` -- layers info which is written in yaml files.
 
-```jittor/jittor_layer_similarity``` -- layers similarity info which is written in yaml files.
+```moco_jt/jittor_layer_similarity``` -- layers similarity info which is written in yaml files.
 
-```jittor/seed_models``` -- seed model files.
+```moco_jt/seed_models``` -- seed model files.
 
 And then, several directories will be created(auto) during running to contain running results.
 
 ### RUN
+Due to the time cost of this tool, if you want to try this tool, here is a simple demo where less cases will be
+generated:
+
+Open your console under moco_jt/algorithms and type this for a demo:
+```
+python go_Fuzzing.py --MODEL 'LeNet' --N 3
+```
 I. Fuzzing
 
-Open your console under jittor_/algorithms and type this for MoCo FUZZING TEST:
+Open your console under moco_jt/algorithms and type this for MoCo FUZZING TEST:
 ```
-python go_Fuzzing.py --MODEL 'lenet' --N 5 --TSF 0
+python go_Fuzzing.py --MODEL 'LeNet' --N 5 --TSF 0
 ```
 1. `MODEL` means the seed model used this time. Make sure that the model is in `
 'alexnet'
-'lenet'
-'ResNet18'
+'LeNet'
+'resnet18'
 'mobilenet'
 'squeezenet'
 'vgg19'
-'LSTM'
+'lstm'
 'googlenet'
 'pointnet'`
 . And if you want to run with all seed models in a loop, set para MODEL to `LOOP`.
@@ -48,9 +55,9 @@ python go_Fuzzing.py --MODEL 'lenet' --N 5 --TSF 0
 
 II. Boundary
 
-Open your console under jittor_/algorithms and type this for MoCo BOUNDARY TEST:
+Open your console under moco_jt/algorithms and type this for MoCo BOUNDARY TEST:
 ```
-python go_Boundary.py --MODEL 'lenet'
+python go_Boundary.py --MODEL 'LeNet'
 ```
 `MODEL` means the seed model used this time. Make sure that the model is in the list above,
 and if you want to run with all seed models in a loop, set para MODEL to `LOOP`.
@@ -59,12 +66,12 @@ and if you want to run with all seed models in a loop, set para MODEL to `LOOP`.
 The result will be written in several directories
 (if not exists, these directories will be created while running):
 
-```jittor/mutated_models``` -- models generated during running (will be deleted every generation).
+```moco_jt/mutated_models``` -- models generated during running (will be deleted every generation).
 
-```jittor/saved_mutated_models``` -- error models will be saved here, they may show some potential bugs of jittor.
+```moco_jt/saved_mutated_models``` -- error models will be saved here, they may show some potential bugs of jittor.
 
-```jittor/logs``` -- error logs will be recorded here.
+```moco_jt/logs``` -- error logs will be recorded here.
 
-```jittor/boundary_logs``` -- boundary test results.
+```moco_jt/boundary_logs``` -- boundary test results.
 
-```jittor/boundary_models``` -- models related to boundary test results.
+```moco_jt/boundary_models``` -- models related to boundary test results.

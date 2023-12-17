@@ -1,5 +1,5 @@
-import moco_jt
-import moco_jt.nn as nn
+import jittor
+import jittor.nn as nn
 
 
 class ResNet18(nn.Module):
@@ -8,9 +8,9 @@ class ResNet18(nn.Module):
         self.in_channels = 64
 
         # conv1_x
-        self.conv1_1 = moco_jt.nn.Conv2d(in_channels=3, out_channels=64, kernel_size=7, stride=2, padding=3, bias=False)
-        self.conv1_2 = moco_jt.nn.BatchNorm2d(num_features=64)
-        self.conv1_3 = moco_jt.nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
+        self.conv1_1 = jittor.nn.Conv2d(in_channels=3, out_channels=64, kernel_size=7, stride=2, padding=3, bias=False)
+        self.conv1_2 = jittor.nn.BatchNorm2d(num_features=64)
+        self.conv1_3 = jittor.nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
 
         # conv2_x
         self.conv2 = self._make_layer(BasicBlock, 64, [[1, 1], [1, 1]])
@@ -24,8 +24,8 @@ class ResNet18(nn.Module):
         # conv5_x
         self.conv5 = self._make_layer(BasicBlock, 512, [[2, 1], [1, 1]])
 
-        self.avgpool = moco_jt.nn.AdaptiveAvgPool2d(output_size=(1, 1))
-        self.fc = moco_jt.nn.Linear(in_features=512, out_features=1000)
+        self.avgpool = jittor.nn.AdaptiveAvgPool2d(output_size=(1, 1))
+        self.fc = jittor.nn.Linear(in_features=512, out_features=1000)
 
     # 这个函数主要是用来，重复同一个残差块
     def _make_layer(self, block, out_channels, strides):
@@ -67,7 +67,7 @@ class BasicBlock(nn.Module):
         self.layer = nn.Sequential(
             nn.Conv2d(in_channels, out_channels, kernel_size=3, stride=stride[0], padding=padding, bias=False),
             nn.BatchNorm2d(out_channels),
-            moco_jt.nn.ReLU(),
+            jittor.nn.ReLU(),
             nn.Conv2d(out_channels, out_channels, kernel_size=3, stride=stride[1], padding=padding, bias=False),
             nn.BatchNorm2d(out_channels)
         )
@@ -78,7 +78,7 @@ class BasicBlock(nn.Module):
                 nn.Conv2d(in_channels, out_channels, kernel_size=1, stride=stride[0], bias=False),
                 nn.BatchNorm2d(out_channels)
             )
-        self.relu = moco_jt.nn.ReLU()
+        self.relu = jittor.nn.ReLU()
 
     def execute(self, x):
         out = self.layer(x)
@@ -89,6 +89,6 @@ class BasicBlock(nn.Module):
 
 def go():
     res18 = ResNet18()
-    x = moco_jt.randn((2, 3, 224, 224))
+    x = jittor.randn((2, 3, 224, 224))
     y = res18(x)
     return res18

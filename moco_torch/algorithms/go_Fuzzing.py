@@ -6,9 +6,9 @@ from assemble_complex import Assembler_Complex
 import argparse
 
 if __name__ == '__main__':
-    MODEL_LIST = ['ResNet18', 'ResNet50', 'InceptionV3', 'xception', 'testnet',
-                  'alexnet', 'lenet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19',
-                  'densenet', 'LSTM', 'GRU', 'googlenet', 'LOOP', 'BiLSTM']
+    MODEL_LIST = ['resnet18',
+                  'alexnet', 'LeNet', 'mobilenet', 'squeezenet', 'vgg19',
+                  'LSTM', 'googlenet', "pointnet"]
 
     # params: ========
     parser = argparse.ArgumentParser()

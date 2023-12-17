@@ -286,30 +286,51 @@ def reshape_tensor(input_tensor, target_shape: tuple):
 
 class Trainer:
     def __init__(self):
-        MODEL_LIST = ['ResNet18', 'ResNet50', 'InceptionV3', 'xception', 'testnet',
-                      'alexnet', 'lenet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19',
-                      'densenet', 'LSTM', 'GRU', 'googlenet', 'BiLSTM']
+        MODEL_LIST = ['resnet18',
+                      'alexnet', 'LeNet', 'mobilenet', 'squeezenet', 'vgg19',
+                      'LSTM', 'googlenet', "pointnet"]
         self.dataloader_dict = {}
         self.train_count = 0
-        self.dataloader_dict['ResNet18'] = get_imagenet(224)
-        self.dataloader_dict['ResNet50'] = self.dataloader_dict['ResNet18']
-        self.dataloader_dict['nasnet'] = get_imagenet(244)
-        self.dataloader_dict['InceptionV3'] = get_imagenet(299)
-        self.dataloader_dict['xception'] = self.dataloader_dict['ResNet18']
+        self.dataloader_dict['resnet18'] = get_imagenet(224)
         self.dataloader_dict['alexnet'] = get_cifar10()
-        self.dataloader_dict['lenet'] = get_mnist()
-        self.dataloader_dict['mobilenet'] = self.dataloader_dict['ResNet18']
-        self.dataloader_dict['squeezenet'] = self.dataloader_dict['nasnet']
+        self.dataloader_dict['LeNet'] = get_mnist()
+        self.dataloader_dict['mobilenet'] = self.dataloader_dict['resnet18']
+        self.dataloader_dict['squeezenet'] = get_imagenet(244)
         self.dataloader_dict['vgg16'] = self.dataloader_dict['alexnet']
         self.dataloader_dict['vgg19'] = self.dataloader_dict['alexnet']
-        self.dataloader_dict['densenet'] = self.dataloader_dict['ResNet18']
-        self.dataloader_dict['LSTM'] = get_stockprice()
-        self.dataloader_dict['GRU'] = self.dataloader_dict['LSTM']
-        self.dataloader_dict['googlenet'] = self.dataloader_dict['ResNet18']
-        self.dataloader_dict['BiLSTM'] = self.dataloader_dict['LSTM']
+        self.dataloader_dict['lstm'] = get_stockprice()
+        self.dataloader_dict['googlenet'] = self.dataloader_dict['resnet18']
+        self.dataloader_dict['pointnet'] = self.dataloader_dict['lstm']
         return
 
     def train(self, net_to_train: nn.Module, net_name: str) -> None:
+        # pointnet
+        if net_name == "pointnet":
+            data = pd.read_csv(os.path.join(file_paths.DATASET_PATH, 'DIS.csv'))
+            price_sequence = data.iloc[:, 1].values.astype(np.float32)
+            price_sequence = price_sequence[:2500]
+            net = net_to_train
+            criterion = nn.MSELoss()
+            optimizer = optim.Adam(net.parameters(), lr=lr)
+            for i in range(20):
+                input_datas = price_sequence[i*125:(i+1)*125]
+                input_input = input_datas[:75]
+                input_label = input_datas[75:]
+                input_input = input_input.reshape((BATCH_SIZE, 3, 5))
+                input_label = input_label.reshape((BATCH_SIZE, 10))
+
+                reshaped_inputs = torch.from_numpy(input_input)
+                labels = torch.from_numpy(input_label)
+                optimizer.zero_grad()  # 梯度清零
+
+                outputs = net(reshaped_inputs)  # 前向传播
+                outputs = reshape_tensor(outputs, (BATCH_SIZE, 10))
+                loss = criterion(outputs, labels)  # 计算损失
+                loss.backward()  # 反向传播
+                optimizer.step()  # 更新参数
+            return
+        # pointnet
+
         if net_name in self.dataloader_dict.keys():
             dataloader = self.dataloader_dict[net_name]
         else:
@@ -320,17 +341,18 @@ class Trainer:
         net = net_to_train
 
         # rnn
-        if net_name in ['LSTM', 'BiLSTM', 'GRU']:
+        if net_name in ['lstm', 'BiLSTM', 'GRU']:
             criterion = nn.MSELoss()
             optimizer = optim.Adam(net.parameters(), lr=lr)
             for i, inputs in enumerate(dataloader):
-                reshaped_inputs = torch.unsqueeze(torch.unsqueeze(inputs, dim=1), dim=2)
+                reshaped_inputs = torch.unsqueeze(inputs, dim=1)
                 labels = inputs.clone()  # 在这个示例中，将输入作为标签（仅用于示例目的，您可能需要更改为目标变量）
 
                 optimizer.zero_grad()  # 梯度清零
 
                 outputs = net(reshaped_inputs)  # 前向传播
                 outputs = reshape_tensor(outputs, (5, 1))
+                labels = reshape_tensor(labels, (5, 1))
                 loss = criterion(outputs, labels)  # 计算损失
                 loss.backward()  # 反向传播
                 optimizer.step()  # 更新参数
@@ -377,106 +399,106 @@ class Trainer:
         return
 
 
-class Tester:
-    def __init__(self):
-        MODEL_LIST = ['ResNet18', 'ResNet50', 'InceptionV3', 'xception', 'testnet',
-                      'alexnet', 'lenet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19',
-                      'densenet', 'LSTM', 'GRU', 'googlenet', 'BiLSTM']
-        self.dataloader_dict = {}
-        self.train_count = 0
-        self.dataloader_dict['ResNet18'] = get_imagenet_test(224)
-        self.dataloader_dict['ResNet50'] = self.dataloader_dict['ResNet18']
-        self.dataloader_dict['nasnet'] = get_imagenet_test(244)
-        self.dataloader_dict['InceptionV3'] = get_imagenet_test(299)
-        self.dataloader_dict['xception'] = self.dataloader_dict['ResNet18']
-        self.dataloader_dict['alexnet'] = get_cifar10_test()
-        self.dataloader_dict['lenet'] = get_mnist_test()
-        self.dataloader_dict['mobilenet'] = self.dataloader_dict['ResNet18']
-        self.dataloader_dict['squeezenet'] = self.dataloader_dict['nasnet']
-        self.dataloader_dict['vgg16'] = self.dataloader_dict['alexnet']
-        self.dataloader_dict['vgg19'] = self.dataloader_dict['alexnet']
-        self.dataloader_dict['densenet'] = self.dataloader_dict['ResNet18']
-        self.dataloader_dict['LSTM'] = get_stockprice_test()
-        self.dataloader_dict['GRU'] = self.dataloader_dict['LSTM']
-        self.dataloader_dict['googlenet'] = self.dataloader_dict['ResNet18']
-        self.dataloader_dict['BiLSTM'] = self.dataloader_dict['LSTM']
-        return
-
-    def test(self, net_to_train: nn.Module, net_name: str) -> float | None:
-        if net_name in self.dataloader_dict.keys():
-            dataloader = self.dataloader_dict[net_name]
-        else:
-            dataloader = None
-        if dataloader is None:
-            print(str(net_to_train).split('(', 1)[0] + ' no train')
-            return
-        net = net_to_train
-
-        # rnn
-        if net_name in ['LSTM', 'BiLSTM', 'GRU']:
-            correct = 0
-            total = 0
-            for i, inputs in enumerate(dataloader):
-                reshaped_inputs = torch.unsqueeze(torch.unsqueeze(inputs, dim=1), dim=2)
-                labels = inputs.clone()  # 在这个示例中，将输入作为标签（仅用于示例目的，您可能需要更改为目标变量）
-
-                outputs = net(reshaped_inputs)  # 前向传播
-                outputs = reshape_tensor(outputs, (5, 1))
-                _, predicted = torch.max(outputs, 1)
-                total += labels.size(0)
-                correct += (predicted == labels).sum().item()
-            # print('Train finished (RNN)')
-            return correct / total
-
-        net.to('cuda')
-        criterion = nn.CrossEntropyLoss()
-        criterion.to('cuda')
-        optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
-        for param in optimizer.param_groups:
-            for key, value in param.items():
-                if isinstance(value, torch.Tensor):
-                    param[key] = value.to('cuda')
-        running_loss = 0.0
-        correct = 0
-        total = 0
-        for i, data in enumerate(dataloader, 0):
-            # forward:
-            inputs, labels = data
-            labels = labels.to('cuda')
-            inputs = inputs.to('cuda')
-            outputs = net(inputs).to('cuda')
-            if net_name in ['alexnet', 'vgg16', 'vgg19']:
-                labels = labels.squeeze()
-                labels = labels.to('cuda')
-
-            # outputs reshape:
-            if net_name in ['lenet', 'alexnet', 'vgg16', 'vgg19']:
-                target_shape = (BATCH_SIZE, 10)
-            else:
-                target_shape = (BATCH_SIZE, 1000)
-            outputs = reshape_tensor(outputs, target_shape)
-            outputs = outputs.to('cuda')
-
-            # loss calculation and backward:
-            _, predicted = torch.max(outputs, 1)
-            total += labels.size(0)
-            correct += (predicted == labels).sum().item()
-            # print(str(i) + ':  ' + str(loss.item()))
-        self.train_count += 1
-        # print('Training Finished, ' + str(net).split('(', 1)[0] + ', count ' + str(self.train_count))
-        # torch.cpu.empty_cache()
-        return correct / total
-
-
-if __name__ == '__main__':
-    # test
-    t = Tester()
+# class Tester:
+#     def __init__(self):
+#         MODEL_LIST = ['ResNet18', 'ResNet50', 'InceptionV3', 'xception', 'testnet',
+#                       'alexnet', 'lenet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19',
+#                       'densenet', 'LSTM', 'GRU', 'googlenet', 'BiLSTM']
+#         self.dataloader_dict = {}
+#         self.train_count = 0
+#         self.dataloader_dict['ResNet18'] = get_imagenet_test(224)
+#         self.dataloader_dict['ResNet50'] = self.dataloader_dict['ResNet18']
+#         self.dataloader_dict['nasnet'] = get_imagenet_test(244)
+#         self.dataloader_dict['InceptionV3'] = get_imagenet_test(299)
+#         self.dataloader_dict['xception'] = self.dataloader_dict['ResNet18']
+#         self.dataloader_dict['alexnet'] = get_cifar10_test()
+#         self.dataloader_dict['lenet'] = get_mnist_test()
+#         self.dataloader_dict['mobilenet'] = self.dataloader_dict['ResNet18']
+#         self.dataloader_dict['squeezenet'] = self.dataloader_dict['nasnet']
+#         self.dataloader_dict['vgg16'] = self.dataloader_dict['alexnet']
+#         self.dataloader_dict['vgg19'] = self.dataloader_dict['alexnet']
+#         self.dataloader_dict['densenet'] = self.dataloader_dict['ResNet18']
+#         self.dataloader_dict['LSTM'] = get_stockprice_test()
+#         self.dataloader_dict['GRU'] = self.dataloader_dict['LSTM']
+#         self.dataloader_dict['googlenet'] = self.dataloader_dict['ResNet18']
+#         self.dataloader_dict['BiLSTM'] = self.dataloader_dict['LSTM']
+#         return
+#
+#     def test(self, net_to_train: nn.Module, net_name: str) -> float | None:
+#         if net_name in self.dataloader_dict.keys():
+#             dataloader = self.dataloader_dict[net_name]
+#         else:
+#             dataloader = None
+#         if dataloader is None:
+#             print(str(net_to_train).split('(', 1)[0] + ' no train')
+#             return
+#         net = net_to_train
+#
+#         # rnn
+#         if net_name in ['LSTM', 'BiLSTM', 'GRU']:
+#             correct = 0
+#             total = 0
+#             for i, inputs in enumerate(dataloader):
+#                 reshaped_inputs = torch.unsqueeze(torch.unsqueeze(inputs, dim=1), dim=2)
+#                 labels = inputs.clone()  # 在这个示例中，将输入作为标签（仅用于示例目的，您可能需要更改为目标变量）
+#
+#                 outputs = net(reshaped_inputs)  # 前向传播
+#                 outputs = reshape_tensor(outputs, (5, 1))
+#                 _, predicted = torch.max(outputs, 1)
+#                 total += labels.size(0)
+#                 correct += (predicted == labels).sum().item()
+#             # print('Train finished (RNN)')
+#             return correct / total
+#
+#         net.to('cuda')
+#         criterion = nn.CrossEntropyLoss()
+#         criterion.to('cuda')
+#         optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+#         for param in optimizer.param_groups:
+#             for key, value in param.items():
+#                 if isinstance(value, torch.Tensor):
+#                     param[key] = value.to('cuda')
+#         running_loss = 0.0
+#         correct = 0
+#         total = 0
+#         for i, data in enumerate(dataloader, 0):
+#             # forward:
+#             inputs, labels = data
+#             labels = labels.to('cuda')
+#             inputs = inputs.to('cuda')
+#             outputs = net(inputs).to('cuda')
+#             if net_name in ['alexnet', 'vgg16', 'vgg19']:
+#                 labels = labels.squeeze()
+#                 labels = labels.to('cuda')
+#
+#             # outputs reshape:
+#             if net_name in ['lenet', 'alexnet', 'vgg16', 'vgg19']:
+#                 target_shape = (BATCH_SIZE, 10)
+#             else:
+#                 target_shape = (BATCH_SIZE, 1000)
+#             outputs = reshape_tensor(outputs, target_shape)
+#             outputs = outputs.to('cuda')
+#
+#             # loss calculation and backward:
+#             _, predicted = torch.max(outputs, 1)
+#             total += labels.size(0)
+#             correct += (predicted == labels).sum().item()
+#             # print(str(i) + ':  ' + str(loss.item()))
+#         self.train_count += 1
+#         # print('Training Finished, ' + str(net).split('(', 1)[0] + ', count ' + str(self.train_count))
+#         # torch.cpu.empty_cache()
+#         return correct / total
 
 
-    def traintrain(net_name: str):
-        module = import_module(net_name)
-        net = module.go()
-        print(t.test(net, net_name))
-
-
-    traintrain('BiLSTM')
+# if __name__ == '__main__':
+#     # test
+#     t = Tester()
+#
+#
+#     def traintrain(net_name: str):
+#         module = import_module(net_name)
+#         net = module.go()
+#         print(t.test(net, net_name))
+#
+#
+#     traintrain('BiLSTM')

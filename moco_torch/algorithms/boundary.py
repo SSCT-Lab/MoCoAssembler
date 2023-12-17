@@ -16,9 +16,9 @@ class Boundary_Runner:
         self.api_list = []
         self.net_name = net_name
 
-        MODEL_LIST = ['ResNet18', 'ResNet50', 'InceptionV3', 'xception', 'testnet',
-                      'alexnet', 'lenet', 'mobilenet', 'squeezenet', 'vgg16', 'vgg19',
-                      'densenet', 'BiLSTM', 'LSTM', 'GRU', 'googlenet']
+        MODEL_LIST = ['resnet18',
+                      'alexnet', 'LeNet', 'mobilenet', 'squeezenet', 'vgg19',
+                      'LSTM', 'googlenet', "pointnet"]
         if not os.path.exists(os.path.join(file_paths.MAIN_PATH, 'boundary_models')):
             os.makedirs(os.path.join(file_paths.MAIN_PATH, 'boundary_models'))
             temp_path = os.path.join(file_paths.MAIN_PATH, 'boundary_models')
