@@ -3,7 +3,7 @@ import traceback
 from datetime import datetime
 import random
 import time
-from filter import Filter
+# from filter import Filter
 import torch
 import file_paths
 import mutate
@@ -16,6 +16,63 @@ from importlib import import_module
 import re
 
 t = Trainer()
+
+
+class Filter:
+    def __init__(self):
+        self.info_lis = []
+        self.addkey("must be divisible by groups")
+        # self.addkey("pad should be at most half of kernel size")
+        self.addkey("missing 1 required positional argument")
+        # self.addkey("Kernel size can't be greater than actual input size")
+        self.addkey("out_channels must be divisible by groups")
+        self.addkey("but got Tensor of dimension")
+        self.addkey("mat1 and mat2 shapes cannot be multiplied")
+        # self.addkey("Bilinear.forward() missing 1 required positional argument")
+        # self.addkey("No module named")
+        self.addkey("but got input of size")
+        # self.addkey("syntax error")
+        self.addkey("Output size is too small")
+        self.addkey("expected to be in range of")
+        self.addkey("missing 2 required positional arguments")
+        self.addkey("channels instead")
+        self.addkey("float() argument must be a string or a real number, not ")
+        self.addkey("flatten() has invalid args: start_dim cannot come after end_dim")
+        self.addkey("Only 2D, 3D, 4D, 5D padding with non-constant padding are supported for now")
+        self.addkey("'tuple' object has no attribute")
+        self.addkey("Expected 2D or 3D (batch mode) tensor for input")
+        self.addkey("pool2d(): Expected")
+        self.addkey("tensor expected for input")
+        self.addkey("while checking arguments for")
+        self.addkey("expects input with > 2 dims")
+        self.addkey("must be tuple of ints, but found")
+        self.addkey("Sizes of tensors must match")
+        self.addkey("Tensors must have same number of dimensions")
+        self.addkey("must be Tensor, not tuple")
+        self.addkey("input has inconsistent input_size")
+        self.addkey("input.size(-1) must be equal to input_size")
+        self.addkey("It is expected dilation equals to 2")
+        self.addkey("Input dimension should be at least 3")
+        self.addkey("running_mean should contain")
+        self.addkey("weight should contain")
+        self.addkey("Expected weight to be")
+        self.addkey("Padding length must be divisible by 2")
+        self.addkey("It is expected stride equals to 2")
+        self.addkey("expected 4D input")
+        self.addkey("Expected more than 1 spatial element when training")
+        self.addkey("Expected size of input")
+        self.addkey("The size of tensor a")
+
+    def judge(self, string) -> bool:
+        for s in self.info_lis:
+            if s in string:
+                return False
+            else:
+                continue
+        return True
+
+    def addkey(self, string: str) -> None:
+        self.info_lis.append(string)
 
 
 def run_single_model(model_name: str, model_type: str) -> (bool, int):  # 5.25新增，单个模型执行不成功就返回False并把error保存起来
