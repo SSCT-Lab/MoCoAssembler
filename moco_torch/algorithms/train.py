@@ -12,7 +12,7 @@ import file_paths
 import sys
 from importlib import import_module
 
-sys.path.append('D:/PythonProjects/pytorch_v2/seed_models')
+sys.path.append(file_paths.MODEL_PATH)
 
 
 class MyDataset(torch.utils.data.Dataset):
@@ -313,7 +313,7 @@ class Trainer:
             criterion = nn.MSELoss()
             optimizer = optim.Adam(net.parameters(), lr=lr)
             for i in range(20):
-                input_datas = price_sequence[i*125:(i+1)*125]
+                input_datas = price_sequence[i * 125:(i + 1) * 125]
                 input_input = input_datas[:75]
                 input_label = input_datas[75:]
                 input_input = input_input.reshape((BATCH_SIZE, 3, 5))
@@ -417,21 +417,45 @@ class Trainer:
                 outputs = outputs.to('cuda')
 
                 loss = criterion(outputs, labels)  # 计算损失
-                loss.backward()  # 反向传播
+                loss.backward(retain_graph=True)  # 反向传播，保留计算图
 
                 # 使用autograd计算Hessian向量积
                 params = [p for p in net.parameters() if p.requires_grad]
                 grads = torch.autograd.grad(loss, params, create_graph=True)
                 hvp = [torch.autograd.grad(g, p, grad_outputs=torch.ones_like(g), retain_graph=True)[0] for g, p in
                        zip(grads, params)]
+                # print("Hessian向量积: ", hvp)
 
                 optimizer.step()  # 更新参数
 
                 running_loss += loss.item()
-                if i % 100 == 99:  # 每100个小批量输出一次
-                    print(f"[{epoch + 1}, {i + 1}] loss: {running_loss / 100:.3f}")
+                print(f"[{epoch + 1}, {i + 1}] loss: {running_loss / 100:.3f}")
+
+                if i % 100 == 99:
                     running_loss = 0.0
         return
+
+
+if __name__ == '__main__':
+    trainer = Trainer()
+    lenet = import_module('lenet').LeNet()
+    mnist_dataloader = get_mnist()
+    trainer.train_with_autograd_and_optim(lenet, 'lenet', mnist_dataloader)
+
+    print("testing......")
+    test_dataloader = get_mnist_test()
+    correct = 0
+    total = 0
+    with torch.no_grad():
+        for data in test_dataloader:
+            images, labels = data
+            images, labels = images.to('cuda'), labels.to('cuda')
+            outputs = lenet(images)
+            _, predicted = torch.max(outputs.data, 1)
+            total += labels.size(0)
+            correct += (predicted == labels).sum().item()
+
+    print(f'Accuracy of the network on the 100 test images: {100 * correct / total}%')
 
 # class Tester:
 #     def __init__(self):
