@@ -398,6 +398,40 @@ class Trainer:
         # torch.cpu.empty_cache()
         return
 
+    def train_with_autograd_and_optim(self, net_to_train: nn.Module, net_name: str, dataloader: DataLoader) -> None:
+        net = net_to_train
+        net.to('cuda')
+        criterion = nn.CrossEntropyLoss()
+        criterion.to('cuda')
+        optimizer = optim.Adam(net.parameters(), lr=lr)
+
+        for epoch in range(5):  # 训练5个epoch
+            running_loss = 0.0
+            for i, data in enumerate(dataloader, 0):
+                inputs, labels = data
+                inputs = inputs.to('cuda')
+                labels = labels.to('cuda')
+                optimizer.zero_grad()  # 梯度清零
+                outputs = net(inputs).to('cuda')  # 前向传播
+                outputs = reshape_tensor(outputs, (inputs.size(0), 10))
+                outputs = outputs.to('cuda')
+
+                loss = criterion(outputs, labels)  # 计算损失
+                loss.backward()  # 反向传播
+
+                # 使用autograd计算Hessian向量积
+                params = [p for p in net.parameters() if p.requires_grad]
+                grads = torch.autograd.grad(loss, params, create_graph=True)
+                hvp = [torch.autograd.grad(g, p, grad_outputs=torch.ones_like(g), retain_graph=True)[0] for g, p in
+                       zip(grads, params)]
+
+                optimizer.step()  # 更新参数
+
+                running_loss += loss.item()
+                if i % 100 == 99:  # 每100个小批量输出一次
+                    print(f"[{epoch + 1}, {i + 1}] loss: {running_loss / 100:.3f}")
+                    running_loss = 0.0
+        return
 
 # class Tester:
 #     def __init__(self):
