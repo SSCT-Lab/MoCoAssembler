@@ -1,0 +1,99 @@
+{
+  "params": {
+    "in_channels": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": null
+    },
+    "out_channels": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": null
+    },
+    "kernel_size": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 1],
+      "default": null
+    },
+    "stride": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 1],
+      "default": 1
+    },
+    "padding": {
+      "dtype": ["int", "string"],
+      "range": [null, ["valid", "same"]],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 1],
+      "default": 0
+    },
+    "padding_mode": {
+      "dtype": ["string"],
+      "range": [["zeros", "reflect", "replicate", "circular"]],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "zeros"
+    },
+    "dilation": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 1],
+      "default": 1
+    },
+    "groups": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": 1
+    },
+    "bias": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "True"
+    }
+  },
+  "constraints": {
+    "1": {
+      "Parameter 1": "in_channels",
+      "Parameter 2": "groups",
+      "Constraint": "in_channels % groups == 0"
+    },
+    "2": {
+      "Parameter 1": "out_channels",
+      "Parameter 2": "groups",
+      "Constraint": "out_channels % groups == 0"
+    },
+    "3": {
+      "Parameter 1": "groups",
+      "Parameter 2": "in_channels",
+      "Constraint": "groups <= in_channels"
+    },
+    "4": {
+      "Parameter 1": "groups",
+      "Parameter 2": "out_channels",
+      "Constraint": "groups <= out_channels"
+    },
+    "5": {
+      "Parameter 1": "groups",
+      "Parameter 2": "out_channels",
+      "Constraint": "if groups == in_channels: out_channels % in_channels == 0"
+    },
+    "6": {
+      "Parameter 1": "stride",
+      "Parameter 2": "padding",
+      "Constraint": "if padding == 'same': stride == 1"
+    }
+  }
+}

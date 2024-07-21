@@ -1,0 +1,40 @@
+{
+  "params": {
+    "size": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "None"
+    },
+    "scale_factor": {
+      "dtype": ["float"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "None"
+    },
+    "mode": {
+      "dtype": ["string"],
+      "range": [["nearest", "linear", "bilinear", "bicubic", "trilinear"]],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "nearest"
+    },
+    "align_corners": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "None"
+    },
+    "recompute_scale_factor": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "None"
+    }
+  },
+  "constraints": {}
+}

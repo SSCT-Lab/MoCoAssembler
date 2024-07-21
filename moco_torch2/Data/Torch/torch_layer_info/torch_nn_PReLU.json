@@ -1,0 +1,19 @@
+{
+  "params": {
+    "num_parameters": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": 1
+    },
+    "init": {
+      "dtype": ["float"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": 0.25
+    }
+  },
+  "constraints": {}
+}

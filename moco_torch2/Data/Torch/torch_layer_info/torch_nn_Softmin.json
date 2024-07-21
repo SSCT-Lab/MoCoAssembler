@@ -1,0 +1,12 @@
+{
+  "params": {
+    "dim": {
+      "dtype": ["int"],
+      "range": [[0, 1]],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "None"
+    }
+  },
+  "constraints": {}
+}
