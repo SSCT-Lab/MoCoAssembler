@@ -1,0 +1,23 @@
+api: jittor.nn.Linear(self, in_features, out_features, bias=True)
+constraints:
+  bias:
+    default: 'True'
+    dtype:
+    - bool
+  in_features:
+    default: no default
+    dtype:
+    - int
+  out_features:
+    default: no default
+    dtype:
+    - int
+descp: no description
+extra_para: 0
+inputs:
+  optional:
+  - bias
+  required:
+  - in_features
+  - out_features
+kind: layer

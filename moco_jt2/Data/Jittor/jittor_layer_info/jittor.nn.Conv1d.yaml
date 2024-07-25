@@ -1,0 +1,65 @@
+api: jittor.nn.Conv1d(self, in_channels, out_channels, kernel_size, stride=1, padding=0,
+  dilation=1, groups=1, bias=True)
+constraints:
+  bias:
+    default: 'True'
+    dtype:
+    - bool
+  dilation:
+    default: '1'
+    dtype:
+    - int
+    - tuple
+  groups:
+    default: '1'
+    dtype:
+    - int
+  in_channels:
+    default: no default
+    dtype:
+    - int
+  kernel_size:
+    default: no default
+    dtype:
+    - int
+    - tuple
+  out_channels:
+    default: no default
+    dtype:
+    - int
+  padding:
+    default: '0'
+    dtype:
+    - int
+    - tuple
+  stride:
+    default: '1'
+    dtype:
+    - int
+    - tuple
+descp: "    ''' Applies a 1D convolution over an input signal composed of several\
+  \ input planes.\n\n    :param in_channels: Number of channels in the input feature\
+  \ map\n    :type in_channels: int\n\n    :param out_channels: Number of channels\
+  \ in the output feature map\n    :type out_channels: int\n\n    :param kernel_size:\
+  \ Size of the convolving kernel\n    :type kernel_size: int or tuple\n\n    :param\
+  \ stride: Stride of the convolution. Default: 1\n    :type stride: int or tuple,\
+  \ optional\n\n    :param padding: Padding added to all four sides of the input.\
+  \ Default: 0\n    :type padding: int or tuple, optional\n\n    :param dilation:\
+  \ Spacing between kernel elements. Default: 1\n    :type dilation: int or tuple,\
+  \ optional\n\n    :param groups: Number of blocked connections from input channels\
+  \ to output channels. Default: 1\n    :type groups: int, optional\n\n    :param\
+  \ bias: If True, adds a learnable bias to the output. Default: True\n    :type bias:\
+  \ bool, optional\n\n    \n'''"
+extra_para: 0
+inputs:
+  optional:
+  - stride
+  - padding
+  - dilation
+  - groups
+  - bias
+  required:
+  - in_channels
+  - out_channels
+  - kernel_size
+kind: layer

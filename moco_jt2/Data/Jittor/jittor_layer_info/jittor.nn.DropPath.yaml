@@ -1,0 +1,22 @@
+api: jittor.nn.DropPath(self, p=0.5, is_train=False)
+constraints:
+  is_train:
+    default: 'False'
+    dtype:
+    - bool
+  p:
+    default: '0.5'
+    dtype:
+    - float
+descp: '    ''''''Drop paths (Stochastic Depth) per sample  (when applied in main
+  path of residual blocks).
+
+
+  '''''''
+extra_para: 0
+inputs:
+  optional:
+  - p
+  - is_train
+  required: []
+kind: layer

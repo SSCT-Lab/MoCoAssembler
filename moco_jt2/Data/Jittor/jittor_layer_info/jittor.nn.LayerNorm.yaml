@@ -1,0 +1,25 @@
+api: 'jittor.nn.LayerNorm(self, normalized_shape, eps: float = 1e-5, elementwise_affine:
+  bool = True)'
+constraints:
+  elementwise_affine:
+    default: 'True'
+    dtype:
+    - bool
+  eps:
+    default: 1e-5
+    dtype:
+    - float
+  normalized_shape:
+    default: no default
+    dtype:
+    - int
+    - tuple
+descp: no description
+extra_para: 0
+inputs:
+  optional:
+  - eps
+  - elementwise_affine
+  required:
+  - normalized_shape
+kind: layer

@@ -1,0 +1,18 @@
+api: jittor.nn.Dropout(self, p=0.5, is_train=False)
+constraints:
+  is_train:
+    default: 'False'
+    dtype:
+    - bool
+  p:
+    default: '0.5'
+    dtype:
+    - float
+descp: no description
+extra_para: 0
+inputs:
+  optional:
+  - p
+  - is_train
+  required: []
+kind: layer

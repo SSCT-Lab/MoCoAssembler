@@ -1,0 +1,27 @@
+api: jittor.nn.Resize(self, size, mode="nearest", align_corners=False)
+constraints:
+  align_corners:
+    default: 'False'
+    dtype:
+    - bool
+  mode:
+    default: '"nearest"'
+    dtype:
+    - str
+    range:
+    - '"bicubic"'
+    - '"nearest"'
+    - '"area"'
+  size:
+    default: no default
+    dtype:
+    - tuple
+descp: no description
+extra_para: 0
+inputs:
+  optional:
+  - mode
+  - align_corners
+  required:
+  - size
+kind: layer

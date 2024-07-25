@@ -1,0 +1,22 @@
+api: jittor.nn.Upsample(self, scale_factor=None, mode='nearest')
+constraints:
+  mode:
+    default: '''nearest'''
+    dtype:
+    - str
+  scale_factor:
+    default: None
+    dtype:
+    - int
+    range:
+    - '"bicubic"'
+    - '"nearest"'
+    - '"area"'
+descp: no description
+extra_para: 0
+inputs:
+  optional:
+  - scale_factor
+  - mode
+  required: []
+kind: layer

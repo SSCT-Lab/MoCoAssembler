@@ -1,0 +1,19 @@
+api: jittor.nn.ConstantPad2d(self, padding, value)
+constraints:
+  padding:
+    default: no default
+    dtype:
+    - int
+    - tuple
+  value:
+    default: no default
+    dtype:
+    - int
+descp: no description
+extra_para: 0
+inputs:
+  optional: []
+  required:
+  - padding
+  - value
+kind: layer

@@ -1,0 +1,10 @@
+api: jittor.nn.ReLU6()
+constraints: {}
+descp: "    r''' Applies the element-wise function:\n\n    .. math::\n        \\text{ReLU6}(x)\
+  \ = \\min(\\max(0,x), 6)\n\n    :param x: the input var\n    :type x: jt.Var\n\n\
+  \    \n'''"
+extra_para: 0
+inputs:
+  optional: []
+  required: []
+kind: layer
