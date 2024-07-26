@@ -28,7 +28,7 @@
       "shape": [
         1
       ],
-      "default": "None"
+      "default": null
     }
   },
   "constraints": {}

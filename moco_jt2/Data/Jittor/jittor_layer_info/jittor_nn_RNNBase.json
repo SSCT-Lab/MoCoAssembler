@@ -120,7 +120,7 @@
       "shape": [
         1
       ],
-      "default": "None"
+      "default": null
     },
     "num_layers": {
       "dtype": [

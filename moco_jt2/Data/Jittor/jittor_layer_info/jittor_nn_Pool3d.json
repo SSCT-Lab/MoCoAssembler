@@ -43,7 +43,7 @@
       "shape": [
         1
       ],
-      "default": "None"
+      "default": null
     },
     "kernel_size": {
       "dtype": [
@@ -103,7 +103,7 @@
       "shape": [
         1
       ],
-      "default": "None"
+      "default": null
     },
     "stride": {
       "dtype": [
@@ -118,7 +118,7 @@
       "shape": [
         1
       ],
-      "default": "None"
+      "default": null
     }
   },
   "constraints": {}
