@@ -1,0 +1,20 @@
+{
+  "params": {
+    "alpha": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": "1.0"
+    }
+  },
+  "constraints": {}
+}

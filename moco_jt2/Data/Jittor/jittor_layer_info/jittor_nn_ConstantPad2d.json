@@ -1,0 +1,39 @@
+{
+  "params": {
+    "padding": {
+      "dtype": [
+        "int",
+        "tuple"
+      ],
+      "range": [
+        null,
+        null
+      ],
+      "structure": [
+        "scalar",
+        "tuple"
+      ],
+      "shape": [
+        1,
+        4
+      ],
+      "default": null
+    },
+    "value": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    }
+  },
+  "constraints": {}
+}

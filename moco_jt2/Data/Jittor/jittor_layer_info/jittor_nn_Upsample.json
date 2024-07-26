@@ -1,0 +1,37 @@
+{
+  "params": {
+    "mode": {
+      "dtype": [
+        "str"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": "'nearest'"
+    },
+    "scale_factor": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        "\"bicubic\"",
+        "\"nearest\"",
+        "\"area\""
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": "None"
+    }
+  },
+  "constraints": {}
+}

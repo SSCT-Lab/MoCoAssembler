@@ -1,0 +1,20 @@
+{
+  "params": {
+    "scale_factor": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": "None"
+    }
+  },
+  "constraints": {}
+}

@@ -1,0 +1,53 @@
+{
+  "params": {
+    "align_corners": {
+      "dtype": [
+        "boolean"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": "False"
+    },
+    "mode": {
+      "dtype": [
+        "str"
+      ],
+      "range": [
+        "\"bicubic\"",
+        "\"nearest\"",
+        "\"area\""
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": "\"nearest\""
+    },
+    "size": {
+      "dtype": [
+        "tuple"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar",
+        "tuple"
+      ],
+      "shape": [
+        null
+      ],
+      "default": null
+    }
+  },
+  "constraints": {}
+}
