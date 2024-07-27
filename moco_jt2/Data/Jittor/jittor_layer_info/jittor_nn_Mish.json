@@ -13,7 +13,7 @@
       "shape": [
         1
       ],
-      "default": "False"
+      "default": false
     }
   },
   "constraints": {}

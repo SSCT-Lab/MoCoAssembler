@@ -2,16 +2,16 @@ api: jittor.nn.Conv1d(self, in_channels, out_channels, kernel_size, stride=1, pa
   dilation=1, groups=1, bias=True)
 constraints:
   bias:
-    default: 'True'
+    default: True
     dtype:
     - bool
   dilation:
-    default: '1'
+    default: 1
     dtype:
     - int
     - tuple
   groups:
-    default: '1'
+    default: 1
     dtype:
     - int
   in_channels:
@@ -28,12 +28,12 @@ constraints:
     dtype:
     - int
   padding:
-    default: '0'
+    default: 0
     dtype:
     - int
     - tuple
   stride:
-    default: '1'
+    default: 1
     dtype:
     - int
     - tuple

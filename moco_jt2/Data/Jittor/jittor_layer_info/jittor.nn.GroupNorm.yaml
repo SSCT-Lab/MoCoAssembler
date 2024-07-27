@@ -1,7 +1,7 @@
 api: jittor.nn.GroupNorm(self, num_groups, num_channels, eps=1e-05, affine=True, is_train=True)
 constraints:
   affine:
-    default: 'True'
+    default: True
     dtype:
     - bool
   eps:
@@ -9,7 +9,7 @@ constraints:
     dtype:
     - float
   is_train:
-    default: 'True'
+    default: True
     dtype:
     - bool
   num_channels:

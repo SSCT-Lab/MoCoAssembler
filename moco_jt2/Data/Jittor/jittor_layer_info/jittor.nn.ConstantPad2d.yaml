@@ -8,7 +8,7 @@ constraints:
   value:
     default: no default
     dtype:
-    - int
+    - float
 descp: no description
 extra_para: 0
 inputs:

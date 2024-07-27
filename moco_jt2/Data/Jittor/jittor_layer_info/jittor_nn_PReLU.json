@@ -13,7 +13,7 @@
       "shape": [
         1
       ],
-      "default": "0.25"
+      "default": 0.25
     },
     "num_parameters": {
       "dtype": [
@@ -28,7 +28,7 @@
       "shape": [
         1
       ],
-      "default": "1"
+      "default": 1
     }
   },
   "constraints": {}

@@ -1,7 +1,7 @@
 api: jittor.nn.LSTMCell(self, input_size, hidden_size, bias=True)
 constraints:
   bias:
-    default: 'True'
+    default: True
     dtype:
     - bool
   hidden_size:

@@ -13,7 +13,7 @@
       "shape": [
         1
       ],
-      "default": "True"
+      "default": true
     },
     "inchannels": {
       "dtype": [
@@ -35,7 +35,7 @@
         "int"
       ],
       "range": [
-        "1"
+        1
       ],
       "structure": [
         "scalar"
@@ -43,7 +43,7 @@
       "shape": [
         1
       ],
-      "default": "1"
+      "default": 1
     },
     "outchannels": {
       "dtype": [

@@ -21,7 +21,7 @@
     },
     "value": {
       "dtype": [
-        "int"
+        "float"
       ],
       "range": [
         null

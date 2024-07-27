@@ -13,56 +13,68 @@
       "shape": [
         1
       ],
-      "default": "False"
+      "default": false
     },
     "dilation": {
       "dtype": [
-        "int"
+        "int",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        1,
+        3
       ],
       "default": null
     },
     "kernel_size": {
       "dtype": [
-        "int"
+        "int",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        1,
+        3
       ],
       "default": null
     },
     "padding": {
       "dtype": [
-        "int"
+        "int",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        1,
+        3
       ],
-      "default": "0"
+      "default": 0
     },
     "return_indices": {
       "dtype": [
-        "str"
+        "boolean"
       ],
       "range": [
         null
@@ -77,16 +89,20 @@
     },
     "stride": {
       "dtype": [
-        "int"
+        "int",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        1,
+        3
       ],
       "default": null
     }

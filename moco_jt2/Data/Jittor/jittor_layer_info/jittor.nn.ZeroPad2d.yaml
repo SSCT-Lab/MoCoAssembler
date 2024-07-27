@@ -4,6 +4,7 @@ constraints:
     default: no default
     dtype:
     - int
+    - tuple
 descp: no description
 extra_para: 0
 inputs:

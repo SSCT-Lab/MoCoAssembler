@@ -13,7 +13,7 @@
       "shape": [
         1
       ],
-      "default": "True"
+      "default": true
     },
     "hidden_size": {
       "dtype": [

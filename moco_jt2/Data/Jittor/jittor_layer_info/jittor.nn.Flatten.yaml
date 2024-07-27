@@ -1,11 +1,11 @@
 api: jittor.nn.Flatten(self, start_dim=1, end_dim=-1)
 constraints:
   end_dim:
-    default: '-1'
+    default: -1
     dtype:
     - int
   start_dim:
-    default: '1'
+    default: 1
     dtype:
     - int
 descp: "    ''' Flattens the contiguous range of dimensions in a Var.\n\n    :param\

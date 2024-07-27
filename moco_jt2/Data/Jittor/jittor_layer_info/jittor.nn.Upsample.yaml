@@ -1,17 +1,18 @@
 api: jittor.nn.Upsample(self, scale_factor=None, mode='nearest')
 constraints:
   mode:
-    default: '''nearest'''
+    default: 'nearest'
     dtype:
     - str
+    range:
+      - 'linear'
+      - 'nearest'
+      - 'area'
   scale_factor:
     default: None
     dtype:
-    - int
-    range:
-    - '"bicubic"'
-    - '"nearest"'
-    - '"area"'
+    - float
+    - tuple
 descp: no description
 extra_para: 0
 inputs:

@@ -1,7 +1,7 @@
 api: jittor.nn.Conv1d_sp(self, inchannels, outchannels, kernel_size=1, bias=True)
 constraints:
   bias:
-    default: 'True'
+    default: True
     dtype:
     - bool
   inchannels:
@@ -9,11 +9,11 @@ constraints:
     dtype:
     - int
   kernel_size:
-    default: '1'
+    default: 1
     dtype:
     - int
     range:
-    - '1'
+    - 1
   outchannels:
     default: no default
     dtype:

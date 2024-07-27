@@ -1,7 +1,7 @@
 api: jittor.nn.Mish(self, inplace=False)
 constraints:
   inplace:
-    default: 'False'
+    default: False
     dtype:
     - bool
 descp: no description

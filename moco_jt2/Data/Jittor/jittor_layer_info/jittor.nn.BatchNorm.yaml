@@ -2,7 +2,7 @@ api: jittor.nn.BatchNorm(self, num_features, eps=1e-5, momentum=0.1, affine=True
   is_train=True, sync=True)
 constraints:
   affine:
-    default: 'True'
+    default: True
     dtype:
     - bool
   eps:
@@ -10,11 +10,11 @@ constraints:
     dtype:
     - float
   is_train:
-    default: 'True'
+    default: True
     dtype:
     - bool
   momentum:
-    default: '0.1'
+    default: 0.1
     dtype:
     - float
   num_features:
@@ -22,7 +22,7 @@ constraints:
     dtype:
     - int
   sync:
-    default: 'True'
+    default: True
     dtype:
     - bool
 descp: no description

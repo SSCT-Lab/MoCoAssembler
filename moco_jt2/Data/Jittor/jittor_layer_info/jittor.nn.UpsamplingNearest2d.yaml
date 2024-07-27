@@ -3,7 +3,8 @@ constraints:
   scale_factor:
     default: None
     dtype:
-    - int
+    - float
+    - tuple
 descp: no description
 extra_para: 0
 inputs:

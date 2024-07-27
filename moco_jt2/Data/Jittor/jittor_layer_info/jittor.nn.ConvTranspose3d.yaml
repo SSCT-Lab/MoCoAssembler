@@ -2,15 +2,16 @@
   padding=0, output_padding=0, groups=1, bias=True, dilation=1)
 constraints:
   bias:
-    default: 'True'
+    default: True
     dtype:
     - bool
   dilation:
-    default: '1'
+    default: 1
     dtype:
     - int
+    - tuple
   groups:
-    default: '1'
+    default: 1
     dtype:
     - int
   in_channels:
@@ -21,22 +22,26 @@ constraints:
     default: no default
     dtype:
     - int
+    - tuple
   out_channels:
     default: no default
     dtype:
     - int
   output_padding:
-    default: '0'
+    default: 0
     dtype:
     - int
+    - tuple
   padding:
-    default: '0'
+    default: 0
     dtype:
     - int
+    - tuple
   stride:
-    default: '1'
+    default: 1
     dtype:
     - int
+    - tuple
 descp: no description
 extra_para: 0
 inputs:

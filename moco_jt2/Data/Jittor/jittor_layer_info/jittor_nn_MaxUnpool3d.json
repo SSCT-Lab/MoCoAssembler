@@ -2,31 +2,39 @@
   "params": {
     "kernel_size": {
       "dtype": [
-        "int"
+        "int",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        1,
+        3
       ],
       "default": null
     },
     "stride": {
       "dtype": [
-        "int"
+        "int",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        1,
+        3
       ],
       "default": null
     }

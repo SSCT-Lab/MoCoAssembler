@@ -2,16 +2,20 @@
   "params": {
     "scale_factor": {
       "dtype": [
-        "int"
+        "float",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        1,
+        2
       ],
       "default": null
     }

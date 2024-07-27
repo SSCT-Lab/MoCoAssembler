@@ -4,8 +4,9 @@ constraints:
     default: no default
     dtype:
     - int
+    - tuple
   return_indices:
-    default: 'False'
+    default: False
     dtype:
     - bool
 descp: no description

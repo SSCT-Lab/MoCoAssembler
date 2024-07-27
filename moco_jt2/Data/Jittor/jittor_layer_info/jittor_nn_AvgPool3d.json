@@ -13,7 +13,7 @@
       "shape": [
         1
       ],
-      "default": "False"
+      "default": false
     },
     "count_include_pad": {
       "dtype": [
@@ -28,50 +28,62 @@
       "shape": [
         1
       ],
-      "default": "True"
+      "default": true
     },
     "kernel_size": {
       "dtype": [
-        "int"
+        "int",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        1,
+        3
       ],
       "default": null
     },
     "padding": {
       "dtype": [
-        "int"
+        "int",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        1,
+        3
       ],
-      "default": "0"
+      "default": 0
     },
     "stride": {
       "dtype": [
-        "int"
+        "int",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        1,
+        3
       ],
       "default": null
     }

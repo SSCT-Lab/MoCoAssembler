@@ -1,7 +1,7 @@
 api: jittor.nn.ELU(self,alpha=1.0)
 constraints:
   alpha:
-    default: '1.0'
+    default: 1.0
     dtype:
     - float
 descp: "    r''' Applies the element-wise function:\n\n    .. math::\n        \\text{ELU}(x)\

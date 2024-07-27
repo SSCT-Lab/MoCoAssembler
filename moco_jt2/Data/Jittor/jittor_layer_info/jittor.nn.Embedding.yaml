@@ -1,17 +1,21 @@
 api: jittor.nn.Embedding(self, num_embeddings, embedding_dim, dtype="float32")
 constraints:
   dtype:
-    default: '"float32"'
+    default: 'float32'
     dtype:
     - str
     range:
-    - '"float32"'
+    - 'float32'
   embedding_dim:
     default: no default
     dtype:
     - int
   num_embeddings:
     default: no default
+    dtype:
+    - int
+  padding_idx:
+    default: None
     dtype:
     - int
 descp: "    ''' A simple lookup table that stores embeddings of a fixed dictionary\

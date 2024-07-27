@@ -13,7 +13,7 @@
       "shape": [
         1
       ],
-      "default": "True"
+      "default": true
     },
     "dilation": {
       "dtype": [
@@ -32,7 +32,7 @@
         1,
         2
       ],
-      "default": "1"
+      "default": 1
     },
     "groups": {
       "dtype": [
@@ -47,7 +47,7 @@
       "shape": [
         1
       ],
-      "default": "1"
+      "default": 1
     },
     "in_channels": {
       "dtype": [
@@ -115,7 +115,7 @@
         1,
         2
       ],
-      "default": "0"
+      "default": 0
     },
     "stride": {
       "dtype": [
@@ -134,7 +134,7 @@
         1,
         2
       ],
-      "default": "1"
+      "default": 1
     }
   },
   "constraints": {}

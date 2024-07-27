@@ -13,7 +13,7 @@
       "shape": [
         1
       ],
-      "default": "True"
+      "default": true
     },
     "eps": {
       "dtype": [
@@ -43,7 +43,7 @@
       "shape": [
         1
       ],
-      "default": "True"
+      "default": true
     },
     "momentum": {
       "dtype": [
@@ -58,7 +58,7 @@
       "shape": [
         1
       ],
-      "default": "0.1"
+      "default": 0.1
     },
     "num_features": {
       "dtype": [
@@ -88,7 +88,7 @@
       "shape": [
         1
       ],
-      "default": "True"
+      "default": true
     }
   },
   "constraints": {}

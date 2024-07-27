@@ -1,17 +1,17 @@
 api: jittor.nn.Resize(self, size, mode="nearest", align_corners=False)
 constraints:
   align_corners:
-    default: 'False'
+    default: False
     dtype:
     - bool
   mode:
-    default: '"nearest"'
+    default: 'nearest'
     dtype:
     - str
     range:
-    - '"bicubic"'
-    - '"nearest"'
-    - '"area"'
+    - 'bicubic'
+    - 'nearest'
+    - 'area'
   size:
     default: no default
     dtype:

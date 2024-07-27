@@ -13,7 +13,7 @@
       "shape": [
         1
       ],
-      "default": "False"
+      "default": false
     },
     "count_include_pad": {
       "dtype": [
@@ -28,56 +28,49 @@
       "shape": [
         1
       ],
-      "default": "True"
+      "default": true
     },
     "dilation": {
       "dtype": [
-        "str"
+        "string",
+        "tuple"
       ],
       "range": [
-        "None"
+        null,
+        null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        null,
+        null
       ],
       "default": null
     },
     "kernel_size": {
       "dtype": [
-        "int"
+        "int",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        null,
+        null
       ],
       "default": null
     },
     "op": {
       "dtype": [
-        "str"
-      ],
-      "range": [
-        "\"maximum\""
-      ],
-      "structure": [
-        "scalar"
-      ],
-      "shape": [
-        1
-      ],
-      "default": "\"maximum\""
-    },
-    "padding": {
-      "dtype": [
-        "int"
+        "string"
       ],
       "range": [
         null
@@ -88,11 +81,30 @@
       "shape": [
         1
       ],
-      "default": "0"
+      "default": "maximum"
+    },
+    "padding": {
+      "dtype": [
+        "int",
+        "tuple"
+      ],
+      "range": [
+        null,
+        null
+      ],
+      "structure": [
+        "scalar",
+        "tuple"
+      ],
+      "shape": [
+        null,
+        null
+      ],
+      "default": 0
     },
     "return_indices": {
       "dtype": [
-        "str"
+        "boolean"
       ],
       "range": [
         null
@@ -107,16 +119,20 @@
     },
     "stride": {
       "dtype": [
-        "int"
+        "int",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        null,
+        null
       ],
       "default": null
     }

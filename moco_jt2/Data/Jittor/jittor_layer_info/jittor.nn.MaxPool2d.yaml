@@ -2,33 +2,33 @@ api: jittor.nn.MaxPool2d(self, kernel_size, stride=None, padding=0, dilation=Non
   return_indices=None, ceil_mode=False)
 constraints:
   ceil_mode:
-    default: 'False'
+    default: False
     dtype:
     - bool
   dilation:
     default: None
     dtype:
-    - str
-    range:
-    - 'None'
+    - int
+    - tuple
   kernel_size:
     default: no default
     dtype:
     - int
+    - tuple
   padding:
     default: '0'
     dtype:
     - int
+    - tuple
   return_indices:
     default: None
     dtype:
-    - str
-    range:
-    - 'None'
+    - bool
   stride:
     default: None
     dtype:
     - int
+    - tuple
 descp: no description
 extra_para: 0
 inputs:

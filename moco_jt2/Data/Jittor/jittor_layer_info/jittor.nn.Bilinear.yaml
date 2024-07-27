@@ -2,7 +2,7 @@ api: jittor.nn.Bilinear(self, in1_features, in2_features, out_features, bias=Tru
   dtype="float32")
 constraints:
   bias:
-    default: 'True'
+    default: True
     dtype:
     - bool
   dtype:

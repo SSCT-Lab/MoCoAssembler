@@ -2,7 +2,7 @@ api: 'jittor.nn.LayerNorm3d(self, normalized_shape, eps: float = 1e-5, elementwi
   bool = True)'
 constraints:
   elementwise_affine:
-    default: 'True'
+    default: True
     dtype:
     - bool
   eps:

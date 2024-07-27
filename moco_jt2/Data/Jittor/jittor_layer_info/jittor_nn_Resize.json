@@ -13,16 +13,16 @@
       "shape": [
         1
       ],
-      "default": "False"
+      "default": false
     },
     "mode": {
       "dtype": [
-        "str"
+        "string"
       ],
       "range": [
-        "\"bicubic\"",
-        "\"nearest\"",
-        "\"area\""
+        "bicubic",
+        "nearest",
+        "area"
       ],
       "structure": [
         "scalar"
@@ -30,7 +30,7 @@
       "shape": [
         1
       ],
-      "default": "\"nearest\""
+      "default": "nearest"
     },
     "size": {
       "dtype": [

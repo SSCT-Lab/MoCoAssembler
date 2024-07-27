@@ -13,7 +13,7 @@
       "shape": [
         1
       ],
-      "default": "False"
+      "default": false
     },
     "bias": {
       "dtype": [
@@ -28,7 +28,7 @@
       "shape": [
         1
       ],
-      "default": "True"
+      "default": true
     },
     "bidirectional": {
       "dtype": [
@@ -43,7 +43,7 @@
       "shape": [
         1
       ],
-      "default": "False"
+      "default": false
     },
     "dropout": {
       "dtype": [
@@ -58,7 +58,7 @@
       "shape": [
         1
       ],
-      "default": "0"
+      "default": 0
     },
     "hidden_size": {
       "dtype": [
@@ -92,12 +92,12 @@
     },
     "mode": {
       "dtype": [
-        "str"
+        "string"
       ],
       "range": [
-        "\"LSTM\"",
-        "\"GRU\"",
-        "\"RNN\""
+        "LSTM",
+        "GRU",
+        "RNN"
       ],
       "structure": [
         "scalar"
@@ -109,7 +109,7 @@
     },
     "nonlinearity": {
       "dtype": [
-        "str"
+        "string"
       ],
       "range": [
         null
@@ -135,7 +135,7 @@
       "shape": [
         1
       ],
-      "default": "1"
+      "default": 1
     },
     "proj_size": {
       "dtype": [
@@ -150,7 +150,7 @@
       "shape": [
         1
       ],
-      "default": "0"
+      "default": 0
     }
   },
   "constraints": {}

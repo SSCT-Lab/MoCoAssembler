@@ -2,10 +2,12 @@
   "params": {
     "mode": {
       "dtype": [
-        "str"
+        "string"
       ],
       "range": [
-        null
+        "linear",
+        "nearest",
+        "area"
       ],
       "structure": [
         "scalar"
@@ -13,19 +15,20 @@
       "shape": [
         1
       ],
-      "default": "'nearest'"
+      "default": "nearest"
     },
     "scale_factor": {
       "dtype": [
-        "int"
+        "float",
+        "tuple"
       ],
       "range": [
-        "\"bicubic\"",
-        "\"nearest\"",
-        "\"area\""
+        null,
+        null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
         1

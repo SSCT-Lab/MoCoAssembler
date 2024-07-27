@@ -13,22 +13,26 @@
       "shape": [
         1
       ],
-      "default": "True"
+      "default": true
     },
     "dilation": {
       "dtype": [
-        "int"
+        "int",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        null,
+        null
       ],
-      "default": "1"
+      "default": 1
     },
     "groups": {
       "dtype": [
@@ -43,7 +47,7 @@
       "shape": [
         1
       ],
-      "default": "1"
+      "default": 1
     },
     "in_channels": {
       "dtype": [
@@ -62,16 +66,20 @@
     },
     "kernel_size": {
       "dtype": [
-        "int"
+        "int",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        null,
+        null
       ],
       "default": null
     },
@@ -92,48 +100,60 @@
     },
     "output_padding": {
       "dtype": [
-        "int"
+        "int",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        null,
+        null
       ],
-      "default": "0"
+      "default": 0
     },
     "padding": {
       "dtype": [
-        "int"
+        "int",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        null,
+        null
       ],
-      "default": "0"
+      "default": 0
     },
     "stride": {
       "dtype": [
-        "int"
+        "int",
+        "tuple"
       ],
       "range": [
+        null,
         null
       ],
       "structure": [
-        "scalar"
+        "scalar",
+        "tuple"
       ],
       "shape": [
-        1
+        null,
+        null
       ],
-      "default": "1"
+      "default": 1
     }
   },
   "constraints": {}

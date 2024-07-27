@@ -1,7 +1,7 @@
 api: jittor.nn.Linear(self, in_features, out_features, bias=True)
 constraints:
   bias:
-    default: 'True'
+    default: True
     dtype:
     - bool
   in_features:

@@ -3,19 +3,19 @@ api: 'jittor.nn.RNNBase(self, mode: str, input_size: int, hidden_size: int, num_
   bool = False, proj_size: int = 0, nonlinearity: str = None)'
 constraints:
   batch_first:
-    default: 'False'
+    default: False
     dtype:
     - bool
   bias:
-    default: 'True'
+    default: True
     dtype:
     - bool
   bidirectional:
-    default: 'False'
+    default: False
     dtype:
     - bool
   dropout:
-    default: '0'
+    default: 0
     dtype:
     - float
   hidden_size:
@@ -31,19 +31,19 @@ constraints:
     dtype:
     - str
     range:
-    - '"LSTM"'
-    - '"GRU"'
-    - '"RNN"'
+    - 'LSTM'
+    - 'GRU'
+    - 'RNN'
   nonlinearity:
     default: None
     dtype:
     - str
   num_layers:
-    default: '1'
+    default: 1
     dtype:
     - int
   proj_size:
-    default: '0'
+    default: 0
     dtype:
     - int
 descp: no description

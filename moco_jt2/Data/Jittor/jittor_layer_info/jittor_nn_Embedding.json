@@ -2,10 +2,10 @@
   "params": {
     "dtype": {
       "dtype": [
-        "str"
+        "string"
       ],
       "range": [
-        "\"float32\""
+        "float32"
       ],
       "structure": [
         "scalar"
@@ -13,7 +13,7 @@
       "shape": [
         1
       ],
-      "default": "\"float32\""
+      "default": "float32"
     },
     "embedding_dim": {
       "dtype": [
@@ -31,6 +31,21 @@
       "default": null
     },
     "num_embeddings": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    },
+    "padding_idx": {
       "dtype": [
         "int"
       ],

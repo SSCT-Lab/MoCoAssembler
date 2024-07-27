@@ -4,10 +4,12 @@ constraints:
     default: no default
     dtype:
     - int
+    - tuple
   stride:
     default: None
     dtype:
     - int
+    - tuple
 descp: "    ''' MaxUnpool2d is the invert version of MaxPool2d with indices.\n   \
   \ It takes the output index of MaxPool2d as input.\n    The element will be zero\
   \ if it is not the max pooled value.\n\n    \n'''"

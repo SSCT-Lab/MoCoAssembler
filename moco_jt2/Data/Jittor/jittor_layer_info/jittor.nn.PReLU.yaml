@@ -1,11 +1,11 @@
 api: jittor.nn.PReLU(self, num_parameters=1, init_=0.25)
 constraints:
   init_:
-    default: '0.25'
+    default: 0.25
     dtype:
     - float
   num_parameters:
-    default: '1'
+    default: 1
     dtype:
     - int
 descp: "    r''' Applies the element-wise function:\n\n    .. math::\n        \\text{PReLU}(x)\

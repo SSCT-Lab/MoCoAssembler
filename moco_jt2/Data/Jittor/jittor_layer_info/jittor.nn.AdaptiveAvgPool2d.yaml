@@ -4,6 +4,8 @@ constraints:
     default: no default
     dtype:
     - int
+    - tuple
+    shape: 2
 descp: no description
 extra_para: 0
 inputs:

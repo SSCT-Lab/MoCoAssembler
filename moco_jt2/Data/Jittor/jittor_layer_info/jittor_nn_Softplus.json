@@ -2,7 +2,7 @@
   "params": {
     "beta": {
       "dtype": [
-        "int"
+        "float"
       ],
       "range": [
         null
@@ -13,11 +13,11 @@
       "shape": [
         1
       ],
-      "default": "1"
+      "default": 1
     },
     "threshold": {
       "dtype": [
-        "int"
+        "float"
       ],
       "range": [
         null
@@ -28,7 +28,7 @@
       "shape": [
         1
       ],
-      "default": "20"
+      "default": 20
     }
   },
   "constraints": {}

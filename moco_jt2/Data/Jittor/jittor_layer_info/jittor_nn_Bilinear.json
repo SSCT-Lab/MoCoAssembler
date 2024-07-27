@@ -13,11 +13,11 @@
       "shape": [
         1
       ],
-      "default": "True"
+      "default": true
     },
     "dtype": {
       "dtype": [
-        "str"
+        "string"
       ],
       "range": [
         "\"float32\""
