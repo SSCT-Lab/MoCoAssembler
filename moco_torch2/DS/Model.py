@@ -45,6 +45,7 @@ class Model:
         fileCode = f"import torch\n" \
                    f"import torch.nn as nn\n" \
                    f"import copy\n" \
+                   f"import numpy as np" \
                    f"\n" \
                    f"\n" \
                    f"{mainModelCode}\n" \
@@ -66,7 +67,17 @@ class Model:
         return code
 
     def GenerateTrainCode(self):
-        code = f"def train(x, x_t, y_t):\n" \
+        code = f"def chebyshev_distance(A: np.ndarray, B: np.ndarray):\n" \
+               f"    if A is None or B is None:\n" \
+               f"        return 0.0\n" \
+               f"    if A.shape != B.shape:\n" \
+               f"        return 9999999\n" \
+               f"    else:\n" \
+               f"        return float(np.max(np.abs(A - B)))\n" \
+               f"\n" \
+               f"\n" \
+               f"def train(x, x_t, y_t):\n" \
+               f"    flag = True\n" \
                f"    m_c = {self.modelName}().to('cpu')\n" \
                f"    m_g = copy.deepcopy(m_c)\n" \
                f"    m_g.to('cuda')\n" \
@@ -80,12 +91,24 @@ class Model:
                f"    output_g = m_g(input_g)\n" \
                f"    loss_g = nn.CrossEntropyLoss()(output_g, target_g)\n" \
                f"    loss_g.backward()\n" \
-               f"    x_c = torch.from_numpy(x).to(torch.float32).to('cpu')\n" \
-               f"    y_c = m_c(x_c)\n" \
-               f"    x_g = torch.from_numpy(x).to(torch.float32).to('cuda')\n" \
-               f"    y_g = m_g(x_g)\n" \
                f"\n" \
-               f"    return y_c.detach().to('cpu').numpy(), y_g.detach().to('cpu').numpy()\n"
+               f"    if chebyshev_distance(output_c.detach().to('cpu').numpy(), output_g.detach().to('cpu').numpy()) > 0.1:\n" \
+               f"        flag = False\n" \
+               f"        return flag, 'Output diff too big'\n" \
+               f"    if abs(loss_c.item() - loss_g.item()) > 0.1:\n" \
+               f"        flag = False\n" \
+               f"        return flag, 'Loss diff too big'\n" \
+               f"    for (param_c, param_g) in zip(m_c.parameters(), m_g.parameters()):\n" \
+               f"        weights_c = param_c.cpu().detach().numpy()\n" \
+               f"        weights_g = param_g.cpu().detach().numpy()\n" \
+               f"        distance = chebyshev_distance(weights_c, weights_g)\n" \
+               f"        if distance > 0.1:\n" \
+               f"            flag = False\n" \
+               f"            break\n" \
+               f"    if not flag:\n" \
+               f"        return flag, 'Grad diff too big'\n" \
+               f"\n" \
+               f"    return flag, ''\n"
         return code
 
     def GenerateFuncCode(self):
