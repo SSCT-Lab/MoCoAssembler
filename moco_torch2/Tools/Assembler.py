@@ -122,7 +122,7 @@ def chebyshev_distance(A: np.ndarray, B: np.ndarray):
     if A is None or B is None:
         return 0.0
     if A.shape != B.shape:
-        return 100
+        return 9999999
     else:
         return float(np.max(np.abs(A - B)))
 
@@ -252,11 +252,11 @@ class TreeNode:
             module = importlib.util.module_from_spec(spec)
             sys.modules[module_name] = module
             spec.loader.exec_module(module)
-            y1, y2 = module.train(x, xt, yt)
-            error_message = ""
+            result, info = module.train(x, xt, yt)
+            error_message = info
             end = time.time()
         except Exception as e:
-            y1, y2 = None, None
+            result, info = False, ""
             end = start - 1
             error_message = traceback.format_exc()
 
@@ -264,10 +264,9 @@ class TreeNode:
         trainTime = end - start
 
         if trainTime > 0 and error_message == "":
-            cd = chebyshev_distance(y1, y2)
-            if cd > threshold:
+            # cd = chebyshev_distance(y1, y2)
+            if not result:
                 trainTime = -1.0
-                error_message = f"Diff too big: {str(cd)}"
 
         return trainTime, error_message
 
