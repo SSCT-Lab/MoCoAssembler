@@ -129,6 +129,7 @@ def LoadInfo(apiName: str):
 
 def LoadSimilarity(apiName: str):
     path = f"{dataPath}/../jittor_layer_similarity/{apiName}.yaml"
+    path = path.replace("Conv1d.sp", "Conv1d_sp").replace("Leaky.relu", "Leaky_relu")
     f = open(path, "r", encoding="utf-8")
     d = yaml.full_load(f)
     f.close()
@@ -337,6 +338,7 @@ class Mutator:
         return res
 
     def GetParamStructureAndShape(self, apiName, paramName):
+        # print(apiName, paramName)
         info = self.apiInfo[apiName][paramName]
         structure, shape = info["structure"], info["shape"]
         res = []
@@ -370,7 +372,8 @@ if __name__ == "__main__":
     # CheckInfo()
     # dd = LoadSimilarity("torch.nn.Conv2d")
     m = Mutator()
-    # m.GetParamDtypeAndRange("torch.nn.Conv2d", "in_channels")
+    # res = m.GetParamDtypeAndRange("jittor.nn.Conv2d", "in_channels")
+    # print(res)
     from Parser import GetSeed
     aaa = GetSeed("lenet")
     blocks = aaa.graph
@@ -381,8 +384,12 @@ if __name__ == "__main__":
     for model in ["lenet", "alexnet", "googlenet", "mobilenet", "pointnet", "squeezenet", "vgg19"]:
         models.append(GetSeed(model))
     for model in models:
+        print(model.modelName)
         blocks = model.graph
         for block in blocks:
+            print(block.apiName)
             for i in range(1000):
                 q, qq = m.Mutate(block)
                 print(qq)
+            print("++++++++++++++++++++++++++++++++++++++++++++++++")
+        print("++++++++++++++++++++++++++++++++++++++++++++++++")

@@ -47,7 +47,8 @@ class Model:
         fileCode = f"import jittor\n" \
                    f"import jittor as jt\n"\
                    f"import jittor.nn as nn\n"\
-                   f"import jittor.optim as optim\n"\
+                   f"import jittor.optim as optim\n" \
+                   f"import numpy as np\n" \
                    f"import copy\n" \
                    f"\n" \
                    f"\n" \
@@ -71,7 +72,17 @@ class Model:
         return code
 
     def GenerateTrainCode(self):
-        code = f"def train(x, x_t, y_t):\n" \
+        code = f"def chebyshev_distance(A: np.ndarray, B: np.ndarray):\n" \
+               f"    if A is None or B is None:\n" \
+               f"        return 0.0\n" \
+               f"    if A.shape != B.shape:\n" \
+               f"        return 9999999\n" \
+               f"    else:\n" \
+               f"        return float(np.max(np.abs(A - B)))\n" \
+               f"\n" \
+               f"\n" \
+               f"def train(x, x_t, y_t):\n" \
+               f"    flag = True\n" \
                f"    jt.flags.use_cuda = 0\n" \
                f"    m_c = {self.modelName}()\n"\
                f"    opt_c = optim.SGD(m_c.parameters(), lr=0.01)\n"\
@@ -97,20 +108,25 @@ class Model:
                f"    opt_g.backward(loss_g)\n"\
                f"    opt_g.step()\n" \
                f"    gradients_g = [p.opt_grad(opt_g).numpy() for p in m_g.parameters()]\n"\
-               f"\n"\
-               f"    jt.flags.use_cuda = 0\n"\
-               f"    x_c = jt.array(x).float32()\n" \
-               f"    y_c = m_c(x_c)\n"\
-               f"\n"\
-               f"    jt.flags.use_cuda = 1\n"\
-               f"    x_g = jt.array(x).float32()\n" \
-               f"    y_g = m_g(x_g)\n"\
                f"\n" \
-               f"    output_comparison = y_c.detach().numpy(), y_g.detach().numpy()\n" \
-               f"    loss_comparison = loss_c.item(), loss_g.item()\n" \
-               f"    gradients_comparison = gradients_c, gradients_g\n" \
+               f"    jt.flags.use_cuda = 0\n" \
+               f"    if chebyshev_distance(output_c.detach().numpy(), output_g.detach().numpy()) > 0.1:\n" \
+               f"        flag = False\n" \
+               f"        return flag, 'Output diff too big'\n" \
+               f"    if abs(loss_c.item() - loss_g.item()) > 0.1:\n" \
+               f"        flag = False\n" \
+               f"        return flag, 'Loss diff too big'\n" \
+               f"    for (param_c, param_g) in zip(gradients_c, gradients_g):\n" \
+               f"        weights_c = param_c\n" \
+               f"        weights_g = param_g\n" \
+               f"        distance = chebyshev_distance(weights_c, weights_g)\n" \
+               f"        if distance > 0.1:\n" \
+               f"            flag = False\n" \
+               f"            break\n" \
+               f"    if not flag:\n" \
+               f"        return flag, 'Grad diff too big'\n" \
                f"\n" \
-               f"    return output_comparison, loss_comparison, gradients_comparison\n"
+               f"    return flag, ''\n"
         return code
 
     def GenerateFuncCode(self):

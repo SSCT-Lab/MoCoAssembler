@@ -1,8 +1,0 @@
-api: jittor.nn.Tanh(self)
-constraints: {}
-descp: no description
-extra_para: 0
-inputs:
-  optional: []
-  required: []
-kind: layer
