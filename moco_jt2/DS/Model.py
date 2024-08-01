@@ -1,7 +1,7 @@
 import copy
 import sys
-
 import numpy
+import random
 
 from moco_jt2.DS.Block import Block
 from moco_jt2.Tools.ConstraintChecker import CheckBlock
@@ -50,7 +50,6 @@ class Model:
                    f"import jittor.optim as optim\n" \
                    f"import numpy as np\n" \
                    f"import copy\n"\
-                   f"import random\n"\
                    f"\n" \
                    f"\n" \
                    f"{mainModelCode}\n" \
@@ -73,6 +72,33 @@ class Model:
         return code
 
     def GenerateTrainCode(self):
+        ops_list = ['jittor.ops.arccos', 'jittor.ops.arccosh', 'jittor.ops.negative', 'jittor.ops.acosh',
+                    'jittor.ops.cosh',
+                    'jittor.ops.acos', 'jittor.ops.floor', 'jittor.ops.floor_int', 'jittor.ops.arcsin',
+                    'jittor.ops.arcsinh',
+                    'jittor.ops.asin', 'jittor.ops.asinh', 'jittor.ops.sigmoid', 'jittor.ops.cos',
+                    'jittor.ops.ceil',
+                    'jittor.ops.ceil_int', 'jittor.ops.sin', 'jittor.ops.sinh', 'jittor.ops.erf',
+                    'jittor.ops.erfinv',
+                    'jittor.ops.log', 'jittor.ops.atan', 'jittor.ops.atanh', 'jittor.ops.arctan',
+                    'jittor.ops.arctanh',
+                    'jittor.ops.abs', 'jittor.ops.sqrt', 'jittor.ops.tanh', 'jittor.ops.tan', 'jittor.ops.exp']
+        var_list = ['jittor.Var.arccos()', 'jittor.Var.arccosh()', 'jittor.Var.negative()', 'jittor.Var.acosh()',
+                    'jittor.Var.cosh()', 'jittor.Var.acos()', 'jittor.Var.floor()', 'jittor.Var.floor_int()',
+                    'jittor.Var.arcsin()', 'jittor.Var.arcsinh()', 'jittor.Var.asin()', 'jittor.Var.asinh()',
+                    'jittor.Var.sigmoid()', 'jittor.Var.cos()', 'jittor.Var.ceil()', 'jittor.Var.ceil_int()',
+                    'jittor.Var.sin()', 'jittor.Var.sinh()', 'jittor.Var.erf()', 'jittor.Var.erfinv()',
+                    'jittor.Var.log()',
+                    'jittor.Var.atan()', 'jittor.Var.atanh()', 'jittor.Var.arctan()', 'jittor.Var.arctanh()',
+                    'jittor.Var.abs()', 'jittor.Var.sqrt()', 'jittor.Var.tanh()', 'jittor.Var.tan()',
+                    'jittor.Var.exp()']
+        chosen_list = random.choice([ops_list, var_list])
+        chosen_element = random.choice(chosen_list)
+        if chosen_list == ops_list:
+            process_input_data = [f"jt.{chosen_element.split('.')[-1]}(input_c)", f"jt.{chosen_element.split('.')[-1]}(input_g)"]
+        else:
+            process_input_data = [f"input_c.{chosen_element.split('.')[-1].split('(')[0]}", f"input_g.{chosen_element.split('.')[-1].split('(')[0]}"]
+
         code = f"def chebyshev_distance(A: np.ndarray, B: np.ndarray):\n" \
                f"    if A is None or B is None:\n" \
                f"        return 0.0\n" \
@@ -80,36 +106,6 @@ class Model:
                f"        return 9999999\n" \
                f"    else:\n" \
                f"        return float(np.max(np.abs(A - B)))\n" \
-               f"\n" \
-               f"\n" \
-               f"def process_input_data(input_data, chosen_element, is_ops_list):\n" \
-               f"    if is_ops_list:\n" \
-               f"        func = getattr(jt, chosen_element.split('.')[-1])\n" \
-               f"        result = func(input_data)\n" \
-               f"    else:\n" \
-               f"        func = getattr(input_data, chosen_element.split('.')[-1].split('(')[0])\n" \
-               f"        result = func()\n" \
-               f"    return result\n" \
-               f"\n" \
-               f"\n" \
-               f"def choose_element():\n" \
-               f"    ops_list = ['jittor.ops.arccos', 'jittor.ops.arccosh', 'jittor.ops.negative', 'jittor.ops.acosh', 'jittor.ops.cosh',\n" \
-               f"                'jittor.ops.acos', 'jittor.ops.floor', 'jittor.ops.floor_int', 'jittor.ops.arcsin', 'jittor.ops.arcsinh',\n" \
-               f"                'jittor.ops.asin', 'jittor.ops.asinh', 'jittor.ops.sigmoid', 'jittor.ops.cos', 'jittor.ops.ceil',\n" \
-               f"                'jittor.ops.ceil_int', 'jittor.ops.sin', 'jittor.ops.sinh', 'jittor.ops.erf', 'jittor.ops.erfinv',\n" \
-               f"                'jittor.ops.log', 'jittor.ops.atan', 'jittor.ops.atanh', 'jittor.ops.arctan', 'jittor.ops.arctanh',\n" \
-               f"                'jittor.ops.abs', 'jittor.ops.sqrt', 'jittor.ops.tanh', 'jittor.ops.tan', 'jittor.ops.exp']\n" \
-               f"    var_list = ['jittor.Var.arccos()', 'jittor.Var.arccosh()', 'jittor.Var.negative()', 'jittor.Var.acosh()',\n" \
-               f"                'jittor.Var.cosh()', 'jittor.Var.acos()', 'jittor.Var.floor()', 'jittor.Var.floor_int()',\n" \
-               f"                'jittor.Var.arcsin()', 'jittor.Var.arcsinh()', 'jittor.Var.asin()', 'jittor.Var.asinh()',\n" \
-               f"                'jittor.Var.sigmoid()', 'jittor.Var.cos()', 'jittor.Var.ceil()', 'jittor.Var.ceil_int()',\n" \
-               f"                'jittor.Var.sin()', 'jittor.Var.sinh()', 'jittor.Var.erf()', 'jittor.Var.erfinv()', 'jittor.Var.log()',\n" \
-               f"                'jittor.Var.atan()', 'jittor.Var.atanh()', 'jittor.Var.arctan()', 'jittor.Var.arctanh()',\n" \
-               f"                'jittor.Var.abs()', 'jittor.Var.sqrt()', 'jittor.Var.tanh()', 'jittor.Var.tan()', 'jittor.Var.exp()']\n" \
-               f"    chosen_list = random.choice([ops_list, var_list])\n" \
-               f"    chosen_element = random.choice(chosen_list)\n" \
-               f"    is_ops_list = chosen_list == ops_list\n" \
-               f"    return chosen_element, is_ops_list\n" \
                f"\n" \
                f"\n" \
                f"def train(x, x_t, y_t):\n" \
@@ -122,11 +118,9 @@ class Model:
                f"    m_g = copy.deepcopy(m_c)\n" \
                f"    opt_g = optim.SGD(m_g.parameters(), lr=0.01)\n" \
                f"\n" \
-               f"    chosen_element, is_ops_list = choose_element()\n" \
-               f"\n" \
                f"    jt.flags.use_cuda = 0\n" \
                f"    input_c = jt.array(x_t).float32()\n"\
-               f"    input_c = process_input_data(input_c, chosen_element, is_ops_list)\n" \
+               f"    input_c = {process_input_data[0]}\n" \
                f"    target_c = jt.array(y_t)\n" \
                f"    output_c = m_c(input_c)\n" \
                f"    loss_c = nn.CrossEntropyLoss()(output_c, target_c)\n" \
@@ -136,7 +130,7 @@ class Model:
                f"\n" \
                f"    jt.flags.use_cuda = 1\n" \
                f"    input_g = jt.array(x_t).float32()\n"\
-               f"    input_g = process_input_data(input_g, chosen_element, is_ops_list)\n" \
+               f"    input_g = {process_input_data[1]}\n" \
                f"    target_g = jt.array(y_t)\n" \
                f"    output_g = m_g(input_g)\n" \
                f"    loss_g = nn.CrossEntropyLoss()(output_g, target_g)\n"\
