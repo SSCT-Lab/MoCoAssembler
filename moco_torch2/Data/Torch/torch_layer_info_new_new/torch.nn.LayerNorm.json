@@ -1,0 +1,50 @@
+{
+  "params": {
+    "normalized_shape": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    },
+    "eps": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": 0.00005
+    },
+    "elementwise_affine": {
+      "dtype": [
+        "boolean"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": "True"
+    }
+  },
+  "constraints": {}
+}

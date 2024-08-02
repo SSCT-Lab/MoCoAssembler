@@ -1,0 +1,19 @@
+{
+  "params": {
+    "alpha": {
+      "dtype": ["float"],
+      "range": [[0.0, 1.0]],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": 1.0
+    },
+    "inplace": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "False"
+    }
+  },
+  "constraints": {}
+}

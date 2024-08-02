@@ -1,0 +1,17 @@
+{
+  "params": {
+    "input": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "weight": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar/1-D tensor",
+      "shape": "1/depends on input channels"
+    }
+  },
+  "constraints": {}
+}

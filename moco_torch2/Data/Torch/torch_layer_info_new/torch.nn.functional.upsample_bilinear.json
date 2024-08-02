@@ -1,0 +1,23 @@
+{
+  "params": {
+    "input": {
+      "dtype": "Tensor",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "size": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1/2"
+    },
+    "scale_factor": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1/2"
+    }
+  },
+  "constraints": {}
+}

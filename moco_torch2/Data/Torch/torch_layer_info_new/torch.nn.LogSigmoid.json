@@ -1,0 +1,13 @@
+{
+  "params": {
+    "input": {
+      "structure": "n-dimensional array",
+      "shape": "No mention"
+    },
+    "output": {
+      "structure": "n-dimensional array",
+      "shape": "No mention"
+    }
+  },
+  "constraints": {}
+}

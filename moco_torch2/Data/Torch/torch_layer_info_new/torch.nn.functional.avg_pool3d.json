@@ -1,0 +1,47 @@
+{
+  "params": {
+    "input": {
+      "dtype": "Tensor",
+      "range": "No mention",
+      "structure": "Tensor",
+      "shape": "(minibatch, in_channels, iT, iH, iW)"
+    },
+    "kernel_size": {
+      "dtype": "int/tuple",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1/(kT, kH, kW)"
+    },
+    "stride": {
+      "dtype": "int/tuple",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1/(sT, sH, sW)"
+    },
+    "padding": {
+      "dtype": "int/tuple",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1/(padT, padH, padW)"
+    },
+    "ceil_mode": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "count_include_pad": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "divisor_override": {
+      "dtype": "int/float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

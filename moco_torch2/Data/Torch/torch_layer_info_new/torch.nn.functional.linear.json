@@ -1,0 +1,23 @@
+{
+  "params": {
+    "input": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "(*, in_features)"
+    },
+    "weight": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "(out_features, in_features)/(in_features)"
+    },
+    "bias": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "(out_features)/()"
+    }
+  },
+  "constraints": {}
+}

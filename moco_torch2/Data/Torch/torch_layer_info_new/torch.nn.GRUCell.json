@@ -1,0 +1,26 @@
+{
+  "params": {
+    "input_size": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": null
+    },
+    "hidden_size": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": null
+    },
+    "bias": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "True"
+    }
+  },
+  "constraints": {}
+}

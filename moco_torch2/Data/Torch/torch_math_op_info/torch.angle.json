@@ -1,0 +1,17 @@
+{
+  "params": {
+    "input": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "out": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    }
+  },
+  "constraints": {}
+}

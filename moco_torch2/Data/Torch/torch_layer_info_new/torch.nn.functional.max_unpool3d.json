@@ -1,0 +1,41 @@
+{
+  "params": {
+    "input": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "n-dimensional array",
+      "shape": "No mention"
+    },
+    "indices": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "n-dimensional array",
+      "shape": "No mention"
+    },
+    "kernel_size": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1/No mention"
+    },
+    "stride": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1/No mention"
+    },
+    "padding": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1/No mention"
+    },
+    "output_size": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tuple",
+      "shape": "No mention"
+    }
+  },
+  "constraints": {}
+}

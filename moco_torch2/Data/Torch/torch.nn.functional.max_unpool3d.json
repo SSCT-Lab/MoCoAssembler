@@ -1,0 +1,62 @@
+{
+  "params": {
+    "indices": {
+      "dtype": [],
+      "range": [],
+      "structure": [],
+      "shape": [],
+      "default": null
+    },
+    "kernel_size": {
+      "dtype": [],
+      "range": [],
+      "structure": [
+        "scalar",
+        "tuple"
+      ],
+      "shape": [
+        1,
+        1
+      ],
+      "default": null
+    },
+    "stride": {
+      "dtype": [],
+      "range": [],
+      "structure": [
+        "scalar",
+        "tuple"
+      ],
+      "shape": [
+        1,
+        1
+      ],
+      "default": null
+    },
+    "padding": {
+      "dtype": [],
+      "range": [],
+      "structure": [
+        "scalar",
+        "tuple"
+      ],
+      "shape": [
+        1,
+        1
+      ],
+      "default": null
+    },
+    "output_size": {
+      "dtype": [],
+      "range": [],
+      "structure": [
+        "tuple"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    }
+  },
+  "constraints": {}
+}

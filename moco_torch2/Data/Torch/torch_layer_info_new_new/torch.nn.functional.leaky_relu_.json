@@ -1,0 +1,20 @@
+{
+  "params": {
+    "negative_slope": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": 0.01
+    }
+  },
+  "constraints": {}
+}

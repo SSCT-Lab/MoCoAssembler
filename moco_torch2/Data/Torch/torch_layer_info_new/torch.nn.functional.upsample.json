@@ -1,0 +1,41 @@
+{
+  "params": {
+    "input": {
+      "dtype": "Tensor",
+      "range": "No mention",
+      "structure": "n-dimensional array (tensor)",
+      "shape": "3-D/4-D/5-D"
+    },
+    "size": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1/2/3"
+    },
+    "scale_factor": {
+      "dtype": "float/int",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1"
+    },
+    "mode": {
+      "dtype": "string",
+      "range": "{'nearest', 'linear', 'bilinear', 'bicubic', 'trilinear'}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "align_corners": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {
+    "1": {
+      "Parameter 1": "scale_factor",
+      "Parameter 2": "size",
+      "Constraint": "if isinstance(scale_factor, tuple): assert len(scale_factor) == len(size)"
+    }
+  }
+}

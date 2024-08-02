@@ -1,0 +1,33 @@
+{
+  "params": {
+    "kernel_size": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": null
+    },
+    "dilation": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": 1
+    },
+    "padding": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": 0
+    },
+    "stride": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": 1
+    }
+  },
+  "constraints": {}
+}

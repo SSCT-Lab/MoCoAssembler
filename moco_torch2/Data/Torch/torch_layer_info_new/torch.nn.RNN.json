@@ -1,0 +1,53 @@
+{
+  "params": {
+    "input_size": {
+      "dtype": "int",
+      "range": "[1, infinity]",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "hidden_size": {
+      "dtype": "int",
+      "range": "[1, infinity]",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "num_layers": {
+      "dtype": "int",
+      "range": "[1, infinity]",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "nonlinearity": {
+      "dtype": "string",
+      "range": "{'tanh', 'relu'}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "bias": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "batch_first": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "dropout": {
+      "dtype": "float",
+      "range": "[0, 1]",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "bidirectional": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

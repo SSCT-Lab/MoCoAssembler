@@ -1,0 +1,54 @@
+{
+  "params": {
+    "num_embeddings": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": null
+    },
+    "embedding_dim": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": null
+    },
+    "padding_idx": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "None"
+    },
+    "max_norm": {
+      "dtype": ["float"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "None"
+    },
+    "norm_type": {
+      "dtype": ["float"],
+      "range": [[0.0, 8.0]],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": 2.0
+    },
+    "scale_grad_by_freq": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "False"
+    },
+    "sparse": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "False"
+    }
+  },
+  "constraints": {}
+}

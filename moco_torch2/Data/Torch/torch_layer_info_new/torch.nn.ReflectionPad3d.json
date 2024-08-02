@@ -1,0 +1,11 @@
+{
+  "params": {
+    "padding": {
+      "dtype": "int/tuple",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1/6"
+    }
+  },
+  "constraints": {}
+}

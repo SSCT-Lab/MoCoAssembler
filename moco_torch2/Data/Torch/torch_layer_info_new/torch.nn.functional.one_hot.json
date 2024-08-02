@@ -1,0 +1,17 @@
+{
+  "params": {
+    "tensor": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "num_classes": {
+      "dtype": "int",
+      "range": "[-1, No mention]",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

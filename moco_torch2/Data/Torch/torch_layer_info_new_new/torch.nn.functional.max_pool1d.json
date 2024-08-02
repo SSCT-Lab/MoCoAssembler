@@ -1,0 +1,58 @@
+{
+  "params": {
+    "kernel_size": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 1],
+      "default": null
+    },
+    "stride": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 1],
+      "default": "None"
+    },
+    "padding": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 1],
+      "default": 0
+    },
+    "dilation": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 1],
+      "default": 1
+    },
+    "return_indices": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "False"
+    },
+    "ceil_mode": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "False"
+    }
+  },
+  "constraints": {
+    "Constraint 1": {
+      "Parameter 1": "padding",
+      "Parameter 2": "kernel_size",
+      "Constraint": "padding >= 0 and padding <= kernel_size / 2"
+    },
+    "Constraint 2": {
+      "Parameter 1": "dilation",
+      "Parameter 2": "",
+      "Constraint": "dilation > 0"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "params": {
+    "dim": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "eps": {
+      "dtype": "float",
+      "range": "[0, \u221e)",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

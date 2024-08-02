@@ -1,0 +1,35 @@
+{
+  "params": {
+    "start_dim": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        [1, 2]
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": 1
+    },
+    "end_dim": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        [-2, -1]
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": -1
+    }
+  },
+  "constraints": {}
+}

@@ -1,0 +1,19 @@
+{
+  "params": {
+    "size": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 2],
+      "default": "None"
+    },
+    "scale_factor": {
+      "dtype": ["float"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 2],
+      "default": "None"
+    }
+  },
+  "constraints": {}
+}

@@ -1,0 +1,26 @@
+{
+  "params": {
+    "min_val": {
+      "dtype": ["float"],
+      "range": [[-8.0, 0.0]],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": -1.0
+    },
+    "max_val": {
+      "dtype": ["float"],
+      "range": [[-0.0, 8.0]],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": 1.0
+    },
+    "inplace": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "False"
+    }
+  },
+  "constraints": {}
+}

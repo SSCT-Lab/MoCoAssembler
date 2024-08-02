@@ -1,0 +1,50 @@
+{
+  "params": {
+    "p": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": 0.5
+    },
+    "training": {
+      "dtype": [
+        "boolean"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": "False"
+    },
+    "inplace": {
+      "dtype": [
+        "boolean"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": "False"
+    }
+  },
+  "constraints": {}
+}

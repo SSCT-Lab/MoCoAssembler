@@ -1,0 +1,11 @@
+{
+  "params": {
+    "input": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "n-dimensional array",
+      "shape": "No mention"
+    }
+  },
+  "constraints": {}
+}

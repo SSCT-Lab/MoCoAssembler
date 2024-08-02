@@ -1,0 +1,71 @@
+{
+  "params": {
+    "mode": {
+      "dtype": "string",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "input_size": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "hidden_size": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "num_layers": {
+      "dtype": "int",
+      "range": "[1, No mention]",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "bias": {
+      "dtype": "boolean",
+      "range": "{true, false}",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "batch_first": {
+      "dtype": "boolean",
+      "range": "{true, false}",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "dropout": {
+      "dtype": "float",
+      "range": "[0.0, 1.0]",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "bidirectional": {
+      "dtype": "boolean",
+      "range": "{true, false}",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "proj_size": {
+      "dtype": "int",
+      "range": "[0, No mention]",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "device": {
+      "dtype": "string",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "dtype": {
+      "dtype": "string",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    }
+  },
+  "constraints": {}
+}

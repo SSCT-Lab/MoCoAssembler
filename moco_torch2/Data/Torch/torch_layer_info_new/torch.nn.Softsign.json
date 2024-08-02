@@ -1,0 +1,17 @@
+{
+  "params": {
+    "*args": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "No mention",
+      "shape": "No mention"
+    },
+    "**kwargs": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "No mention",
+      "shape": "No mention"
+    }
+  },
+  "constraints": {}
+}

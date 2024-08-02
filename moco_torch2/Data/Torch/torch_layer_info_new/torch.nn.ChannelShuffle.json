@@ -1,0 +1,11 @@
+{
+  "params": {
+    "groups": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    }
+  },
+  "constraints": {}
+}

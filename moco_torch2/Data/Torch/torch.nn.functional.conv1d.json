@@ -1,0 +1,95 @@
+{
+  "params": {
+    "weight": {
+      "dtype": [],
+      "range": [],
+      "structure": [],
+      "shape": [],
+      "default": null
+    },
+    "bias": {
+      "dtype": [],
+      "range": [],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    },
+    "stride": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar",
+        "tuple"
+      ],
+      "shape": [
+        1,
+        1
+      ],
+      "default": null
+    },
+    "padding": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar",
+        "tuple"
+      ],
+      "shape": [
+        1,
+        1
+      ],
+      "default": null
+    },
+    "dilation": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar",
+        "tuple"
+      ],
+      "shape": [
+        1,
+        1
+      ],
+      "default": null
+    },
+    "groups": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    }
+  },
+  "constraints": {
+    "1": {
+      "Parameter 1": "weight",
+      "Parameter 2": "groups",
+      "Constraint": "in_channels % groups == 0"
+    }
+  }
+}

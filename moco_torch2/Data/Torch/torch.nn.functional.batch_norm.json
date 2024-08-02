@@ -1,0 +1,78 @@
+{
+  "params": {
+    "running_mean": {
+      "dtype": [],
+      "range": [],
+      "structure": [],
+      "shape": [],
+      "default": null
+    },
+    "running_var": {
+      "dtype": [],
+      "range": [],
+      "structure": [],
+      "shape": [],
+      "default": null
+    },
+    "weight": {
+      "dtype": [],
+      "range": [],
+      "structure": [],
+      "shape": [],
+      "default": null
+    },
+    "bias": {
+      "dtype": [],
+      "range": [],
+      "structure": [],
+      "shape": [],
+      "default": null
+    },
+    "training": {
+      "dtype": [
+        "boolean"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    },
+    "momentum": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    },
+    "eps": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    }
+  },
+  "constraints": {}
+}

@@ -1,0 +1,21 @@
+{
+  "params": {
+    "out_features": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "bias": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "weight": {
+      "structure": "tensor",
+      "shape": "(out_features, in_features)"
+    }
+  },
+  "constraints": {}
+}

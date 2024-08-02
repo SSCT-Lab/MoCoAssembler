@@ -1,0 +1,49 @@
+{
+  "params": {
+    "input1": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [],
+      "shape": [],
+      "default": null
+    },
+    "input2": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [],
+      "shape": [],
+      "default": null
+    },
+    "weight": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [],
+      "shape": [],
+      "default": null
+    },
+    "bias": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [],
+      "shape": [],
+      "default": null
+    }
+  },
+  "constraints": {}
+}

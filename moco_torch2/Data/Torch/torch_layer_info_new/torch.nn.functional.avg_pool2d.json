@@ -1,0 +1,47 @@
+{
+  "params": {
+    "input": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "(minibatch, in_channels, iH, iW)"
+    },
+    "kernel_size": {
+      "dtype": "int",
+      "range": "[1, infinity)",
+      "structure": "scalar/tuple",
+      "shape": "1/2"
+    },
+    "stride": {
+      "dtype": "int",
+      "range": "[1, infinity)",
+      "structure": "scalar/tuple",
+      "shape": "1/2"
+    },
+    "padding": {
+      "dtype": "int",
+      "range": "[0, infinity)",
+      "structure": "scalar/tuple",
+      "shape": "1/2"
+    },
+    "ceil_mode": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "count_include_pad": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "divisor_override": {
+      "dtype": "int/float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

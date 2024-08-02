@@ -1,0 +1,22 @@
+{
+  "params": {
+    "output_size": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar",
+        "tuple"
+      ],
+      "shape": [
+        1,
+        2
+      ],
+      "default": null
+    }
+  },
+  "constraints": {}
+}

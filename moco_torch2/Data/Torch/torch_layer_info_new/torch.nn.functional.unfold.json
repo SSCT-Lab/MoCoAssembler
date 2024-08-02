@@ -1,0 +1,35 @@
+{
+  "params": {
+    "input": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "4-D tensor",
+      "shape": "(batch_size, channels, height, width)"
+    },
+    "kernel_size": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1/2"
+    },
+    "dilation": {
+      "dtype": "int",
+      "range": "[1, Infinity]",
+      "structure": "scalar/tuple",
+      "shape": "1/2"
+    },
+    "padding": {
+      "dtype": "int",
+      "range": "[0, Infinity]",
+      "structure": "scalar/tuple",
+      "shape": "1/2"
+    },
+    "stride": {
+      "dtype": "int",
+      "range": "[1, Infinity]",
+      "structure": "scalar/tuple",
+      "shape": "1/2"
+    }
+  },
+  "constraints": {}
+}

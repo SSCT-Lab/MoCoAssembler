@@ -1,0 +1,17 @@
+{
+  "params": {
+    "output_size": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "return_indices": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": 1
+    }
+  },
+  "constraints": {}
+}

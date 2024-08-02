@@ -1,0 +1,23 @@
+{
+  "params": {
+    "normalized_shape": {
+      "dtype": "int/list",
+      "range": "No mention",
+      "structure": "scalar/list/torch.Size",
+      "shape": "No mention"
+    },
+    "eps": {
+      "dtype": "float",
+      "range": "[0, infinity]",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "elementwise_affine": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

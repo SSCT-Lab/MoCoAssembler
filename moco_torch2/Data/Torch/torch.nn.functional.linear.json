@@ -1,0 +1,19 @@
+{
+  "params": {
+    "weight": {
+      "dtype": [],
+      "range": [],
+      "structure": [],
+      "shape": [],
+      "default": null
+    },
+    "bias": {
+      "dtype": [],
+      "range": [],
+      "structure": [],
+      "shape": [],
+      "default": null
+    }
+  },
+  "constraints": {}
+}

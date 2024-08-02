@@ -1,0 +1,71 @@
+{
+  "params": {
+    "num_groups": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    },
+    "num_channels": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    },
+    "eps": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": 0.00005
+    },
+    "affine": {
+      "dtype": [
+        "boolean"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": "True"
+    }
+  },
+  "constraints": {
+    "1": {
+      "Parameter 1": "num_channels",
+      "Parameter 2": "num_groups",
+      "Constraint": "num_channels % num_groups == 0"
+    }
+  }
+}

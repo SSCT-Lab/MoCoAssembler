@@ -1,0 +1,35 @@
+{
+  "params": {
+    "input": {
+      "dtype": "Tensor",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "size": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "alpha": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "beta": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "k": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

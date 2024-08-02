@@ -1,0 +1,47 @@
+{
+  "params": {
+    "kernel_size": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 2],
+      "default": null
+    },
+    "stride": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 2],
+      "default": "None"
+    },
+    "padding": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 2],
+      "default": 0
+    },
+    "ceil_mode": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "False"
+    },
+    "count_include_pad": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "True"
+    },
+    "divisor_override": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "None"
+    }
+  },
+  "constraints": {}
+}

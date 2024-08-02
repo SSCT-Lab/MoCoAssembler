@@ -1,0 +1,41 @@
+{
+  "params": {
+    "input": {
+      "dtype": "Tensor",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "indices": {
+      "dtype": "Tensor",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "kernel_size": {
+      "dtype": "int/tuple",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1/No mention"
+    },
+    "stride": {
+      "dtype": "int/tuple",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1/No mention"
+    },
+    "padding": {
+      "dtype": "int/tuple",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1/No mention"
+    },
+    "output_size": {
+      "dtype": "tuple",
+      "range": "No mention",
+      "structure": "tuple",
+      "shape": "No mention"
+    }
+  },
+  "constraints": {}
+}

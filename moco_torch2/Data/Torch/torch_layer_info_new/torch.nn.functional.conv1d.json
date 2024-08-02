@@ -1,0 +1,53 @@
+{
+  "params": {
+    "input": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "(minibatch, in_channels, iW)"
+    },
+    "weight": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "(out_channels, in_channels/groups, kW)"
+    },
+    "bias": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "scalar/tensor",
+      "shape": "1/(out_channels)"
+    },
+    "stride": {
+      "dtype": "int/tuple",
+      "range": "[1, Infinity]",
+      "structure": "scalar/tuple",
+      "shape": "1/(1)"
+    },
+    "padding": {
+      "dtype": "int/string/tuple",
+      "range": "['valid', 'same']",
+      "structure": "scalar/string/tuple",
+      "shape": "1/1/(1)"
+    },
+    "dilation": {
+      "dtype": "int/tuple",
+      "range": "[1, Infinity]",
+      "structure": "scalar/tuple",
+      "shape": "1/(1)"
+    },
+    "groups": {
+      "dtype": "int",
+      "range": "[1, Infinity]",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {
+    "1": {
+      "Parameter 1": "weight",
+      "Parameter 2": "groups",
+      "Constraint": "in_channels % groups == 0"
+    }
+  }
+}

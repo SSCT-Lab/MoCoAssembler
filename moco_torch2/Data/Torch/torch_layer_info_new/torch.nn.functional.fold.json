@@ -1,0 +1,41 @@
+{
+  "params": {
+    "input": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "n-dimensional array",
+      "shape": "3/4 dimensions"
+    },
+    "output_size": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tuple",
+      "shape": "2"
+    },
+    "kernel_size": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tuple",
+      "shape": "2"
+    },
+    "dilation": {
+      "dtype": "int/float",
+      "range": "[1, infinity)",
+      "structure": "scalar/tuple",
+      "shape": "1/2"
+    },
+    "padding": {
+      "dtype": "int/float",
+      "range": "[0, infinity)",
+      "structure": "scalar/tuple",
+      "shape": "1/2"
+    },
+    "stride": {
+      "dtype": "int/float",
+      "range": "[1, infinity)",
+      "structure": "scalar/tuple",
+      "shape": "1/2"
+    }
+  },
+  "constraints": {}
+}

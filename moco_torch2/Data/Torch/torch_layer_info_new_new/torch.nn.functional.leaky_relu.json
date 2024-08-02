@@ -1,0 +1,35 @@
+{
+  "params": {
+    "negative_slope": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": 0.01
+    },
+    "inplace": {
+      "dtype": [
+        "boolean"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": "False"
+    }
+  },
+  "constraints": {}
+}

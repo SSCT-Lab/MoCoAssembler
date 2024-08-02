@@ -1,0 +1,17 @@
+{
+  "params": {
+    "input": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "negative_slope": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    }
+  },
+  "constraints": {}
+}

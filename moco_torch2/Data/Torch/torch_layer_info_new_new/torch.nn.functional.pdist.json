@@ -1,0 +1,20 @@
+{
+  "params": {
+    "p": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": 2
+    }
+  },
+  "constraints": {}
+}

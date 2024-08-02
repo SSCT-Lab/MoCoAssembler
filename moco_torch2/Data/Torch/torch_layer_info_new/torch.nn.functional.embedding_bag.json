@@ -1,0 +1,97 @@
+{
+  "params": {
+    "input": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "1-dimensional array/2-dimensional array (tensor)",
+      "shape": "No mention"
+    },
+    "weight": {
+      "dtype": "int/float",
+      "range": "No mention",
+      "structure": "2-dimensional array (tensor)",
+      "shape": "No mention"
+    },
+    "offsets": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "1-dimensional array (tensor)",
+      "shape": "No mention"
+    },
+    "max_norm": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "norm_type": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "scale_grad_by_freq": {
+      "dtype": "boolean",
+      "range": "[False, True]",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "mode": {
+      "dtype": "string",
+      "range": "{'sum', 'mean', 'max'}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "sparse": {
+      "dtype": "boolean",
+      "range": "[False, True]",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "per_sample_weights": {
+      "dtype": "float/double",
+      "range": "No mention",
+      "structure": "1-dimensional array (tensor)",
+      "shape": "No mention"
+    },
+    "include_last_offset": {
+      "dtype": "boolean",
+      "range": "[False, True]",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "padding_idx": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {
+    "1": {
+      "Parameter 1": "mode",
+      "Parameter 2": "scale_grad_by_freq",
+      "Constraint": "if mode=='max': scale_grad_by_freq==False"
+    },
+    "2": {
+      "Parameter 1": "mode",
+      "Parameter 2": "sparse",
+      "Constraint": "if mode=='max': sparse==False"
+    },
+    "3": {
+      "Parameter 1": "input",
+      "Parameter 2": "offsets",
+      "Constraint": "if input.ndimension()==2: offsets==None"
+    },
+    "4": {
+      "Parameter 1": "offsets",
+      "Parameter 2": "input",
+      "Constraint": "if offsets is not None: offsets.shape[0]==(input.shape[0] // input.shape[1])"
+    },
+    "5": {
+      "Parameter 1": "per_sample_weights",
+      "Parameter 2": "input",
+      "Constraint": "if per_sample_weights is not None: per_sample_weights.shape==input.shape"
+    }
+  }
+}

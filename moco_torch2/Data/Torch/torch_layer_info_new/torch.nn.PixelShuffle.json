@@ -1,0 +1,11 @@
+{
+  "params": {
+    "upscale_factor": {
+      "dtype": "int",
+      "range": "[1, inf]",
+      "structure": "scalar",
+      "shape": 1
+    }
+  },
+  "constraints": {}
+}

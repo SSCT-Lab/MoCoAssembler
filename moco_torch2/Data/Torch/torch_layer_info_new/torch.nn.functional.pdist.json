@@ -1,0 +1,17 @@
+{
+  "params": {
+    "input": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "n-dimensional array (tensor)",
+      "shape": "N\u00d7M"
+    },
+    "p": {
+      "dtype": "int/float",
+      "range": "[0, \u221e]",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

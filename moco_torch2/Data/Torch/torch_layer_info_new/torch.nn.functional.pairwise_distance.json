@@ -1,0 +1,35 @@
+{
+  "params": {
+    "x1": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "x2": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "p": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "eps": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "keepdim": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

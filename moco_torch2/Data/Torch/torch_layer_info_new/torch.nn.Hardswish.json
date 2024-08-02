@@ -1,0 +1,11 @@
+{
+  "params": {
+    "inplace": {
+      "dtype": "boolean",
+      "range": "{False, True}",
+      "structure": "scalar",
+      "shape": 1
+    }
+  },
+  "constraints": {}
+}

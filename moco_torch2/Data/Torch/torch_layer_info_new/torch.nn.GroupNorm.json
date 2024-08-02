@@ -1,0 +1,47 @@
+{
+  "params": {
+    "num_groups": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "num_channels": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "eps": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "affine": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "device": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "No mention",
+      "shape": "No mention"
+    },
+    "dtype": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "No mention",
+      "shape": "No mention"
+    }
+  },
+  "constraints": {
+    "1": {
+      "Parameter 1": "num_channels",
+      "Parameter 2": "num_groups",
+      "Constraint": "num_channels % num_groups == 0"
+    }
+  }
+}

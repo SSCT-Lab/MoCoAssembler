@@ -1,0 +1,29 @@
+{
+  "params": {
+    "eps": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "momentum": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "affine": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "track_running_stats": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": 1
+    }
+  },
+  "constraints": {}
+}

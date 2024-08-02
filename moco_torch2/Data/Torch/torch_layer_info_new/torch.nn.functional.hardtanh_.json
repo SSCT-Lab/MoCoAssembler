@@ -1,0 +1,23 @@
+{
+  "params": {
+    "input": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "min_val": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "max_val": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    }
+  },
+  "constraints": {}
+}

@@ -66,6 +66,8 @@ class Filter:
         self.addkey("Expected more than 1 spatial element when training")
         self.addkey("Expected size of input")
         self.addkey("The size of tensor a")
+        self.addkey("Kernel size can't be greater than actual input size")
+        self.addkey("object has no attribute")
 
     def judge(self, string) -> bool:
         for s in self.info_lis:
@@ -240,8 +242,8 @@ class TreeNode:
 
     def train(self):
         self.assembleTrainFile()
-        x, _ = filtor.tkg.generate_kit()
-        xt, yt = filtor.tkg.generate_kit()
+        x, _, s1 = filtor.tkg.generate_kit()
+        xt, yt, s2 = filtor.tkg.generate_kit()
         filePath = f"{self.casePath}/{self.seedName}_{self.generation}_{self.index}_train.py"
         sys.path.append(self.casePath)
 
@@ -252,7 +254,7 @@ class TreeNode:
             module = importlib.util.module_from_spec(spec)
             sys.modules[module_name] = module
             spec.loader.exec_module(module)
-            result, info = module.train(x, xt, yt)
+            result, info = module.train(x + 0.00001, xt + 0.00001, yt)
             error_message = info
             end = time.time()
         except Exception as e:
@@ -263,12 +265,10 @@ class TreeNode:
         sys.path.remove(self.casePath)
         trainTime = end - start
 
-        if trainTime > 0 and error_message == "":
-            # cd = chebyshev_distance(y1, y2)
-            if not result:
-                trainTime = -1.0
+        if not result:
+            trainTime = -1.0
 
-        return trainTime, error_message
+        return trainTime, error_message, (s1, s2)
 
     def preCheck(self, block):
         code = f"import torch\n" \
@@ -341,16 +341,20 @@ class TreeNode:
             brandNewModel = self.getModel()
             brandNewModel.graph.append(mutatedBlock)
             brandNewModel.modelOutputs = mutatedBlock.outputSymbols
+
+            brandNewModel.extraOp = mutator.GenerateRandomOp()
+
             child.saveCase(brandNewModel)
             child.mutateInfo = mutateInfo
 
             runTime, runErrorInfo = child.run()
             runResult = (runTime >= 0.0)
             if runResult:
-                trainTime, trainErrorInfo = child.train()
+                trainTime, trainErrorInfo, caseIndex = child.train()
                 trainResult = (trainTime >= 0.0)
             else:
                 trainTime, trainErrorInfo, trainResult = -1.0, "", False
+                caseIndex = (-1, -1)
             result = {
                 "go result": runResult,
                 "go time": runTime,
@@ -359,7 +363,8 @@ class TreeNode:
                 "train time": trainTime,
                 "train error info": trainErrorInfo,
                 "father": str(self.no()),
-                "mutate info": mutateInfo
+                "mutate info": mutateInfo,
+                "case": str(caseIndex)
             }
             f = open(f"{child.casePath}/result.json", "w", encoding="utf-8")
             json.dump(result, f, indent=2)
@@ -372,43 +377,35 @@ class TreeNode:
         return res  # Here, model of these TreeNodes has been saved, and it just return fine nodes.
 
 
-def cut(nodes, maxNode):
-    if len(nodes) <= maxNode:
-        return nodes
-
-    # 将节点按等价类分类
-    classes = defaultdict(list)
+def cut(nodes, limit):
+    # Step 1: 分桶
+    buckets = defaultdict(list)
     for node in nodes:
-        classes[node.mutateInfo].append(node)
+        buckets[node.mutateInfo].append(node)
 
-    # 使用优先队列（最小堆）选择权重最大的节点进行削减
-    # Python 的 heapq 是最小堆，所以用权重的负值来模拟最大堆
-    max_heap = []
-    for key, nodes in classes.items():
-        for node in nodes:
-            heapq.heappush(max_heap, (-node.weight, node, key))
+    # Step 2: 桶内排序
+    for bucket in buckets.values():
+        bucket.sort(key=lambda x: x.weight)
 
-    # 需要删除的节点数量
-    num_to_remove = len(nodes) - maxNode
+    # Step 3: 截断桶后50%
+    truncated = []
+    for bucket in buckets.values():
+        cutoff = len(bucket) // 2 + 1
+        truncated.extend(bucket[:cutoff])  # 取前50%加入到truncated列表
 
-    # 保证不将任何类减少到零
-    final_nodes = {key: nodes for key, nodes in classes.items()}
-    while num_to_remove > 0:
-        # 拿出一个最重的节点
-        weight, node, mutate_info = heapq.heappop(max_heap)
-        weight = -weight  # 转回正值
-
-        # 确保不会完全删除某个等价类
-        if len(final_nodes[mutate_info]) > 1:
-            final_nodes[mutate_info].remove(node)
-            num_to_remove -= 1
-
-    # 重新构造结果列表
-    result = []
-    for nodes in final_nodes.values():
-        result.extend(nodes)
-
-    return result
+    # Step 4: 检查limit
+    if len(truncated) > limit:
+        # 如果超过limit，从每个桶中取最小的，直到达到limit
+        result = []
+        while len(result) < limit:
+            # 按照每个桶的最小元素（已排序）循环加入
+            for bucket in buckets.values():
+                if bucket and len(result) < limit:
+                    result.append(bucket.pop(0))  # 弹出每个桶的第一个元素
+        return result
+    else:
+        # 如果不超过limit，直接返回truncated
+        return truncated
 
 
 class Assembler:
@@ -440,16 +437,16 @@ class Assembler:
             for father in passedLastGenTreeNodes:
                 currentGenTreeNodes += father.spawn(self.n, block, count, bar)
                 count += self.n
-        # currentGenTreeNodes = cut(currentGenTreeNodes, self.maxEachLayer)
-        for node in currentGenTreeNodes:
-            f = open(f"{node.casePath}/result.json", "r", encoding="utf-8")
-            d = json.load(f)
-            f.close()
-            if (not d["go result"]) or (not d["train result"]):
-                f = open(f"{self.baseReportPath}/{self.seedName}_{node.generation}_{node.index}.json", "w", encoding="utf-8")
-                json.dump(d, f, indent=2)
-                f.close()
-        currentGenTreeNodes = currentGenTreeNodes[:self.maxEachLayer]
+        currentGenTreeNodes = cut(currentGenTreeNodes, self.maxEachLayer)
+        # for node in currentGenTreeNodes:
+        #     f = open(f"{node.casePath}/result.json", "r", encoding="utf-8")
+        #     d = json.load(f)
+        #     f.close()
+        #     if (not d["go result"]) or (not d["train result"]):
+        #         f = open(f"{self.baseReportPath}/{self.seedName}_{node.generation}_{node.index}.json", "w", encoding="utf-8")
+        #         json.dump(d, f, indent=2)
+        #         f.close()
+        # currentGenTreeNodes = currentGenTreeNodes[:self.maxEachLayer]
         return currentGenTreeNodes
 
     def start(self):
@@ -472,6 +469,23 @@ class Assembler:
             currentGen += self.startAGen(lastGen, block, i+1)
             lastGen = copy.deepcopy(currentGen)
             currentGen = []
+
+        print("result scanning")
+        for gen in os.listdir(self.baseOutputPath):
+            for case in os.listdir(f"{self.baseOutputPath}/{gen}"):
+                casePath = f"{self.baseOutputPath}/{gen}/{case}"
+                targetName = f"{self.seedName}-{gen}-{case}"
+                if "result.json" in os.listdir(casePath):
+                    f = open(f"{casePath}/result.json", "r", encoding="utf-8")
+                    d = json.load(f)
+                    f.close()
+                    if (not d["go result"]) or (not d["train result"]):
+                        f = open(f"{self.baseReportPath}/{targetName}.json", "w", encoding="utf-8")
+                        json.dump(d, f, indent=2)
+                        f.close()
+        print("result scanning finished")
+
+        return
 
 
 if __name__ == "__main__":

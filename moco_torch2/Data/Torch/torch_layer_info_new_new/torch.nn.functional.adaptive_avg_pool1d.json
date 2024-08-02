@@ -1,0 +1,20 @@
+{
+  "params": {
+    "output_size": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        [1, 16]
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    }
+  },
+  "constraints": {}
+}

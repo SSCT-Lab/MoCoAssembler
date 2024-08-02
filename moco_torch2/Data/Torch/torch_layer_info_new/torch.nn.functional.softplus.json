@@ -1,0 +1,23 @@
+{
+  "params": {
+    "input": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "n-dimensional array (tensor)",
+      "shape": "No mention"
+    },
+    "beta": {
+      "dtype": "int/float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "threshold": {
+      "dtype": "int/float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    }
+  },
+  "constraints": {}
+}

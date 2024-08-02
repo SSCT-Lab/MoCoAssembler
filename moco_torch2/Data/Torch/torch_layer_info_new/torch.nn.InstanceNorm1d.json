@@ -1,0 +1,40 @@
+{
+  "params": {
+    "num_features": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": null
+    },
+    "eps": {
+      "dtype": ["float"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": 0.00001
+    },
+    "momentum": {
+      "dtype": ["float"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": 0.1
+    },
+    "affine": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "False"
+    },
+    "track_running_stats": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "False"
+    }
+  },
+  "constraints": {}
+}

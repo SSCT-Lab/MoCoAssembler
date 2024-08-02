@@ -63,13 +63,13 @@ class Block:
     def GeneratePreCheckStatement(self):
         if self.blockType == LAYER:
             return f"    p = {self.apiName}({self.GenerateParamString()})\n" \
-                   f"    y = p(x)\n"
+                   f"    y = p(x).shape\n"
         elif self.blockType == OP:
             return f"    p = {self.apiName}\n" \
-                   f"    y = p(x)\n"
+                   f"    y = p(x).shape\n"
         elif self.blockType == PARAM_NEED_OP:
             return f"    p = {self.apiName}\n" \
-                   f"    y = p(x, {self.GenerateParamString()})\n"
+                   f"    y = p(x, {self.GenerateParamString()}).shape\n"
         else:
             return ""
 
@@ -77,7 +77,10 @@ class Block:
         return "" if not self.isChildModel else self.childModel.AssembleModel()
 
     def GenerateParamString(self):
-        return ", ".join([f"{key}={self.params[key]}" for key in self.params.keys()])
+        return ", ".join([f"{key}={self.params[key] if not isinstance(self.params[key], str) else self.parenStr(self.params[key])}" for key in self.params.keys()])
+
+    def parenStr(self, s):
+        return "'" + s + "'"
 
     def SetShape(self, inC=0, outC=0, d=0):
         if inC > 0:
@@ -153,3 +156,12 @@ class Block:
         if not self.isChildModel:
             return
         self.childModel.CalculateShapeChildModel(self.inChannels, self.outChannels)
+
+    def InferType(self):
+        if "functional" in self.apiName:
+            if len(self.params) < 1:
+                self.blockType = OP
+            else:
+                self.blockType = PARAM_NEED_OP
+        else:
+            self.blockType = LAYER

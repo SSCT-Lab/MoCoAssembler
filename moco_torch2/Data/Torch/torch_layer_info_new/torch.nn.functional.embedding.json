@@ -1,0 +1,47 @@
+{
+  "params": {
+    "input": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "weight": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "(V, embedding_dim)"
+    },
+    "padding_idx": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "max_norm": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "norm_type": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "scale_grad_by_freq": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "sparse": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

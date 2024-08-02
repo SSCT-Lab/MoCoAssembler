@@ -1,0 +1,26 @@
+{
+  "params": {
+    "kernel_size": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 2],
+      "default": null
+    },
+    "stride": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 2],
+      "default": "None"
+    },
+    "padding": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 2],
+      "default": 0
+    }
+  },
+  "constraints": {}
+}

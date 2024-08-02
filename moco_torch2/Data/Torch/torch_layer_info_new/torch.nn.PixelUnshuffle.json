@@ -1,0 +1,11 @@
+{
+  "params": {
+    "downscale_factor": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    }
+  },
+  "constraints": {}
+}

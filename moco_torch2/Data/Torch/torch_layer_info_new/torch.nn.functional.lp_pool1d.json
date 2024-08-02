@@ -1,0 +1,35 @@
+{
+  "params": {
+    "input": {
+      "dtype": "Tensor",
+      "range": "No mention",
+      "structure": "Tensor",
+      "shape": "No mention"
+    },
+    "norm_type": {
+      "dtype": "int/float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "kernel_size": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "stride": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "ceil_mode": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

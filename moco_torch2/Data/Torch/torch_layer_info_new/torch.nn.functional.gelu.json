@@ -1,0 +1,17 @@
+{
+  "params": {
+    "input": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "approximate": {
+      "dtype": "string",
+      "range": "{'none', 'tanh'}",
+      "structure": "scalar",
+      "shape": 1
+    }
+  },
+  "constraints": {}
+}

@@ -1,0 +1,35 @@
+{
+  "params": {
+    "logits": {
+      "dtype": "Tensor",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "tau": {
+      "dtype": "float",
+      "range": "[0, \u221e)",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "hard": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "dim": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "eps": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    }
+  },
+  "constraints": {}
+}

@@ -7,8 +7,8 @@ import json
 import yaml
 from Tools.ConstraintChecker import CheckBlock
 
-dataPath = f"./Data/Torch/torch_layer_info"
-threshold = 0.3
+dataPath = f"./Data/Torch/torch_layer_info_new_new"
+threshold = 0.5
 __DTYPE = ["int", "float", "string", "boolean"]
 __STRUCTURE = ["scalar", "tuple", "list"]
 # Mutate mode
@@ -22,7 +22,8 @@ def GetApiList():
     fileList = os.listdir(dataPath)
     aL = []
     for file in fileList:
-        aL.append(file.replace("_", ".").replace(".json", ""))
+        if "checkpoint" not in file:
+            aL.append(file.replace(".json", ""))
     return aL
 
 
@@ -31,6 +32,7 @@ apiList = GetApiList()
 
 def CheckInfo():
     for api in apiList:
+        print(api)
         d = LoadInfo(api)
         defaultEntranceFlag = False
         for key in d.keys():
@@ -120,7 +122,7 @@ def CheckInfo():
 
 
 def LoadInfo(apiName: str):
-    path = f"{dataPath}/{apiName.replace('.', '_')}.json"
+    path = f"{dataPath}/{apiName}.json"
     f = open(path, "r", encoding="utf-8")
     d = json.load(f)
     f.close()
@@ -128,7 +130,7 @@ def LoadInfo(apiName: str):
 
 
 def LoadSimilarity(apiName: str):
-    path = f"{dataPath}/../torch_layer_similarity/{apiName}.yaml"
+    path = f"{dataPath}/../torch_layer_similarity_new/{apiName}.yaml"
     f = open(path, "r", encoding="utf-8")
     d = yaml.full_load(f)
     f.close()
@@ -165,6 +167,8 @@ def GetSingleValue(dtype, range_, mode=NORMAL_MODE):
 
 def GetRandomValue(dtype, range_, structure, shape):
     # return value and mode
+    if dtype == "string" or dtype == "boolean":
+        structure = "scalar"
     try:
         if structure == "scalar":
             mode = random.choice(MUTATE_MODES)
@@ -187,6 +191,13 @@ def GetRandomValue(dtype, range_, structure, shape):
 
 class Mutator:
     def __init__(self):
+
+        oL = os.listdir(f"{dataPath}/../torch_math_op_info")
+        self.opList = []
+        for opName in oL:
+            if "checkpoints" not in opName:
+                self.opList.append(opName.replace(".json", ""))
+
         self.apiList = GetApiList()
         self.apiInfo: dict = {}
         self.apiSimilarity: dict = {}
@@ -237,6 +248,7 @@ class Mutator:
             newBlock.FixShape()
         if "mutated" not in newBlock.nodeName:
             newBlock.nodeName = newBlock.nodeName + "_mutated"
+        newBlock.InferType()
         return newBlock, mutateInfo
 
     def ApiNameMutate(self, block: Block):
@@ -364,6 +376,9 @@ class Mutator:
             upto += probability
         return None
 
+    def GenerateRandomOp(self):
+        return random.choice(self.opList)
+
 
 if __name__ == "__main__":
     # dd = LoadInfo("torch.nn.Conv1d")
@@ -375,14 +390,15 @@ if __name__ == "__main__":
     aaa = GetSeed("lenet")
     blocks = aaa.graph
     v, b, c = blocks[0], blocks[1], blocks[2]
-    aa = GetSeed("googlenet")
-    inc = aa.graph[11]
-    models = []
-    for model in ["lenet", "alexnet", "googlenet", "mobilenet", "pointnet", "squeezenet", "vgg19"]:
-        models.append(GetSeed(model))
-    for model in models:
-        blocks = model.graph
-        for block in blocks:
-            for i in range(1000):
-                q, qq = m.Mutate(block)
-                print(qq)
+    # aa = GetSeed("googlenet")
+    # inc = aa.graph[11]
+    # models = []
+    # for model in ["lenet", "alexnet", "googlenet", "mobilenet", "pointnet", "squeezenet", "vgg19"]:
+    #     models.append(GetSeed(model))
+    # for model in models:
+    #     blocks = model.graph
+    #     for block in blocks:
+    #         for i in range(1000):
+    #             q, qq = m.Mutate(block)
+    #             print(qq)
+    # CheckInfo()

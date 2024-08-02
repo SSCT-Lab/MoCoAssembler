@@ -1,0 +1,29 @@
+{
+  "params": {
+    "input1": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "(N, *, H_{in1})"
+    },
+    "input2": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "(N, *, H_{in2})"
+    },
+    "weight": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "(out_features, in1_features, in2_features)"
+    },
+    "bias": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "(out_features)"
+    }
+  },
+  "constraints": {}
+}

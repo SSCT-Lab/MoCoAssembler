@@ -1,0 +1,17 @@
+{
+  "params": {
+    "dtype": {
+      "dtype": "string",
+      "range": "No mention"
+    },
+    "range": {
+      "dtype": "No mention",
+      "range": "No mention"
+    },
+    "Parameter name": {
+      "structure": "No mention",
+      "shape": "No mention"
+    }
+  },
+  "constraints": {}
+}

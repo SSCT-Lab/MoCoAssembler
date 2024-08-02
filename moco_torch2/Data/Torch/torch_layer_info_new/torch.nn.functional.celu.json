@@ -1,0 +1,23 @@
+{
+  "params": {
+    "input": {
+      "dtype": "Tensor",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "alpha": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "inplace": {
+      "dtype": "boolean",
+      "range": "{true, false}",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

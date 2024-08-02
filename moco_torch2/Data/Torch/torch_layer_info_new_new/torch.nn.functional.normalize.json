@@ -1,0 +1,50 @@
+{
+  "params": {
+    "p": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        [1.0, 4.0]
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": 2.0
+    },
+    "dim": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": 1
+    },
+    "eps": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": "1e-12"
+    }
+  },
+  "constraints": {}
+}

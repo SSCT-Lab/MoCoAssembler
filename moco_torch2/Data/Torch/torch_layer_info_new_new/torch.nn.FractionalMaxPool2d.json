@@ -1,0 +1,33 @@
+{
+  "params": {
+    "kernel_size": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 2],
+      "default": null
+    },
+    "output_size": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 2],
+      "default": "None"
+    },
+    "output_ratio": {
+      "dtype": ["float"],
+      "range": [[0.0, 1.0]],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 2],
+      "default": "None"
+    },
+    "return_indices": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "False"
+    }
+  },
+  "constraints": {}
+}

@@ -1,0 +1,17 @@
+{
+  "params": {
+    "input": {
+      "dtype": "Tensor",
+      "range": "No mention",
+      "structure": "n-dimensional array (i.e., tensor)",
+      "shape": "No mention"
+    },
+    "out": {
+      "dtype": "Tensor",
+      "range": "No mention",
+      "structure": "n-dimensional array (i.e., tensor)",
+      "shape": "No mention"
+    }
+  },
+  "constraints": {}
+}

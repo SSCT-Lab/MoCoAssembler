@@ -1,0 +1,172 @@
+{
+  "params": {
+    "weight": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [],
+      "shape": [],
+      "default": null
+    },
+    "offsets": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [],
+      "shape": [],
+      "default": null
+    },
+    "max_norm": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    },
+    "norm_type": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    },
+    "scale_grad_by_freq": {
+      "dtype": [
+        "boolean"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    },
+    "mode": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        [
+          "str1TBD",
+          "str2TBD"
+        ]
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    },
+    "sparse": {
+      "dtype": [
+        "boolean"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    },
+    "per_sample_weights": {
+      "dtype": [
+        "float"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [],
+      "shape": [],
+      "default": null
+    },
+    "include_last_offset": {
+      "dtype": [
+        "boolean"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    },
+    "padding_idx": {
+      "dtype": [
+        "int"
+      ],
+      "range": [
+        null
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": null
+    }
+  },
+  "constraints": {
+    "1": {
+      "Parameter 1": "mode",
+      "Parameter 2": "scale_grad_by_freq",
+      "Constraint": "if mode=='max': scale_grad_by_freq==False"
+    },
+    "2": {
+      "Parameter 1": "mode",
+      "Parameter 2": "sparse",
+      "Constraint": "if mode=='max': sparse==False"
+    },
+    "3": {
+      "Parameter 1": "input",
+      "Parameter 2": "offsets",
+      "Constraint": "if input.ndimension()==2: offsets==None"
+    },
+    "4": {
+      "Parameter 1": "offsets",
+      "Parameter 2": "input",
+      "Constraint": "if offsets is not None: offsets.shape[0]==(input.shape[0] // input.shape[1])"
+    },
+    "5": {
+      "Parameter 1": "per_sample_weights",
+      "Parameter 2": "input",
+      "Constraint": "if per_sample_weights is not None: per_sample_weights.shape==input.shape"
+    }
+  }
+}

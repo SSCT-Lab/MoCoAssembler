@@ -1,0 +1,29 @@
+{
+  "params": {
+    "kernel_size": {
+      "dtype": "int/tuple",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1/2"
+    },
+    "output_size": {
+      "dtype": "int/tuple",
+      "range": "No mention",
+      "structure": "scalar/tuple",
+      "shape": "1/2"
+    },
+    "output_ratio": {
+      "dtype": "int/float/tuple",
+      "range": "[0, 1]",
+      "structure": "scalar/tuple",
+      "shape": "1/2"
+    },
+    "return_indices": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

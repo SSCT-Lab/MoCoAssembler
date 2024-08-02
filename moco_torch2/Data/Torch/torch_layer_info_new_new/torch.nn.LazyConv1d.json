@@ -1,0 +1,61 @@
+{
+  "params": {
+    "out_channels": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": null
+    },
+    "kernel_size": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 1],
+      "default": null
+    },
+    "stride": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 1],
+      "default": 1
+    },
+    "padding": {
+      "dtype": ["int", "string"],
+      "range": [null, ["valid", "same"]],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 1],
+      "default": 0
+    },
+    "padding_mode": {
+      "dtype": ["string"],
+      "range": [["zeros", "reflect", "replicate", "circular"]],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "zeros"
+    },
+    "dilation": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 1],
+      "default": 1
+    },
+    "groups": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": 1
+    },
+    "bias": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "True"
+    }
+  },
+  "constraints": {}
+}

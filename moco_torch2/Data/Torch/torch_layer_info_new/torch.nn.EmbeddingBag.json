@@ -1,0 +1,99 @@
+{
+  "params": {
+    "num_embeddings": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": null
+    },
+    "embedding_dim": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": null
+    },
+    "max_norm": {
+      "dtype": ["float"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "None"
+    },
+    "norm_type": {
+      "dtype": ["float"],
+      "range": [[0.0, 8.0]],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": 2.0
+    },
+    "scale_grad_by_freq": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "False"
+    },
+    "mode": {
+      "dtype": ["string"],
+      "range": [["sum", "mean", "max"]],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "mean"
+    },
+    "sparse": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "False"
+    },
+    "include_last_offset": {
+      "dtype": ["boolean"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "False"
+    },
+    "padding_idx": {
+      "dtype": ["int"],
+      "range": [null],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": "None"
+    }
+  },
+  "constraints": {
+    "Constraint 1": {
+      "Parameter 1": "mode",
+      "Parameter 2": "scale_grad_by_freq",
+      "Constraint": "if mode=='max': scale_grad_by_freq==False"
+    },
+    "Constraint 2": {
+      "Parameter 1": "mode",
+      "Parameter 2": "sparse",
+      "Constraint": "if mode=='max': sparse==False"
+    },
+    "Constraint 3": {
+      "Parameter 1": "input",
+      "Parameter 2": "offsets",
+      "Constraint": "if input is 2D of shape (B, N): offsets is None"
+    },
+    "Constraint 4": {
+      "Parameter 1": "input",
+      "Parameter 2": "offsets",
+      "Constraint": "if input is 1D: offsets is a 1D tensor"
+    },
+    "Constraint 5": {
+      "Parameter 1": "per_sample_weights",
+      "Parameter 2": "mode",
+      "Constraint": "if per_sample_weights is not None: mode=='sum'"
+    },
+    "Constraint 6": {
+      "Parameter 1": "per_sample_weights",
+      "Parameter 2": "input",
+      "Constraint": "if per_sample_weights is not None: per_sample_weights.shape == input.shape"
+    }
+  }
+}

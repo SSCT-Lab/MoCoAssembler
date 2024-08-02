@@ -1,0 +1,17 @@
+{
+  "params": {
+    "input": {
+      "dtype": "Tensor",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "(\u2217, C\u00d7r\u00b2, H, W)"
+    },
+    "upscale_factor": {
+      "dtype": "int",
+      "range": "[1, \u221e)",
+      "structure": "scalar",
+      "shape": 1
+    }
+  },
+  "constraints": {}
+}

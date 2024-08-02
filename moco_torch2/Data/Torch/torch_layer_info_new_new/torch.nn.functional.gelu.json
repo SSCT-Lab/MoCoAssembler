@@ -1,0 +1,23 @@
+{
+  "params": {
+    "approximate": {
+      "dtype": [
+        "string"
+      ],
+      "range": [
+        [
+          "none",
+          "tanh"
+        ]
+      ],
+      "structure": [
+        "scalar"
+      ],
+      "shape": [
+        1
+      ],
+      "default": "none"
+    }
+  },
+  "constraints": {}
+}
