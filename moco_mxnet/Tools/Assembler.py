@@ -92,13 +92,13 @@ def b():
 
 
 inputShapeTable = {
-    "lenet": [1, 1, 28, 28],
+    "LeNet": [1, 1, 32, 32],
     "mobilenet": [1, 3, 224, 224],
-    "alexnet": [1, 3, 224, 224],
+    "AlexNet": [1, 3, 224, 224],
     "googlenet": [1, 3, 224, 224],
     "vgg19": [1, 3, 224, 224],
-    "squeezenet": [1, 3, 224, 224],
-    "pointnet": [2, 3, 2048]
+    "SqueezeNet": [1, 3, 224, 224],
+    "PointNet": [2, 3, 2048]
 }
 
 
@@ -218,26 +218,26 @@ class TreeNode:
 
     def run(self):
         self.assembleGoFile()
-        return random.uniform(0.0002, 0.01), ""
-        # filePath = f"{self.casePath}/{self.seedName}_{self.generation}_{self.index}_go.py"
-        # sys.path.append(self.casePath)
-        # start = time.time()
-        # try:
-        #     module_name = f"{self.seedName}_{self.generation}_{self.index}_go"
-        #     spec = importlib.util.spec_from_file_location(module_name, filePath)
-        #     module = importlib.util.module_from_spec(spec)
-        #     sys.modules[module_name] = module
-        #     spec.loader.exec_module(module)
-        #     self.outputShape = module.go()
-        #     error_message = ""
-        #     end = time.time()
-        # except Exception as e:
-        #     end = start - 1
-        #     error_message = traceback.format_exc()
-        # sys.path.remove(self.casePath)
-        #
-        # runTime = end - start
-        # return runTime, error_message
+        # return random.uniform(0.0002, 0.01), ""
+        filePath = f"{self.casePath}/{self.seedName}_{self.generation}_{self.index}_go.py"
+        sys.path.append(self.casePath)
+        start = time.time()
+        try:
+            module_name = f"{self.seedName}_{self.generation}_{self.index}_go"
+            spec = importlib.util.spec_from_file_location(module_name, filePath)
+            module = importlib.util.module_from_spec(spec)
+            sys.modules[module_name] = module
+            spec.loader.exec_module(module)
+            self.outputShape = module.go()
+            error_message = ""
+            end = time.time()
+        except Exception as e:
+            end = start - 1
+            error_message = traceback.format_exc()
+        sys.path.remove(self.casePath)
+
+        runTime = end - start
+        return runTime, error_message
 
     def train(self):
         self.assembleTrainFile()
@@ -436,7 +436,7 @@ class Assembler:
 
         return
 
-    def startAGen(self, passedLastGenTreeNodes: list[TreeNode], block, gen):
+    def startAGen(self, passedLastGenTreeNodes, block, gen):
         count = 1
         currentGenTreeNodes = []
         with alive_bar(self.n * len(passedLastGenTreeNodes), bar="filling", spinner="classic", title=f"{self.seedName}-{gen}") as bar:

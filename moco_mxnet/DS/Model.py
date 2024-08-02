@@ -8,9 +8,9 @@ from Tools.ConstraintChecker import CheckBlock
 class Model:
     def __init__(self, graph, modelInputs, modelOutputs):
         self.modelName = ""
-        self.graph: list[Block] = graph
-        self.modelInputs: list[str] = modelInputs
-        self.modelOutputs: list[str] = modelOutputs
+        self.graph = graph
+        self.modelInputs = modelInputs
+        self.modelOutputs = modelOutputs
         self.oracle = None  # Type: Oracle
         return
 
@@ -20,9 +20,9 @@ class Model:
     def AssembleModel(self, extraModelInputs=""):
         decl_bound = "\n".join([b.GenerateDeclarationStatement() for b in self.graph])
         forward_bound = "\n".join([b.GenerateForwardStatement() for b in self.graph])
-        code = f"class {self.modelName}(nn.Module):\n" \
-               f"    def __init__(self{extraModelInputs}):\n" \
-               f"        super().__init__()\n" \
+        code = f"class {self.modelName}(nn.Block):\n" \
+               f"    def __init__(self, **kwargs):\n" \
+               f"        super().__init__(**kwargs)\n" \
                f"{decl_bound}\n" \
                f"    \n" \
                f"    def forward(self, {','.join(self.modelInputs)}):\n" \
@@ -44,7 +44,7 @@ class Model:
                     childModelCode += "\n\n"
         fileCode = f"import mxnet\n" \
                    f"import mxnet.gluon.nn as nn\n" \
-                   f"import copy\n" \
+                   f"import mxnet as mx\n" \
                    f"\n" \
                    f"\n" \
                    f"{mainModelCode}\n" \
@@ -57,12 +57,12 @@ class Model:
         return f"{outputPath}/{fileName}.py"
 
     def GenerateGoCode(self, useGPU=False):
-        gpu_str = ".to('cuda')" if useGPU else ".to('cpu')"
         code = f"def go():\n" \
-               f"    x = mxnet.randn({self.GetInputShapeStr()}){gpu_str}\n" \
-               f"    m = {self.modelName}(){gpu_str}\n" \
+               f"    x = mx.nd.random.uniform(shape=({self.GetInputShapeStr()}), ctx=mx.cpu())\n" \
+               f"    m = {self.modelName}()\n" \
+               f"    m.initialize(mx.init.Xavier(), ctx=mx.cpu())\n" \
                f"    y = m(x)\n" \
-               f"    return list(y.shape)\n\n\n"
+               f"    return m\n\n\n"
         return code
 
     def GenerateTrainCode(self):
@@ -93,14 +93,16 @@ class Model:
         pass
 
     def GetInputShapeStr(self):
-        if self.modelName in ["lenet"]:
-            return "[1, 1, 28, 28]"
+        if self.modelName in ["LeNet"]:
+            return "1, 1, 32, 32"
         elif self.modelName in ["LSTM"]:
             return "[1, 5, 1]"
-        elif self.modelName in ["pointnet"]:
-            return "[2, 3, 2048]"
+        elif self.modelName in ["PointNet"]:
+            return "3, 3, 100"
+        elif self.modelName in ["SqueezeNet"]:
+            return "1, 3, 224, 224"
         else:
-            return "[1, 3, 224, 224]"
+            return "1, 3, 227, 227"
 
     def ModelPreHandle(self):
         self.CalculateShape()

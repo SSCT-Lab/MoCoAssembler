@@ -16,7 +16,7 @@ class Parser:
             f = open(filePath, "r", encoding="utf-8")
             self.content = f.read()
             f.close()
-        self.lineLexers: list[str] = self.content.split("\n")
+        self.lineLexers = self.content.split("\n")
         self.lookAhead: int = 0
         self.symbolTable: dict[str: Model.Block] = {}
 
@@ -26,7 +26,7 @@ class Parser:
 
         self.childModels: dict[str: Model.Model] = {}
 
-        self.graph: list[Model.Block] = []
+        self.graph = []
         self.modelInputs = []
         self.modelOutputs = []
 
@@ -49,7 +49,7 @@ class Parser:
             currentLine = self.CurrentLine()
             self.NextLine()
             if not self.in_class:
-                if 'class' in currentLine and 'Module' in currentLine:
+                if 'class' in currentLine and 'Block' in currentLine:
                     if not self.mainModelLoaded:
                         self.in_class = True
                         self.symbolTable.clear()
@@ -141,7 +141,7 @@ class Parser:
         self.symbolTable[nodeName] = block
         return
 
-    def ParseDeclaration(self, declarationLineLexer: list[str]):
+    def ParseDeclaration(self, declarationLineLexer):
         for lexer in declarationLineLexer:
             self.ParseDeclarationStatement(lexer)
         return
@@ -172,7 +172,7 @@ class Parser:
         self.graph.append(block)
         return
 
-    def ParseForward(self, forwardLineLexer: list[str]):
+    def ParseForward(self, forwardLineLexer):
         for lexer in forwardLineLexer:
             self.ParseForwardStatement(lexer)
         return
