@@ -2,11 +2,9 @@
   "params": {
     "padding": {
       "dtype": [
-        "int",
-        "tuple"
+        "int"
       ],
       "range": [
-        null,
         null
       ],
       "structure": [

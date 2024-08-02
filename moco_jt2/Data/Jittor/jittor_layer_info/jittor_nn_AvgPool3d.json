@@ -32,11 +32,9 @@
     },
     "kernel_size": {
       "dtype": [
-        "int",
-        "tuple"
+        "int"
       ],
       "range": [
-        null,
         null
       ],
       "structure": [
@@ -51,11 +49,9 @@
     },
     "padding": {
       "dtype": [
-        "int",
-        "tuple"
+        "int"
       ],
       "range": [
-        null,
         null
       ],
       "structure": [
@@ -70,11 +66,9 @@
     },
     "stride": {
       "dtype": [
-        "int",
-        "tuple"
+        "int"
       ],
       "range": [
-        null,
         null
       ],
       "structure": [

@@ -19,11 +19,9 @@
     },
     "scale_factor": {
       "dtype": [
-        "float",
-        "tuple"
+        "float"
       ],
       "range": [
-        null,
         null
       ],
       "structure": [

@@ -34,7 +34,7 @@
     },
     "size": {
       "dtype": [
-        "tuple"
+        "int"
       ],
       "range": [
         null

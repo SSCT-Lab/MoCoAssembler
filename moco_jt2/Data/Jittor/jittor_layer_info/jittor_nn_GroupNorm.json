@@ -76,5 +76,11 @@
       "default": null
     }
   },
-  "constraints": {}
+  "constraints": {
+    "1": {
+      "Parameter 1": "num_channels",
+      "Parameter 2": "num_groups",
+      "Constraint": "num_channels % num_groups == 0"
+    }
+  }
 }

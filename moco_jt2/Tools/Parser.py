@@ -3,7 +3,7 @@ import re
 
 
 def GetSeed(seedName):
-    p = Parser(filePath=f"../Data/Jittor/seed_models/{seedName}.py")
+    p = Parser(filePath=f"./Data/Jittor/seed_models/{seedName}.py")
     a = p.Parse(seedName)
     a.ModelPreHandle()
     return a

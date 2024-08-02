@@ -17,11 +17,9 @@
     },
     "dilation": {
       "dtype": [
-        "int",
-        "tuple"
+        "int"
       ],
       "range": [
-        null,
         null
       ],
       "structure": [
@@ -66,11 +64,9 @@
     },
     "kernel_size": {
       "dtype": [
-        "int",
-        "tuple"
+        "int"
       ],
       "range": [
-        null,
         null
       ],
       "structure": [
@@ -100,11 +96,9 @@
     },
     "output_padding": {
       "dtype": [
-        "int",
-        "tuple"
+        "int"
       ],
       "range": [
-        null,
         null
       ],
       "structure": [
@@ -119,11 +113,9 @@
     },
     "padding": {
       "dtype": [
-        "int",
-        "tuple"
+        "int"
       ],
       "range": [
-        null,
         null
       ],
       "structure": [
@@ -138,11 +130,9 @@
     },
     "stride": {
       "dtype": [
-        "int",
-        "tuple"
+        "int"
       ],
       "range": [
-        null,
         null
       ],
       "structure": [
@@ -156,5 +146,16 @@
       "default": 1
     }
   },
-  "constraints": {}
+  "constraints": {
+    "1": {
+      "Parameter 1": "in_channels",
+      "Parameter 2": "groups",
+      "Constraint": "in_channels % groups == 0"
+    },
+    "2": {
+      "Parameter 1": "out_channels",
+      "Parameter 2": "groups",
+      "Constraint": "out_channels % groups == 0"
+    }
+  }
 }

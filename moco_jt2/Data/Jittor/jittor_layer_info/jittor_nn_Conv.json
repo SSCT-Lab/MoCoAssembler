@@ -17,19 +17,15 @@
     },
     "dilation": {
       "dtype": [
-        "int",
-        "tuple"
+        "int"
       ],
       "range": [
-        null,
         null
       ],
       "structure": [
-        "scalar",
-        "tuple"
+        "scalar"
       ],
       "shape": [
-        1,
         1
       ],
       "default": 1
@@ -66,19 +62,15 @@
     },
     "kernel_size": {
       "dtype": [
-        "int",
-        "tuple"
+        "int"
       ],
       "range": [
-        null,
         null
       ],
       "structure": [
-        "scalar",
-        "tuple"
+        "scalar"
       ],
       "shape": [
-        1,
         1
       ],
       "default": null
@@ -100,38 +92,30 @@
     },
     "padding": {
       "dtype": [
-        "int",
-        "tuple"
+        "int"
       ],
       "range": [
-        null,
         null
       ],
       "structure": [
-        "scalar",
-        "tuple"
+        "scalar"
       ],
       "shape": [
-        1,
         1
       ],
       "default": 0
     },
     "stride": {
       "dtype": [
-        "int",
-        "tuple"
+        "int"
       ],
       "range": [
-        null,
         null
       ],
       "structure": [
-        "scalar",
-        "tuple"
+        "scalar"
       ],
       "shape": [
-        1,
         1
       ],
       "default": 1

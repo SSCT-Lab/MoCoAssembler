@@ -2,7 +2,7 @@ import numpy as np
 import random
 
 
-datasetFolder = "D:/NJU/Research/DeepLearningTest/MoCo1.0/moco_jt2/Data/Datasets"
+datasetFolder = "./Data/Datasets"
 DATASET_PATHS = {
     "LeNet": f"{datasetFolder}/MNIST.npz",
     "Common224": f"{datasetFolder}/imagenet.npz",
@@ -47,7 +47,7 @@ class TestKitGenerator:
 
     def generate_kit(self, batch_size=1):
         start = random.randint(0, self.length-batch_size)
-        return self.dataset_x[start: start+batch_size], self.dataset_y[start: start+batch_size]
+        return self.dataset_x[start: start+batch_size], self.dataset_y[start: start+batch_size], start
 
 
 test_kit_generator = None

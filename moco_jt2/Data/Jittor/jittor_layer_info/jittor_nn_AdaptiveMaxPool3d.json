@@ -2,11 +2,9 @@
   "params": {
     "output_size": {
       "dtype": [
-        "int",
-        "tuple"
+        "int"
       ],
       "range": [
-        null,
         null
       ],
       "structure": [

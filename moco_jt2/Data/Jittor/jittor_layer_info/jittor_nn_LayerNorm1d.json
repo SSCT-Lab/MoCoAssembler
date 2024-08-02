@@ -32,11 +32,9 @@
     },
     "normalized_shape": {
       "dtype": [
-        "int",
-        "tuple"
+        "int"
       ],
       "range": [
-        null,
         null
       ],
       "structure": [

@@ -7,7 +7,7 @@ import json
 import yaml
 from moco_jt2.Tools.ConstraintChecker import CheckBlock
 
-dataPath = f"../Data/Jittor/jittor_layer_info"
+dataPath = f"./Data/Jittor/jittor_layer_info"
 threshold = 0.3
 __DTYPE = ["int", "float", "string", "boolean"]
 __STRUCTURE = ["scalar", "tuple", "list"]
@@ -166,6 +166,8 @@ def GetSingleValue(dtype, range_, mode=NORMAL_MODE):
 
 def GetRandomValue(dtype, range_, structure, shape):
     # return value and mode
+    if dtype == "string" or dtype == "boolean":
+        structure = "scalar"
     try:
         if structure == "scalar":
             mode = random.choice(MUTATE_MODES)
