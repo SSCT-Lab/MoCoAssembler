@@ -72,46 +72,46 @@ class Model:
         return code
 
     def GenerateTrainCode(self):
-        # ops_list = ['jittor.ops.arccos', 'jittor.ops.arccosh', 'jittor.ops.negative', 'jittor.ops.acosh',
-        #             'jittor.ops.cosh',
-        #             'jittor.ops.acos', 'jittor.ops.floor', 'jittor.ops.floor_int', 'jittor.ops.arcsin',
-        #             'jittor.ops.arcsinh',
-        #             'jittor.ops.asin', 'jittor.ops.asinh', 'jittor.ops.sigmoid', 'jittor.ops.cos',
-        #             'jittor.ops.ceil',
-        #             'jittor.ops.ceil_int', 'jittor.ops.sin', 'jittor.ops.sinh', 'jittor.ops.erf',
-        #             'jittor.ops.erfinv',
-        #             'jittor.ops.log', 'jittor.ops.atan', 'jittor.ops.atanh', 'jittor.ops.arctan',
-        #             'jittor.ops.arctanh',
-        #             'jittor.ops.abs', 'jittor.ops.sqrt', 'jittor.ops.tanh', 'jittor.ops.tan', 'jittor.ops.exp']
         ops_list = ['jittor.ops.arccos', 'jittor.ops.arccosh', 'jittor.ops.negative', 'jittor.ops.acosh',
                     'jittor.ops.cosh',
-                    'jittor.ops.acos', 'jittor.ops.floor', 'jittor.ops.arcsin',
+                    'jittor.ops.acos', 'jittor.ops.floor', 'jittor.ops.floor_int', 'jittor.ops.arcsin',
                     'jittor.ops.arcsinh',
                     'jittor.ops.asin', 'jittor.ops.asinh', 'jittor.ops.sigmoid', 'jittor.ops.cos',
                     'jittor.ops.ceil',
-                    'jittor.ops.sin', 'jittor.ops.sinh', 'jittor.ops.erf',
+                    'jittor.ops.ceil_int', 'jittor.ops.sin', 'jittor.ops.sinh', 'jittor.ops.erf',
                     'jittor.ops.erfinv',
                     'jittor.ops.log', 'jittor.ops.atan', 'jittor.ops.atanh', 'jittor.ops.arctan',
                     'jittor.ops.arctanh',
                     'jittor.ops.abs', 'jittor.ops.sqrt', 'jittor.ops.tanh', 'jittor.ops.tan', 'jittor.ops.exp']
-        # var_list = ['jittor.Var.arccos()', 'jittor.Var.arccosh()', 'jittor.Var.negative()', 'jittor.Var.acosh()',
-        #             'jittor.Var.cosh()', 'jittor.Var.acos()', 'jittor.Var.floor()', 'jittor.Var.floor_int()',
-        #             'jittor.Var.arcsin()', 'jittor.Var.arcsinh()', 'jittor.Var.asin()', 'jittor.Var.asinh()',
-        #             'jittor.Var.sigmoid()', 'jittor.Var.cos()', 'jittor.Var.ceil()', 'jittor.Var.ceil_int()',
-        #             'jittor.Var.sin()', 'jittor.Var.sinh()', 'jittor.Var.erf()', 'jittor.Var.erfinv()',
-        #             'jittor.Var.log()',
-        #             'jittor.Var.atan()', 'jittor.Var.atanh()', 'jittor.Var.arctan()', 'jittor.Var.arctanh()',
-        #             'jittor.Var.abs()', 'jittor.Var.sqrt()', 'jittor.Var.tanh()', 'jittor.Var.tan()',
-        #             'jittor.Var.exp()']
+        # ops_list = ['jittor.ops.arccos', 'jittor.ops.arccosh', 'jittor.ops.negative', 'jittor.ops.acosh',
+        #             'jittor.ops.cosh',
+        #             'jittor.ops.acos', 'jittor.ops.floor', 'jittor.ops.arcsin',
+        #             'jittor.ops.arcsinh',
+        #             'jittor.ops.asin', 'jittor.ops.asinh', 'jittor.ops.sigmoid', 'jittor.ops.cos',
+        #             'jittor.ops.ceil',
+        #             'jittor.ops.sin', 'jittor.ops.sinh', 'jittor.ops.erf',
+        #             'jittor.ops.erfinv',
+        #             'jittor.ops.log', 'jittor.ops.atan', 'jittor.ops.atanh', 'jittor.ops.arctan',
+        #             'jittor.ops.arctanh',
+        #             'jittor.ops.abs', 'jittor.ops.sqrt', 'jittor.ops.tanh', 'jittor.ops.tan', 'jittor.ops.exp']
         var_list = ['jittor.Var.arccos()', 'jittor.Var.arccosh()', 'jittor.Var.negative()', 'jittor.Var.acosh()',
-                    'jittor.Var.cosh()', 'jittor.Var.acos()', 'jittor.Var.floor()',
+                    'jittor.Var.cosh()', 'jittor.Var.acos()', 'jittor.Var.floor()', 'jittor.Var.floor_int()',
                     'jittor.Var.arcsin()', 'jittor.Var.arcsinh()', 'jittor.Var.asin()', 'jittor.Var.asinh()',
-                    'jittor.Var.sigmoid()', 'jittor.Var.cos()', 'jittor.Var.ceil()',
+                    'jittor.Var.sigmoid()', 'jittor.Var.cos()', 'jittor.Var.ceil()', 'jittor.Var.ceil_int()',
                     'jittor.Var.sin()', 'jittor.Var.sinh()', 'jittor.Var.erf()', 'jittor.Var.erfinv()',
                     'jittor.Var.log()',
                     'jittor.Var.atan()', 'jittor.Var.atanh()', 'jittor.Var.arctan()', 'jittor.Var.arctanh()',
                     'jittor.Var.abs()', 'jittor.Var.sqrt()', 'jittor.Var.tanh()', 'jittor.Var.tan()',
                     'jittor.Var.exp()']
+        # var_list = ['jittor.Var.arccos()', 'jittor.Var.arccosh()', 'jittor.Var.negative()', 'jittor.Var.acosh()',
+        #             'jittor.Var.cosh()', 'jittor.Var.acos()', 'jittor.Var.floor()',
+        #             'jittor.Var.arcsin()', 'jittor.Var.arcsinh()', 'jittor.Var.asin()', 'jittor.Var.asinh()',
+        #             'jittor.Var.sigmoid()', 'jittor.Var.cos()', 'jittor.Var.ceil()',
+        #             'jittor.Var.sin()', 'jittor.Var.sinh()', 'jittor.Var.erf()', 'jittor.Var.erfinv()',
+        #             'jittor.Var.log()',
+        #             'jittor.Var.atan()', 'jittor.Var.atanh()', 'jittor.Var.arctan()', 'jittor.Var.arctanh()',
+        #             'jittor.Var.abs()', 'jittor.Var.sqrt()', 'jittor.Var.tanh()', 'jittor.Var.tan()',
+        #             'jittor.Var.exp()']
         chosen_list = random.choice([ops_list, var_list])
         chosen_element = random.choice(chosen_list)
         if chosen_list == ops_list:
@@ -153,9 +153,12 @@ class Model:
                f"    output_g = m_g(input_g)\n" \
                f"    loss_g = nn.CrossEntropyLoss()(output_g, target_g)\n"\
                f"    opt_g.backward(loss_g)\n"\
-               f"\n" \
+               f"\n"\
+               f"    output_c_np = output_c.fetch_sync()\n"\
+               f"    output_g_np = output_g.fetch_sync()\n"\
+               f"\n"\
                f"    jt.flags.use_cuda = 0\n" \
-               f"    if chebyshev_distance(output_c.detach().numpy(), output_g.detach().numpy()) > 0.1:\n" \
+               f"    if chebyshev_distance(output_c_np, output_g_np) > 0.1:\n" \
                f"        flag = False\n" \
                f"        return flag, 'Output diff too big'\n" \
                f"    if abs(loss_c.item() - loss_g.item()) > 0.1:\n" \
