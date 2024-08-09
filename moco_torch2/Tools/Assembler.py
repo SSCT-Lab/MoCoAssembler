@@ -246,6 +246,17 @@ class TreeNode:
         xt, yt, s2 = filtor.tkg.generate_kit()
         filePath = f"{self.casePath}/{self.seedName}_{self.generation}_{self.index}_train.py"
         sys.path.append(self.casePath)
+        
+        if len(self.outputShape) >= 2:
+            inChannels = 1
+            for i in range(1, len(self.outputShape)):
+                inChannels *= self.outputShape[i]
+        elif len(self.outputShape) == 1:
+            inChannels = self.outputShape[0]
+        else:
+            inChannels = 1
+        if inChannels > 20000:
+            return 1.0, "", (-2, -2)
 
         start = time.time()
         try:
@@ -340,7 +351,7 @@ class TreeNode:
 
             brandNewModel = self.getModel()
             brandNewModel.graph.append(mutatedBlock)
-            brandNewModel.modelOutputs = mutatedBlock.outputSymbols
+            # brandNewModel.modelOutputs = mutatedBlock.outputSymbols
 
             brandNewModel.extraOp = mutator.GenerateRandomOp()
 
