@@ -1,8 +1,8 @@
 from Tools.Assembler import Assembler
 
 
-a = Assembler("lenet", 4, 500, "lenet_t")
-a.start()
+# a = Assembler("lenet", 2, 50, "lenet_t")
+# a.start()
 # a = Assembler("mobilenet", 2, 50, "mobilenet_t")
 # a.start()
 # a = Assembler("squeezenet", 2, 50, "squeezenet_t")
@@ -13,5 +13,5 @@ a.start()
 # a.start()
 # a = Assembler("vgg19", 2, 50, "vgg19_t")
 # a.start()
-# a = Assembler("googlenet", 2, 50, "googlenet_t")
-# a.start()
+a = Assembler("googlenet", 2, 50, "googlenet_t")
+a.start()

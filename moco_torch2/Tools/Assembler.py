@@ -19,6 +19,7 @@ from Tools.Mutator import Mutator
 
 threshold = 0.1
 mutator = Mutator()
+vari = []
 
 
 class Filter:
@@ -330,6 +331,11 @@ class TreeNode:
             b()
 
             mutatedBlock, mutateInfo = mutator.Mutate(block)
+
+            # vari
+            if mutateInfo not in vari:
+                vari.append(mutateInfo)
+
             if inChannels != -1:
                 mutatedBlock.SetShape(inC=inChannels)
                 mutatedBlock.FixShape()
@@ -441,12 +447,29 @@ class Assembler:
 
         return
 
+    def getDefaultModel(self, gen: int, count: int):
+        defaultModel = copy.deepcopy(self.seedModel)
+        defaultModel.graph = defaultModel.graph[:gen]
+        res = []
+
+        for c in range(count):
+            node = TreeNode()
+            node.newNode(self.baseOutputPath, gen, self.maxEachLayer + c + 1, self.seedName)
+            node.saveCase(defaultModel)
+            node.run()
+            node.father = (-1, -1)
+            res.append(copy.deepcopy(node))
+
+        return res
+
     def startAGen(self, passedLastGenTreeNodes: list[TreeNode], block, gen):
+        vari.clear()
         count = 1
         currentGenTreeNodes = []
         with alive_bar(self.n * len(passedLastGenTreeNodes), bar="filling", spinner="classic", title=f"{self.seedName}-{gen}") as bar:
             for father in passedLastGenTreeNodes:
-                currentGenTreeNodes += father.spawn(self.n, block, count, bar)
+                newNodes = father.spawn(self.n, block, count, bar)
+                currentGenTreeNodes += newNodes
                 count += self.n
         currentGenTreeNodes = cut(currentGenTreeNodes, self.maxEachLayer)
         # for node in currentGenTreeNodes:
@@ -458,6 +481,9 @@ class Assembler:
         #         json.dump(d, f, indent=2)
         #         f.close()
         # currentGenTreeNodes = currentGenTreeNodes[:self.maxEachLayer]
+        if len(currentGenTreeNodes) < 1:
+            print(f"fix {len(vari)} default models in gen {gen}")
+            currentGenTreeNodes = self.getDefaultModel(gen, len(vari))
         return currentGenTreeNodes
 
     def start(self):
