@@ -37,7 +37,7 @@ class TestKitGenerator:
             self.dataset_x = self.dataset_x / 255.0
             self.dataset_y = self.dataset_y.astype(np.uint8)
             self.length = 1500
-        elif seed_name in ["pointnet"]:
+        elif seed_name in ["pointnet", "LSTM"]:
             dataset_path = DATASET_PATHS["PointNet"]
             data = np.load(dataset_path)
             self.dataset_x, self.dataset_y = data["x_train"], data["y_train"]

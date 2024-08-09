@@ -1,8 +1,10 @@
-from DS import Model
+from DS import Model, RNNModel
 import re
 
 
 def GetSeed(seedName):
+    if seedName == "LSTM":
+        return RNNModel.GetLSTM()
     p = Parser(filePath=f"./Data/Torch/seed_models/{seedName}.py")
     a = p.Parse(seedName)
     a.ModelPreHandle()

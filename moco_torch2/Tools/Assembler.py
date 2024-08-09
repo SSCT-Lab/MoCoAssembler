@@ -101,7 +101,8 @@ inputShapeTable = {
     "googlenet": [1, 3, 224, 224],
     "vgg19": [1, 3, 224, 224],
     "squeezenet": [1, 3, 224, 224],
-    "pointnet": [2, 3, 2048]
+    "pointnet": [2, 3, 2048],
+    "LSTM": [1, 3, 2048]
 }
 
 
@@ -337,8 +338,9 @@ class TreeNode:
                 vari.append(mutateInfo)
 
             if inChannels != -1:
-                mutatedBlock.SetShape(inC=inChannels)
-                mutatedBlock.FixShape()
+                if not (self.seedName == "LSTM" and self.generation == 0):
+                    mutatedBlock.SetShape(inC=inChannels)
+                    mutatedBlock.FixShape()
             retryCount = 0
             preCheckPassed = False
             while retryCount < 9:
