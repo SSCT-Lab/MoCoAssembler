@@ -1,4 +1,5 @@
 import copy
+import itertools
 import os
 import random
 
@@ -378,6 +379,74 @@ class Mutator:
 
     def GenerateRandomOp(self):
         return random.choice(self.opList)
+
+    def BoundaryMutate(self, block: Block):
+        blocksToProcess = self.GetAllNewApiBlocks(block)
+        res = []
+        resTags = []
+        for blockToProcess in blocksToProcess:
+            newBlocks, newTags = self.BoundaryMutate2(blockToProcess)
+            res += newBlocks
+            resTags += newTags
+        return res, resTags
+
+    def GetAllNewApiBlocks(self, block: Block):
+        if block.apiName not in self.apiList:
+            return []
+        res = [copy.deepcopy(block)]
+        apiRange = list(self.filteredApiSimilarity[block.apiName].keys())
+        for api in apiRange:
+            newBlock = self.CreateNewApi(api, block)
+            newBlock.InferType()
+            res.append(newBlock)
+        return res
+
+    def BoundaryMutate2(self, block: Block):
+        if block.isChildModel:
+            return [], []
+        res = []
+        resTag = []
+        apiName = block.apiName
+        if apiName not in self.apiList:
+            return [], []
+        paramSet = self.GetParamSetOfApi(apiName)
+        tags = ["MIN", "BELOW", "LEGAL", "MAX", "OVER", "LEGAL"]
+        for param in paramSet:
+            if param in IN_POOL:
+                continue
+            # int
+            dtypeAndRange = self.GetParamDtypeAndRange(apiName, param)
+            for d, r in dtypeAndRange:
+                if d == "int" or d == "float":
+                    structureAndShape = self.GetParamStructureAndShape(apiName, param)
+                    MIN, MAX = r
+                    if d == "int":
+                        choices = [MIN, MIN - 1, MIN + 1, MAX, MAX + 1, MAX - 1]
+                    else:
+                        choices = [MIN, MIN - 0.0001, MIN + 0.0001, MAX, MAX + 0.0001, MAX - 0.0001]
+                    for structure, dim in structureAndShape:
+                        if structure == "scalar":
+                            for i in range(len(choices)):
+                                newBlock = copy.deepcopy(block)
+                                newBlock.params[param] = choices[i]
+                                tag = tags[i]
+                                res.append(newBlock)
+                                resTag.append(tag)
+                        if structure == "tuple" or structure == "list":
+                            isList = structure == "list"
+                            choices2 = [
+                                tuple(product) if not isList else list(product) for product in itertools.product(choices, repeat=dim)
+                            ]
+                            tags2 = [
+                                tuple(product) for product in itertools.product(tags, repeat=dim)
+                            ]
+                            for i in range(len(choices2)):
+                                newBlock = copy.deepcopy(block)
+                                newBlock.params[param] = choices2[i]
+                                tag = tags2[i]
+                                res.append(newBlock)
+                                resTag.append(tag)
+        return res, resTag
 
 
 if __name__ == "__main__":

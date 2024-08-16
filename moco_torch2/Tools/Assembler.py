@@ -395,6 +395,40 @@ class TreeNode:
 
         return res  # Here, model of these TreeNodes has been saved, and it just return fine nodes.
 
+    def spawn2(self, block: Block):
+        model = self.getModel()
+        newBlocks, tags = mutator.BoundaryMutate(block)
+        total = len(newBlocks)
+        with alive_bar(total, bar="filling", spinner="classic", title=f"{self.seedName}-{self.generation}-b") as bar:
+            for i in range(total):
+                bar()
+                newBlock = newBlocks[i]
+                if not self.preCheck(newBlock):
+                    continue
+                tag = tags[i]
+                newModel = copy.deepcopy(model)
+                newModel.graph.append(newBlock)
+                newChild = TreeNode()
+                newChild.newNode(self.basePath, self.generation, i+1, self.seedName)
+                newChild.saveCase(newModel)
+                expect = "BELOW" in tag
+                runTime, runErrorInfo = newChild.run()
+                runResult = (runTime >= 0.0)
+                result = {
+                    "go result": runResult,
+                    "go time": runTime,
+                    "go error info": runErrorInfo,
+                    "father": str(self.no()),
+                    "tag": str(tag)
+                }
+                f = open(f"{newChild.casePath}/result.json", "w", encoding="utf-8")
+                json.dump(result, f, indent=2)
+                f.close()
+                if not runResult:
+                    if not expect:
+                        f = open(f"{newChild.casePath}/report", "w", encoding="utf-8")
+                        f.close()
+
 
 def cut(nodes, limit):
     # Step 1: 分桶
@@ -525,6 +559,43 @@ class Assembler:
         print("result scanning finished")
 
         return
+
+
+class Bssembler:
+    def __init__(self, seed, experimentName=None, outputPath="./Output"):
+        if experimentName is None:
+            self.experimentName = seed + str(time.time())
+        else:
+            self.experimentName = experimentName
+        self.baseOutputPath = f"{outputPath}/{experimentName}/tree"
+        self.baseReportPath = f"{outputPath}/{experimentName}/report"
+        os.makedirs(outputPath, exist_ok=True)
+        os.makedirs(self.baseOutputPath, exist_ok=True)
+        os.makedirs(self.baseReportPath, exist_ok=True)
+
+        self.seedName = seed
+        self.seedModel = GetSeed(seed)
+        filtor.tkg = None
+
+        return
+
+    def startAGen(self, template, block, gen):
+        father = TreeNode()
+        father.newNode(self.baseOutputPath, gen, 0, self.seedName)
+        father.saveCase(template)
+        father.run()
+        father.spawn2(block)
+        return
+
+    def start(self):
+        candidateBlocks = copy.deepcopy(self.seedModel.graph)
+        template = copy.deepcopy(self.seedModel)
+        template.graph.clear()
+
+        for (i, block) in enumerate(candidateBlocks):
+            template2 = copy.deepcopy(template)
+            self.startAGen(template2, block, i+1)
+            template.graph.append(block)
 
 
 if __name__ == "__main__":
