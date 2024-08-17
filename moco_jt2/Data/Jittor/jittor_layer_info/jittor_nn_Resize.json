@@ -43,7 +43,8 @@
         "tuple"
       ],
       "shape": [
-        null
+        2,
+        3
       ],
       "default": null
     }

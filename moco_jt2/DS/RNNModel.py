@@ -95,7 +95,7 @@ class RNNModel:
                 else:
                     res += block.GenerateForwardStatement()
                     res += "\n"
-        if self.graph[-1].apiName == "jittor.nn.Linear":
+        if len(self.graph) == 0 or self.graph[-1].apiName == "jittor.nn.Linear":
             pass
         else:
             res += f"        x = hn{i-1}\n"
