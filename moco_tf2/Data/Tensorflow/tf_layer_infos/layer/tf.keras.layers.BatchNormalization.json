@@ -1,0 +1,163 @@
+{
+  "params": {
+    "axis": {
+      "dtype": ["int"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [-1]
+    },
+    "momentum": {
+      "dtype": ["float"],
+      "range": [0, 1],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [0.99]
+    },
+    "epsilon": {
+      "dtype": ["float"],
+      "range": [0, 1],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [0.001]
+    },
+    "center": {
+      "dtype": ["boolean"],
+      "range": [true, false],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [true]
+    },
+    "scale": {
+      "dtype": ["boolean"],
+      "range": [true, false],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [true]
+    },
+    "beta_initializer": {
+      "dtype": ["string"],
+      "range": [
+        "glorot_normal",
+        "glorot_uniform",
+        "he_normal",
+        "he_uniform",
+        "identity",
+        "lecun_normal",
+        "lecun_uniform",
+        "ones",
+        "orthogonal",
+        "random_normal",
+        "random_uniform",
+        "truncated_normal",
+        "variance_scaling",
+        "zeros"
+      ],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["zeros"]
+    },
+    "gamma_initializer": {
+      "dtype": ["string"],
+      "range": [
+        "glorot_normal",
+        "glorot_uniform",
+        "he_normal",
+        "he_uniform",
+        "identity",
+        "lecun_normal",
+        "lecun_uniform",
+        "ones",
+        "orthogonal",
+        "random_normal",
+        "random_uniform",
+        "truncated_normal",
+        "variance_scaling",
+        "zeros"
+      ],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["ones"]
+    },
+    "moving_mean_initializer": {
+      "dtype": ["string"],
+      "range": [
+        "glorot_normal",
+        "glorot_uniform",
+        "he_normal",
+        "he_uniform",
+        "identity",
+        "lecun_normal",
+        "lecun_uniform",
+        "ones",
+        "orthogonal",
+        "random_normal",
+        "random_uniform",
+        "truncated_normal",
+        "variance_scaling",
+        "zeros"
+      ],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["zeros"]
+    },
+    "moving_variance_initializer": {
+      "dtype": ["string"],
+      "range": [
+        "glorot_normal",
+        "glorot_uniform",
+        "he_normal",
+        "he_uniform",
+        "identity",
+        "lecun_normal",
+        "lecun_uniform",
+        "ones",
+        "orthogonal",
+        "random_normal",
+        "random_uniform",
+        "truncated_normal",
+        "variance_scaling",
+        "zeros"
+      ],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["ones"]
+    },
+    "beta_regularizer": {
+      "dtype": ["string"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    },
+    "gamma_regularizer": {
+      "dtype": ["string"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    },
+    "beta_constraint": {
+      "dtype": ["string"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    },
+    "gamma_constraint": {
+      "dtype": ["string"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    },
+    "synchronized": {
+      "dtype": ["boolean"],
+      "range": [true, false],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [false]
+    }
+  },
+  "constraints": {}
+}

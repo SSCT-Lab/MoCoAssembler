@@ -1,0 +1,33 @@
+{
+  "params": {
+    "axis": {
+      "dtype": ["int"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [-1]
+    },
+    "mean": {
+      "dtype": ["float"],
+      "range": [],
+      "structure": ["scalar", "list"],
+      "shape": [1],
+      "default": ["None"]
+    },
+    "variance": {
+      "dtype": ["float"],
+      "range": [],
+      "structure": ["scalar", "list"],
+      "shape": [1],
+      "default": ["None"]
+    },
+    "invert": {
+      "dtype": ["boolean"],
+      "range": [true, false],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [false]
+    }
+  },
+  "constraints": {}
+}

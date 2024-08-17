@@ -1,0 +1,12 @@
+{
+  "params": {
+    "cropping": {
+      "dtype": ["int"],
+      "range": [],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 2],
+      "default": [1]
+    }
+  },
+  "constraints": {}
+}

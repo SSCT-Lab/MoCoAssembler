@@ -1,0 +1,26 @@
+{
+  "params": {
+    "use_scale": {
+      "dtype": ["boolean"],
+      "range": [true, false],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [false]
+    },
+    "dropout": {
+      "dtype": ["float"],
+      "range": [0, 1],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [0.0]
+    },
+    "score_mode": {
+      "dtype": ["string"],
+      "range": ["dot", "concat"],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["dot"]
+    }
+  },
+  "constraints": {}
+}

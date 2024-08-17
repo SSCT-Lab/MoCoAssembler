@@ -1,0 +1,36 @@
+{
+  "params": {
+    "input": {
+      "dtype": ["tensor"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": []
+    },
+    "ksize": {
+      "dtype": ["int"],
+      "range": [],
+      "structure": ["scalar", "list"],
+      "shape": [1, 2, 4]
+    },
+    "strides": {
+      "dtype": ["int"],
+      "range": [],
+      "structure": ["scalar", "list"],
+      "shape": [1, 2, 4]
+    },
+    "padding": {
+      "dtype": ["string"],
+      "range": ["VALID", "SAME"],
+      "structure": ["scalar"],
+      "shape": [1]
+    },
+    "data_format": {
+      "dtype": ["string"],
+      "range": ["NHWC", "NCHW"],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["NHWC"]
+    }
+  },
+  "constraints": {}
+}

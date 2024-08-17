@@ -1,0 +1,13 @@
+{
+  "params": {
+    "x": {
+      "dtype": "float",
+      "range": "(-inf, inf)"
+    },
+    "name": {
+      "dtype": "string",
+      "range": "No mention"
+    }
+  },
+  "constraints": {}
+}

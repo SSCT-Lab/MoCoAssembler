@@ -1,0 +1,29 @@
+{
+  "params": {
+    "input_tensor": {
+      "dtype": "boolean",
+      "range": "No mention",
+      "structure": "n-dimensional array",
+      "shape": "No mention"
+    },
+    "axis": {
+      "dtype": "int",
+      "range": "[-rank(input_tensor), rank(input_tensor))",
+      "structure": "scalar/list",
+      "shape": "1/No mention"
+    },
+    "keepdims": {
+      "dtype": "boolean",
+      "range": "{true, false}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "name": {
+      "dtype": "string",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

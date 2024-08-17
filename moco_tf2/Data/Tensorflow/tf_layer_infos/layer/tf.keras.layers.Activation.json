@@ -1,0 +1,25 @@
+{
+  "params": {
+    "activation": {
+      "dtype": ["string"],
+      "range": [
+        "exponential",
+        "gelu",
+        "hard_sigmoid",
+        "linear",
+        "relu",
+        "selu",
+        "sigmoid",
+        "softmax",
+        "softplus",
+        "softsign",
+        "swish",
+        "tanh"
+      ],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    }
+  },
+  "constraints": {}
+}

@@ -1,0 +1,29 @@
+{
+  "params": {
+    "input": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "n-dimensional array (tensor)",
+      "shape": "No mention"
+    },
+    "axis": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "output_type": {
+      "dtype": "int",
+      "range": "{tf.int32, tf.int64}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "name": {
+      "dtype": "string",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

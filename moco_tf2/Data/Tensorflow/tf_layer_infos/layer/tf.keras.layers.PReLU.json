@@ -1,0 +1,41 @@
+{
+  "params": {
+    "alpha_initializer": {
+      "dtype": ["string"],
+      "range": [
+        "glorot_normal",
+        "glorot_uniform",
+        "he_normal",
+        "he_uniform",
+        "identity",
+        "lecun_normal",
+        "lecun_uniform",
+        "ones",
+        "orthogonal",
+        "random_normal",
+        "random_uniform",
+        "truncated_normal",
+        "variance_scaling",
+        "zeros"
+      ],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["zeros"]
+    },
+    "alpha_regularizer": {
+      "dtype": ["string"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    },
+    "alpha_constraint": {
+      "dtype": ["string"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    }
+  },
+  "constraints": {}
+}

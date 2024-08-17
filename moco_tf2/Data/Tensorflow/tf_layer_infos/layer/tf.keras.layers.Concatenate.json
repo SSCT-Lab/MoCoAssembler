@@ -1,0 +1,12 @@
+{
+  "params": {
+    "axis": {
+      "dtype": ["int"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [-1]
+    }
+  },
+  "constraints": {}
+}

@@ -1,0 +1,23 @@
+{
+  "params": {
+    "logits": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "axis": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "name": {
+      "dtype": "string",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

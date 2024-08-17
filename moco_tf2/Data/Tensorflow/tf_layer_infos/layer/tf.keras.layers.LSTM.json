@@ -1,0 +1,45 @@
+{
+  "params": {
+    "units": {
+      "dtype": ["int"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1]
+    },
+    "activation": {
+      "dtype": ["string"],
+      "range": [
+        "exponential",
+        "gelu",
+        "hard_sigmoid",
+        "linear",
+        "relu",
+        "selu",
+        "sigmoid",
+        "softmax",
+        "softplus",
+        "softsign",
+        "swish",
+        "tanh"
+      ],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    },
+    "use_bias": {
+      "dtype": ["boolean"],
+      "range": [true, false],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [true]
+    },
+    "dropout": {
+      "dtype": ["float"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [0.0]
+    }
+  },
+  "constraints": {}
+}

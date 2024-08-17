@@ -1,0 +1,23 @@
+{
+  "params": {
+    "y": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "x": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "name": {
+      "dtype": "string",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

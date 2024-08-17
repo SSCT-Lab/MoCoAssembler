@@ -1,0 +1,83 @@
+{
+  "params": {
+    "cell": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "scalar/list",
+      "shape": "1/No mention"
+    },
+    "return_sequences": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "return_state": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "go_backwards": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "stateful": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "unroll": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "time_major": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "inputs": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "n-dimensional array",
+      "shape": "[batch_size, timesteps, ...] or [timesteps, batch_size, ...]"
+    },
+    "mask": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "n-dimensional array",
+      "shape": "[batch_size, timesteps]"
+    },
+    "training": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "initial_state": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "list",
+      "shape": "No mention"
+    },
+    "constants": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "list",
+      "shape": "No mention"
+    },
+    "states": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "list",
+      "shape": "No mention"
+    }
+  },
+  "constraints": {}
+}

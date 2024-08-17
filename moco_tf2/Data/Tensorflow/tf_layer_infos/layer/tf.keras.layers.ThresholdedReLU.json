@@ -1,0 +1,11 @@
+{
+  "params": {
+    "theta": {
+      "dtype": ["float"],
+      "range": [0, 1],
+      "structure": ["scalar"],
+      "shape": [1]
+    }
+  },
+  "constraints": {}
+}

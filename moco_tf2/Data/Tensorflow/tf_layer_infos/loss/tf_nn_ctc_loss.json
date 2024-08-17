@@ -1,0 +1,53 @@
+{
+  "params": {
+    "labels": {
+      "dtype": "Tensor/SparseTensor",
+      "range": "No mention",
+      "structure": "tensor/SparseTensor",
+      "shape": "[batch_size, max_label_seq_length]"
+    },
+    "logits": {
+      "dtype": "Tensor",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "[frames, batch_size, num_labels] / [batch_size, frames, num_labels]"
+    },
+    "label_length": {
+      "dtype": "Tensor",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "[batch_size]"
+    },
+    "logit_length": {
+      "dtype": "Tensor",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "[batch_size]"
+    },
+    "logits_time_major": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "unique": {
+      "dtype": "Tensor",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "blank_index": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    },
+    "name": {
+      "dtype": "string",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    }
+  },
+  "constraints": {}
+}

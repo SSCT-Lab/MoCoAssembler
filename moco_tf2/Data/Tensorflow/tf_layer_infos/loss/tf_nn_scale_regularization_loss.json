@@ -1,0 +1,11 @@
+{
+  "params": {
+    "regularization_loss": {
+      "dtype": "float",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "No mention"
+    }
+  },
+  "constraints": {}
+}

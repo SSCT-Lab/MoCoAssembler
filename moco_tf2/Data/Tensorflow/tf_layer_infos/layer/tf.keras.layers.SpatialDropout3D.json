@@ -1,0 +1,18 @@
+{
+  "params": {
+    "rate": {
+      "dtype": ["float"],
+      "range": [0, 1],
+      "structure": ["scalar"],
+      "shape": [1]
+    },
+    "data_format": {
+      "dtype": ["string"],
+      "range": ["channels_last", "channels_first"],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    }
+  },
+  "constraints": {}
+}
