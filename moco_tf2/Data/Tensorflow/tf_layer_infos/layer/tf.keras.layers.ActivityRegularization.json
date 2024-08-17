@@ -1,0 +1,19 @@
+{
+  "params": {
+    "l1": {
+      "dtype": ["float"],
+      "range": [0, 1],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [0.0]
+    },
+    "l2": {
+      "dtype": ["float"],
+      "range": [0, 1],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [0.0]
+    }
+  },
+  "constraints": {}
+}

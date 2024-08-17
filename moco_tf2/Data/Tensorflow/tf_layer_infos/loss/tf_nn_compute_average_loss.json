@@ -1,0 +1,23 @@
+{
+  "params": {
+    "per_example_loss": {
+      "dtype": "int/float",
+      "range": "No mention",
+      "structure": "No mention",
+      "shape": "No mention"
+    },
+    "sample_weight": {
+      "dtype": "int/float",
+      "range": "No mention",
+      "structure": "No mention",
+      "shape": "No mention"
+    },
+    "global_batch_size": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": 1
+    }
+  },
+  "constraints": {}
+}

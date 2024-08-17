@@ -1,0 +1,18 @@
+{
+  "params": {
+    "features": {
+      "dtype": ["tensor"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": []
+    },
+    "approximate": {
+      "dtype": ["boolean"],
+      "range": [true, false],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [false]
+    }
+  },
+  "constraints": {}
+}

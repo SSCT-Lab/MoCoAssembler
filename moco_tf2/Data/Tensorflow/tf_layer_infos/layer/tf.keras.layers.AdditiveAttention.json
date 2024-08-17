@@ -1,0 +1,19 @@
+{
+  "params": {
+    "use_scale": {
+      "dtype": ["boolean"],
+      "range": [true, false],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [true]
+    },
+    "dropout": {
+      "dtype": ["float"],
+      "range": [0, 1],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": []
+    }
+  },
+  "constraints": {}
+}

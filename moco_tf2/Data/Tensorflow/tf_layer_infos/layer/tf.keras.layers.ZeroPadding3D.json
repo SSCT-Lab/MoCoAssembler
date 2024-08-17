@@ -1,0 +1,19 @@
+{
+  "params": {
+    "padding": {
+      "dtype": ["int"],
+      "range": [],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 3],
+      "default": [1]
+    },
+    "data_format": {
+      "dtype": ["string"],
+      "range": ["channels_last", "channels_first"],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    }
+  },
+  "constraints": {}
+}

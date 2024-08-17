@@ -1,0 +1,26 @@
+{
+  "params": {
+    "max_value": {
+      "dtype": ["float"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    },
+    "negative_slope": {
+      "dtype": ["float"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [0.0]
+    },
+    "threshold": {
+      "dtype": ["float"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [0.0]
+    }
+  },
+  "constraints": {}
+}

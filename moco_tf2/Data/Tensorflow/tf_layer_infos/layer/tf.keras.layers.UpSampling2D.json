@@ -1,0 +1,34 @@
+{
+  "params": {
+    "size": {
+      "dtype": ["int"],
+      "range": [],
+      "structure": ["scalar", "tuple"],
+      "shape": [1, 2],
+      "default": [2]
+    },
+    "data_format": {
+      "dtype": ["string"],
+      "range": ["channels_last", "channels_first"],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    },
+    "interpolation": {
+      "dtype": ["string"],
+      "range": [
+        "area",
+        "bicubic",
+        "bilinear",
+        "gaussian",
+        "lanczos3",
+        "lanczos5",
+        "mitchellcubic",
+        "nearest"],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["nearest"]
+    }
+  },
+  "constraints": {}
+}

@@ -1,0 +1,33 @@
+{
+  "params": {
+    "pool_size": {
+      "dtype": ["int"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [2]
+    },
+    "strides": {
+      "dtype": ["int"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    },
+    "padding": {
+      "dtype": ["string"],
+      "range": ["valid", "same"],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["valid"]
+    },
+    "data_format": {
+      "dtype": ["string"],
+      "range": ["channels_last", "channels_first"],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["channels_last"]
+    }
+  },
+  "constraints": {}
+}

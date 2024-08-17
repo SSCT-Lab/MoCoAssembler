@@ -1,0 +1,65 @@
+{
+  "params": {
+    "weights": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tensor/list of tensors",
+      "shape": "[num_classes, dim]"
+    },
+    "biases": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "[num_classes]"
+    },
+    "labels": {
+      "dtype": "int64",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "[batch_size, num_true]"
+    },
+    "inputs": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "[batch_size, dim]"
+    },
+    "num_sampled": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "num_classes": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "num_true": {
+      "dtype": "int",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "sampled_values": {
+      "dtype": "No mention",
+      "range": "No mention",
+      "structure": "tuple",
+      "shape": "3"
+    },
+    "remove_accidental_hits": {
+      "dtype": "boolean",
+      "range": "{True, False}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "name": {
+      "dtype": "string",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

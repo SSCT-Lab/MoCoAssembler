@@ -1,0 +1,17 @@
+{
+  "params": {
+    "x": {
+      "dtype": "bfloat16/half/float32/float64/complex64/complex128",
+      "range": "(-inf, inf)",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "name": {
+      "dtype": "string",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

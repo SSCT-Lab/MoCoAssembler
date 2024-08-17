@@ -1,0 +1,29 @@
+{
+  "params": {
+    "input": {
+      "dtype": "float/int",
+      "range": "No mention",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "axis": {
+      "dtype": "int",
+      "range": "[-rank(input), rank(input))",
+      "structure": "tensor",
+      "shape": "No mention"
+    },
+    "output_type": {
+      "dtype": "int",
+      "range": "{tf.int32, tf.int64}",
+      "structure": "scalar",
+      "shape": "1"
+    },
+    "name": {
+      "dtype": "string",
+      "range": "No mention",
+      "structure": "scalar",
+      "shape": "1"
+    }
+  },
+  "constraints": {}
+}

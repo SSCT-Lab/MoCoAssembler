@@ -1,0 +1,164 @@
+{
+  "params": {
+    "filters": {
+      "dtype": ["int"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1]
+    },
+    "kernel_size": {
+      "dtype": ["int"],
+      "range": [],
+      "structure": ["scalar", "tuple", "list"],
+      "shape": [1, 2]
+    },
+    "strides": {
+      "dtype": ["int"],
+      "range": [],
+      "structure": ["scalar", "tuple", "list"],
+      "shape": [1, 2],
+      "default": [1]
+    },
+    "padding": {
+      "dtype": ["string"],
+      "range": ["valid", "same"],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["valid"]
+    },
+    "data_format": {
+      "dtype": ["string"],
+      "range": ["channels_last", "channels_first"],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["channels_last"]
+    },
+    "dilation_rate": {
+      "dtype": ["int"],
+      "range": [],
+      "structure": ["scalar", "tuple", "list"],
+      "shape": [1, 2],
+      "default": [1]
+    },
+    "groups": {
+      "dtype": ["int"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [1]
+    },
+    "activation": {
+      "dtype": ["string"],
+      "range": [
+        "exponential",
+        "gelu",
+        "hard_sigmoid",
+        "linear",
+        "relu",
+        "selu",
+        "sigmoid",
+        "softmax",
+        "softplus",
+        "softsign",
+        "swish",
+        "tanh"
+      ],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    },
+    "use_bias": {
+      "dtype": ["boolean"],
+      "range": [true, false],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": [true]
+    },
+    "kernel_initializer": {
+      "dtype": ["string"],
+      "range": [
+        "glorot_normal",
+        "glorot_uniform",
+        "he_normal",
+        "he_uniform",
+        "identity",
+        "lecun_normal",
+        "lecun_uniform",
+        "ones",
+        "orthogonal",
+        "random_normal",
+        "random_uniform",
+        "truncated_normal",
+        "variance_scaling",
+        "zeros"
+      ],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["glorot_uniform"]
+    },
+    "bias_initializer": {
+      "dtype": ["string"],
+      "range": [
+        "glorot_normal",
+        "glorot_uniform",
+        "he_normal",
+        "he_uniform",
+        "identity",
+        "lecun_normal",
+        "lecun_uniform",
+        "ones",
+        "orthogonal",
+        "random_normal",
+        "random_uniform",
+        "truncated_normal",
+        "variance_scaling",
+        "zeros"
+      ],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["zeros"]
+    },
+    "kernel_regularizer": {
+      "dtype": ["string"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    },
+    "bias_regularizer": {
+      "dtype": ["string"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    },
+    "activity_regularizer": {
+      "dtype": ["string"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    },
+    "kernel_constraint": {
+      "dtype": ["string"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    },
+    "bias_constraint": {
+      "dtype": ["string"],
+      "range": [],
+      "structure": ["scalar"],
+      "shape": [1],
+      "default": ["None"]
+    }
+  },
+  "constraints": {
+    "1": {
+      "Parameter 1": "strides",
+      "Parameter 2": "dilation_rate",
+      "Constraint": "if any(stride > 1 for stride in strides): all(dilation == 1 for dilation in dilation_rate)"
+    }
+  }
+}
