@@ -1,37 +1,49 @@
 import torch
 import torch.nn as nn
-import numpy as np
-from torch import optim
-import os
-import torch.nn.functional as F
 
 
-class Model_wOzBoAGFnY8gddTApgZ2fqdx5PVjsOSA(nn.Module):
+class LSTM(nn.Module):
     def __init__(self):
-        super(Model_wOzBoAGFnY8gddTApgZ2fqdx5PVjsOSA, self).__init__()
-        self.rnn1 = torch.nn.RNN(input_size=2048, hidden_size=1076, batch_first=True)
-        self.rnn2 = torch.nn.RNN(input_size=1076, hidden_size=723, batch_first=True)
-        self.rnn3 = torch.nn.LSTM(input_size=723, hidden_size=662, batch_first=True)
-        self.rnn4 = torch.nn.RNN(input_size=662, hidden_size=398, batch_first=True)
-        self.linear = torch.nn.Linear(in_features=398, out_features=10)
+        super(LSTM, self).__init__()
+
+        self.hidden_size = 200
+        self.num_layers = 4
+
+        self.lstm1 = torch.nn.LSTMCell(input_size=2048, hidden_size=200)
+        self.lstm2 = torch.nn.LSTMCell(input_size=200, hidden_size=200)
+        self.lstm3 = torch.nn.LSTMCell(input_size=200, hidden_size=200)
+        self.lstm4 = torch.nn.LSTMCell(input_size=200, hidden_size=200)
+
+        self.fc = nn.Linear(in_features=200, out_features=10)
 
     def forward(self, x):
-        x, _ = self.rnn1(x)
-        x, _ = self.rnn2(x)
-        x, _ = self.rnn3(x)
-        _, x = self.rnn4(x)
-        x = self.linear(x[-1])
+        batch_size = x.size(0)
+        seq_length = x.size(1)
 
-        x = x
+        if True:
+            h0 = torch.zeros((batch_size, self.hidden_size))
+            c0 = torch.zeros((batch_size, self.hidden_size))
+
+        hn1, cn1 = h0, c0
+        hn2, cn2 = h0, c0
+        hn3, cn3 = h0, c0
+        hn4, cn4 = h0, c0
+
+        for t in range(seq_length):
+            hn0 = x[:, t, :]
+            hn1, cn1 = self.lstm1(hn0, (hn1, cn1))
+            hn2, cn2 = self.lstm2(hn1, (hn2, cn2))
+            hn3, cn3 = self.lstm3(hn2, (hn3, cn3))
+            hn4, cn4 = self.lstm4(hn3, (hn4, cn4))
+
+        x = self.fc(hn4)
+
         return x
 
 
 def go():
-    try:
-        model = Model_wOzBoAGFnY8gddTApgZ2fqdx5PVjsOSA().to('cuda')
-        x = torch.randn([1, 3, 2048]).to('cuda')
-        y = model(x)
-        flag = True
-    except Exception:
-        flag = False
-    return flag
+    x = torch.randn(1, 3, 2048)
+    net = LSTM()
+    y = net(x)
+    print(y.shape)
+    return net

@@ -19,6 +19,7 @@ from Tools.Mutator import Mutator
 
 threshold = 0.1
 mutator = Mutator()
+vari = []
 
 
 class Filter:
@@ -100,7 +101,8 @@ inputShapeTable = {
     "googlenet": [1, 3, 224, 224],
     "vgg19": [1, 3, 224, 224],
     "squeezenet": [1, 3, 224, 224],
-    "pointnet": [2, 3, 2048]
+    "pointnet": [2, 3, 2048],
+    "LSTM": [1, 3, 2048]
 }
 
 
@@ -246,6 +248,17 @@ class TreeNode:
         xt, yt, s2 = filtor.tkg.generate_kit()
         filePath = f"{self.casePath}/{self.seedName}_{self.generation}_{self.index}_train.py"
         sys.path.append(self.casePath)
+        
+        if len(self.outputShape) >= 2:
+            inChannels = 1
+            for i in range(1, len(self.outputShape)):
+                inChannels *= self.outputShape[i]
+        elif len(self.outputShape) == 1:
+            inChannels = self.outputShape[0]
+        else:
+            inChannels = 1
+        if inChannels > 20000:
+            return 1.0, "", (-2, -2)
 
         start = time.time()
         try:
@@ -319,9 +332,15 @@ class TreeNode:
             b()
 
             mutatedBlock, mutateInfo = mutator.Mutate(block)
+
+            # vari
+            if mutateInfo not in vari:
+                vari.append(mutateInfo)
+
             if inChannels != -1:
-                mutatedBlock.SetShape(inC=inChannels)
-                mutatedBlock.FixShape()
+                if not (self.seedName == "LSTM" and self.generation == 0):
+                    mutatedBlock.SetShape(inC=inChannels)
+                    mutatedBlock.FixShape()
             retryCount = 0
             preCheckPassed = False
             while retryCount < 9:
@@ -340,7 +359,7 @@ class TreeNode:
 
             brandNewModel = self.getModel()
             brandNewModel.graph.append(mutatedBlock)
-            brandNewModel.modelOutputs = mutatedBlock.outputSymbols
+            # brandNewModel.modelOutputs = mutatedBlock.outputSymbols
 
             brandNewModel.extraOp = mutator.GenerateRandomOp()
 
@@ -375,6 +394,40 @@ class TreeNode:
                 res.append(child)
 
         return res  # Here, model of these TreeNodes has been saved, and it just return fine nodes.
+
+    def spawn2(self, block: Block):
+        model = self.getModel()
+        newBlocks, tags = mutator.BoundaryMutate(block)
+        total = len(newBlocks)
+        with alive_bar(total, bar="filling", spinner="classic", title=f"{self.seedName}-{self.generation}-b") as bar:
+            for i in range(total):
+                bar()
+                newBlock = newBlocks[i]
+                if not self.preCheck(newBlock):
+                    continue
+                tag = tags[i]
+                newModel = copy.deepcopy(model)
+                newModel.graph.append(newBlock)
+                newChild = TreeNode()
+                newChild.newNode(self.basePath, self.generation, i+1, self.seedName)
+                newChild.saveCase(newModel)
+                expect = "BELOW" in tag
+                runTime, runErrorInfo = newChild.run()
+                runResult = (runTime >= 0.0)
+                result = {
+                    "go result": runResult,
+                    "go time": runTime,
+                    "go error info": runErrorInfo,
+                    "father": str(self.no()),
+                    "tag": str(tag)
+                }
+                f = open(f"{newChild.casePath}/result.json", "w", encoding="utf-8")
+                json.dump(result, f, indent=2)
+                f.close()
+                if not runResult:
+                    if not expect:
+                        f = open(f"{newChild.casePath}/report", "w", encoding="utf-8")
+                        f.close()
 
 
 def cut(nodes, limit):
@@ -430,12 +483,29 @@ class Assembler:
 
         return
 
+    def getDefaultModel(self, gen: int, count: int):
+        defaultModel = copy.deepcopy(self.seedModel)
+        defaultModel.graph = defaultModel.graph[:gen]
+        res = []
+
+        for c in range(count):
+            node = TreeNode()
+            node.newNode(self.baseOutputPath, gen, self.maxEachLayer + c + 1, self.seedName)
+            node.saveCase(defaultModel)
+            node.run()
+            node.father = (-1, -1)
+            res.append(copy.deepcopy(node))
+
+        return res
+
     def startAGen(self, passedLastGenTreeNodes: list[TreeNode], block, gen):
+        vari.clear()
         count = 1
         currentGenTreeNodes = []
         with alive_bar(self.n * len(passedLastGenTreeNodes), bar="filling", spinner="classic", title=f"{self.seedName}-{gen}") as bar:
             for father in passedLastGenTreeNodes:
-                currentGenTreeNodes += father.spawn(self.n, block, count, bar)
+                newNodes = father.spawn(self.n, block, count, bar)
+                currentGenTreeNodes += newNodes
                 count += self.n
         currentGenTreeNodes = cut(currentGenTreeNodes, self.maxEachLayer)
         # for node in currentGenTreeNodes:
@@ -447,6 +517,9 @@ class Assembler:
         #         json.dump(d, f, indent=2)
         #         f.close()
         # currentGenTreeNodes = currentGenTreeNodes[:self.maxEachLayer]
+        if len(currentGenTreeNodes) < 1:
+            print(f"fix {len(vari)} default models in gen {gen}")
+            currentGenTreeNodes = self.getDefaultModel(gen, len(vari))
         return currentGenTreeNodes
 
     def start(self):
@@ -486,6 +559,43 @@ class Assembler:
         print("result scanning finished")
 
         return
+
+
+class Bssembler:
+    def __init__(self, seed, experimentName=None, outputPath="./Output"):
+        if experimentName is None:
+            self.experimentName = seed + str(time.time())
+        else:
+            self.experimentName = experimentName
+        self.baseOutputPath = f"{outputPath}/{experimentName}/tree"
+        self.baseReportPath = f"{outputPath}/{experimentName}/report"
+        os.makedirs(outputPath, exist_ok=True)
+        os.makedirs(self.baseOutputPath, exist_ok=True)
+        os.makedirs(self.baseReportPath, exist_ok=True)
+
+        self.seedName = seed
+        self.seedModel = GetSeed(seed)
+        filtor.tkg = None
+
+        return
+
+    def startAGen(self, template, block, gen):
+        father = TreeNode()
+        father.newNode(self.baseOutputPath, gen, 0, self.seedName)
+        father.saveCase(template)
+        father.run()
+        father.spawn2(block)
+        return
+
+    def start(self):
+        candidateBlocks = copy.deepcopy(self.seedModel.graph)
+        template = copy.deepcopy(self.seedModel)
+        template.graph.clear()
+
+        for (i, block) in enumerate(candidateBlocks):
+            template2 = copy.deepcopy(template)
+            self.startAGen(template2, block, i+1)
+            template.graph.append(block)
 
 
 if __name__ == "__main__":

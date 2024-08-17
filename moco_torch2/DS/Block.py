@@ -4,8 +4,9 @@ import copy
 LAYER = 1  # Keep params in declaration. (self.a = torch.nn.a(var1=1, var2=2), x = self.a(x))
 OP = 2  # No params need, just use it to calculate. (self.a = torch.sin, x = self.a(x))
 PARAM_NEED_OP = 3  # An op but need param behind. (self.a = F.pad, x = self.a(x, var1=1, var2=2))
-IN_POOL = ["in_channels", "in_features", "num_features"]
-OUT_POOL = ["out_channels", "out_features"]
+IN_POOL = ["in_channels", "in_features", "num_features", "input_size"]
+OUT_POOL = ["out_channels", "out_features", "hidden_size"]
+
 
 class Block:
     def __init__(self, apiName, params, nodeName, inputSymbols, outputSymbols):
