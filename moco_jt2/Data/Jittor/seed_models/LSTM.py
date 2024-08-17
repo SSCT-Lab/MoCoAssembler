@@ -9,12 +9,12 @@ class LSTM(nn.Module):
         self.hidden_size = 200
         self.num_layers = 4
 
-        self.lstm1 = jittor.nn.LSTMCell(input_size=1, hidden_size=200)
+        self.lstm1 = jittor.nn.LSTMCell(input_size=2048, hidden_size=200)
         self.lstm2 = jittor.nn.LSTMCell(input_size=200, hidden_size=200)
         self.lstm3 = jittor.nn.LSTMCell(input_size=200, hidden_size=200)
         self.lstm4 = jittor.nn.LSTMCell(input_size=200, hidden_size=200)
 
-        self.fc = nn.Linear(in_features=200, out_features=1)
+        self.fc = nn.Linear(in_features=200, out_features=10)
 
     def execute(self, x):
         batch_size = x.size(0)
@@ -45,10 +45,8 @@ class LSTM(nn.Module):
 
 
 def go():
-    HIDDEN_SIZE = 200
-    NUM_LAYERS = 4
-    OUTPUT_SIZE = 20
-    x = jittor.randn(5, 1, 1)
+    x = jittor.randn(1, 3, 2048)
     net = LSTM()
     y = net(x)
+    print(y.shape)
     return net

@@ -2,10 +2,10 @@ import copy
 import os
 import random
 
-from moco_jt2.DS.Block import Block, LAYER, OP, PARAM_NEED_OP, IN_POOL, OUT_POOL
+from DS.Block import Block, LAYER, OP, PARAM_NEED_OP, IN_POOL, OUT_POOL
 import json
 import yaml
-from moco_jt2.Tools.ConstraintChecker import CheckBlock
+from Tools.ConstraintChecker import CheckBlock
 
 dataPath = f"./Data/Jittor/jittor_layer_info"
 threshold = 0.3

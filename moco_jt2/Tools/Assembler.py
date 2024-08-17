@@ -1,25 +1,26 @@
 import copy
 import pickle
 import os
+import re
 import time
 import json
 import importlib.util
 import sys
 import traceback
 import numpy as np
-import heapq
 
 from alive_progress import alive_bar
 from collections import defaultdict
-from moco_jt2.DS.Model import Model
-from moco_jt2.DS.Block import Block
-from moco_jt2.Tools.Parser import GetSeed
-from moco_jt2.Tools.TesterKitGenerator import TestKitGenerator
-from moco_jt2.Tools.Mutator import Mutator
+from DS.Model import Model
+from DS.Block import Block
+from Tools.Parser import GetSeed
+from Tools.TesterKitGenerator import TestKitGenerator
+from Tools.Mutator import Mutator
 
 threshold = 0.1
 mutator = Mutator()
 
+vari = []
 
 class Filter:
     def __init__(self):
@@ -100,7 +101,8 @@ inputShapeTable = {
     "googlenet": [1, 3, 224, 224],
     "vgg19": [1, 3, 224, 224],
     "squeezenet": [1, 3, 224, 224],
-    "pointnet": [2, 3, 2048]
+    "pointnet": [2, 3, 2048],
+    "LSTM": [1, 3, 2048]
 }
 
 
@@ -222,6 +224,28 @@ class TreeNode:
         self.assembleGoFile()
         filePath = f"{self.casePath}/{self.seedName}_{self.generation}_{self.index}_go.py"
         sys.path.append(self.casePath)
+
+        block = self.getModel().graph[-1]
+        if "MaxPool" in block.apiName and "AdaptiveMaxPool" not in block.apiName:
+            kernel_size = block.params.get("kernel_size", None)
+            previous_output_shape = self.father.outputShape
+            # print(kernel_size, previous_output_shape)
+            kernel_size_height = kernel_size if isinstance(kernel_size, int) else kernel_size[0]
+            previous_output_shape_height = previous_output_shape[2] if len(previous_output_shape) == 4 else previous_output_shape[1]
+            if kernel_size_height > previous_output_shape_height:
+                print(f"Skip running: kernel_size height {kernel_size} is larger than previous output height {previous_output_shape}.")
+                return -1, f"Skip running: kernel_size height {kernel_size} is larger than previous output height {previous_output_shape}."
+        if "AvgPool" in block.apiName and "AdaptiveAvgPool" not in block.apiName:
+            kernel_size = block.params.get("kernel_size", None)
+            previous_output_shape = self.father.outputShape
+            kernel_size_height = kernel_size if isinstance(kernel_size, int) else kernel_size[0]
+            kernel_size_width = kernel_size if isinstance(kernel_size, int) else kernel_size[1]
+            previous_output_shape_height = previous_output_shape[2] if len(previous_output_shape) == 4 else previous_output_shape[1]
+            previous_output_shape_width = previous_output_shape[3] if len(previous_output_shape) == 4 else previous_output_shape[1]
+            if kernel_size_height > previous_output_shape_height or kernel_size_width > previous_output_shape_width:
+                print(f"Skip running: kernel_size {kernel_size} is larger than previous output {previous_output_shape}.")
+                return -1, f"Skip running: kernel_size {kernel_size} is larger than previous output {previous_output_shape}."
+
         start = time.time()
         try:
             module_name = f"{self.seedName}_{self.generation}_{self.index}_go"
@@ -230,6 +254,7 @@ class TreeNode:
             sys.modules[module_name] = module
             spec.loader.exec_module(module)
             self.outputShape = module.go()
+            # print(self.outputShape)
             error_message = ""
             end = time.time()
         except Exception as e:
@@ -242,10 +267,27 @@ class TreeNode:
 
     def train(self):
         self.assembleTrainFile()
-        x, _, s1 = filtor.tkg.generate_kit()
-        xt, yt, s2 = filtor.tkg.generate_kit()
+
         filePath = f"{self.casePath}/{self.seedName}_{self.generation}_{self.index}_train.py"
         sys.path.append(self.casePath)
+
+        with open(filePath, "r") as file:
+            lines = file.readlines()
+        for i in range(len(lines)):
+            if "def " in lines[i] and "def __init__(" not in lines[i]:
+                line = lines[i - 2]
+                match = re.search(r'in_features=(\d+),', line)
+                in_features = int(match.group(1))
+                # print("in_features", in_features)
+                if in_features > 20000:
+                    # 如果最后一层的 in_features 大于 20000，则不运行训练部分，只运行 go 部分
+                    print("Model's last layer in_features > 20000, skipping training. in_features: ", in_features)
+                    # return 1.0, f"Skipped training due to large in_features: in_features={in_features}", (None, None)
+                    return 1.0, "", (None, None)
+                break
+
+        x, _, s1 = filtor.tkg.generate_kit()
+        xt, yt, s2 = filtor.tkg.generate_kit()
 
         start = time.time()
         try:
@@ -319,9 +361,15 @@ class TreeNode:
             b()
 
             mutatedBlock, mutateInfo = mutator.Mutate(block)
+
+            # vari
+            if mutateInfo not in vari:
+                vari.append(mutateInfo)
+
             if inChannels != -1:
-                mutatedBlock.SetShape(inC=inChannels)
-                mutatedBlock.FixShape()
+                if not (self.seedName == "LSTM" and self.generation == 0):
+                    mutatedBlock.SetShape(inC=inChannels)
+                    mutatedBlock.FixShape()
             retryCount = 0
             preCheckPassed = False
             while retryCount < 9:
@@ -427,12 +475,29 @@ class Assembler:
 
         return
 
+    def getDefaultModel(self, gen: int, count: int):
+        defaultModel = copy.deepcopy(self.seedModel)
+        defaultModel.graph = defaultModel.graph[:gen]
+        res = []
+
+        for c in range(count):
+            node = TreeNode()
+            node.newNode(self.baseOutputPath, gen, self.maxEachLayer + c + 1, self.seedName)
+            node.saveCase(defaultModel)
+            node.run()
+            node.father = (-1, -1)
+            res.append(copy.deepcopy(node))
+
+        return res
+
     def startAGen(self, passedLastGenTreeNodes: list[TreeNode], block, gen):
+        vari.clear()
         count = 1
         currentGenTreeNodes = []
         with alive_bar(self.n * len(passedLastGenTreeNodes), bar="filling", spinner="classic", title=f"{self.seedName}-{gen}") as bar:
             for father in passedLastGenTreeNodes:
-                currentGenTreeNodes += father.spawn(self.n, block, count, bar)
+                newNodes = father.spawn(self.n, block, count, bar)
+                currentGenTreeNodes += newNodes
                 count += self.n
         currentGenTreeNodes = cut(currentGenTreeNodes, self.maxEachLayer)
         # for node in currentGenTreeNodes:
@@ -444,6 +509,9 @@ class Assembler:
         #         json.dump(d, f, indent=2)
         #         f.close()
         # currentGenTreeNodes = currentGenTreeNodes[:self.maxEachLayer]
+        if len(currentGenTreeNodes) < 1:
+            print(f"fix {len(vari)} default models in gen {gen}")
+            currentGenTreeNodes = self.getDefaultModel(gen, len(vari))
         return currentGenTreeNodes
 
     def start(self):
