@@ -1,5 +1,11 @@
-from moco_tf2.DS import Block
-from moco_tf2.Utils import utils
+import os
+import random
+
+from DS import Block
+from Utils import utils
+
+
+MATH_PATH = "/Users/wuduo/Documents/BioWork/MoCo/MOCO-3/MoCoAssembler/moco_tf2/Data/tf_layer_infos/math"
 
 
 class Model:
@@ -9,10 +15,10 @@ class Model:
         self.model_inputs: list[str] = model_inputs
         self.model_outputs: list[str] = model_outputs
 
-    def assemble_child_model(self, extra_model_inputs=""):
+    def assemble_child_model(self):
         child_code = ""
         for block in self.graph:
-            if block.api_name == "tf.keras.layers.concatenate":
+            if block.api_name in ["tf.keras.layers.concatenate", "tf.keras.layers.add"]:
                 try:
                     _input = block.input_symbols[0][1:-1]
                     input_list = _input.split(',')
@@ -22,15 +28,13 @@ class Model:
                         child_code += f"    {inp.strip()} = tf.keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))({inp.strip()})\n"
                 except: pass
             child_code += f"{block.generate_declaration_statement()}\n"
-        # child_declare_code = "\n".join([_.generate_declaration_statement() for _ in self.graph])
 
         return f"def {self.model_name}({','.join(self.model_inputs)}):\n" \
-           f"{child_code}\n" \
-           f"    return {','.join(self.model_outputs)}\n"
+               f"{child_code}\n" \
+               f"    return {','.join(self.model_outputs)}\n"
 
     def assemble_file(self, output_path, file_name, has_go_code=True, has_train_code=False, use_gpu=False):
         child_done = []
-        # Todo: 保证主模型的输入输出均为一个
         model_inputs = self.model_inputs[0]
         model_outputs = self.model_outputs[0]
 
@@ -63,16 +67,18 @@ class Model:
         return f"{output_path}/{file_name}.py"
 
     def generate_go_code(self, use_gpu=False):
+        math_ops = utils.generate_input()
         device = f"with tf.device('{'/GPU:0' if use_gpu else '/CPU:0'}'):\n"
         return f"def go():\n" \
                f"    {device}" \
                f"       tf_input = tf.random.normal({utils.get_input_shape_str(self.model_name)})\n" \
+               f"       tf_input = {math_ops}(tf_input)\n" \
                f"       tf_model = {self.model_name}(tf_input.shape[1:])\n" \
                f"       tf_output = tf_model(tf_input)\n" \
                f"       return tf_output\n\n\n"
 
-    # TODO: 返回值
     def generate_train_code(self):
+        math_ops = utils.generate_input()
         return f"def chebyshev_distance(A: np.ndarray, B: np.ndarray):\n" \
                f"    if A is None or B is None:\n" \
                f"        return 0.0\n" \
@@ -83,6 +89,7 @@ class Model:
                f"\n" \
                f"\n" \
                f"def train(inp, label):\n" \
+               f"    inp = {math_ops}(inp)\n" \
                f"    flag = True\n" \
                f"    label = tf.convert_to_tensor(label)\n" \
                f"    model_g = {self.model_name}(inp.shape[1:])\n" \
@@ -95,7 +102,7 @@ class Model:
                f"        for var, gradient in zip(model_g.trainable_variables, gradients_g):\n" \
                f"            if gradient != None:\n" \
                f"                gradients_dic_g.setdefault(var.name.replace('/', '.')[:-2], gradient)\n" \
-               f"\n\n" \
+               f"\n" \
                f"    model_c = copy.deepcopy(model_g)\n" \
                f"    with tf.device('CPU'):\n" \
                f"        with tf.GradientTape() as tape:\n" \
@@ -123,17 +130,3 @@ class Model:
                f"                flag = False\n" \
                f"                return flag, 'Grad diff too big'\n" \
                f"    return flag, ''\n"
-
-    def model_pre_handle(self):
-        pre_dim = -1
-        # 计算整个graph的dim
-        for block in self.graph:
-            block.transmit_dim(pre_dim)
-            pre_dim = block.dim
-
-        for block in self.graph:
-            if block.is_child_model:
-                pre_dim = block.dim
-                for bb in block.child_model.graph:
-                    bb.transmit_dim(pre_dim)
-                    pre_dim = block.dim

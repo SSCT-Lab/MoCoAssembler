@@ -30,8 +30,3 @@ def inception(inputs, ch1x1, ch3x3red, ch3x3, ch5x5red, ch5x5, pool_proj):
 
     outputs = tf.keras.layers.concatenate(inputs=[x1, x2, x3, x4])
     return outputs
-
-
-x = tf.random.normal((1, 224, 224, 3))
-model = googlenet_test((224, 224, 3))
-print(model(x))

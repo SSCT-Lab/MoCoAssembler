@@ -1,3 +1,7 @@
+import os
+import random
+from collections import defaultdict
+
 import numpy as np
 
 def chebyshev_distance(A: np.ndarray, B: np.ndarray):
@@ -29,3 +33,31 @@ def get_max_number(str):
     except:
         pass
     return number
+
+def cut(nodes, limit):
+    buckets = defaultdict(list)
+    for node in nodes:
+        buckets[node.mutate_info].append(node)
+
+    for bucket in buckets.values():
+        bucket.sort(key=lambda x: x.weight)
+
+    truncated = []
+    for bucket in buckets.values():
+        cutoff = len(bucket) // 2 + 1
+        truncated.extend(bucket[:cutoff])
+
+    if len(truncated) > limit:
+        result = []
+        while len(result) < limit:
+            for bucket in buckets.values():
+                if bucket and len(result) < limit:
+                    result.append(bucket.pop(0))
+        return result
+    else:
+        return truncated
+
+
+def generate_input():
+    math_ops = os.listdir("Data/tf_layer_infos/math")
+    return random.choice(math_ops).split('/')[-1].replace(".json", "")

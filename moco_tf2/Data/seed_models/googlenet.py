@@ -11,20 +11,22 @@ def googlenet(input_shape):
     x = tf.keras.layers.Conv2D(filters=192, kernel_size=3, strides=1, padding="same", activation="relu")(x)
     x = tf.keras.layers.MaxPool2D(pool_size=3, strides=2, padding="same")(x)
 
-    x = inception(x, 64, 96, 128, 16, 32, 32)
-    x = inception(x, 128, 128, 192, 32, 96, 64)
+    x = inception(inputs=x, ch1x1=64, ch3x3red=96, ch3x3=128, ch5x5red=16, ch5x5=32, pool_proj=32)
+    x = inception(inputs=x, ch1x1=128, ch3x3red=128, ch3x3=192, ch5x5red=32, ch5x5=96, pool_proj=64)
     x = tf.keras.layers.MaxPool2D(pool_size=3, strides=2, padding="same")(x)
 
-    x = inception(x, 192, 96, 208, 16, 48, 64)
+    x = inception(inputs=x, ch1x1=192, ch3x3red=96, ch3x3=208, ch5x5red=16, ch5x5=48, pool_proj=64)
 
-    x = inception(x, 160, 112, 224, 24, 64, 64)
-    x = inception(x, 128, 128, 256, 24, 64, 64)
-    x = inception(x, 112, 144, 288, 32, 64, 64)
+    x = inception(inputs=x, ch1x1=160, ch3x3red=112, ch3x3=224, ch5x5red=24, ch5x5=64, pool_proj=64)
+    x = inception(inputs=x, ch1x1=128, ch3x3red=128, ch3x3=256, ch5x5red=24, ch5x5=64, pool_proj=64)
+    x = inception(inputs=x, ch1x1=112, ch3x3red=144, ch3x3=288, ch5x5red=32, ch5x5=64, pool_proj=64)
 
-    x = inception(x, 256, 160, 320, 32, 128, 128)
+    x = inception(inputs=x, ch1x1=256, ch3x3red=160, ch3x3=320, ch5x5red=32, ch5x5=128, pool_proj=128)
     x = tf.keras.layers.MaxPool2D(pool_size=3, strides=2, padding="same")(x)
 
-    output_tensor = tf.keras.layers.Dense(units=1000, activation="softmax")(tf.keras.layers.Flatten()(x))
+    x = tf.keras.layers.Flatten()(x)
+
+    output_tensor = tf.keras.layers.Dense(units=1000, activation="softmax")(x)
 
     model = tf.keras.models.Model(inputs=input_tensor, outputs=output_tensor)
     return model
@@ -42,13 +44,5 @@ def inception(inputs, ch1x1, ch3x3red, ch3x3, ch5x5red, ch5x5, pool_proj):
     x4 = tf.keras.layers.MaxPool2D(pool_size=3, strides=1, padding="same")(inputs)
     x4 = tf.keras.layers.Conv2D(filters=pool_proj, kernel_size=1, strides=1, padding="same", activation="relu")(x4)
 
-    # reshape
-    target_height = inputs.shape[1]
-    target_width = inputs.shape[2]
-    x1 = tf.keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x1)
-    x2 = tf.keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x2)
-    x3 = tf.keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x3)
-    x4 = tf.keras.layers.Lambda(lambda x: tf.image.resize(x, (target_height, target_width)))(x4)
-
-    outputs = tf.keras.layers.concatenate([x1, x2, x3, x4])
+    outputs = tf.keras.layers.concatenate(inputs=[x1, x2, x3, x4])
     return outputs
