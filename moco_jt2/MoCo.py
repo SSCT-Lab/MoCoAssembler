@@ -1,4 +1,4 @@
-from Tools.Assembler import Assembler
+from Tools.Assembler import Assembler, Bssembler
 
 # a = Assembler("lenet", 2, 50, "lenet_t")
 # a.start()
@@ -14,7 +14,7 @@ from Tools.Assembler import Assembler
 # a.start()
 # a = Assembler("googlenet", 2, 50, "googlenet_t")
 # a.start()
-a = Assembler("LSTM", 2, 50, "LSTM_t")
-a.start()
-# b = Bssembler("lenet", "ltb")
-# b.start()
+# a = Assembler("LSTM", 2, 50, "LSTM_t")
+# a.start()
+b = Bssembler("lenet", "ltb")
+b.start()
