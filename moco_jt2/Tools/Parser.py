@@ -231,7 +231,7 @@ class Parser:
             else:
                 buffer += char
         for key in params.keys():
-            if (isinstance(params[key], str)) and params[key].replace(".", "").isdigit():
+            if (isinstance(params[key], str)) and params[key].replace(".", "").replace("-", "").isdigit():
                 params[key] = int(params[key]) if "." not in params[key] else float(params[key])
         return params
 

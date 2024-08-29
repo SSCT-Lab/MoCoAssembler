@@ -42,8 +42,8 @@
         "tuple"
       ],
       "shape": [
-        null,
-        null
+        1,
+        2
       ],
       "default": null
     }

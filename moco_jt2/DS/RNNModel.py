@@ -78,10 +78,16 @@ class RNNModel:
         # core = min(1 + int(len(self.graph) / 2 - 0.2), 4)
         for block in self.graph:
             if block.apiName in ["jittor.nn.LSTMCell", "jittor.nn.GRUCell", "jittor.nn.RNNCell"]:
-                if block.apiName == "jittor.nn.LSTMCell":
-                    res += f"            hn{i}, cn{i} = self.{block.nodeName}(hn{i-1}, (hn{i}, cn{i}))\n"
+                if inFor:
+                    if block.apiName == "jittor.nn.LSTMCell":
+                        res += f"            hn{i}, cn{i} = self.{block.nodeName}(hn{i-1}, (hn{i}, cn{i}))\n"
+                    else:
+                        res += f"            hn{i} = self.{block.nodeName}(hn{i-1}, hn{i})\n"
                 else:
-                    res += f"            hn{i} = self.{block.nodeName}(hn{i-1}, hn{i})\n"
+                    if block.apiName == "jittor.nn.LSTMCell":
+                        res += f"        hn{i}, cn{i} = self.{block.nodeName}(hn{i-1}, (hn{i}, cn{i}))\n"
+                    else:
+                        res += f"        hn{i} = self.{block.nodeName}(hn{i-1}, hn{i})\n"
                 i = i + 1
             elif (block.apiName == "jittor.nn.Linear" or block.apiName == "jittor.nn.Flatten") and inFor:
                 res += f"        x = self.{block.nodeName}(hn{i-1})\n"

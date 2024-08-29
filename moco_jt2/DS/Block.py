@@ -76,10 +76,11 @@ class Block:
         return "" if not self.isChildModel else self.childModel.AssembleModel()
 
     def GenerateParamString(self):
-        return ", ".join([f"{key}={self.params[key] if not isinstance(self.params[key], str) else self.parenStr(self.params[key])}" for key in self.params.keys()])
-
-    def parenStr(self, s):
-        return "'" + s + "'"
+        return ", ".join([f"{key}={self.params[key]}" for key in self.params.keys()])
+    #     return ", ".join([f"{key}={self.params[key] if not isinstance(self.params[key], str) else self.parenStr(self.params[key])}" for key in self.params.keys()])
+    #
+    # def parenStr(self, s):
+    #     return "'" + s + "'"
 
     def SetShape(self, inC=0, outC=0, d=0):
         if inC > 0:

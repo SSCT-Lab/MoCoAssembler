@@ -71,6 +71,19 @@ class Filter:
         self.addkey("Kernel size can't be greater than actual input size")
         self.addkey("object has no attribute")
 
+        self.addkey("assert a.shape[-1] == b.shape[-1], (a.shape, b.shape)")
+        self.addkey("ValueError: not enough values to unpack")
+        self.addkey("ValueError: too many values to unpack")
+        self.addkey("AssertionError: end_dim should be larger than or equal to start_dim for flatten function")
+        self.addkey("TypeError: cannot unpack non-iterable int object")
+        self.addkey("TypeError: unsupported operand type(s) for /: 'tuple' and")
+        self.addkey("TypeError: '>' not supported between instances of 'tuple' and")
+        self.addkey("TypeError: execute() missing 1 required positional argument: 'in2'")
+        self.addkey("IndexError: tuple index out of range")
+        self.addkey("AssertionError: dropout probability has to be between 0 and 1, but got")
+        self.addkey("AssertionError: num_parameters does not match input channels in PReLU")
+        self.addkey("assert C==self.in_channels")
+
     def judge(self, string) -> bool:
         for s in self.info_lis:
             if s in string:
@@ -102,7 +115,8 @@ inputShapeTable = {
     "vgg19": [1, 3, 224, 224],
     "squeezenet": [1, 3, 224, 224],
     "pointnet": [2, 3, 2048],
-    "LSTM": [1, 3, 2048]
+    "LSTM": [1, 3, 2048],
+    "resnet18": [1, 3, 224, 224]
 }
 
 
@@ -233,7 +247,7 @@ class TreeNode:
                 # print(kernel_size, previous_output_shape)
                 kernel_size_height = kernel_size if isinstance(kernel_size, int) else kernel_size[0]
                 previous_output_shape_height = previous_output_shape[2] if len(previous_output_shape) == 4 else \
-                previous_output_shape[1]
+                    previous_output_shape[1]
                 if kernel_size_height > previous_output_shape_height:
                     print(
                         f"Skip running: kernel_size height {kernel_size} is larger than previous output height {previous_output_shape}.")
@@ -440,6 +454,7 @@ class TreeNode:
                 newModel.graph.append(newBlock)
                 newChild = TreeNode()
                 newChild.newNode(self.basePath, self.generation, i + 1, self.seedName)
+                newChild.father = self
                 newChild.saveCase(newModel)
                 expect = "BELOW" in tag
                 runTime, runErrorInfo = newChild.run()
