@@ -1,14 +1,17 @@
 import copy
+import itertools
 import json
 import os
 import random
+import uuid
+
 import yaml
 
-from moco_tf2.DS.Block import Block
-from moco_tf2.Tools.ConstraintChecker import check_block
+from DS.Block import Block
+from Tools.ConstraintChecker import check_block
 
-tf_infos_path = f"Data/Tensorflow/tf_layer_infos/layer"
-tf_similarity_path = f"Data/Tensorflow/tf_layer_similarity"
+tf_infos_path = f"Data/tf_layer_infos/layer"
+tf_similarity_path = f"Data/tf_layer_similarity"
 threshold = 0.5
 
 __DTYPE = ["int", "float", "string", "boolean"]
@@ -20,8 +23,8 @@ NORMAL_MODE = "normal"
 MAX_MODE = "max"
 MUTATE_MODES = [NORMAL_MODE, MIN_MODE, NORMAL_MODE, MAX_MODE, NORMAL_MODE]
 RNN_CELL = ["tf.keras.layers.GRU", "tf.keras.layers.LSTM", "tf.keras.layers.SimpleRNN"]
-WRONG_CELL = ["tf.keras.layers.RNN"]
-NO_MUTATE_CELL = ["tf.keras.layers.Embedding", "tf.keras.layers.concatenate"]
+IGNORE_CELL = ["tf.keras.layers.RNN"]
+NO_MUTATE_CELL = ["tf.keras.layers.concatenate", "tf.keras.layers.add"]
 
 
 def get_tf_api_list():
@@ -32,15 +35,15 @@ def get_tf_api_list():
 def load_api_info(api_name):
     path = f"{tf_infos_path}/{api_name}.json"
     with open(path, "r", encoding="utf-8") as f:
-        d = json.load(f)
-    return d["params"]
+        data = json.load(f)
+    return data["params"]
 
 
 def load_api_similarity(api_name):
     path = f"{tf_similarity_path}/{api_name}.yaml"
     with open(path, "r", encoding="utf-8") as f:
-        d = yaml.full_load(f)
-    return d
+        data = yaml.full_load(f)
+    return data
 
 
 class Mutator:
@@ -130,7 +133,7 @@ class Mutator:
         similarity = self.filtered_api_similarity[ori_api_name]
         if len(similarity) > 0:
             new_api_name = random.choice(list(similarity.keys()))
-            while new_api_name in WRONG_CELL:
+            while new_api_name in IGNORE_CELL:
                 new_api_name = random.choice(list(similarity.keys()))
         else:
             return block, "no mutate"
@@ -191,10 +194,10 @@ class Mutator:
         new_block = copy.deepcopy(block)
         child_model = block.child_model
         graph_size = len(child_model.graph)
-        choice_layer_number = random.randint(0, graph_size - 1)
+        choice_layer_number = random.randint(0, graph_size - 2)
         choice_layer = child_model.graph[choice_layer_number]
-        choice_layer_name = choice_layer.node_name
-        new_layer, layer_mutate_info = self._normal_mutate(choice_layer)
+        choice_layer_name = choice_layer.node_name + str(uuid.uuid4())
+        new_layer, layer_mutate_info = random.choice([self._api_name_mutate, self._api_param_mutate])(choice_layer)
         new_block.child_model.graph[choice_layer_number] = new_layer
         mutate_info = f"ChildModelMutate, {choice_layer_name}, {layer_mutate_info}"
         return new_block, mutate_info
@@ -293,21 +296,53 @@ class Mutator:
 
         return _value, str(_mode)
 
+    def boundary_mutate(self, block: Block):
+        if block.is_child_model:
+            return [], []
+        res = []
+        res_tag = []
+        api_name = block.api_name
+        if api_name not in self.api_list:
+            return [], []
+        param_set = list(self.api_info[api_name].keys())
+        tags = ["MIN", "BELOW", "LEGAL", "MAX", "OVER", "LEGAL"]
+        for param in param_set:
+            _api_info = self.api_info[api_name][param]
+            _dtype_list, _range, _structure_list, _shape_list = _api_info["dtype"], _api_info["range"], _api_info[
+                "structure"], _api_info["shape"]
 
-if __name__ == "__main__":
-    m = Mutator()
-    for i in range(100):
-        b = Block(api_name="tf.keras.layers.Conv2D",
-                  params={
-                      "filters": 8,
-                      "kernel_size":2,
-                      "activation":"'selu'",
-                      "padding":"'valid'",
-                      "data_format":"'channels_last'"
-                  },
-                  node_name="x",
-                  input_symbols="x",
-                  output_symbols="x")
-        new_b, _ = m.mutate(b)
-        print(new_b.generate_declaration_statement())
+            for _dtype in _dtype_list:
+                if len(_range) == 0:
+                    _range = [1, 8] if _dtype == "int" else [0.0, 1.0]
 
+                if _dtype == "int" or _dtype == "float":
+                    MIN, MAX = _range
+                    if _dtype == "int":
+                        choices = [MIN, MIN - 1, MIN + 1, MAX, MAX + 1, MAX - 1]
+                    else:
+                        choices = [MIN, MIN - 0.0001, MIN + 0.0001, MAX, MAX + 0.0001, MAX - 0.0001]
+
+                    for _structure, _shape in zip(_structure_list, _shape_list):
+                        if _structure == "scalar":
+                            for i in range(len(choices)):
+                                new_block = copy.deepcopy(block)
+                                new_block.params[param] = choices[i]
+                                tag = tags[i]
+                                res.append(new_block)
+                                res_tag.append(tag)
+                        elif _structure == "tuple" or _structure == "list":
+                            isList = _structure == "list"
+                            choices2 = [
+                                tuple(product) if not isList else list(product) for product in
+                                itertools.product(choices, repeat=_shape)
+                            ]
+                            tags2 = [
+                                tuple(product) for product in itertools.product(tags, repeat=_shape)
+                            ]
+                            for i in range(len(choices2)):
+                                new_block = copy.deepcopy(block)
+                                new_block.params[param] = choices2[i]
+                                tag = tags2[i]
+                                res.append(new_block)
+                                res_tag.append(tag)
+        return res, res_tag

@@ -13,13 +13,3 @@ def lstm(input_shape):
     output_tensor = tf.keras.layers.Dense(units=25, activation='softmax')(x)
     model = tf.keras.models.Model(inputs=input_tensor, outputs=output_tensor)
     return model
-
-
-def go():
-    with tf.device('/GPU:0'):
-       tf_input = tf.random.normal([2, 2048, 3])
-       tf_model = lstm(tf_input.shape[1:])
-       tf_output = tf_model(tf_input)
-       return tf_output
-
-print(go())

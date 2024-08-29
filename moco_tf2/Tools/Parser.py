@@ -1,14 +1,11 @@
-from moco_tf2.DS.Block import Block
-from moco_tf2.DS.Model import Model
+from DS.Block import Block
+from DS.Model import Model
 import re
-
-from moco_tf2.Tools.Mutator import Mutator
 
 
 def get_seed(seed_name):
-    parser = Parser(file_path=f"Data/Tensorflow/seed_models/{seed_name}.py")
+    parser = Parser(file_path=f"Data/seed_models/{seed_name}.py")
     model = parser.parse(seed_name)
-    model.model_pre_handle()
     return model
 
 
@@ -27,7 +24,7 @@ class Parser:
         self.graph: list[Block] = []
         self.model_inputs = []
         self.model_outputs = []
-        self.__skip = ['tf.keras.Input', 'tf.keras.models.Model']
+        self._skip_layer = ['tf.keras.Input', 'tf.keras.models.Model']
 
     def has_next_line(self):
         return self.look_ahead < len(self.line_lexers) - 1
@@ -44,7 +41,7 @@ class Parser:
                 while self.has_next_line():
                     current_line = self.line_lexers[self.look_ahead]
                     self.look_ahead += 1
-                    if self.__skip[0] in current_line or self.__skip[1] in current_line or current_line == '':
+                    if self._skip_layer[0] in current_line or self._skip_layer[1] in current_line or current_line == '':
                         continue
                     if "return " in current_line:
                         self.graph = self.__parse(buffer)
@@ -134,21 +131,3 @@ class Parser:
             return details[0][1], {key: value for key, value in details}
         else:
             return {key: value for key, value in details}
-
-
-if __name__ == "__main__":
-    m = Mutator()
-    model_name = ["lenet", "alexnet", "googlenet", "mobilenet", "pointnet", "squeezenet", "vgg19"]
-    seed_name = "vgg19"
-    model = get_seed(seed_name)
-    model.assemble_file("../Test", f"{seed_name}_1", True, True, True)
-    # new_graph = []
-    # for block in model.graph:
-    #     print(block.api_name)
-    #     if block.api_name == "tf.keras.layers.Conv2D":
-    #         new_block, _ = m.mutate(block)
-    #         new_graph.append(new_block)
-    #     else:
-    #         new_graph.append(block)
-    # new_model = Model(new_graph, model.model_inputs, model.model_outputs)
-    # new_model.assemble_file("../Test", f"{seed_name}_1", True, True, True)

@@ -16,9 +16,7 @@ def lenet(input_shape):
     x = tf.keras.layers.Flatten()(x)
     x = tf.keras.layers.Dense(units=200, activation="relu")(x)
     x = tf.keras.layers.Dense(units=10, activation="softmax")(x)
+
     output_tensor = tf.keras.layers.Flatten()(x)
-
     model = tf.keras.models.Model(inputs=input_tensor, outputs=output_tensor)
-
     return model
-

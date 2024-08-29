@@ -99,6 +99,7 @@ inputShapeTable = {
     "mobilenet": [1, 3, 224, 224],
     "alexnet": [1, 3, 224, 224],
     "googlenet": [1, 3, 224, 224],
+    "resnet18": [1, 3, 224, 224],
     "vgg19": [1, 3, 224, 224],
     "squeezenet": [1, 3, 224, 224],
     "pointnet": [2, 3, 2048],

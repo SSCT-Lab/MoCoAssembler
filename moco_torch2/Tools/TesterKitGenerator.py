@@ -29,7 +29,7 @@ class TestKitGenerator:
             self.dataset_x = self.dataset_x / 255.0
             self.length = 200
             return
-        elif seed_name in ["alexnet", "mobilenet", "squeezenet", "vgg19", "googlenet"]:
+        elif seed_name in ["alexnet", "mobilenet", "squeezenet", "vgg19", "googlenet", "resnet18"]:
             dataset_path = DATASET_PATHS["Common224"]
             data = np.load(dataset_path)
             self.dataset_x, self.dataset_y = data["x_test"], data["y_test"]

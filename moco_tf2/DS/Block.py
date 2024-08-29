@@ -1,14 +1,11 @@
-import copy
-
-
-LAYER = 1  # Keep params in declaration. 
+LAYER = 1  # Keep params in declaration.
 OP = 2  # No params need, just use it to calculate. 
 PARAM_NEED_OP = 3  # An op but need param behind.
 
 
 class Block:
-    def __init__(self, api_name, params, node_name, input_symbols, output_symbols):
 
+    def __init__(self, api_name, params, node_name, input_symbols, output_symbols):
         # Block data
         self.node_name: str = node_name
         self.api_name: str = api_name
@@ -66,4 +63,3 @@ class Block:
             if self.params[param] == "UNKNOWN":
                 return False
         return True
-

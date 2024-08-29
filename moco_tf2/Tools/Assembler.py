@@ -1,60 +1,21 @@
 import copy
 import pickle
 import os
-import re
 import time
 import json
 import importlib.util
 import sys
 import traceback
-from collections import defaultdict
 
 from alive_progress import alive_bar
 
-from moco_tf2.DS.Block import Block
-from moco_tf2.DS.Model import Model
-from moco_tf2.Tools.Mutator import Mutator
-from moco_tf2.Tools.Parser import get_seed
-from moco_tf2.Tools.TesterKitGenerator import TestKitGenerator
-from moco_tf2.Utils import utils
-
-threshold = 0.1
-mutator = Mutator()
-
-
-class Filter:
-    def __init__(self):
-        self.info_lis = []
-        self.tkg = None
-        self._add_key(r".*?expected.*?found.*?")
-        self._add_key(r".*?Negative dimension size caused by subtracting.*?")
-        self._add_key(r".*?Argument `cropping` must be greater than the input shape.*?")
-        self._add_key(r".*?Attention layer must be called on a list of inputs.*?")
-        self._add_key(r".*?layer should be called on a list of.*?")
-        self._add_key(r".*?One of the dimensions in the output is <= 0.*?")
-        self._add_key(r".*?missing 1 required positional argument: 'states'.*?")
-        self._add_key(r".*?`dim` must be in the range.*?")
-        self._add_key(r".*?rank.*?")
-        self._add_key(r".*?Strides must be greater than output padding.*?")
-        self._add_key(r".*?`strides > 1` not supported in conjunction with `dilation_rate > 1`.*?")
-        self._add_key(r".*?'images' must have either.*? or .*? dimensions.*?")
-        self._add_key(r".*?`interpolation` argument should be one of.*?")
-        self._add_key(r".*?list index out of range.*?")
-        self._add_key(r".*?The number of input channels must be evenly divisible by the number of groups.*?")
-        self._add_key(r".*?ValueError: `padding` should have two elements.*?")
-
-    def judge(self, string) -> bool:
-        for s in self.info_lis:
-            if len(re.findall(s, string)) > 0:
-                return False
-        return True
-
-    def _add_key(self, string: str) -> None:
-        self.info_lis.append(string)
-
-
-filter = Filter()
-tkg = None
+from Tools.Filter import Filter
+from DS.Block import Block
+from DS.Model import Model
+from Tools.Mutator import Mutator
+from Tools.Parser import get_seed
+from Tools.TesterKitGenerator import TestKitGenerator
+from Utils import utils
 
 
 class TreeNode:
@@ -69,6 +30,9 @@ class TreeNode:
         self.output_shape = [0, 0, 0, 0]
         self.weight = 9999
         self.mutate_info = ""
+
+        self.mutator = Mutator()
+        self.filter = Filter()
 
     def new_node(self, base_path, generation, index, seed_name):
         self.seed_name = seed_name
@@ -154,7 +118,7 @@ class TreeNode:
         if error_message == "":
             return True
         else:
-            return filter.judge(error_message)
+            return self.filter.judge(error_message)
 
     def run(self):
         self._assemble_go_file()
@@ -180,7 +144,7 @@ class TreeNode:
 
     def train(self):
         self._assemble_train_file()
-        inp, label = filter.tkg.generate_kit()
+        inp, label = TestKitGenerator(self.seed_name).generate_kit()
         file_path = f"{self.case_path}/{self.seed_name}_{self.generation}_{self.index}_train.py"
         sys.path.append(self.case_path)
 
@@ -206,7 +170,7 @@ class TreeNode:
 
         return train_time, error_message
 
-    def spawn(self, n, block, start_count, bar):
+    def spawn_fuzzing(self, n, block, start_count, bar):
         res = []
         count = start_count - 1
         for i in range(n):
@@ -218,7 +182,7 @@ class TreeNode:
 
             bar()
 
-            mutated_block, mutate_info = mutator.mutate(block)
+            mutated_block, mutate_info = self.mutator.mutate(block)
 
             retry_count = 0
             pre_check_passed = False
@@ -228,7 +192,7 @@ class TreeNode:
                     pre_check_passed = True
                     break
                 else:
-                    mutated_block, mutate_info = mutator.mutate(block)
+                    mutated_block, mutate_info = self.mutator.mutate(block)
             if not pre_check_passed:
                 count += 1
                 continue
@@ -281,7 +245,6 @@ class Assembler:
 
         self.seed_name = seed
         self.seed_model = get_seed(seed)
-        filter.tkg = TestKitGenerator(seed)
 
         self.n = n
         self.max_each_layer = max_each_layer
@@ -291,9 +254,9 @@ class Assembler:
         current_gen_tree_nodes = []
         with alive_bar(self.n * len(passed_last_gen_tree_nodes), bar="filling", spinner="classic", title=f"{self.seed_name}-{gen}") as bar:
             for father in passed_last_gen_tree_nodes:
-                current_gen_tree_nodes += father.spawn(self.n, block, count, bar)
+                current_gen_tree_nodes += father.spawn_fuzzing(self.n, block, count, bar)
                 count += self.n
-        current_gen_tree_nodes = cut(current_gen_tree_nodes, self.max_each_layer)
+        current_gen_tree_nodes = utils.cut(current_gen_tree_nodes, self.max_each_layer)
         for node in current_gen_tree_nodes:
             f = open(f"{node.case_path}/result.json", "r", encoding="utf-8")
             d = json.load(f)
@@ -327,37 +290,6 @@ class Assembler:
             current_gen = []
 
 
-def cut(nodes, limit):
-    # Step 1: 分桶
-    buckets = defaultdict(list)
-    for node in nodes:
-        buckets[node.mutate_info].append(node)
-
-    # Step 2: 桶内排序
-    for bucket in buckets.values():
-        bucket.sort(key=lambda x: x.weight)
-
-    # Step 3: 截断桶后50%
-    truncated = []
-    for bucket in buckets.values():
-        cutoff = len(bucket) // 2 + 1
-        truncated.extend(bucket[:cutoff])  # 取前50%加入到truncated列表
-
-    # Step 4: 检查limit
-    if len(truncated) > limit:
-        # 如果超过limit，从每个桶中取最小的，直到达到limit
-        result = []
-        while len(result) < limit:
-            # 按照每个桶的最小元素（已排序）循环加入
-            for bucket in buckets.values():
-                if bucket and len(result) < limit:
-                    result.append(bucket.pop(0))  # 弹出每个桶的第一个元素
-        return result
-    else:
-        # 如果不超过limit，直接返回truncated
-        return truncated
-
-
 if __name__ == "__main__":
-    assembler = Assembler("lstm")
-    assembler.start()
+    a = Assembler("lenet")
+    a.start()
