@@ -27,4 +27,4 @@
 |  PyTorch   |         Hidden range of padding parameter in nn.ReflectionPad2d         |   https://github.com/pytorch/pytorch/issues/115532    | fixed |
 |  PyTorch   | Add Validity Checks for Parameter Combinations and Input Shapes in torch.nn.MaxPool2d to Prevent Unexpected Outputs  | https://github.com/pytorch/pytorch/issues/134948 |  submitted  |
 |  PyTorch   | LPPool2d lacks a check for the validity of norm_type  |  https://github.com/pytorch/pytorch/issues/134841 | confirmed |
-|  PyTorch   | The documentation lacks an explanation of the constraints between larger padding and padding mode in convolutional layers | confirmed |
+|  PyTorch   | The documentation lacks an explanation of the constraints between larger padding and padding mode in convolutional layers | https://github.com/pytorch/pytorch/issues/134840 | confirmed |
