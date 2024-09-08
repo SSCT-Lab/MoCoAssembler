@@ -61,7 +61,9 @@
         "softplus",
         "softsign",
         "swish",
-        "tanh"
+        "tanh",
+        "deserialize",
+        "serialize"
       ],
       "structure": ["scalar"],
       "shape": [1],
