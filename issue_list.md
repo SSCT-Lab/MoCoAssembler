@@ -20,8 +20,6 @@
 |  PyTorch   |      The document does not emphasize hidden range in nn.Embedding       |   https://github.com/pytorch/pytorch/issues/103424    | confirmed |
 |  PyTorch   |          F.pad will accept 0 and negative values as parameter           |   https://github.com/pytorch/pytorch/issues/105629    | confirmed |
 |  PyTorch   |              Incomplete Documentation for torch.nn.RNNBase              |   https://github.com/pytorch/pytorch/issues/105628    |   fixed   |
-|  PyTorch   |      torch.nn.MultiheadAttention lacks parameter validation check       |   https://github.com/pytorch/pytorch/issues/105630    |   fixed   |
-|  PyTorch   |    torch.nn.TransformerDecoderLayer lacks parameter validation check    |   https://github.com/pytorch/pytorch/issues/105632    | confirmed |
 |  PyTorch   |    torch.nn.Conv1d's padding mode circular cannot accept 2-dim input    |   https://github.com/pytorch/pytorch/issues/104860    |   fixed   |
 |  PyTorch   |                  Hidden rule in nn.FractionalMaxPool2d                  |   https://github.com/pytorch/pytorch/issues/115531    | fixed |
 |  PyTorch   |         Hidden range of padding parameter in nn.ReflectionPad2d         |   https://github.com/pytorch/pytorch/issues/115532    | fixed |
