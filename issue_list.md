@@ -11,6 +11,8 @@
 | TensorFlow |           Could not interpret serialized activation function            | https://github.com/tensorflow/tensorflow/issues/60840 | confirmed |
 | TensorFlow |               The value range of parameters of SimpleRNN                | https://github.com/tensorflow/tensorflow/issues/61256 | confirmed |
 | TensorFlow | Croping2D/3D does not have exception handling for the Croping parameter | https://github.com/tensorflow/tensorflow/issues/61255 | confirmed |
+| TensorFlow | When using exponential as the activation function, the outputs of the CPU and GPU have large differences | https://github.com/tensorflow/tensorflow/issues/74791 | confirmed |
+| TensorFlow | With the same input and parameter settings, there is a large difference in the output of LayerNormalization layer on GPU and CPU | https://github.com/tensorflow/tensorflow/issues/74796 | submitted | 
 |  PyTorch   |    torch.nn.Conv2d's padding mode circular cannot accept 3-dim input    |   https://github.com/pytorch/pytorch/issues/104860    |   fixed   |
 |  PyTorch   |      torch.nn.MultiheadAttention lacks parameter validation check       |   https://github.com/pytorch/pytorch/issues/105630    |   fixed   |
 |  PyTorch   |                   "padding" dimensions of Pad Layers                    |   https://github.com/pytorch/pytorch/issues/105627    |   fixed   |
