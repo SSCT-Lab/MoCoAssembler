@@ -39,7 +39,7 @@ We provide specific `directory structures` according to different frameworks.
 >
 > `/MoCoAssembler/utils`  --  MoCo utility class. 
 ## Usage
-In order to reproduce our tool, you first need to download and unzip `/MoCoAssembler`, and surface according to the corresponding `README.md`.
+In order to reproduce our tool, you first need to download and unzip `/MoCoAssembler`, and use MoCo according to the corresponding `README.md`.
 
 | Library    | Link                                                                         |
 | ---------- |------------------------------------------------------------------------------|
