@@ -13,10 +13,10 @@ from Tools.Assembler import Assembler, Bssembler
 # a = Assembler("vgg19", 2, 50, "vgg19_t")
 # a.start()
 # a = Assembler("googlenet", 2, 50, "googlenet_t")
-a = Assembler("resnet18", 2, 50, "resnet_t")
-a.start()
-# a = Assembler("LSTM", 2, 50, "LSTM_t")
+# a = Assembler("resnet18", 2, 50, "resnet_t")
 # a.start()
+a = Assembler("LSTM", 2, 50, "LSTM_t")
+a.start()
 
 # b = Bssembler("lenet", "ltb")
 # b = Bssembler("mobilenet", "mtb")

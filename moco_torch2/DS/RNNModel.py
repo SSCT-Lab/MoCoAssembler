@@ -66,7 +66,6 @@ class RNNModel:
         self.modelInputs: list[str] = modelInputs
         self.modelOutputs: list[str] = modelOutputs
         self.oracle = None  # Type: Oracle
-        self.extraOp = None
         return
 
     def SetOracle(self, oracle):
@@ -105,7 +104,6 @@ class RNNModel:
     def AssembleModel(self, extraModelInputs=""):
         decl_bound = "\n".join([b.GenerateDeclarationStatement() for b in self.graph])
         forward_bound = self.GenerateForwardBound()
-        op_bound = self.AssembleExtraOpFunc()
 
         code = f"class {self.modelName}(nn.Module):\n" \
                f"    def __init__(self{extraModelInputs}):\n" \
@@ -115,11 +113,7 @@ class RNNModel:
                f"        self.c0 = torch.zeros((1, self.hidden_size))\n" \
                f"{decl_bound}\n" \
                f"    \n" \
-               f"    def op(self, x):\n" \
-               f"{op_bound}\n" \
-               f"    \n" \
                f"    def forward(self, x):\n" \
-               f"        {','.join(self.modelInputs)} = self.op({','.join(self.modelInputs)})\n" \
                f"        seq_length = x.size(1)\n" \
                f"        hn1, cn1 = self.h0, self.c0\n" \
                f"        hn2, cn2 = self.h0, self.c0\n" \
@@ -130,12 +124,6 @@ class RNNModel:
                f"{forward_bound}\n" \
                f"        return x\n"
         return code
-
-    def AssembleExtraOpFunc(self):
-        if self.extraOp is None:
-            return f"        return x"
-        else:
-            return f"        return {self.extraOp}(x)"
 
     def AssembleFile(self, outputPath, fileName, hasGoCode=True, hasTrainCode=False, useGPU=False):  # fileName here has no .py
         childDone = []

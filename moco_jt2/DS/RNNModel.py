@@ -1,5 +1,4 @@
 import copy
-import random
 from DS.Block import Block, PARAM_NEED_OP
 
 
@@ -174,55 +173,6 @@ class RNNModel:
         return code
 
     def GenerateTrainCode(self):
-        ops_list = ['jittor.ops.arccos', 'jittor.ops.arccosh', 'jittor.ops.negative', 'jittor.ops.acosh',
-                    'jittor.ops.cosh',
-                    'jittor.ops.acos', 'jittor.ops.floor', 'jittor.ops.floor_int', 'jittor.ops.arcsin',
-                    'jittor.ops.arcsinh',
-                    'jittor.ops.asin', 'jittor.ops.asinh', 'jittor.ops.sigmoid', 'jittor.ops.cos',
-                    'jittor.ops.ceil',
-                    'jittor.ops.ceil_int', 'jittor.ops.sin', 'jittor.ops.sinh', 'jittor.ops.erf',
-                    'jittor.ops.erfinv',
-                    'jittor.ops.log', 'jittor.ops.atan', 'jittor.ops.atanh', 'jittor.ops.arctan',
-                    'jittor.ops.arctanh',
-                    'jittor.ops.abs', 'jittor.ops.sqrt', 'jittor.ops.tanh', 'jittor.ops.tan', 'jittor.ops.exp']
-        # ops_list = ['jittor.ops.arccos', 'jittor.ops.arccosh', 'jittor.ops.negative', 'jittor.ops.acosh',
-        #             'jittor.ops.cosh',
-        #             'jittor.ops.acos', 'jittor.ops.floor', 'jittor.ops.arcsin',
-        #             'jittor.ops.arcsinh',
-        #             'jittor.ops.asin', 'jittor.ops.asinh', 'jittor.ops.sigmoid', 'jittor.ops.cos',
-        #             'jittor.ops.ceil',
-        #             'jittor.ops.sin', 'jittor.ops.sinh', 'jittor.ops.erf',
-        #             'jittor.ops.erfinv',
-        #             'jittor.ops.log', 'jittor.ops.atan', 'jittor.ops.atanh', 'jittor.ops.arctan',
-        #             'jittor.ops.arctanh',
-        #             'jittor.ops.abs', 'jittor.ops.sqrt', 'jittor.ops.tanh', 'jittor.ops.tan', 'jittor.ops.exp']
-        var_list = ['jittor.Var.arccos()', 'jittor.Var.arccosh()', 'jittor.Var.negative()', 'jittor.Var.acosh()',
-                    'jittor.Var.cosh()', 'jittor.Var.acos()', 'jittor.Var.floor()', 'jittor.Var.floor_int()',
-                    'jittor.Var.arcsin()', 'jittor.Var.arcsinh()', 'jittor.Var.asin()', 'jittor.Var.asinh()',
-                    'jittor.Var.sigmoid()', 'jittor.Var.cos()', 'jittor.Var.ceil()', 'jittor.Var.ceil_int()',
-                    'jittor.Var.sin()', 'jittor.Var.sinh()', 'jittor.Var.erf()', 'jittor.Var.erfinv()',
-                    'jittor.Var.log()',
-                    'jittor.Var.atan()', 'jittor.Var.atanh()', 'jittor.Var.arctan()', 'jittor.Var.arctanh()',
-                    'jittor.Var.abs()', 'jittor.Var.sqrt()', 'jittor.Var.tanh()', 'jittor.Var.tan()',
-                    'jittor.Var.exp()']
-        # var_list = ['jittor.Var.arccos()', 'jittor.Var.arccosh()', 'jittor.Var.negative()', 'jittor.Var.acosh()',
-        #             'jittor.Var.cosh()', 'jittor.Var.acos()', 'jittor.Var.floor()',
-        #             'jittor.Var.arcsin()', 'jittor.Var.arcsinh()', 'jittor.Var.asin()', 'jittor.Var.asinh()',
-        #             'jittor.Var.sigmoid()', 'jittor.Var.cos()', 'jittor.Var.ceil()',
-        #             'jittor.Var.sin()', 'jittor.Var.sinh()', 'jittor.Var.erf()', 'jittor.Var.erfinv()',
-        #             'jittor.Var.log()',
-        #             'jittor.Var.atan()', 'jittor.Var.atanh()', 'jittor.Var.arctan()', 'jittor.Var.arctanh()',
-        #             'jittor.Var.abs()', 'jittor.Var.sqrt()', 'jittor.Var.tanh()', 'jittor.Var.tan()',
-        #             'jittor.Var.exp()']
-        chosen_list = random.choice([ops_list, var_list])
-        chosen_element = random.choice(chosen_list)
-        if chosen_list == ops_list:
-            process_input_data = [f"jittor.{chosen_element.split('.')[-1]}(input_c)",
-                                  f"jittor.{chosen_element.split('.')[-1]}(input_g)"]
-        else:
-            process_input_data = [f"input_c.{chosen_element.split('.')[-1].split('(')[0]}()",
-                                  f"input_g.{chosen_element.split('.')[-1].split('(')[0]}()"]
-
         code = f"def chebyshev_distance(A: np.ndarray, B: np.ndarray):\n" \
                f"    if A is None or B is None:\n" \
                f"        return 0.0\n" \
@@ -243,16 +193,14 @@ class RNNModel:
                f"    opt_g = optim.SGD(m_g.parameters(), lr=0.01)\n" \
                f"\n" \
                f"    jittor.flags.use_cuda = 0\n" \
-               f"    input_c = jittor.array(x_t)\n" \
-               f"    input_c = {process_input_data[0]}.float32()\n" \
+               f"    input_c = jittor.array(x_t).float32()\n" \
                f"    target_c = jittor.array(y_t)\n" \
                f"    output_c = m_c(input_c)\n" \
                f"    loss_c = nn.CrossEntropyLoss()(output_c, target_c)\n" \
                f"    opt_c.backward(loss_c)\n" \
                f"\n" \
                f"    jittor.flags.use_cuda = 1\n" \
-               f"    input_g = jittor.array(x_t)\n" \
-               f"    input_g = {process_input_data[1]}.float32()\n" \
+               f"    input_g = jittor.array(x_t).float32()\n" \
                f"    target_g = jittor.array(y_t)\n" \
                f"    output_g = m_g(input_g)\n" \
                f"    loss_g = nn.CrossEntropyLoss()(output_g, target_g)\n" \

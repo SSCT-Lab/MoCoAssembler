@@ -12,7 +12,6 @@ class Model:
         self.modelInputs: list[str] = modelInputs
         self.modelOutputs: list[str] = modelOutputs
         self.oracle = None  # Type: Oracle
-        self.extraOp = None
         return
 
     def SetOracle(self, oracle):
@@ -21,27 +20,15 @@ class Model:
     def AssembleModel(self, extraModelInputs=""):
         decl_bound = "\n".join([b.GenerateDeclarationStatement() for b in self.graph])
         forward_bound = "\n".join([b.GenerateForwardStatement() for b in self.graph])
-        op_bound = self.AssembleExtraOpFunc()
         code = f"class {self.modelName}(nn.Module):\n" \
                f"    def __init__(self{extraModelInputs}):\n" \
                f"        super().__init__()\n" \
                f"{decl_bound}\n" \
                f"    \n" \
-               f"    def op(self, x):\n" \
-               f"{op_bound}\n" \
-               f"    \n" \
                f"    def forward(self, {','.join(self.modelInputs)}):\n" \
-               f"        {','.join(self.modelInputs)} = self.op({','.join(self.modelInputs)})\n" \
-               f"    \n" \
                f"{forward_bound}\n" \
                f"        return {','.join(self.modelOutputs)}\n"
         return code
-
-    def AssembleExtraOpFunc(self):
-        if self.extraOp is None:
-            return f"        return x"
-        else:
-            return f"        return {self.extraOp}(x)"
 
     def AssembleFile(self, outputPath, fileName, hasGoCode=True, hasTrainCode=False, useGPU=False):  # fileName here has no .py
         childDone = []
