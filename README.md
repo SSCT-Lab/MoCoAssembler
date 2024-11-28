@@ -2,10 +2,10 @@
 
 
 ## Issue List
-[Issue List](https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_1.0/issue_list.md) stores the bug issues we submitted. 
+[Issue List](https://github.com/SSCT-Lab/MoCoAssembler/blob/MoCo_2.1/issue_list.md) stores the bug issues we submitted. 
 
 ### Description of README.md
-> `DL Library`: Library name (`TensorFlow`, `PyTorch`, `Jittor`).
+> `DL Library`: Library name (`TensorFlow`, `PyTorch`).
 > 
 > `Issue`: Description of Bugs.
 > 
@@ -13,7 +13,7 @@
 > 
 > `Status`: Issue Status of Bugs (`confirmed` or `fixed`). 
 ## Bug List
-[Bug List](https://github.com/SSCT-Lab/MoCoAssembler/blob/MoCo_1.0/bugs) stores the bugs we can find. 
+[Bug List](https://github.com/SSCT-Lab/MoCoAssembler/blob/MoCo_2.1/bugs) stores the bugs we can find. 
 ### Description of README.md
 > `Bug API`: The API name that triggered the bug.
 > 
