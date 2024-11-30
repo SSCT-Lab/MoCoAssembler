@@ -1,7 +1,0 @@
-constraints:
-  alpha:
-    default: 1.0
-    dtype: float
-required: []
-descp:
-  'Exponential Linear Unit.'

@@ -230,9 +230,43 @@ class TreeNode:
 
         return res
 
+    def spawn_boundary(self, block: Block):
+        model = self._get_model()
+        newBlocks, tags = self.mutator.boundary_mutate(block)
+        total = len(newBlocks)
+        with alive_bar(total, bar="filling", spinner="classic", title=f"{self.seed_name}-{self.generation}-b") as bar:
+            for i in range(total):
+                bar()
+                newBlock = newBlocks[i]
+                if not self._pre_check(newBlock):
+                    continue
+                tag = tags[i]
+                new_model = copy.deepcopy(model)
+                new_model.graph.append(newBlock)
+                new_child = TreeNode()
+                new_child.new_node(self.base_path, self.generation, i+1, self.seed_name)
+                new_child.save_case(new_model)
+                expect = "BELOW" in tag
+                run_time, run_error_info = new_child.run()
+                run_result = (run_time >= 0.0)
+                result = {
+                    "go result": run_result,
+                    "go time": run_time,
+                    "go error info": run_error_info,
+                    "father": f"{self.generation}, {self.index}",
+                    "tag": str(tag)
+                }
+                f = open(f"{new_child.case_path}/result.json", "w", encoding="utf-8")
+                json.dump(result, f, indent=2)
+                f.close()
+                if not run_result:
+                    if not expect:
+                        f = open(f"{new_child.case_path}/report", "w", encoding="utf-8")
+                        f.close()
+
 
 class Assembler:
-    def __init__(self, seed, n=2, max_each_layer=500, experiment_name=None, output_path="../output"):
+    def __init__(self, seed, n=2, max_each_layer=500, experiment_name=None, output_path="./output"):
         if experiment_name is None:
             self.experiment_name = seed + str(time.time())
         else:
@@ -289,7 +323,17 @@ class Assembler:
             last_gen = copy.deepcopy(current_gen)
             current_gen = []
 
-
-if __name__ == "__main__":
-    a = Assembler("lenet")
-    a.start()
+        print("result scanning")
+        for gen in os.listdir(self.base_output_path):
+            for case in os.listdir(f"{self.base_output_path}/{gen}"):
+                case_path = f"{self.base_output_path}/{gen}/{case}"
+                target_name = f"{self.seed_name}-{gen}-{case}"
+                if "result.json" in os.listdir(case_path):
+                    f = open(f"{case_path}/result.json", "r", encoding="utf-8")
+                    d = json.load(f)
+                    f.close()
+                    if (not d["go result"]) or (not d["train result"]):
+                        f = open(f"{self.base_report_path}/{target_name}.json", "w", encoding="utf-8")
+                        json.dump(d, f, indent=2)
+                        f.close()
+        print("result scanning finished")

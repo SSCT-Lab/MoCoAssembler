@@ -4,7 +4,6 @@ import json
 import os
 import random
 import uuid
-
 import yaml
 
 from DS.Block import Block

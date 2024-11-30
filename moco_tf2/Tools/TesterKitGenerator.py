@@ -2,7 +2,7 @@ import numpy as np
 import random
 
 
-dataset_folder = "/Users/wuduo/Documents/BioWork/MoCo/MOCO-7/datasets"
+dataset_folder = "/mnt/datasets"
 DATASET_PATHS = {
     "LeNet": f"{dataset_folder}/mnist.npz",
     "Common224": f"{dataset_folder}/imagenet.npz",

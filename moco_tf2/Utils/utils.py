@@ -4,6 +4,7 @@ from collections import defaultdict
 
 import numpy as np
 
+
 def chebyshev_distance(A: np.ndarray, B: np.ndarray):
     if A is None or B is None:
         return 0.0
@@ -34,6 +35,7 @@ def get_max_number(str):
         pass
     return number
 
+
 def cut(nodes, limit):
     buckets = defaultdict(list)
     for node in nodes:
@@ -56,8 +58,3 @@ def cut(nodes, limit):
         return result
     else:
         return truncated
-
-
-def generate_input():
-    math_ops = os.listdir("Data/tf_layer_infos/math")
-    return random.choice(math_ops).split('/')[-1].replace(".json", "")

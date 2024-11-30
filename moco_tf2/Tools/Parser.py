@@ -1,6 +1,7 @@
+import re
+
 from DS.Block import Block
 from DS.Model import Model
-import re
 
 
 def get_seed(seed_name):
@@ -75,6 +76,7 @@ class Parser:
         for _block in self.graph:
             if _block.is_child_model:
                 _block.set_child_model(self.child_models[_block.api_name])
+                _block.api_name = _block.api_name + str(hash(_block.api_name))
 
         return model
 

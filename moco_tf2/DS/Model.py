@@ -1,11 +1,5 @@
-import os
-import random
-
 from DS import Block
 from Utils import utils
-
-
-MATH_PATH = "/Users/wuduo/Documents/BioWork/MoCo/MOCO-3/MoCoAssembler/moco_tf2/Data/tf_layer_infos/math"
 
 
 class Model:
@@ -39,20 +33,22 @@ class Model:
         model_outputs = self.model_outputs[0]
 
         main_model_code = f"def {self.model_name}({model_inputs}):\n"
-        main_model_code += f"    {' = '.join(self.graph[0].input_symbols)} = tf.keras.Input(shape={model_inputs})\n"
-        main_model_code += "\n".join([_.generate_declaration_statement() for _ in self.graph])
-        main_model_code += f"\n" \
-                           f"    model = tf.keras.models.Model(inputs={self.graph[0].input_symbols[0]}, outputs={model_outputs})\n" \
-                           f"    return model\n"
-
         child_model_code = "\n"
-        for block in self.graph:
-            if block.is_child_model:
-                if block.api_name not in child_done:
-                    child_done.append(block.api_name)
-                    extra_model_inputs = block.api_name
-                    child_model_code += block.child_model.assemble_child_model(extra_model_inputs)
-                    child_model_code += "\n"
+        if len(self.graph) != 0:
+            main_model_code += f"    {' = '.join(self.graph[0].input_symbols)} = tf.keras.Input(shape={model_inputs})\n"
+            main_model_code += "\n".join([_.generate_declaration_statement() for _ in self.graph])
+            main_model_code += f"\n" \
+                            f"    model = tf.keras.models.Model(inputs={self.graph[0].input_symbols[0]}, outputs={model_outputs})\n" \
+                            f"    return model\n"
+            for block in self.graph:
+                if block.is_child_model:
+                    if block.api_name not in child_done:
+                        child_done.append(block.api_name)
+                        extra_model_inputs = block.api_name
+                        child_model_code += block.child_model.assemble_child_model(extra_model_inputs)
+                        child_model_code += "\n"
+        else:
+            main_model_code += f"    return \n"
 
         whole_model_code = f"import copy\nimport numpy as np\nimport tensorflow as tf\n" \
                     f"\n" \
@@ -67,18 +63,15 @@ class Model:
         return f"{output_path}/{file_name}.py"
 
     def generate_go_code(self, use_gpu=False):
-        math_ops = utils.generate_input()
         device = f"with tf.device('{'/GPU:0' if use_gpu else '/CPU:0'}'):\n"
         return f"def go():\n" \
                f"    {device}" \
                f"       tf_input = tf.random.normal({utils.get_input_shape_str(self.model_name)})\n" \
-               f"       tf_input = {math_ops}(tf_input)\n" \
                f"       tf_model = {self.model_name}(tf_input.shape[1:])\n" \
                f"       tf_output = tf_model(tf_input)\n" \
                f"       return tf_output\n\n\n"
 
     def generate_train_code(self):
-        math_ops = utils.generate_input()
         return f"def chebyshev_distance(A: np.ndarray, B: np.ndarray):\n" \
                f"    if A is None or B is None:\n" \
                f"        return 0.0\n" \
@@ -89,7 +82,6 @@ class Model:
                f"\n" \
                f"\n" \
                f"def train(inp, label):\n" \
-               f"    inp = {math_ops}(inp)\n" \
                f"    flag = True\n" \
                f"    label = tf.convert_to_tensor(label)\n" \
                f"    model_g = {self.model_name}(inp.shape[1:])\n" \

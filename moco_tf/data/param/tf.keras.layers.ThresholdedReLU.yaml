@@ -1,7 +1,0 @@
-constraints:
-  theta:
-    default: 1.0
-    dtype: float
-required: []
-descp:
-  'Thresholded Rectified Linear Unit.'

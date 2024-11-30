@@ -1,7 +1,0 @@
-constraints:
-  alpha:
-    default: 0.3
-    dtype: float
-required: []
-descp:
-  'Leaky version of a Rectified Linear Unit.'
