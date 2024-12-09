@@ -8,6 +8,7 @@ import sys
 import traceback
 import numpy as np
 import heapq
+import re
 
 from alive_progress import alive_bar
 from collections import defaultdict
@@ -27,44 +28,38 @@ class Filter:
         self.info_lis = []
         self.tkg = None
         self.addkey("must be divisible by groups")
-        # self.addkey("pad should be at most half of kernel size")
-        self.addkey("missing 1 required positional argument")
-        # self.addkey("Kernel size can't be greater than actual input size")
+        self.addkey(r"missing (\d+) required positional argument(s)?")
         self.addkey("out_channels must be divisible by groups")
         self.addkey("but got Tensor of dimension")
         self.addkey("mat1 and mat2 shapes cannot be multiplied")
-        # self.addkey("Bilinear.forward() missing 1 required positional argument")
-        # self.addkey("No module named")
         self.addkey("but got input of size")
-        # self.addkey("syntax error")
         self.addkey("Output size is too small")
         self.addkey("expected to be in range of")
-        self.addkey("missing 2 required positional arguments")
         self.addkey("channels instead")
         self.addkey("float() argument must be a string or a real number, not ")
         self.addkey("flatten() has invalid args: start_dim cannot come after end_dim")
-        self.addkey("Only 2D, 3D, 4D, 5D padding with non-constant padding are supported for now")
+        self.addkey(r"Only (\d+D,?\s?)+padding with non-constant padding are supported for now")
         self.addkey("'tuple' object has no attribute")
-        self.addkey("Expected 2D or 3D (batch mode) tensor for input")
-        self.addkey("pool2d(): Expected")
+        self.addkey(r"Expected (\d+)D or (\d+)D \(batch mode\) tensor for input")
+        self.addkey(r"pool(\d+)d\(\): Expected")
         self.addkey("tensor expected for input")
         self.addkey("while checking arguments for")
-        self.addkey("expects input with > 2 dims")
+        self.addkey(r"expects input with > (\d+) dims")
         self.addkey("must be tuple of ints, but found")
         self.addkey("Sizes of tensors must match")
         self.addkey("Tensors must have same number of dimensions")
         self.addkey("must be Tensor, not tuple")
         self.addkey("input has inconsistent input_size")
         self.addkey("input.size(-1) must be equal to input_size")
-        self.addkey("It is expected dilation equals to 2")
-        self.addkey("Input dimension should be at least 3")
+        self.addkey(r"It is expected dilation equals to (\d+)")
+        self.addkey(r"Input dimension should be at least (\d+)")
         self.addkey("running_mean should contain")
         self.addkey("weight should contain")
         self.addkey("Expected weight to be")
-        self.addkey("Padding length must be divisible by 2")
-        self.addkey("It is expected stride equals to 2")
-        self.addkey("expected 4D input")
-        self.addkey("Expected more than 1 spatial element when training")
+        self.addkey(r"Padding length must be divisible by (\d+)")
+        self.addkey(r"It is expected stride equals to (\d+)")
+        self.addkey(r"expected (\d+)D input")
+        self.addkey(r"Expected more than (\d+) spatial element when training")
         self.addkey("Expected size of input")
         self.addkey("The size of tensor a")
         self.addkey("Kernel size can't be greater than actual input size")
@@ -72,10 +67,8 @@ class Filter:
 
     def judge(self, string) -> bool:
         for s in self.info_lis:
-            if s in string:
+            if len(re.findall(s, string)) > 0:
                 return False
-            else:
-                continue
         return True
 
     def addkey(self, string: str) -> None:
