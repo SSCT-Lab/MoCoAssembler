@@ -45,7 +45,7 @@ class Model:
                     if block.api_name not in child_done:
                         child_done.append(block.api_name)
                         extra_model_inputs = block.api_name
-                        child_model_code += block.child_model.assemble_child_model(extra_model_inputs)
+                        child_model_code += block.child_model.assemble_child_model()
                         child_model_code += "\n"
         else:
             main_model_code += f"    return \n"

@@ -19,7 +19,12 @@ class Filter:
         self._add_key(r".*?`interpolation` argument should be one of.*?")
         self._add_key(r".*?list index out of range.*?")
         self._add_key(r".*?The number of input channels must be evenly divisible by the number of groups.*?")
-        self._add_key(r".*?ValueError: `padding` should have two elements.*?")
+        self._add_key(r".*?The number of filters must be evenly divisible by the number of groups.*?")
+        self._add_key(r".*?`padding` should have (two|3) elements.*?")
+        self._add_key(r".*?`padding` should be either an int, a tuple of (2|3) ints")
+        self._add_key(r".*?The argument `(kernel_size|strides)` cannot contain 0(s).*?")
+        self._add_key(r".*?The channel dimension of the inputs should be defined.*?")
+        self._add_key(r".*?Inputs should have rank /d. Received input shape:.*?")
 
     def judge(self, string) -> bool:
         for s in self.info_lis:

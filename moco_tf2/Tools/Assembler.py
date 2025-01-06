@@ -101,6 +101,10 @@ class TreeNode:
                f"def pre_check():\n" \
                f"    {', '.join(block.input_symbols)} = tf.random.normal({str(self.output_shape)})\n" \
                f"{block.generate_declaration_statement()}\n"
+        if block.is_child_model:
+            code += f"{block.generate_declaration_statement()}\n\n\n"
+            child_model = block.child_model
+            code += child_model.assemble_child_model()
         sys.path.append(f"{self.base_path}/../..")
         with open(f"{self.base_path}/../../pre_check.py", "w", encoding="utf-8") as f:
             f.write(code)

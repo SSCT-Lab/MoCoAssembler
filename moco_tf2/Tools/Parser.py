@@ -1,4 +1,6 @@
 import re
+import time
+from copy import copy
 
 from DS.Block import Block
 from DS.Model import Model
@@ -75,8 +77,10 @@ class Parser:
 
         for _block in self.graph:
             if _block.is_child_model:
-                _block.set_child_model(self.child_models[_block.api_name])
-                _block.api_name = _block.api_name + str(hash(_block.api_name))
+                _child_model = copy(self.child_models[_block.api_name])
+                _block.api_name = _block.api_name + str(hash(time.time()))
+                _child_model.model_name = _block.api_name
+                _block.set_child_model(_child_model)
 
         return model
 
