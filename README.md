@@ -42,9 +42,9 @@ In order to reproduce our tool, you first need to download and unzip `/MoCoAssem
 
 | Library    | Link                                                                         |
 | ---------- |------------------------------------------------------------------------------|
-| Tensorflow | https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_1.0/moco_tf/README.md    |
-| Pytorch    | https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_1.0/moco_torch/README.md |
-| Jittor     | https://github.com/SSCT-Lab/MoCoAssembler/blob/MoCo_1.0/moco_jt/README.md    |
+| Tensorflow | https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_2.1/moco_tf/README.md    |
+| Pytorch    | https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_2.1/moco_torch/README.md |
+| Jittor     | https://github.com/SSCT-Lab/MoCoAssembler/blob/MoCo_2.1/moco_jt/README.md    |
 ## Libraries
 I. **Tensorflow**
 
