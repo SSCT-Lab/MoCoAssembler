@@ -7,7 +7,6 @@ import importlib.util
 import sys
 import traceback
 import numpy as np
-import heapq
 import re
 
 from alive_progress import alive_bar
@@ -59,7 +58,6 @@ class Filter:
         self.addkey(r"Padding length must be divisible by (\d+)")
         self.addkey(r"It is expected stride equals to (\d+)")
         self.addkey(r"expected (\d+)D input")
-        self.addkey(r"Expected more than (\d+) spatial element when training")
         self.addkey("Expected size of input")
         self.addkey("The size of tensor a")
         self.addkey("Kernel size can't be greater than actual input size")

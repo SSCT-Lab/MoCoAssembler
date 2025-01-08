@@ -20,8 +20,8 @@ def resnet18(input_shape):
     x = inceptionB(inputs=x, filters=512, kernel_size=3, strides=1, padding="same")
 
     x = tf.keras.layers.GlobalAveragePooling2D()(x)
-
-    output_tensor = tf.keras.layers.Dense(units=1000, activation="softmax")(tf.keras.layers.Flatten()(x))
+    x = tf.keras.layers.Flatten()(x)
+    output_tensor = tf.keras.layers.Dense(units=1000, activation="softmax")(x)
 
     model = tf.keras.models.Model(inputs=input_tensor, outputs=output_tensor)
     return model

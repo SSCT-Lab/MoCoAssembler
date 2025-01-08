@@ -28,23 +28,22 @@ We provide specific `directory structures` according to different frameworks.
 
 > `/MoCoAssembler/bugs` -- Bug list for MoCo. 
 > 
-> `/MoCoAssembler/moco_jt`  --  MoCo for jittor. 
+> `/MoCoAssembler/moco_jt2`  --  MoCo for jittor. 
 >
-> `/MoCoAssembler/moco_torch`  --  MoCo for pytorch. 
+> `/MoCoAssembler/moco_torch2`  --  MoCo for pytorch. 
 >
-> `/MoCoAssembler/moco_tf`  --  MoCo for tensorflow. 
+> `/MoCoAssembler/moco_tf2`  --  MoCo for tensorflow. 
 > 
 > `/MoCoAssembler/datasets`  --  Datasets we used (Need to be added by the replicator). 
->
-> `/MoCoAssembler/utils`  --  MoCo utility class. 
+
 ## Usage
 In order to reproduce our tool, you first need to download and unzip `/MoCoAssembler`, and use MoCo according to the corresponding `README.md`.
 
-| Library    | Link                                                                         |
-| ---------- |------------------------------------------------------------------------------|
-| Tensorflow | https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_2.1/moco_tf/README.md    |
-| Pytorch    | https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_2.1/moco_torch/README.md |
-| Jittor     | https://github.com/SSCT-Lab/MoCoAssembler/blob/MoCo_2.1/moco_jt/README.md    |
+| Library    | Link                                                                          |
+| ---------- |-------------------------------------------------------------------------------|
+| Tensorflow | https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_2.1/moco_tf2/README.md    |
+| Pytorch    | https://github.com/SATE-Lab/MoCoAssembler/blob/MoCo_2.1/moco_torch2/README.md |
+| Jittor     | https://github.com/SSCT-Lab/MoCoAssembler/blob/MoCo_2.1/moco_jt2/README.md    |
 ## Libraries
 I. **Tensorflow**
 
@@ -61,31 +60,29 @@ III. **Jittor**
 
 ## Datasets
 
-We used `9` deep learning models from `4` common datasets based on image and sequence data as the initial seed models for MoCo, and these models have been widely used in many existing studies.
+We used `9` deep learning models from `3` common datasets based on image and sequence data as the initial seed models for MoCo, and these models have been widely used in many existing studies.
 
 | Model       | Dataset | Link                                                                                                                                |
 | ----------- | ------- |-------------------------------------------------------------------------------------------------------------------------------------|
-| AlexNet     | CIFAR-10 | [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)                                                                             |
+| AlexNet     | CIFAR-10 | [ImageNet](https://www.image-net.org/)                                                                                              |
 | GoogLeNet   | ImageNet | [ImageNet](https://www.image-net.org/)                                                                                              |
 | LeNet       | MNIST   | [MNIST](http://yann.lecun.com/exdb/mnist/)                                                                                          |
-| MobileNet   | CIFAR-10 | [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)                                                                             |
+| MobileNet   | CIFAR-10 | [ImageNet](https://www.image-net.org/)                                                                                              |
 | ResNet18    | ImageNet | [ImageNet](https://www.image-net.org/)                                                                                              |
 | SqueezeNet  | ImageNet | [ImageNet](https://www.image-net.org/)                                                                                              |
-| VGG19       | CIFAR-10 | [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)                                                                             |
-| LSTM        | Stock-Price | [StockPricesPredictionProject](https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo/tree/master/StockPricesPredictionProject) |
-| PointNet | Stock-Price| [StockPricesPredictionProject](https://github.com/omerbsezer/LSTM_RNN_Tutorials_with_Demo/tree/master/StockPricesPredictionProject)                                                |
+| VGG19       | CIFAR-10 | [ImageNet](https://www.image-net.org/)                                                                                              |
+| LSTM        | Stock-Price | [ModelNet10](https://www.kaggle.com/datasets/balraj98/modelnet10-princeton-3d-object-dataset)                   |
+| PointNet | Stock-Price| [ModelNet10](https://www.kaggle.com/datasets/balraj98/modelnet10-princeton-3d-object-dataset) |
 
 
 I. We have made special treatment for different data sets, which are stored in the form of `.npz` for training and validation of the network model. 
 
 II. We provide the processed dataset file [MoCo_Datasets](https://1drv.ms/f/s!Ao0nBM4MEX_uiU442vGWhqV05hwV?e=VONAIO).
 
-**Note:** In datasets.zip, there are `4` files:
+**Note:** In datasets.zip, there are `3` files:
 
-> cifar10.npz: dataset for cifar10;
+> modelnet10.npz: dataset for modelnet10;
 >
 > imagenet.npz: dataset for imagenet;
 >
 > mnist.npz: dataset for mnist;
->
-> DIS.csv: dataset for DIS.
